@@ -2,16 +2,17 @@ package com.poorip.vo;
 
 public class ScrapVo {
 	
-	private int seq;
+	private int scpSeq;
 	private String usrEmail;
 	private int trvSeq;
 	private int scpCitySeq;
 	private String crtDate;
-	public int getSeq() {
-		return seq;
+
+	public int getScpSeq() {
+		return scpSeq;
 	}
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setScpSeq(int scpSeq) {
+		this.scpSeq = scpSeq;
 	}
 	public String getUsrEmail() {
 		return usrEmail;
@@ -39,7 +40,8 @@ public class ScrapVo {
 	}
 	@Override
 	public String toString() {
-		return "ScrapVo [seq=" + seq + ", usrEmail=" + usrEmail + ", trvSeq=" + trvSeq + ", scpCitySeq=" + scpCitySeq
-				+ ", crtDate=" + crtDate + "]";
+		return "ScrapVo [scpSeq=" + scpSeq + ", usrEmail=" + usrEmail + ", trvSeq=" + trvSeq + ", scpCitySeq="
+				+ scpCitySeq + ", crtDate=" + crtDate + "]";
 	}
+
 }

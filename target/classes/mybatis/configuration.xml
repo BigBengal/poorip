@@ -2,10 +2,21 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-<!-- 		<typeAlias alias="uservo" type="com.bit2017.jblog.vo.UserVo" /> -->
-<!-- 		<typeAlias alias="blogvo" type="com.bit2017.jblog.vo.BlogVo" /> -->
-<!-- 		<typeAlias alias="categoryvo" type="com.bit2017.jblog.vo.CategoryVo" /> -->
-<!-- 		<typeAlias alias="postvo" type="com.bit2017.jblog.vo.PostVo" /> -->
+		<typeAlias alias="uservo" type="com.poorip.vo.UserVo" />
+		<typeAlias alias="scrapvo" type="com.poorip.vo.ScrapVo" />
+		<typeAlias alias="scrapcityvo" type="com.poorip.vo.ScrapCityVo" />
+		<typeAlias alias="requestvo" type="com.poorip.vo.RequestVo" />
+		<typeAlias alias="postvo" type="com.poorip.vo.PostVo" />
+		<typeAlias alias="postpicvo" type="com.poorip.vo.PostPicVo" />
+		<typeAlias alias="poolpostvo" type="com.poorip.vo.PoolPostVo" />
+		<typeAlias alias="poolpartyvo" type="com.poorip.vo.PoolPartyVo" />
+		<typeAlias alias="poolmembervo" type="com.poorip.vo.PoolMemberVo" />
+		<typeAlias alias="CategoryVo" type="com.poorip.vo.CategoryVo" />
+		<typeAlias alias="CityVo" type="com.poorip.vo.CityVo" />
+		<typeAlias alias="CountryVo" type="com.poorip.vo.CountryVo" />
+		<typeAlias alias="TravelInfoPicVo" type="com.poorip.vo.TravelInfoPicVo" />
+		<typeAlias alias="TravelInfoVo" type="com.poorip.vo.TravelInfoVo" />
+
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />

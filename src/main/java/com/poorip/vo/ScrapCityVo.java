@@ -1,6 +1,6 @@
 package com.poorip.vo;
 
-public class ScrapCity {
+public class ScrapCityVo {
 
 	private int scpCitySeq;
 	private String dateFrom;

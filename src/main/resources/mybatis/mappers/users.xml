@@ -3,12 +3,30 @@
 
 <mapper namespace="user">
 
-	<insert id="insert">
+	<insert id="insert"  parameterType="uservo">
 		<![CDATA[
 			insert 
 			  into users 
-			values ('test1','자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크',NULL,NULL,NULL,NULL,NULL,'N',now(), now(),'N');
+			values (#{usrEmail },'자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크',NULL,NULL,NULL,NULL,NULL,'N',now(), now(),'N');
 		]]>
 	</insert>
+	
+	<select id="selectbyno" resultType="uservo" parameterType="string">
+		<![CDATA[
+			select usr_email
+			  from users
+			 where usr_email = #{string }
+		]]>
+	</select>
+	
+	<delete id="delete" parameterType="uservo">
+		<![CDATA[
+			delete 
+			  from users
+			 where usr_email = #{usrEmail }
+		]]>
+		
+	
+	</delete>
 	
 </mapper>
