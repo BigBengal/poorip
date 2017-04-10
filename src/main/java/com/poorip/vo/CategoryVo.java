@@ -2,6 +2,7 @@ package com.poorip.vo;
 
 public class CategoryVo {
 	
+	
 	private int catSeq;
 	private String catName;
 	private String crtDate;
