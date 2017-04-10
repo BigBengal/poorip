@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<insert id="insert">
+		<![CDATA[
+			insert 
+			  into users 
+			values ('test1','자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크',NULL,NULL,NULL,NULL,NULL,'N',now(), now(),'N');
+		]]>
+	</insert>
+	
+</mapper>
