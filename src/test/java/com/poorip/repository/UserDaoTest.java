@@ -60,7 +60,7 @@ public class UserDaoTest {
 //		userdao.delete(uservo);
 		assertEquals(sqlSession.delete("user.delete", uservo), 1);
 	}
-	
+	@Ignore
 	@Test
 	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void update() {
@@ -69,7 +69,41 @@ public class UserDaoTest {
 //		userdao.delete(uservo);
 		assertEquals(sqlSession.update("user.updatelogin", uservo), 1);
 	}
+	@Ignore
+	@Test
+	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
+	public void updateProfile() {
+		UserVo uservo = new UserVo();
+		uservo.setUsrEmail("test");
+		uservo.setUsrInfo("자기소개3");
+		uservo.setUsrHashtag("해쉬태그3");
+//		userdao.delete(uservo);
+		assertEquals(sqlSession.update("user.updateprofile", uservo), 1);
+	}
 	
+	@Ignore
+	@Test
+	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
+	public void updateNoti() {
+		UserVo uservo = new UserVo();
+		uservo.setUsrEmail("test");
+		uservo.setUsrNoti("Y");
+//		userdao.delete(uservo);
+		assertEquals(sqlSession.update("user.updatenoti", uservo), 1);
+	}
+	
+	@Test
+	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
+	public void updateBlackYN() {
+		UserVo uservo = new UserVo();
+		uservo.setUsrEmail("test");
+		uservo.setUsrBlackYN("Y");
+//		userdao.delete(uservo);
+		assertEquals(sqlSession.update("user.updateblack", uservo), 1);
+	}
+	
+	
+	@Ignore
 	@Test
 	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void select() {

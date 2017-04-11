@@ -16,12 +16,24 @@ public class UserDao {
 		return 1 == sqlSession.insert("user.insert", uservo);
 	}
 	
+	public boolean updateBlack(UserVo uservo) {
+		return 1 == sqlSession.update("user.addblack", uservo);
+	}
+	
 	public boolean delete(UserVo uservo){
 		return 1 == sqlSession.delete("user.delete",uservo);
 	}
 	
-	public boolean update(UserVo uservo) {
+	public boolean updateLogin(UserVo uservo) {
 		return 1 == sqlSession.update("user.updatelogin", uservo);
+	}
+	
+	public boolean updateProfile(UserVo uservo) {
+		return 1 == sqlSession.update("user.updateprofile", uservo);
+	}
+	
+	public boolean updateNoti(UserVo uservo) {
+		return 1 == sqlSession.update("user.updatenoti", uservo);
 	}
 	
 	public UserVo select(UserVo uservo) {
