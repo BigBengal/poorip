@@ -14,17 +14,19 @@
 		<typeAlias alias="categoryvo" type="com.poorip.vo.CategoryVo" />
 		<typeAlias alias="cityvo" type="com.poorip.vo.CityVo" />
 		<typeAlias alias="countryvo" type="com.poorip.vo.CountryVo" />
-		<typeAlias alias="travelInfoPicvo" type="com.poorip.vo.TravelInfoPicVo" />
-		<typeAlias alias="travelInfovo" type="com.poorip.vo.TravelInfoVo" />
-
+		<typeAlias alias="travelinfopicvo" type="com.poorip.vo.TravelInfoPicVo" />
+		<typeAlias alias="travelinfovo" type="com.poorip.vo.TravelInfoVo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/category.xml"/>
 		<mapper resource="mybatis/mappers/city.xml"/>
-		<!-- <mapper resource="mybatis/mappers/country.xml"/> -->
+		<mapper resource="mybatis/mappers/country.xml"/>
 		<mapper resource="mybatis/mappers/travelInfo.xml"/>
 	 	<mapper resource="mybatis/mappers/travelInfoPic.xml"/>
+		<mapper resource="mybatis/mappers/scrap.xml" /> 
+		<mapper resource="mybatis/mappers/scrapcity.xml" />  
+		<mapper resource="mybatis/mappers/request.xml" />  
 	</mappers>
 
 </configuration>
