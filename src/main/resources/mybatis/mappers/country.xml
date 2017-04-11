@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="country">
+	
+    <!-- 국가 추가하기 -->
+	<insert id="insert" parameterType="countryvo">
+		<!-- <selectKey keyProperty="ctrSeq" resultType="int" order="BEFORE">
+			<![CDATA[
+			select ctr_seq.nextval from dual
+			]]>
+		</selectKey> -->
+		<![CDATA[
+			insert 
+				into country
+			values (0, '스페인', now())
+		]]>
+	</insert>
+
+	<!-- 국가 삭제하기 -->
+	<delete id="delete" parameterType="countryvo">
+		<![CDATA[
+			delete
+				from country
+			where ctr_name = '스페인'
+		]]>
+	</delete>
+	
+	<!-- 국가 수정하기 -->
+	<update id="update" parameterType="countryvo">
+		<![CDATA[
+			update country
+				set ctr_name = '스페인'
+			where ctr_seq = 10
+		]]>
+	</update>
+</mapper>
