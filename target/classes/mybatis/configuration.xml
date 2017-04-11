@@ -11,11 +11,11 @@
 		<typeAlias alias="poolpostvo" type="com.poorip.vo.PoolPostVo" />
 		<typeAlias alias="poolpartyvo" type="com.poorip.vo.PoolPartyVo" />
 		<typeAlias alias="poolmembervo" type="com.poorip.vo.PoolMemberVo" />
-		<typeAlias alias="CategoryVo" type="com.poorip.vo.CategoryVo" />
-		<typeAlias alias="CityVo" type="com.poorip.vo.CityVo" />
-		<typeAlias alias="CountryVo" type="com.poorip.vo.CountryVo" />
-		<typeAlias alias="TravelInfoPicVo" type="com.poorip.vo.TravelInfoPicVo" />
-		<typeAlias alias="TravelInfoVo" type="com.poorip.vo.TravelInfoVo" />
+		<typeAlias alias="categoryvo" type="com.poorip.vo.CategoryVo" />
+		<typeAlias alias="cityvo" type="com.poorip.vo.CityVo" />
+		<typeAlias alias="countryvo" type="com.poorip.vo.CountryVo" />
+		<typeAlias alias="travelinfopicvo" type="com.poorip.vo.TravelInfoPicVo" />
+		<typeAlias alias="travelinfovo" type="com.poorip.vo.TravelInfoVo" />
 
 	</typeAliases>
 	<mappers>

@@ -12,7 +12,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.poorip.vo.UserVo;
 
@@ -42,18 +41,19 @@ public class UserDaoTest {
 		assertEquals(1, 1);
 	}
 	
+//	@Ignore
 	@Test
 	@Rollback(false)
 	public void insert() {
 		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser2");
+		uservo.setUsrEmail("teseUser3");
 //		userdao.join(uservo);
 		assertEquals(sqlSession.insert("user.insert",uservo), 1);
 	}
 	
-	
+	@Ignore
 	@Test
-	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
+//	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void delete() {
 		UserVo uservo = new UserVo();
 		uservo.setUsrEmail("teseUser1");
