@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="travelInfoPic">
+    
+    <!-- 여행 정보 사진 보여주기 -->
+    <select id="getInfoPic" parameterType="int" resultType="travelinfopicvo">
+      <![CDATA[
+         select tip.path as path,
+         		tip.file_Name as fileName
+					from travel_info_pic tip,
+					 	 travel_info ti
+		 where ti.TRV_SEQ = tip.TRV_SEQ
+		   and ti.TRV_SEQ = #{trvSeq }
+      ]]>
+	</select>
+	
+    <!-- 여행 정보 사진 추가하기 -->
+    <insert id="insert" parameterType="travelInfoPicVo">
+        <![CDATA[
+         insert into travel_info_pic 
+         	values(null,
+         		   'bigdate2017',
+         		   'TourEiffel.png',
+         		   4,
+         		   now())
+      ]]>
+    </insert>
+    
+    <!-- 여행 정보 삭제하기 -->
+    <delete id="delete" parameterType="travelinfopicvo">
+        <![CDATA[
+         delete from travel_info_pic where FILE_NAME = 'TourEiffel.png'
+      ]]>
+    </delete>
+    
+</mapper>
