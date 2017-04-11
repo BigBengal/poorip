@@ -20,6 +20,13 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />
+		<mapper resource="mybatis/mappers/post.xml" />
+		<mapper resource="mybatis/mappers/postpic.xml" />
+		<mapper resource="mybatis/mappers/poolparty.xml" />
+		<mapper resource="mybatis/mappers/poolpost.xml" />
+		<mapper resource="mybatis/mappers/poolmember.xml" />
+
+		
 <!-- 		<mapper resource="mybatis/mappers/blog.xml" /> -->
 <!-- 		<mapper resource="mybatis/mappers/category.xml" /> -->
 <!-- 		<mapper resource="mybatis/mappers/post.xml" /> -->

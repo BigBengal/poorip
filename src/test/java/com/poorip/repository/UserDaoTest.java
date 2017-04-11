@@ -43,10 +43,10 @@ public class UserDaoTest {
 	
 //	@Ignore
 	@Test
-	@Rollback(false)
+//	@Rollback(false)
 	public void insert() {
 		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser3");
+		uservo.setUsrEmail("teseUser2");
 //		userdao.join(uservo);
 		assertEquals(sqlSession.insert("user.insert",uservo), 1);
 	}
@@ -56,7 +56,7 @@ public class UserDaoTest {
 //	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void delete() {
 		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser1");
+		uservo.setUsrEmail("teseUser2");
 //		userdao.delete(uservo);
 		assertEquals(sqlSession.delete("user.delete", uservo), 1);
 	}

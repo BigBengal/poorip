@@ -6,6 +6,7 @@ public class PostPicVo {
 	private String fileName;
 	private int postSeq;
 	private String crtDate;
+	
 	public int getPostPicSeq() {
 		return postPicSeq;
 	}

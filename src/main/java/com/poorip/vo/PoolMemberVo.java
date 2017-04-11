@@ -6,6 +6,7 @@ public class PoolMemberVo {
 	private String usrEmail;
 	private String approve;
 	private String crtDate;
+	
 	public int getPoolMemSeq() {
 		return poolMemSeq;
 	}

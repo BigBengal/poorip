@@ -9,6 +9,7 @@ public class PoolPartyVo {
 	private String managerEmail;
 	private String poolPublic_yn;
 	private String crtDate;
+	
 	public int getPoolSeq() {
 		return poolSeq;
 	}
