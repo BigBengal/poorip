@@ -12,9 +12,10 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.poorip.vo.UserVo;
+import com.poorip.vo.RequestVo;
+import com.poorip.vo.ScrapCityVo;
+import com.poorip.vo.ScrapVo;
 
 //spring-test안에 들어있는 클래스로, spring을 띄워주고 annotation들을 사용할수 있게 해준다.
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,11 +28,7 @@ import com.poorip.vo.UserVo;
 //ServletContext 을 autowired하면 서블릿 설정들을 가져올수 있다.
 //그러려면 @WebAppCongifuration 이 필요하다.
 @WebAppConfiguration
-public class UserDaoTest {
-
-//	@Autowired
-//	UserDao userdao;
-//	@Inject
+public class RequestDaoTest {
 	
 	@Inject
 	private SqlSession sqlSession;
@@ -41,43 +38,17 @@ public class UserDaoTest {
 		// 실행값, 예상값 을 파라미터로 같으면 Junit 테스트가 성공, 다르면 실패한다.
 		assertEquals(1, 1);
 	}
-	@Ignore
+
+	/*@Ignore*/
 	@Test
 	@Rollback(false)
 	public void insert() {
-		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser2");
-//		userdao.join(uservo);
-		assertEquals(sqlSession.insert("user.insert",uservo), 1);
+		RequestVo vo = new RequestVo();
+		vo.setKind("건");
+		vo.setTitle("이것좀 고쳐주세여");
+		vo.setContents("일 제대로 안할래");
+		vo.setUsrEmail("test");
+		assertEquals(sqlSession.insert("request.insert", vo), 1);
 	}
-	
-	@Ignore
-	@Test
-	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
-	public void delete() {
-		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser1");
-//		userdao.delete(uservo);
-		assertEquals(sqlSession.delete("user.delete", uservo), 1);
-	}
-	
-	@Test
-	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
-	public void update() {
-		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser2");
-//		userdao.delete(uservo);
-		assertEquals(sqlSession.update("user.updatelogin", uservo), 1);
-	}
-	
-	@Test
-	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
-	public void select() {
-		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser2");
-//		userdao.delete(uservo);
-		assertEquals(sqlSession.selectOne("user.selectbyemail", uservo), 1);
-	}
-	
 
 }

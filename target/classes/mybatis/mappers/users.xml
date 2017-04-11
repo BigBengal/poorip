@@ -2,23 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
-
+	
+	<!-- 새로운 유저 입력 -->
 	<insert id="insert"  parameterType="uservo">
 		<![CDATA[
 			insert 
 			  into users 
-			values (#{usrEmail },'자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크',NULL,NULL,NULL,NULL,NULL,'N',now(), now(),'N');
+			values (#{usrEmail },'자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크','1','1','5','3','2','N',now(), now(),'N')
 		]]>
 	</insert>
 	
-	<select id="selectbyno" resultType="uservo" parameterType="string">
+	<!-- 사용자 로그인 정보 업데이트 -->
+	<update id="updatelogin" parameterType="uservo">
+	<![CDATA[
+		update users set USR_LOGIN_DATE = now() where usr_email = #{usrEmail}
+	]]>
+	</update>
+	
+	<!-- 프로필 수정에 표시할 내용 불러오기 -->
+	<select id="selectbyemail" resultType="uservo" parameterType="string">
 		<![CDATA[
-			select usr_email
-			  from users
-			 where usr_email = #{string }
+			select usr_info as usrInfo, usr_hashtag as usrHashtag from users where usr_email = #{usrEmail}
 		]]>
 	</select>
 	
+	<!-- 사용자 삭제 -->
 	<delete id="delete" parameterType="uservo">
 		<![CDATA[
 			delete 

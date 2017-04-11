@@ -20,5 +20,12 @@ public class UserDao {
 		return 1 == sqlSession.delete("user.delete",uservo);
 	}
 	
+	public boolean update(UserVo uservo) {
+		return 1 == sqlSession.update("user.updatelogin", uservo);
+	}
 	
+	public UserVo select(UserVo uservo) {
+		UserVo vo = sqlSession.selectOne("user.selectbyemail", uservo);
+		return vo;
+	}
 }
