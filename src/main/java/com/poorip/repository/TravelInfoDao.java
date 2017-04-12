@@ -19,6 +19,10 @@ public class TravelInfoDao {
 		return sqlSession.selectList( "travelInfo.getInfo" );
 	}
 	
+	public List<TravelInfoVo> getMainInfo() {
+		return sqlSession.selectList("travelInfo.getInfomain");
+	}
+	
 	public List<ScrapVo> categoryList( String userEmail ) {
 		return sqlSession.selectList( "travelInfo.getScrapInfo", userEmail );
 	}

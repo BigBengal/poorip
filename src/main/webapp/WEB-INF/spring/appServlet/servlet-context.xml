@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan 
-		base-package="com.poorip.main, com.poorip.repository">
+		base-package="com.poorip.controller, com.poorip.service, com.poorip.repository">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation"
