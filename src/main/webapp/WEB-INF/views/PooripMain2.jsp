@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+	<head>  
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>PoOrip에 오신것을 환영합니다!</title>
 		<meta name="description" content="Worthy a Bootstrap-based, Responsive HTML5 Template">
@@ -1090,6 +1090,6 @@
 
 		<!-- Custom Scripts -->
 		<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
-
+ㅗ
 	</body>
 </html>
