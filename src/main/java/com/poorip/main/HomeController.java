@@ -42,7 +42,7 @@ public class HomeController {
 		Connection con = sqlSession.getConnection();
 		 System.out.println(con);
 		 System.out.println("연결성공");
-		 sqlSession.insert("user.insert");
+//		 sqlSession.insert("user.insert");
 		
 		return "home";
 	}
