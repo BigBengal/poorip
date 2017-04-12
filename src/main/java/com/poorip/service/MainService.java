@@ -14,9 +14,14 @@ public class MainService {
 	@Autowired
 	TravelInfoDao dao;
 	
-	public List<TravelInfoVo> selectTravelInfo(int ctySeq) {
+	public List<TravelInfoVo> selectTravelInfo() {
 		List<TravelInfoVo> travelInfoList = dao.getMainInfo();
 		return travelInfoList;
+	}
+	
+	public List<TravelInfoVo> selectTravelInfoByCity(int ctySeq) {
+		List<TravelInfoVo> traveInfoList = dao.getInfo(ctySeq);
+		return traveInfoList;
 	}
 	
 	

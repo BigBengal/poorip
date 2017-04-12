@@ -16,7 +16,7 @@ public class TravelInfoDao {
 	private SqlSession sqlSession;
 	
 	public List<TravelInfoVo> getInfo( int ctySeq ) {
-		return sqlSession.selectList( "travelInfo.getInfo" );
+		return sqlSession.selectList( "travelInfo.getInfo", ctySeq );
 	}
 	
 	public List<TravelInfoVo> getMainInfo() {

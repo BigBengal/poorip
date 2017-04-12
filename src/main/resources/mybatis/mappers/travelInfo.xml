@@ -4,10 +4,12 @@
 
 <mapper namespace="travelInfo">
 	
-    <!-- 사용자가 여행지 선택시 여행 정보 보여주기 -->
+    <!-- 사용자가 도시 선택시 도시에 있는 여행 정보 보여주기 -->
     <select id="getInfo" parameterType="int" resultType="travelinfovo">
       <![CDATA[
-         select crt_date as crtDate,
+         select 
+         		cat_seq as catSeq,
+         		crt_date as crtDate,
          		name as name,
          		contents,
          		hours,
@@ -24,7 +26,9 @@
 	<!-- 선택하지 않았을때 메인 여행 정보 보여주기 -->
     <select id="getInfomain" resultType="travelinfovo">
       <![CDATA[
-         select crt_date as crtDate,
+         select 
+         		cat_seq as catSeq,
+         		crt_date as crtDate,
          		name as name,
          		contents,
          		hours,
