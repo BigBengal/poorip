@@ -50,7 +50,11 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
 		<c:import url="/WEB-INF/views/include/ajax.jsp" />
+<<<<<<< HEAD
 	</head>
+=======
+	</head>
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
 
 <!-- Worthy core CSS file -->
 <link href="${pageContext.request.contextPath}/assets/css/style.css"
