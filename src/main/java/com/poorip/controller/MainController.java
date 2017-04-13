@@ -32,8 +32,6 @@ public class MainController {
 		attractionlist = (List<TravelInfoVo>) model.asMap().get("travelInfoAttraction");
 		if(foodlist==null||activitylist==null||attractionlist==null){
 			List<TravelInfoVo> list = mainService.selectTravelInfo();
-			System.out.println("f size:"+list.size());
-		System.out.println(list);
 		model.addAttribute("travelInfoList", list);
 		return "/PooripMain";
 		/*System.out.println(travelInfoVo);*/
@@ -42,11 +40,6 @@ public class MainController {
 		model.addAttribute("travelInfoFood", foodlist);
 		model.addAttribute("travelInfoActivity", activitylist);
 		model.addAttribute("travelInfoAttraction", attractionlist);
-		
-		
-		System.out.println("size:"+foodlist.size());
-		System.out.println("size:"+activitylist.size());
-		System.out.println("size:"+attractionlist.size());
 		
 		return "/PooripMain";
 	}
@@ -60,9 +53,7 @@ public class MainController {
 		ArrayList<TravelInfoVo> attractionlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> activitylist = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(ctySeq);
-		System.out.println("-----------------------------------ttttttttttt" + travelInfoVo);
 		for(int i=0; i < travelInfoVo.size(); i++) {
-			System.out.println("--------------들어옴--------------");
 			if(travelInfoVo.get(i).getCatSeq()==1) {
 				foodlist.add(travelInfoVo.get(i));
 				/*System.out.println("FOOOOOOOOOOOOOOOD" + foodlist);
@@ -81,9 +72,6 @@ public class MainController {
 		redirectAttributes.addFlashAttribute("travelInfoActivity", activitylist);
 		redirectAttributes.addFlashAttribute("travelInfoAttraction", attractionlist);
 		redirectAttributes.addFlashAttribute("travelInfoFood", foodlist);
-		System.out.println("TRAAAAAAAAAAVEL" + foodlist.size());
-		System.out.println("TRAAAAAAAAAAVEL" + activitylist.size());
-		System.out.println("TRAAAAAAAAAAVEL" + attractionlist.size());
 		return "redirect:/";
 	}
 
