@@ -56,7 +56,7 @@ public class PoolPartyDaoTest {
 		poolpartyvo = new PoolPartyVo();
 		poolpartyvo.setPoolName("Test");
 		poolpartyvo.setPoolComment("Comment");
-		poolpartyvo.setPoolPublic_yn("Y");
+		poolpartyvo.setPoolPublicYn("Y");
 		poolpartyvo.setPoolPic("poolPic");
 		poolpartyvo.setManagerEmail("ManagerEmail");
 		poolpartyvo.setCitySeq(1);
