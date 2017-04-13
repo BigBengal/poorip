@@ -3,14 +3,50 @@
 
 <mapper namespace="user">
 
+	<!-- 유저 정보가 있는 지 확인 -->
+	<select id="isexistuser" resultType="int" parameterType="uservo">
+		<![CDATA[
+			select count(*)
+			from users
+			where usr_email = #{usrEmail }
+		]]>
+	</select>
+
 	<!-- 새로운 유저 입력 -->
 	<insert id="insert" parameterType="uservo">
 		<![CDATA[
 			insert 
-			  into users 
-			values (null, 'bengal@naver.com','자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크','1','1','5','3','2','N',now(), now(),'N')
+			  into users (USR_SEQ,  USR_EMAIL,  USR_PROFILE,  USR_GENDER,  USR_LANG,  USR_BD,  USR_NICK,  USR_INFO,  USR_HASHTAG,  USR_PREF1,  USR_PREF2,  USR_PREF3,  USR_PREF4,  USR_PREF5,  USR_NOTI,   )
+			values (#{usrSeq }, #{usrEmail }, #{usrProfile }, #{usrGender }, #{usrLang }, #{usrBd }, #{usrNick }, #{usrInfo }, #{usrHashtag }, #{usrPref1 }, #{usrPref2 }, #{usrPref3 }, #{usrPref4 }, #{usrPref5 }, #{usrNoti } 
 		]]>
 	</insert>
+
+	<!-- 프로필 수정에 표시할 내용 불러오기 -->
+	<select id="selectbyemail" resultType="uservo" parameterType="uservo">
+		<![CDATA[
+			select USR_SEQ		as usrSeq,
+			  	   USR_EMAIL	as usrEmail,
+			  	   USR_PROFILE 	as usrProfile, 
+			  	   USR_GENDER 	as usrGender,  
+			  	   USR_LANG 	as usrLang,
+			  	   USR_BD 		as usrBd,  
+			  	   USR_NICK 	as usrNick,  
+			  	   USR_INFO 	as usrInfo,  
+			  	   USR_HASHTAG 	as usrHashtag,  
+			  	   USR_PREF1 	as usrPref1,  
+			  	   USR_PREF2 	as usrPref2,  
+			  	   USR_PREF3 	as usrPref3,  
+			  	   USR_PREF4 	as usrPref4,  
+			  	   USR_PREF5 	as usrPref5,  
+			  	   USR_NOTI 	as usrNoti,  
+			  	   USR_JOIN_DATE 	as usrJoinDate,  
+			  	   USR_LOGIN_DATE 	as usrLoginDate,  
+			  	   USR_BLACK_YN  	as usrBlackYN
+			from users 
+			where usr_email = #{usrEmail }
+		]]>
+	</select>
+
 
 	<!-- 사용자 로그인 정보 업데이트 -->
 	<update id="updatelogin" parameterType="uservo">
@@ -25,13 +61,6 @@
 		update users set usr_info = #{usrInfo}, usr_hashtag = #{usrHashtag} where usr_seq = #{usrSeq }
 	]]>
 	</update>
-
-	<!-- 프로필 수정에 표시할 내용 불러오기 -->
-	<select id="selectbyemail" resultType="uservo" parameterType="uservo">
-		<![CDATA[
-			select usr_info as usrInfo, usr_hashtag as usrHashtag from users where usr_email = #{usrEmail }
-		]]>
-	</select>
 
 	<!-- 노티피케이션 수정 -->
 	<update id="updatenoti" parameterType="uservo">

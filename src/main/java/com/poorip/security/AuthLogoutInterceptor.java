@@ -17,7 +17,7 @@ public class AuthLogoutInterceptor extends HandlerInterceptorAdapter {
 			session.invalidate();
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/main");
+		response.sendRedirect(request.getContextPath());
 		return false;
 	}
 

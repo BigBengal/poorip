@@ -12,6 +12,10 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public boolean isExist(UserVo uservo) {
+		return 1 == (Integer)sqlSession.selectOne("user.isexistuser", uservo);
+	}
+	
 	public boolean join(UserVo uservo){
 		return 1 == sqlSession.insert("user.insert", uservo);
 	}
@@ -40,4 +44,6 @@ public class UserDao {
 		UserVo vo = sqlSession.selectOne("user.selectbyemail", uservo);
 		return vo;
 	}
+
+	
 }
