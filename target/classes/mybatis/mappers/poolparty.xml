@@ -30,6 +30,9 @@
 		]]>
 	</select>
 	
+	<!-- 메인화면에서 도시이름으로 풀파티 조회 -->
+	
+	
 	<!-- 풀 파티 변경-->
 	<select id="update" parameterType="poolpartyvo">
 		<![CDATA[

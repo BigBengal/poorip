@@ -29,5 +29,10 @@ public class CityDao {
 	public List<CityVo> getList( CityVo cityVo ) {
 		return sqlSession.selectList( "city.getCityList", cityVo );
 	}
+	
+	public CityVo getCity( String cityName ) {
+		CityVo cityVo = sqlSession.selectOne( "city.getCityName", cityName );
+		return cityVo;
+	}
 
 }

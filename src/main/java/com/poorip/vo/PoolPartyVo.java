@@ -7,7 +7,7 @@ public class PoolPartyVo {
 	private String poolPic;
 	private int citySeq;
 	private String managerEmail;
-	private String poolPublic_yn;
+	private String poolPublicYn;
 	private String crtDate;
 	
 	public int getPoolSeq() {
@@ -46,11 +46,11 @@ public class PoolPartyVo {
 	public void setManagerEmail(String managerEmail) {
 		this.managerEmail = managerEmail;
 	}
-	public String getPoolPublic_yn() {
-		return poolPublic_yn;
+	public String getPoolPublicYn() {
+		return poolPublicYn;
 	}
-	public void setPoolPublic_yn(String poolPublic_yn) {
-		this.poolPublic_yn = poolPublic_yn;
+	public void setPoolPublicYn(String poolPublicYn) {
+		this.poolPublicYn = poolPublicYn;
 	}
 	public String getCrtDate() {
 		return crtDate;
@@ -63,7 +63,7 @@ public class PoolPartyVo {
 	public String toString() {
 		return "PoolPartyVo [poolSeq=" + poolSeq + ", poolName=" + poolName + ", poolComment=" + poolComment
 				+ ", poolPic=" + poolPic + ", citySeq=" + citySeq + ", managerEmail=" + managerEmail
-				+ ", poolPublic_yn=" + poolPublic_yn + ", crtDate=" + crtDate + "]";
+				+ ", poolPublicYn=" + poolPublicYn + ", crtDate=" + crtDate + "]";
 	}
 	
 	

@@ -68,22 +68,31 @@
 		</div>
 		<!-- banner end -->
 
-		<!-- section start -->
+		<!-- travel-Info start -->
 		<!-- ================ -->
 		<div class="section">
 			<div class="container">
 				<c:import url="/WEB-INF/views/include/travelInfo.jsp" />
 			</div>
 		</div>
-		<!-- section end -->
+		<!-- travel-Info end -->
 
-		<!-- section start -->
+		<!-- member start -->
 		<!-- ================ -->
 		<div class="section translucent-bg bg-image-2 pb-clear">
 			<c:import url="/WEB-INF/views/include/member.jsp" />
 		</div>
-		<!-- section end -->
-
+		<!-- member end -->
+		
+		<!-- finder start -->
+		<!-- ================ -->
+		<div class="default-bg space">
+			<div class="container">
+				<c:import url="/WEB-INF/views/include/finder.jsp" />
+			</div>
+		</div>
+		<!-- finder end -->
+		
 		<!-- footer start -->
 		<!-- ================ -->
 		<footer id="footer">
