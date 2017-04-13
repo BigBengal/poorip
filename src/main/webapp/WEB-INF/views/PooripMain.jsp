@@ -38,8 +38,8 @@
 		
 		<!-- Date Picker css -->
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  		<link rel="stylesheet" href="/resources/demos/style.css">
-		
+<!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
+		<c:import url="/WEB-INF/views/include/ajax.jsp" />
 	</head>
 
 	<body class="no-trans">
