@@ -41,7 +41,16 @@ public class UserDaoTest {
 		assertEquals(1, 1);
 	}
 
-
+	@Test
+//	@Rollback(false)
+	public void isExist() {
+		UserVo uservo = new UserVo();
+		uservo.setUsrEmail("bengal@naver.com");
+//		userdao.join(uservo);
+		assertEquals((Integer)sqlSession.selectOne("user.isexistuser",uservo), new Integer(1));
+	}
+	
+	@Ignore
 	@Test
 //	@Rollback(false)
 	public void insert() {
