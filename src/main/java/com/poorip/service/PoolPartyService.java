@@ -13,11 +13,10 @@ import com.poorip.vo.PoolPartyVo;
 @Service
 public class PoolPartyService {
 	
-	/*@Autowired
+/*	
 	PoolPartyDao poolPartyDao;
 	
-	public List<PoolPartyVo> searchPool( String search ) {
+	public List<> search() {
 		
-		return PoolPartyVo;		
 	}*/
 }

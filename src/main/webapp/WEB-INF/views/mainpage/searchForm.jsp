@@ -30,26 +30,29 @@ body {
 	</div>
 	<div class="container">
 		<h1>♡가고싶은 여행지를 검색하세요♡</h1>
-		<input style="margin-bottom: 1em;" placeholder="Search..."
-			class="form-control" id="hope-city">
-		<ul class="list-group">
-			<li class="item list-group-item list-group-item-success"
-				data-type="Madrid Spain">Madrid, Spain</li>
-			<!-- <li class="item list-group-item list-group-item-info"
-				data-type="Edinburgh Scotland">Edinburgh, Scotland</li>
-			<li class="item list-group-item list-group-item-warning"
-				data-type="Paris France">Paris, France</li>
-			<li class="item list-group-item list-group-item-danger"
-				data-type="Prague Czech Republic">Prague, Czech Republic</li>
-			<li class="item list-group-item list-group-item-success"
-				data-type="Venice Italy">Venice, Italy</li>
-			<li class="item list-group-item list-group-item-info"
-				data-type="Istanbul Turkey">Istanbul, Turkey</li>
-			<li class="item list-group-item list-group-item-warning"
-				data-type="Budapest Hungary">Budapest, Hungary</li>
-			<li class="item list-group-item list-group-item-danger"
-				data-type="San Sebastián Spain">San Sebastián, Spain</li> -->
-		</ul>
+		<form id="search_form" action="${pageContext.request.contextPath}/poolparty/poolsearch" method="get">
+			<input type="text" style="margin-bottom: 1em;" placeholder="Search..."
+				class="form-control" id="kwd" name="kwd">
+			<input type="submit" value="find">
+			<ul class="list-group">
+				<li class="item list-group-item list-group-item-success"
+					data-type="Madrid Spain">Madrid, Spain</li>
+				<!-- <li class="item list-group-item list-group-item-info"
+					data-type="Edinburgh Scotland">Edinburgh, Scotland</li>
+				<li class="item list-group-item list-group-item-warning"
+					data-type="Paris France">Paris, France</li>
+				<li class="item list-group-item list-group-item-danger"
+					data-type="Prague Czech Republic">Prague, Czech Republic</li>
+				<li class="item list-group-item list-group-item-success"
+					data-type="Venice Italy">Venice, Italy</li>
+				<li class="item list-group-item list-group-item-info"
+					data-type="Istanbul Turkey">Istanbul, Turkey</li>
+				<li class="item list-group-item list-group-item-warning"
+					data-type="Budapest Hungary">Budapest, Hungary</li>
+				<li class="item list-group-item list-group-item-danger"
+					data-type="San Sebastián Spain">San Sebastián, Spain</li> -->
+			</ul>
+		</form>
 	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>

@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="text-center">
-		<a href="${pageContext.request.contextPath }/poolparty/poolsearchForm"><img
+		<a href="${pageContext.request.contextPath }/poolparty/search"><img
 			src="${pageContext.request.contextPath }/assets/images/poorip_logo_small.png"></a>
 	</div>
 </div>
