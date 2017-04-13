@@ -18,11 +18,14 @@ package com.poorip.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.poorip.security.Auth;
+import com.poorip.vo.UserVo;
 
 import facebook4j.Account;
 import facebook4j.Facebook;
@@ -31,6 +34,7 @@ import facebook4j.FacebookFactory;
 import facebook4j.ResponseList;
 import facebook4j.auth.AccessToken;
 import facebook4j.conf.ConfigurationBuilder;
+import facebook4j.internal.org.json.JSONArray;
 
 @Controller
 public class FacebookController {
@@ -108,12 +112,13 @@ public class FacebookController {
 		return "/user/fbtest2";
 	}
 	
-	@ResponseBody
-	@RequestMapping("fbget")
-	public void recv(@RequestParam( value ="email", required=true, defaultValue="")
-					String email){
+//	@ResponseBody
+	@RequestMapping("/fbget")
+	public String recv(@ModelAttribute UserVo uservo){
 		System.out.println("Success");
-		System.out.println(email);
+		System.out.println(uservo);
+		return "/PooripMain";
+		
 	}
 	
 			

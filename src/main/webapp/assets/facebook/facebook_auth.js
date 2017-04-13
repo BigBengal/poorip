@@ -93,25 +93,36 @@ function testAPI() {
 	  console.log(JSON.stringify(response));
 	  
 	// Ajax 통신
-		$.ajax( {
-		    url : "${pageContext.request.contextPath }/fbget",
-		    type: "get",
-		    dataType: "json",
-		    data: "email="+response.email,
-		//  contentType: "application/json",
-		    success: function( response ){
-		    	console.log	( response );
-		       if( response.result == "failed") {
-		    	   console.log( response );
-		       }
-		    	//통신 성공 (response.result == "success" )
-		       return true;
-		    },
-		    error: function( XHR, status, error ){
-// 		       console.error( status + " : " + error );
-		    }
-
-		   });
+//		$.ajax( {
+//		    url : "fbget",
+//		    type: "get",
+//		    dataType: "json",
+//		    data: "usrEmail="+response.email+"&usrGender="+response.gender+"&usrProfile="+response.url+"&usrLang="+response.locale,
+//		//  contentType: "application/json",
+//		    success: function( response ){
+//		    	console.log	( response );
+//		       if( response.result == "failed") {
+//		    	   console.log( response );
+//		       }
+//		    	//통신 성공 (response.result == "success" )
+//		       return true;
+//		    },
+//		    error: function( XHR, status, error ){
+//// 		       console.error( status + " : " + error );
+//		    }
+//
+//		   });
+		
+		$.post("fbget",
+		        {
+					usrEmail: response.email,
+					usrGender: response.gender,
+					usrProfile: response.url,
+					usrLang: response.locale
+		        },
+		        function(data,status){
+		            alert("Data: " + data + "\nStatus: " + status);
+		        });
 
   });
   

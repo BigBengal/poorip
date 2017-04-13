@@ -27,13 +27,13 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		// 2. @Auth 가 달려있는 경우, Session에 authUser가 있는 지 확인
 		HttpSession session = request.getSession(false);
 		if (session == null) {
-			response.sendRedirect(request.getContextPath()+"/fb2");
+			response.sendRedirect(request.getContextPath()+"/fb3");
 		}
 		
 		// 세션에 authUser가 있는지, 없으면 로그인
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		if ( authUser == null) {
-			response.sendRedirect(request.getContextPath()+"/fb2");
+			response.sendRedirect(request.getContextPath()+"/fb3");
 			return false;
 		}
 		
