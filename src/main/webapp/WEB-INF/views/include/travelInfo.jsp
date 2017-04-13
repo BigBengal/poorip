@@ -263,7 +263,7 @@
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-12">${travelInfoAttraction.name}</a>
+								data-target="#project-12">${travelInfoAttractionMain.name}</a>
 						</div>
 						<!-- Modal -->
 						<div class="modal fade" id="project-12" tabindex="-1"

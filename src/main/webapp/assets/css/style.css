@@ -130,14 +130,46 @@ blockquote {
 	min-height: 100%;
 	position: relative;
 	color: #fff;
+	overflow: hidden;
 }
 .banner-image {
 	vertical-align: middle;
 	min-height: 100%;
 	width: 100%;
+	position: relative; 
+	z-index: 0; 
+	background: none;
+	overflow: hidden;
+}
+
+.banner-image img {
+	position: absolute; 
+	margin: 0px; 
+	padding: 0px; 
+	border: none; 
+	width: 1408.3px; 
+	height: 933px; 
+	max-height: none;
+	max-width: none; 
+	z-index: -999999; 
+	left: -222.151px; 
+	top: 0px;
+	overflow: hidden;
+}
+
+.banner .backstrecth {
+	left: 0px; 
+	top: 0px; 
+	overflow: hidden; 
+	margin: 0px; 
+	padding: 0px; 
+	height: 933px; 
+	width: 964px; 
+	z-index: -999998; 
+	position: absolute;"
 }
 .banner:after {
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 	right: 0;
