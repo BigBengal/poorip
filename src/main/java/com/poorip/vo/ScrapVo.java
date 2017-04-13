@@ -3,7 +3,7 @@ package com.poorip.vo;
 public class ScrapVo {
 	
 	private int scpSeq;
-	private String usrEmail;
+	private int usrSeq;
 	private int trvSeq;
 	private int scpCitySeq;
 	private String crtDate;
@@ -14,11 +14,11 @@ public class ScrapVo {
 	public void setScpSeq(int scpSeq) {
 		this.scpSeq = scpSeq;
 	}
-	public String getUsrEmail() {
-		return usrEmail;
+	public int getUsrSeq() {
+		return usrSeq;
 	}
-	public void setUsrEmail(String usrEmail) {
-		this.usrEmail = usrEmail;
+	public void setUsrSeq(int usrSeq) {
+		this.usrSeq = usrSeq;
 	}
 	public int getTrvSeq() {
 		return trvSeq;
@@ -38,10 +38,11 @@ public class ScrapVo {
 	public void setCrtDate(String crtDate) {
 		this.crtDate = crtDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "ScrapVo [scpSeq=" + scpSeq + ", usrEmail=" + usrEmail + ", trvSeq=" + trvSeq + ", scpCitySeq="
-				+ scpCitySeq + ", crtDate=" + crtDate + "]";
+		return "ScrapVo [scpSeq=" + scpSeq + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", scpCitySeq=" + scpCitySeq
+				+ ", crtDate=" + crtDate + "]";
 	}
 
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class PostPicDaoTest {
 		vo = new PostPicVo();
 		vo.setPath("Paht");
 		vo.setFileName("file_name");
-		vo.setPostSeq(2);
+		vo.setPostSeq(3);
 		
 	}
 	
@@ -45,10 +46,13 @@ public class PostPicDaoTest {
 		assertEquals(dao.write(vo), true);
 	}
 	
+	@Ignore
 	@Test
 	public void testSelect() {
 		assertNotNull(dao.select(2));
 	}
+	
+	@Ignore
 	@Test
 	public void testDelete() {
 		vo.setPostSeq(1);

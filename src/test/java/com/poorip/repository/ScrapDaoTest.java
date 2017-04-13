@@ -42,9 +42,9 @@ public class ScrapDaoTest {
 	@Rollback(false)
 	public void insert() {
 		ScrapVo vo = new ScrapVo();
-		vo.setUsrEmail("test");
-		vo.setTrvSeq(1);
-		/*vo.setScpSeq(2);*/
+		vo.setUsrSeq(1);
+		vo.setTrvSeq(2);
+		vo.setScpCitySeq(1);
 		System.out.println(vo);
 //		userdao.join(uservo);
 		assertEquals(sqlSession.insert("scrap.insert",vo), 1);

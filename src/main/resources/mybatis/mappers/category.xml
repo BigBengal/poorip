@@ -3,4 +3,19 @@
 
 <mapper namespace="category">
     
+    <!-- 새로운 카테고리 입력 -->
+	<insert id="insert" parameterType="scrapvo">
+		<![CDATA[
+			insert into category values(null, #{catName }, now())
+		]]>
+	</insert>
+	
+	<!-- 카테고리 삭제 -->
+	<delete id="delete" parameterType="scrapvo">
+		<![CDATA[
+			delete from category 
+			where cat_seq = #{catSeq }
+		]]>
+	</delete>
+	
 </mapper>

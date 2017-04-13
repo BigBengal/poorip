@@ -6,7 +6,7 @@ public class RequestVo {
 	private String kind;
 	private String title;
 	private String contents;
-	private String usrEmail;
+	private int usrSeq;
 	private String crtDate;
 
 	public int getReqSeq() {
@@ -41,12 +41,12 @@ public class RequestVo {
 		this.contents = contents;
 	}
 
-	public String getUsrEmail() {
-		return usrEmail;
+	public int getUsrSeq() {
+		return usrSeq;
 	}
 
-	public void setUsrEmail(String usrEmail) {
-		this.usrEmail = usrEmail;
+	public void setUsrSeq(int usrSeq) {
+		this.usrSeq = usrSeq;
 	}
 
 	public String getCrtDate() {
@@ -59,8 +59,8 @@ public class RequestVo {
 
 	@Override
 	public String toString() {
-		return "Request [reqSeq=" + reqSeq + ", kind=" + kind + ", title=" + title + ", contents=" + contents
-				+ ", usrEmail=" + usrEmail + ", crtDate=" + crtDate + "]";
+		return "RequestVo [reqSeq=" + reqSeq + ", kind=" + kind + ", title=" + title + ", contents=" + contents
+				+ ", usrSeq=" + usrSeq + ", crtDate=" + crtDate + "]";
 	}
 
 }

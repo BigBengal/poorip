@@ -6,7 +6,7 @@
 	<!-- 새로운 스크랩 입력 -->
 	<insert id="insert" parameterType="scrapvo">
 		<![CDATA[
-			insert into scrap values(null, #{usrEmail}, #{trvSeq}, #{scpCitySeq}, now())
+			insert into scrap values(null, #{usrSeq}, #{trvSeq}, #{scpCitySeq}, now())
 		]]>
 	</insert>
 

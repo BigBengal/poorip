@@ -41,12 +41,12 @@ public class UserDaoTest {
 		assertEquals(1, 1);
 	}
 
-	@Ignore
+
 	@Test
 //	@Rollback(false)
 	public void insert() {
 		UserVo uservo = new UserVo();
-		uservo.setUsrEmail("teseUser2");
+		//uservo.setUsrEmail("teseUser2");
 //		userdao.join(uservo);
 		assertEquals(sqlSession.insert("user.insert",uservo), 1);
 	}
@@ -92,6 +92,7 @@ public class UserDaoTest {
 		assertEquals(sqlSession.update("user.updatenoti", uservo), 1);
 	}
 	
+	@Ignore
 	@Test
 	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void updateBlackYN() {

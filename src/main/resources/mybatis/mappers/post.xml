@@ -6,8 +6,8 @@
 	<insert id="insert"  parameterType="postvo">
 		<![CDATA[
 			INSERT 
-			  INTO POST (POST_SEQ,  title, contents,  REVIEW_PUB_YN,  USR_EMAIL,  TRV_SEQ)
-			values ( #{postSeq}, #{title}, #{contents}, #{reviewPubYn}, #{usrEmail}, #{trvSeq} )
+			  INTO POST (POST_SEQ,  title, contents,  REVIEW_PUB_YN,  USR_SEQ,  TRV_SEQ)
+			values ( #{postSeq}, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
 		]]>
 	</insert>
 	
@@ -17,7 +17,7 @@
 			       TITLE as title,
 			       CONTENTS as contents, 
 			       REVIEW_PUB_YN as reviewPubYn, 
-			       USR_EMAIL as usrEmail, 
+			       USR_SEQ as usrSeq, 
 			       TRV_SEQ as trvSeq
 			  FROM POST
 			 WHERE POST_SEQ = #{postSeq }

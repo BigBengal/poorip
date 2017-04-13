@@ -20,9 +20,9 @@
         <![CDATA[
          insert into travel_info_pic 
          	values(null,
-         		   'bigdate2017',
-         		   'TourEiffel.png',
-         		   4,
+         		   #{path },
+         		   #{fileName },
+         		   #{trvSeq },
          		   now())
       ]]>
     </insert>
@@ -30,7 +30,7 @@
     <!-- 여행 정보 삭제하기 -->
     <delete id="delete" parameterType="travelinfopicvo">
         <![CDATA[
-         delete from travel_info_pic where FILE_NAME = 'TourEiffel.png'
+         delete from travel_info_pic where FILE_NAME = #{fileName }
       ]]>
     </delete>
     

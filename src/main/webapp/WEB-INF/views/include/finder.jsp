@@ -6,8 +6,7 @@
 
 <div class="row">
 	<div class="text-center">
-		<input type="text" id="search" name="search" placeholder="언제 어디로 떠나세요?" autocomplete="off"
-			style="border: 2px solid #3ed0c8; font-size: 11pt; color: #3ed0c7; font-family: 맑은고딕; font-weight:bold;
-			padding: 5px 10px 5px 10px; width: 800px" readonly />
+		<a href="${pageContext.request.contextPath }/poolparty/poolsearchForm"><img
+			src="${pageContext.request.contextPath }/assets/images/poorip_logo_small.png"></a>
 	</div>
 </div>

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -42,7 +43,7 @@ public class PoolPartyDaoTest {
 //	@Mock
 //	SqlSession seqSession;
 	
-	@Mock
+	@Autowired
 	public PoolPartyDao poolpartydao;
 	
 	private PoolPartyVo poolpartyvo;
@@ -57,7 +58,7 @@ public class PoolPartyDaoTest {
 		poolpartyvo.setPoolName("Test");
 		poolpartyvo.setPoolComment("Comment");
 		poolpartyvo.setPoolPublicYn("Y");
-		poolpartyvo.setPoolPic("poolPic");
+		poolpartyvo.setPoolPic("poolPic.png");
 		poolpartyvo.setManagerEmail("ManagerEmail");
 		poolpartyvo.setCitySeq(1);
 	}
@@ -68,19 +69,20 @@ public class PoolPartyDaoTest {
 		assertEquals(poolpartydao.join(poolpartyvo), true);
 	}
 
-	
+	@Ignore
 	@Test
 	public void testSelect() {
 		assertNotNull(poolpartydao.select(2));
 	}
 
+	@Ignore
 	@Test
 	public void testUpdate() {
 		poolpartyvo.setPoolSeq(30);
 		assertEquals(poolpartydao.update(poolpartyvo), true);
 	}
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void testDelete() {
 		poolpartyvo.setPoolSeq(30);

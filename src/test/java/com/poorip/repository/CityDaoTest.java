@@ -47,6 +47,8 @@ public class CityDaoTest {
 	@Rollback(false)
 	public void testInsert() {
 		CityVo cityVo = new CityVo();
+		cityVo.setCtrSeq(1);
+		cityVo.setCtyName("바르셀로나");
 		assertEquals(sqlSession.insert( "city.insert", cityVo ), 1);
 	}
 

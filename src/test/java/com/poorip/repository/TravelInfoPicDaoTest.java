@@ -43,14 +43,18 @@ public class TravelInfoPicDaoTest {
 		assertEquals( 1, 1 );
 	}
 	
-	@Ignore
+	
 	@Test
 	@Rollback(false)
 	public void testInsert() {
 		TravelInfoPicVo travelInfoPicVo = new TravelInfoPicVo();
+		travelInfoPicVo.setFileName("TourEiffel.png");
+		travelInfoPicVo.setPath("bigdate2017");
+		travelInfoPicVo.setTrvSeq(2);
 		assertEquals(sqlSession.insert( "travelInfoPic.insert", travelInfoPicVo ), 1);
 	}
 	
+	@Ignore
 	@Test
 	@Rollback(false)
 	public void testDelete() {
@@ -58,6 +62,7 @@ public class TravelInfoPicDaoTest {
 		assertEquals(sqlSession.delete( "travelInfoPic.delete", travelInfoPicVo ), 1);
 	}
 	
+	@Ignore
 	@Test
 	@Rollback(false)
 	public void testPicList() {

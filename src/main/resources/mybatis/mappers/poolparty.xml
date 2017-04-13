@@ -10,7 +10,7 @@
 			insert into pool_party
 			(POOL_SEQ, POOL_NAME,  POOL_COMMENT,  POOL_PIC,  CITY_SEQ,  MANAGER_EMAIL,  POOL_PUBLIC_YN)
 			values
-			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{citySeq }, #{managerEmail }, #{poolPublic_yn } )
+			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{citySeq }, #{managerEmail }, #{poolPublicYn } )
 		]]>
 	</insert>
 	

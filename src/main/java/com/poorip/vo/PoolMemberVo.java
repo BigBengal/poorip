@@ -3,7 +3,7 @@ package com.poorip.vo;
 public class PoolMemberVo {
 	private int poolMemSeq;
 	private int poolSeq;
-	private String usrEmail;
+	private int usrSeq;
 	private String approve;
 	private String crtDate;
 	
@@ -19,13 +19,12 @@ public class PoolMemberVo {
 	public void setPoolSeq(int poolSeq) {
 		this.poolSeq = poolSeq;
 	}
-	public String getUsrEmail() {
-		return usrEmail;
+	public int getUsrSeq() {
+		return usrSeq;
 	}
-	public void setUsrEmail(String usrEmail) {
-		this.usrEmail = usrEmail;
+	public void setUsrSeq(int usrSeq) {
+		this.usrSeq = usrSeq;
 	}
-
 	public String getApprove() {
 		return approve;
 	}
@@ -40,7 +39,7 @@ public class PoolMemberVo {
 	}
 	@Override
 	public String toString() {
-		return "PoolMember [poolMemSeq=" + poolMemSeq + ", poolSeq=" + poolSeq + ", usrEmail=" + usrEmail + ", approve="
+		return "PoolMemberVo [poolMemSeq=" + poolMemSeq + ", poolSeq=" + poolSeq + ", usrSeq=" + usrSeq + ", approve="
 				+ approve + ", crtDate=" + crtDate + "]";
 	}
 }

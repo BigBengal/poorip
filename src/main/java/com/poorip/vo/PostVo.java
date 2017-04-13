@@ -5,14 +5,14 @@ public class PostVo {
 	private String title;
 	private String contents;
 	private String reviewPubYn;
-	private String usrEmail;
+	private int usrSeq;
 	private int trvSeq;
 	private String crtDate;
 		
 	@Override
 	public String toString() {
 		return "PostVo [postSeq=" + postSeq + ", title=" + title + ", contents=" + contents + ", reviewPubYn="
-				+ reviewPubYn + ", usrEmail=" + usrEmail + ", trvSeq=" + trvSeq + ", crtDate=" + crtDate + "]";
+				+ reviewPubYn + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", crtDate=" + crtDate + "]";
 	}
 	public int getPostSeq() {
 		return postSeq;
@@ -38,11 +38,11 @@ public class PostVo {
 	public void setReviewPubYn(String reviewPubYn) {
 		this.reviewPubYn = reviewPubYn;
 	}
-	public String getUsrEmail() {
-		return usrEmail;
+	public int getUsrSeq() {
+		return usrSeq;
 	}
-	public void setUsrEmail(String usrEmail) {
-		this.usrEmail = usrEmail;
+	public void setUsrSeq(int usrSeq) {
+		this.usrSeq = usrSeq;
 	}
 	public int getTrvSeq() {
 		return trvSeq;

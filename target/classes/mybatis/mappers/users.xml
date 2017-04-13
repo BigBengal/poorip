@@ -8,42 +8,42 @@
 		<![CDATA[
 			insert 
 			  into users 
-			values (#{usrEmail },'자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크','1','1','5','3','2','N',now(), now(),'N')
+			values (null, 'bengal@naver.com','자기소개','M','KOR','20000101','닉네임','간략소개','해쉬태크','1','1','5','3','2','N',now(), now(),'N')
 		]]>
 	</insert>
 
 	<!-- 사용자 로그인 정보 업데이트 -->
 	<update id="updatelogin" parameterType="uservo">
 	<![CDATA[
-		update users set USR_LOGIN_DATE = now() where usr_email = #{usrEmail}
+		update users set USR_LOGIN_DATE = now() where usr_seq = #{usrSeq }
 	]]>
 	</update>
 
 	<!-- 사용자 자기소개/해쉬태그 정보 업데이트 -->
 	<update id="updateprofile" parameterType="uservo">
 	<![CDATA[
-		update users set usr_info = #{usrInfo}, usr_hashtag = #{usrHashtag} where usr_email=#{usrEmail}
+		update users set usr_info = #{usrInfo}, usr_hashtag = #{usrHashtag} where usr_seq = #{usrSeq }
 	]]>
 	</update>
 
 	<!-- 프로필 수정에 표시할 내용 불러오기 -->
 	<select id="selectbyemail" resultType="uservo" parameterType="uservo">
 		<![CDATA[
-			select usr_info as usrInfo, usr_hashtag as usrHashtag from users where usr_email = #{usrEmail}
+			select usr_info as usrInfo, usr_hashtag as usrHashtag from users where usr_email = #{usrEmail }
 		]]>
 	</select>
 
 	<!-- 노티피케이션 수정 -->
 	<update id="updatenoti" parameterType="uservo">
 		<![CDATA[
-			update users set usr_noti = #{usrNoti} where usr_email=#{usrEmail}
+			update users set usr_noti = #{usrNoti} where usr_seq = #{usrSeq }
 		]]>
 	</update>
 
 	<!-- 블랙리스트 추가 -->
 	<update id="updateblack" parameterType="uservo">
 		<![CDATA[
-			update users set usr_black_yn = #{usrBlackYN} where usr_email=#{usrEmail}
+			update users set usr_black_yn = #{usrBlackYN} where usr_seq = #{usrSeq }
 		]]>
 	</update>
 
@@ -52,7 +52,7 @@
 		<![CDATA[
 			delete 
 			  from users
-			 where usr_email = #{usrEmail }
+			 where usr_seq = #{usrSeq }
 		]]>
 	</delete>
 

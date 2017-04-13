@@ -5,15 +5,10 @@
 	
     <!-- 국가 추가하기 -->
 	<insert id="insert" parameterType="countryvo">
-		<!-- <selectKey keyProperty="ctrSeq" resultType="int" order="BEFORE">
-			<![CDATA[
-			select ctr_seq.nextval from dual
-			]]>
-		</selectKey> -->
 		<![CDATA[
 			insert 
 				into country
-			values (0, '스페인', now())
+			values (null, #{ctrName }, now())
 		]]>
 	</insert>
 
@@ -22,7 +17,7 @@
 		<![CDATA[
 			delete
 				from country
-			where ctr_name = '스페인'
+			where ctr_name = #{ctrName }
 		]]>
 	</delete>
 	
@@ -30,8 +25,8 @@
 	<update id="update" parameterType="countryvo">
 		<![CDATA[
 			update country
-				set ctr_name = '스페인'
-			where ctr_seq = 10
+				set ctr_name = #{ctrName }
+			where ctr_seq = #{ctrSeq }
 		]]>
 	</update>
 </mapper>

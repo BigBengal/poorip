@@ -6,7 +6,7 @@
 	<!-- 건의/추가 사항 입력-->
 	<insert id="insert" parameterType="requestvo">
 		<![CDATA[
-			insert into request values(null, #{kind}, #{title}, #{contents}, #{usrEmail}, now())
+			insert into request values(null, #{kind}, #{title}, #{contents}, #{usrSeq}, now())
 		]]>
 	</insert>
 

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
@@ -45,19 +46,23 @@ public class CategoryDaoTest {
 	@Rollback(false)
 	public void testInsert() {
 		CategoryVo categoryVo = new CategoryVo();
+		categoryVo.setCatName("Hot한 도시의 여행지");
 		assertEquals( sqlSession.insert( "category.insert", categoryVo ), 1);
 	}
-
+	
+	@Ignore
 	@Test
 	@Rollback(false)
 	public void testGetList() {
 		
 	}
-
+	
+	@Ignore
 	@Test
 	@Rollback(false)
 	public void testDelete() {
 		CategoryVo categoryVo = new CategoryVo();
+		categoryVo.setCatSeq(1);
 		assertEquals( sqlSession.delete( "category.delete", categoryVo ), 1);
 	}
 

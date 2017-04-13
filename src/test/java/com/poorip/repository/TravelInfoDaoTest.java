@@ -43,6 +43,7 @@ public class TravelInfoDaoTest {
 		assertEquals( 1, 1 );
 	}
 
+	@Ignore
 	@Test
 	@Rollback(false)
 	public void testGetInfo() {
@@ -51,11 +52,13 @@ public class TravelInfoDaoTest {
 		assertEquals( sqlSession.selectList( "travelInfo.getInfo", travelInfoVo ), 1 );
 	}
 	
-	@Ignore
+	
 	@Test
 	@Rollback(false)
 	public void testInsert() {
 		TravelInfoVo travelInfoVo = new TravelInfoVo();
+		travelInfoVo.setCtySeq(1);
+		travelInfoVo.setCatSeq(1);
 		assertEquals( sqlSession.insert( "travelInfo.insert", travelInfoVo ), 1) ;
 	}
 	
@@ -71,7 +74,7 @@ public class TravelInfoDaoTest {
 	@Rollback(false)   // 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void testScrapInfo() {
 		ScrapVo scrapVo = new ScrapVo();
-		scrapVo.setUsrEmail("test");
+		scrapVo.setUsrSeq(1);
 		assertEquals( sqlSession.selectList( "travelInfo.getScrapInfo", scrapVo ), 1 );
 	}
 	

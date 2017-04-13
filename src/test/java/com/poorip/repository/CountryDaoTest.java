@@ -42,11 +42,12 @@ public class CountryDaoTest {
 		assertEquals( 1, 1 );
 	}
 	
-	@Ignore
+	
 	@Test
 	@Rollback(false)
 	public void testInsert() {
 		CountryVo countryVo = new CountryVo();
+		countryVo.setCtrName("스페인");
 		assertEquals(sqlSession.insert( "country.insert", countryVo ), 1);
 	}
 	
@@ -58,7 +59,7 @@ public class CountryDaoTest {
 		assertEquals(sqlSession.delete( "country.delete", countryVo ), 1);
 	}
 
-	
+	@Ignore
 	@Test
 	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void testUpdate() {

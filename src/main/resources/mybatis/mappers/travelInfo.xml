@@ -53,8 +53,8 @@
 			       'TourEiffel.png',
 			       '0 won',
 			       now(),
-			       14,
-			       1,
+			       #{ctySeq },
+			       #{catSeq },
 			       null,
 			       '연락정보')
       ]]>
@@ -74,7 +74,7 @@
          		contact 
 					from scrap, travel_info 
 		where scrap.TRV_SEQ=travel_info.TRV_SEQ
-		AND scrap.USR_EMAIL = 'test'
+		AND scrap.usr_seq = {usrSeq }
       ]]>
 	</select>
 	

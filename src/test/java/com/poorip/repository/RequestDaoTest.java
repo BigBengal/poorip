@@ -47,7 +47,7 @@ public class RequestDaoTest {
 		vo.setKind("건");
 		vo.setTitle("이것좀 고쳐주세여");
 		vo.setContents("일 제대로 안할래");
-		vo.setUsrEmail("test");
+		vo.setUsrSeq(1);
 		assertEquals(sqlSession.insert("request.insert", vo), 1);
 	}
 

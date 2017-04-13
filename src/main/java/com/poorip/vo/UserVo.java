@@ -1,7 +1,8 @@
 package com.poorip.vo;
 
 public class UserVo {
-
+	
+	private int usrSeq;
 	private String usrEmail;
 	private String usrProfile;
 	private String usrGender;
@@ -21,6 +22,16 @@ public class UserVo {
 	private String usrBlackYN;
 
 	
+	public int getUsrSeq() {
+		return usrSeq;
+	}
+
+
+	public void setUsrSeq(int usrSeq) {
+		this.usrSeq = usrSeq;
+	}
+
+
 	public String getUsrEmail() {
 		return usrEmail;
 	}
@@ -193,11 +204,12 @@ public class UserVo {
 
 	@Override
 	public String toString() {
-		return "UserVo [usrEmail=" + usrEmail + ", usrProfile=" + usrProfile + ", usrGender=" + usrGender + ", usrLang="
-				+ usrLang + ", usrBd=" + usrBd + ", usrNick=" + usrNick + ", usrInfo=" + usrInfo + ", usrHashtag="
-				+ usrHashtag + ", usrPref1=" + usrPref1 + ", usrPref2=" + usrPref2 + ", usrPref3=" + usrPref3
-				+ ", usrPref4=" + usrPref4 + ", usrPref5=" + usrPref5 + ", usrNoti=" + usrNoti + ", usrJoinDate="
-				+ usrJoinDate + ", usrLoginDate=" + usrLoginDate + ", usrBlackYN=" + usrBlackYN + "]";
+		return "UserVo [usrSeq=" + usrSeq + ", usrEmail=" + usrEmail + ", usrProfile=" + usrProfile + ", usrGender="
+				+ usrGender + ", usrLang=" + usrLang + ", usrBd=" + usrBd + ", usrNick=" + usrNick + ", usrInfo="
+				+ usrInfo + ", usrHashtag=" + usrHashtag + ", usrPref1=" + usrPref1 + ", usrPref2=" + usrPref2
+				+ ", usrPref3=" + usrPref3 + ", usrPref4=" + usrPref4 + ", usrPref5=" + usrPref5 + ", usrNoti="
+				+ usrNoti + ", usrJoinDate=" + usrJoinDate + ", usrLoginDate=" + usrLoginDate + ", usrBlackYN="
+				+ usrBlackYN + "]";
 	}
 
 }

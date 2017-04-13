@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class PoolPostDaoTest {
 	@Before
 	public void setUp() {
 		vo = new PoolPostVo();
-		vo.setPoolSeq(2);
-		vo.setPostSeq(2);
+		vo.setPoolSeq(1);
+		vo.setPostSeq(3);
 	}
 	
 	@Test
@@ -43,10 +44,13 @@ public class PoolPostDaoTest {
 		assertEquals(dao.write(vo), true);
 	}
 	
+	@Ignore
 	@Test
 	public void testSelect() {
 		assertNotNull(dao.select(2));
 	}
+	
+	@Ignore
 	@Test
 	public void testDelete() {
 		vo.setPpSeq(1);

@@ -38,7 +38,7 @@ public class ScrapCityDaoTest {
 		assertEquals(1, 1);
 	}
 
-	@Ignore
+	/*@Ignore*/
 	@Test
 	@Rollback(false)
 	public void insert() {
@@ -60,7 +60,7 @@ public class ScrapCityDaoTest {
 	}
 	
 	
-	/*@Ignore*/
+	@Ignore
 	@Test
 	@Rollback(false)	// 트랜젝션 commit을 일으킨다. Test 전체 트랜잭션을 야기한다.
 	public void select() {

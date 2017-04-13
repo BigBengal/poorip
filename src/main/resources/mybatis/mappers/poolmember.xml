@@ -6,8 +6,8 @@
 	<insert id="insert"  parameterType="poolmembervo">
 		<![CDATA[
 			insert 
-			  into POOL_MEMBER (POOLMEM_SEQ, POOL_SEQ, USR_EMAIL, APPROVE)
-			values ( #{poolMemSeq }, #{poolSeq }, #{usrEmail }, #{approve } ) 
+			  into POOL_MEMBER (POOLMEM_SEQ, POOL_SEQ, USR_SEQ, APPROVE)
+			values ( #{poolMemSeq }, #{poolSeq }, #{usrSeq }, #{approve } ) 
 		]]>
 	</insert>
 	
