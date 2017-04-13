@@ -10,6 +10,13 @@
 	유익한 여행정보를 한 공간에 모아놨습니다.<br> 당신의 여행에 도움이 되길 바랍니다.
 </p>
 <br>
+
+<form id="travel_search" action="${pageContext.request.contextPath}/travelinfobycity" method="get">
+	<input type="text" style="margin-bottom: 1em;" placeholder="Search..."
+		class="form-control" id="ctySeq" name="ctySeq">
+	<input type="submit" value="find">
+</form>
+
 <div class="row object-non-visible" data-animation-effect="fadeIn">
 	<div class="col-md-12">
 
