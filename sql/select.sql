@@ -16,6 +16,7 @@ insert into scrap values(null, 1, 1, 2, now());
 select * from country;
 select * from city;
 
+
 select * from category;
 
 select * from travel_info;
