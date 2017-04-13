@@ -16,7 +16,7 @@
 		<!-- isotope filters start -->
 		<div class="filters text-center">
 			<ul class="nav nav-pills">
-				<c:if test="${!empty travelInfoList }">
+				<c:if test="${!empty travelInfoCityMain }">
 					<li class="active"><a href="#" data-filter=".cities">Hot한
 							도시</a></li>
 					<li><a href="#" data-filter=".web-design">Delicious한 맛집</a></li>
@@ -39,7 +39,9 @@
 		<!-- cities 가 맛집임 -->
 
 		<div class="isotope-container row grid-space-20">
-			<c:if test="${!empty travelInfoList }">
+			<c:if test="${!empty travelInfoCityMain }">
+				<c:forEach var="travelInfoCityMain" items="${travelInfoCityMain }"
+					varStatus="status">
 				<div class="col-sm-6 col-md-3 isotope-item cities">
 					<div class="image-box">
 						<div class="overlay-container">
@@ -50,7 +52,7 @@
 							</a>
 						</div>
 						<a class="btn btn-default btn-block" data-toggle="modal"
-							data-target="#project-1"> ${travelInfoList[1].name} </a>
+							data-target="#project-1"> ${travelInfoCityMain.name} </a>
 					</div>
 					<!-- Modal -->
 					<div class="modal fade" id="project-1" tabindex="-1" role="dialog"
@@ -61,13 +63,13 @@
 									<button type="button" class="close" data-dismiss="modal">
 										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 									</button>
-									<h4 class="modal-title" id="project-1-label">${travelInfoList[1].name}</h4>
+									<h4 class="modal-title" id="project-1-label">${travelInfoCityMain.name}</h4>
 								</div>
 								<div class="modal-body">
-									<h3>${travelInfoList[1].name}</h3>
+									<h3>${travelInfoCityMain.name}</h3>
 									<div class="row">
 										<div class="col-md-6">
-											<p>${travelInfoList[1].contents}</p>
+											<p>${travelInfoCityMain.contents}</p>
 										</div>
 										<div class="col-md-6">
 											<img src="images/portfolio-1.jpg" alt="">
@@ -83,118 +85,20 @@
 					</div>
 					<!-- Modal end -->
 				</div>
+				</c:forEach>
 			</c:if>
-
-
-			<c:if test="${!empty travelInfoActivity }">
-				<c:forEach var="travelInfoActivity" items="${travelInfoActivity }"
+			
+			<c:if test="${!empty travelInfoFood }">
+				<c:forEach var="travelInfoFood" items="${travelInfoFood }"
 					varStatus="status">
-					<div class="col-sm-6 col-md-3 isotope-item site-building">
-						<div class="image-box">
-							<div class="overlay-container">
-								<img src="${pageContext.request.contextPath }/assets/images/paris.png" alt=""> <a
-									class="overlay" data-toggle="modal" data-target="#project-10">
-									<i class="fa fa-search-plus"></i> <span>${travelInfoActivity.name}</span>
-								</a>
-							</div>
-							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-10">${travelInfoActivity.name}</a>
-						</div>
-						<!-- Modal -->
-						<div class="modal fade" id="project-10" tabindex="-1"
-							role="dialog" aria-labelledby="project-10-label"
-							aria-hidden="true">
-							<div class="modal-dialog modal-lg">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="project-10-label">${travelInfoActivity.name}</h4>
-									</div>
-									<div class="modal-body">
-										<h3>Project Description</h3>
-										<div class="row">
-											<div class="col-md-6">
-												<p>${travelInfoActivity.contents}</p>
-											</div>
-											<div class="col-md-6">
-												<img src="images/portfolio-10.jpg" alt="">
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-sm btn-default"
-											data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Modal end -->
-					</div>
-				</c:forEach>
-			</c:if>
-
-
-			<c:if test="${!empty travelInfoAttraction }">
-				<c:forEach var="travelInfoAttraction"
-					items="${travelInfoAttraction }" varStatus="status">
-					<div class="col-sm-6 col-md-3 isotope-item app-development">
-						<div class="image-box">
-							<div class="overlay-container">
-								<img src="${pageContext.request.contextPath }/assets/images/paris.png" alt=""> <a
-									class="overlay" data-toggle="modal" data-target="#project-12">
-									<i class="fa fa-search-plus"></i> <span>${travelInfoAttraction.name}</span>
-								</a>
-							</div>
-							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-12">${travelInfoAttraction.name}</a>
-						</div>
-						<!-- Modal -->
-						<div class="modal fade" id="project-12" tabindex="-1"
-							role="dialog" aria-labelledby="project-12-label"
-							aria-hidden="true">
-							<div class="modal-dialog modal-lg">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="project-12-label">${travelInfoAttraction.name}</h4>
-									</div>
-									<div class="modal-body">
-										<h3>${travelInfoAttraction.name}</h3>
-										<div class="row">
-											<div class="col-md-6">
-												<p>${travelInfoAttraction.contents}</p>
-											</div>
-											<div class="col-md-6">
-												<img src="images/portfolio-12.jpg" alt="">
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-sm btn-default"
-											data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Modal end -->
-					</div>
-				</c:forEach>
-			</c:if>
-		
-		
-		<c:if test="${!empty travelInfoFood }">
-				<c:forEach var="travelInfoFood"
-					items="${travelInfoFood }" varStatus="status">
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img src="${pageContext.request.contextPath }/assets/images/paris.png" alt=""> <a
-									class="overlay" data-toggle="modal" data-target="#project-12">
-									<i class="fa fa-search-plus"></i> <span>${travelInfoFood.name}</span>
+								<img
+									src="${pageContext.request.contextPath }/assets/images/paris.png"
+									alt=""> <a class="overlay" data-toggle="modal"
+									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									<span>${travelInfoFood.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
@@ -234,45 +138,43 @@
 					</div>
 				</c:forEach>
 			</c:if>
-		
-		
-		
-
-		<%-- <c:if test="${!empty travelInfoFood }">
-			<c:forEach var="travelInfoFood" items="${travelInfoFood }"
-				varStatus="status">
-				<div class="isotope-container row grid-space-20">
+			
+			<c:if test="${!empty travelInfoFoodMain }">
+				<c:forEach var="travelInfoFoodMain" items="${travelInfoFoodMain }"
+					varStatus="status">
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-1"> <i class="fa fa-search-plus"></i>
+									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									<span>${travelInfoFoodMain.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-1"> ${travelInfoFood.name} </a>
+								data-target="#project-12">${travelInfoFoodMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-1" tabindex="-1" role="dialog"
-							aria-labelledby="project-1-label" aria-hidden="true">
+						<div class="modal fade" id="project-12" tabindex="-1"
+							role="dialog" aria-labelledby="project-12-label"
+							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-1-label">${travelInfoFood.name}</h4>
+										<h4 class="modal-title" id="project-12-label">${travelInfoFoodMain.name}</h4>
 									</div>
 									<div class="modal-body">
-										<h3>${travelInfoFood.name}</h3>
+										<h3>${travelInfoFoodMain.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
-												<p>${travelInfoFood.contents}</p>
+												<p>${travelInfoFoodMain.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-1.jpg" alt="">
+												<img src="images/portfolio-12.jpg" alt="">
 											</div>
 										</div>
 									</div>
@@ -283,12 +185,222 @@
 								</div>
 							</div>
 						</div>
+						<!-- Modal end -->
 					</div>
-					<!-- Modal end -->
-				</div>
-			</c:forEach>
-		</c:if> --%>
-	</div>	
+				</c:forEach>
+			</c:if>
+			
+			
+			<c:if test="${!empty travelInfoAttraction }">
+				<c:forEach var="travelInfoAttraction"
+					items="${travelInfoAttraction }" varStatus="status">
+					<div class="col-sm-6 col-md-3 isotope-item app-development">
+						<div class="image-box">
+							<div class="overlay-container">
+								<img
+									src="${pageContext.request.contextPath }/assets/images/paris.png"
+									alt=""> <a class="overlay" data-toggle="modal"
+									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									<span>${travelInfoAttraction.name}</span>
+								</a>
+							</div>
+							<a class="btn btn-default btn-block" data-toggle="modal"
+								data-target="#project-12">${travelInfoAttraction.name}</a>
+						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="project-12" tabindex="-1"
+							role="dialog" aria-labelledby="project-12-label"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="project-12-label">${travelInfoAttraction.name}</h4>
+									</div>
+									<div class="modal-body">
+										<h3>${travelInfoAttraction.name}</h3>
+										<div class="row">
+											<div class="col-md-6">
+												<p>${travelInfoAttraction.contents}</p>
+											</div>
+											<div class="col-md-6">
+												<img src="images/portfolio-12.jpg" alt="">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal end -->
+					</div>
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${!empty travelInfoAttractionMain }">
+				<c:forEach var="travelInfoAttractionMain"
+					items="${travelInfoAttractionMain }" varStatus="status">
+					<div class="col-sm-6 col-md-3 isotope-item app-development">
+						<div class="image-box">
+							<div class="overlay-container">
+								<img
+									src="${pageContext.request.contextPath }/assets/images/paris.png"
+									alt=""> <a class="overlay" data-toggle="modal"
+									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									<span>${travelInfoAttractionMain.name}</span>
+								</a>
+							</div>
+							<a class="btn btn-default btn-block" data-toggle="modal"
+								data-target="#project-12">${travelInfoAttraction.name}</a>
+						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="project-12" tabindex="-1"
+							role="dialog" aria-labelledby="project-12-label"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="project-12-label">${travelInfoAttractionMain.name}</h4>
+									</div>
+									<div class="modal-body">
+										<h3>${travelInfoAttractionMain.name}</h3>
+										<div class="row">
+											<div class="col-md-6">
+												<p>${travelInfoAttractionMain.contents}</p>
+											</div>
+											<div class="col-md-6">
+												<img src="images/portfolio-12.jpg" alt="">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal end -->
+					</div>
+				</c:forEach>
+			</c:if>
+
+
+			<c:if test="${!empty travelInfoActivity }">
+				<c:forEach var="travelInfoActivity" items="${travelInfoActivity }"
+					varStatus="status">
+					<div class="col-sm-6 col-md-3 isotope-item site-building">
+						<div class="image-box">
+							<div class="overlay-container">
+								<img
+									src="${pageContext.request.contextPath }/assets/images/paris.png"
+									alt=""> <a class="overlay" data-toggle="modal"
+									data-target="#project-10"> <i class="fa fa-search-plus"></i>
+									<span>${travelInfoActivity.name}</span>
+								</a>
+							</div>
+							<a class="btn btn-default btn-block" data-toggle="modal"
+								data-target="#project-10">${travelInfoActivity.name}</a>
+						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="project-10" tabindex="-1"
+							role="dialog" aria-labelledby="project-10-label"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="project-10-label">${travelInfoActivity.name}</h4>
+									</div>
+									<div class="modal-body">
+										<h3>Project Description</h3>
+										<div class="row">
+											<div class="col-md-6">
+												<p>${travelInfoActivity.contents}</p>
+											</div>
+											<div class="col-md-6">
+												<img src="images/portfolio-10.jpg" alt="">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal end -->
+					</div>
+				</c:forEach>
+			</c:if>
+			
+			<c:if test="${!empty travelInfoActivityMain }">
+				<c:forEach var="travelInfoActivityMain" items="${travelInfoActivityMain }"
+					varStatus="status">
+					<div class="col-sm-6 col-md-3 isotope-item site-building">
+						<div class="image-box">
+							<div class="overlay-container">
+								<img
+									src="${pageContext.request.contextPath }/assets/images/paris.png"
+									alt=""> <a class="overlay" data-toggle="modal"
+									data-target="#project-10"> <i class="fa fa-search-plus"></i>
+									<span>${travelInfoActivityMain.name}</span>
+								</a>
+							</div>
+							<a class="btn btn-default btn-block" data-toggle="modal"
+								data-target="#project-10">${travelInfoActivityMain.name}</a>
+						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="project-10" tabindex="-1"
+							role="dialog" aria-labelledby="project-10-label"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="project-10-label">${travelInfoActivityMain.name}</h4>
+									</div>
+									<div class="modal-body">
+										<h3>Project Description</h3>
+										<div class="row">
+											<div class="col-md-6">
+												<p>${travelInfoActivityMain.contents}</p>
+											</div>
+											<div class="col-md-6">
+												<img src="images/portfolio-10.jpg" alt="">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal end -->
+					</div>
+				</c:forEach>
+			</c:if>
+
+			
+
+
+			
+		</div>
 
 
 		<!-- portfolio items end -->
