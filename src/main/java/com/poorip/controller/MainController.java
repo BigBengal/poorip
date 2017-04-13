@@ -15,7 +15,6 @@ import com.poorip.service.MainService;
 import com.poorip.vo.TravelInfoVo;
 
 @Controller
-@RequestMapping("/")
 public class MainController {
 	
 	
