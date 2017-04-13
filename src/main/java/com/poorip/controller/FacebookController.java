@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poorip.security.Auth;
+
 import facebook4j.Account;
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
@@ -93,15 +95,17 @@ public class FacebookController {
 		
 		return "fbtest";
 	}
+	
+	@Auth
 	@RequestMapping("/fb2")
 	public String jsp(Model model) {
-		return "fbtest";
+		return "/user/fbtest";
 	}
 	
 	
 	@RequestMapping("/fb3")
 	public String js(Model model) {
-		return "fbtest2";
+		return "/user/fbtest2";
 	}
 	
 	@ResponseBody
