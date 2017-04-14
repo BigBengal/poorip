@@ -17,7 +17,7 @@
 		<![CDATA[
 			insert 
 			  into users ( USR_EMAIL,  USR_PROFILE,  USR_GENDER,  USR_LANG,  USR_BD,  USR_NICK,  USR_INFO,  USR_HASHTAG,  USR_PREF1,  USR_PREF2,  USR_PREF3,  USR_PREF4,  USR_PREF5,  USR_NOTI   )
-			values ( #{usrEmail }, #{usrProfile }, #{usrGender }, #{usrLang }, #{usrBd }, #{usrNick }, #{usrInfo }, #{usrHashtag }, #{usrPref1 }, #{usrPref2 }, #{usrPref3 }, #{usrPref4 }, #{usrPref5 }, #{usrNoti }) 
+			values ( #{usrEmail }, #{usrProfile }, #{usrGender }, #{usrLang }, ${usrBd }, #{usrNick }, #{usrInfo }, #{usrHashtag }, #{usrPref1 }, #{usrPref2 }, #{usrPref3 }, #{usrPref4 }, #{usrPref5 }, #{usrNoti }) 
 		]]>
 	</insert>
 

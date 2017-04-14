@@ -43,13 +43,18 @@ public class UserService {
 		// 언어 설정
 		String locale = userVo.getUsrLang();
 		if (locale != null){
-			CharSequence charLocale = locale;
-			if ("kr".contains(charLocale) ){
+			if (locale.indexOf("KR") >= 0 ){
 				userVo.setUsrLang("KOR");
 			} else {
 				userVo.setUsrLang("ENG");
 			}
 		}
+		
+		//생일 설정
+		String birthday = userVo.getUsrBd();
+		if(birthday != null && birthday.isEmpty() == false)
+			userVo.setUsrBd("STR_TO_DATE('"+birthday+"','%m/%d/%Y')");
+		
 		return userDao.join(userVo);
 	}
 	
@@ -68,6 +73,10 @@ public class UserService {
 		return vo;
 		
 	}
-	
+
+	// 유저 로그인 시 로그인 시각 저장
+	public boolean UpdateLoginTime(UserVo uservo){
+		return userDao.updateLogin(uservo);
+	}
 
 }

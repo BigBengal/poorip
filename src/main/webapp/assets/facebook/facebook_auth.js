@@ -25,9 +25,9 @@ FB.init({
 //
 // These three cases are handled in the callback function.
 
-FB.getLoginStatus(function(response) {
-  statusChangeCallback(response);
-});
+//FB.getLoginStatus(function(response) {
+//  statusChangeCallback(response);
+//});
 
 };
 //Load the SDK asynchronously
@@ -35,7 +35,7 @@ FB.getLoginStatus(function(response) {
 var js, fjs = d.getElementsByTagName(s)[0];
 if (d.getElementById(id)) return;
 js = d.createElement(s); js.id = id;
-js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8&appId=322180811531159";
+js.src = "//connect.facebook.net/ko_KR/sdk.js";
 fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -43,11 +43,18 @@ fjs.parentNode.insertBefore(js, fjs);
 //This function is called when someone finishes with the Login
 //Button.  See the onlogin handler attached to it in the sample
 //code below.
-function checkLoginState() {
-	console.log(session);
-	FB.getLoginStatus(function(response) {
-	 statusChangeCallback(response);
-	});
+function facebooklogin() {
+	console.log("FB.login()")
+	FB.login(function(response) {
+		  // handle the response
+		  console.log("checkLoginState()");
+		  statusChangeCallback(response);
+		  
+		}, {scope: 'public_profile,email,user_birthday'});
+//	FB.getLoginStatus(function(response) {
+//	 statusChangeCallback(response);
+//	});
+	
 }
 
 //This is called with the results from from FB.getLoginStatus().
@@ -60,6 +67,8 @@ function statusChangeCallback(response) {
   // for FB.getLoginStatus().
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
+	  document.getElementById('status').innerHTML =
+	      'Thanks for logging in, ' + response.name + '!';
     testAPI();
   } else {
     // The person is not logged into your app or we are unable to tell.
@@ -73,8 +82,9 @@ function statusChangeCallback(response) {
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
   console.log('Welcome!  Fetching your information.... ');
-  FB.api('/me', {fields: 'email,id,cover,name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified'}, function(response){
-		console.log('permissions,Successful login for: ' + response.email);
+  FB.api('/me', {fields: 'email,id,cover,name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified, birthday'}, 
+		  function(response){
+		console.log('permissions,Successful login for: ' + response.birthday);
 		console.log(JSON.stringify(response));
 //		console.log('Successful login for: ' + response.picture);
 //		console.log('Successful login for: ' + response.picture.data.url);
@@ -86,21 +96,28 @@ function testAPI() {
 					usrEmail: response.email,
 					usrGender: response.gender,
 					usrProfile: response.picture.data.url,
-					usrLang: response.locale
+					usrLang: response.locale,
+					usrBd: response.birthday
 		        },
 		        function(data,status){
-		        	$(location).attr('href', '/poorip')
-
-
+		        	
+		        	$(location).delay(800).attr('href', '/poorip')
+//	        		console.log(d	ata);
+		        	return;
 		        });
   });
   
 }
+
 function logout(){
+	console.log("FB.logout()");
 	FB.logout(function(response) {
 		   // Person is now logged out
-		console.log("FB.getLoginStatus()");
 		console.log(response);
-		});
-
+		
+		
+	});
+	$.post("user/logout", function(data,status){
+		console.log("logout");
+	});
 }

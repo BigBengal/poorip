@@ -20,7 +20,6 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("login");
 		String email = request.getParameter("email");
 		
 		// 컨테이너 가져오는 코드
@@ -29,7 +28,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		UserVo userVo = new UserVo();
 		userVo.setUsrEmail(email);
 
-		System.out.println("OK");
+		logger.info("Login OK");
 //		logger.debug("before:"+userVo.toString());
 		userVo = userService.getUser(userVo);
 //		logger.debug("after:"+userVo.toString());
@@ -38,6 +37,9 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 			response.sendRedirect(request.getContextPath()+"/fb3");
 			return false;
 		}
+		
+		// 로그인 시간 저장
+		userService.UpdateLoginTime(userVo);
 
 		// 인증 처리
 		HttpSession session = request.getSession( true );
