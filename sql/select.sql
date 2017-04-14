@@ -34,3 +34,33 @@ select * from pool_party;
 select * from pool_member;
 
 SELECT * from pool_post;
+
+select ci.cty_seq as 도시번호,
+	   ci.cty_name as 도시이름,
+	   ci.CTR_SEQ as 나라번호,
+	   cu.CTR_NAME as 나라이름
+	from city ci, country cu
+where ci.CTR_SEQ = cu.CTR_SEQ;
+
+select ci.CTY_SEQ, ci.CTY_NAME, cu.CTR_NAME
+	from city ci, country cu
+where (ci.CTY_NAME like '%르셀%'
+or cu.CTR_NAME like '%르셀%')
+and ci.CTR_SEQ = cu.CTR_SEQ;
+
+select ci.CTY_SEQ, ci.CTY_NAME, cu.CTR_NAME
+	from city ci, country cu
+where ci.CTR_SEQ = cu.CTR_SEQ;
+
+select a.CTY_NAME, b.CTR_NAME from city a, country b
+	where a.CTR_SEQ = b.CTR_SEQ
+	  and a.CTY_NAME like '%르셀%';
+
+create view search
+	as select ci.CTY_SEQ, ci.CTY_NAME, cu.CTR_NAME
+	from city ci, country cu
+where ci.CTR_SEQ = cu.CTR_SEQ;
+
+select * from seach;
+
+select cty_seq from seach;

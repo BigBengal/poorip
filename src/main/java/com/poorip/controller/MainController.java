@@ -1,7 +1,6 @@
 package com.poorip.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,16 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.poorip.dto.JSONResult;
 import com.poorip.service.MainService;
 import com.poorip.vo.TravelInfoVo;
-
-import facebook4j.internal.org.json.JSONArray;
 
 
 @Controller
@@ -31,7 +28,7 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	@Autowired
-	MainService mainService;
+	private MainService mainService;
 
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
@@ -110,25 +107,28 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+	@ResponseBody
 	@RequestMapping("/search")
-    public void phone_AutoComplete(ModelMap modelMap,
-    							   @ModelAttribute TravelInfoVo travelInfoVo,
-    							   HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public JSONResult getKwdData( Model model,
+    					   		  @RequestParam( value="kwd", required=true, defaultValue="" ) String keyword,
+    					   		  HttpServletRequest request, HttpServletResponse response ) throws IOException{
         
-        logger.info("휴대폰 : 자동완성 기능 실행");
-        logger.debug("텍스트창에 입력된 단어 : " + travelInfoVo.getName());
-        System.out.println(travelInfoVo.getName());
+        logger.debug("텍스트창에 입력된 단어 : " + keyword);
+
         // DB문 실행
-        List<TravelInfoVo> autoList = mainService.selectTravelInfo();
+        List<TravelInfoVo> autoList = mainService.getKwdData(keyword);
+
+        if ( autoList.isEmpty())
+        	return JSONResult.fail("No-DATA");
+
         
-        JSONArray array = new JSONArray();
-        for(int i=0; i<autoList.size(); i++){
-            array.put(autoList.get(i).getCtySeq());
-            
-        }
-        
-        PrintWriter out = response.getWriter();
-        out.print(array.toString());
+        return JSONResult.success(autoList);
     }
+	
+	@RequestMapping("/searchResult")
+	public String getSearchResult( @RequestParam( value="kwd", required=true, defaultValue="" ) String keyword ) {
+		
+		return "";
+	}
 	
 }

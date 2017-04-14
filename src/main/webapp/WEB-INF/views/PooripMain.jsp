@@ -39,23 +39,6 @@
 <link
 	href="${pageContext.request.contextPath}/assets/css/animations.css"
 	rel="stylesheet">
-		<!-- Worthy core CSS file -->
-		<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
-		
-		
-		<!-- Custom css --> 
-		<link href="${pageContext.request.contextPath}/assets/css/custom.css" rel="stylesheet">
-		
-		<!-- Date Picker css -->
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
-		<c:import url="/WEB-INF/views/include/ajax.jsp" />
-
-	</head>
-
-	</head>
-
-
 <!-- Worthy core CSS file -->
 <link href="${pageContext.request.contextPath}/assets/css/style.css"
 	rel="stylesheet">
@@ -68,7 +51,8 @@
 <!-- Date Picker css -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
+<c:import url="/WEB-INF/views/include/ajax.jsp" />
 
 </head>
 
@@ -93,7 +77,8 @@
 	<div id="banner" class="banner">
 		<div class="banner-image">
 			<div class="backstretch">
-				<img src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg">
+				<img
+					src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg">
 			</div>
 		</div>
 		<div class="banner-caption">

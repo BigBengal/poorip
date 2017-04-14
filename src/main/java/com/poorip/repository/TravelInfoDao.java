@@ -38,5 +38,9 @@ public class TravelInfoDao {
 	public boolean delete( TravelInfoVo travelInfoVo ) {
 		return 1 == sqlSession.delete( "travelInfo.delete", travelInfoVo );
 	}
+
+	public List<TravelInfoVo> getKwdData( String keyword ) {
+		return sqlSession.selectList( "travelInfo.getKwdData", keyword );
+	 }
 	
 }

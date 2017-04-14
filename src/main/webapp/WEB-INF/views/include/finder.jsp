@@ -6,7 +6,9 @@
 
 <div class="row">
 	<div class="text-center">
-		<a href="${pageContext.request.contextPath }/poolparty/search"><img
-			src="${pageContext.request.contextPath }/assets/images/poorip_logo_small.png"></a>
+		<p style="text-align: center;">
+			<a href="${pageContext.request.contextPath }/poolparty/search"><img
+				src="${pageContext.request.contextPath }/assets/images/search.png" style="width: 400px" alt="풀 친구 검색하기"></a>
+		</p>
 	</div>
 </div>

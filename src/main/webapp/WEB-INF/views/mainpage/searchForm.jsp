@@ -15,6 +15,11 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
 	integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
 	crossorigin="anonymous">
+<!-- Date Picker css -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
+
 <style>
 body {
 	background-color: #f7f7f7;
@@ -24,6 +29,40 @@ body {
 	margin: 150px auto;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+$(function(){
+	$("#citypool").autocomplete({
+        source : function(request, response) {
+            $.ajax({
+                url : "poolpart/poolsearch",
+                type : "post",
+                dataType : "json",
+                data: "citypool="+$("#citypool").val(),
+                success : function(data) {
+                    var result = data;
+//                     console.log(JSON.stringify(result.data));
+                    response(
+                            $.map($.parseJSON(JSON.stringify(result.data)), function(item) {
+                                return {
+                                    label: item.name,
+                                    value: item.ctySeq
+                                }
+                            })
+                        );
+                },
+                error : function(data) {
+//                     alert("ajax 에러가 발생하였습니다.")
+                }
+            });
+        },
+		select : function( event, ui ) {
+			console.log(ui.item.value);
+			$(location).attr('href','/poorip/travelinfobycity?citypool='+ui.item.value+"&ctyName="+ui.item.label);
+		}
+    });
+});
+</script>
 </head>
 <body>
 	<div id="jquery-script-menu">
@@ -32,47 +71,47 @@ body {
 		<h1>♡가고싶은 여행지를 검색하세요♡</h1>
 		<form id="search_form" action="${pageContext.request.contextPath}/poolparty/poolsearch" method="get">
 			<input type="text" style="margin-bottom: 1em;" placeholder="Search..."
-				class="form-control" id="kwd" name="kwd">
-			<input type="submit" value="find">
-			<ul class="list-group">
-				<li class="item list-group-item list-group-item-success"
-					data-type="Madrid Spain">Madrid, Spain</li>
-				<!-- <li class="item list-group-item list-group-item-info"
-					data-type="Edinburgh Scotland">Edinburgh, Scotland</li>
-				<li class="item list-group-item list-group-item-warning"
-					data-type="Paris France">Paris, France</li>
-				<li class="item list-group-item list-group-item-danger"
-					data-type="Prague Czech Republic">Prague, Czech Republic</li>
-				<li class="item list-group-item list-group-item-success"
-					data-type="Venice Italy">Venice, Italy</li>
-				<li class="item list-group-item list-group-item-info"
-					data-type="Istanbul Turkey">Istanbul, Turkey</li>
-				<li class="item list-group-item list-group-item-warning"
-					data-type="Budapest Hungary">Budapest, Hungary</li>
-				<li class="item list-group-item list-group-item-danger"
-					data-type="San Sebastián Spain">San Sebastián, Spain</li> -->
-			</ul>
+				class="form-control" id="kwd" name="citypool">
+			<p class="text-center" style="text-align: center;">
+			<label for="from">출발</label> <input type="text" id="from" name="from"
+				style="color: #000000"> <label for="to">도착</label> <input
+				type="text" id="to" name="to" style="color: #000000"> <input
+				type="submit" id="serch" value="검색하기"
+				style="width: 75; font-family: 맑은고딕; background-color: #3ed0c8">
+			</p>
 		</form>
 	</div>
-	
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-	<script src="js/jsearch.js"></script>
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push([ '_setAccount', 'UA-36251023-1' ]);
-		_gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
-		_gaq.push([ '_trackPageview' ]);
 
-		(function() {
-			var ga = document.createElement('script');
-			ga.type = 'text/javascript';
-			ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-					: 'http://www')
-					+ '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(ga, s);
-		})();
+	<!-- date picker -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
+				defaultDate : "+1w",
+				changeMonth : true,
+				numberOfMonths : 2
+			}).on("change", function() {
+				to.datepicker("option", "minDate", getDate(this));
+			}), to = $("#to").datepicker({
+				defaultDate : "+1w",
+				changeMonth : true,
+				numberOfMonths : 2
+			}).on("change", function() {
+				from.datepicker("option", "maxDate", getDate(this));
+			});
+
+			function getDate(element) {
+				var date;
+				try {
+					date = $.datepicker.parseDate(dateFormat, element.value);
+				} catch (error) {
+					date = null;
+				}
+
+				return date;
+			}
+		});
 	</script>
 </body>
 </html>

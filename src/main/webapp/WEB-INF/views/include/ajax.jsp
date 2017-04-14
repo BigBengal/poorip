@@ -8,22 +8,34 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
 $(function(){
-	$("#ctySeq").autocomplete({
+	$("#kwd").autocomplete({
         source : function(request, response) {
             $.ajax({
                 url : "search",
                 type : "post",
                 dataType : "json",
-                data: "name="+$("#ctySeq").val(),
+                data: "kwd="+$("#kwd").val(),
                 success : function(data) {
                     var result = data;
-                    response(result);
+//                     console.log(JSON.stringify(result.data));
+                    response(
+                            $.map($.parseJSON(JSON.stringify(result.data)), function(item) {
+                                return {
+                                    label: item.name,
+                                    value: item.ctySeq
+                                }
+                            })
+                        );
                 },
                 error : function(data) {
-                    alert("ajax 에러가 발생하였습니다.")
+//                     alert("ajax 에러가 발생하였습니다.")
                 }
             });
-        }
+        },
+		select : function( event, ui ) {
+			console.log(ui.item.value);
+			$(location).attr('href','/poorip/travelinfobycity?ctySeq='+ui.item.value+"&ctyName="+ui.item.label);
+		}
     });
 });
 </script>

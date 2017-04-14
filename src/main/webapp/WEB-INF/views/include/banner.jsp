@@ -11,16 +11,16 @@
 			We are <span>PoOrip</span>
 		</h1>
 		<p class="lead text-center">즐겁고 신나는 여행을 떠나볼까요?</p>
-		<p class="text-center">
-			<label for="location">장소</label> <input type="text" id="location"
-				name="location" style="color: black">
-		</p>
-		<p class="text-center">
-			<label for="from">출발</label> <input type="text" id="from" name="from"
-				style="color: #000000"> <label for="to">도착</label> <input
-				type="text" id="to" name="to" style="color: #000000"> <input
-				type="submit" id="serch" value="검색하기"
-				style="width: 75; font-family: 맑은고딕; background-color: #3ed0c8">
-		</p>
+<!-- 		<p class="text-center"> -->
+<!-- 			<label for="location">장소</label> <input type="text" id="location" -->
+<!-- 				name="location" style="color: black"> -->
+<!-- 		</p> -->
+<!-- 		<p class="text-center"> -->
+<!-- 			<label for="from">출발</label> <input type="text" id="from" name="from" -->
+<!-- 				style="color: #000000"> <label for="to">도착</label> <input -->
+<!-- 				type="text" id="to" name="to" style="color: #000000"> <input -->
+<!-- 				type="submit" id="serch" value="검색하기" -->
+<!-- 				style="width: 75; font-family: 맑은고딕; background-color: #3ed0c8"> -->
+<!-- 		</p> -->
 	</div>
 </div>

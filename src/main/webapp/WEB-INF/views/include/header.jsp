@@ -13,9 +13,9 @@
 
 			<!-- logo -->
 			<div class="logo smooth-scroll">
-				<a href="#banner"><img id="logo"
+				<a href="${pageContext.request.contextPath}/"><img id="logo"
 					src="${pageContext.request.contextPath }/assets/images/poorip_logo_small.png"
-					alt="Worthy"></a>
+					alt="poorip"></a>
 			</div>
 
 			<!-- name-and-slogan -->
@@ -23,9 +23,9 @@
 				<div class="site-name">
 					<a href="#banner">PoOrip</a>
 				</div>
-				<div class="site-slogan">
+				<!-- <div class="site-slogan">
 					<a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>
-				</div>
+				</div> -->
 			</div>
 
 		</div>
@@ -61,12 +61,10 @@
 						<div class="collapse navbar-collapse scrollspy smooth-scroll"
 							id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li class="active"><a href="#banner">Home</a></li>
-								<li><a href="#about">About</a></li>
-								<li><a href="#services">Services</a></li>
-								<li><a href="#portfolio">Portfolio</a></li>
-								<li><a href="#clients">Clients</a></li>
-								<li><a href="#contact">Contact</a></li>
+								<li class="active"><a href="#banner">poOrip</a></li>
+								<li><a href="#portfolio">여행정보</a></li>
+								<li><a href="#clients">풀친구</a></li>
+								<li><a href="#contact">건의사항</a></li>
 							</ul>
 						</div>
 

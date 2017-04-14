@@ -74,7 +74,7 @@
          		contact 
 					from scrap, travel_info 
 		where scrap.TRV_SEQ=travel_info.TRV_SEQ
-		AND scrap.usr_seq = {usrSeq }
+		AND scrap.usr_seq = #{usrSeq }
       ]]>
 	</select>
 	
@@ -84,5 +84,15 @@
          DELETE FROM travel_info WHERE NAME = '에펠탑'
       ]]>
     </delete>
-
+    
+    <!-- 사용자가 입력한 키워드 관련 데이터 추출 -->
+	<select id="getKwdData" parameterType="string" resultType="travelinfovo">
+   		<![CDATA[
+         select cty.CTY_SEQ as ctySeq, cty.CTY_NAME as name, ctr.CTR_NAME as contents
+			from city cty, country ctr
+		 where (cty.CTY_NAME like '%${_parameter}%'
+		 or ctr.CTR_NAME like '%${_parameter}%')
+		 and cty.CTR_SEQ = ctr.CTR_SEQ
+    	]]>
+	</select>
 </mapper>
