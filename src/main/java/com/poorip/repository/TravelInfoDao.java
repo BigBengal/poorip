@@ -51,7 +51,8 @@ public class TravelInfoDao {
 	 }
 	
 	public int getCitySeq( String cityName ) {
-		return sqlSession.selectOne( "travelInfo.getCitySeq", cityName ); 
+		return sqlSession.selectOne( "travelInfo.getCitySeq", cityName );
+		
 	}
 	
 }
