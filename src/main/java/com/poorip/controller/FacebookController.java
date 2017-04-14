@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.poorip.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.poorip.security.Auth;
+import com.poorip.service.UserService;
 import com.poorip.vo.UserVo;
 
 import facebook4j.Account;
@@ -39,6 +41,9 @@ import facebook4j.internal.org.json.JSONArray;
 @Controller
 public class FacebookController {
 
+	@Autowired
+	UserService userService;
+	
 	private Facebook facebook = null;
 	private FacebookFactory ff = null;
 	
@@ -112,13 +117,15 @@ public class FacebookController {
 		return "/user/fbtest2";
 	}
 	
-//	@ResponseBody
+//	@ResponseBody	
 	@RequestMapping("/fbget")
-	public String recv(@ModelAttribute UserVo uservo){
+	public String recv(@ModelAttribute UserVo uservo,
+						Model model){
 		System.out.println("Success");
 		System.out.println(uservo);
-		return "/PooripMain";
 		
+		model.addAttribute("email", userService.oneStep(uservo).getUsrEmail());
+		return "redirect:/user/login";
 	}
 	
 			
