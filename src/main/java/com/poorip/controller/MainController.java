@@ -12,13 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poorip.dto.JSONResult;
 import com.poorip.service.MainService;
+import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
 
@@ -33,18 +34,13 @@ public class MainController {
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) {
-		List<TravelInfoVo> foodlist = new ArrayList<TravelInfoVo>();
-		List<TravelInfoVo> activitylist = new ArrayList<TravelInfoVo>();
-		List<TravelInfoVo> attractionlist = new ArrayList<TravelInfoVo>();
+		
 		List<TravelInfoVo> foodlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> activitylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> attractionlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> citylistMain = new ArrayList<TravelInfoVo>();
-		foodlist = (List<TravelInfoVo>) model.asMap().get("travelInfoFood");
-		activitylist = (List<TravelInfoVo>) model.asMap().get("travelInfoActivity");
-		attractionlist = (List<TravelInfoVo>) model.asMap().get("travelInfoAttraction");
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
-		if (foodlist==null || activitylist==null || attractionlist==null) {
+
 			
 			for (int i = 0; i < travelInfoVo.size(); i++) {
 				if (travelInfoVo.get(i).getCatSeq() == 1) {
@@ -65,31 +61,31 @@ public class MainController {
 			model.addAttribute("travelInfoActivityMain", activitylistMain);
 			model.addAttribute("travelInfoAttractionMain", attractionlistMain);
 			model.addAttribute("travelInfoCityMain", citylistMain);
+			
 			return "/PooripMain";
-			/* System.out.println(travelInfoVo); */
-			// model.addAttribute("travelInfoList", travelInfoVo);
-		}
-		model.addAttribute("travelInfoFood", foodlist);
-		model.addAttribute("travelInfoActivity", activitylist);
-		model.addAttribute("travelInfoAttraction", attractionlist);
-
-		return "/PooripMain";
+	
 	}
 
 	// 사용자가 도시를 선택 하였을 경우
-	@RequestMapping("/travelinfobycity")
-	public String getDetailInfo(RedirectAttributes redirectAttributes, Model model,
-			@RequestParam("ctySeq") int ctySeq) {
+	@RequestMapping("/city/{citySeq}")
+	public String getDetailInfo( Model model,
+			@PathVariable(required=false) String citySeq) {
 		ArrayList<TravelInfoVo> foodlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> attractionlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> activitylist = new ArrayList<TravelInfoVo>();
+		List<ReviewVo> foodReview = new ArrayList<ReviewVo>();
+		
+		int ctySeq = Integer.parseInt(citySeq); 
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(ctySeq);
+
 		for (int i = 0; i < travelInfoVo.size(); i++) {
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
 				foodlist.add(travelInfoVo.get(i));
-				/*
-				 * System.out.println("FOOOOOOOOOOOOOOOD" + foodlist);
-				 */
+				System.out.println(travelInfoVo.get(i).getTrvSeq());
+				List<ReviewVo> foodReviews = mainService.selectReviewList(travelInfoVo.get(i).getTrvSeq());
+				for(int j=0; j <foodReviews.size(); j++) {
+					foodReview.add(foodReviews.get(j));
+				}
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
 				attractionlist.add(travelInfoVo.get(i));
@@ -101,10 +97,13 @@ public class MainController {
 		
 
 		}
-		redirectAttributes.addFlashAttribute("travelInfoActivity", activitylist);
-		redirectAttributes.addFlashAttribute("travelInfoAttraction", attractionlist);
-		redirectAttributes.addFlashAttribute("travelInfoFood", foodlist);
-		return "redirect:/";
+		model.addAttribute("travelInfoActivity", activitylist);
+		model.addAttribute("travelInfoAttraction", attractionlist);
+		model.addAttribute("travelInfoFood", foodlist);
+		model.addAttribute("foodReview", foodReview);
+
+		System.out.println(foodReview);
+		return "/PooripMain";
 	}
 	
 	@ResponseBody
@@ -117,11 +116,8 @@ public class MainController {
 
         // DB문 실행
         List<TravelInfoVo> autoList = mainService.getKwdData(keyword);
-
         if ( autoList.isEmpty())
         	return JSONResult.fail("No-DATA");
-
-        
         return JSONResult.success(autoList);
     }
 	

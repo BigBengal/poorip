@@ -24,10 +24,15 @@
 		<div class="filters text-center">
 			<ul class="nav nav-pills">
 				<c:if test="${!empty travelInfoCityMain }">
-					<li class="active"><a href="#" data-filter=".cities">Hot한
+					<li class="active"><a href="#" data-filter=".cities" data-show="Y">Hot한
 							도시</a></li>
 					<li><a href="#" data-filter=".web-design">Delicious한 맛집</a></li>
 				</c:if>
+				<c:if test="${empty travelInfoCityMain }">
+					<li class="active"><a href="#" data-filter=".cities" style="display:none" data-show="N">Hot한
+							도시</a></li>
+				</c:if>
+				
 				<c:if test="${!empty travelInfoFood }">
 					<li class="active"><a href="#" data-filter=".web-design">Delicious한
 							맛집</a></li>
@@ -55,14 +60,14 @@
 							<img
 								src="${pageContext.request.contextPath }/assets/images/paris.png"
 								alt=""> <a class="overlay" data-toggle="modal"
-								data-target="#project-1"> <i class="fa fa-search-plus"></i>
+								data-target="#project-1${status.index }"> <i class="fa fa-search-plus"></i>
 							</a>
 						</div>
 						<a class="btn btn-default btn-block" data-toggle="modal"
-							data-target="#project-1"> ${travelInfoCityMain.name} </a>
+							data-target="#project-1${status.index }"> ${travelInfoCityMain.name} </a>
 					</div>
 					<!-- Modal -->
-					<div class="modal fade" id="project-1" tabindex="-1" role="dialog"
+					<div class="modal fade" id="project-1${status.index }" tabindex="-1" role="dialog"
 						aria-labelledby="project-1-label" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
@@ -70,7 +75,7 @@
 									<button type="button" class="close" data-dismiss="modal">
 										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 									</button>
-									<h4 class="modal-title" id="project-1-label">${travelInfoCityMain.name}</h4>
+									<h4 class="modal-title" id="project-1-label${status.index }">${travelInfoCityMain.name}</h4>
 								</div>
 								<div class="modal-body">
 									<h3>${travelInfoCityMain.name}</h3>
@@ -104,16 +109,16 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									data-target="#project-2${status.index }"> <i class="fa fa-search-plus"></i>
 									<span>${travelInfoFood.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-12">${travelInfoFood.name}</a>
+								data-target="#project-2${status.index }">${travelInfoFood.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-12" tabindex="-1"
-							role="dialog" aria-labelledby="project-12-label"
+						<div class="modal fade" id="project-2${status.index }" tabindex="-1"
+							role="dialog" aria-labelledby="project-2-label${status.index }"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -121,18 +126,31 @@
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-12-label">${travelInfoFood.name}</h4>
+										<h4 class="modal-title" id="project-2-label${status.index }">${travelInfoFood.name}</h4>
 									</div>
 									<div class="modal-body">
-										<h3>${travelInfoFood.name}</h3>
+										<h2><b>${travelInfoFood.name}</b></h2>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoFood.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-12.jpg" alt="">
+												<img src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg" alt="">
 											</div>
 										</div>
+										<h3><b>후기</b></h3>
+										<c:forEach var="foodReview" items="${foodReview }" varStatus="status">
+										<div class="row">
+											<div class="col-md-6">
+												<p>${foodReview.title }</p>
+												<p>${foodReview.contents }</p>
+											</div>
+											<div class="col-md-3">
+												<img src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg" alt="">
+											</div>
+										</div>
+										</c:forEach>
+																			
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
@@ -155,16 +173,16 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									data-target="#project-3"> <i class="fa fa-search-plus"></i>
 									<span>${travelInfoFoodMain.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-12">${travelInfoFoodMain.name}</a>
+								data-target="#project-3">${travelInfoFoodMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-12" tabindex="-1"
-							role="dialog" aria-labelledby="project-12-label"
+						<div class="modal fade" id=project-3 tabindex="-1"
+							role="dialog" aria-labelledby="project-3-label"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -172,9 +190,9 @@
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-12-label">${travelInfoFoodMain.name}</h4>
+										<h4 class="modal-title" id="project-3-label">${travelInfoFoodMain.name}</h4>
 									</div>
-									<div class="modal-body">
+									<div class="modal-body" id="${status.index }">
 										<h3>${travelInfoFoodMain.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -207,16 +225,16 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									data-target="#project-4"> <i class="fa fa-search-plus"></i>
 									<span>${travelInfoAttraction.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-12">${travelInfoAttraction.name}</a>
+								data-target="#project-4">${travelInfoAttraction.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-12" tabindex="-1"
-							role="dialog" aria-labelledby="project-12-label"
+						<div class="modal fade" id="project-4" tabindex="-1"
+							role="dialog" aria-labelledby="project-3-label"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -224,7 +242,7 @@
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-12-label">${travelInfoAttraction.name}</h4>
+										<h4 class="modal-title" id="project-4-label">${travelInfoAttraction.name}</h4>
 									</div>
 									<div class="modal-body">
 										<h3>${travelInfoAttraction.name}</h3>
@@ -258,15 +276,15 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-12"> <i class="fa fa-search-plus"></i>
+									data-target="#project-5"> <i class="fa fa-search-plus"></i>
 									<span>${travelInfoAttractionMain.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-12">${travelInfoAttractionMain.name}</a>
+								data-target="#project-5">${travelInfoAttractionMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-12" tabindex="-1"
+						<div class="modal fade" id="project-5" tabindex="-1"
 							role="dialog" aria-labelledby="project-12-label"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
@@ -275,7 +293,7 @@
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-12-label">${travelInfoAttractionMain.name}</h4>
+										<h4 class="modal-title" id="project-5-label">${travelInfoAttractionMain.name}</h4>
 									</div>
 									<div class="modal-body">
 										<h3>${travelInfoAttractionMain.name}</h3>
@@ -310,16 +328,16 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-10"> <i class="fa fa-search-plus"></i>
+									data-target="#project-6"> <i class="fa fa-search-plus"></i>
 									<span>${travelInfoActivity.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-10">${travelInfoActivity.name}</a>
+								data-target="#project-6">${travelInfoActivity.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-10" tabindex="-1"
-							role="dialog" aria-labelledby="project-10-label"
+						<div class="modal fade" id="project-6" tabindex="-1"
+							role="dialog" aria-labelledby="project-6-label"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -327,7 +345,7 @@
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-10-label">${travelInfoActivity.name}</h4>
+										<h4 class="modal-title" id="project-6-label">${travelInfoActivity.name}</h4>
 									</div>
 									<div class="modal-body">
 										<h3>Project Description</h3>
@@ -361,16 +379,16 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-10"> <i class="fa fa-search-plus"></i>
+									data-target="#project-7"> <i class="fa fa-search-plus"></i>
 									<span>${travelInfoActivityMain.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-10">${travelInfoActivityMain.name}</a>
+								data-target="#project-7">${travelInfoActivityMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-10" tabindex="-1"
-							role="dialog" aria-labelledby="project-10-label"
+						<div class="modal fade" id="project-7" tabindex="-1"
+							role="dialog" aria-labelledby="project-7-label"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -378,7 +396,7 @@
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-10-label">${travelInfoActivityMain.name}</h4>
+										<h4 class="modal-title" id="project-7-label">${travelInfoActivityMain.name}</h4>
 									</div>
 									<div class="modal-body">
 										<h3>Project Description</h3>

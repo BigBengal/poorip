@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.poorip.controller.MainController;
 import com.poorip.repository.TravelInfoDao;
+import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Service
@@ -21,6 +22,7 @@ public class MainService {
 	private TravelInfoDao travelInfoDao;
 	
 	public List<TravelInfoVo> selectTravelInfo() {
+		
 		List<TravelInfoVo> travelInfoList = travelInfoDao.getMainInfo();
 		return travelInfoList;
 	}
@@ -36,4 +38,9 @@ public class MainService {
 		return travelInfoList;
 	}
 	
+	public List<ReviewVo> selectReviewList(int trvSeq) {
+		List<ReviewVo> reviewList = travelInfoDao.getReviews(trvSeq);
+		return reviewList;
+	}
+		
 }

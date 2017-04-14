@@ -1,11 +1,14 @@
 package com.poorip.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.poorip.vo.ReviewVo;
 import com.poorip.vo.ScrapVo;
 import com.poorip.vo.TravelInfoVo;
 
@@ -25,6 +28,10 @@ public class TravelInfoDao {
 	
 	public List<ScrapVo> categoryList( String userEmail ) {
 		return sqlSession.selectList( "travelInfo.getScrapInfo", userEmail );
+	}
+	
+	public List<ReviewVo> getReviews(int trvSeq) {
+		return sqlSession.selectList("post.selectbytravelseq", trvSeq);
 	}
 	
 	public boolean insert( TravelInfoVo travelInfoVo ) {
