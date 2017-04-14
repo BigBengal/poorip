@@ -143,39 +143,22 @@ blockquote {
 }
 
 .banner-image img {
-	position: absolute; 
-	margin: 0px; 
-	padding: 0px; 
-	border: none; 
-	width: 1408.3px; 
-	height: 933px; 
-	max-height: none;
-	max-width: none; 
-	z-index: -999999; 
-	left: -222.151px; 
-	top: 0px;
-	overflow: hidden;
+	vertical-align: middle;
+	min-height: 100%;
+	width: 100%;
+
+	
 }
 
-.banner .backstrecth {
-	left: 0px; 
-	top: 0px; 
-	overflow: hidden; 
-	margin: 0px; 
-	padding: 0px; 
-	height: 933px; 
-	width: 964px; 
-	z-index: -999998; 
-	position: absolute;"
-}
 .banner:after {
-	position: relative;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.55);
+	background-color: rgba(0, 0, 0, 0.60);
 	content: "";
+
 }
 .banner-caption {
 	position: absolute;

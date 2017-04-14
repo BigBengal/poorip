@@ -93,7 +93,7 @@
 	<div id="banner" class="banner">
 		<div class="banner-image">
 			<div class="backstretch">
-				<img src="${pageContext.request.contextPath }/assets/images/pool-party4.png">
+				<img src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg">
 			</div>
 		</div>
 		<div class="banner-caption">
