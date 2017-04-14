@@ -16,6 +16,7 @@
 		<typeAlias alias="countryvo" type="com.poorip.vo.CountryVo" />
 		<typeAlias alias="travelinfopicvo" type="com.poorip.vo.TravelInfoPicVo" />
 		<typeAlias alias="travelinfovo" type="com.poorip.vo.TravelInfoVo" />
+		<typeAlias alias="reviewvo" type="com.poorip.vo.ReviewVo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />

@@ -24,10 +24,15 @@
 		<div class="filters text-center">
 			<ul class="nav nav-pills">
 				<c:if test="${!empty travelInfoCityMain }">
-					<li class="active"><a href="#" data-filter=".cities">Hot한
+					<li class="active"><a href="#" data-filter=".cities" data-show="Y">Hot한
 							도시</a></li>
 					<li><a href="#" data-filter=".web-design">Delicious한 맛집</a></li>
 				</c:if>
+				<c:if test="${empty travelInfoCityMain }">
+					<li class="active"><a href="#" data-filter=".cities" style="display:none" data-show="N">Hot한
+							도시</a></li>
+				</c:if>
+				
 				<c:if test="${!empty travelInfoFood }">
 					<li class="active"><a href="#" data-filter=".web-design">Delicious한
 							맛집</a></li>
@@ -113,7 +118,7 @@
 						</div>
 						<!-- Modal -->
 						<div class="modal fade" id="project-2${status.index }" tabindex="-1"
-							role="dialog" aria-labelledby="project-2-label"
+							role="dialog" aria-labelledby="project-2-label${status.index }"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -121,7 +126,7 @@
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="project-2-label">${travelInfoFood.name}</h4>
+										<h4 class="modal-title" id="project-2-label${status.index }">${travelInfoFood.name}</h4>
 									</div>
 									<div class="modal-body">
 										<h2><b>${travelInfoFood.name}</b></h2>
@@ -134,11 +139,11 @@
 											</div>
 										</div>
 										<h3><b>후기</b></h3>
-										<c:forEach var="foodReviewList" items="${foodReviewList }" varStatus="status">
+										<c:forEach var="foodReview" items="${foodReview }" varStatus="status">
 										<div class="row">
 											<div class="col-md-6">
-												<p>${foodReviewList.title }</p>
-												<p>${foodReviewList.contents }</p>
+												<p>${foodReview.title }</p>
+												<p>${foodReview.contents }</p>
 											</div>
 											<div class="col-md-3">
 												<img src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg" alt="">
