@@ -31,6 +31,10 @@ public class WebUtil {
 	public static int checkIntParam(String s, int value) {
 		return (s != null && s.matches("\\d*\\.?\\d+")) ? Integer.parseInt(s) : value;
 	}
+	
+	public static int checkIntParam(Integer s, int value) {
+		return (s != null ? s : value );
+	}
 
 	public static long checkLongParam(String s, long value) {
 		return (s != null && s.matches("\\d*\\.?\\d+")) ? Long.parseLong(s) : value;

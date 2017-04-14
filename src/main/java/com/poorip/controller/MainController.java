@@ -126,6 +126,8 @@ public class MainController {
 		if( "".equals(cityName) )
 			return "redirect:/";
 		int seq = mainService.getCitySeq(cityName);
+		if (seq == 0)
+			return "redirect:/";
 		return "redirect:/city/"+seq;
 	}
 	

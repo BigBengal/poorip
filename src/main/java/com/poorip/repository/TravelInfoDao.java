@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.ScrapVo;
 import com.poorip.vo.TravelInfoVo;
+import com.poorip.web.util.WebUtil;
 
 @Repository
 public class TravelInfoDao {
@@ -51,7 +52,8 @@ public class TravelInfoDao {
 	 }
 	
 	public int getCitySeq( String cityName ) {
-		return sqlSession.selectOne( "travelInfo.getCitySeq", cityName );
+//		String cityName = WebUtil.checkNullParam("", cityName);
+		return WebUtil.checkIntParam((Integer)sqlSession.selectOne( "travelInfo.getCitySeq", cityName ),0);
 		
 	}
 	
