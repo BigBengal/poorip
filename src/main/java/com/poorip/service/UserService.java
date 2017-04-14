@@ -52,8 +52,10 @@ public class UserService {
 		
 		//생일 설정
 		String birthday = userVo.getUsrBd();
-		if(birthday != null && birthday.isEmpty() == false)
+		if(birthday != null && birthday.isEmpty() == false){
 			userVo.setUsrBd("STR_TO_DATE('"+birthday+"','%m/%d/%Y')");
+		} else 
+			userVo.setUsrBd("null");
 		
 		return userDao.join(userVo);
 	}
