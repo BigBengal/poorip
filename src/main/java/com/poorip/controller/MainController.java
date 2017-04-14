@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poorip.service.MainService;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.TravelInfoVo;
 
 import facebook4j.internal.org.json.JSONArray;
@@ -43,10 +44,14 @@ public class MainController {
 		List<TravelInfoVo> activitylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> attractionlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> citylistMain = new ArrayList<TravelInfoVo>();
+		List<PostVo> foodReviewList = new ArrayList<PostVo>();
 		foodlist = (List<TravelInfoVo>) model.asMap().get("travelInfoFood");
 		activitylist = (List<TravelInfoVo>) model.asMap().get("travelInfoActivity");
 		attractionlist = (List<TravelInfoVo>) model.asMap().get("travelInfoAttraction");
+		foodReviewList = (List<PostVo>) model.asMap().get("foodReview");
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
+
+
 		if (foodlist==null || activitylist==null || attractionlist==null) {
 			
 			for (int i = 0; i < travelInfoVo.size(); i++) {
@@ -68,13 +73,14 @@ public class MainController {
 			model.addAttribute("travelInfoActivityMain", activitylistMain);
 			model.addAttribute("travelInfoAttractionMain", attractionlistMain);
 			model.addAttribute("travelInfoCityMain", citylistMain);
+			
 			return "/PooripMain";
-			/* System.out.println(travelInfoVo); */
-			// model.addAttribute("travelInfoList", travelInfoVo);
+			
 		}
 		model.addAttribute("travelInfoFood", foodlist);
 		model.addAttribute("travelInfoActivity", activitylist);
 		model.addAttribute("travelInfoAttraction", attractionlist);
+		model.addAttribute("foodReviewList", foodReviewList);
 
 		return "/PooripMain";
 	}
@@ -86,13 +92,18 @@ public class MainController {
 		ArrayList<TravelInfoVo> foodlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> attractionlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> activitylist = new ArrayList<TravelInfoVo>();
+		List<PostVo> foodReview = new ArrayList<PostVo>();
+		
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(ctySeq);
+
 		for (int i = 0; i < travelInfoVo.size(); i++) {
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
 				foodlist.add(travelInfoVo.get(i));
-				/*
-				 * System.out.println("FOOOOOOOOOOOOOOOD" + foodlist);
-				 */
+				System.out.println(travelInfoVo.get(i).getTrvSeq());
+				List<PostVo> foodReviews = mainService.selectReviewList(travelInfoVo.get(i).getTrvSeq());
+				for(int j=0; j <foodReviews.size(); j++) {
+					foodReview.add(foodReviews.get(j));
+				}
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
 				attractionlist.add(travelInfoVo.get(i));
@@ -107,8 +118,12 @@ public class MainController {
 		redirectAttributes.addFlashAttribute("travelInfoActivity", activitylist);
 		redirectAttributes.addFlashAttribute("travelInfoAttraction", attractionlist);
 		redirectAttributes.addFlashAttribute("travelInfoFood", foodlist);
+		redirectAttributes.addFlashAttribute("foodReview", foodReview);
+		System.out.println(foodReview);
 		return "redirect:/";
 	}
+	
+	
 	
 	@RequestMapping("/search")
     public void phone_AutoComplete(ModelMap modelMap,

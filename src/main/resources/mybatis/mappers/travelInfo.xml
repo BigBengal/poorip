@@ -8,6 +8,7 @@
     <select id="getInfo" parameterType="int" resultType="travelinfovo">
       <![CDATA[
          select 
+         		trv_seq as trvSeq,
          		cat_seq as catSeq,
          		crt_date as crtDate,
          		name as name,

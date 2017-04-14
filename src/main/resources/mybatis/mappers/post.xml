@@ -11,6 +11,8 @@
 		]]>
 	</insert>
 	
+	
+	
 	<select id="selectbyno" resultType="postvo" parameterType="integer">
 		<![CDATA[
 			SELECT POST_SEQ as postSeq,
@@ -21,6 +23,20 @@
 			       TRV_SEQ as trvSeq
 			  FROM POST
 			 WHERE POST_SEQ = #{postSeq }
+		]]>
+	</select>
+	
+	<select id="selectbytravelseq" resultType="postvo" parameterType="integer">
+		<![CDATA[
+			SELECT POST_SEQ as postSeq,
+			       TITLE as title,
+			       CONTENTS as contents, 
+			       REVIEW_PUB_YN as reviewPubYn, 
+			       USR_SEQ as usrSeq, 
+			       TRV_SEQ as trvSeq,
+			       CRT_DATE as crtDate
+			  FROM POST
+			 WHERE TRV_SEQ = #{trvSeq } AND REVIEW_PUB_YN = 'Y'
 		]]>
 	</select>
 	

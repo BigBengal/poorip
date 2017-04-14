@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.poorip.vo.PostVo;
 import com.poorip.vo.ScrapVo;
 import com.poorip.vo.TravelInfoVo;
 
@@ -25,6 +26,10 @@ public class TravelInfoDao {
 	
 	public List<ScrapVo> categoryList( String userEmail ) {
 		return sqlSession.selectList( "travelInfo.getScrapInfo", userEmail );
+	}
+	
+	public List<PostVo> getReviews(int seq) {
+		return sqlSession.selectList("post.selectbytravelseq", seq);
 	}
 	
 	public boolean insert( TravelInfoVo travelInfoVo ) {
