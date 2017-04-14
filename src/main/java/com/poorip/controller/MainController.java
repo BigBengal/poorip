@@ -107,7 +107,7 @@ public class MainController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/search")
+	@RequestMapping(value={"/search","/city/search"})
     public JSONResult getKwdData( Model model,
     					   		  @RequestParam( value="kwd", required=true, defaultValue="" ) String keyword,
     					   		  HttpServletRequest request, HttpServletResponse response ) throws IOException{
@@ -122,9 +122,11 @@ public class MainController {
     }
 	
 	@RequestMapping("/searchResult")
-	public String getSearchResult( @RequestParam( value="kwd", required=true, defaultValue="" ) String keyword ) {
-		
-		return "";
+	public String getSearchResult( @RequestParam( value="ctySeq", required=true, defaultValue="" ) String cityName ) {
+		if( "".equals(cityName) )
+			return "redirect:/";
+		int seq = mainService.getCitySeq(cityName);
+		return "redirect:/city/"+seq;
 	}
 	
 }

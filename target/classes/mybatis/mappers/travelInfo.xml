@@ -86,7 +86,7 @@
       ]]>
     </delete>
     
-    <!-- 사용자가 입력한 키워드 관련 데이터 추출 -->
+    <!-- 사용자가 입력한 자동완성 데이터 추출 -->
 	<select id="getKwdData" parameterType="string" resultType="travelinfovo">
    		<![CDATA[
          select cty.CTY_SEQ as ctySeq, cty.CTY_NAME as name, ctr.CTR_NAME as contents
@@ -94,6 +94,13 @@
 		 where (cty.CTY_NAME like '%${_parameter}%'
 		 or ctr.CTR_NAME like '%${_parameter}%')
 		 and cty.CTR_SEQ = ctr.CTR_SEQ
+    	]]>
+	</select>
+	
+	<!-- 사용자가 입력한 키워드 입력 관련 데이터 추출 -->
+	<select id="getCitySeq" parameterType="string" resultType="integer">
+   		<![CDATA[
+         select cty_seq as ctySeq from seach where cty_name = #{ctyName }
     	]]>
 	</select>
 </mapper>

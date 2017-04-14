@@ -63,4 +63,4 @@ where ci.CTR_SEQ = cu.CTR_SEQ;
 
 select * from seach;
 
-select cty_seq from seach;
+select cty_seq from seach where cty_name = '파리';

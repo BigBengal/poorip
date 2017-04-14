@@ -50,4 +50,8 @@ public class TravelInfoDao {
 		return sqlSession.selectList( "travelInfo.getKwdData", keyword );
 	 }
 	
+	public int getCitySeq( String cityName ) {
+		return sqlSession.selectOne( "travelInfo.getCitySeq", cityName ); 
+	}
+	
 }

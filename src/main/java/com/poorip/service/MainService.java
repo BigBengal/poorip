@@ -42,5 +42,9 @@ public class MainService {
 		List<ReviewVo> reviewList = travelInfoDao.getReviews(trvSeq);
 		return reviewList;
 	}
+	
+	public int getCitySeq( String cityName ) {
+		return travelInfoDao.getCitySeq(cityName);
+	}
 		
 }
