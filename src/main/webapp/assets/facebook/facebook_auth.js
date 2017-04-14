@@ -1,50 +1,16 @@
 /**
  * 
  */
-// This is called with the results from from FB.getLoginStatus().
-function statusChangeCallback(response) {
-  console.log('statusChangeCallback');
-  console.log(response);
-  // The response object is returned with a status field that lets the
-  // app know the current login status of the person.
-  // Full docs on the response object can be found in the documentation
-  // for FB.getLoginStatus().
-  if (response.status === 'connected') {
-    // Logged into your app and Facebook.
-    testAPI();
-    console.log(response.authResponse.accessToken);
-  } else {
-    // The person is not logged into your app or we are unable to tell.
-    document.getElementById('status').innerHTML = 'Please log ' +
-      'into this app.';
-  }
-}
 
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
-function checkLoginState() {
-	FB.login(function(response) {
-		  // handle the response
-		  console.log("checkLoginState()");
-		  statusChangeCallback(response);
-		  
-		}, {scope: 'public_profile,email', return_scopes: true });
-	
-//   FB.getLoginStatus(function(response) {
-	
-    
-//   });
-}
 
 window.fbAsyncInit = function() {
 FB.init({
-  appId      : '322184924864081', //test
-//   appId      : '322180811531159', //real
-  cookie     : true,  // enable cookies to allow the server to access 
+//	appId      : '322184924864081', //test
+	appId      : '322180811531159', //real
+	cookie     : true,  // enable cookies to allow the server to access 
                       // the session
-  xfbml      : true,  // parse social plugins on this page
-  version    : 'v2.8' // use graph api version 2.8
+	xfbml      : true,  // parse social plugins on this page
+	version    : 'v2.8' // use graph api version 2.8
 });
 
 // Now that we've initialized the JavaScript SDK, we call 
@@ -59,76 +25,77 @@ FB.init({
 //
 // These three cases are handled in the callback function.
 
-// FB.getLoginStatus(function(response) {
-// 	  console.log("FB.getLoginStatus()");
-
-
-// });
+FB.getLoginStatus(function(response) {
+  statusChangeCallback(response);
+});
 
 };
-
-// Load the SDK asynchronously
+//Load the SDK asynchronously
 (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/ko_KR/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8&appId=322180811531159";
+fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+
+//This function is called when someone finishes with the Login
+//Button.  See the onlogin handler attached to it in the sample
+//code below.
+function checkLoginState() {
+	console.log(session);
+	FB.getLoginStatus(function(response) {
+	 statusChangeCallback(response);
+	});
+}
+
+//This is called with the results from from FB.getLoginStatus().
+function statusChangeCallback(response) {
+  console.log('statusChangeCallback');
+  console.log(response);
+  // The response object is returned with a status field that lets the
+  // app know the current login status of the person.
+  // Full docs on the response object can be found in the documentation
+  // for FB.getLoginStatus().
+  if (response.status === 'connected') {
+    // Logged into your app and Facebook.
+    testAPI();
+  } else {
+    // The person is not logged into your app or we are unable to tell.
+    document.getElementById('status').innerHTML = 'Please log ' +
+      'into this app.';
+  }
+}
+
 
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
   console.log('Welcome!  Fetching your information.... ');
-  FB.api('/me', function(response) {
-    console.log('Successful login for: ' + response.name);
-    console.log('Successful login for: ' + response.email);
-    console.log(JSON.stringify(response));
-    document.getElementById('status').innerHTML =
-      'Thanks for logging in, ' + response.name + '!';
-    
-  });
   FB.api('/me', {fields: 'email,id,cover,name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified'}, function(response){
-	  console.log('permissions,Successful login for: ' + response.email);
-	  console.log(JSON.stringify(response));
-	  
-	// Ajax 통신
-//		$.ajax( {
-//		    url : "fbget",
-//		    type: "get",
-//		    dataType: "json",
-//		    data: "usrEmail="+response.email+"&usrGender="+response.gender+"&usrProfile="+response.url+"&usrLang="+response.locale,
-//		//  contentType: "application/json",
-//		    success: function( response ){
-//		    	console.log	( response );
-//		       if( response.result == "failed") {
-//		    	   console.log( response );
-//		       }
-//		    	//통신 성공 (response.result == "success" )
-//		       return true;
-//		    },
-//		    error: function( XHR, status, error ){
-//// 		       console.error( status + " : " + error );
-//		    }
-//
-//		   });
-		
+		console.log('permissions,Successful login for: ' + response.email);
+		console.log(JSON.stringify(response));
+//		console.log('Successful login for: ' + response.picture);
+//		console.log('Successful login for: ' + response.picture.data.url);
+	    
+		document.getElementById('status').innerHTML =
+      'Thanks for logging in, ' + response.name + '!';
 		$.post("fbget",
 		        {
 					usrEmail: response.email,
 					usrGender: response.gender,
-					usrProfile: response.url,
+					usrProfile: response.picture.data.url,
 					usrLang: response.locale
 		        },
 		        function(data,status){
-		            alert("Data: " + data + "\nStatus: " + status);
-		        });
+		        	$(location).attr('href', '/poorip')
 
+
+		        });
   });
   
-  
 }
-
 function logout(){
 	FB.logout(function(response) {
 		   // Person is now logged out

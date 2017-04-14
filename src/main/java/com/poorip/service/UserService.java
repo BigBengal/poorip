@@ -32,6 +32,24 @@ public class UserService {
 	
 	// 유저 가입 처리
 	public boolean joinUser(UserVo userVo){
+		// 성별 길이 처리
+		String gender = userVo.getUsrGender();
+		if ("male".equals(gender))
+			userVo.setUsrGender("M");
+		else if ("female".equals(gender))
+			userVo.setUsrGender("F");
+		
+		
+		// 언어 설정
+		String locale = userVo.getUsrLang();
+		if (locale != null){
+			CharSequence charLocale = locale;
+			if ("kr".contains(charLocale) ){
+				userVo.setUsrLang("KOR");
+			} else {
+				userVo.setUsrLang("ENG");
+			}
+		}
 		return userDao.join(userVo);
 	}
 	
