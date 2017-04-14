@@ -21,9 +21,11 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button name="login_btn" data-max-rows="1" scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-<a href="" onclick="logout()">
+
+
+<a href="" name="logout_btn" onclick="logout()">
 logout</a>
 
 <div id="status">
