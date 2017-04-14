@@ -34,7 +34,7 @@ $(function(){
         },
 		select : function( event, ui ) {
 			console.log(ui.item.value);
-			$(location).attr('href','/poorip/travelinfobycity?ctySeq='+ui.item.value+"&ctyName="+ui.item.label);
+			$(location).attr('href','/poorip/city/'+ui.item.value);
 		}
     });
 });
