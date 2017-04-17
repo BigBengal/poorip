@@ -42,5 +42,23 @@
 			where #{ctyName } = c.CTR_SEQ
 		]]>
 	</select>
+	
+	<select id="getCityName" parameterType="String" resultType="cityvo">
+	    <![CDATA[
+			select CTY_SEQ as ctySeq,
+				   CTY_NAME as ctyName
+				from city
+			where CTR_SEQ = #{ctrSeq }
+		]]>
+	</select>
+	
+	<!-- 여행지 추가 drop down에 사용 -->
+	<select id="getALLCity" resultType="cityvo">
+	    <![CDATA[
+			select CTY_SEQ as ctySeq,
+				   CTY_NAME as ctyName
+				from city
+		]]>
+	</select>
 
 </mapper>

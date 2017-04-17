@@ -47,20 +47,20 @@
         <![CDATA[
          insert into travel_info
 			values(null,
-			       '에펠탑',
-			       '1889년 파리 마르스 광장에 지어진 탑이다.',
-			       '24h',
-			       '프랑스 파리 시',
-			       'TourEiffel.png',
-			       '0 won',
+			       #{name },
+			       #{contents },
+			       #{hours },
+			       #{location },
+			       #{picture },
+			       #{price },
 			       now(),
 			       #{ctySeq },
 			       #{catSeq },
 			       null,
-			       '연락정보')
+			       #{contact })
       ]]>
     </insert>
-
+    
 	<!-- 사용자가 스크랩한 정보 클릭시 보여주는 화면 출력 -->
 	<select id="getScrapInfo" parameterType="string" resultType="scrapvo">
       <![CDATA[

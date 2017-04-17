@@ -25,9 +25,9 @@ FB.init({
 //
 // These three cases are handled in the callback function.
 
-//FB.getLoginStatus(function(response) {
-//  statusChangeCallback(response);
-//});
+FB.getLoginStatus(function(response) {
+  statusChangeCallback(response);
+});
 
 };
 //Load the SDK asynchronously
@@ -45,21 +45,23 @@ fjs.parentNode.insertBefore(js, fjs);
 //code below.
 function facebooklogin() {
 	console.log("FB.login()")
-	FB.login(function(response) {
-		  // handle the response
-		  console.log("checkLoginState()");
-		  statusChangeCallback(response);
-		  
-		}, {scope: 'public_profile,email,user_birthday'});
-//	FB.getLoginStatus(function(response) {
-//	 statusChangeCallback(response);
-//	});
+//	FB.login(function(response) {
+//		  // handle the response
+//		  console.log("checkLoginState()");
+//		  statusChangeCallback(response);
+//		  
+//		}, {scope: 'public_profile,email,user_birthday'});
+	FB.getLoginStatus(function(response) {
+		console.log(response);
+		statusChangeCallback(response);
+	}, true);
 	
 }
 
 //This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
   console.log('statusChangeCallback');
+  console.log(response.status);
   console.log(response);
   console.log('${pageContext.request.contextPath }');
   // The response object is returned with a status field that lets the
@@ -70,7 +72,7 @@ function statusChangeCallback(response) {
     // Logged into your app and Facebook.
 	  document.getElementById('status').innerHTML =
 	      'Thanks for logging in, ' + response.name + '!';
-    testAPI();
+//    testAPI();
   } else {
     // The person is not logged into your app or we are unable to tell.
     document.getElementById('status').innerHTML = 'Please log ' +
@@ -78,6 +80,18 @@ function statusChangeCallback(response) {
   }
 }
 
+function doLogin() {
+    FB.login(function(response) {
+        if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function(response) {
+                console.log('Good to see you, ' + response.name + '.');
+            });
+        } else {
+            console.log('User cancelled login or did not fully authorize.');
+        }
+    }, {scope: 'email,user_friends'});
+}
 
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
@@ -102,7 +116,7 @@ function testAPI() {
 		        },
 		        function(data,status){
 		        	
-		        	$(location).delay(800).attr('href', '/poorip')
+//		        	$(location).delay(800).attr('href', '/poorip')
 //	        		console.log(d	ata);
 		        	return;
 		        });

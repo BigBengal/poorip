@@ -167,10 +167,10 @@
 		   
 		<!--  Facebook -->
 		<dependency>
-		  <groupId>org.facebook4j</groupId>
-		  <artifactId>facebook4j-core</artifactId>
-		  <version>[2.4,)</version>
-		</dependency>
+            <groupId>com.restfb</groupId>
+            <artifactId>restfb</artifactId>
+            <version>1.18.1</version>
+        </dependency>
 		
 		
 		<!-- common fileupload -->

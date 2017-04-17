@@ -64,3 +64,15 @@ where ci.CTR_SEQ = cu.CTR_SEQ;
 select * from seach;
 
 select cty_seq from seach where cty_name = '파리';
+
+select CAT_SEQ as catSeq, CAT_NAME as catName from category;
+
+select CTR_SEQ as ctrSeq, CTR_NAME as ctrName from country;
+
+select CTY_SEQ as ctySeq, CTY_NAME as ctyName from city
+	where CTR_SEQ = 1;
+
+select * from city;
+
+insert into travel_info values(null,'혜영이','꽃같은 혜영이','항상 24시간','파리에 없당 비트에 있당','2017317518780.png',2,4,'01088397290');
+

@@ -18,4 +18,21 @@
 		]]>
 	</delete>
 	
+	<select id="getCategoryName" parameterType="String" resultType="categoryvo">
+	    <![CDATA[
+			select ctr_seq as ctrSeq,
+				   ctr_name as ctrName
+			from category
+			where ctr_name = #{catName }
+		]]>
+	</select>
+	
+	<!-- 여행지 추가 drop down에 사용 -->
+	<select id="getALLCategory" resultType="categoryvo">
+	    <![CDATA[
+			select cat_seq as catSeq,
+				   cat_name as catName
+			from category
+		]]>
+	</select>
 </mapper>
