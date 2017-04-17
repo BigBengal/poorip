@@ -28,6 +28,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession(false);
 		if (session == null) {
 			response.sendRedirect(request.getContextPath()+"/fb3");
+			return false;
 		}
 		
 		// 세션에 authUser가 있는지, 없으면 로그인
