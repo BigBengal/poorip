@@ -38,4 +38,54 @@ $(function(){
 		}
     });
 });
+var isEnd = false;
+var render = function( vo, prepend ){
+	
+	var html = "<div class='col-md-6'>" +
+			   "<p id='reviewtitle'>" + vo.title + "</p>" +
+			   "<p id='reviewbody'>" + vo.contents + "</p>" +
+			   "</div>" +
+			   "<div class='col-md-3'>" +
+			   "<img src='${pageContext.request.contextPath }/assets/images/pool-party2.jpg' alt=''>" +
+			   "</div>";
+		
+	$("#review").append( html );
+	console.log("PLLLLLLLLLLLLEASE");
+
+}
+
+function send(trvSeq){
+	
+	if(trvSeq==null) {
+		return;
+	}
+	if(isEnd==true) {
+		return;
+	}
+	$.ajax({
+        url : "/poorip/reviews/" + trvSeq,
+        type : "post",
+        dataType : "json",
+        data: "",
+        success : function(response) {
+        	
+        	if( response.data.length == 0 ) {
+	    		isEnd = true;
+	    		return;	
+	    	}
+        	
+        	$( response.data ).each( function(index, vo){
+        		console.log(vo);
+        		
+        		render( vo, false );
+	    	
+        	});
+        },
+        error : function(data) {
+        	console.log("fail" + data);
+//             alert("ajax 에러가 발생하였습니다.")
+        }
+    });
+	$("#review").empty();
+}
 </script>

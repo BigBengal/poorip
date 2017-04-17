@@ -41,7 +41,7 @@
 				   a.TRV_SEQ as trvSeq 
 				   from post a, travel_info b 
 				   where a.TRV_SEQ = b.trv_seq 
-				   and a.REVIEW_PUB_YN='Y' and b.trv_seq=#{trvSeq}
+				   and a.REVIEW_PUB_YN='Y' and b.trv_seq=#{trvSeq} order by crtDate desc
 		]]>
 	</select>
 

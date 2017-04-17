@@ -117,6 +117,7 @@
 		if($(".modal").length>0) {
 			$(".modal").each(function() {
 				$(".modal").prependTo( "body" );
+				
 			});
 		}
 

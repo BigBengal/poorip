@@ -5,7 +5,7 @@
 <mapper namespace="travelInfo">
 	
     <!-- 사용자가 도시 선택시 도시에 있는 여행 정보 보여주기 -->
-    <select id="getInfo" parameterType="int" resultType="travelinfovo">
+    <select id="getInfo" parameterType="integer" resultType="travelinfovo">
       <![CDATA[
          select 
          		trv_seq as trvSeq,
