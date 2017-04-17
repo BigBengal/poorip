@@ -22,10 +22,9 @@ import com.poorip.service.MainService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
-
 @Controller
 public class MainController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	@Autowired
@@ -34,48 +33,46 @@ public class MainController {
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) {
-		
+
 		List<TravelInfoVo> foodlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> activitylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> attractionlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> citylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
 
-			
-			for (int i = 0; i < travelInfoVo.size(); i++) {
-				if (travelInfoVo.get(i).getCatSeq() == 1) {
-					foodlistMain.add(travelInfoVo.get(i));
-				}
-				if (travelInfoVo.get(i).getCatSeq() == 2) {
-					attractionlistMain.add(travelInfoVo.get(i));
-				}
-				if (travelInfoVo.get(i).getCatSeq() == 3) {
-					activitylistMain.add(travelInfoVo.get(i));
-				}
-				if (travelInfoVo.get(i).getCatSeq() == 4) {
-					citylistMain.add(travelInfoVo.get(i));
-				}
-
+		for (int i = 0; i < travelInfoVo.size(); i++) {
+			if (travelInfoVo.get(i).getCatSeq() == 1) {
+				foodlistMain.add(travelInfoVo.get(i));
 			}
-			model.addAttribute("travelInfoFoodMain", foodlistMain);
-			model.addAttribute("travelInfoActivityMain", activitylistMain);
-			model.addAttribute("travelInfoAttractionMain", attractionlistMain);
-			model.addAttribute("travelInfoCityMain", citylistMain);
-			
-			return "/PooripMain";
-	
+			if (travelInfoVo.get(i).getCatSeq() == 2) {
+				attractionlistMain.add(travelInfoVo.get(i));
+			}
+			if (travelInfoVo.get(i).getCatSeq() == 3) {
+				activitylistMain.add(travelInfoVo.get(i));
+			}
+			if (travelInfoVo.get(i).getCatSeq() == 4) {
+				citylistMain.add(travelInfoVo.get(i));
+			}
+
+		}
+		model.addAttribute("travelInfoFoodMain", foodlistMain);
+		model.addAttribute("travelInfoActivityMain", activitylistMain);
+		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
+		model.addAttribute("travelInfoCityMain", citylistMain);
+
+		return "/PooripMain";
+
 	}
 
 	// 사용자가 도시를 선택 하였을 경우
-	@RequestMapping(value={"/city/{citySeq}","/city"})
-	public String getDetailInfo( Model model,
-			@PathVariable(required=false) String citySeq) {
+	@RequestMapping(value = { "/city/{citySeq}", "/city" })
+	public String getDetailInfo(Model model, @PathVariable(required = false) String citySeq) {
 		ArrayList<TravelInfoVo> foodlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> attractionlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> activitylist = new ArrayList<TravelInfoVo>();
 		List<ReviewVo> foodReview = new ArrayList<ReviewVo>();
-		
-		int ctySeq = Integer.parseInt(citySeq); 
+
+		int ctySeq = Integer.parseInt(citySeq);
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(ctySeq);
 
 		for (int i = 0; i < travelInfoVo.size(); i++) {
@@ -83,7 +80,7 @@ public class MainController {
 				foodlist.add(travelInfoVo.get(i));
 				System.out.println(travelInfoVo.get(i).getTrvSeq());
 				List<ReviewVo> foodReviews = mainService.selectReviewList(travelInfoVo.get(i).getTrvSeq());
-				for(int j=0; j <foodReviews.size(); j++) {
+				for (int j = 0; j < foodReviews.size(); j++) {
 					foodReview.add(foodReviews.get(j));
 				}
 			}
@@ -94,7 +91,6 @@ public class MainController {
 				/* System.out.println(travelInfoVo.get(i)); */
 				activitylist.add(travelInfoVo.get(i));
 			}
-		
 
 		}
 		model.addAttribute("travelInfoActivity", activitylist);
@@ -105,30 +101,45 @@ public class MainController {
 		System.out.println(foodReview);
 		return "/PooripMain";
 	}
-	
-	@ResponseBody
-	@RequestMapping(value={"/search","/city/search"})
-    public JSONResult getKwdData( Model model,
-    					   		  @RequestParam( value="kwd", required=true, defaultValue="" ) String keyword,
-    					   		  HttpServletRequest request, HttpServletResponse response ) throws IOException{
-        
-        logger.debug("텍스트창에 입력된 단어 : " + keyword);
 
-        // DB문 실행
-        List<TravelInfoVo> autoList = mainService.getKwdData(keyword);
-        if ( autoList.isEmpty())
-        	return JSONResult.fail("No-DATA");
-        return JSONResult.success(autoList);
-    }
-	
+	@ResponseBody
+	@RequestMapping("/reviews/{trvSeq}")
+	public JSONResult getReviews(@PathVariable("trvSeq") String trvSeq) {
+		if (trvSeq == null || trvSeq.equals("")) {
+			return JSONResult.fail("실패");
+		}
+		System.out.println(trvSeq);
+		int trvSeq1 = Integer.parseInt(trvSeq);
+		List<ReviewVo> foodReviews = mainService.selectReviewList(trvSeq1);
+
+		return JSONResult.success(foodReviews);
+
+		/* return JSONResult.success(); */
+	}
+
+	@ResponseBody
+	@RequestMapping(value = { "/search", "/city/search" })
+	public JSONResult getKwdData(Model model,
+			@RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+
+		logger.debug("텍스트창에 입력된 단어 : " + keyword);
+
+		// DB문 실행
+		List<TravelInfoVo> autoList = mainService.getKwdData(keyword);
+		if (autoList.isEmpty())
+			return JSONResult.fail("No-DATA");
+		return JSONResult.success(autoList);
+	}
+
 	@RequestMapping("/searchResult")
-	public String getSearchResult( @RequestParam( value="ctySeq", required=true, defaultValue="" ) String cityName ) {
-		if( "".equals(cityName) )
+	public String getSearchResult(@RequestParam(value = "ctySeq", required = true, defaultValue = "") String cityName) {
+		if ("".equals(cityName))
 			return "redirect:/";
 		int seq = mainService.getCitySeq(cityName);
 		if (seq == 0)
 			return "redirect:/";
-		return "redirect:/city/"+seq;
+		return "redirect:/city/" + seq;
 	}
-	
+
 }
