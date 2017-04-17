@@ -8,6 +8,7 @@ public class TravelInfoVo {
 	private String hours;
 	private String location;
 	private String picture;
+	private String price;
 	private String crtDate;
 	private int ctySeq;
 	private int catSeq;
@@ -50,6 +51,12 @@ public class TravelInfoVo {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 	public String getCrtDate() {
 		return crtDate;
 	}
@@ -83,9 +90,9 @@ public class TravelInfoVo {
 	
 	@Override
 	public String toString() {
-		return "TravelInfo [trvSeq=" + trvSeq + ", name=" + name + ", contents=" + contents + ", hours=" + hours
-				+ ", location=" + location + ", picture=" + picture + ", crtDate=" + crtDate + ", ctySeq=" + ctySeq
-				+ ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + "]";
+		return "TravelInfoVo [trvSeq=" + trvSeq + ", name=" + name + ", contents=" + contents + ", hours=" + hours
+				+ ", location=" + location + ", picture=" + picture + ", price=" + price + ", crtDate=" + crtDate
+				+ ", ctySeq=" + ctySeq + ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + "]";
 	}
 
 }
