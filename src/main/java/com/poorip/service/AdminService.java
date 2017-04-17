@@ -86,6 +86,13 @@ public class AdminService {
 //		return adminDao.getCountryName( countryVo );
 //		
 //	}
+<<<<<<< HEAD
+=======
+
+	public List<TravelInfoVo> getTravelList(int page) {
+		return adminDao.getList( page );
+	}
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
 	
 	
 

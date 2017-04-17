@@ -39,6 +39,13 @@ public class AdminDao {
 		return sqlSession.selectList( "category.getALLCategory");
 	}
 
+<<<<<<< HEAD
+=======
+	public List<TravelInfoVo> getList(int page) {
+		return sqlSession.selectList( "travelInfo.getListByPage", page );
+	}
+
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
 //	public List<CountryVo> getCountryName(CountryVo countryVo) {
 //		return sqlSession.selectList( "country.getCountryName", countryVo);
 //	}
