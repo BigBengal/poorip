@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!doctype html>
 <html>
 <head>
@@ -11,14 +10,15 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="/WEB-INF/views/include/blogheader.jsp" />
+<%-- 		<c:import url="/WEB-INF/views/include/blogheader.jsp" /> --%>
 		<div id="wrapper">
 			<div id="content" class="full-screen">
-				<c:import url="/WEB-INF/views/include/blognavigation.jsp" />
-				<form action="${pageContext.request.contextPath}/${authUser.userId}/admin/basic/upload" method="post" enctype="multipart/form-data">
+<%-- 				<c:import url="/WEB-INF/views/include/blognavigation.jsp" /> --%>
+<%-- 				<form action="${pageContext.request.contextPath}/${authUser.userId}/admin/basic/upload" method="post" enctype="multipart/form-data"> --%>
+	 		      	<form action="${pageContext.request.contextPath}/admin/basic/upload" method="post" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
 			      		<tr>
-			      			<td class="t">블로그 제목</td>
+			      			<td class="t">여행정보이름</td>
 			      			<td><input type="text" value="${bvo.title }" size="40" name="title"></td>
 			      		</tr>
 			      		<tr>
@@ -37,7 +37,7 @@
 				</form>
 			</div>
 		</div>
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
+<%-- 		<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
 	</div>
 </body>
 </html>
