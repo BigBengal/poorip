@@ -54,6 +54,7 @@ public class UserService {
 		String birthday = userVo.getUsrBd();
 		if(birthday != null && birthday.isEmpty() == false){
 			userVo.setUsrBd("STR_TO_DATE('"+birthday+"','%m/%d/%Y')");
+			
 		} else 
 			userVo.setUsrBd("null");
 		
