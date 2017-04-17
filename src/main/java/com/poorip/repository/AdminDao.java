@@ -39,6 +39,10 @@ public class AdminDao {
 		return sqlSession.selectList( "category.getALLCategory");
 	}
 
+	public List<TravelInfoVo> getList(int page) {
+		return sqlSession.selectList( "travelInfo.getListByPage", page );
+	}
+
 //	public List<CountryVo> getCountryName(CountryVo countryVo) {
 //		return sqlSession.selectList( "country.getCountryName", countryVo);
 //	}

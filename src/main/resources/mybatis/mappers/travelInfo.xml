@@ -25,7 +25,7 @@
 	</select>
 	
 	<!-- 선택하지 않았을때 메인 여행 정보 보여주기 -->
-    <select id="getInfomain" resultType="travelinfovo">
+    <select id="getListByPage" resultType="travelinfovo">
       <![CDATA[
          select 
          		cat_seq as catSeq,

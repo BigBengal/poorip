@@ -86,6 +86,10 @@ public class AdminService {
 //		return adminDao.getCountryName( countryVo );
 //		
 //	}
+
+	public List<TravelInfoVo> getTravelList(int page) {
+		return adminDao.getList( page );
+	}
 	
 	
 
