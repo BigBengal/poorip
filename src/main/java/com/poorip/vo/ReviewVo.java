@@ -19,6 +19,14 @@ public class ReviewVo {
 	private int catSeq;
 	private String mapURL;
 	private String contact;
+	private String reviewNum;
+	
+	public String getReviewNum() {
+		return reviewNum;
+	}
+	public void setReviewNum(String reviewNum) {
+		this.reviewNum = reviewNum;
+	}
 	public int getPostPicSeq() {
 		return postPicSeq;
 	}

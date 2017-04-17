@@ -121,7 +121,7 @@
 							
 							<a href="#" class="btn btn-default btn-block" data-toggle="modal"
 								data-target="#project-2${status.index }"
-								onclick="send(1)">${travelInfoFood.name }</a>
+								onclick="send(${travelInfoFood.trvSeq}, ${status.index })">${travelInfoFood.name }</a>
 				
 						</div>
 						<!-- Modal -->
@@ -154,7 +154,8 @@
 										<h3>
 											<b>후기</b>
 										</h3>										
-										<div class="row" id="review" ></div>
+										<c:set var="reviewNum" value="${status.index}" />
+										<div class="row" id="review-${status.index }" ></div>
 
 									</div>
 									<div class="modal-footer">

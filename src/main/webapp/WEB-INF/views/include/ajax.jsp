@@ -38,8 +38,8 @@ $(function(){
 		}
     });
 });
-var isEnd = false;
-var render = function( vo, prepend ){
+
+var render = function( vo, prepend, reviewNum ){
 	
 	var html = "<div class='col-md-6'>" +
 			   "<p id='reviewtitle'>" + vo.title + "</p>" +
@@ -47,26 +47,20 @@ var render = function( vo, prepend ){
 			   "</div>" +
 			   "<div class='col-md-3'>" +
 			   "<img src='${pageContext.request.contextPath }/assets/images/pool-party2.jpg' alt=''>" +
-			   "</div>";
+			   "</div>";			
 		
-	$("#review").append( html );
-	console.log("PLLLLLLLLLLLLEASE");
+	$("#review-"+reviewNum ).append(html);
+	console.log("PLLLLLLLLLLLLEASE" + reviewNum);
 
 }
 
-function send(trvSeq){
-	
-	if(trvSeq==null) {
-		return;
-	}
-	if(isEnd==true) {
-		return;
-	}
+function send(trvSeq, reviewNum){
+
 	$.ajax({
         url : "/poorip/reviews/" + trvSeq,
         type : "post",
         dataType : "json",
-        data: "",
+        data: "reviewNum=" + reviewNum,
         success : function(response) {
         	
         	if( response.data.length == 0 ) {
@@ -76,8 +70,8 @@ function send(trvSeq){
         	
         	$( response.data ).each( function(index, vo){
         		console.log(vo);
-        		
-        		render( vo, false );
+        		console.log(reviewNum);
+        		render( vo, false, reviewNum );
 	    	
         	});
         },
@@ -86,6 +80,6 @@ function send(trvSeq){
 //             alert("ajax 에러가 발생하였습니다.")
         }
     });
-	$("#review").empty();
+	$("#review-"+reviewNum ).empty();
 }
 </script>

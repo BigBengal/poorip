@@ -21,6 +21,9 @@ import com.poorip.dto.JSONResult;
 import com.poorip.service.MainService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
+import com.poorip.web.util.WebUtil;
+import com.restfb.json.JsonArray;
+import com.restfb.json.JsonObject;
 
 @Controller
 public class MainController {
@@ -71,18 +74,12 @@ public class MainController {
 		ArrayList<TravelInfoVo> attractionlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> activitylist = new ArrayList<TravelInfoVo>();
 		List<ReviewVo> foodReview = new ArrayList<ReviewVo>();
-
-		int ctySeq = Integer.parseInt(citySeq);
-		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(ctySeq);
+		int citySeq1 = WebUtil.checkNullParam(citySeq, 0);
+		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(citySeq1);
 
 		for (int i = 0; i < travelInfoVo.size(); i++) {
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
 				foodlist.add(travelInfoVo.get(i));
-				System.out.println(travelInfoVo.get(i).getTrvSeq());
-				List<ReviewVo> foodReviews = mainService.selectReviewList(travelInfoVo.get(i).getTrvSeq());
-				for (int j = 0; j < foodReviews.size(); j++) {
-					foodReview.add(foodReviews.get(j));
-				}
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
 				attractionlist.add(travelInfoVo.get(i));
@@ -98,23 +95,20 @@ public class MainController {
 		model.addAttribute("travelInfoFood", foodlist);
 		model.addAttribute("foodReview", foodReview);
 
-		System.out.println(foodReview);
 		return "/PooripMain";
 	}
 
 	@ResponseBody
 	@RequestMapping("/reviews/{trvSeq}")
-	public JSONResult getReviews(@PathVariable("trvSeq") String trvSeq) {
-		if (trvSeq == null || trvSeq.equals("")) {
+	public JSONResult getReviews(@PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum) {
+		/*if (trvSeq == null || trvSeq.equals("")) {
 			return JSONResult.fail("실패");
-		}
-		System.out.println(trvSeq);
+		}*/
+
 		int trvSeq1 = Integer.parseInt(trvSeq);
 		List<ReviewVo> foodReviews = mainService.selectReviewList(trvSeq1);
 
 		return JSONResult.success(foodReviews);
-
-		/* return JSONResult.success(); */
 	}
 
 	@ResponseBody
