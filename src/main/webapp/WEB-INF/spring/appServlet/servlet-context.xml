@@ -45,9 +45,9 @@
 
 		</mvc:message-converters>
 		<!-- argument resolver -->
-<!-- 		<mvc:argument-resolvers> -->
-<!-- 			<bean class="com.bit2017.jblog.security.AuthUserHandlerMethodArgumentResolver" /> -->
-<!-- 		</mvc:argument-resolvers> -->
+		<mvc:argument-resolvers>
+			<bean class="com.poorip.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 
 	<!-- Interceptors -->
