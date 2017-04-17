@@ -70,7 +70,7 @@
 	<!-- ================ -->
 	<header class="header fixed clearfix navbar navbar-fixed-top">
 		<div class="container">
-			<%-- <c:import url="/WEB-INF/views/include/header.jsp" /> --%>
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
 	</header>
 	<!-- header end -->
@@ -86,7 +86,7 @@
 		</div>
 		<div class="banner-caption">
 			<div class="container">
-<%-- 				<c:import url="/WEB-INF/views/include/banner.jsp" /> --%>
+				<c:import url="/WEB-INF/views/include/banner.jsp" />
 			</div>
 		</div>
 	</div>
@@ -97,7 +97,7 @@
 	<!-- ================ -->
 	<div class="section">
 		<div class="container">
-<%-- 			<c:import url="/WEB-INF/views/include/travelInfo.jsp" /> --%>
+			<c:import url="/WEB-INF/views/include/travelInfo.jsp" />
 		</div>
 	</div>
 	<!-- travel-Info end -->
@@ -105,7 +105,7 @@
 	<!-- member start -->
 	<!-- ================ -->
 	<div class="section translucent-bg bg-image-2 pb-clear">
-<%-- 		<c:import url="/WEB-INF/views/include/member.jsp" /> --%>
+		<c:import url="/WEB-INF/views/include/member.jsp" />
 	</div>
 	<!-- member end -->
 
@@ -113,7 +113,7 @@
 	<!-- ================ -->
 	<div class="default-bg space">
 		<div class="container">
-<%-- 			<c:import url="/WEB-INF/views/include/finder.jsp" /> --%>
+			<c:import url="/WEB-INF/views/include/finder.jsp" />
 		</div>
 	</div>
 	<!-- finder end -->
@@ -121,7 +121,7 @@
 	<!-- footer start -->
 	<!-- ================ -->
 	<footer id="footer">
-<%-- 		<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
 
