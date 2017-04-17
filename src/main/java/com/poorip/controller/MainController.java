@@ -67,7 +67,7 @@ public class MainController {
 	}
 
 	// 사용자가 도시를 선택 하였을 경우
-	@RequestMapping("/city/{citySeq}")
+	@RequestMapping(value={"/city/{citySeq}","/city"})
 	public String getDetailInfo( Model model,
 			@PathVariable(required=false) String citySeq) {
 		ArrayList<TravelInfoVo> foodlist = new ArrayList<TravelInfoVo>();
