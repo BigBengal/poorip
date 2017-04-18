@@ -10,8 +10,18 @@
 			values ( #{postSeq}, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
 		]]>
 	</insert>
-
-
+	
+	<select id="getPostList" resultType="postvo">
+	    <![CDATA[
+			SELECT POST_SEQ as postSeq,
+			       TITLE as title,
+			       CONTENTS as contents, 
+			       REVIEW_PUB_YN as reviewPubYn, 
+			       USR_SEQ as usrSeq, 
+			       TRV_SEQ as trvSeq
+			  FROM POST
+		]]>
+	</select>
 
 	<select id="selectbyno" resultType="postvo" parameterType="integer">
 		<![CDATA[

@@ -13,6 +13,7 @@ import com.poorip.exception.GalleryUploadException;
 import com.poorip.repository.AdminDao;
 import com.poorip.vo.CategoryVo;
 import com.poorip.vo.CityVo;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Service
@@ -67,26 +68,36 @@ public class AdminService {
 		return fileName;
 	}
 
-//	public List<CityVo> getCityName(CityVo cityVo) {
-//		return adminDao.getCityName( cityVo );
-//	}
-	
 	public List<CityVo> getCityName() {
 		return adminDao.getCityName();
 	}
-	
-//	public List<CategoryVo> getCategoryName(CategoryVo categoryVo) {
-//		return adminDao.getCategoryName( categoryVo );
-//	}
+
 	public List<CategoryVo> getCategoryName() {
 		return adminDao.getCategoryName();
 	}
-//	public List<CountryVo> getCountryName(CountryVo countryVo) {
-//		return adminDao.getCountryName( countryVo );
-//		
-//	}
-	public List<TravelInfoVo> getTravelList(int page) {
-		return adminDao.getList( page );
+
+	public List<TravelInfoVo> getTravelList() {
+		return adminDao.getList();
+	}
+	
+	public boolean deleteInfo(TravelInfoVo travelInfoVo) {
+		return adminDao.deleteInfo( travelInfoVo );
+	}
+
+	public TravelInfoVo getMessage(int trvSeq) {
+		return adminDao.get( trvSeq );
+	}
+
+	public List<TravelInfoVo> getTravelInfo() {
+		return adminDao.getList();
+	}
+
+	public List<PostVo> getPost() {
+		return adminDao.getPostList();
+	}
+
+	public boolean deletePost(PostVo postVo) {
+		return adminDao.deletePost( postVo );
 	}
 
 }

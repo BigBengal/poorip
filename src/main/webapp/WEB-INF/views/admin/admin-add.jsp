@@ -16,16 +16,23 @@
 <style>
 body { background-color:#f7f7f7; font-family:'Roboto';}
 .container { margin:150px auto; max-width:400px;}
+th,td{padding: 5px;}
+table {
+	border-spacing: 5px;
+	width: 100%;
+	border: 1px solid #bcbcbc;
 </style>
 
 </head>
 <body>
 	<div id="container">
-<%-- 		<c:import url="/WEB-INF/views/include/blogheader.jsp" /> --%>
 		<div id="wrapper">
 			<div id="content" class="full-screen">
-					<form action="${pageContext.request.contextPath}/admin/addTravel/upload" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/admin/upload/travel" method="post" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
+	 		      		<tr>
+	 		      			<th><h3>여행 정보 추가</h3></th>
+	 		      		</tr>
 			      		<tr>
 			      			<td class="t">여행정보이름</td>
 			      			<td><input type="text" size="40" name="name"></td>
@@ -40,7 +47,9 @@ body { background-color:#f7f7f7; font-family:'Roboto';}
 			      		</tr>
 			      		<tr>
 			      			<td class="t">여행 정보 내용</td>
-			      			<td><input type="text" size="40" name="contents"></td>
+			      			<td>
+			      			<textarea rows="4" cols="50"></textarea>
+			      			</td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">영업/개장 시간</td>
@@ -62,12 +71,7 @@ body { background-color:#f7f7f7; font-family:'Roboto';}
 								<script>
 										$('select').prettyDropdown();
 								</script>
-								<script type="text/javascript">
-// 									var _gaq = _gaq || [];
-// 									_gaq.push([ '_setAccount', 'UA-36251023-1' ]);
-// 									_gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
-// 									_gaq.push([ '_trackPageview' ]);
-		
+								<script type="text/javascript">		
 									(function() {
 										var ga = document.createElement('script');
 										ga.type = 'text/javascript';
@@ -81,37 +85,6 @@ body { background-color:#f7f7f7; font-family:'Roboto';}
 								</script>
 							</td>
 						</tr>
-						<%-- <tr>
-			      			<td class="t">여행지 위치(나라)</td>
-			      			<td><select name="ctySeq">
-									<c:forEach items="${list }" var="countryVo" varStatus="status">
-										<option value="${countryVo.ctySeq }">${countryVo.ctyName }</option>
-									</c:forEach>
-							</select>
-								<script src="http://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-								<script src="dist/js/jquery.prettydropdowns.js"></script>
-								<script>
-										$('select').prettyDropdown();
-								</script>
-								<script type="text/javascript">
-// 									var _gaq = _gaq || [];
-// 									_gaq.push([ '_setAccount', 'UA-36251023-1' ]);
-// 									_gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
-// 									_gaq.push([ '_trackPageview' ]);
-		
-									(function() {
-										var ga = document.createElement('script');
-										ga.type = 'text/javascript';
-										ga.async = true;
-										ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-												: 'http://www')
-												+ '.google-analytics.com/ga.js';
-										var s = document.getElementsByTagName('script')[0];
-										s.parentNode.insertBefore(ga, s);
-									})();
-								</script>
-							</td>
-			      		</tr> --%>
 						<tr>
 			      			<td class="t">여행지 위치(도시)</td>
 			      			<td><select name="ctySeq">
@@ -125,11 +98,6 @@ body { background-color:#f7f7f7; font-family:'Roboto';}
 										$('select').prettyDropdown();
 								</script>
 								<script type="text/javascript">
-// 									var _gaq = _gaq || [];
-// 									_gaq.push([ '_setAccount', 'UA-36251023-1' ]);
-// 									_gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
-// 									_gaq.push([ '_trackPageview' ]);
-		
 									(function() {
 										var ga = document.createElement('script');
 										ga.type = 'text/javascript';

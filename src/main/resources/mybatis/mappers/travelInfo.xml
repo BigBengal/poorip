@@ -24,6 +24,44 @@
       ]]>
 	</select>
 	
+    <select id="getList" resultType="travelinfovo">
+      <![CDATA[
+         select 
+         		trv_seq as trvSeq,
+         		cat_seq as catSeq,
+         		crt_date as crtDate,
+         		name as name,
+         		contents,
+         		hours,
+         		location,
+         		picture,
+         		price,
+         		map_url as mapURL,
+         		contact
+		 from travel_info
+      ]]>
+	</select>
+    
+    <!-- 도시 정보 삭제를 위한 번호 가져오기 -->
+    <select id="getByNo" parameterType="integer" resultType="travelinfovo">
+      <![CDATA[
+         select 
+         		trv_seq as trvSeq,
+         		cat_seq as catSeq,
+         		crt_date as crtDate,
+         		name as name,
+         		contents,
+         		hours,
+         		location,
+         		picture,
+         		price,
+         		map_url as mapURL,
+         		contact
+		 from travel_info
+		 where trv_seq = #{trvSeq }
+      ]]>
+	</select>
+	
 	<!-- 선택하지 않았을때 메인 여행 정보 보여주기 -->
     <select id="getInfomain" resultType="travelinfovo">
       <![CDATA[
@@ -82,7 +120,7 @@
 	<!-- 여행 정보 삭제하기 -->
     <delete id="delete" parameterType="travelinfovo">
         <![CDATA[
-         DELETE FROM travel_info WHERE NAME = '에펠탑'
+         DELETE FROM travel_info WHERE trv_seq = #{trvSeq }
       ]]>
     </delete>
     
