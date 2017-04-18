@@ -28,7 +28,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		UserVo userVo = new UserVo();
 		userVo.setUsrEmail(email);
 
-		logger.info("Login OK"+email);
+		logger.info("Login OK "+email);
 //		logger.debug("before:"+userVo.toString());
 		userVo = userService.getUser(userVo);
 //		logger.debug("after:"+userVo.toString());
@@ -44,7 +44,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		// 인증 처리
 		HttpSession session = request.getSession( true );
 		session.setAttribute("authUser", userVo);
-		response.sendRedirect(request.getContextPath());
+		response.sendRedirect(request.getContextPath()+"/user/facebookinfo");
 		
 		return false; 
 	}

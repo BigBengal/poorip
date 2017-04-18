@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poorip.security.Auth;
+import com.poorip.security.AuthUser;
 import com.poorip.service.UserService;
 import com.poorip.vo.FacebookUser;
 import com.poorip.vo.UserVo;
@@ -44,6 +46,12 @@ public class UserController {
 	@RequestMapping("/fb2")
 	public String js(Model model) {
 		return "/user/fbtest2";
+	}
+	
+	@ResponseBody
+	@RequestMapping("facebookinfo")
+	public String facebookinfo(@AuthUser UserVo userVo){
+		return userVo.getUsrNick();
 	}
 	
 	@RequestMapping("/facebooklogin")
@@ -120,7 +128,6 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 	
-	@Auth
 	@RequestMapping("facebooklogout")
 	public String logout(){
 		logger.info("Logout");

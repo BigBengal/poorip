@@ -21,7 +21,7 @@
 			<!-- name-and-slogan -->
 			<div class="site-name-and-slogan smooth-scroll">
 				<div class="site-name">
-					<a href="#banner">PoOrip</a>
+					<a href="${pageContext.request.contextPath}">PoOrip</a>
 				</div>
 				<!-- <div class="site-slogan">
 					<a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>
@@ -65,6 +65,11 @@
 								<li><a href="#portfolio">여행정보</a></li>
 								<li><a href="#clients">풀친구</a></li>
 								<li><a href="#contact">건의사항</a></li>
+								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
+									   </fb:login-button>
+									</a></li>
+								<li><a><img id="loginpic"></a></li>
+								
 							</ul>
 						</div>
 

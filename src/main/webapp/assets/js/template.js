@@ -10,7 +10,7 @@
 (function($){
 	$(document).ready(function(){
 	
-		$(".banner-image").backstretch('images/banner.jpg');
+		$(".banner-image").backstretch('assets/images/pool-party2.jpg');
 		
 		// Fixed header
 		//-----------------------------------------------

@@ -161,6 +161,9 @@
 	<!-- date picker -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- facebook  -->
+	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+	
 	<script>
 		$(function() {
 			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
@@ -190,7 +193,9 @@
 		});
 		
 	</script>
-	
-
+11
+<c:forEach items="${sessionScope}" var="attr">
+    ${attr.key}=${attr.value}<br>
+</c:forEach>
 </body>
 </html>

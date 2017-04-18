@@ -11,7 +11,7 @@
 		<div class="col-md-4">
 			<div class="media testimonial">
 				<div class="media-left">
-					<img src="images/testimonial-1.png" alt="">
+					<img src="assets/images/testimonial-1.png" alt="">
 				</div>
 				<div class="media-body">
 					<h3 class="media-heading">You are Amazing!</h3>
@@ -28,7 +28,7 @@
 		<div class="col-md-4">
 			<div class="media testimonial">
 				<div class="media-left">
-					<img src="images/testimonial-2.png" alt="">
+					<img src="assets/images/testimonial-2.png" alt="">
 				</div>
 				<div class="media-body">
 					<h3 class="media-heading">Yeah!</h3>
@@ -45,7 +45,7 @@
 		<div class="col-md-4">
 			<div class="media testimonial">
 				<div class="media-left">
-					<img src="images/testimonial-3.png" alt="">
+					<img src="assets/images/testimonial-3.png" alt="">
 				</div>
 				<div class="media-body">
 					<h3 class="media-heading">Thank You!</h3>
@@ -64,7 +64,7 @@
 		<div class="col-md-4">
 			<div class="media testimonial">
 				<div class="media-left">
-					<img src="images/testimonial-2.png" alt="">
+					<img src="assets/images/testimonial-2.png" alt="">
 				</div>
 				<div class="media-body">
 					<h3 class="media-heading">Thank You!</h3>
@@ -81,7 +81,7 @@
 		<div class="col-md-4">
 			<div class="media testimonial">
 				<div class="media-left">
-					<img src="images/testimonial-3.png" alt="">
+					<img src="assets/images/testimonial-3.png" alt="">
 				</div>
 				<div class="media-body">
 					<h3 class="media-heading">Amazing!</h3>
@@ -98,7 +98,7 @@
 		<div class="col-md-4">
 			<div class="media testimonial">
 				<div class="media-left">
-					<img src="images/testimonial-1.png" alt="">
+					<img src="assets/images/testimonial-1.png" alt="">
 				</div>
 				<div class="media-body">
 					<h3 class="media-heading">Best!</h3>
@@ -122,32 +122,32 @@
 			<div class="row">
 				<div class="col-xs-2">
 					<div class="list-horizontal-item">
-						<img src="images/client-1.png" alt="client">
+						<img src="assets/images/client-1.png" alt="client">
 					</div>
 				</div>
 				<div class="col-xs-2">
 					<div class="list-horizontal-item">
-						<img src="images/client-2.png" alt="client">
+						<img src="assets/images/client-2.png" alt="client">
 					</div>
 				</div>
 				<div class="col-xs-2">
 					<div class="list-horizontal-item">
-						<img src="images/client-3.png" alt="client">
+						<img src="assets/images/client-3.png" alt="client">
 					</div>
 				</div>
 				<div class="col-xs-2">
 					<div class="list-horizontal-item">
-						<img src="images/client-4.png" alt="client">
+						<img src="assets/images/client-4.png" alt="client">
 					</div>
 				</div>
 				<div class="col-xs-2">
 					<div class="list-horizontal-item">
-						<img src="images/client-5.png" alt="client">
+						<img src="assets/images/client-5.png" alt="client">
 					</div>
 				</div>
 				<div class="col-xs-2">
 					<div class="list-horizontal-item">
-						<img src="images/client-6.png" alt="client">
+						<img src="assets/images/client-6.png" alt="client">
 					</div>
 				</div>
 			</div>

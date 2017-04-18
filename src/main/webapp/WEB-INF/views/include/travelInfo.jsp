@@ -91,7 +91,7 @@
 												<p>${travelInfoCityMain.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-1.jpg" alt="">
+												<img src="assets/images/portfolio-1.jpg" alt="">
 											</div>
 										</div>
 									</div>
@@ -288,7 +288,7 @@
 												<p>${travelInfoAttraction.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-12.jpg" alt="">
+												<img src="assets/images/portfolio-12.jpg" alt="">
 											</div>
 											<c:set var="reviewNum" value="${travelInfoAttraction.trvSeq}" />
 											<div class='col-md-6'>
@@ -354,7 +354,7 @@
 												<p>${travelInfoAttractionMain.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-12.jpg" alt="">
+												<img src="assets/images/portfolio-12.jpg" alt="">
 											</div>
 											<c:set var="reviewNum" value="${travelInfoAttractionMain.trvSeq}" />
 											<div class='col-md-6'>
@@ -421,7 +421,7 @@
 												<p>${travelInfoActivity.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-10.jpg" alt="">
+												<img src="assets/images/portfolio-10.jpg" alt="">
 											</div>
 											<c:set var="reviewNum" value="${travelInfoActivity.trvSeq}" />
 											<div class='col-md-6'>
@@ -487,7 +487,7 @@
 												<p>${travelInfoActivityMain.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-10.jpg" alt="">
+												<img src="assets/images/portfolio-10.jpg" alt="">
 											</div>
 											<c:set var="reviewNum" value="${travelInfoActivityMain.trvSeq}" />
 											<div class='col-md-6'>
