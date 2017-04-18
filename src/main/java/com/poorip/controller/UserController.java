@@ -48,12 +48,8 @@ public class UserController {
 		return "/user/fbtest2";
 	}
 	
-	@ResponseBody
-	@RequestMapping("facebookinfo")
-	public String facebookinfo(@AuthUser UserVo userVo){
-		return userVo.getUsrNick();
-	}
 	
+	// 페이스북 로그인 버튼 연결
 	@RequestMapping("/facebooklogin")
 	public String login(@ModelAttribute FacebookUser facebookuservo,
 						Model model){
@@ -77,21 +73,40 @@ public class UserController {
 				userVo.setUsrBd(facebookuservo.getBirthday());
 			userService.joinUser(userVo);
 			
-			return "redirect:/user/addinfo";
+			//추가정보 가입 Flag 세션 저장 후 리턴 값 지정용
+			model.addAttribute("addinfo", "addinfo");
 		}
 		model.addAttribute("email", facebookuservo.getEmail());
 		return "redirect:/user/login";
 	}
 	
+	// 페북 로그인 버튼으로 로그인시, $post 통신 리턴 값 전용
+	@ResponseBody	
+	@RequestMapping("facebookinfo")
+	public String facebookinfo(@AuthUser UserVo userVo){
+		return userVo.getUsrNick();
+	}
+	
+	// 페북 로그인 버튼으로 로그인시, 최초 가입 통신 리턴 값 전용
+	@ResponseBody
+	@RequestMapping("/addrtninfo")
+	public String addInfoReturn(){
+		return "addinfo";
+	}
+	
+	// 추가 정보 가입 페이지로 이동
+	@Auth
 	@RequestMapping("/addinfo")
 	public String addInfo(){
+		logger.info("addinfo() Start");
 		return "user/addinfo";
 	}
 	
+	// 추가 정보 가입 페이지에서 저장
 	@RequestMapping("/addinfosave")
 	public String addInfoSave(@ModelAttribute UserVo userVo,
 							Model model){
-		
+		logger.info("addinfoSave() Start");
 		// UsrSeq는 jsp 페이지에서 같이 보내주어야 함
 		
 		// 필수정보 (언어, 닉네임, 성별(페북연동은 필요없음,주석)
@@ -125,7 +140,7 @@ public class UserController {
 		userService.UpdateOptionInfo(userVo);
 		
 		model.addAttribute("email", userVo.getUsrEmail());
-		return "redirect:/user/login";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("facebooklogout")

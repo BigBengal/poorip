@@ -68,7 +68,7 @@
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button>
 									</a></li>
-								<li><a><img id="loginpic"></a></li>
+								<li><a><img id="loginpic" src="${authUser.usrProfile}"></a></li>
 								
 							</ul>
 						</div>

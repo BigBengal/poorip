@@ -19,9 +19,9 @@ FB.init({
 //
 // These three cases are handled in the callback function.
 
-FB.getLoginStatus(function(response) {
-  statusChangeCallback(response);
-});
+	//FB.getLoginStatus(function(response) {
+	//  statusChangeCallback(response);
+//	});
 
 };
 
@@ -89,6 +89,11 @@ function testAPI() {
 	        function(data,status){
 	        	$("#loginpic").attr("src",response.picture.data.url);
 	        	console.log(data);
+	        	if (data == "addinfo"){
+	        		// 다이얼로그로 띄우기 후 페이지 이동
+	        		$(location).attr('href', 'user/addinfo')
+	        	}
+	        		
 	        	return;
 	        });
   });

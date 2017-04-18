@@ -21,7 +21,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String email = request.getParameter("email");
-		
+		String addinfo = request.getParameter("addinfo");
 		// 컨테이너 가져오는 코드
 		ApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext( request.getServletContext() );		
 		UserService userService = applicationContext.getBean( UserService.class );
@@ -34,7 +34,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 //		logger.debug("after:"+userVo.toString());
 		
 		if(userVo == null || userVo.getUsrSeq() == 0 || userVo.getUsrEmail() == null) {
-			response.sendRedirect(request.getContextPath()+"/user/loginpage");
+			response.sendRedirect(request.getContextPath());
 			return false;
 		}
 		
@@ -44,7 +44,13 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		// 인증 처리
 		HttpSession session = request.getSession( true );
 		session.setAttribute("authUser", userVo);
-		response.sendRedirect(request.getContextPath()+"/user/facebookinfo");
+		
+		// 최초 가입의 경우 세션에 저장하고 addinfo로 리턴하기 위해
+		if (addinfo != null && "addinfo".equals(addinfo) ){
+			response.sendRedirect(request.getContextPath()+"/user/addrtninfo");
+		} else {
+			response.sendRedirect(request.getContextPath()+"/user/facebookinfo");
+		}
 		
 		return false; 
 	}

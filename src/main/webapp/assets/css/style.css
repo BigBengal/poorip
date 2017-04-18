@@ -141,6 +141,23 @@ blockquote {
 	background: none;
 	overflow: hidden;
 }
+.banner-addinfo {
+	width: 100%;
+	height: 20%;
+	min-height: 20%;
+	position: relative;
+	color: #fff;
+	overflow: hidden;
+}
+.banner-addinfo-image {
+	vertical-align: middle;
+	min-height: 20%;
+	width: 100%;
+	position: relative; 
+	z-index: 0; 
+	background: none;
+	overflow: hidden;
+}
 
 .banner-image img {
 	vertical-align: middle;
