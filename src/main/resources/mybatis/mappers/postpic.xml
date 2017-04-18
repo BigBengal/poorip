@@ -34,4 +34,14 @@
 	
 	</delete>
 	
+	<select id="selectreviewpic" resultType="reviewvo" parameterType="integer">
+		<![CDATA[
+		select	   pp.file_name as fileName, 
+				   pp.post_pic_seq as postPicSeq, 
+				   pp.path as path from  post as po                                                   
+      				INNER join travel_info as ti  on po.trv_seq = ti.trv_seq  
+      				left outer join post_pic as pp  on po.POST_SEQ = pp.post_seq
+	  				 where po.REVIEW_PUB_YN='Y' and po.post_seq=#{postSeq}
+	]]>
+	</select>
 </mapper>

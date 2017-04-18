@@ -2,11 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <%-- <link href="<c:url value='/resources/css/jquery-ui.css' />" rel="stylesheet" type="text/css"/> --%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript">
 $(function(){
 	$("#kwd").autocomplete({
         source : function(request, response) {
@@ -37,22 +38,26 @@ $(function(){
 			$(location).attr('href','/poorip/city/'+ui.item.value);
 		}
     });
-});
 
-var render = function( vo, prepend, reviewNum ){
+});
+var render = function( vo, reviewNum, postSeq ){
 	
-	var html = "<div class='col-md-6'>" +
-			   "<p id='reviewtitle'>" + vo.title + "</p>" +
-			   "<p id='reviewbody'>" + vo.contents + "</p>" +
-			   "</div>" +
-			   "<div class='col-md-3'>" +
-			   "<img src='${pageContext.request.contextPath }/assets/images/pool-party2.jpg' alt=''>" +
-			   "</div>";			
+	var html = "<div class='col-md-12' style='border-style:solid; border-width=5px'>" +
+				"<p id='reviewtitle'>" + vo.title + "</p>" +
+			   "<p id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "</p>" + 
+			   "</div>"
+			   ;			
 		
 	$("#review-"+reviewNum ).append(html);
 	console.log("PLLLLLLLLLLLLEASE" + reviewNum);
 
 }
+
+var renderpic = function(vo, reviewNum, postSeq) {
+	var htmlpic = "<a href=${pageContext.request.contextPath}/assets/images/pool-party.jpg data-lightbox='image-1' data-title='My caption' style='display:block; height=20% ; width=20%' ><img src=${pageContext.request.contextPath}/assets/images/pool-party.jpg width='20%'></a>" + vo.path ;
+	$("#reviewbody-"+postSeq).after(htmlpic);
+}
+
 
 function send(trvSeq, reviewNum){
 
@@ -60,26 +65,38 @@ function send(trvSeq, reviewNum){
         url : "/poorip/reviews/" + trvSeq,
         type : "post",
         dataType : "json",
-        data: "reviewNum=" + reviewNum,
+        data: "reviewNum=" + reviewNum ,
         success : function(response) {
         	
-        	if( response.data.length == 0 ) {
-	    		isEnd = true;
-	    		return;	
-	    	}
-        	
-        	$( response.data ).each( function(index, vo){
-        		console.log(vo);
-        		console.log(reviewNum);
-        		render( vo, false, reviewNum );
-	    	
-        	});
-        },
-        error : function(data) {
-        	console.log("fail" + data);
-//             alert("ajax 에러가 발생하였습니다.")
-        }
-    });
-	$("#review-"+reviewNum ).empty();
-}
+        		$( response.data ).each( function(index, vo){
+				var postSeq = vo.postSeq;
+				console.log(postSeq);
+        		render( vo, reviewNum, postSeq );
+        		
+				
+        		$.ajax({
+        			
+        			url:"/poorip/reviewpic/" + postSeq,
+        			type: "post",
+        			dataType: "json",
+        			success : function(review) {
+    
+        				$(review.data).each(function (index,vo){
+        					/* console.log(vo) */
+        					renderpic(vo, reviewNum, postSeq);
+        				});
+        			}
+        			
+        		});
+        		$("#reviewpic-"+reviewNum ).empty();
+		        });
+        	},
+		        error : function(data) {
+		        	console.log("fail" + data);
+		//             alert("ajax 에러가 발생하였습니다.")
+		        }
+		    });
+		$("#review-"+reviewNum ).empty();
+	}
+
 </script>

@@ -80,6 +80,7 @@ public class MainController {
 		for (int i = 0; i < travelInfoVo.size(); i++) {
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
 				foodlist.add(travelInfoVo.get(i));
+			
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
 				attractionlist.add(travelInfoVo.get(i));
@@ -100,15 +101,28 @@ public class MainController {
 
 	@ResponseBody
 	@RequestMapping("/reviews/{trvSeq}")
-	public JSONResult getReviews(@PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum) {
+	public JSONResult getReviews(Model model, @PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum) {
 		/*if (trvSeq == null || trvSeq.equals("")) {
 			return JSONResult.fail("실패");
 		}*/
 
 		int trvSeq1 = Integer.parseInt(trvSeq);
-		List<ReviewVo> foodReviews = mainService.selectReviewList(trvSeq1);
+		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
+	
+	
 
-		return JSONResult.success(foodReviews);
+		return JSONResult.success(reviews);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/reviewpic/{postSeq}")
+	public JSONResult getReviewPic (@PathVariable("postSeq") String postSeq) {
+		int postSeq1 = Integer.parseInt(postSeq);
+		List<ReviewVo> reviewPic = mainService.selectReviewPics(postSeq1);
+		System.out.println(postSeq1);
+		System.out.println("REVIEWPIC" + reviewPic);
+		return JSONResult.success(reviewPic);
+		
 	}
 
 	@ResponseBody
