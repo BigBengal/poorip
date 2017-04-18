@@ -35,6 +35,10 @@ public class TravelInfoDao {
 		return sqlSession.selectList("post.selectbytravelseq", trvSeq);
 	}
 	
+	public List<ReviewVo> getReviewPics(int postSeq) {
+		return sqlSession.selectList("postpic.selectreviewpic", postSeq);
+	}
+	
 	public boolean insert( TravelInfoVo travelInfoVo ) {
 		return 1 == sqlSession.insert( "travelInfo.insert", travelInfoVo );
 	}

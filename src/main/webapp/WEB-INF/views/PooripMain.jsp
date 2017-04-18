@@ -55,7 +55,7 @@
 <c:import url="/WEB-INF/views/include/ajax.jsp" />
 
 <!-- Reviews -->
-
+<link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
 
 </head>
 
@@ -156,7 +156,8 @@
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
-
+	<!-- Light Box -->
+	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 	<!-- date picker -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

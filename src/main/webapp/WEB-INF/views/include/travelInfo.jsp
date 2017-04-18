@@ -56,7 +56,8 @@
 
 		<div class="isotope-container row grid-space-20">
 			<c:if test="${!empty travelInfoCityMain }">
-				<c:forEach var="travelInfoCityMain" items="${travelInfoCityMain }" varStatus="status">
+				<c:forEach var="travelInfoCityMain" items="${travelInfoCityMain }"
+					varStatus="status">
 					<div class="col-sm-6 col-md-3 isotope-item cities">
 						<div class="image-box">
 							<div class="overlay-container">
@@ -107,22 +108,24 @@
 			</c:if>
 
 			<c:if test="${!empty travelInfoFood }">
-				<c:forEach var="travelInfoFood" items="${travelInfoFood }" varStatus="status">
+				<c:forEach var="travelInfoFood" items="${travelInfoFood }"
+					varStatus="status">
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-2${status.index }"> <i
-									class="fa fa-search-plus"></i> <span>${travelInfoFood.name}</span>
+									data-target="#project-2${status.index }"
+									onclick="send(${travelInfoFood.trvSeq}, ${travelInfoFood.trvSeq})">
+									<i class="fa fa-search-plus"></i> <span>${travelInfoFood.name}</span>
 								</a>
 							</div>
-							
+
 							<a href="#" class="btn btn-default btn-block" data-toggle="modal"
 								data-target="#project-2${status.index }"
-								onclick="send(${travelInfoFood.trvSeq}, ${status.index })">${travelInfoFood.name }</a>
-				
+								onclick="send(${travelInfoFood.trvSeq}, ${travelInfoFood.trvSeq})">${travelInfoFood.name }</a>
+
 						</div>
 						<!-- Modal -->
 						<div class="modal fade" id="project-2${status.index }"
@@ -151,16 +154,24 @@
 													alt="">
 											</div>
 										</div>
-										<h3>
-											<b>후기</b>
-										</h3>										
-										<c:set var="reviewNum" value="${status.index}" />
-										<div class="row" id="review-${status.index }" ></div>
+
+										<c:set var="reviewNum" value="${travelInfoFood.trvSeq}" />
+										<div class='col-md-6'>
+											<h3>
+												<b>후기</b>
+											</h3>
+											<div class="row">
+												<div id="review-${travelInfoFood.trvSeq}"></div>
+											</div>
+											<div class='col-md-3' id="reviewpic-${travelInfoFood.trvSeq}">
+												<div id="reviewpic-${travelInfoFood.trvSeq}"></div>
+											</div>
+										</div>
 
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
-											data-dismiss="modal">Close</button>
+											data-dismiss="modal">화면 닫기</button>
 									</div>
 								</div>
 							</div>
@@ -171,23 +182,28 @@
 			</c:if>
 
 			<c:if test="${!empty travelInfoFoodMain }">
-				<c:forEach var="travelInfoFoodMain" items="${travelInfoFoodMain }" varStatus="status">
+				<c:forEach var="travelInfoFoodMain" items="${travelInfoFoodMain }"
+					varStatus="status">
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-3"> <i class="fa fa-search-plus"></i>
-									<span>${travelInfoFoodMain.name}</span>
+									data-target="#project-3${status.index }"
+									onclick="send(${travelInfoFoodMain.trvSeq}, ${travelInfoFoodMain.trvSeq })">
+									<i class="fa fa-search-plus"></i> <span>${travelInfoFoodMain.name}</span>
 								</a>
 							</div>
-							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-3">${travelInfoFoodMain.name}</a>
+							<a href="#" class="btn btn-default btn-block" data-toggle="modal"
+								data-target="#project-3${status.index }"
+								onclick="send(${travelInfoFoodMain.trvSeq}, ${travelInfoAttraction.trvSeq})">
+								${travelInfoFoodMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id=project-3 tabindex="-1" role="dialog"
-							aria-labelledby="project-3-label" aria-hidden="true">
+						<div class="modal fade" id="project-3${status.index }"
+							tabindex="-1" role="dialog" aria-labelledby="project-3-label"
+							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -203,12 +219,23 @@
 												<p>${travelInfoFoodMain.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="images/portfolio-12.jpg" alt="">
+												<img
+													src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
+													alt="">
 											</div>
-											<h3>
-												<b>후기</b>
-											</h3>
-											<div class="row" id="review"></div>
+											<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
+											<div class='col-md-6'>
+												<h3>
+													<b>후기</b>
+												</h3>
+												<div class="row">
+													<div id="review-${travelInfoFoodMain.trvSeq}"></div>
+												</div>
+												<div class='col-md-3'
+													id="reviewpic-${travelInfoFoodMain.trvSeq}">
+													<div id="reviewpic-${travelInfoFoodMain.trvSeq}"></div>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -233,16 +260,19 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-4"> <i class="fa fa-search-plus"></i>
-									<span>${travelInfoAttraction.name}</span>
+									data-target="#project-4${status.index }"
+									onclick="send(${travelInfoAttraction.trvSeq}, ${travelInfoAttraction.trvSeq})">
+									<i class="fa fa-search-plus"></i> <span>${travelInfoAttraction.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-4">${travelInfoAttraction.name}</a>
+								data-target="#project-4${status.index }"
+								onclick="send(${travelInfoAttraction.trvSeq}, ${travelInfoAttraction.trvSeq})">${travelInfoAttraction.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-4" tabindex="-1" role="dialog"
-							aria-labelledby="project-3-label" aria-hidden="true">
+						<div class="modal fade" id="project-4${status.index }"
+							tabindex="-1" role="dialog" aria-labelledby="project-3-label"
+							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -260,10 +290,19 @@
 											<div class="col-md-6">
 												<img src="images/portfolio-12.jpg" alt="">
 											</div>
-											<h3>
-												<b>후기</b>
-											</h3>
-											<div class="row" id="review" ></div>
+											<c:set var="reviewNum" value="${travelInfoAttraction.trvSeq}" />
+											<div class='col-md-6'>
+												<h3>
+													<b>후기</b>
+												</h3>
+												<div class="row">
+													<div id="review-${travelInfoAttraction.trvSeq}"></div>
+												</div>
+												<div class='col-md-3'
+													id="reviewpic-${travelInfoAttraction.trvSeq}">
+													<div id="reviewpic-${travelInfoAttraction.trvSeq}"></div>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -287,16 +326,19 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-5"> <i class="fa fa-search-plus"></i>
-									<span>${travelInfoAttractionMain.name}</span>
+									data-target="#project-5${status.index }"
+									onclick="send(${travelInfoAttractionMain.trvSeq}, ${status.index })">
+									<i class="fa fa-search-plus"></i> <span>${travelInfoAttractionMain.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-5">${travelInfoAttractionMain.name}</a>
+								data-target="#project-5${status.index }"
+								onclick="send(${travelInfoAttractionMain.trvSeq}, ${status.index })">${travelInfoAttractionMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-5" tabindex="-1" role="dialog"
-							aria-labelledby="project-12-label" aria-hidden="true">
+						<div class="modal fade" id="project-5${status.index }"
+							tabindex="-1" role="dialog" aria-labelledby="project-12-label"
+							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -314,10 +356,19 @@
 											<div class="col-md-6">
 												<img src="images/portfolio-12.jpg" alt="">
 											</div>
-											<h3>
-												<b>후기</b>
-											</h3>
-											<div class="row" id="review"></div>
+											<c:set var="reviewNum" value="${travelInfoAttractionMain.trvSeq}" />
+											<div class='col-md-6'>
+												<h3>
+													<b>후기</b>
+												</h3>
+												<div class="row">
+													<div id="review-${travelInfoAttractionMain.trvSeq}"></div>
+												</div>
+												<div class='col-md-3'
+													id="reviewpic-${travelInfoAttractionMain.trvSeq}">
+													<div id="reviewpic-${travelInfoAttractionMain.trvSeq}"></div>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -342,16 +393,19 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-6"> <i class="fa fa-search-plus"></i>
-									<span>${travelInfoActivity.name}</span>
+									data-target="#project-6${status.index }"
+									onclick="send(${travelInfoActivity.trvSeq}, ${status.index })">
+									<i class="fa fa-search-plus"></i> <span>${travelInfoActivity.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-6">${travelInfoActivity.name}</a>
+								data-target="#project-6${status.index }"
+								onclick="send(${travelInfoActivity.trvSeq}, ${status.index })">${travelInfoActivity.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-6" tabindex="-1" role="dialog"
-							aria-labelledby="project-6-label" aria-hidden="true">
+						<div class="modal fade" id="project-6${status.index }"
+							tabindex="-1" role="dialog" aria-labelledby="project-6-label"
+							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -369,10 +423,19 @@
 											<div class="col-md-6">
 												<img src="images/portfolio-10.jpg" alt="">
 											</div>
-											<h3>
-												<b>후기</b>
-											</h3>
-											<div class="row" id="review"></div>
+											<c:set var="reviewNum" value="${travelInfoActivity.trvSeq}" />
+											<div class='col-md-6'>
+												<h3>
+													<b>후기</b>
+												</h3>
+												<div class="row">
+													<div id="review-${travelInfoActivity.trvSeq}"></div>
+												</div>
+												<div class='col-md-3'
+													id="reviewpic-${travelInfoActivity.trvSeq}">
+													<div id="reviewpic-${travelInfoActivity.trvSeq}"></div>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -396,16 +459,19 @@
 								<img
 									src="${pageContext.request.contextPath }/assets/images/paris.png"
 									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-7"> <i class="fa fa-search-plus"></i>
-									<span>${travelInfoActivityMain.name}</span>
+									data-target="#project-7${status.index }"
+									onclick="send(${travelInfoActivityMain.trvSeq}, ${status.index })">
+									<i class="fa fa-search-plus"></i> <span>${travelInfoActivityMain.name}</span>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
-								data-target="#project-7">${travelInfoActivityMain.name}</a>
+								data-target="#project-7${status.index }"
+								onclick="send(${travelInfoActivityMain.trvSeq}, ${status.index })">${travelInfoActivityMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-7" tabindex="-1" role="dialog"
-							aria-labelledby="project-7-label" aria-hidden="true">
+						<div class="modal fade" id="project-7${status.index }"
+							tabindex="-1" role="dialog" aria-labelledby="project-7-label"
+							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -423,10 +489,19 @@
 											<div class="col-md-6">
 												<img src="images/portfolio-10.jpg" alt="">
 											</div>
-											<h3>
-												<b>후기</b>
-											</h3>
-											<div class="row" id="review"></div>
+											<c:set var="reviewNum" value="${travelInfoActivityMain.trvSeq}" />
+											<div class='col-md-6'>
+												<h3>
+													<b>후기</b>
+												</h3>
+												<div class="row">
+													<div id="review-${travelInfoActivityMain.trvSeq}"></div>
+												</div>
+												<div class='col-md-3'
+													id="reviewpic-${travelInfoActivityMain.trvSeq}">
+													<div id="reviewpic-${travelInfoActivityMain.trvSeq}"></div>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">

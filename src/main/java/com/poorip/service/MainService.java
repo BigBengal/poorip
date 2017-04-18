@@ -46,5 +46,10 @@ public class MainService {
 	public int getCitySeq( String cityName ) {
 		return travelInfoDao.getCitySeq(cityName);
 	}
+	
+	public List<ReviewVo> selectReviewPics(int postSeq) {
+		List<ReviewVo> picsList = travelInfoDao.getReviewPics(postSeq);
+		return picsList;
+	}
 		
 }
