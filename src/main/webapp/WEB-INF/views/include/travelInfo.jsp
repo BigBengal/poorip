@@ -156,7 +156,7 @@
 										</div>
 
 										<c:set var="reviewNum" value="${travelInfoFood.trvSeq}" />
-										<div class='col-md-6'>
+										<div class='col-md-12'>
 											<h3>
 												<b>후기</b>
 											</h3>

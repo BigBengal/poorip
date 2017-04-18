@@ -42,7 +42,7 @@ $(function(){
 });
 var render = function( vo, reviewNum, postSeq ){
 	
-	var html = "<div class='col-md-12'>" +
+	var html = "<div class='col-md-12' style='border-style:solid; border-width=5px'>" +
 				"<p id='reviewtitle'>" + vo.title + "</p>" +
 			   "<p id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "</p>" + 
 			   "</div>"
@@ -54,8 +54,8 @@ var render = function( vo, reviewNum, postSeq ){
 }
 
 var renderpic = function(vo, reviewNum, postSeq) {
-	var htmlpic = "<a href=${pageContext.request.contextPath}/assets/images/pool-party.jpg data-lightbox='image-1' data-title='My caption'><img src=${pageContext.request.contextPath}/assets/images/pool-party.jpg height=200px width=200px ></a>" + vo.path ;
-	$("#reviewbody-"+postSeq).append(htmlpic);
+	var htmlpic = "<a href=${pageContext.request.contextPath}/assets/images/pool-party.jpg data-lightbox='image-1' data-title='My caption' style='display:block; height=20% ; width=20%' ><img src=${pageContext.request.contextPath}/assets/images/pool-party.jpg width='20%'></a>" + vo.path ;
+	$("#reviewbody-"+postSeq).after(htmlpic);
 }
 
 
