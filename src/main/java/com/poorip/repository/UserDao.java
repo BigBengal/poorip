@@ -32,18 +32,46 @@ public class UserDao {
 		return 1 == sqlSession.update("user.updatelogin", uservo);
 	}
 	
-	public boolean updateProfile(UserVo uservo) {
-		return 1 == sqlSession.update("user.updateprofile", uservo);
+	//필수 정보 저장
+	public boolean updateLang(UserVo uservo) {
+		return 1 == sqlSession.update("user.updatelang", uservo);
+	}
+
+	public boolean updateGender(UserVo uservo) {
+		return 1 == sqlSession.update("user.updategender", uservo);
+	}
+	
+	public boolean updateNick(UserVo uservo) {
+		return 1 == sqlSession.update("user.updatenick", uservo);
+	}
+	
+	public boolean updateBirthday(UserVo uservo) {
+		return 1 == sqlSession.update("user.updatebirthday", uservo);
+	}
+	
+	
+	//옵션 정보 저장
+	public boolean updatePrefer(UserVo uservo) {
+		return 1 == sqlSession.update("user.updateprefer", uservo);
+	}
+
+	public boolean updateInfoHash(UserVo uservo) {
+		return 1 == sqlSession.update("user.updateinfohash", uservo);
 	}
 	
 	public boolean updateNoti(UserVo uservo) {
 		return 1 == sqlSession.update("user.updatenoti", uservo);
 	}
 	
+
+	
+
+	
 	public UserVo select(UserVo uservo) {
 		UserVo vo = sqlSession.selectOne("user.selectbyemail", uservo);
 		return vo;
 	}
+
 
 	
 }

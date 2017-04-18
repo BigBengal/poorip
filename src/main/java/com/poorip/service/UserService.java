@@ -61,25 +61,107 @@ public class UserService {
 		return userDao.join(userVo);
 	}
 	
-	//유저 가입 확인 및 자동 로그인
-	public UserVo oneStep(UserVo userVo){
-		UserVo vo = getUser(userVo);
-		// 회원 정보가 없으면 가입 처리
-		if ( vo == null ){
-			if ( joinUser(userVo) ){
-				vo = getUser(userVo);
-			} else {
-				//회원가입 오류
-				logger.info("UserService.oneStep() 회원 가입 실패");
-			}
-		}
-		return vo;
+	// 유저 로그인 시 로그인 시각 저장
+	public boolean UpdateLoginTime(UserVo userVo){
+		return userDao.updateLogin(userVo);
+	}
+
+	// 유저 필수 정보 수정
+	public boolean UpdateRequiredInfo(UserVo userVo) {
+		boolean isOk = true;
+		/////////////////
+		// 필수정보
+		/////////////////
+		
+		// 언어 수정
+		if( userVo.getUsrLang() != null)
+			isOk = UpdateLang(userVo);
+		
+		// 성별 수정 (페북 연동은 성별이 필수항목)
+		//if( userVo.getUsrGender() != null)
+		//	userService.UpdateGender(userVo);
+		
+		// 닉네임 수정
+		if( userVo.getUsrNick() != null)
+			isOk = UpdateNick(userVo);
+		// 생년월일 수정 (저장 형식은  년/월/일 )
+		if( userVo.getUsrBd() != null)
+			isOk = UpdateBirthday(userVo);
+		
+		return isOk;
+	}
+	
+	
+	// 유저 옵션 정보 수정
+	public boolean UpdateOptionInfo(UserVo userVo) {
+		boolean isOk = true;
+		/////////////////
+		// 옵션 정보
+		/////////////////
+		
+		// 취향 수정
+		if( userVo.getUsrPref1() != null || userVo.getUsrPref2() != null || userVo.getUsrPref3() != null || userVo.getUsrPref4() != null || userVo.getUsrPref5() != null )
+			isOk = UpdatePrefer(userVo);
+		
+		// 프로필, 해쉬태그 수정
+		if( userVo.getUsrInfo() != null || userVo.getUsrHashtag() != null)
+			isOk = UpdateInfoHash(userVo);
+		
+		// 노티 수정
+		if( userVo.getUsrNoti() != null)
+			isOk = UpdateNoti(userVo);
+		return isOk;
+	}
+	
+	// 유저 언어 수정 
+	public boolean UpdateLang(UserVo userVo) {
+		return userDao.updateLang(userVo);
+	}
+
+	// 유저 성별 저장
+	public boolean UpdateGender(UserVo userVo) {
+		return userDao.updateGender(userVo);
+	}
+
+	// 유저 닉네임 저장
+	public boolean UpdateNick(UserVo userVo) {
+		return userDao.updateNick(userVo);
 		
 	}
 
-	// 유저 로그인 시 로그인 시각 저장
-	public boolean UpdateLoginTime(UserVo uservo){
-		return userDao.updateLogin(uservo);
+	// 유저 생년월일 (저장 형식은 년/월/일)
+	public boolean UpdateBirthday(UserVo userVo) {
+		//생일 설정
+		String birthday = userVo.getUsrBd();
+		if(birthday != null && birthday.isEmpty() == false){
+			userVo.setUsrBd("STR_TO_DATE('"+birthday+"','%Y/%m/%d/')");
+		} else 
+			userVo.setUsrBd("null");
+		return userDao.updateBirthday(userVo);
+		
 	}
+
+	// 유저 취향 정보 저장
+	public boolean UpdatePrefer(UserVo userVo) {
+		return userDao.updatePrefer(userVo);
+	}
+	
+	// 유저 프로필, 해쉬태그 추가 정보 저장
+	public boolean UpdateInfoHash(UserVo userVo) {
+		return userDao.updateInfoHash(userVo);
+	}
+	
+	// 유저 노티 알람 정보 저장
+	public boolean UpdateNoti(UserVo userVo) {
+		return userDao.updateNoti(userVo);
+	}
+
+	// 유저 블랙리스트 정보 저장
+	public boolean UpdateBlack(UserVo userVo) {
+		return userDao.updateBlack(userVo);
+	}
+
+
+
 
 }

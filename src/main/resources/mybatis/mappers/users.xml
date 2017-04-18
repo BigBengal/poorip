@@ -12,6 +12,17 @@
 		]]>
 	</select>
 
+	<!-- 닉네임 중복 있는 지 확인 -->
+	<select id="isexistnick" resultType="int" parameterType="uservo">
+		<![CDATA[
+			SELECT COUNT(*)
+			FROM USERS
+			WHERE USR_NICK = #{usrNick }
+		]]>
+	</select>
+
+		
+
 	<!-- 새로운 유저 입력 -->
 	<insert id="insert" parameterType="uservo">
 		<![CDATA[
@@ -46,33 +57,91 @@
 			where usr_email = #{usrEmail }
 		]]>
 	</select>
-
-
+	
 	<!-- 사용자 로그인 정보 업데이트 -->
 	<update id="updatelogin" parameterType="uservo">
 	<![CDATA[
-		update users set USR_LOGIN_DATE = now() where usr_seq = #{usrSeq }
+		update users 
+		   set USR_LOGIN_DATE = now() 
+		 where usr_seq = #{usrSeq }
+	]]>
+	</update>
+	
+	<!-- 사용자 언어 설정 정보 업데이트 -->
+	<update id="updatelang" parameterType="uservo">
+	<![CDATA[
+		update users 
+		   set USR_LANG = #{usrLang }
+		 where usr_seq = #{usrSeq }
+	]]>
+	</update>
+	
+	<!-- 사용자 로그인 정보 업데이트 -->
+	<update id="updategender" parameterType="uservo">
+	<![CDATA[
+		update users 
+		   set USR_GENDER =  #{usrGender }  
+		 where usr_seq = #{usrSeq }
 	]]>
 	</update>
 
-	<!-- 사용자 자기소개/해쉬태그 정보 업데이트 -->
-	<update id="updateprofile" parameterType="uservo">
+	<!-- 사용자 닉네임 정보 업데이트 -->
+	<update id="updatenick" parameterType="uservo">
 	<![CDATA[
-		update users set usr_info = #{usrInfo}, usr_hashtag = #{usrHashtag} where usr_seq = #{usrSeq }
+		update users 
+		   set USR_NICK = #{usrNick}
+		 where usr_seq = #{usrSeq }
+	]]>
+	</update>
+	
+	<!-- 사용자 생년월일 정보 업데이트 -->
+	<update id="updatebirthday" parameterType="uservo">
+	<![CDATA[
+		UPDATE USERS 
+		   SET USR_BD = ${usrBd }
+		 WHERE USR_SEQ = #{usrSeq }
+	]]>
+	</update>
+
+	<!-- 사용자 취향 정보 업데이트 -->
+	<update id="updateprefer" parameterType="uservo">
+	<![CDATA[
+		update users 
+		   set USR_PREF1 = #{usrPref1 },  
+		  	   USR_PREF2 = #{usrPref2 },  
+		  	   USR_PREF3 = #{usrPref3 },  
+		  	   USR_PREF4 = #{usrPref4 },  
+		  	   USR_PREF5 = #{usrPref5 }  
+		 where usr_seq = #{usrSeq }
+	]]>
+	</update>
+
+
+	<!-- 사용자 자기소개/해쉬태그 정보 업데이트 -->
+	<update id="updateinfohash" parameterType="uservo">
+	<![CDATA[
+		update users 
+		   set usr_info = #{usrInfo },
+		       usr_hashtag = #{usrHashtag } 
+		 where usr_seq = #{usrSeq }
 	]]>
 	</update>
 
 	<!-- 노티피케이션 수정 -->
 	<update id="updatenoti" parameterType="uservo">
 		<![CDATA[
-			update users set usr_noti = #{usrNoti} where usr_seq = #{usrSeq }
+			update users 
+			   set usr_noti = #{usrNoti} 
+			 where usr_seq = #{usrSeq }
 		]]>
 	</update>
 
 	<!-- 블랙리스트 추가 -->
 	<update id="updateblack" parameterType="uservo">
 		<![CDATA[
-			update users set usr_black_yn = #{usrBlackYN} where usr_seq = #{usrSeq }
+			update users 
+			   set usr_black_yn = #{usrBlackYN}
+			 where usr_seq = #{usrSeq }
 		]]>
 	</update>
 

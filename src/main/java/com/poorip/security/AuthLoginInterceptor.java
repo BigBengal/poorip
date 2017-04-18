@@ -28,13 +28,13 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		UserVo userVo = new UserVo();
 		userVo.setUsrEmail(email);
 
-		logger.info("Login OK");
+		logger.info("Login OK"+email);
 //		logger.debug("before:"+userVo.toString());
 		userVo = userService.getUser(userVo);
 //		logger.debug("after:"+userVo.toString());
 		
 		if(userVo == null || userVo.getUsrSeq() == 0 || userVo.getUsrEmail() == null) {
-			response.sendRedirect(request.getContextPath()+"/fb3");
+			response.sendRedirect(request.getContextPath()+"/user/loginpage");
 			return false;
 		}
 		
