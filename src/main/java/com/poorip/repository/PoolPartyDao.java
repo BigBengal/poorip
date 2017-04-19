@@ -35,4 +35,8 @@ public class PoolPartyDao {
 		return sqlSession.selectList( "travelInfo.getKwdData", keyword );
 	}
 	
+	public List<PoolPartyVo> getPoolList(PoolPartyVo poolPartyVo) {
+		return sqlSession.selectList("poolparty.selectbycty", poolPartyVo);
+	}
+	
 }

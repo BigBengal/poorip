@@ -9,18 +9,18 @@
 <title>PoOrip에 오신것을 환영합니다!</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
+<!-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
 	integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
 	crossorigin="anonymous">
-<!-- Date Picker css -->
+Date Picker css
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 <!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
 
-<style>
+<!-- <style>
 body {
 	background-color: #f7f7f7;
 }
@@ -28,7 +28,7 @@ body {
 .container {
 	margin: 150px auto;
 }
-</style>
+</style> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
 $(function(){
@@ -65,53 +65,101 @@ $(function(){
 </script>
 </head>
 <body>
-	<div id="jquery-script-menu">
-	</div>
+	<!-- <div id="jquery-script-menu">
+	</div> -->
 	<div class="container">
 		<h1>♡가고싶은 여행지를 검색하세요♡</h1>
-		<form id="search_form" action="${pageContext.request.contextPath}/poolparty/poolsearch" method="get">
+		<form id="search_form" method="post">  
 			<input type="text" style="margin-bottom: 1em;" placeholder="Search..."
-				class="form-control" id="kwd" name="citypool">
+				class="form-control" id="ctyName" name="ctyName">
 			<p class="text-center" style="text-align: center;">
-			<label for="from">출발</label> <input type="text" id="from" name="from"
+			<label for="from">출발</label> <input type="text" id="fromDate" name="fromDate"
 				style="color: #000000"> <label for="to">도착</label> <input
-				type="text" id="to" name="to" style="color: #000000"> <input
-				type="submit" id="serch" value="검색하기"
-				style="width: 75; font-family: 맑은고딕; background-color: #3ed0c8">
+				type="text" id="toDate" name="toDate" style="color: #000000"> <input
+				type="submit" id="serch" value="검색하기" onclick="formSubmit()"
+				style="width: 75; font-family: 맑은고딕; background-color: black">
 			</p>
-		</form>
+		</form> 
 	</div>
 
 	<!-- date picker -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
+	
 		$(function() {
-			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
+			
+			var dateFormat = "mm/dd/yy", from = $("#fromDate").datepicker({
 				defaultDate : "+1w",
 				changeMonth : true,
 				numberOfMonths : 2
 			}).on("change", function() {
 				to.datepicker("option", "minDate", getDate(this));
-			}), to = $("#to").datepicker({
+				
+			}), to = $("#toDate").datepicker({
 				defaultDate : "+1w",
 				changeMonth : true,
 				numberOfMonths : 2
 			}).on("change", function() {
 				from.datepicker("option", "maxDate", getDate(this));
+				dateTo = getDate(this);
+				
 			});
-
+			
 			function getDate(element) {
 				var date;
+				
 				try {
 					date = $.datepicker.parseDate(dateFormat, element.value);
 				} catch (error) {
 					date = null;
 				}
 
+				
 				return date;
 			}
+			
+			
+			
+			
 		});
+
+		
+		
+		function formSubmit() {
+	
+		var param = jQuery("#search_form").serialize();
+		console.log(param);
+		$.ajax({
+			url : "poolsearchtest",
+			type :"post",
+			data : param,
+			async: false,
+			dataType : "json",
+			success : function(response) {
+			    
+				$(response.data).each(function (index,vo){
+					/* console.log(vo); */
+					renderpool(vo);
+				});
+				
+				
+				},
+		    error : function(data) {
+		        	console.log("fail" + data);
+		//             alert("ajax 에러가 발생하였습니다.")
+		        }
+					
+				});
+			}
+		var renderpool = function( vo ){
+			console.log(vo);
+			
+			var htmlpool = "<li>" + vo.poolName + "</li>" +
+					   "<li>" + vo.poolComment + "</li>"
+				
+			$("#poollist" ).prepend(htmlpool);
+		}	
 	</script>
 </body>
 </html>

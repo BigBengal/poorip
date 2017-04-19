@@ -60,7 +60,7 @@ public class PoolPartyDaoTest {
 		poolpartyvo.setPoolPublicYn("Y");
 		poolpartyvo.setPoolPic("poolPic.png");
 		poolpartyvo.setManagerEmail("ManagerEmail");
-		poolpartyvo.setCitySeq(1);
+		poolpartyvo.setCtySeq(1);
 	}
 	
 	@Rollback(false)

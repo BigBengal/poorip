@@ -16,6 +16,7 @@ import com.poorip.dto.JSONResult;
 import com.poorip.service.MainService;
 import com.poorip.service.PoolPartyService;
 import com.poorip.vo.CityVo;
+import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Controller
@@ -28,9 +29,11 @@ public class PoolPartyController {
 	private PoolPartyService poolPartyService;
 	
 	@RequestMapping("/search")
-	public String searchPoolForm() {
-		return "/mainpage/searchForm";
+	public String searchPool() {
+		
+		return "/mainpage/poolMain";
 	}
+
 	
 	@ResponseBody
 	@RequestMapping("/poolsearch")
@@ -45,5 +48,17 @@ public class PoolPartyController {
 		
 		return JSONResult.success(list);
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/poolsearchtest")
+	public JSONResult searchPool(@ModelAttribute PoolPartyVo poolPartyVo) {
+		System.out.println(poolPartyVo);
+		List<PoolPartyVo> poolList = poolPartyService.getPoolList(poolPartyVo);
+		System.out.println("POOLLIST" + poolList);
+		return JSONResult.success(poolList);
+	}
+	
+	
 
 }

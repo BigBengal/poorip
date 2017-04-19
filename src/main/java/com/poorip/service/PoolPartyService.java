@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poorip.repository.PoolPartyDao;
+import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Service
@@ -22,5 +23,10 @@ public class PoolPartyService {
 		List<TravelInfoVo> travelInfoList = poolPartyDao.getPoolKwd( keyword );
 		logger.info("travelInfoList:"+travelInfoList.toString());
 		return travelInfoList;
+	}
+	
+	public List<PoolPartyVo> getPoolList(PoolPartyVo poolPartyVo) {
+		List<PoolPartyVo> poolList = poolPartyDao.getPoolList(poolPartyVo);
+		return poolList;
 	}
 }

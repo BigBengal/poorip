@@ -20,8 +20,14 @@ public class PoolPartyVo {
 	private String fromDate;
 	private String toDate;
 	private int hit;
+	private String ctyName;
 	
-	
+	public String getCtyName() {
+		return ctyName;
+	}
+	public void setCtyName(String ctyName) {
+		this.ctyName = ctyName;
+	}
 	public int getPoolSeq() {
 		return poolSeq;
 	}
@@ -92,9 +98,9 @@ public class PoolPartyVo {
 	@Override
 	public String toString() {
 		return "PoolPartyVo [poolSeq=" + poolSeq + ", poolName=" + poolName + ", poolComment=" + poolComment
-				+ ", poolPic=" + poolPic + ", citySeq=" + citySeq + ", managerEmail=" + managerEmail + ", poolPublicYn="
+				+ ", poolPic=" + poolPic + ", ctySeq=" + ctySeq + ", managerEmail=" + managerEmail + ", poolPublicYn="
 				+ poolPublicYn + ", crtDate=" + crtDate + ", fromDate=" + fromDate + ", toDate=" + toDate + ", hit="
-				+ hit + "]";
+				+ hit + ", ctyName=" + ctyName + "]";
 	}
 	
 	

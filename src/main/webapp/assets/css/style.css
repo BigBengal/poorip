@@ -453,6 +453,13 @@ textarea {
 
 /* Modals
 ---------------------------------- */
+
+.row .col-md-12 a img {
+	width:20%;
+	display:inline;
+	
+}
+
 .modal-content {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;

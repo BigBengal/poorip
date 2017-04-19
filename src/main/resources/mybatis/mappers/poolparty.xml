@@ -30,8 +30,26 @@
 		]]>
 	</select>
 	
-	<!-- 메인화면에서 도시이름으로 풀파티 조회 -->
-	
+	<!-- 메인화면에서 도시이름/ 날짜로 풀파티 조회 -->
+	<select id="selectbycty" resultType="poolpartyvo" parameterType="poolpartyvo">
+		<![CDATA[
+	 SELECT pool_seq as poolSeq, 
+	 	    pool_name as poolName, 
+	 	    pool_comment as poolComment, 
+	 	    pool_pic as poolPic, 
+	 	    manager_email as managerEmail, 
+ 		    pool_public_yn as poolPublicYn, 
+ 		    from_date as fromDate, 
+ 		    to_date as toDate 
+ 		FROM pool_party, city
+ 		WHERE `from_date` 
+ 		BETWEEN str_to_date(#{fromDate}, '%c/%e/%Y') 
+ 		AND DATE_sub(str_to_date(#{toDate}, '%c/%e/%Y'), INTERVAL 1 day) 
+ 		AND city.cty_name like '%${ctyName}%'
+ 		AND city.cty_seq = pool_party.cty_seq
+ 		AND pool_public_yn="Y"
+	]]>
+	</select>
 	
 	<!-- 풀 파티 변경-->
 	<select id="update" parameterType="poolpartyvo">
