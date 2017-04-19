@@ -13,7 +13,7 @@ public class PoolPartyVo {
 	private String poolName;
 	private String poolComment;
 	private String poolPic;
-	private int citySeq;
+	private int ctySeq;
 	private String managerEmail;
 	private String poolPublicYn;
 	private String crtDate;
@@ -46,11 +46,11 @@ public class PoolPartyVo {
 	public void setPoolPic(String poolPic) {
 		this.poolPic = poolPic;
 	}
-	public int getCitySeq() {
-		return citySeq;
+	public int getCtySeq() {
+		return ctySeq;
 	}
-	public void setCitySeq(int citySeq) {
-		this.citySeq = citySeq;
+	public void setCtySeq(int citySeq) {
+		this.ctySeq = citySeq;
 	}
 	public String getManagerEmail() {
 		return managerEmail;
