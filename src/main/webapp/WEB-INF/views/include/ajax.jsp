@@ -42,7 +42,7 @@ $(function(){
 });
 var render = function( vo, reviewNum, postSeq ){
 	
-	var html = "<div class='col-md-12' style='border-style:solid; border-width=5px'>" +
+	var html = "<div class='col-md-12' style='border-style:solid; border-width=1px'>" +
 				"<p id='reviewtitle'>" + vo.title + "</p>" +
 			   "<p id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "</p>" + 
 			   "</div>"
