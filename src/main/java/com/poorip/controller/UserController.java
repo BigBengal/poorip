@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.UserService;
-import com.poorip.vo.FacebookUser;
+import com.poorip.vo.FacebookUserVo;
 import com.poorip.vo.UserVo;
 
 
@@ -39,7 +39,7 @@ public class UserController {
 	@Auth
 	@RequestMapping("/fb")
 	public String jsp(Model model) {
-		return "/user/fbtest";
+		return "/user/filetest";
 	}
 	
 	
@@ -51,7 +51,7 @@ public class UserController {
 	
 	// 페이스북 로그인 버튼 연결
 	@RequestMapping("/facebooklogin")
-	public String login(@ModelAttribute FacebookUser facebookuservo,
+	public String login(@ModelAttribute FacebookUserVo facebookuservo,
 						Model model){
 		
 		UserVo userVo = new UserVo();

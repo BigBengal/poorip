@@ -1,12 +1,7 @@
 package com.poorip.vo;
 
-public class FacebookUser {
+public class FacebookUserVo {
 	
-	@Override
-	public String toString() {
-		return "FacebookUser [email=" + email + ", name=" + name + ", gender=" + gender + ", id=" + id + ", link="
-				+ link + ", locale=" + locale + ", birthday=" + birthday + "]";
-	}
 	private String email;
 	private String name;
 	private String gender;
@@ -57,6 +52,10 @@ public class FacebookUser {
 		this.birthday = birthday;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "FacebookUser [email=" + email + ", name=" + name + ", gender=" + gender + ", id=" + id + ", link="
+				+ link + ", locale=" + locale + ", birthday=" + birthday + "]";
+	}	
 	
 }

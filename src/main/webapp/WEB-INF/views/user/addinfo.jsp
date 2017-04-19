@@ -138,25 +138,21 @@ user/addinfosave 로 전송
 	<div class="form-group">
 		<label class="control-label col-sm-3" for="language">언어(Lauguage)</label>
 		<div class="btn-group col-sm-8" role="group" aria-label="language">
-			<button type="button" class="btn btn-default">한국어</button>
-			<button type="button" class="btn btn-default">English</button>
+			<button type="button" id="language" value="KOR" class="btn btn-default">한국어</button>
+			<button type="button" id="language" value="ENG" class="btn btn-default">English</button>
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<label class="control-label col-sm-3" for="birthday">생년월일(Birthday)</label>
 		
-		    
-		        
-            <div class="form-group col-sm-8">
-                <div class='input-group date' id='datetimepicker1'>
+		        <div class='btn-group date col-sm-8' id='datetimepicker1'>
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar" id="birthdate"></span>
                     </span>
                 </div>
-            </div>
-		        
+            
 
 	</div>
 

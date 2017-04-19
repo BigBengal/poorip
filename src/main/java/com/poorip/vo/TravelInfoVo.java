@@ -14,6 +14,7 @@ public class TravelInfoVo {
 	private int catSeq;
 	private String mapURL;
 	private String contact;
+	private int hit;
 	
 	public int getTrvSeq() {
 		return trvSeq;
@@ -88,11 +89,20 @@ public class TravelInfoVo {
 		this.contact = contact;
 	}
 	
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	
 	@Override
 	public String toString() {
 		return "TravelInfoVo [trvSeq=" + trvSeq + ", name=" + name + ", contents=" + contents + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", price=" + price + ", crtDate=" + crtDate
-				+ ", ctySeq=" + ctySeq + ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + "]";
+				+ ", ctySeq=" + ctySeq + ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", hit="
+				+ hit + "]";
 	}
-
+	
+	
 }

@@ -1,5 +1,13 @@
 package com.poorip.vo;
 
+/**
+ * @author BIT
+ *
+ */
+/**
+ * @author BIT
+ *
+ */
 public class PoolPartyVo {
 	private int poolSeq;
 	private String poolName;
@@ -9,6 +17,10 @@ public class PoolPartyVo {
 	private String managerEmail;
 	private String poolPublicYn;
 	private String crtDate;
+	private String fromDate;
+	private String toDate;
+	private int hit;
+	
 	
 	public int getPoolSeq() {
 		return poolSeq;
@@ -59,12 +71,33 @@ public class PoolPartyVo {
 		this.crtDate = crtDate;
 	}
 	
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 	@Override
 	public String toString() {
 		return "PoolPartyVo [poolSeq=" + poolSeq + ", poolName=" + poolName + ", poolComment=" + poolComment
-				+ ", poolPic=" + poolPic + ", citySeq=" + citySeq + ", managerEmail=" + managerEmail
-				+ ", poolPublicYn=" + poolPublicYn + ", crtDate=" + crtDate + "]";
+				+ ", poolPic=" + poolPic + ", citySeq=" + citySeq + ", managerEmail=" + managerEmail + ", poolPublicYn="
+				+ poolPublicYn + ", crtDate=" + crtDate + ", fromDate=" + fromDate + ", toDate=" + toDate + ", hit="
+				+ hit + "]";
 	}
+	
+	
 	
 	
 }
