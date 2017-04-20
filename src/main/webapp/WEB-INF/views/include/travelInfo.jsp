@@ -15,8 +15,8 @@
 
 
 <form id="travel_search"
-	action="${pageContext.request.contextPath}/searchResult" method="get">
-	<input type="text" style="margin-bottom: 1em;" placeholder="Search..."
+	action="${pageContext.request.contextPath}/searchResult" method="get" style="text-align:center">
+	<input type="text" style="margin-bottom: 20px; display:inline-block" placeholder="Search..."
 		class="form-control" id="kwd" name="ctySeq"> <input
 		type="submit" value="find">
 </form>

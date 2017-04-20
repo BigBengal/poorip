@@ -29,73 +29,76 @@ body {
 	margin: 150px auto;
 }
 </style> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
-$(function(){
-	$("#citypool").autocomplete({
-        source : function(request, response) {
-            $.ajax({
-                url : "poolpart/poolsearch",
-                type : "post",
-                dataType : "json",
-                data: "citypool="+$("#citypool").val(),
-                success : function(data) {
-                    var result = data;
-//                     console.log(JSON.stringify(result.data));
-                    response(
-                            $.map($.parseJSON(JSON.stringify(result.data)), function(item) {
-                                return {
-                                    label: item.name,
-                                    value: item.ctySeq
-                                }
-                            })
-                        );
-                },
-                error : function(data) {
-//                     alert("ajax 에러가 발생하였습니다.")
-                }
-            });
-        },
-		select : function( event, ui ) {
-			console.log(ui.item.value);
-			$(location).attr('href','/poorip/travelinfobycity?citypool='+ui.item.value+"&ctyName="+ui.item.label);
-		}
-    });
-});
+	$(function() {
+		var ctyNamesArray = [];
+		$("#ctyName").autocomplete(
+				{
+					source : function(request, response) {
+						$.ajax({
+							url : "poolsearch",
+							type : "post",
+							dataType : "json",
+							data : "ctyName=" + $("#ctyName").val(),
+							success : function(data) {
+								var result = data;
+								response($.map($.parseJSON(JSON
+										.stringify(result.data)),
+										function(item) {
+									console.log(item);
+											return {
+												label : item.name,
+												value : item.name
+											}
+										}));
+
+							},
+							error : function(data) {
+
+								console.log("fail" + data);
+								//             alert("ajax 에러가 발생하였습니다.")
+							}
+						});
+					}
+				});
+
+	});
 </script>
 </head>
 <body>
 	<!-- <div id="jquery-script-menu">
 	</div> -->
 	<div class="container">
-		<h1>♡가고싶은 여행지를 검색하세요♡</h1>
-		<form id="search_form" method="post">  
-			<input type="text" style="margin-bottom: 1em;" placeholder="Search..."
-				class="form-control" id="ctyName" name="ctyName">
+		<h2 align="center">가고싶은 여행지를 검색하세요</h2>
+		<form id="search_form" method="post">
+			<input type="text" style="margin: auto;"
+				placeholder="Search..." class="form-control" id="ctyName"
+				name="ctyName" >
 			<p class="text-center" style="text-align: center;">
-			<label for="from">출발</label> <input type="text" id="fromDate" name="fromDate"
-				style="color: #000000"> <label for="to">도착</label> <input
-				type="text" id="toDate" name="toDate" style="color: #000000"> <input
-				type="submit" id="serch" value="검색하기" onclick="formSubmit()"
-				style="width: 75; font-family: 맑은고딕; background-color: black">
+				<label for="from">출발</label> <input type="text" id="fromDate"
+					name="fromDate" style="color: #000000; border-radius: 10px"> <label for="to" style="margin-left: 5px">도착</label>
+				<input type="text" id="toDate" name="toDate" style="color: #000000; border-radius: 10px; margin-top: 10px">
+				<input type="submit" id="serch" value="검색하기" onclick="formSubmit()"
+					style="width: 75; font-family: 맑은고딕; background-color: black">
 			</p>
-		</form> 
+		</form>
 	</div>
 
 	<!-- date picker -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
-	
 		$(function() {
-			
+
 			var dateFormat = "mm/dd/yy", from = $("#fromDate").datepicker({
 				defaultDate : "+1w",
 				changeMonth : true,
 				numberOfMonths : 2
 			}).on("change", function() {
 				to.datepicker("option", "minDate", getDate(this));
-				
+
 			}), to = $("#toDate").datepicker({
 				defaultDate : "+1w",
 				changeMonth : true,
@@ -103,63 +106,63 @@ $(function(){
 			}).on("change", function() {
 				from.datepicker("option", "maxDate", getDate(this));
 				dateTo = getDate(this);
-				
 			});
-			
+
 			function getDate(element) {
 				var date;
-				
+
 				try {
 					date = $.datepicker.parseDate(dateFormat, element.value);
 				} catch (error) {
 					date = null;
 				}
-
-				
 				return date;
 			}
-			
-			
-			
-			
+
 		});
 
-		
-		
 		function formSubmit() {
-	
-		var param = jQuery("#search_form").serialize();
-		console.log(param);
-		$.ajax({
-			url : "poolsearchtest",
-			type :"post",
-			data : param,
-			async: false,
-			dataType : "json",
-			success : function(response) {
-			    
-				$(response.data).each(function (index,vo){
-					/* console.log(vo); */
-					renderpool(vo);
-				});
-				
-				
+			event.preventDefault();
+			$("#poollist").empty();
+			var param = jQuery("#search_form").serialize();
+			console.log(param);
+			$.ajax({
+				url : "poolsearchtest",
+				type : "post",
+				data : param,
+				async : false,
+				dataType : "json",
+				success : function(response) {
+
+					$(response.data).each(function(index, vo) {
+						/* console.log(vo); */
+						renderpool(vo);
+					});
 				},
-		    error : function(data) {
-		        	console.log("fail" + data);
-		//             alert("ajax 에러가 발생하였습니다.")
-		        }
-					
-				});
-			}
-		var renderpool = function( vo ){
+				error : function(data) {
+					console.log("fail" + data);
+					//             alert("ajax 에러가 발생하였습니다.")
+				}
+			});
+
+			$('html, body').animate({
+				scrollTop : $("#poollist").offset().top
+			}, 1000);
+		}
+		var renderpool = function(vo) {
 			console.log(vo);
-			
-			var htmlpool = "<li>" + vo.poolName + "</li>" +
-					   "<li>" + vo.poolComment + "</li>"
-				
-			$("#poollist" ).prepend(htmlpool);
-		}	
+
+			var htmlpool = "<div class='col-md-12' style='border-style:solid; border-width:1px; margin:2px; padding:2px'>"
+					+ "<p id='reviewtitle'>"
+					+ vo.poolName
+					+ "</p>"
+					+ "<p id='reviewbody'>"
+					+ vo.poolComment
+					+ "</p>"
+					+ "</div>"
+
+			$("#poollist").prepend(htmlpool);
+		}
 	</script>
 </body>
 </html>

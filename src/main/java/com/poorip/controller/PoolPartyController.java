@@ -37,25 +37,22 @@ public class PoolPartyController {
 	
 	@ResponseBody
 	@RequestMapping("/poolsearch")
-	public JSONResult searchPoolForm(@RequestParam( value="kwd", required=true, defaultValue="" ) String keyword,
-								  Model model ) {
+	public JSONResult searchPoolForm(Model model,
+			@RequestParam(value = "ctyName", required = true, defaultValue = "") String ctyName) {
 		
-		logger.debug("텍스트창에 입력된 단어 : " + keyword);
-		
-		List<TravelInfoVo> list = poolPartyService.getPoolKwd( keyword );
-		if ( list.isEmpty() )
+		List<CityVo> cityNames = poolPartyService.getCityNames(ctyName);
+		if ( cityNames.isEmpty() )
 			return JSONResult.fail("No-DATA");
-		
-		return JSONResult.success(list);
+		System.out.println("CITTY" + cityNames);
+		return JSONResult.success(cityNames);
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping("/poolsearchtest")
 	public JSONResult searchPool(@ModelAttribute PoolPartyVo poolPartyVo) {
-		System.out.println(poolPartyVo);
+	
 		List<PoolPartyVo> poolList = poolPartyService.getPoolList(poolPartyVo);
-		System.out.println("POOLLIST" + poolList);
 		return JSONResult.success(poolList);
 	}
 	

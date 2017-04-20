@@ -116,12 +116,6 @@
 <%-- 		<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
 <!-- 	</footer> -->
 	<ol id="poollist">
-		<li>ddd</li>
-		<li>ddd</li>
-		<li>ddd</li>
-		<li>ddd</li>
-		<li>ddd</li>
-		<li>ddd</li>
 	</ol>
 	<!-- footer end -->
 
@@ -193,8 +187,8 @@
 		});
 		
 	</script>
-<c:forEach items="${sessionScope}" var="attr">
-    ${attr.key}=${attr.value}<br>
-</c:forEach>
+<%-- <c:forEach items="${sessionScope}" var="attr"> --%>
+<%--     ${attr.key}=${attr.value}<br> --%>
+<%-- </c:forEach> --%>
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.TravelInfoVo;
 
@@ -37,6 +38,10 @@ public class PoolPartyDao {
 	
 	public List<PoolPartyVo> getPoolList(PoolPartyVo poolPartyVo) {
 		return sqlSession.selectList("poolparty.selectbycty", poolPartyVo);
+	}
+	
+	public List<CityVo> getCityNames(String ctyName) {
+		return sqlSession.selectList("travelInfo.getKwdData", ctyName);
 	}
 	
 }

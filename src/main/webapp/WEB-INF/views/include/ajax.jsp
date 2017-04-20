@@ -34,7 +34,7 @@ $(function(){
             });
         },
 		select : function( event, ui ) {
-			console.log(ui.item.value);
+			console.log("UI + ITEM + VALUE " + ui.item.value);
 			$(location).attr('href','/poorip/city/'+ui.item.value);
 		}
     });

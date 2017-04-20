@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poorip.repository.PoolPartyDao;
+import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.TravelInfoVo;
 
@@ -29,4 +30,9 @@ public class PoolPartyService {
 		List<PoolPartyVo> poolList = poolPartyDao.getPoolList(poolPartyVo);
 		return poolList;
 	}
+	
+	public List<CityVo> getCityNames(String ctyName) {
+		return poolPartyDao.getCityNames(ctyName);
+	}
+	
 }

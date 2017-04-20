@@ -45,7 +45,7 @@
  		WHERE `from_date` 
  		BETWEEN str_to_date(#{fromDate}, '%c/%e/%Y') 
  		AND DATE_sub(str_to_date(#{toDate}, '%c/%e/%Y'), INTERVAL 1 day) 
- 		AND city.cty_name like '%${ctyName}%'
+ 		AND city.cty_name = #{ctyName}
  		AND city.cty_seq = pool_party.cty_seq
  		AND pool_public_yn="Y"
 	]]>
