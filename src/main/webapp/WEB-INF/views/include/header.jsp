@@ -67,10 +67,16 @@
 								<li><a href="#contact">건의사항</a></li>
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button>
-									</a></li>
-								<li><a><img id="loginpic" src="${authUser.usrProfile}"></a></li>
-								
+									</a>
+									<div id="profileDropdown" class="dropdown-content">
+							    		<a href="#">Link 1</a>
+							    		<a href="#">Link 2</a>
+							    		<a href="#">Link 3</a>
+							  		</div>
+						  		</li>
+								<li><a href=#><img onclick="openOptions()" id="loginpic" src="${authUser.usrProfile}"></a></li>
 							</ul>
+							
 						</div>
 
 					</div>
