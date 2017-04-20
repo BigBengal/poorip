@@ -11,6 +11,19 @@
 		]]>
 	</insert>
 	
+	<insert id="addPost" parameterType="postvo">
+		<![CDATA[
+			insert into
+				post values(null,
+							#{title }, 
+							#{contents }, 
+							#{reviewPubYn },
+							#{usrSeq }, 
+							#{trvSeq },
+							now())
+		]]>
+	</insert>
+	
 	<select id="getPostList" resultType="postvo">
 	    <![CDATA[
 			SELECT POST_SEQ as postSeq,

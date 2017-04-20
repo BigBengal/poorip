@@ -5,10 +5,14 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.poorip.vo.CategoryVo;
 import com.poorip.vo.CityVo;
+import com.poorip.vo.CountryVo;
+import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
+import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Repository
@@ -27,6 +31,23 @@ public class AdminDao {
 
 	public List<TravelInfoVo> getList() {
 		return sqlSession.selectList( "travelInfo.getList" );
+	}
+	
+	public List<PostPicVo> getPostPicList() {
+		return sqlSession.selectList( "postpic.getList" );
+	}
+	
+	public List<CountryVo> getCountryList() {
+		return sqlSession.selectList( "country.getList" );
+	}
+
+	public List<CityVo> getCityList() {
+		return sqlSession.selectList( "city.getList" );
+	}
+	
+	public boolean deletePostPic(PostPicVo postPicVo) {
+		int count = sqlSession.delete( "postpic.delete", postPicVo );
+		return ( count == 1 );
 	}
 	
 	public boolean addInfo(TravelInfoVo travelInfoVo) {
@@ -50,6 +71,17 @@ public class AdminDao {
 	public boolean deletePost(PostVo postVo) {
 		int count = sqlSession.delete( "post.delete", postVo );
 		return (count ==1 );
+	}
+
+	public boolean addPost(PostVo postVo) {
+		int count = sqlSession.insert( "post.addPost", postVo );
+		return( count == 1 );
+	}
+
+	public boolean addPostAndPic( PostVo postVo, PostPicVo postPicVo ) {
+		int count = sqlSession.insert( "post.addPost", postVo );
+		int count1 = sqlSession.insert( "postpic.addPostPic", postPicVo );
+		return (count + count1 >= 2);
 	}
 
 }

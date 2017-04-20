@@ -43,6 +43,15 @@
 		]]>
 	</select>
 	
+	<select id="getList" resultType="cityvo">
+	    <![CDATA[
+			select CTY_SEQ as ctySeq,
+				   CTY_NAME as ctyName
+				   CTR_SEQ as ctrSeq
+				from city
+		]]>
+	</select>
+	
 	<select id="getCityName" parameterType="String" resultType="cityvo">
 	    <![CDATA[
 			select CTY_SEQ as ctySeq,

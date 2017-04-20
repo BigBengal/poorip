@@ -14,8 +14,10 @@ table {
 	border: 1px solid #bcbcbc;
 }
 </style>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
+
 function travelDelete(trvSeq){
 	$.ajax( {
 		url : "/poorip/admin/deleteInfo",
@@ -58,6 +60,26 @@ function postDelete(postSeq){
     });
 }
 
+function postPicDelete(postPicSeq){
+	$.ajax( {
+		url : "/poorip/admin/deletePostPic",
+		type: "post",
+	    dataType: "json",
+	    data: "postPicSeq="+postPicSeq,
+	    success: function( response ){
+	    	if( response.result != "success" ) {
+	    		console.log( response.message );
+	    		return;
+	    	} else {
+	    		$("#deletePostPic-"+response.data).remove();
+	    		return;
+	    	} 
+	    },
+	    error: function( XHR, status, error ){
+	       console.error("Error" );
+	   	}
+    });
+}
 
 </script>
 </head>
@@ -130,6 +152,80 @@ function postDelete(postSeq){
 				<td>
 				<input type="button" value="delete" 
 						onclick="postDelete(${postVo.postSeq})"/>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+</form>
+
+<form action="" id="postPicList">
+	<table>
+		<tr>
+			<th><h1>후기 사진 LIST</h1></th>
+		<tr>
+		<tr>
+			<th>seq</th>
+			<th>경로</th>
+			<th>파일이름</th>
+			<th>포스트seq</th>
+			<th>생성일</th>
+		</tr>
+		<c:forEach items="${postPicVo }" var="postPicVo" varStatus="status">
+			<tr id="deletePostPic-${postPicVo.postPicSeq}">
+				<td>${postPicVo.postPicSeq }</td>
+				<td>${postPicVo.path }</td>
+				<td>${postPicVo.fileName }</td>
+				<td>${postPicVo.postSeq }</td>
+				<td>${postPicVo.crtDate }</td>
+				<td>
+				<input type="button" value="delete" 
+						onclick="postPicDelete(${postPicVo.postPicSeq})"/>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+</form>
+
+<form action="${pageContext.request.contextPath}/admin/addCountry" id="countryList">
+	<table>
+		<tr>
+			<th><h1>나라 LIST</h1></th>
+		<tr>
+		<tr>
+			<th>seq</th>
+			<th>나라이름</th>
+		</tr>
+		<c:forEach items="${countryVo }" var="countryVo" varStatus="status">
+			<tr id="deleteCountry-${countryVo.ctrSeq}">
+				<td>${countryVo.ctrSeq }</td>
+				<td>${countryVo.ctrName }</td>
+				<td>
+				<input type="button" value="delete" 
+						onclick="countryDelete(${countryVo.ctrSeq})"/>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+</form>
+
+<form action="${pageContext.request.contextPath}/admin/addCity" id="cityList">
+	<table>
+		<tr>
+			<th><h1>도시 LIST</h1></th>
+		<tr>
+		<tr>
+			<th>seq</th>
+			<th>도시 이름</th>
+ 			<th>나라Seq</th>
+		</tr>
+		<c:forEach items="${cityVo }" var="cityVo" varStatus="status">
+			<tr id="deleteCity-${cityVo.ctySeq}">
+				<td>${cityVo.ctySeq }</td>
+				<td>${cityVo.ctyName }</td>
+ 				<td>${cityVo.ctrSeq }</td> 
+				<td>
+				<input type="button" value="delete" 
+						onclick="CityDelete(${cityVo.ctySeq})"/>
 				</td>
 			</tr>
 		</c:forEach>

@@ -30,6 +30,14 @@
 		]]>
 	</update>
 	
+	<select id="getList" resultType="countryVo">
+	    <![CDATA[
+			select ctr_seq as ctrSeq,
+				   ctr_name as ctrName
+			from country
+		]]>
+	</select>
+	
 	<!-- 여행지 추가 drop down에 사용 -->
 	<select id="getCountryName" parameterType="String" resultType="countryVo">
 	    <![CDATA[

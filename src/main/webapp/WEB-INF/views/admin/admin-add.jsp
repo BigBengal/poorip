@@ -9,24 +9,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- drop down css -->
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link href="dist/css/prettydropdowns.css" rel="stylesheet" type="text/css">
-
 <style>
-body { background-color:#f7f7f7; font-family:'Roboto';}
-.container { margin:150px auto; max-width:400px;}
-th,td{padding: 5px;}
+body {
+	background-color: #f7f7f7;
+	font-family: 'Roboto';
+}
+
+.container {
+	margin: 150px auto;
+	max-width: 400px;
+}
+
+th, td {
+	padding: 5px;
+}
+
 table {
 	border-spacing: 5px;
 	width: 100%;
 	border: 1px solid #bcbcbc;
+}
 </style>
-
 </head>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/vendor/jquery.ui.widget.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.iframe-transport.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.fileupload.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+	rel="stylesheet">
 <body>
 	<div id="container">
 		<div id="wrapper">
+		<!-------------------------------------------------- 여행 정보 추가 ---------------------------------------------------------->
 			<div id="content" class="full-screen">
 					<form action="${pageContext.request.contextPath}/admin/upload/travel" method="post" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
@@ -37,10 +54,10 @@ table {
 			      			<td class="t">여행정보이름</td>
 			      			<td><input type="text" size="40" name="name"></td>
 			      		</tr>
-			      		<tr>
-			      			<td class="t">여행지 사진</td>
-			      			<td><img src="${pageContext.request.contextPath}/list/${tvo.picture }"></td>      			
-			      		</tr>      		
+<!-- 			      		<tr> -->
+<!-- 			      			<td class="t">여행지 사진</td> -->
+<%-- 			      			<td><img src="${pageContext.request.contextPath}/list/${tvo.picture }"></td>      			 --%>
+<!-- 			      		</tr>      		 -->
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
 			      			<td><input type="file" name="file" id="logo-file"></td>      			
@@ -66,23 +83,7 @@ table {
 										<option value="${cateVo.catSeq }">${cateVo.catName }</option>
 									</c:forEach>
 							</select>
-								<script src="http://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-								<script src="dist/js/jquery.prettydropdowns.js"></script>
-								<script>
-										$('select').prettyDropdown();
-								</script>
-								<script type="text/javascript">		
-									(function() {
-										var ga = document.createElement('script');
-										ga.type = 'text/javascript';
-										ga.async = true;
-										ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-												: 'http://www')
-												+ '.google-analytics.com/ga.js';
-										var s = document.getElementsByTagName('script')[0];
-										s.parentNode.insertBefore(ga, s);
-									})();
-								</script>
+								
 							</td>
 						</tr>
 						<tr>
@@ -92,23 +93,7 @@ table {
 										<option value="${cityVo.ctySeq }">${cityVo.ctyName }</option>
 									</c:forEach>
 							</select>
-								<script src="http://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-								<script src="dist/js/jquery.prettydropdowns.js"></script>
-								<script>
-										$('select').prettyDropdown();
-								</script>
-								<script type="text/javascript">
-									(function() {
-										var ga = document.createElement('script');
-										ga.type = 'text/javascript';
-										ga.async = true;
-										ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-												: 'http://www')
-												+ '.google-analytics.com/ga.js';
-										var s = document.getElementsByTagName('script')[0];
-										s.parentNode.insertBefore(ga, s);
-									})();
-								</script>
+								
 							</td>
 			      		</tr>
 						<tr>
@@ -130,8 +115,43 @@ table {
 			      	</table>
 				</form>
 			</div>
+			
+			<!-------------------------------------------------- 후기 추가 ---------------------------------------------------------->
+			<div id="content" class="full-screen">
+					<form action="${pageContext.request.contextPath}/admin/upload/post" method="post" enctype="multipart/form-data">
+	 		      	<table class="admin-config">
+	 		      		<tr>
+	 		      			<th><h3>후기 작성</h3></th>
+	 		      		</tr>
+			      		<tr>
+			      			<td class="t">제목</td>
+			      			<td><input type="text" size="40" name="title"></td>
+			      		</tr>
+
+			      		<tr>
+			      			<td class="t">후기 사진</td>
+			      			<td><input type="file" name="file" id="file"></td>      			
+			      		</tr>
+			      		<tr>
+			      			<td class="t">후기 내용</td>
+			      			<td><input type="text" name="contents" id="contents"></td>
+			      		</tr>
+						<tr>
+			      			<td class="t">후기 공개 여부</td>
+			      			<td><input type="text" size="40" name="reviewPubYn"></td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">여행지 정보 seq</td>
+			      			<td><input type="text" size="40" name="trvSeq1"></td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">&nbsp;</td>
+			      			<td class="s"><input type="submit" value="후기 추가"></td>      			
+			      		</tr>           		
+			      	</table>
+				</form>
+			</div>			
 		</div>
-<%-- 		<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
 	</div>
 </body>
 </html>

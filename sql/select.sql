@@ -76,3 +76,27 @@ select * from city;
 
 insert into travel_info values(null,'혜영이','꽃같은 혜영이','항상 24시간','파리에 없당 비트에 있당','2017317518780.png',2,4,'01088397290');
 
+select * from post_pic;
+select * from post;
+
+insert into post values(null, "d" , "d", "Y", 1, 23, now());
+insert into post_pic values(null, "path", "file_name2", (select max(post_seq)from post where usr_seq=1), now());
+
+insert into
+				post_pic values(null,
+								'path',
+								'file_name2',
+								(select max(post_seq) as postSeq
+									from post
+								where usr_seq = 14),
+								now());
+insert into
+	post_pic values(null,
+					#{path },
+					#{fileName },
+					(select max(post_seq) as postSeq
+						from post
+					where usr_seq = 14),
+					now());	
+								
+delete from post where post_seq = 49;
