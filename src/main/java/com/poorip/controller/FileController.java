@@ -1,5 +1,6 @@
 package com.poorip.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -19,7 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.poorip.dto.FileMeta;
 
 @Controller
-@RequestMapping("/controller")
+@RequestMapping("/file")
 public class FileController {
 
 
@@ -32,11 +33,14 @@ public class FileController {
 	 * @param response : HttpServletResponse auto passed
 	 * @return LinkedList<FileMeta> as json format
 	 ****************************************************/
+	@ResponseBody
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
-	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
+	public LinkedList<FileMeta> upload(
+			MultipartHttpServletRequest request, HttpServletResponse response) {
 
+		System.out.println("upload");
 		//1. build an iterator
-		Iterator<String> itr =  request.getFileNames();
+		Iterator<String> itr = request.getFileNames();
 		MultipartFile mpf = null;
 
 		//2. get each file
@@ -59,8 +63,18 @@ public class FileController {
 			try {
 				fileMeta.setBytes(mpf.getBytes());
 
+				//생성할 파일경로 지정
+		        String path = "c://files";
+		        //파일 객체 생성
+		        File file = new File(path);
+		        //!표를 붙여주어 파일이 존재하지 않는 경우의 조건을 걸어줌
+		        if(!file.exists()){
+		            //디렉토리 생성 메서드
+		            file.mkdirs();
+		        }
+
 				// copy file to local disk (make sure the path "e.g. D:/temp/files" exists)            
-				FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream("D:/temp/files/"+mpf.getOriginalFilename()));
+				FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream("C:/files/"+mpf.getOriginalFilename()));
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -82,6 +96,7 @@ public class FileController {
 	 ****************************************************/
 	@RequestMapping(value = "/get/{value}", method = RequestMethod.GET)
 	public void get(HttpServletResponse response,@PathVariable String value){
+		System.out.println("value:"+value);
 		FileMeta getFile = files.get(Integer.parseInt(value));
 		try {      
 			response.setContentType(getFile.getFileType());

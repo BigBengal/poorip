@@ -65,18 +65,15 @@ function checkLoginState() {
 
 function Logout() {
 //	console.log("logout");
-	$.post("user/facebooklogout");
+	$.post("/poorip/user/facebooklogout");
 };
 	
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
-  console.log('Welcome!  Fetching your information.... ');
-  FB.api('/me', {fields: 'email,id,cover,name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified, birthday'}, function(response) {
-    console.log('Successful login for: ' + response.name);
-    console.log(response);
+   FB.api('/me', {fields: 'email,id,cover,name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified, birthday'}, function(response) {
 //    document.getElementById('loginstatus').innerHTML = response.name;
-    	$.post("user/facebooklogin",
+    	$.post("/poorip/user/facebooklogin",
 	        {
     			email: response.email,
     			name: response.name,
@@ -91,22 +88,10 @@ function testAPI() {
 	        	console.log(data);
 	        	if (data == "addinfo"){
 	        		// 다이얼로그로 띄우기 후 페이지 이동
-	        		$(location).attr('href', 'user/addinfo')
+	        		$(location).attr('href', '/poorip/user/addinfo')
 	        	}
 	        		
 	        	return;
 	        });
   });
-}
-function logout(){
-	console.log("FB.logout()");
-	FB.logout(function(response) {
-		   // Person is now logged out
-		console.log(response);
-		
-		
-	});
-	$.post("user/logout", function(data,status){
-		console.log("logout");
-	});
 }

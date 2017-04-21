@@ -36,7 +36,6 @@ public class UserController {
 //		facebook = ff.getInstance();
 //	}
 	
-	@Auth
 	@RequestMapping("/fb")
 	public String jsp(Model model) {
 		return "/user/filetest";

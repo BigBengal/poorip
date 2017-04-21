@@ -65,6 +65,7 @@ $(document).ready(function(){
 		$ori.attr("href","/poorip/"+oriLink);	 
 	}
 });
+
 </script>
 <body class="no-trans">
 	<!-- scrollToTop -->
@@ -89,44 +90,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	<!-- banner end -->
-<!-- 	
-닉네임 설정 및 추가 정보 저장
-<br>
-user/addinfosave 로 전송
-<br>
-<form class="navbar-form" role="search">
-	<p class="navbar-text">성별</p>
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Search">
-	</div>
-	
-	<div class="btn-group" role="group" aria-label="...">
-	<p class="navbar-text">언어(Language)</p>
-	  <button type="button" class="btn btn-default">한국어</button>
-	  <button type="button" class="btn btn-default">English</button>
-	</div>
-
-<div class="btn-group" data-toggle="buttons">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
-  </label>
-</div>
-
-<button type="submit" class="btn btn-default">Save</button>
-
-</form>
-
-
-<h2> asdfasdf </h2>
- -->
-<form class="form-horizontal">
+<form class="form-horizontal" action="user/addreqsave">
 	<div class="form-group">
 		<label class="control-label col-sm-3" for="nickname">이름(NickName)</label>
 		<div class="col-sm-8">
