@@ -17,7 +17,6 @@ import com.poorip.vo.CityVo;
 import com.poorip.vo.CountryVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
-import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Service

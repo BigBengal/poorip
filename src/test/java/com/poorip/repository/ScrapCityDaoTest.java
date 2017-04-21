@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.poorip.vo.ScrapCityVo;
-import com.poorip.vo.ScrapVo;
 
 //spring-test안에 들어있는 클래스로, spring을 띄워주고 annotation들을 사용할수 있게 해준다.
 @RunWith(SpringJUnit4ClassRunner.class)

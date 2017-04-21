@@ -54,13 +54,47 @@ var render = function( vo, reviewNum, postSeq ){
 }
 
 var renderpic = function(vo, reviewNum, postSeq) {
-	var htmlpic = "<a href=${pageContext.request.contextPath}/assets/images/pool-party.jpg data-lightbox='image-1' data-title='My caption' ><img src=${pageContext.request.contextPath}/assets/images/pool-party.jpg></a>" + vo.path ;
-	$("#reviewbody-"+postSeq).after(htmlpic);
+	if(vo.path!='null'&&vo.path!=null) {
+		var htmlpic = "<a href=${pageContext.request.contextPath}/assets/images/pool-party.jpg data-lightbox='image-1' data-title='My caption' ><img src=${pageContext.request.contextPath}/assets/images/pool-party.jpg></a>" + vo.path ;
+		$("#reviewbody-"+postSeq).after(htmlpic);
+	}
+	
 }
 
+function hasNull(target) {
+    for (var member in target) {
+        if (target[member] == null)
+            return true;
+    }
+    return false;
+}
 
 function send(trvSeq, reviewNum){
+	var likeIcon = document.getElementById("scrapTrvInfo-"+trvSeq);
+	console.log(likeIcon);
+	
+	$.ajax({
+        url : "/poorip/scrap/scrapValidate",
+        type : "post",
+        data: "trvSeq="+ trvSeq,
+        dataType: "text",
+        success : function(data) {
+        	console.log(data);
+            if(data==="YES") {
+            	
+            	console.log("들어오냐고");
+            	likeIcon.src="/poorip/assets/images/scrapicon-scraped.png";
+            }else {
+            	console.log("들어오냐고222");
+        		likeIcon.src="/poorip/assets/images/scrapicon.png";
+        	}
+        },
+        error : function(data) {
+			    alert("ajax 에러가 발생하였습니다.")
+        }
+    });
 
+	
 	$.ajax({
         url : "/poorip/reviews/" + trvSeq,
         type : "post",
@@ -80,9 +114,16 @@ function send(trvSeq, reviewNum){
         			type: "post",
         			dataType: "json",
         			success : function(review) {
-    
-        				$(review.data).each(function (index,vo){
-        					/* console.log(vo) */
+        				console.log(review.data);
+        					if( review.result != "success" ) {
+        		    		console.log( response.message );
+        		    		return;
+        		    		} 
+        					if(hasNull(review.data)) {
+        						return;
+        					}
+        			 							
+        					$(review.data).each(function (index,vo){        					
         					renderpic(vo, reviewNum, postSeq);
         				});
         			}

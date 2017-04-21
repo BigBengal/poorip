@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.poorip.controller.MainController;
 import com.poorip.repository.TravelInfoDao;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;

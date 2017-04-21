@@ -15,10 +15,11 @@
 
 
 <form id="travel_search"
-	action="${pageContext.request.contextPath}/searchResult" method="get" style="text-align:center">
-	<input type="text" style="margin-bottom: 20px; display:inline-block" placeholder="Search..."
-		class="form-control" id="kwd" name="ctySeq"> <input
-		type="submit" value="find">
+	action="${pageContext.request.contextPath}/searchResult" method="get"
+	style="text-align: center">
+	<input type="text" style="margin-bottom: 20px; display: inline-block"
+		placeholder="Search..." class="form-control" id="kwd" name="ctySeq">
+	<input type="submit" value="find">
 </form>
 
 <div class="row object-non-visible" data-animation-effect="fadeIn">
@@ -141,6 +142,12 @@
 										<h4 class="modal-title" id="project-2-label${status.index }">${travelInfoFood.name}</h4>
 									</div>
 									<div class="modal-body">
+									<c:if test="${!empty authUser }">
+										<a href=#><img id="scrapTrvInfo-${travelInfoFood.trvSeq}"
+											src="--"
+											style="float: right;"
+											data-trvSeq="${travelInfoFood.trvSeq}" onclick="validate(${travelInfoFood.trvSeq})"/></a>
+									</c:if>
 										<h2>
 											<b>${travelInfoFood.name}</b>
 										</h2>
@@ -151,7 +158,7 @@
 											<div class="col-md-6">
 												<img
 													src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
-													alt="">
+													alt="" />
 											</div>
 										</div>
 
@@ -214,29 +221,29 @@
 									</div>
 									<div class="modal-body" id="${status.index }">
 										<h3>${travelInfoFoodMain.name}</h3>
-										
-											<div class="col-md-6">
-												<p>${travelInfoFoodMain.contents}</p>
+
+										<div class="col-md-6">
+											<p>${travelInfoFoodMain.contents}</p>
+										</div>
+										<div class="col-md-6">
+											<img
+												src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
+												alt="">
+										</div>
+										<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
+										<div class='col-md-12'>
+											<h3>
+												<b>후기</b>
+											</h3>
+											<div class="row">
+												<div id="review-${travelInfoFoodMain.trvSeq}"></div>
 											</div>
-											<div class="col-md-6">
-												<img
-													src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
-													alt="">
+											<div class='col-md-3'
+												id="reviewpic-${travelInfoFoodMain.trvSeq}">
+												<div id="reviewpic-${travelInfoFoodMain.trvSeq}"></div>
 											</div>
-											<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
-											<div class='col-md-12'>
-												<h3>
-													<b>후기</b>
-												</h3>
-												<div class="row">
-													<div id="review-${travelInfoFoodMain.trvSeq}"></div>
-												</div>
-												<div class='col-md-3'
-													id="reviewpic-${travelInfoFoodMain.trvSeq}">
-													<div id="reviewpic-${travelInfoFoodMain.trvSeq}"></div>
-												</div>
-											</div>
-										
+										</div>
+
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
@@ -356,7 +363,8 @@
 											<div class="col-md-6">
 												<img src="assets/images/portfolio-12.jpg" alt="">
 											</div>
-											<c:set var="reviewNum" value="${travelInfoAttractionMain.trvSeq}" />
+											<c:set var="reviewNum"
+												value="${travelInfoAttractionMain.trvSeq}" />
 											<div class='col-md-6'>
 												<h3>
 													<b>후기</b>
@@ -489,7 +497,8 @@
 											<div class="col-md-6">
 												<img src="assets/images/portfolio-10.jpg" alt="">
 											</div>
-											<c:set var="reviewNum" value="${travelInfoActivityMain.trvSeq}" />
+											<c:set var="reviewNum"
+												value="${travelInfoActivityMain.trvSeq}" />
 											<div class='col-md-6'>
 												<h3>
 													<b>후기</b>

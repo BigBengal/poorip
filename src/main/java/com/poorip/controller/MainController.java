@@ -22,8 +22,6 @@ import com.poorip.service.MainService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 import com.poorip.web.util.WebUtil;
-import com.restfb.json.JsonArray;
-import com.restfb.json.JsonObject;
 
 @Controller
 public class MainController {
@@ -119,8 +117,10 @@ public class MainController {
 	public JSONResult getReviewPic (@PathVariable("postSeq") String postSeq) {
 		int postSeq1 = Integer.parseInt(postSeq);
 		List<ReviewVo> reviewPic = mainService.selectReviewPics(postSeq1);
-		System.out.println(postSeq1);
-		System.out.println("REVIEWPIC" + reviewPic);
+		if(reviewPic.isEmpty() || reviewPic==null) {
+			System.out.println("null");
+			return JSONResult.fail("사진이 없습니다");
+		}
 		return JSONResult.success(reviewPic);
 		
 	}

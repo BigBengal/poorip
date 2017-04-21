@@ -72,9 +72,9 @@ body {
 	</div> -->
 	<div class="container">
 		<h2 align="center">가고싶은 여행지를 검색하세요</h2>
-		<form id="search_form" method="post">
+		<form id="search_form" method="post" style="text-align:center">
 			<input type="text" style="margin: auto;"
-				placeholder="Search..." class="form-control" id="ctyName"
+				placeholder="Search..." class="form-control-travel" id="ctyName"
 				name="ctyName" >
 			<p class="text-center" style="text-align: center;">
 				<label for="from">출발</label> <input type="text" id="fromDate"

@@ -27,3 +27,46 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+function validate(trvSeq) {
+	var likeIcon = document.getElementById("scrapTrvInfo-" + trvSeq);
+	
+	 $.ajax({
+         url : "/poorip/scrap/scrapInput",
+         type : "post",
+         data: "trvSeq="+trvSeq,
+         
+         success : function(data) {
+        	 console.log(data);
+             if(data.result=="fail") {
+            	 
+            	 $.ajax({
+                     url : "../scrap/deleteScrap",
+                     type : "post",
+                     data: "trvSeq="+trvSeq,
+                     success : function(data) {
+                    	 console.log("삭제함");
+                    	 likeIcon.src="/poorip/assets/images/scrapicon.png";
+                     },
+                     error : function(data) {
+//                          alert("ajax 에러가 발생하였습니다.")
+                     }
+                 });
+             } else {
+            	 console.log("스크랩함");
+            	 likeIcon.src="/poorip/assets/images/scrapicon-scraped.png";
+             };
+         },
+         error : function(data) {
+//              alert("ajax 에러가 발생하였습니다.")
+         }
+     });
+	
+	
+};
+
+
+
+
+

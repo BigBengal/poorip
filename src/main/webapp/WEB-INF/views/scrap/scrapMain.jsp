@@ -56,7 +56,7 @@
 
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
-<c:import url="/WEB-INF/views/include/ajax.jsp" />
+
 </head>
 
 
@@ -82,48 +82,47 @@
 		<div class="banner-image">
 			<div class="backstretch">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg">
+					src="${pageContext.request.contextPath }/assets/images/greece-santorini.jpg">
 			</div>
 		</div>
 		<div class="banner-caption">
 			<div class="container">
-				<c:import url="/WEB-INF/views/include/banner.jsp" />
+				<c:import url="/WEB-INF/views/scrap/scrapBanner.jsp" />
 			</div>
 		</div>
 	</div>
+	
 	<!-- banner end -->
-
-
-	<!-- travel-Info start -->
-	<!-- ================ -->
 	<div class="section">
 		<div class="container">
-			<c:import url="/WEB-INF/views/include/travelInfo.jsp" />
+			<c:import url="/WEB-INF/views/scrap/scrapInfo.jsp" />
 		</div>
 	</div>
-	<!-- travel-Info end -->
+
 
 	<!-- member start -->
 	<!-- ================ -->
-	<div class="section translucent-bg bg-image-2 pb-clear">
-		<c:import url="/WEB-INF/views/include/member.jsp" />
-	</div>
+<!-- 	<div class="section translucent-bg bg-image-2 pb-clear"> -->
+<%-- 		<c:import url="/WEB-INF/views/include/member.jsp" /> --%>
+<!-- 	</div>  -->
 	<!-- member end -->
 
 	<!-- finder start -->
 	<!-- ================ -->
-	<div class="default-bg space">
+	<%-- <div class="default-bg space">
 		<div class="container">
 			<c:import url="/WEB-INF/views/include/finder.jsp" />
 		</div>
-	</div>
+	</div> --%>
 	<!-- finder end -->
 
 	<!-- footer start -->
 	<!-- ================ -->
-	<footer id="footer">
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</footer>
+<!-- 	<footer id="footer"> -->
+<%-- 		<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
+<!-- 	</footer> -->
+	<ol id="poollist">
+	</ol>
 	<!-- footer end -->
 
 	<!-- JavaScript files placed at the end of the document so the pages load faster
@@ -154,9 +153,7 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
 
-	<!-- Custom Scripts -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+	
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 	<!-- date picker -->
@@ -164,39 +161,13 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+	<!-- Custom Scripts -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	
-	<script>
-		$(function() {
-			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				to.datepicker("option", "minDate", getDate(this));
-			}), to = $("#to").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				from.datepicker("option", "maxDate", getDate(this));
-			});
-
-			function getDate(element) {
-				var date;
-				try {
-					date = $.datepicker.parseDate(dateFormat, element.value);
-				} catch (error) {
-					date = null;
-				}
-
-				return date;
-			}		
-		});
-		
-	</script>
-	
-<c:forEach items="${sessionScope}" var="attr">
-    ${attr.key}=${attr.value}<br>
-</c:forEach>
+	<c:import url="/WEB-INF/views/include/ajax.jsp" />
+<%-- <c:forEach items="${sessionScope}" var="attr"> --%>
+<%--     ${attr.key}=${attr.value}<br> --%>
+<%-- </c:forEach> --%>
 </body>
 </html>

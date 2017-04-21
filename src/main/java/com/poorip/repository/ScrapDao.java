@@ -12,11 +12,23 @@ public class ScrapDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public boolean add(ScrapVo scrapvo){
-		return 1 == sqlSession.insert("scrap.insert", scrapvo);
+	public boolean add(ScrapVo scrapVo){
+		return 1 == sqlSession.insert("scrap.insert", scrapVo);
 	}
 	
-	public boolean delete(ScrapVo scrapvo){
-		return 1 == sqlSession.delete("scrap.delete",scrapvo);
+	public boolean delete(ScrapVo scrapVo){
+		return 1 == sqlSession.delete("scrap.delete",scrapVo);
+	}
+	
+	public boolean addScrapByBall(ScrapVo scrapVo) {
+		return 1 == sqlSession.insert("scrap.insertscrap", scrapVo);
+	}
+	
+	public int selectScrap(int trvSeq) {
+		return sqlSession.selectOne("scrap.selectScrap", trvSeq);
+	}
+	
+	public boolean deleteScrap(ScrapVo scrapVo) {
+		return 1==sqlSession.delete("scrap.delete", scrapVo);
 	}
 }

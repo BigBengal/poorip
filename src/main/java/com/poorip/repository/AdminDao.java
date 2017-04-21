@@ -5,14 +5,12 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.poorip.vo.CategoryVo;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.CountryVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
-import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Repository

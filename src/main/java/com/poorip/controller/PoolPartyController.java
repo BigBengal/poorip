@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poorip.dto.JSONResult;
-import com.poorip.service.MainService;
 import com.poorip.service.PoolPartyService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
-import com.poorip.vo.TravelInfoVo;
 
 @Controller
 @RequestMapping("/poolparty")
@@ -43,7 +41,6 @@ public class PoolPartyController {
 		List<CityVo> cityNames = poolPartyService.getCityNames(ctyName);
 		if ( cityNames.isEmpty() )
 			return JSONResult.fail("No-DATA");
-		System.out.println("CITTY" + cityNames);
 		return JSONResult.success(cityNames);
 	}
 	
