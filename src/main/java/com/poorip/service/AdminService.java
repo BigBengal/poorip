@@ -1,14 +1,17 @@
 package com.poorip.service;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.poorip.exception.GalleryUploadException;
 import com.poorip.repository.AdminDao;
@@ -28,6 +31,7 @@ public class AdminService {
 	
 	@Autowired
 	private AdminDao adminDao;
+	private CommonsMultipartFile[] files;
 
 	public void addInfo(TravelInfoVo travelInfoVo, MultipartFile multipartFile) {
 		try {
@@ -50,37 +54,11 @@ public class AdminService {
 		adminDao.addInfo(travelInfoVo);
 	}
 	
-	public boolean addPost(PostVo postVo, PostPicVo postPicVo, MultipartFile multipartFile) {
-		
-		try {
-			if (multipartFile.isEmpty() == true) {
-				return adminDao.addPost( postVo );
-			}
-			
-			String orgFile = multipartFile.getOriginalFilename();
-			String fileExtName = orgFile.substring( orgFile.lastIndexOf('.') + 1, orgFile.length() );
-			String saveFile = generateSaveFileName( fileExtName );
-			// 파일 저장
-			PostWriteFile(multipartFile, saveFile);
-			// DB에 저장
-			postPicVo.setFileName(saveFile);
-		} catch (IOException ex) {
-			//1.log 남기기
-			//2.runtime exception 전환 
-			throw new GalleryUploadException( "save file uploded" );
-		}
-		return adminDao.addPostAndPic( postVo, postPicVo );
-	}
-	
-	public Map<Object, Object> getPostAndPicList(PostVo postVo, PostPicVo postPicVo) {
-		
-		return null;
-	}
-	
-//	public boolean addPost( ReviewVo reviewVo, MultipartFile multipartFile ) {
+//	public boolean addPost(PostVo postVo, PostPicVo postPicVo, MultipartFile multipartFile) {
+//		
 //		try {
 //			if (multipartFile.isEmpty() == true) {
-//				return adminDao.addPost( reviewVo );
+//				return adminDao.addPost( postVo );
 //			}
 //			
 //			String orgFile = multipartFile.getOriginalFilename();
@@ -89,34 +67,69 @@ public class AdminService {
 //			// 파일 저장
 //			PostWriteFile(multipartFile, saveFile);
 //			// DB에 저장
-//			reviewVo.setFileName(saveFile);
+//			postPicVo.setFileName(saveFile);
 //		} catch (IOException ex) {
 //			//1.log 남기기
 //			//2.runtime exception 전환 
 //			throw new GalleryUploadException( "save file uploded" );
 //		}
-//		return adminDao.addPostAndPic( reviewVo );
+//		return adminDao.addPostAndPic( postVo, postPicVo );
 //	}
 	
-//	public boolean addPost(ReviewVo reviewVo) {
-//		return adminDao.addPost(reviewVo);
-//	}
+
+	public boolean addPost(PostVo postVo, List<MultipartFile> files) throws IOException {
+		
+		//Post 저장
+		boolean postReturn = adminDao.addPost( postVo );
+		boolean postPicReturn = true;
+		String pathName = POST_SAVE_PATH + "/" + postVo.getTrvSeq();
+		for (int i=0; i < files.size(); i++) {
+			File file = new File( pathName );
+			
+			// 폴더가 없으면 폴더 생성
+			if(file.isDirectory() == false)
+				file.mkdirs();
+
+			// 서버 저장용 파일이름 변경
+			String orgFile = files.get(i).getOriginalFilename();
+			String fileExtName = orgFile.substring( orgFile.lastIndexOf( '.' ) + 1, orgFile.length() );
+			String saveFile = generateSaveFileName( fileExtName );
+			
+			// 서버에 저장
+			IOUtils.copy( files.get(i).getInputStream(), new FileOutputStream(pathName+"/"+saveFile));
+			PostPicVo postPicVo = new PostPicVo();
+			postPicVo.setPostSeq(postVo.getPostSeq());
+			postPicVo.setPath(pathName);
+			postPicVo.setFileName(saveFile);
+
+			//PostPic 저장
+			postPicReturn = postPicReturn && adminDao.addPostPic(postPicVo);
+		}
+		
+		return postReturn && postPicReturn; //adminDao.addPostAndPic( postVo, postPicVo );
+	}
+
+
+	public boolean addCity(CityVo cityVo) {
+		return adminDao.addCity( cityVo );
+		
+	}
 	
+	public CommonsMultipartFile[] getFiles() {
+		return files;
+	}
+	
+	public void setFiles(CommonsMultipartFile[] files) {
+		this.files = files;
+	}
+
 	private void travelWriteFile(MultipartFile multipartFile, String saveFileName) throws IOException {
 		byte[] fileData = multipartFile.getBytes();
 		FileOutputStream fos = new FileOutputStream( TRAVEL_SAVE_PATH + "/" + saveFileName );
 		fos.write( fileData );
 		fos.close();
 	}
-	
-	private void PostWriteFile(MultipartFile multipartFile, String saveFileName) throws IOException {
-		byte[] fileData = multipartFile.getBytes();
-		FileOutputStream fos = new FileOutputStream( POST_SAVE_PATH + "/" + saveFileName );
-		fos.write( fileData );
-		fos.close();
-	}
-	
-	
+
 	
 	private String generateSaveFileName(String extName) {
 		String fileName = "";
@@ -156,6 +169,14 @@ public class AdminService {
 	
 	public boolean deletePostPic(PostPicVo postPicVo) {
 		return adminDao.deletePostPic( postPicVo );
+	}
+	
+	public boolean deleteCountry(CountryVo countryVo) {
+		return adminDao.deleteCountry( countryVo );
+	}
+
+	public boolean deleteCity(CityVo cityVo) {
+		return adminDao.deleteCity( cityVo );
 	}
 	
 	public TravelInfoVo getMessage(int trvSeq) {

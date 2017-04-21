@@ -68,10 +68,51 @@ function postPicDelete(postPicSeq){
 	    data: "postPicSeq="+postPicSeq,
 	    success: function( response ){
 	    	if( response.result != "success" ) {
-	    		console.log( response.message );
 	    		return;
 	    	} else {
 	    		$("#deletePostPic-"+response.data).remove();
+	    		return;
+	    	} 
+	    },
+	    error: function( XHR, status, error ){
+	       console.error("Error" );
+	   	}
+    });
+}
+
+function countryDelete(ctrSeq){
+	$.ajax( {
+		url : "/poorip/admin/deleteCountry",
+		type: "post",
+	    dataType: "json",
+	    data: "ctrSeq="+ctrSeq,
+	    success: function( response ){
+	    	if( response.result != "success" ) {
+	    		console.log( response.message );
+	    		return;
+	    	} else {
+	    		$("#deleteCountry-"+response.data).remove();
+	    		return;
+	    	} 
+	    },
+	    error: function( XHR, status, error ){
+	       console.error("Error" );
+	   	}
+    });
+}
+
+function cityDelete(ctySeq){
+	$.ajax( {
+		url : "/poorip/admin/deleteCity",
+		type: "post",
+	    dataType: "json",
+	    data: "ctySeq="+ctySeq,
+	    success: function( response ){
+	    	if( response.result != "success" ) {
+	    		console.log( response.message );
+	    		return;
+	    	} else {
+	    		$("#deleteCity-"+response.data).remove();
 	    		return;
 	    	} 
 	    },
@@ -208,10 +249,11 @@ function postPicDelete(postPicSeq){
 	</table>
 </form>
 
-<form action="${pageContext.request.contextPath}/admin/addCity" id="cityList">
+<form action="${pageContext.request.contextPath}/admin/addInfo" id="cityList">
 	<table>
 		<tr>
 			<th><h1>도시 LIST</h1></th>
+			<th><input type="submit" value="추가하기"></th>
 		<tr>
 		<tr>
 			<th>seq</th>
@@ -225,7 +267,7 @@ function postPicDelete(postPicSeq){
  				<td>${cityVo.ctrSeq }</td> 
 				<td>
 				<input type="button" value="delete" 
-						onclick="CityDelete(${cityVo.ctySeq})"/>
+						onclick="cityDelete(${cityVo.ctySeq})"/>
 				</td>
 			</tr>
 		</c:forEach>

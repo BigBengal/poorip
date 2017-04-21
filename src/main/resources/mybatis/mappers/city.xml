@@ -11,6 +11,15 @@
 			values (null, #{ctyName }, now(), #{ctrSeq })
 		]]>
 	</insert>
+	
+	<insert id="addcity" parameterType="cityvo">
+		<![CDATA[
+			insert 
+			  into city 
+			values (null, #{ctyName }, now(), #{ctrSeq })
+		]]>
+	</insert>
+	
 
 	<!-- 도시 삭제하기 -->
 	<delete id="delete" parameterType="cityvo">
@@ -18,6 +27,15 @@
 			delete 
 			  	from city
 			 where cty_name = #{ctyName }
+		]]>
+	</delete>
+	
+	<!-- 도시 삭제하기 -->
+	<delete id="deleteBySeq" parameterType="cityvo">
+		<![CDATA[
+			delete 
+			  	from city
+			 where cty_seq = #{ctySeq }
 		]]>
 	</delete>
 
@@ -46,9 +64,9 @@
 	<select id="getList" resultType="cityvo">
 	    <![CDATA[
 			select CTY_SEQ as ctySeq,
-				   CTY_NAME as ctyName
+				   CTY_NAME as ctyName,
 				   CTR_SEQ as ctrSeq
-				from city
+					from city
 		]]>
 	</select>
 	

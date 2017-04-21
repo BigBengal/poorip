@@ -12,15 +12,25 @@
 	</insert>
 	
 	<insert id="addPost" parameterType="postvo">
+	    <selectKey keyProperty="postSeq" resultType="integer" order="BEFORE">
+			<![CDATA[
+			select auto_increment
+			  from information_schema.tables
+			 where table_schema='bengal'
+			   and table_name='post'
+			]]>
+		</selectKey>
 		<![CDATA[
 			insert into
-				post values(null,
-							#{title }, 
-							#{contents }, 
-							#{reviewPubYn },
-							#{usrSeq }, 
-							#{trvSeq },
-							now())
+				post 
+				values(#{postSeq },
+						#{title }, 
+						#{contents }, 
+						#{reviewPubYn },
+						#{usrSeq }, 
+						#{trvSeq },
+						now(),
+						'N')
 		]]>
 	</insert>
 	

@@ -7,39 +7,56 @@
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<style>
+	body {
+		background-color: #f7f7f7;
+		font-family: 'Roboto';
+	}
+	
+	.container {
+		margin: 150px auto;
+		max-width: 400px;
+	}
+	
+	th, td {
+		padding: 5px;
+	}
+	
+	table {
+		border-spacing: 5px;
+		width: 100%;
+		border: 1px solid #bcbcbc;
+	}
+	</style>
+	
+	<!-- Bootstrap core CSS -->
+	<link
+		href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+		rel="stylesheet">
+	<script>
+		function submitForm() {
 
-<style>
-body {
-	background-color: #f7f7f7;
-	font-family: 'Roboto';
-}
+			  var paperElement = document.getElementById("file");
 
-.container {
-	margin: 150px auto;
-	max-width: 400px;
-}
-
-th, td {
-	padding: 5px;
-}
-
-table {
-	border-spacing: 5px;
-	width: 100%;
-	border: 1px solid #bcbcbc;
-}
-</style>
+			  if (!paperElement.value) {
+			    console.log("No files selected.")
+			    return;
+			  }
+			  var form = document.getElementById("postUpload");
+			  var formData = new FormData(form);
+			  var xhr = getXMLHTTP();
+			  xhr.open('POST', "submitFiles");
+			  xhr.onreadystatechange = function() {
+			    if (xhr.readyState == 4 && xhr.status == 200) {
+			      console.log("Files Uploaded")
+			    }
+			  }
+			  xhr.send(formData);
+			}
+	</script>
 </head>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="${pageContext.request.contextPath }/assets/js/vendor/jquery.ui.widget.js"></script>
-<script src="${pageContext.request.contextPath }/assets/js/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath }/assets/js/jquery.fileupload.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet">
 <body>
 	<div id="container">
 		<div id="wrapper">
@@ -118,7 +135,7 @@ table {
 			
 			<!-------------------------------------------------- 후기 추가 ---------------------------------------------------------->
 			<div id="content" class="full-screen">
-					<form action="${pageContext.request.contextPath}/admin/upload/post" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath}/admin/upload/post" id="postUpload" method="post" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
 	 		      		<tr>
 	 		      			<th><h3>후기 작성</h3></th>
@@ -130,7 +147,7 @@ table {
 
 			      		<tr>
 			      			<td class="t">후기 사진</td>
-			      			<td><input type="file" name="file" id="file"></td>      			
+			      			<td><input type="file" name="file" multiple="multiple"></td>   			
 			      		</tr>
 			      		<tr>
 			      			<td class="t">후기 내용</td>
@@ -146,11 +163,34 @@ table {
 			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
-			      			<td class="s"><input type="submit" value="후기 추가"></td>      			
+			      			<td class="s"><input type="submit" value="후기 추가" onclick="upload()"></td>      			
 			      		</tr>           		
 			      	</table>
 				</form>
-			</div>			
+			</div>
+			
+			<!-------------------------------------------------- 도시 추가 ---------------------------------------------------------->
+			<div id="content" class="full-screen">
+					<form action="${pageContext.request.contextPath}/admin/upload/city" method="post" enctype="multipart/form-data">
+	 		      	<table class="admin-config">
+	 		      		<tr>
+	 		      			<th><h3>도시 작성</h3></th>
+	 		      		</tr>
+			      		<tr>
+			      			<td class="t">도시 이름</td>
+			      			<td><input type="text" size="40" name="ctyName"></td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">나라 seq</td>
+			      			<td><input type="text" name="ctrSeq2"></td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">&nbsp;</td>
+			      			<td class="s"><input type="submit" value="도시 추가"></td>      			
+			      		</tr>           		
+			      	</table>
+				</form>
+			</div>				
 		</div>
 	</div>
 </body>

@@ -70,7 +70,7 @@ public class AdminDao {
 
 	public boolean deletePost(PostVo postVo) {
 		int count = sqlSession.delete( "post.delete", postVo );
-		return (count ==1 );
+		return (count == 1 );
 	}
 
 	public boolean addPost(PostVo postVo) {
@@ -78,10 +78,24 @@ public class AdminDao {
 		return( count == 1 );
 	}
 
-	public boolean addPostAndPic( PostVo postVo, PostPicVo postPicVo ) {
-		int count = sqlSession.insert( "post.addPost", postVo );
-		int count1 = sqlSession.insert( "postpic.addPostPic", postPicVo );
-		return (count + count1 >= 2);
+	public boolean addPostPic(PostPicVo postPicVo ) {
+		int count = sqlSession.insert( "postpic.addPostPic", postPicVo );
+		return ( count == 1 );
+	}
+	
+	public boolean deleteCountry(CountryVo countryVo) {
+		int count = sqlSession.delete( "country.deleteBySeq", countryVo );
+		return ( count == 1 );
 	}
 
+	public boolean deleteCity(CityVo cityVo) {
+		int count = sqlSession.delete( "city.deleteBySeq", cityVo );
+		return ( count == 1 );
+	}
+
+	public boolean addCity(CityVo cityVo) {
+		int count = sqlSession.insert( "city.addcity", cityVo );
+		return ( count == 1 );
+	}
+	
 }
