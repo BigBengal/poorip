@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-3">
 
 		<!-- header-left start -->
 		<!-- ================ -->
@@ -32,7 +32,7 @@
 		<!-- header-left end -->
 
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-9">
 
 		<!-- header-right start -->
 		<!-- ================ -->
