@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.UserService;
@@ -36,7 +39,6 @@ public class UserController {
 //		facebook = ff.getInstance();
 //	}
 	
-	@Auth
 	@RequestMapping("/fb")
 	public String jsp(Model model) {
 		return "/user/filetest";
@@ -66,7 +68,7 @@ public class UserController {
 			// 가입 처리
 			userVo.setUsrEmail(facebookuservo.getEmail());
 			userVo.setUsrGender(facebookuservo.getGender());
-			userVo.setUsrNick(facebookuservo.getName());
+			//userVo.setUsrNick(facebookuservo.getName());
 			userVo.setUsrProfile(facebookuservo.getLink());
 			userVo.setUsrLang(facebookuservo.getLocale());
 			if ( facebookuservo.getBirthday() != null )
@@ -94,11 +96,26 @@ public class UserController {
 		return "addinfo";
 	}
 	
+	
+	// 닉네임 중복 체크
+	@ResponseBody
+	@RequestMapping("/isExistNick")
+	public JSONResult isExistNick(@RequestParam("nick") String nickName){
+		System.out.println("OK " + nickName);
+		UserVo userVo = new UserVo();
+		userVo.setUsrNick(nickName);
+		return JSONResult.success(userService.isExistNick(userVo)==true ? "exists" : "not exists");
+	}
+	
+	
 	// 추가 정보 가입 페이지로 이동
 	@Auth
 	@RequestMapping("/addinfo")
-	public String addInfo(){
+	public String addInfo(Model model, @AuthUser UserVo authUser){
 		logger.info("addinfo() Start");
+		UserVo uservo = userService.getUser(authUser);
+		System.out.println(uservo);
+		model.addAttribute("user", uservo);
 		return "user/addinfo";
 	}
 	
@@ -107,6 +124,7 @@ public class UserController {
 	public String addInfoSave(@ModelAttribute UserVo userVo,
 							Model model){
 		logger.info("addinfoSave() Start");
+		System.out.println(userVo);
 		// UsrSeq는 jsp 페이지에서 같이 보내주어야 함
 		
 		// 필수정보 (언어, 닉네임, 성별(페북연동은 필요없음,주석)
@@ -116,19 +134,21 @@ public class UserController {
 		userService.UpdateOptionInfo(userVo);
 		
 		model.addAttribute("email", userVo.getUsrEmail());
-		return "redirect:/user/login";
+		return "redirect:/user/addinfo";
 	}
 	
 	@RequestMapping("/addreqsave")
 	public String addRequiredSave(@ModelAttribute UserVo userVo,
 							Model model){
+		logger.info("addreqsave() Start");
+		System.out.println(userVo);
 		
 		// UsrSeq는 jsp 페이지에서 같이 보내주어야 함
 		// 필수정보 (언어, 닉네임, 성별(페북연동은 필요없음,주석)
 		userService.UpdateRequiredInfo(userVo);
 		
 		model.addAttribute("email", userVo.getUsrEmail());
-		return "redirect:/user/login";
+		return "redirect:/user/addinfo";
 	}
 	
 	@RequestMapping("/addoptsave")
@@ -140,7 +160,7 @@ public class UserController {
 		userService.UpdateOptionInfo(userVo);
 		
 		model.addAttribute("email", userVo.getUsrEmail());
-		return "redirect:/";
+		return "redirect:/user/addinfo";
 	}
 	
 	@RequestMapping("facebooklogout")

@@ -21,6 +21,15 @@
 		]]>
 	</delete>
 	
+	<!-- 국가 삭제하기 -->
+	<delete id="deleteBySeq" parameterType="countryvo">
+		<![CDATA[
+			delete
+				from country
+			where ctr_seq = #{ctrSeq }
+		]]>
+	</delete>
+	
 	<!-- 국가 수정하기 -->
 	<update id="update" parameterType="countryvo">
 		<![CDATA[

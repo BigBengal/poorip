@@ -20,7 +20,12 @@ public class UserService {
 	public boolean isExistUser(UserVo userVo){
 		return userDao.isExist(userVo);
 	}
-	
+
+	// 유저가 가입했는 지 확인
+	public boolean isExistNick(UserVo userVo){
+		return userDao.isNick(userVo);
+	}
+		
 	// 유저 정보 가져오기
 	public UserVo getUser(UserVo userVo) {
 		// 회원 정보가 없으면 Null

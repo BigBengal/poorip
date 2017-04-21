@@ -16,7 +16,7 @@ select *  FROM city;
 
 insert INTO city values(null, '피렌체', now(), 9);
 
-delete from city where CTY_seq=15;
+delete from city where CTY_seq=7;
 
 update city SET cty_name='파리', ctr_seq=9 WHERE CTY_seq=14;
 
@@ -24,6 +24,18 @@ select c1.cty_seq, c1.cty_name, c1.crt_date, c1.ctr_seq, c.ctr_name
 	from country c, city c1
 where c1.CTR_SEQ = c.CTR_SEQ;
 
+insert 
+			  into city 
+			values (null, '베니스', now(), 3);
+			
+
+;
+select auto_increment
+from information_schema.tables
+where table_schema='bengal'
+ and table_name='post'
+ 
+;
 -------------------------------category--------------------------------
 select * from category;
 
