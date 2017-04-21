@@ -16,6 +16,10 @@ public class UserDao {
 		return 1 == (Integer)sqlSession.selectOne("user.isexistuser", uservo);
 	}
 	
+	public boolean isNick(UserVo uservo) {
+		return 1 == (Integer)sqlSession.selectOne("user.isexistnick", uservo);
+	}
+	
 	public boolean join(UserVo uservo){
 		return 1 == sqlSession.insert("user.insert", uservo);
 	}
@@ -62,16 +66,11 @@ public class UserDao {
 	public boolean updateNoti(UserVo uservo) {
 		return 1 == sqlSession.update("user.updatenoti", uservo);
 	}
-	
-
-	
-
-	
+		
 	public UserVo select(UserVo uservo) {
 		UserVo vo = sqlSession.selectOne("user.selectbyemail", uservo);
 		return vo;
 	}
-
 
 	
 }

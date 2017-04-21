@@ -50,6 +50,8 @@
 <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 <!-- facebook  -->
 <script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+<!-- Vaildation-->
+<script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <script type="text/javascript">
 // 	$(function() {
@@ -64,6 +66,81 @@ $(document).ready(function(){
 		var oriLink = $ori.attr("href")
 		$ori.attr("href","/poorip/"+oriLink);	 
 	}
+	 $("form[name='addinfo']").validate({
+		 
+		    // Specify validation rules
+		    rules: {
+		      // The key name on the left side is the name attribute
+		      // of an input field. Validation rules are defined
+		      // on the right side
+		     usrNick: {
+		        required: true,
+		        minlength: 2,
+		        // Specify that email should be validated
+		        // by the built-in "email" rule
+		        remote : {
+	                url : "/poorip/user/isExistNick",
+	                type : "get",
+	    		    dataType: "json",
+	    		    data: {
+	    		    	nick: function()
+                        {
+                            return $('#nickname').val();
+                        }
+                    },
+	 				
+	    		//  contentType: "application/json",
+	    		    success: function( response ){
+	    		    	console.log	( response );
+	    		       if( response.result == "failed") {
+	    		    	   console.log( response );
+	    		       }
+	    		    	//통신 성공 (response.result == "success" )
+	    		    	
+	    		    	if( response.data == "exists" ) {
+	    		    		$("#checknick").addClass("has-warning");
+	    		    		$("#checknick").removeClass("has-success")
+	    		    		alert("존재하는 아이디 입니다. 다른 이메일을 사용해 주세요");
+	    		    		$("#nickname").focus();
+	    		    		
+	    		    		return;
+	    		    	} else if (response.data == "not exists"){
+	    		    		$("#checknick").addClass("has-success");
+	    		    		$("#checknick").removeClass(" has-warning")
+	    		    	}
+	    		       return true;
+	    		    },
+	    		    error: function( XHR, status, error ){
+	    		       console.error( "Error");
+	    		    }
+	            }
+		      }
+		    },
+		    // Specify validation error messages
+		    messages: {
+		    	usrNick: "Please enter your Nickname(Mininum:2)"	
+		    },
+		    // Make sure the form is submitted to the destination defined
+		    // in the "action" attribute of the form when valid
+		    submitHandler: function(form) {
+		      form.submit();
+		    }
+		  });
+	$( function() {
+		    $( "#datetimepicker1" ).datepicker({
+		    	dateFormat: "yy/mm/dd",
+// 		    	altFormat: "yy-mm-dd",
+	            showOtherMonths: true,
+	            selectOtherMonths: true,
+	            autoclose: true,
+	            changeMonth: true,
+	            changeYear: true,
+	            //gotoCurrent: true,
+		            
+		    });
+		    
+		  } );
+		
 });
 
 </script>
@@ -90,41 +167,125 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-<form class="form-horizontal" action="user/addreqsave">
-	<div class="form-group">
+<form class="form-horizontal" action="addinfosave" name="addinfo">	
+	<input type="hidden" name="usrSeq" value="${authUser.usrSeq}">
+	<div class="form-group has-dange" id="checknick">
 		<label class="control-label col-sm-3" for="nickname">이름(NickName)</label>
-		<div class="col-sm-8">
-			<input type="text" class="form-control" id="nickname"
-				placeholder="NickName">
-		</div>
+		<c:choose>
+			<c:when test="${user.usrNick == null}" >
+				<div class="col-sm-8">
+					<input type="text" class="form-control form-control-danger" id="nickname" name="usrNick" value="${user.usrNick }"
+						placeholder="한번 정하면 바꿀 수 없습니다.">
+				</div>
+			</c:when>
+			<c:otherwise>
+				<p class="form-control-static col-sm-8">${user.usrNick}</p>
+			</c:otherwise>
+		</c:choose>
 	</div>
-	
 	<div class="form-group">
-		<label class="control-label col-sm-3" for="language">언어(Lauguage)</label>
-		<div class="btn-group col-sm-8" role="group" aria-label="language">
-			<button type="button" id="language" value="KOR" class="btn btn-default">한국어</button>
-			<button type="button" id="language" value="ENG" class="btn btn-default">English</button>
+		<label class="control-label col-sm-3" for="option">언어(Lauguage)</label>
+		
+		<div class="btn-group col-sm-8" data-toggle="buttons">
+			
+			<c:choose>
+				<c:when test="${user.usrLang=='KOR'}">
+					<label class="btn btn-primary active" id="langKor">
+				</c:when>
+				<c:otherwise>
+				 	<label class="btn btn-primary" id="langKor">
+				</c:otherwise>
+				
+			</c:choose>
+				<input type="radio" name="usrLang" value="KOR"id="option1" autocomplete="off"> KOR
+			</label>
+			<c:choose>
+				<c:when test="${user.usrLang=='ENG'}">
+					<label class="btn btn-primary active" id="langEng">
+				</c:when>
+				<c:otherwise>
+				 	<label class="btn btn-primary" id="langEng">
+				</c:otherwise>
+			</c:choose>
+				<input type="radio" name="usrLang" value="ENG" id="option2" autocomplete="off"> ENG
+			</label>
+			
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<label class="control-label col-sm-3" for="birthday">생년월일(Birthday)</label>
 		
-		        <div class='btn-group date col-sm-8' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
+		<c:choose>
+			<c:when test="${user.usrBd == null}" >
+				<div class='date col-sm-8' id='datetimepicker1'>
+                    <input type='text' class="form-control" name="usrBd" />
                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar" id="birthdate"></span>
+                        <span class="glyphicon glyphicon-calendar" id="datetimepicker1"></span>
                     </span>
                 </div>
-            
-
+			</c:when>
+			<c:otherwise>
+				<p class="form-control-static col-sm-8">${user.usrBd}</p>
+			</c:otherwise>
+		</c:choose>        
 	</div>
-
+	
+	<div class="form-group">
+		<label class="control-label col-sm-3" for="info">자기소개(Info)</label>
+		<div class='col-sm-8'>
+			<textarea class="form-control" id=""info"" name="usrInfo" rows="3">
+			${user.usrInfo}
+			</textarea>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-3" for="hashTag">해쉬태그(HashTag)</label>
+		<div class='col-sm-8'>
+			<textarea class="form-control" id="hashTag" name="usrHashtag" rows="2">
+			${user.usrHashtag}
+			</textarea>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-3" for="Noti">알람(Notification)</label>
+		
+		<div class="btn-group col-sm-8" data-toggle="buttons">
+			
+			<c:choose>
+				<c:when test="${user.usrNoti=='Y'}">
+					<label class="btn btn-default active" id="notiY">
+				</c:when>
+				<c:otherwise>
+				 	<label class="btn btn-default" id="notiY">
+				</c:otherwise>
+				
+			</c:choose>
+				<input type="radio" name="usrNoti" value="Y" id="noti1" autocomplete="off"> On
+			</label>
+			<c:choose>
+				<c:when test="${user.usrNoti=='N'}">
+					<label class="btn btn-default active" id="notiN">
+				</c:when>
+				<c:otherwise>
+				 	<label class="btn btn-default" id="notiN">
+				</c:otherwise>
+			</c:choose>
+				<input type="radio" name="usrNoti" value="N" id="noti2" autocomplete="off"> Off
+			</label>
+			
+		</div>
+	</div>
+	
 	<div class="form-group">
 		<div class="col-sm-3"></div>
-		<button type="submit" class="btn btn-default col-sm-3 center-block">Save</button>
+		<div class="col-sm-8">
+			<button type="submit" class="btn btn-default col-lg-6 center-block">Save</button>
+		</div>
 	</div>
 	</form>
-
+	${user}
 </body>
 </html>
