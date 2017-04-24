@@ -80,54 +80,24 @@ body {
 				<label for="from">출발</label> <input type="text" id="fromDate"
 					name="fromDate" style="color: #000000; border-radius: 10px"> <label for="to" style="margin-left: 5px">도착</label>
 				<input type="text" id="toDate" name="toDate" style="color: #000000; border-radius: 10px; margin-top: 10px">
-				<input type="submit" id="serch" value="검색하기" onclick="formSubmit()"
+				<input type="submit" id="serch" value="검색하기" onclick="searchformSubmit()"
 					style="width: 75; font-family: 맑은고딕; background-color: black">
 			</p>
 		</form>
 	</div>
 
 	<!-- date picker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<script>
-		$(function() {
+		
 
-			var dateFormat = "mm/dd/yy", from = $("#fromDate").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				to.datepicker("option", "minDate", getDate(this));
-
-			}), to = $("#toDate").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				from.datepicker("option", "maxDate", getDate(this));
-				dateTo = getDate(this);
-			});
-
-			function getDate(element) {
-				var date;
-
-				try {
-					date = $.datepicker.parseDate(dateFormat, element.value);
-				} catch (error) {
-					date = null;
-				}
-				return date;
-			}
-
-		});
-
-		function formSubmit() {
+		function searchformSubmit() {
 			event.preventDefault();
 			$("#poollist").empty();
 			var param = jQuery("#search_form").serialize();
 			console.log(param);
 			$.ajax({
-				url : "poolsearchtest",
+				url : "poolsearchList",
 				type : "post",
 				data : param,
 				async : false,

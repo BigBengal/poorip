@@ -1,9 +1,13 @@
 package com.poorip.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.poorip.vo.ReviewVo;
+import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
 
 @Repository
@@ -31,4 +35,10 @@ public class ScrapDao {
 	public boolean deleteScrap(ScrapVo scrapVo) {
 		return 1==sqlSession.delete("scrap.delete", scrapVo);
 	}
+	
+	public List<ReviewVo> showScraps(int usrSeq) {
+		return sqlSession.selectList("scrap.showScrap", usrSeq);
+	}
+	
+	
 }

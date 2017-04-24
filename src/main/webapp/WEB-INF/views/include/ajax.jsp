@@ -5,8 +5,6 @@
 	pageEncoding="UTF-8"%>
 
 <%-- <link href="<c:url value='/resources/css/jquery-ui.css' />" rel="stylesheet" type="text/css"/> --%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$("#kwd").autocomplete({
@@ -139,5 +137,37 @@ function send(trvSeq, reviewNum){
 		    });
 		$("#review-"+reviewNum ).empty();
 	}
+	
+$(".ScrapcityName").click(function (){
+	var ctyName = $(this).data('city-name');
+	console.log(ctyName);
+	var dateFormat = "mm/dd/yy", from = $("#fromDate-"+ctyName).datepicker({
+		defaultDate : "+1w",
+		changeMonth : true,
+		numberOfMonths : 2
+	}).on("change", function() {
+		to.datepicker("option", "minDate", getDate(this));
+
+	}), to = $("#toDate-"+ctyName).datepicker({
+		defaultDate : "+1w",
+		changeMonth : true,
+		numberOfMonths : 2
+	}).on("change", function() {
+		from.datepicker("option", "maxDate", getDate(this));
+		dateTo = getDate(this);
+	});
+
+	function getDate(element) {
+		var date;
+
+		try {
+			date = $.datepicker.parseDate(dateFormat, element.value);
+		} catch (error) {
+			date = null;
+		}
+		return date;
+	}
+		
+});
 
 </script>

@@ -121,6 +121,9 @@
 
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
+	<!--  Datepicker -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
@@ -158,35 +161,6 @@
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 	
-	<script>
-		$(function() {
-			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				to.datepicker("option", "minDate", getDate(this));
-			}), to = $("#to").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				from.datepicker("option", "maxDate", getDate(this));
-			});
-
-			function getDate(element) {
-				var date;
-				try {
-					date = $.datepicker.parseDate(dateFormat, element.value);
-				} catch (error) {
-					date = null;
-				}
-
-				return date;
-			}		
-		});
-		
-	</script>
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>
 <%-- </c:forEach> --%>

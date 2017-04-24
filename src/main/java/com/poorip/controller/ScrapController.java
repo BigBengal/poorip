@@ -1,7 +1,13 @@
 package com.poorip.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,7 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
+import com.poorip.service.ScrapCityService;
 import com.poorip.service.ScrapService;
+import com.poorip.vo.ReviewVo;
+import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
 import com.poorip.vo.UserVo;
 
@@ -20,12 +29,28 @@ public class ScrapController {
 	@Autowired
 	ScrapService scrapService;
 	
+	@Autowired
+	ScrapCityService scrapCityService;
+	
+	@Auth
 	@RequestMapping("/main")
-	public String searchPool() {
+	public String searchPool(Model model,@AuthUser UserVo userVo) {
+		List<ReviewVo> scrapList = scrapService.showScraps(userVo.getUsrSeq());
+		List<ScrapCityVo> cityList = scrapCityService.showCity(userVo.getUsrSeq());
+		List<ScrapCityVo> dateList = new ArrayList<ScrapCityVo>();
+		for(int i=0; i<cityList.size(); i++ ) {
+			ScrapCityVo scrapCityVo = new ScrapCityVo();
+			scrapCityVo.setCtySeq(cityList.get(i).getCtySeq());
+			scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+			dateList.add(scrapCityService.select(scrapCityVo));
+		}
 		
+		System.out.println("yeeeeee"+ dateList);
 		
-		
-		
+		model.addAttribute("dateList", dateList);
+		model.addAttribute("cityList", cityList);
+		model.addAttribute("scrapList", scrapList);
+
 		
 		return "/scrap/scrapMain";
 	}
@@ -54,7 +79,6 @@ public class ScrapController {
 	@ResponseBody
 	@RequestMapping("/scrapValidate")
 	public String validateScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
-		System.out.println("여긴 오지?");
 		ScrapVo scrapVo = new ScrapVo();
 		int trvSeq1 = Integer.parseInt(trvSeq);
 		scrapVo.setTrvSeq(trvSeq1);
@@ -65,20 +89,42 @@ public class ScrapController {
 		return "YES";
 	}
 	
-	/*@Auth
+	@Auth
 	@ResponseBody
-	@RequestMapping("/deleteScrap")
-	public JSONResult deleteScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
-		ScrapVo scrapVo = new ScrapVo();
-		scrapVo.setUsrSeq(userVo.getUsrSeq());
-		int trvSeq1 = Integer.parseInt(trvSeq);
-		scrapVo.setTrvSeq(trvSeq1);
+	@RequestMapping("/scrapSave/{ctySeq}")
+	public JSONResult saveTravelDate(@ModelAttribute ScrapCityVo scrapCityVo, @PathVariable ("ctySeq") int ctySeq, @AuthUser UserVo userVo) {
+		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+		scrapCityVo.setCtySeq(ctySeq);
+		if(scrapCityVo.getDateFrom()==null||scrapCityVo.getDateFrom().isEmpty()||scrapCityVo.getDateTo()==null) {
+			return JSONResult.fail("no-data");
+		}
 		
-		if(scrapService.deleteScrap(scrapVo)==true) {
-			return JSONResult.success("삭제");
-		};
+		if(scrapCityService.select(scrapCityVo)==null) {
+			scrapCityService.insertDate(scrapCityVo);
+			return JSONResult.success("success");
+		}
 		
-		return JSONResult.fail("실패");
-	}*/
+		scrapCityService.updateDate(scrapCityVo);
+		return JSONResult.fail("exist");	
+
+	}
 	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/showDate")
+	public JSONResult showDate(@RequestParam ("ctySeq") int ctySeq, @AuthUser UserVo userVo ) {
+		ScrapCityVo scrapCityVo = new ScrapCityVo();
+		scrapCityVo.setCtySeq(ctySeq);
+		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+		ScrapCityVo scrapDate = scrapCityService.select(scrapCityVo);
+		
+		System.out.println(ctySeq + " ++++ " + scrapDate);
+		if(scrapDate==null) {
+			return JSONResult.fail("no-data");
+		}
+		
+		return JSONResult.success(scrapDate);
+	}
+	
+
 }

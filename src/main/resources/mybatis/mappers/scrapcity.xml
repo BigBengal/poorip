@@ -6,21 +6,21 @@
 	<!-- 도시별 여행 날짜 지정 -->
 	<insert id="insert" parameterType="scrapcityvo">
 		<![CDATA[
-			insert into scrap_city values(null, str_to_date(#{dateFrom}, '%c/%e/%Y'), str_to_date(#{dateTo},'%c/%e/%Y') , now())
+			insert into scrap_city values(null, str_to_date(#{dateFrom}, '%c/%e/%Y'), str_to_date(#{dateTo},'%c/%e/%Y') , now(), #{usrSeq}, #{ctySeq})
 		]]>
 	</insert>
 
 	<!-- 도시별 여행 날짜 변경 -->
 	<update id="update" parameterType="scrapcityvo">
 		<![CDATA[
-			update scrap_city set date_from = str_to_date(#{dateFrom}, '%c/%e/%Y'), date_to = str_to_date(#{dateTo},'%c/%e/%Y') where scp_city_seq = #{scpCitySeq}
+			update scrap_city set date_from = str_to_date(#{dateFrom}, '%c/%e/%Y'), date_to = str_to_date(#{dateTo},'%c/%e/%Y') where cty_seq=#{ctySeq} and usr_seq=#{usrSeq}
 		]]>
 	</update>
 	
 	<!-- 도시별 날짜 표시 -->
 	<select id="selectbyseq" resultType="scrapcityvo" parameterType="scrapcityvo">
 		<![CDATA[
-			select date_from as dateFrom, date_to as dateTo from scrap_city where scp_city_seq = #{scpCitySeq}
+			select date_from as dateFrom, date_to as dateTo, cty_seq as ctySeq from scrap_city where usr_seq=#{usrSeq} and cty_seq=#{ctySeq}
 		]]>
 	</select>
 

@@ -16,6 +16,7 @@ public class ReviewVo {
 	private String location;
 	private String picture;
 	private int ctySeq;
+	private String ctyName;
 	private int catSeq;
 	private String mapURL;
 	private String contact;
@@ -140,7 +141,14 @@ public class ReviewVo {
 		return "ReviewVo [postPicSeq=" + postPicSeq + ", path=" + path + ", fileName=" + fileName + ", postSeq="
 				+ postSeq + ", crtDate=" + crtDate + ", title=" + title + ", contents=" + contents + ", reviewPubYn="
 				+ reviewPubYn + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", name=" + name + ", hours=" + hours
-				+ ", location=" + location + ", picture=" + picture + ", ctySeq=" + ctySeq + ", catSeq=" + catSeq
-				+ ", mapURL=" + mapURL + ", contact=" + contact + "]";
+				+ ", location=" + location + ", picture=" + picture + ", ctySeq=" + ctySeq + ", ctyName=" + ctyName
+				+ ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", reviewNum=" + reviewNum
+				+ "]";
+	}
+	public String getCtyName() {
+		return ctyName;
+	}
+	public void setCtyName(String ctyName) {
+		this.ctyName = ctyName;
 	}
 }

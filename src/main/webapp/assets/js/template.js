@@ -7,6 +7,10 @@
  * File Description: Initializations of plugins 
  */
 
+
+
+
+
 (function($){
 	$(document).ready(function(){
 	

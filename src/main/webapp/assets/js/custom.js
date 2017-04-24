@@ -9,6 +9,44 @@
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
+
+
+$(function() {
+
+	var dateFormat = "mm/dd/yy", from = $("#fromDate").datepicker({
+		defaultDate : "+1w",
+		changeMonth : true,
+		numberOfMonths : 2
+	}).on("change", function() {
+		to.datepicker("option", "minDate", getDate(this));
+
+	}), to = $("#toDate").datepicker({
+		defaultDate : "+1w",
+		changeMonth : true,
+		numberOfMonths : 2
+	}).on("change", function() {
+		from.datepicker("option", "maxDate", getDate(this));
+		dateTo = getDate(this);
+	});
+
+	function getDate(element) {
+		var date;
+
+		try {
+			date = $.datepicker.parseDate(dateFormat, element.value);
+		} catch (error) {
+			date = null;
+		}
+		return date;
+	}
+
+});
+
+
+
+
+
+
 function openOptions() {
     document.getElementById("profileDropdown").classList.toggle("show");
 }
@@ -56,7 +94,44 @@ function validate(trvSeq) {
 	
 };
 
-
+function setDate(ctySeq) {
+	event.preventDefault();
+	$("#scrap-date-info-"+ctySeq).empty();
+	var param = jQuery("#set-date-scrap-"+ctySeq).serialize();
+	console.log(param);
+	console.log(ctySeq);
+		$.ajax({
+        url : "/poorip/scrap/scrapSave/" + ctySeq,
+        type : "post",
+        data: param, 
+        
+        success : function(data) {
+        	$.ajax({
+                url : "/poorip/scrap/showDate",
+                type : "post",
+                data: "ctySeq="+ ctySeq, 
+                
+                success : function(result) {
+                	
+                	
+                	var html = "<p >" + result.data.dateFrom  + " ~ " + result.data.dateTo + "</p>";
+    		
+                	$("#scrap-date-info-"+ctySeq).append(html);
+                   
+                },
+                error : function(data) {
+//                     alert("ajax 에러가 발생하였습니다.")
+                }
+                
+        	 });
+           
+        },
+        error : function(data) {
+//             alert("ajax 에러가 발생하였습니다.")
+        }
+        
+	 });
+	};
 
 
 

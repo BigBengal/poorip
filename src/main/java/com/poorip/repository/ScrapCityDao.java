@@ -1,5 +1,7 @@
 package com.poorip.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,4 +27,15 @@ public class ScrapCityDao {
 		ScrapCityVo vo = sqlSession.selectOne("scrapcity.selectbyseq", scrapcityvo);
 		return vo;
 	}
+	
+	public List<ScrapCityVo> showCity(int usrSeq) {
+
+		return sqlSession.selectList("scrap.showCity", usrSeq);
+	}
+	
+	public boolean updateDate(ScrapCityVo scrapcityvo) {
+		return 1== sqlSession.update("scrapcity.update", scrapcityvo);
+	}
+	
+	
 }

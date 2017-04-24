@@ -143,7 +143,7 @@
 									</div>
 									<div class="modal-body">
 									<c:if test="${!empty authUser }">
-										<a href=#><img id="scrapTrvInfo-${travelInfoFood.trvSeq}"
+										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoFood.trvSeq}"
 											src="--"
 											style="float: right;"
 											data-trvSeq="${travelInfoFood.trvSeq}" onclick="validate(${travelInfoFood.trvSeq})"/></a>
@@ -220,6 +220,12 @@
 										<h4 class="modal-title" id="project-3-label">${travelInfoFoodMain.name}</h4>
 									</div>
 									<div class="modal-body" id="${status.index }">
+									<c:if test="${!empty authUser }">
+										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoFoodMain.trvSeq}"
+											src="--"
+											style="float: right;"
+											data-trvSeq="${travelInfoFoodMain.trvSeq}" onclick="validate(${travelInfoFoodMain.trvSeq})"/></a>
+									</c:if>
 										<h3>${travelInfoFoodMain.name}</h3>
 
 										<div class="col-md-6">
@@ -289,6 +295,13 @@
 										<h4 class="modal-title" id="project-4-label">${travelInfoAttraction.name}</h4>
 									</div>
 									<div class="modal-body">
+									<c:if test="${!empty authUser }">
+										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoAttraction.trvSeq}"
+											src="--"
+											style="float: right;"
+											data-trvSeq="${travelInfoAttraction.trvSeq}" onclick="validate(${travelInfoAttraction.trvSeq})"/></a>
+									</c:if>
+									
 										<h3>${travelInfoAttraction.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -355,6 +368,12 @@
 										<h4 class="modal-title" id="project-5-label">${travelInfoAttractionMain.name}</h4>
 									</div>
 									<div class="modal-body">
+									<c:if test="${!empty authUser }">
+										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoAttractionMain.trvSeq}"
+											src="--"
+											style="float: right;"
+											data-trvSeq="${travelInfoAttractionMain.trvSeq}" onclick="validate(${travelInfoAttractionMain.trvSeq})"/></a>
+									</c:if>
 										<h3>${travelInfoAttractionMain.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -423,6 +442,12 @@
 										<h4 class="modal-title" id="project-6-label">${travelInfoActivity.name}</h4>
 									</div>
 									<div class="modal-body">
+									<c:if test="${!empty authUser }">
+										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoActivity.trvSeq}"
+											src="--"
+											style="float: right;"
+											data-trvSeq="${travelInfoActivity.trvSeq}" onclick="validate(${travelInfoActivity.trvSeq})"/></a>
+									</c:if>
 										<h3>Project Description</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -489,6 +514,12 @@
 										<h4 class="modal-title" id="project-7-label">${travelInfoActivityMain.name}</h4>
 									</div>
 									<div class="modal-body">
+									<c:if test="${!empty authUser }">
+										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoActivityMain.trvSeq}"
+											src="--"
+											style="float: right;"
+											data-trvSeq="${travelInfoActivityMain.trvSeq}" onclick="validate(${travelInfoActivityMain.trvSeq})"/></a>
+									</c:if>
 										<h3>Project Description</h3>
 										<div class="row">
 											<div class="col-md-6">

@@ -46,7 +46,7 @@ public class PoolPartyController {
 	
 	
 	@ResponseBody
-	@RequestMapping("/poolsearchtest")
+	@RequestMapping("/poolsearchList")
 	public JSONResult searchPool(@ModelAttribute PoolPartyVo poolPartyVo) {
 	
 		List<PoolPartyVo> poolList = poolPartyService.getPoolList(poolPartyVo);

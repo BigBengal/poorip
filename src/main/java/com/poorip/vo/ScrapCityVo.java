@@ -6,6 +6,30 @@ public class ScrapCityVo {
 	private String dateFrom;
 	private String dateTo;
 	private String crtDate;
+	private int ctySeq;
+	private int usrSeq;
+	private String ctyName;
+	
+	
+	public int getCtySeq() {
+		return ctySeq;
+	}
+	public int getUsrSeq() {
+		return usrSeq;
+	}
+	public void setCtySeq(int ctySeq) {
+		this.ctySeq = ctySeq;
+	}
+	public void setUsrSeq(int usrSeq) {
+		this.usrSeq = usrSeq;
+	}
+
+	public String getCtyName() {
+		return ctyName;
+	}
+	public void setCtyName(String ctyName) {
+		this.ctyName = ctyName;
+	}
 	public int getScpCitySeq() {
 		return scpCitySeq;
 	}
@@ -32,8 +56,8 @@ public class ScrapCityVo {
 	}
 	@Override
 	public String toString() {
-		return "ScrapCity [scpCitySeq=" + scpCitySeq + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", crtDate="
-				+ crtDate + "]";
+		return "ScrapCityVo [scpCitySeq=" + scpCitySeq + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", crtDate="
+				+ crtDate + ", ctySeq=" + ctySeq + ", usrSeq=" + usrSeq + ", ctyName=" + ctyName + "]";
 	}
 	
 	
