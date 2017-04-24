@@ -24,8 +24,8 @@ public class ScrapDao {
 		return 1 == sqlSession.insert("scrap.insertscrap", scrapVo);
 	}
 	
-	public int selectScrap(int trvSeq) {
-		return sqlSession.selectOne("scrap.selectScrap", trvSeq);
+	public int selectScrap(ScrapVo scrapVo) {
+		return sqlSession.selectOne("scrap.selectScrap", scrapVo);
 	}
 	
 	public boolean deleteScrap(ScrapVo scrapVo) {

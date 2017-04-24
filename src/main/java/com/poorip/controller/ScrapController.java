@@ -34,31 +34,38 @@ public class ScrapController {
 	@ResponseBody
 	@RequestMapping("/scrapInput")
 	public JSONResult inputScrap(@AuthUser UserVo userVo, @RequestParam ("trvSeq") String trvSeq) {
-
+	
 		ScrapVo scrapVo = new ScrapVo();
 		scrapVo.setUsrSeq(userVo.getUsrSeq());
+	
 		int trvSeq1 = Integer.parseInt(trvSeq);
 		scrapVo.setTrvSeq(trvSeq1);
-		if(scrapService.selectScrap(trvSeq1)==0) {
+		System.out.println(scrapVo);
+		System.out.println(scrapService.selectScrap(scrapVo));
+		if(scrapService.selectScrap(scrapVo)==0) {
 			scrapService.insertScrap(scrapVo);
 			return JSONResult.success("성공");
 		}
+		scrapService.deleteScrap(scrapVo);
 		return JSONResult.fail("이미 있는 여행정보");
 	}
 	
 	@Auth
 	@ResponseBody
 	@RequestMapping("/scrapValidate")
-	public String validateScrap(@RequestParam ("trvSeq") String trvSeq) {
+	public String validateScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
 		System.out.println("여긴 오지?");
+		ScrapVo scrapVo = new ScrapVo();
 		int trvSeq1 = Integer.parseInt(trvSeq);
-		if(scrapService.selectScrap(trvSeq1)==0) {
+		scrapVo.setTrvSeq(trvSeq1);
+		scrapVo.setUsrSeq(userVo.getUsrSeq());
+		if(scrapService.selectScrap(scrapVo)==0) {
 			return "NO";
 		}
 		return "YES";
 	}
 	
-	@Auth
+	/*@Auth
 	@ResponseBody
 	@RequestMapping("/deleteScrap")
 	public JSONResult deleteScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
@@ -72,6 +79,6 @@ public class ScrapController {
 		};
 		
 		return JSONResult.fail("실패");
-	}
+	}*/
 	
 }
