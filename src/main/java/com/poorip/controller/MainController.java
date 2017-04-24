@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poorip.dto.JSONResult;
 import com.poorip.service.MainService;
+import com.poorip.service.UserService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 import com.poorip.web.util.WebUtil;
@@ -30,6 +31,11 @@ public class MainController {
 
 	@Autowired
 	private MainService mainService;
+	
+	@Autowired
+	private UserService userService;
+	
+	
 
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
@@ -60,7 +66,8 @@ public class MainController {
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
 		model.addAttribute("travelInfoCityMain", citylistMain);
-
+		
+		model.addAttribute("UserList", userService.SearchPersonList());
 		return "/PooripMain";
 
 	}

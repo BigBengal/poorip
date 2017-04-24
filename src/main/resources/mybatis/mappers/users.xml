@@ -21,6 +21,56 @@
 		]]>
 	</select>
 
+	<!-- 테스트 리스트 가져오기-->
+	<select id="getList" resultType="uservo">
+		<![CDATA[
+			select USR_SEQ		as usrSeq,
+			  	   USR_EMAIL	as usrEmail,
+			  	   USR_PROFILE 	as usrProfile, 
+			  	   USR_GENDER 	as usrGender,  
+			  	   USR_LANG 	as usrLang,
+			  	   USR_BD 		as usrBd,  
+			  	   USR_NICK 	as usrNick,  
+			  	   USR_INFO 	as usrInfo,  
+			  	   USR_HASHTAG 	as usrHashtag,  
+			  	   USR_PREF1 	as usrPref1,  
+			  	   USR_PREF2 	as usrPref2,  
+			  	   USR_PREF3 	as usrPref3,  
+			  	   USR_PREF4 	as usrPref4,  
+			  	   USR_PREF5 	as usrPref5,  
+			  	   USR_NOTI 	as usrNoti,  
+			  	   USR_JOIN_DATE 	as usrJoinDate,  
+			  	   USR_LOGIN_DATE 	as usrLoginDate,  
+			  	   USR_BLACK_YN  	as usrBlackYN
+			from users 
+		]]>
+	</select>
+	
+	<!-- 유저 검색해서 리스트 가져오기-->
+	<select id="getListbykeyword" resultType="uservo" parameterType="uservo">
+		<![CDATA[
+			select USR_SEQ		as usrSeq,
+			  	   USR_EMAIL	as usrEmail,
+			  	   USR_PROFILE 	as usrProfile, 
+			  	   USR_GENDER 	as usrGender,  
+			  	   USR_LANG 	as usrLang,
+			  	   USR_BD 		as usrBd,  
+			  	   USR_NICK 	as usrNick,  
+			  	   USR_INFO 	as usrInfo,  
+			  	   USR_HASHTAG 	as usrHashtag,  
+			  	   USR_PREF1 	as usrPref1,  
+			  	   USR_PREF2 	as usrPref2,  
+			  	   USR_PREF3 	as usrPref3,  
+			  	   USR_PREF4 	as usrPref4,  
+			  	   USR_PREF5 	as usrPref5,  
+			  	   USR_NOTI 	as usrNoti,  
+			  	   USR_JOIN_DATE 	as usrJoinDate,  
+			  	   USR_LOGIN_DATE 	as usrLoginDate,  
+			  	   USR_BLACK_YN  	as usrBlackYN
+			from users 
+		]]>
+	</select>
+
 		
 
 	<!-- 새로운 유저 입력 -->

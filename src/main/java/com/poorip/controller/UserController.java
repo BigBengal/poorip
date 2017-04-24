@@ -100,11 +100,11 @@ public class UserController {
 	// 닉네임 중복 체크
 	@ResponseBody
 	@RequestMapping("/isExistNick")
-	public JSONResult isExistNick(@RequestParam("nick") String nickName){
+	public String isExistNick(@RequestParam("usrNick") String nickName){
 		System.out.println("OK " + nickName);
 		UserVo userVo = new UserVo();
 		userVo.setUsrNick(nickName);
-		return JSONResult.success(userService.isExistNick(userVo)==true ? "exists" : "not exists");
+		return (userService.isExistNick(userVo)==true ? "Already used" : "true");
 	}
 	
 	
