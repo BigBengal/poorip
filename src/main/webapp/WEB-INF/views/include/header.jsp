@@ -69,7 +69,7 @@
 									   </fb:login-button>
 									</a>
 									<div id="profileDropdown" class="dropdown-content">
-							    		<a href="#">Link 1</a>
+							    		<a href="${pageContext.request.contextPath }/user/addinfo">사용자 정보 수정</a>
 							    		<a href="${pageContext.request.contextPath }/scrap/main">내 스크랩 정보</a>
 							    		<a href="#">Link 3</a>
 							  		</div>
