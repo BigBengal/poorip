@@ -32,7 +32,7 @@
 	 	<mapper resource="mybatis/mappers/travelInfoPic.xml"/>
 		<mapper resource="mybatis/mappers/scrap.xml" /> 
 		<mapper resource="mybatis/mappers/scrapcity.xml" />  
-		<mapper resource="mybatis/mappers/request.xml" />  
+		<mapper resource="mybatis/mappers/request.xml" />
 
 	</mappers>
 

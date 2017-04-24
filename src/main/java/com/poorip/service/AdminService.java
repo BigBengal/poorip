@@ -19,6 +19,7 @@ import com.poorip.vo.CityVo;
 import com.poorip.vo.CountryVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
+import com.poorip.vo.TravelInfoPicVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Service
@@ -31,19 +32,27 @@ public class AdminService {
 	private AdminDao adminDao;
 	private CommonsMultipartFile[] files;
 
-	public void addInfo(TravelInfoVo travelInfoVo, MultipartFile multipartFile) {
+	public void addtarvelInfo(TravelInfoVo travelInfoVo, MultipartFile multipartFile) {
 		try {
 			if (multipartFile.isEmpty() == true) {
 				throw new GalleryUploadException( "MultipartFile is Empty" );
 			}
+			// 폴더가 없으면 폴더 생성
+			String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoVo.getTrvSeq();
+			File file = new File( pathName );
+			if( file.isDirectory() == false )
+				file.mkdirs();
 			
 			String orgFile = multipartFile.getOriginalFilename();
 			String fileExtName = orgFile.substring( orgFile.lastIndexOf('.') + 1, orgFile.length() );
 			String saveFile = generateSaveFileName( fileExtName );
+			
 			// 파일 저장
-			travelWriteFile(multipartFile, saveFile);
+			IOUtils.copy( multipartFile.getInputStream(), new FileOutputStream( pathName + "/" + saveFile ) );
+			
 			// DB에 저장
 			travelInfoVo.setPicture(saveFile);
+			
 		} catch (IOException ex) {
 			//1.log 남기기
 			//2.runtime exception 전환 
@@ -51,29 +60,35 @@ public class AdminService {
 		}
 		adminDao.addInfo(travelInfoVo);
 	}
-	
-//	public boolean addPost(PostVo postVo, PostPicVo postPicVo, MultipartFile multipartFile) {
-//		
-//		try {
-//			if (multipartFile.isEmpty() == true) {
-//				return adminDao.addPost( postVo );
-//			}
-//			
-//			String orgFile = multipartFile.getOriginalFilename();
-//			String fileExtName = orgFile.substring( orgFile.lastIndexOf('.') + 1, orgFile.length() );
-//			String saveFile = generateSaveFileName( fileExtName );
-//			// 파일 저장
-//			PostWriteFile(multipartFile, saveFile);
-//			// DB에 저장
-//			postPicVo.setFileName(saveFile);
-//		} catch (IOException ex) {
-//			//1.log 남기기
-//			//2.runtime exception 전환 
-//			throw new GalleryUploadException( "save file uploded" );
-//		}
-//		return adminDao.addPostAndPic( postVo, postPicVo );
-//	}
-	
+
+	public boolean addTravelPic(TravelInfoPicVo travelInfoPicVo, List<MultipartFile> travelfiles) throws IOException {
+		
+		boolean travelPicReturn = true;
+		
+		String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoPicVo.getTrvSeq();
+		for (int i=0; i < travelfiles.size(); i++) {
+			File file = new File( pathName );
+			
+			// 폴더가 없으면 폴더 생성
+			if( file.isDirectory() == false )
+				file.mkdirs();
+			
+			// 서버 저장용 파일이름 변경
+			String orgFile = travelfiles.get(i).getOriginalFilename();
+			String fileExtName = orgFile.substring( orgFile.lastIndexOf( '.' ) + 1, orgFile.length() );
+			String saveFile = generateSaveFileName( fileExtName );
+			
+			// 서버에 저장
+			IOUtils.copy( travelfiles.get(i).getInputStream(), new FileOutputStream( pathName + "/" + saveFile) );
+			travelInfoPicVo.setFileName( saveFile );
+			travelInfoPicVo.setPath( pathName );
+			
+			//addTravelPic 저장
+			travelPicReturn =  adminDao.addTravelPic( travelInfoPicVo );
+		}
+		return travelPicReturn;
+		
+	}
 
 	public boolean addPost(PostVo postVo, List<MultipartFile> files) throws IOException {
 		
@@ -120,14 +135,6 @@ public class AdminService {
 	public void setFiles(CommonsMultipartFile[] files) {
 		this.files = files;
 	}
-
-	private void travelWriteFile(MultipartFile multipartFile, String saveFileName) throws IOException {
-		byte[] fileData = multipartFile.getBytes();
-		FileOutputStream fos = new FileOutputStream( TRAVEL_SAVE_PATH + "/" + saveFileName );
-		fos.write( fileData );
-		fos.close();
-	}
-
 	
 	private String generateSaveFileName(String extName) {
 		String fileName = "";
@@ -151,6 +158,10 @@ public class AdminService {
 
 	public List<CategoryVo> getCategoryName() {
 		return adminDao.getCategoryName();
+	}
+	
+	public List<TravelInfoVo> getTravelName() {
+		return adminDao.getTravelName();
 	}
 
 	public List<TravelInfoVo> getTravelList() {

@@ -81,6 +81,16 @@
       ]]>
 	</select>
 	
+    <!-- 여행정보 Seq, name 가져오기 -->
+    <select id="getALLTravelInfo" resultType="travelinfovo">
+      <![CDATA[
+         select 
+         		trv_seq as trvSeq,
+         		name as name
+		 from travel_info
+      ]]>
+	</select>
+	
     <!-- 여행 정보 추가하기 -->
     <insert id="insert" parameterType="travelinfovo">
         <![CDATA[
@@ -96,7 +106,8 @@
 			       #{ctySeq },
 			       #{catSeq },
 			       null,
-			       #{contact })
+			       #{contact },
+			       null)
       ]]>
     </insert>
     

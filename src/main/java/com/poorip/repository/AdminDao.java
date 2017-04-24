@@ -11,6 +11,7 @@ import com.poorip.vo.CityVo;
 import com.poorip.vo.CountryVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
+import com.poorip.vo.TravelInfoPicVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Repository
@@ -26,7 +27,11 @@ public class AdminDao {
 	public List<CategoryVo> getCategoryName() {
 		return sqlSession.selectList( "category.getALLCategory");
 	}
-
+	
+	public List<TravelInfoVo> getTravelName() {
+		return sqlSession.selectList( "travelInfo.getALLTravelInfo" );
+	}
+	
 	public List<TravelInfoVo> getList() {
 		return sqlSession.selectList( "travelInfo.getList" );
 	}
@@ -62,6 +67,11 @@ public class AdminDao {
 		return ( count == 1 );
 	}
 
+	public boolean addTravelPic(TravelInfoPicVo travelInfoPicVo) {
+		int count = sqlSession.insert( "travelInfoPic.insert", travelInfoPicVo );
+		return ( count == 1 );
+	}
+	
 	public List<PostVo> getPostList() {
 		return sqlSession.selectList( "post.getPostList" );
 	}
@@ -95,5 +105,5 @@ public class AdminDao {
 		int count = sqlSession.insert( "city.addcity", cityVo );
 		return ( count == 1 );
 	}
-	
+
 }
