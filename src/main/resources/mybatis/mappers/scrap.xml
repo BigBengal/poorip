@@ -33,10 +33,5 @@
 		]]>
 	</select>
 	
-	<select id="selectScrap" resultType="integer" parameterType="integer">
-		<![CDATA[
-			
-		]]>
-	</select>
 
 </mapper>
