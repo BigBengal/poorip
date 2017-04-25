@@ -45,6 +45,20 @@
 			  FROM POST
 		]]>
 	</select>
+	
+	<select id="getUserPostList" resultType="postvo">
+	    <![CDATA[
+			select p.post_seq as postSeq,
+				   title,
+				   contents,
+				   p.usr_seq as usrSeq,
+				   p.crt_date as crtDate
+				from post p, users u
+			where p.USR_SEQ = u.USR_SEQ
+			  and p.usr_seq = #{usrSeq }
+			order by crt_date desc
+		]]>
+	</select>
 
 	<select id="selectbyno" resultType="postvo" parameterType="integer">
 		<![CDATA[
