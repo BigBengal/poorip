@@ -27,9 +27,9 @@
 	</delete>
 	
 
-	<select id="selectScrap" resultType="integer" parameterType="integer">
+	<select id="selectScrap" resultType="integer" parameterType="scrapvo">
 		<![CDATA[
-			SELECT IFNULL( (SELECT scp_seq as scpSeq FROM scrap WHERE trv_seq = #{trvSeq} LIMIT 1) ,0)
+			SELECT IFNULL( (SELECT scp_seq as scpSeq FROM scrap WHERE trv_seq = #{trvSeq} and usr_seq = #{usrSeq} LIMIT 1) ,0)
 		]]>
 	</select>
 	

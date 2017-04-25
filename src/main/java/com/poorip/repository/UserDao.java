@@ -1,5 +1,7 @@
 package com.poorip.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +13,14 @@ public class UserDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	public List<UserVo> list(){
+		return sqlSession.selectList("user.getList");
+	}
+	
+	public List<UserVo> listByKeyword(UserVo userVo){
+		return sqlSession.selectList("user.getListbykeyword", userVo);
+	}
 	
 	public boolean isExist(UserVo uservo) {
 		return 1 == (Integer)sqlSession.selectOne("user.isexistuser", uservo);

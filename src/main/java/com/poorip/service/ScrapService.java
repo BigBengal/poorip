@@ -18,8 +18,8 @@ public class ScrapService {
 	}
 	
 	
-	public int selectScrap(int trvSeq) {
-		return scrapDao.selectScrap(trvSeq);
+	public int selectScrap(ScrapVo scrapVo) {
+		return scrapDao.selectScrap(scrapVo);
 	}
 	
 	public boolean deleteScrap(ScrapVo scrapVo) {
