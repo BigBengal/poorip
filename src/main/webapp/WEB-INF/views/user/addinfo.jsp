@@ -188,7 +188,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<!-- banner end -->
-	<form class="form-horizontal" action="addinfosave" name="addinfo">	
+<form class="form-horizontal" action="addinfosave" name="addinfo">	
 	<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 	<div class="form-group" id="checknick">
 		<label class="control-label col-sm-3" for="nickname">이름(NickName)</label>

@@ -10,6 +10,7 @@
 		<typeAlias alias="postpicvo" type="com.poorip.vo.PostPicVo" />
 		<typeAlias alias="poolpostvo" type="com.poorip.vo.PoolPostVo" />
 		<typeAlias alias="poolpartyvo" type="com.poorip.vo.PoolPartyVo" />
+		<typeAlias alias="poollikevo" type="com.poorip.vo.PoolLikeVo" />
 		<typeAlias alias="poolmembervo" type="com.poorip.vo.PoolMemberVo" />
 		<typeAlias alias="categoryvo" type="com.poorip.vo.CategoryVo" />
 		<typeAlias alias="cityvo" type="com.poorip.vo.CityVo" />
@@ -23,6 +24,7 @@
 		<mapper resource="mybatis/mappers/post.xml" />
 		<mapper resource="mybatis/mappers/postpic.xml" />
 		<mapper resource="mybatis/mappers/poolparty.xml" />
+		<mapper resource="mybatis/mappers/poollike.xml" />
 		<mapper resource="mybatis/mappers/poolpost.xml" />
 		<mapper resource="mybatis/mappers/poolmember.xml" />
 		<mapper resource="mybatis/mappers/category.xml"/>

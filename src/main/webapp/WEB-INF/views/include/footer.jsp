@@ -9,25 +9,20 @@
 <!-- ================ -->
 <div class="footer section">
 	<div class="container">
-		<h1 class="title text-center" id="contact">Contact Us</h1>
+		<h1 class="title text-center" id="contact"><span style="color: #75ccff">의견</span>을 듣고 싶습니다</h1>
 		<div class="space"></div>
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="footer-content">
-					<p class="large">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Vel nam magnam natus tempora cumque, aliquam
-						deleniti voluptatibus voluptas. Repellat vel, et itaque commodi
-						iste ab, laudantium voluptas deserunt nobis.</p>
+					<p class="large">수정되야할 정보가 있거나 건의할 사항이 있으시면 여기에 전부 적어주세요. 고객님의 소리에 "귀" 기울이겠습니다.</p>
 					<ul class="list-icons">
-						<li><i class="fa fa-map-marker pr-10"></i> One infinity loop,
-							54100</li>
-						<li><i class="fa fa-phone pr-10"></i> +00 1234567890</li>
-						<li><i class="fa fa-fax pr-10"></i> +00 1234567891</li>
+						<li><i class="fa fa-map-marker pr-10"></i> 서울시 강남구 비트빌</li>
+						<li><i class="fa fa-phone pr-10"></i> +82 01011223344</li>
 						<li><i class="fa fa-envelope-o pr-10"></i> your@email.com</li>
 					</ul>
 					<ul class="social-links">
 						<li class="facebook"><a target="_blank"
-							href="https://www.facebook.com/pages/HtmlCoder/714570988650168"><i
+							href="https://www.facebook.com"><i
 								class="fa fa-facebook"></i></a></li>
 						<li class="twitter"><a target="_blank"
 							href="https://twitter.com/HtmlcoderMe"><i
@@ -47,34 +42,47 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-sm-6">
+			
 				<div class="footer-content">
-					<form role="form" id="footer-form">
+					<form action="${pageContext.request.contextPath }/comments" id="footer-form">
+						<div class="form-group has-feedback" >
+	
+		
+						<div class="btn-group col-sm-6"  style="margin-bottom:1.5em" data-toggle="buttons">
+			
+			
+							 	<label class="btn btn-default" id="notiY">
+						
+							<input type="radio" name="kind" value="C" id="kind1" autocomplete="off"> 건의사항
+							</label>
+							 	<label class="btn btn-default active" id="notiN">
+							
+							<input type="radio" name="kind" value="E" id="kind2" autocomplete="off"> 수정요청
+							</label>
+			
+						</div>
+					</div>
+						<div class="col-sm-6">
 						<div class="form-group has-feedback">
 							<label class="sr-only" for="name2">Name</label> <input
-								type="text" class="form-control" id="name2" placeholder="Name"
-								name="name2" required> <i
+								type="text" class="form-control" id="name2" placeholder="제목"
+								name="title" required> <i
 								class="fa fa-user form-control-feedback"></i>
 						</div>
-						<div class="form-group has-feedback">
-							<label class="sr-only" for="email2">Email address</label> <input
-								type="email" class="form-control" id="email2"
-								placeholder="Enter email" name="email2" required> <i
-								class="fa fa-envelope form-control-feedback"></i>
-						</div>
+					
 						<div class="form-group has-feedback">
 							<label class="sr-only" for="message2">Message</label>
 							<textarea class="form-control" rows="8" id="message2"
-								placeholder="Message" name="message2" required></textarea>
+								placeholder="건의/의견 사항을 기재해주세요" name="contents" required></textarea>
 							<i class="fa fa-pencil form-control-feedback"></i>
 						</div>
-						<input type="submit" value="Send" class="btn btn-default">
+						<input type="submit" value="전송" class="btn btn-default">
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 <!-- .footer end -->
 
 <!-- .subfooter start -->
@@ -84,8 +92,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<p class="text-center">
-					Copyright © 2014 Worthy by <a target="_blank"
-						href="http://htmlcoder.me">HtmlCoder</a>.
+					Copyright © 2017 Created by <a target="_blank"
+						href="https://github.com/BigBengal/poorip">BigBengal</a>.
 				</p>
 			</div>
 		</div>

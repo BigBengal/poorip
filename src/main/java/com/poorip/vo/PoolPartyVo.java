@@ -14,7 +14,7 @@ public class PoolPartyVo {
 	private String poolComment;
 	private String poolPic;
 	private int ctySeq;
-	private String managerEmail;
+	private int managerUsrSeq;
 	private String poolPublicYn;
 	private String crtDate;
 	private String fromDate;
@@ -58,12 +58,13 @@ public class PoolPartyVo {
 	public void setCtySeq(int citySeq) {
 		this.ctySeq = citySeq;
 	}
-	public String getManagerEmail() {
-		return managerEmail;
+	public int getManagerUsrSeq() {
+		return managerUsrSeq;
 	}
-	public void setManagerEmail(String managerEmail) {
-		this.managerEmail = managerEmail;
+	public void setManagerUsrSeq(int managerUsrSeq) {
+		this.managerUsrSeq = managerUsrSeq;
 	}
+	
 	public String getPoolPublicYn() {
 		return poolPublicYn;
 	}
@@ -98,10 +99,11 @@ public class PoolPartyVo {
 	@Override
 	public String toString() {
 		return "PoolPartyVo [poolSeq=" + poolSeq + ", poolName=" + poolName + ", poolComment=" + poolComment
-				+ ", poolPic=" + poolPic + ", ctySeq=" + ctySeq + ", managerEmail=" + managerEmail + ", poolPublicYn="
+				+ ", poolPic=" + poolPic + ", ctySeq=" + ctySeq + ", managerUsrSeq=" + managerUsrSeq + ", poolPublicYn="
 				+ poolPublicYn + ", crtDate=" + crtDate + ", fromDate=" + fromDate + ", toDate=" + toDate + ", hit="
 				+ hit + ", ctyName=" + ctyName + "]";
 	}
+	
 	
 	
 	
