@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poorip.dto.JSONResult;
+import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.MainService;import com.poorip.service.SNSService;
 import com.poorip.service.UserService;
@@ -161,6 +162,7 @@ public class MainController {
 		return "redirect:/city/" + seq;
 	}
 	
+	@Auth
 	@RequestMapping("/sns")
 	public String mySNS( @AuthUser UserVo userVo,
 						 Model model ) {

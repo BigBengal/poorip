@@ -101,7 +101,57 @@ insert into
 								
 delete from post where post_seq = 49;
 
-select p.post_seq, title, contents, p.usr_seq, p.crt_date from post p, users u
+select count(*)
+		  from post
+		  where usr_seq =14;
+		  
+
+
+select p.post_seq,
+		   		 title,
+				 contents,
+		 		 p.usr_seq,
+				 p.crt_date
+			  from post p, users u
 	where p.USR_SEQ = u.USR_SEQ
-	and p.usr_seq = 14
-order by crt_date desc;
+	  and p.usr_seq = 14
+    order by crt_date desc
+	limit 0, 3;
+
+select rownum as rn, a.*
+	from ( select p.post_seq,
+		   		 title,
+				 contents,
+		 		 p.usr_seq,
+				 p.crt_date
+			  from post p, users u
+	where p.USR_SEQ = u.USR_SEQ
+	  and p.usr_seq = 14
+    order by crt_date desc) a;
+
+		 
+		 select a.POST_SEQ as postSeq, 
+				   a.title as title, 
+				   a.contents as contents, 
+				   a.CRT_DATE as crtDate, 
+				   a.TRV_SEQ as trvSeq 
+					   from post a, travel_info b 
+					   where a.TRV_SEQ = b.trv_seq 
+					   and a.REVIEW_PUB_YN='Y' and b.trv_seq=14
+				   order by crtDate desc
+				limit 1, 3;
+select * from post_pic;
+
+select max(post_seq)
+	from(select p.post_seq,
+				p.title,
+				p.contents,
+				p.review_pub_yn,
+				p.trv_seq,
+				p.HIDDEN,
+				pp.file_name,
+				pp.PATH,
+				pp.CRT_DATE
+					from  post p, post_pic pp
+			where p.usr_seq = 14);
+select max(p.post_seq) as postSeq from post p, post_pic pp where usr_seq = 14; 
