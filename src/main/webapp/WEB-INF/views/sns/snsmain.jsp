@@ -47,7 +47,7 @@
 
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
-<c:import url="/WEB-INF/views/include/ajax.jsp" />
+
 
 <!-- SNS CSS -->
 <style type="text/css">
@@ -62,7 +62,6 @@
 		border: 1px solid #bcbcbc;
 	}
 </style>
-<c:import url="/WEB-INF/views/include/sns-ajax.jsp" />
 </head>
 
 <body class="no-trans scroll-spy">
@@ -84,7 +83,7 @@
 	<!-- banner start -->
 	<!-- ================ -->
 	<div id="banner" class="banner">
-		<div class="banner-image">
+		<div class="banner-image-sns">
 			<div class="backstretch">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/mySNS.jpg">
@@ -150,7 +149,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
-
+	<c:import url="/WEB-INF/views/sns/sns-ajax.jsp" />
 	<script>
 		$(function() {
 			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({

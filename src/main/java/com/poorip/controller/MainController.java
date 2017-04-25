@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poorip.dto.JSONResult;
-import com.poorip.service.MainService;
+import com.poorip.security.AuthUser;
+import com.poorip.service.MainService;import com.poorip.service.SNSService;
 import com.poorip.service.UserService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
+import com.poorip.vo.UserVo;
 import com.poorip.web.util.WebUtil;
 
 @Controller
@@ -35,6 +37,8 @@ public class MainController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private SNSService snsService;
 	
 
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
@@ -158,8 +162,12 @@ public class MainController {
 	}
 	
 	@RequestMapping("/sns")
-	public String mySNS() {
-		return "/sns/snsmain";
+	public String mySNS( @AuthUser UserVo userVo,
+						 Model model ) {
+				
+		model.addAttribute( "travelVo", snsService.getTravelInfo() );
+		
+		return "sns/snsmain";
 	}
 
 }
