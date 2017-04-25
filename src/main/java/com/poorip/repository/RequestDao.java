@@ -13,7 +13,7 @@ public class RequestDao {
 	private SqlSession sqlSession;
 	
 	
-	public boolean insert(RequestVo requestvo){
-		return 1 == sqlSession.insert("request.insert", requestvo);
+	public boolean insert(RequestVo requestVo){
+		return 1 == sqlSession.insert("request.insert", requestVo);
 	}
 }
