@@ -6,11 +6,20 @@
 
 	<!-- 풀 파티 추가 -->
 	<insert id="insert"  parameterType="poolpartyvo">
+	<selectKey keyProperty="poolSeq" resultType="integer" order="BEFORE">
+			<![CDATA[
+			select auto_increment
+			  from information_schema.tables
+			 where table_schema='bengal'
+			   and table_name='pool_party'
+			]]>
+		</selectKey>
+		
 		<![CDATA[
 			insert into pool_party
-			(POOL_SEQ, POOL_NAME,  POOL_COMMENT,  POOL_PIC,  CITY_SEQ,  MANAGER_EMAIL,  POOL_PUBLIC_YN)
+			(POOL_SEQ, POOL_NAME,  POOL_COMMENT,  POOL_PIC,  cty_Seq,  MANAGER_USR_SEQ,  POOL_PUBLIC_YN)
 			values
-			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{citySeq }, #{managerEmail }, #{poolPublicYn } )
+			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{ctySeq }, #{managerUsrSeq }, #{poolPublicYn } )
 		]]>
 	</insert>
 	
@@ -21,8 +30,8 @@
 			       POOL_NAME as poolName,
 			       POOL_COMMENT as poolComment,
 			       POOL_PIC as poolPic,
-			       CITY_SEQ as citySeq,
-			       MANAGER_EMAIL as managerEmail,
+			       cty_Seq as ctySeq,
+			       MANAGER_USR_SEQ as managerUsrSeq,
 			       POOL_PUBLIC_YN as poolPublic_yn,
 			       CRT_DATE as crtDate
 			  FROM POOL_PARTY
@@ -37,7 +46,7 @@
 	 	    pool_name as poolName, 
 	 	    pool_comment as poolComment, 
 	 	    pool_pic as poolPic, 
-	 	    manager_email as managerEmail, 
+	 	    MANAGER_USR_SEQ as managerUsrSeq, 
  		    pool_public_yn as poolPublicYn, 
  		    from_date as fromDate, 
  		    to_date as toDate 
@@ -52,7 +61,7 @@
 	</select>
 	
 	<!-- 풀 파티 변경-->
-	<select id="update" parameterType="poolpartyvo">
+	<update id="update" parameterType="poolpartyvo">
 		<![CDATA[
 			UPDATE POOL_PARTY
 			   SET POOL_NAME = #{poolName }
@@ -67,14 +76,14 @@
 			   	,POOL_PIC  = #{poolPic }
 			   ]]>
 			</if>
-			<if test="citySeq != null">
+			<if test="ctySeq != null">
 			   <![CDATA[
-			   	,CITY_SEQ  = #{citySeq }
+			   	,cty_Seq  = #{ctySeq }
 			   ]]>
 			</if>  
-			<if test="managerEmail != null">
+			<if test="managerUsrSeq != null">
 			   <![CDATA[
-			   	,MANAGER_EMAIL  = #{managerEmail }
+			   	,MANAGER_USR_SEQ  = #{managerUsrSeq }
 			   ]]>
 			</if>    
 			 <if test="poolPublic_yn != null">
@@ -85,7 +94,7 @@
 			<![CDATA[ 
 			WHERE POOL_SEQ = #{poolSeq }
 		]]>
-	</select>
+	</update>
 	
 	<!-- 풀 파티 삭제 -->
 	<delete id="delete" parameterType="poolpartyvo">
