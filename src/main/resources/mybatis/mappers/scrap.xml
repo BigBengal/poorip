@@ -6,14 +6,14 @@
 	<!-- 새로운 스크랩 입력 -->
 	<insert id="insert" parameterType="scrapvo">
 		<![CDATA[
-			insert into scrap values(null, #{usrSeq}, #{trvSeq}, #{scpCitySeq}, now())
+			insert into scrap values(null, #{usrSeq}, #{trvSeq}, now())
 		]]>
 	</insert>
 	
 	<!-- 새로운 스크랩 입력 (공 클릭시)-->
 	<insert id="insertscrap" parameterType="scrapvo">
 		<![CDATA[
-			insert into scrap values(null, #{usrSeq}, #{trvSeq}, null, now())
+			insert into scrap values(null, #{usrSeq}, #{trvSeq}, now())
 		]]>
 	</insert>
 	
