@@ -1,11 +1,13 @@
 package com.poorip.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,15 +26,17 @@ public class SNSController {
 	
 	@Auth
 	@ResponseBody
-	@RequestMapping("/main")
-	public JSONResult searchPool( @AuthUser UserVo userVo,
-								  @ModelAttribute PostVo postVo,
-								  Model model ) {
-		postVo.setUsrSeq(userVo.getUsrSeq());
-		model.addAttribute( "travelVo", snsService.getTravelInfo() );
-		List<PostVo> postList = snsService.getpostList();
+	@RequestMapping("/main/{page}")
+	public JSONResult mySNS( @AuthUser UserVo userVo,
+							 @PathVariable ( "page" ) Integer page,
+							 @ModelAttribute PostVo postVo,
+							  Model model ) {
+		int usrSeq = userVo.getUsrSeq();
+		page = page * 3;
+		List<PostVo> map = snsService.getpostList(usrSeq, page);
 		
-		return JSONResult.success(postList);
+		System.out.println(page);
+		return JSONResult.success(map);
 	}
 	
 	

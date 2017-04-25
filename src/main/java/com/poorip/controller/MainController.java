@@ -35,8 +35,8 @@ public class MainController {
 	private MainService mainService;
 	
 	@Autowired
-	private SNSService snsService;	
-
+	private SNSService snsService;
+	
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) {

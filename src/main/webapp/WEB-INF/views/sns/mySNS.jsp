@@ -7,7 +7,7 @@
 <div class="row object-non-visible" data-animation-effect="fadeIn">
 	<div class="col-md-12">
 		<div class="filters text-center">
-			<form class="form-horizontal" action="${pageContext.request.contextPath}/sns/post/upload" id="postUpload" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" name="write-form" action="${pageContext.request.contextPath}/sns/post/upload" id="postUpload" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="title">제목</label>
 					<div class='col-sm-8'>
@@ -51,8 +51,9 @@
 					<div class="col-lg-3"></div>
 				</div>
 			</form>
-			<ul id="my-sns-list">
-			</ul>
+			<table id="my-sns-list">
+			</table>
+			
 		</div>
 	</div>
 </div>
