@@ -29,6 +29,9 @@
 <!-- Custom css -->
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
+<!-- Bootstrap toggle -->
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="/poorip/assets/bootstrap/js/moment.js"></script>
@@ -52,6 +55,8 @@
 <script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 <!-- Vaildation-->
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
+<!-- Bootstrap toggle -->
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <script type="text/javascript">
 // 	$(function() {
@@ -269,30 +274,38 @@ $(document).ready(function(){
 	<div class="form-group">
 		<label class="control-label col-sm-3" for="Noti">알람(Notification)</label>
 		
-		<div class="btn-group col-sm-7" data-toggle="buttons">
+		<div class="col-sm-2">
 			
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${user.usrNoti=='Y'}"> --%>
+<!-- 					<label class="btn btn-default active" id="notiY"> -->
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<!-- 				 	<label class="btn btn-default" id="notiY"> -->
+<%-- 				</c:otherwise> --%>
+				
+<%-- 			</c:choose> --%>
+<!-- 				<input type="radio" name="usrNoti" value="Y" id="noti1" autocomplete="off"> On -->
+<!-- 			</label> -->
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${user.usrNoti=='N'}"> --%>
+<!-- 					<label class="btn btn-default active" id="notiN"> -->
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<!-- 				 	<label class="btn btn-default" id="notiN"> -->
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
+<!-- 				<input type="radio" name="usrNoti" value="N" id="noti2" autocomplete="off"> Off -->
+				
+<!-- 			</label> -->
 			<c:choose>
 				<c:when test="${user.usrNoti=='Y'}">
-					<label class="btn btn-default active" id="notiY">
+					<input type="checkbox" name="usrNoti" value="Y" checked data-toggle="toggle">
 				</c:when>
 				<c:otherwise>
-				 	<label class="btn btn-default" id="notiY">
-				</c:otherwise>
-				
-			</c:choose>
-				<input type="radio" name="usrNoti" value="Y" id="noti1" autocomplete="off"> On
-			</label>
-			<c:choose>
-				<c:when test="${user.usrNoti=='N'}">
-					<label class="btn btn-default active" id="notiN">
-				</c:when>
-				<c:otherwise>
-				 	<label class="btn btn-default" id="notiN">
+					<input type="checkbox" name="usrNoti" value="Y" data-toggle="toggle">
 				</c:otherwise>
 			</c:choose>
-				<input type="radio" name="usrNoti" value="N" id="noti2" autocomplete="off"> Off
-			</label>
-			
 		</div>
 	</div>
 	

@@ -130,16 +130,13 @@ public class PoolPartyService {
 		}
 	}
 	
-	
 	//풀파티 초대 수락
 	public boolean approvePoolparty(int poolpartySeq, int userSeq){
 		PoolMemberVo poolmembervo = new PoolMemberVo();
 		poolmembervo.setPoolSeq(poolpartySeq);
 		poolmembervo.setUsrSeq(userSeq);
 		return poolMemberDao.approve(poolmembervo);
-		
 	}
-	
 	
 	//풀파티 초대 거절
 	public boolean rejectPoolparty(int poolpartySeq, int userSeq){

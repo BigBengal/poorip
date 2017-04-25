@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PoOrip에 오신것을 환영합니다!</title>
@@ -39,10 +39,10 @@
 <link
 	href="${pageContext.request.contextPath}/assets/css/animations.css"
 	rel="stylesheet">
+	
 <!-- Worthy core CSS file -->
 <link href="${pageContext.request.contextPath}/assets/css/style.css"
 	rel="stylesheet">
-
 
 <!-- Custom css -->
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
@@ -52,7 +52,7 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
-<c:import url="/WEB-INF/views/include/ajax.jsp" />
+<%-- <c:import url="/WEB-INF/views/include/ajax.jsp" /> --%>
 
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
@@ -92,24 +92,6 @@
 	</div>
 	<!-- banner end -->
 
-
-
-	<!-- member start -->
-	<!-- ================ -->
-<!-- 	<div class="section translucent-bg bg-image-2 pb-clear"> -->
-<%-- 		<c:import url="/WEB-INF/views/include/member.jsp" /> --%>
-<!-- 	</div>  -->
-	<!-- member end -->
-
-	<!-- finder start -->
-	<!-- ================ -->
-	<%-- <div class="default-bg space">
-		<div class="container">
-			<c:import url="/WEB-INF/views/include/finder.jsp" />
-		</div>
-	</div> --%>
-	<!-- finder end -->
-
 	<!-- footer start -->
 	<!-- ================ -->
 <!-- 	<footer id="footer"> -->
@@ -121,9 +103,6 @@
 
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
-	<!--  Datepicker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
@@ -147,14 +126,15 @@
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 
 	<!-- Initialization of Plugins -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath }/assets/js/template.js"></script> --%>
 
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
+	
 	<!-- date picker -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

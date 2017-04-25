@@ -70,7 +70,7 @@
 									<div id="profileDropdown" class="dropdown-content">
 							    		<a href="${pageContext.request.contextPath }/sns">내 SNS</a>
 							    		<a href="${pageContext.request.contextPath }/scrap/main">내 스크랩 정보</a>
-							    		<a href="${pageContext.request.contextPath }/mypool">내 풀파티</a>
+							    		<a href="${pageContext.request.contextPath }/poolparty">내 풀파티</a>
 							    		<a href="${pageContext.request.contextPath }/user/addinfo">사용자 정보 수정</a>
 							  		</div>
 						  		</li>

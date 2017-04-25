@@ -68,7 +68,7 @@ public class PoolPartyController {
 	
 	@Auth
 	@ResponseBody
-	@RequestMapping("/like")
+	@RequestMapping("/liketoggle")
 	public String ToggleLikePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
 								@AuthUser UserVo authUser
 								){

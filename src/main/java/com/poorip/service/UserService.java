@@ -115,7 +115,8 @@ public class UserService {
 			isOk = UpdateInfoHash(userVo);
 		
 		// 노티 수정
-		if( userVo.getUsrNoti() != null)
+		if( userVo.getUsrNoti() == null)
+			userVo.setUsrNoti("N");
 			isOk = UpdateNoti(userVo);
 		return isOk;
 	}

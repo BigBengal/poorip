@@ -104,8 +104,4 @@ public class PoolPartyVo {
 				+ hit + ", ctyName=" + ctyName + "]";
 	}
 	
-	
-	
-	
-	
 }
