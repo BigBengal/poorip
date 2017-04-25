@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="google-signin-client_id" content="124530211520-gtfp80s234icq65e85pn302nhlmpulku.apps.googleusercontent.com">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PoOrip에 오신것을 환영합니다!</title>
 <meta name="description"
@@ -58,9 +59,11 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
 <c:import url="/WEB-INF/views/include/ajax.jsp" />
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body class="no-trans">
+	
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
