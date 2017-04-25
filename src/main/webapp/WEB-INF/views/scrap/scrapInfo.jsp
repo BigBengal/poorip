@@ -5,8 +5,11 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <h1 style="text-align: center; margin-bottom: 50px;" >도시별 스크랩 정보입니다</h1>
-<h3 id="travel-date-info" style="text-align:center">${travelDuration.dateFrom } ${travelDuration.dateTo } 총 여행일 수는 ${travelDuration.dateDiff }일 입니다</h3>
-
+<c:if test="${travelDuration ne null }">
+<div style="margin-bottom:30px">
+<h3 id="travel-date-info" style="text-align:center">${travelDuration.dateFrom } ~ ${travelDuration.dateTo } 총 여행일 수는 ${travelDuration.dateDiff }일 입니다</h3>
+</div>
+</c:if>
 <div class="row object-non-visible" data-animation-effect="fadeIn">
 	<div class="col-md-12">
 		<div class="filters text-center">

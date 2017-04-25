@@ -196,8 +196,8 @@
 		
 	</script>
 
-	<c:forEach items="${sessionScope}" var="attr">
+	<%-- <c:forEach items="${sessionScope}" var="attr">
     ${attr.key}=${attr.value}<br>
-	</c:forEach>
+	</c:forEach> --%>
 </body>
 </html>
