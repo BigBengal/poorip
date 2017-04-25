@@ -5,6 +5,8 @@
 	pageEncoding="UTF-8"%>
 
 <%-- <link href="<c:url value='/resources/css/jquery-ui.css' />" rel="stylesheet" type="text/css"/> --%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$("#kwd").autocomplete({
@@ -36,7 +38,6 @@ $(function(){
 			$(location).attr('href','/poorip/city/'+ui.item.value);
 		}
     });
-
 });
 var render = function( vo, reviewNum, postSeq ){
 	
@@ -48,9 +49,7 @@ var render = function( vo, reviewNum, postSeq ){
 		
 	$("#review-"+reviewNum ).append(html);
 	console.log("PLLLLLLLLLLLLEASE" + reviewNum);
-
 }
-
 var renderpic = function(vo, reviewNum, postSeq) {
 	if(vo.path!='null'&&vo.path!=null) {
 		var htmlpic = "<a href=${pageContext.request.contextPath}/assets/images/pool-party.jpg data-lightbox='image-1' data-title='My caption' ><img src=${pageContext.request.contextPath}/assets/images/pool-party.jpg></a>" + vo.path ;
@@ -58,7 +57,6 @@ var renderpic = function(vo, reviewNum, postSeq) {
 	}
 	
 }
-
 function hasNull(target) {
     for (var member in target) {
         if (target[member] == null)
@@ -66,7 +64,6 @@ function hasNull(target) {
     }
     return false;
 }
-
 function send(trvSeq, reviewNum){
 	var likeIcon = document.getElementById("scrapTrvInfo-"+trvSeq);
 	console.log(likeIcon);
@@ -91,7 +88,6 @@ function send(trvSeq, reviewNum){
 			    alert("ajax 에러가 발생하였습니다.")
         }
     });
-
 	
 	$.ajax({
         url : "/poorip/reviews/" + trvSeq,
@@ -137,37 +133,4 @@ function send(trvSeq, reviewNum){
 		    });
 		$("#review-"+reviewNum ).empty();
 	}
-	
-$(".ScrapcityName").click(function (){
-	var ctyName = $(this).data('city-name');
-	console.log(ctyName);
-	var dateFormat = "mm/dd/yy", from = $("#fromDate-"+ctyName).datepicker({
-		defaultDate : "+1w",
-		changeMonth : true,
-		numberOfMonths : 2
-	}).on("change", function() {
-		to.datepicker("option", "minDate", getDate(this));
-
-	}), to = $("#toDate-"+ctyName).datepicker({
-		defaultDate : "+1w",
-		changeMonth : true,
-		numberOfMonths : 2
-	}).on("change", function() {
-		from.datepicker("option", "maxDate", getDate(this));
-		dateTo = getDate(this);
-	});
-
-	function getDate(element) {
-		var date;
-
-		try {
-			date = $.datepicker.parseDate(dateFormat, element.value);
-		} catch (error) {
-			date = null;
-		}
-		return date;
-	}
-		
-});
-
 </script>
