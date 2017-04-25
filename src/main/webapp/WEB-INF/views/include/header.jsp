@@ -71,7 +71,7 @@
 									<div id="profileDropdown" class="dropdown-content">
 							    		<a href="${pageContext.request.contextPath }/user/addinfo">사용자 정보 수정</a>
 							    		<a href="${pageContext.request.contextPath }/scrap/main">내 스크랩 정보</a>
-							    		<a href="#">Link 3</a>
+							    		<a href="${pageContext.request.contextPath }/sns">내 sns</a>
 							  		</div>
 						  		</li>
 								<li><a href=#><img onclick="openOptions()" id="loginpic" src="${authUser.usrProfile}"></a></li>

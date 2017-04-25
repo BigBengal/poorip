@@ -100,3 +100,8 @@ insert into
 					now());	
 								
 delete from post where post_seq = 49;
+
+select p.post_seq, title, contents, p.usr_seq, p.crt_date from post p, users u
+	where p.USR_SEQ = u.USR_SEQ
+	and p.usr_seq = 14
+order by crt_date desc;

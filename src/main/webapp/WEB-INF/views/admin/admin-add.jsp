@@ -30,32 +30,12 @@
 		border: 1px solid #bcbcbc;
 	}
 	</style>
-	
-	<!-- Bootstrap core CSS -->
-	<link
-		href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-		rel="stylesheet">
-	<script>
-		function submitForm() {
 
-			  var paperElement = document.getElementById("file");
+<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+	rel="stylesheet">
 
-			  if (!paperElement.value) {
-			    console.log("No files selected.")
-			    return;
-			  }
-			  var form = document.getElementById("postUpload");
-			  var formData = new FormData(form);
-			  var xhr = getXMLHTTP();
-			  xhr.open('POST', "submitFiles");
-			  xhr.onreadystatechange = function() {
-			    if (xhr.readyState == 4 && xhr.status == 200) {
-			      console.log("Files Uploaded")
-			    }
-			  }
-			  xhr.send(formData);
-			}
-	</script>
 </head>
 <body>
 	<div id="container">
@@ -71,10 +51,6 @@
 			      			<td class="t">여행정보이름</td>
 			      			<td><input type="text" size="40" name="name"></td>
 			      		</tr>
-<!-- 			      		<tr> -->
-<!-- 			      			<td class="t">여행지 사진</td> -->
-<%-- 			      			<td><img src="${pageContext.request.contextPath}/list/${tvo.picture }"></td>      			 --%>
-<!-- 			      		</tr>      		 -->
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
 			      			<td><input type="file" name="file" id="logo-file"></td>      			
@@ -82,7 +58,7 @@
 			      		<tr>
 			      			<td class="t">여행 정보 내용</td>
 			      			<td>
-			      			<textarea rows="4" cols="50"></textarea>
+			      			<textarea rows="4" cols="50" name="contents"></textarea>
 			      			</td>
 			      		</tr>
 			      		<tr>
@@ -100,7 +76,6 @@
 										<option value="${cateVo.catSeq }">${cateVo.catName }</option>
 									</c:forEach>
 							</select>
-								
 							</td>
 						</tr>
 						<tr>
@@ -110,7 +85,6 @@
 										<option value="${cityVo.ctySeq }">${cityVo.ctyName }</option>
 									</c:forEach>
 							</select>
-								
 							</td>
 			      		</tr>
 						<tr>
@@ -128,6 +102,34 @@
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
 			      			<td class="s"><input type="submit" value="여행지 추가"></td>      			
+			      		</tr>           		
+			      	</table>
+				</form>
+			</div>
+			
+			<!-------------------------------------------------- 여행지 사진 추가 ---------------------------------------------------------->
+			<div id="content" class="full-screen">
+				<form action="${pageContext.request.contextPath}/admin/upload/travelPic" id="travelPicUpload" method="post" enctype="multipart/form-data">
+	 		      	<table class="admin-config">
+	 		      		<tr>
+	 		      			<th><h3>여행지 대표 사진 등록</h3></th>
+	 		      		</tr>
+			      		<tr>
+			      			<td class="t">여행지 사진</td>
+			      			<td><input type="file" name="travelfile" multiple="multiple"></td>   			
+			      		</tr>
+			      		<tr>
+			      			<td class="t">여행지 정보</td>
+			      			<td><select name="trvSeq1">
+									<c:forEach items="${travelVo }" var="travelVo" varStatus="status">
+										<option value="${travelVo.trvSeq }">${travelVo.name }</option>
+									</c:forEach>
+							</select>
+							</td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">&nbsp;</td>
+			      			<td class="s"><input type="submit" value="사진 등록" ></td>      			
 			      		</tr>           		
 			      	</table>
 				</form>
@@ -158,12 +160,17 @@
 			      			<td><input type="text" size="40" name="reviewPubYn"></td>
 			      		</tr>
 			      		<tr>
-			      			<td class="t">여행지 정보 seq</td>
-			      			<td><input type="text" size="40" name="trvSeq1"></td>
+			      			<td class="t">여행지 정보</td>
+			      			<td><select name="trvSeq1">
+									<c:forEach items="${travelVo }" var="travelVo" varStatus="status">
+										<option value="${travelVo.trvSeq }">${travelVo.name }</option>
+									</c:forEach>
+							</select>
+							</td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
-			      			<td class="s"><input type="submit" value="후기 추가" onclick="upload()"></td>      			
+			      			<td class="s"><input type="submit" value="후기 추가"></td>      			
 			      		</tr>           		
 			      	</table>
 				</form>

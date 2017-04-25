@@ -1,7 +1,7 @@
 -------------------------------country--------------------------------
 select * from country;
 
-insert into country values (null, '프랑스', now());
+insert into country values (null, '그리스', now());
 
 delete from country where ctr_name = '프랑스';
 delete from country where ctr_name = '이탈리아';
@@ -72,7 +72,7 @@ from travel_info;
 DELETE FROM travel_info WHERE NAME = '에펠탑';
 
 -------------------------------travelinfoPic--------------------------------
-select * from travel_info_pic;
+select * from travel_info;
 
 -- insert
 insert into travel_info_pic values(null, 'D:\bigdate2017', 'TourEiffel.png', 4, now());
@@ -84,3 +84,7 @@ delete from travel_info_pic where FILE_NAME = 'TourEiffel.png';
 select tip.path as path, tip.file_Name as fileName
 	from travel_info_pic tip, travel_info ti
 where ti.TRV_SEQ = tip.TRV_SEQ;
+
+select * from scrap;
+select * from users;
+select * from travel_info_pic;

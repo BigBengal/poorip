@@ -156,5 +156,10 @@ public class MainController {
 			return "redirect:/";
 		return "redirect:/city/" + seq;
 	}
+	
+	@RequestMapping("/sns")
+	public String mySNS() {
+		return "/sns/snsmain";
+	}
 
 }

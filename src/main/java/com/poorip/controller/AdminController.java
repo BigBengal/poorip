@@ -1,7 +1,5 @@
 package com.poorip.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,6 +27,7 @@ import com.poorip.vo.CityVo;
 import com.poorip.vo.CountryVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
+import com.poorip.vo.TravelInfoPicVo;
 import com.poorip.vo.TravelInfoVo;
 import com.poorip.vo.UserVo;
 
@@ -57,8 +56,9 @@ public class AdminController {
 	@RequestMapping("/addInfo")
 	public String addTravelInfoForm( Model model ) {
 		
-		model.addAttribute( "cateVo", adminService.getCategoryName());
-		model.addAttribute( "cityVo", adminService.getCityName());
+		model.addAttribute( "cateVo", adminService.getCategoryName() );
+		model.addAttribute( "cityVo", adminService.getCityName()) ;
+		model.addAttribute( "travelVo", adminService.getTravelName() );
 		model.addAttribute( "baseURL", adminService.BASE_URL );
 		return "/admin/admin-add";
 	}
@@ -67,7 +67,23 @@ public class AdminController {
 	public String addTravelInfo( @ModelAttribute TravelInfoVo travelInfoVo,
 								 @RequestParam("file") MultipartFile multipartFile,
 								 Model model ) {
-		adminService.addInfo( travelInfoVo, multipartFile );
+		adminService.addtarvelInfo( travelInfoVo, multipartFile );
+		
+		return "redirect:/admin/basic";
+	}
+	
+	@RequestMapping("/upload/travelPic")
+	public String addTravelPic( @ModelAttribute TravelInfoPicVo travelInfoPicVo,
+								@RequestParam ("trvSeq1") int trvSeq,
+								MultipartHttpServletRequest request,
+								Model model) throws IOException {
+		System.out.println(travelInfoPicVo);
+		travelInfoPicVo.setTrvSeq( trvSeq );
+		System.out.println(trvSeq);
+		List< MultipartFile > Travelfiles = request.getFiles( "travelfile" );
+		System.out.println(Travelfiles);
+		System.out.println(travelInfoPicVo);
+		adminService.addTravelPic( travelInfoPicVo, Travelfiles );
 		
 		return "redirect:/admin/basic";
 	}
@@ -82,22 +98,6 @@ public class AdminController {
 			return JSONResult.fail("DB error");
 	}
 	
-//	@RequestMapping("/upload/post")
-//	public String addPost( @ModelAttribute PostVo postVo,
-//						   @ModelAttribute PostPicVo postPicVo,
-//						   @RequestParam("trvSeq1") int trvSeq,
-//						   @RequestParam("file") MultipartFile multipartFile,
-//						   @AuthUser UserVo authUser,
-//						   Model model ) {
-//		postVo.setUsrSeq( 14 );
-//		postVo.setTrvSeq( trvSeq );
-//		String fileName = multipartFile.getOriginalFilename();
-//		postPicVo.setPath( "D:/postupload/" + fileName );
-//		adminService.addPost( postVo, postPicVo, multipartFile );
-//		
-//		return "redirect:/admin/basic";
-//	}
-	
 	@RequestMapping("/upload/post")
 	public String addPost( @ModelAttribute PostVo postVo,
 						   @RequestParam("trvSeq1") int trvSeq,
@@ -108,13 +108,6 @@ public class AdminController {
 		postVo.setUsrSeq( 14 );
 		postVo.setTrvSeq( trvSeq );
 		List< MultipartFile > files = request.getFiles( "file" );
-//		try {
-//			saveFileToServer( files );
-//			
-//		} catch( Exception e ) {
-//			return "error";
-//		}
-//		postPicVo.setPath( "D:/postupload" + files.get(1).getName() );
 		adminService.addPost( postVo, files );
 		
 		return "redirect:/admin/basic";

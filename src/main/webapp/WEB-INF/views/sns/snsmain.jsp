@@ -1,9 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,9 +12,6 @@
 <meta name="description"
 	content="Worthy a Bootstrap-based, Responsive HTML5 Template">
 <meta name="author" content="htmlcoder.me">
-
-<!-- Date Picker -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Mobile Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,24 +41,31 @@
 <link href="${pageContext.request.contextPath}/assets/css/style.css"
 	rel="stylesheet">
 
-
 <!-- Custom css -->
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
 
-<!-- Date Picker css -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
-
-
 <!-- Reviews -->
-<link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
 <c:import url="/WEB-INF/views/include/ajax.jsp" />
+
+<!-- SNS CSS -->
+<style type="text/css">
+
+	th, td {
+		padding: 5px;
+	}
+	
+	table {
+		border-spacing: 5px;
+		width: 100%;
+		border: 1px solid #bcbcbc;
+	}
+</style>
+<c:import url="/WEB-INF/views/include/sns-ajax.jsp" />
 </head>
 
-<body class="no-trans">
+<body class="no-trans scroll-spy">
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -82,48 +87,29 @@
 		<div class="banner-image">
 			<div class="backstretch">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg">
+					src="${pageContext.request.contextPath }/assets/images/mySNS.jpg">
 			</div>
 		</div>
 		<div class="banner-caption">
 			<div class="container">
-				<c:import url="/WEB-INF/views/include/banner.jsp" />
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 object-non-visible"
+						data-animation-effect="fadeIn">
+						<h1 class="text-center">
+							혜영's <span>Travel Story</span>
+						</h1>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<!-- banner end -->
 
-
-	<!-- travel-Info start -->
+	<!-- mySNS start -->
 	<!-- ================ -->
-	<div class="section">
-		<div class="container">
-			<c:import url="/WEB-INF/views/include/travelInfo.jsp" />
-		</div>
+	<div id="mySNS" class="mySNS">
+		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 	</div>
-	<!-- travel-Info end -->
-
-	<!-- member start -->
-	<!-- ================ -->
-	<div class="section translucent-bg bg-image-2 pb-clear">
-		<c:import url="/WEB-INF/views/include/member.jsp" />
-	</div>
-	<!-- member end -->
-
-	<!-- finder start -->
-	<!-- ================ -->
-	<div class="default-bg space">
-		<div class="container">
-			<c:import url="/WEB-INF/views/include/finder.jsp" />
-		</div>
-	</div>
-	<!-- finder end -->
-
-	<!-- footer start -->
-	<!-- ================ -->
-	<footer id="footer">
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</footer>
 	<!-- footer end -->
 
 	<!-- JavaScript files placed at the end of the document so the pages load faster
@@ -163,8 +149,7 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
-	<script
-		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 
 	<script>
 		$(function() {
@@ -191,13 +176,10 @@
 				}
 
 				return date;
-			}		
+			}
 		});
-		
+
 	</script>
 
-	<c:forEach items="${sessionScope}" var="attr">
-    ${attr.key}=${attr.value}<br>
-	</c:forEach>
 </body>
 </html>
