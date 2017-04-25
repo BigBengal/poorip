@@ -13,23 +13,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poorip.dto.JSONResult;
+import com.poorip.security.Auth;
+import com.poorip.security.AuthUser;
 import com.poorip.service.PoolPartyService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.UserVo;
 
 @Controller
 @RequestMapping("/poolparty")
 public class PoolPartyController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PoolPartyController.class);
 	
 	@Autowired
 	private PoolPartyService poolPartyService;
 	
-	@RequestMapping("/search")
+	@RequestMapping(value={""})
 	public String searchPool() {
 		
-		return "/mainpage/poolMain";
+		return "/poolparty/poolMain";
 	}
 
 	
@@ -53,6 +56,36 @@ public class PoolPartyController {
 		return JSONResult.success(poolList);
 	}
 	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/make")
+	public String MakePoolParty(@RequestParam(value="usrSeq",required=true) int userSeq,
+								@AuthUser UserVo authUser
+								){
+		int poolpartyNum = poolPartyService.createPoolparty(authUser, userSeq);
+		return "OK "+ poolpartyNum;
+	}
 	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/like")
+	public String ToggleLikePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
+								@AuthUser UserVo authUser
+								){
+		
+		poolPartyService.togglePoolparty(poolpartySeq, authUser);
+		return "OK";
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/invite")
+	public String invitePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
+								@RequestParam(value="usrSeq",required=true) int usrSeq
+								){
+		
+		poolPartyService.enterPoolparty(poolpartySeq, usrSeq, false);
+		return "OK";
+	}
 
 }

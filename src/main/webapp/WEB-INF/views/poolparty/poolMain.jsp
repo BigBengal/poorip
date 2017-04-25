@@ -86,7 +86,7 @@
 		</div>
 		<div class="banner-caption">
 			<div class="container">
-				<c:import url="/WEB-INF/views/mainpage/searchForm.jsp" />
+				<c:import url="/WEB-INF/views/poolparty/searchForm.jsp" />
 			</div>
 		</div>
 	</div>

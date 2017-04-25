@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="poollike">
+
+
+	<!-- 풀 라이크 추가 -->
+	<insert id="insert"  parameterType="poollikevo">
+		<![CDATA[
+			insert into POOL_LIKE 
+			(POOL_LIKE_SEQ, POOL_SEQ, USR_SEQ)
+			values
+			(#{poolLikeSeq }, #{poolSeq }, #{usrSeq })
+		]]>
+	</insert>
+	
+	<!-- 풀 라이크 삭제 -->
+	<delete id="delete" parameterType="poollikevo">
+		<![CDATA[
+			delete 
+			  from POOL_LIKE
+			 where POOL_SEQ = #{poolSeq }
+			   and USR_SEQ  = #{usrSeq } 
+		]]>
+	</delete>
+	
+	<!-- 풀 라이크 조회 -->
+	<select id="select" resultType="integer" parameterType="poollikevo">
+		<![CDATA[
+			select count(*)
+			  from POOL_LIKE
+			 where POOL_SEQ = #{poolSeq }
+			   and USR_SEQ  = #{usrSeq } 
+		]]>
+	</select>
+	
+</mapper>
