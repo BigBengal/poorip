@@ -92,8 +92,9 @@ public class ScrapController {
 	@Auth
 	@ResponseBody
 	@RequestMapping("/scrapSave/{ctySeq}")
-	public JSONResult saveTravelDate(@ModelAttribute ScrapCityVo scrapCityVo, @PathVariable ("ctySeq") int ctySeq, @AuthUser UserVo userVo) {
+	public JSONResult saveTravelDate(@ModelAttribute ScrapCityVo scrapCityVo, @PathVariable ("ctySeq") String ctySeq1, @AuthUser UserVo userVo) {
 		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+		int ctySeq = Integer.parseInt(ctySeq1);
 		scrapCityVo.setCtySeq(ctySeq);
 		if(scrapCityVo.getDateFrom()==null||scrapCityVo.getDateFrom().isEmpty()||scrapCityVo.getDateTo()==null) {
 			return JSONResult.fail("no-data");
@@ -112,8 +113,9 @@ public class ScrapController {
 	@Auth
 	@ResponseBody
 	@RequestMapping("/showDate")
-	public JSONResult showDate(@RequestParam ("ctySeq") int ctySeq, @AuthUser UserVo userVo ) {
+	public JSONResult showDate(@RequestParam ("ctySeq") String ctySeq1, @AuthUser UserVo userVo ) {
 		ScrapCityVo scrapCityVo = new ScrapCityVo();
+		int ctySeq = Integer.parseInt(ctySeq1);
 		scrapCityVo.setCtySeq(ctySeq);
 		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
 		ScrapCityVo scrapDate = scrapCityService.select(scrapCityVo);
