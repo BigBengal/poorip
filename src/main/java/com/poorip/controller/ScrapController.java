@@ -21,6 +21,7 @@ import com.poorip.vo.ReviewVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
 import com.poorip.vo.UserVo;
+import com.poorip.web.util.WebUtil;
 
 @Controller
 @RequestMapping("/scrap")
@@ -38,15 +39,29 @@ public class ScrapController {
 		List<ReviewVo> scrapList = scrapService.showScraps(userVo.getUsrSeq());
 		List<ScrapCityVo> cityList = scrapCityService.showCity(userVo.getUsrSeq());
 		List<ScrapCityVo> dateList = new ArrayList<ScrapCityVo>();
+		ScrapCityVo travelDuration = new ScrapCityVo();
+		
 		for(int i=0; i<cityList.size(); i++ ) {
 			ScrapCityVo scrapCityVo = new ScrapCityVo();
 			scrapCityVo.setCtySeq(cityList.get(i).getCtySeq());
 			scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+			if(scrapCityService.select(scrapCityVo)==null) {
+				model.addAttribute("dateList", dateList);
+				model.addAttribute("cityList", cityList);
+				model.addAttribute("scrapList", scrapList);
+				if(scrapCityService.showTravelDuration(userVo.getUsrSeq())!=null) {
+					travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
+					model.addAttribute("travelDuration", travelDuration);
+					System.out.println(travelDuration);
+				}
+				return "/scrap/scrapMain";
+			}
+			
 			dateList.add(scrapCityService.select(scrapCityVo));
-		}
-		
-		System.out.println("yeeeeee"+ dateList);
-		
+			
+			}
+		travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
+		model.addAttribute("travelDuration", travelDuration);
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("cityList", cityList);
 		model.addAttribute("scrapList", scrapList);
@@ -126,6 +141,15 @@ public class ScrapController {
 		}
 		
 		return JSONResult.success(scrapDate);
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/showDuration")
+	public JSONResult showDuration(@AuthUser UserVo userVo) {
+		ScrapCityVo travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
+		
+		return JSONResult.success(travelDuration);
 	}
 	
 

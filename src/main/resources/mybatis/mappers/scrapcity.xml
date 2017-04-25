@@ -24,4 +24,11 @@
 		]]>
 	</select>
 
+	<!-- 도시별 날짜 표시 -->
+	<select id="selecttrvlduration" resultType="scrapcityvo" parameterType="scrapcityvo">
+		<![CDATA[	
+	select min(date_from) as dateFrom, max(date_to) as dateTo, datediff(max(date_to), min(date_from)) as dateDiff from scrap_city where usr_seq =#{usrSeq}
+	]]>
+	</select>
+
 </mapper>

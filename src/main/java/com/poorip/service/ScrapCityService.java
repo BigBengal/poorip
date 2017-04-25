@@ -29,4 +29,8 @@ public class ScrapCityService {
 	public boolean updateDate(ScrapCityVo scrapCityVo) {
 		return scrapCityDao.update(scrapCityVo);
 	}
+	
+	public ScrapCityVo showTravelDuration(int usrSeq) {
+		return scrapCityDao.showTravelDuration(usrSeq);
+	}
 }

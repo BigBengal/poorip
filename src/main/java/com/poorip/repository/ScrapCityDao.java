@@ -37,5 +37,9 @@ public class ScrapCityDao {
 		return 1== sqlSession.update("scrapcity.update", scrapcityvo);
 	}
 	
+	public ScrapCityVo showTravelDuration (int usrSeq) {
+		return sqlSession.selectOne("scrapcity.selecttrvlduration", usrSeq);
+	}
+	
 	
 }

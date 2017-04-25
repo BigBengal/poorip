@@ -5,6 +5,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <h1 style="text-align: center; margin-bottom: 50px;" >도시별 스크랩 정보입니다</h1>
+<h3 id="travel-date-info" style="text-align:center">${travelDuration.dateFrom } ${travelDuration.dateTo } 총 여행일 수는 ${travelDuration.dateDiff }일 입니다</h3>
+
 <div class="row object-non-visible" data-animation-effect="fadeIn">
 	<div class="col-md-12">
 		<div class="filters text-center">
@@ -37,9 +39,11 @@
 					</form>
 					<c:forEach var="dateList" items="${dateList }" varStatus="status">
 					<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
-					<h1 id="scrap-date-info-${cityList.ctySeq }">${dateList.dateFrom }  ~ ${dateList.dateTo }</h1>
+					<h2 id="scrap-date-info-${cityList.ctySeq }"> ${dateList.dateFrom }  ~ ${dateList.dateTo }</h2>
 					</c:if>
 					</c:forEach>
+					<h2 id="scrap-date-info-${cityList.ctySeq }"></h2>
+					
 				</div>
 
 

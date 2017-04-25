@@ -9,8 +9,15 @@ public class ScrapCityVo {
 	private int ctySeq;
 	private int usrSeq;
 	private String ctyName;
+	private int dateDiff;
 	
 	
+	public int getDateDiff() {
+		return dateDiff;
+	}
+	public void setDateDiff(int dateDiff) {
+		this.dateDiff = dateDiff;
+	}
 	public int getCtySeq() {
 		return ctySeq;
 	}
@@ -57,7 +64,8 @@ public class ScrapCityVo {
 	@Override
 	public String toString() {
 		return "ScrapCityVo [scpCitySeq=" + scpCitySeq + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", crtDate="
-				+ crtDate + ", ctySeq=" + ctySeq + ", usrSeq=" + usrSeq + ", ctyName=" + ctyName + "]";
+				+ crtDate + ", ctySeq=" + ctySeq + ", usrSeq=" + usrSeq + ", ctyName=" + ctyName + ", dateDiff="
+				+ dateDiff + "]";
 	}
 	
 	
