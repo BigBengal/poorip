@@ -42,7 +42,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	
 	@RequestMapping("/basic")
 	public String adminBasic( Model model) {
 		model.addAttribute( "travelinfoVo", adminService.getTravelInfo() );

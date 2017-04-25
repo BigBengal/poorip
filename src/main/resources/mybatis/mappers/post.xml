@@ -30,7 +30,7 @@
 						#{usrSeq }, 
 						#{trvSeq },
 						now(),
-						'N')
+						#{hidden })
 		]]>
 	</insert>
 	
@@ -104,11 +104,19 @@
 	
 	<select id="getAddPostList" resultType="reviewvo" parameterType="integer">
 		<![CDATA[
-			select
-				max(p.post_seq) as postSeq
-					from post p,
-						 post_pic pp
-			where usr_seq = #{usrSeq }
+			select p.post_seq as postSeq,
+				   title,
+				   contents,
+				   path,
+				   file_name as fileName,
+				   p.crt_date as crtDate
+				   		from post p, post_pic pp
+			   where p.post_seq = pp.post_seq
+				  and p.usr_seq = #{usrSeq }
+			      and pp.post_seq = (select max(post.post_seq) as postSeq
+				  									from post post, post_pic postpic
+										where post.POST_SEQ = postpic.POST_SEQ
+										  and post.usr_seq = #{usrSeq })
 		]]>
 	</select>
 

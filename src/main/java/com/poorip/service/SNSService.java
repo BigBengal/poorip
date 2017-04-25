@@ -45,6 +45,7 @@ public class SNSService {
 		boolean postPicReturn = true;
 		
 		String pathName = POST_SAVE_PATH + "/" + postVo.getUsrSeq() +"/" + postVo.getTrvSeq();
+		
 		for ( int i=0; i < postUploadFiles.size(); i++ ) {
 			File file = new File( pathName );
 			
@@ -85,6 +86,7 @@ public class SNSService {
 	}
 
 	public List<ReviewVo> getAddPostList(int usrSeq) {
+		System.out.println(usrSeq);
 		return snsDao.getAddPostList( usrSeq );
 	}
 

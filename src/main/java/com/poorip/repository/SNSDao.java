@@ -46,7 +46,7 @@ public class SNSDao {
 	}
 
 	public List<ReviewVo> getAddPostList(int usrSeq) {
-		return sqlSession.selectOne( "post.getAddPostList", usrSeq );
+		return sqlSession.selectList( "post.getAddPostList", usrSeq );
 	}
 
 }

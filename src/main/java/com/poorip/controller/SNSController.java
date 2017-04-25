@@ -53,13 +53,12 @@ public class SNSController {
 		
 		postVo.setUsrSeq( userVo.getUsrSeq() );
 		postVo.setTrvSeq( trvSeq );
-		List<MultipartFile> postUploadFiles = request.getFiles( "postUploadFiles" );
+		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
 		snsService.addPost( postVo, postUploadFiles );
-		List<ReviewVo> review = snsService.getAddPostList( postVo.getUsrSeq() );
 		
+		List<ReviewVo> review = snsService.getAddPostList( postVo.getUsrSeq() );
+		System.out.println(review);
 		return JSONResult.success( review );
 	}
-	
-	
 
 }

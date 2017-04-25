@@ -8,12 +8,15 @@ public class PostVo {
 	private int usrSeq;
 	private int trvSeq;
 	private String crtDate;
+	private String hidden;
 		
 	@Override
 	public String toString() {
 		return "PostVo [postSeq=" + postSeq + ", title=" + title + ", contents=" + contents + ", reviewPubYn="
-				+ reviewPubYn + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", crtDate=" + crtDate + "]";
+				+ reviewPubYn + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", crtDate=" + crtDate + ", hidden="
+				+ hidden + "]";
 	}
+	
 	public int getPostSeq() {
 		return postSeq;
 	}
@@ -55,6 +58,12 @@ public class PostVo {
 	}
 	public void setCrtDate(String crtDate) {
 		this.crtDate = crtDate;
+	}
+	public String getHidden() {
+		return hidden;
+	}
+	public void setHidden(String hidden) {
+		this.hidden = hidden;
 	}
 	
 	
