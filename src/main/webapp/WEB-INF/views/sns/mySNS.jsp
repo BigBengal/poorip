@@ -23,9 +23,9 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="option">공개여부</label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<input type="radio" name="reviewPubYn" value="Y" id="option1" autocomplete="on"> 공개
-						<input type="radio" name="reviewPubYn" value="N" id="option2" autocomplete="off"> 비공개
+					<div class="btn-group col-sm-7" data-toggle="buttons">
+						<input type="radio" name="reviewPubYn" value="Y" id="reviewPubYn1" autocomplete="off"> On
+						<input type="radio" name="reviewPubYn" value="N" id="reviewPubYn2" autocomplete="off"> Off
 					</div>
 				</div>
 				<div class="form-group">

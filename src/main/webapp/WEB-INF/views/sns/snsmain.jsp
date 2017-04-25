@@ -46,12 +46,12 @@
 	rel="stylesheet">
 
 <!-- Reviews -->
-<link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
+	rel="stylesheet">
 
 
 <!-- SNS CSS -->
 <style type="text/css">
-
 	th, td {
 		padding: 5px;
 	}
