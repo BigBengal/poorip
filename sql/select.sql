@@ -188,3 +188,13 @@ select file_name as fileName
 			  and p.usr_seq = 14
 			order by p.crt_date desc
 			limit 0, 18;
+			
+			select p.post_seq as postSeq,
+				   title,
+				   contents,
+				   p.usr_seq as usrSeq,
+				   p.crt_date as crtDate
+				from post p, pool_post pp
+			where p.POST_SEQ = pp.POST_SEQ
+			  and pp.POOL_SEQ = 10
+	order by p.crt_date desc;

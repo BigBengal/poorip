@@ -52,5 +52,9 @@ public class SNSDao {
 	public List<PostPicVo> getpostPicList(int postSeq) {
 		return sqlSession.selectList( "postpic.getpostPicList", postSeq );
 	}
+	
+	public List<ReviewVo> getPostListbyPoolSeq( int poolSeq ) {
+		return sqlSession.selectList( "post.getAddPostList", poolSeq );
+	}
 
 }
