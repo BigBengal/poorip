@@ -117,6 +117,9 @@ $(document).ready(function(){
 		</h5>
 		</div>
 		</div>
+		
+		${ poolpost }
+		
 	</div>
 	
 	<div class="col-md-2 hidden-xs">

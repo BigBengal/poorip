@@ -17,6 +17,7 @@ import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.PoolPartyService;
+import com.poorip.service.SNSService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.UserVo;
@@ -29,6 +30,10 @@ public class PoolPartyController {
 	
 	@Autowired
 	private PoolPartyService poolPartyService;
+	
+	@Autowired
+	private SNSService sNSService;
+	
 	
 	@RequestMapping(value={""})
 	public String searchPool(Model model) {
@@ -48,6 +53,10 @@ public class PoolPartyController {
 		
 		// 풀 맴버
 		model.addAttribute("poolmember", poolPartyService.getPoolMembers(poolSeq));
+
+		// 풀 포스트
+		model.addAttribute("poolpost", sNSService.getPostListbyPoolSeq(poolSeq));
+				
 		
 		return "/poolparty/poolparty_detail";
 	}
