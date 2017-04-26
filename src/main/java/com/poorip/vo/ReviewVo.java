@@ -21,6 +21,7 @@ public class ReviewVo {
 	private String mapURL;
 	private String contact;
 	private String reviewNum;
+	private String hidden;
 	
 	public String getReviewNum() {
 		return reviewNum;
@@ -136,6 +137,13 @@ public class ReviewVo {
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
+	public String getHidden() {
+		return hidden;
+	}
+	public void setHidden(String hidden) {
+		this.hidden = hidden;
+	}
+	
 	@Override
 	public String toString() {
 		return "ReviewVo [postPicSeq=" + postPicSeq + ", path=" + path + ", fileName=" + fileName + ", postSeq="
@@ -143,7 +151,7 @@ public class ReviewVo {
 				+ reviewPubYn + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", name=" + name + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", ctySeq=" + ctySeq + ", ctyName=" + ctyName
 				+ ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", reviewNum=" + reviewNum
-				+ "]";
+				+ ", hidden=" + hidden + "]";
 	}
 	public String getCtyName() {
 		return ctyName;
