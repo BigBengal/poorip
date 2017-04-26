@@ -66,7 +66,7 @@
 <script>
 $(document).ready(function(){
 	var $alink = $("#navbar-collapse-1 ul li a");
-	for(var i=0;i<4;i++){
+	for(var i=0;i<2;i++){
 		var $ori = $alink.eq(i);
 		var oriLink = $ori.attr("href")
 		$ori.attr("href","/poorip/"+oriLink);	 
@@ -143,8 +143,9 @@ $(document).ready(function(){
 	 $("form[name='addinfo']").removeAttr('novalidate');
 	$( function() {
 		    $( "#datetimepicker1" ).datepicker({
-		    	dateFormat: "yy/mm/dd",
+		    	dateFormat: 'yy/mm/dd',
 // 		    	altFormat: "yy-mm-dd",
+ 				language: 'KO',
 	            showOtherMonths: true,
 	            selectOtherMonths: true,
 	            autoclose: true,
@@ -244,7 +245,7 @@ $(document).ready(function(){
 		
 		<c:choose>
 			<c:when test="${user.usrBd == null}" >
-				<div class='date col-sm-7' id='datetimepicker1'>
+				<div class='date col-sm-7' id='datetimepicker1' data-date-format="yyyy/mm/dd">
                     <input type='text' class="form-control" name="usrBd" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar" id="datetimepicker1"></span>

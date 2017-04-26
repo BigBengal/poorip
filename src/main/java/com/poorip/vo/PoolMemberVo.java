@@ -6,7 +6,29 @@ public class PoolMemberVo {
 	private int usrSeq;
 	private String approve;
 	private String crtDate;
+	private int aprvUsr;
+	private String usrNick;
+	private String profile;
+	private String gender;
 	
+	public String getUsrNick() {
+		return usrNick;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setUsrNick(String usrNick) {
+		this.usrNick = usrNick;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public int getPoolMemSeq() {
 		return poolMemSeq;
 	}
@@ -37,9 +59,19 @@ public class PoolMemberVo {
 	public void setCrtDate(String crtDate) {
 		this.crtDate = crtDate;
 	}
+	
+	public int getAprvUsr() {
+		return aprvUsr;
+	}
+	public void setAprvUsr(int aprvUsr) {
+		this.aprvUsr = aprvUsr;
+	}
+	
 	@Override
 	public String toString() {
 		return "PoolMemberVo [poolMemSeq=" + poolMemSeq + ", poolSeq=" + poolSeq + ", usrSeq=" + usrSeq + ", approve="
-				+ approve + ", crtDate=" + crtDate + "]";
+				+ approve + ", crtDate=" + crtDate + ", aprvUsr=" + aprvUsr + ", usrNick=" + usrNick + ", profile="
+				+ profile + ", gender=" + gender + "]";
 	}
+
 }

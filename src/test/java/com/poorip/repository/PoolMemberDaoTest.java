@@ -54,7 +54,7 @@ public class PoolMemberDaoTest {
 	@Ignore
 	@Test
 	public void testSelect() {
-		assertNull(dao.select(1));
+		assertNull(dao.getListbyUsrSeq(1));
 	}
 	
 }

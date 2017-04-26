@@ -36,21 +36,40 @@ public class PoolPartyService {
 	@Autowired
 	private PoolLikeDao poolLikeDao;
 	
+	// ??
 	public List<TravelInfoVo> getPoolKwd(String keyword) {
 		List<TravelInfoVo> travelInfoList = poolPartyDao.getPoolKwd( keyword );
 		logger.info("travelInfoList:"+travelInfoList.toString());
 		return travelInfoList;
 	}
 	
+	// ??
+	public List<CityVo> getCityNames(String ctyName) {
+		return poolPartyDao.getCityNames(ctyName);
+	}
+	
+	// 도시이름,날짜로 풀파티 검색 리스트 가져오기
 	public List<PoolPartyVo> getPoolList(PoolPartyVo poolPartyVo) {
 		List<PoolPartyVo> poolList = poolPartyDao.getPoolList(poolPartyVo);
 		return poolList;
 	}
 	
-	public List<CityVo> getCityNames(String ctyName) {
-		return poolPartyDao.getCityNames(ctyName);
+	// 인기 TOP 10 풀 리스트 (조회수 기준)
+	public List<PoolPartyVo> getPoolTop10List() {
+		List<PoolPartyVo> poolList = poolPartyDao.selectTop10();
+		return poolList;
+	}
+
+	
+	// 해당 풀파티 정보 가져오기
+	public PoolPartyVo getPoolInfo(int poolSeq){
+		return poolPartyDao.select(poolSeq); 
 	}
 	
+	// 해당 풀파티의 맴버 리스트 가져오기
+	public List<PoolMemberVo> getPoolMembers(int poolSeq){
+		return poolMemberDao.getListbyPoolSeq(poolSeq);
+	}
 	
 	// 사용자가 다른 사용자와 함께 풀 생성
 	// 파라미터 UserVo myUser : 생성하는 사람
@@ -96,6 +115,9 @@ public class PoolPartyService {
 		return poolMemberDao.join(poolMemberVo);
 	}
 	
+	public boolean updateHit(int poolpartrySeq){
+		return poolPartyDao.updatehit(poolpartrySeq);
+	}
 	// 풀파티 좋아요시 
 	public boolean likePoolparty(int poolpartySeq, int userSeq) {
 		PoolLikeVo vo = new PoolLikeVo();
@@ -128,6 +150,11 @@ public class PoolPartyService {
 			// 추천내역이 없는 경우
 			return poolLikeDao.insert(vo);
 		}
+	}
+	
+	// 풀파티 맴버 요청(수락/거절할) 리스트 가져오기 by 유저seq
+	public List<PoolMemberVo> getRequestList(int userSeq) {
+		return poolMemberDao.getRequestListbyUsrSeq(userSeq);
 	}
 	
 	//풀파티 초대 수락
