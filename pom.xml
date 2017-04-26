@@ -38,22 +38,6 @@
 					</plugin>
 				</plugins>
 			</build>
-			<dependencies>
-				<!-- Servlet -->
-				<dependency>
-					<groupId>javax.servlet</groupId>
-					<artifactId>javax.servlet-api</artifactId>
-					<version>3.1.0</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>javax.servlet.jsp</groupId>
-					<artifactId>jsp-api</artifactId>
-					<version>2.1</version>
-					<scope>provided</scope>
-				</dependency>
-				
-			</dependencies>
 		</profile>
 	</profiles>
 	
@@ -264,18 +248,12 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-<!-- 			<plugin> -->
-<!-- 				<artifactId>maven-compiler-plugin</artifactId> -->
-<!-- 				<version>3.3</version> -->
-<!-- 				<configuration> -->
-<!-- 					<source>1.8</source> -->
-<!-- 					<target>1.8</target> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
             <plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
+					<warSourceDirectory>webapp</warSourceDirectory>
+<!-- 					<failOnMissingWebXml>false</failOnMissingWebXml> -->
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 					<webxml>src/main/webapp/WEB-INF/web.xml</webxml> 
 				</configuration>
@@ -285,7 +263,7 @@
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.1</version>
 				<configuration>
-					<url>http://192.168.1.36/manager/text</url>
+					<url>http://127.0.0.1/manager/text</url>
 					<path>/poorip</path>
 					<username>admin</username>
 					<password>manager</password>
