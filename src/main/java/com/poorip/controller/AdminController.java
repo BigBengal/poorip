@@ -58,7 +58,7 @@ public class AdminController {
 		model.addAttribute( "cateVo", adminService.getCategoryName() );
 		model.addAttribute( "cityVo", adminService.getCityName()) ;
 		model.addAttribute( "travelVo", adminService.getTravelName() );
-		model.addAttribute( "baseURL", adminService.BASE_URL );
+		model.addAttribute( "baseURL", AdminService.BASE_URL );
 		return "/admin/admin-add";
 	}
 	
