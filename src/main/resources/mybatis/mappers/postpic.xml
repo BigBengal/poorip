@@ -36,6 +36,15 @@
 		]]>
 	</select>
 	
+	<select id="getpostPicList" resultType="postpicvo" parameterType="integer">
+    <![CDATA[
+		select file_name as fileName
+			from post_pic pp, post p
+				where pp.post_seq = p.post_seq
+			  	  and pp.post_seq = #{postSeq }
+		]]>
+	</select>
+	
 	<select id="selectbyno" resultType="postpicvo" parameterType="integer">
 		<![CDATA[
 			SELECT POST_PIC_SEQ as postPicSeq, 

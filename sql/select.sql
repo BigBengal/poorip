@@ -142,8 +142,9 @@ select rownum as rn, a.*
 				limit 0, 1;
 				
 select * from post_pic;
-			
+			select*from travel_info;
 select * from post;
+
 select p.post_seq as postSeq,
 	   title,
 	   contents,
@@ -157,4 +158,33 @@ select p.post_seq as postSeq,
 	  									from post post, post_pic postpic
 							where post.POST_SEQ = postpic.POST_SEQ
 							  and post.usr_seq = 14); 
-
+							  
+select*from post a, post_pic b where a.`POST_SEQ`=b.`POST_SEQ`;							  
+select * from post;
+select * from post_pic;
+select p.post_seq as postSeq,
+				   title,
+				   contents,
+				   p.usr_seq as usrSeq,
+				   p.crt_date as crtDate
+				from post p, users u
+			where p.USR_SEQ = u.USR_SEQ
+			  and p.usr_seq = 14
+	order by p.crt_date desc
+		limit 0,3;
+			
+select file_name as fileName
+	from post_pic pp, post p
+		where pp.post_seq = p.post_seq
+	  	  and pp.post_seq = 68;
+		  
+		  select p.post_seq as postSeq,
+				   title,
+				   contents,
+				   p.usr_seq as usrSeq,
+				   p.crt_date as crtDate
+				from post p, users u, post_pic pp
+			where p.USR_SEQ = u.USR_SEQ
+			  and p.usr_seq = 14
+			order by p.crt_date desc
+			limit 0, 18;

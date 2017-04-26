@@ -11,7 +11,7 @@
 		]]>
 	</insert>
 	
-	<insert id="addPost" parameterType="postvo">
+	<insert id="addPost" parameterType="reviewvo">
 	    <selectKey keyProperty="postSeq" resultType="integer" order="BEFORE">
 			<![CDATA[
 			select auto_increment
@@ -46,7 +46,7 @@
 		]]>
 	</select>
 	
-	<select id="getUserPostList" resultType="postvo" parameterType="map">
+	<select id="getUserPostList" resultType="reviewvo" parameterType="map">
 	    <![CDATA[
 			select p.post_seq as postSeq,
 				   title,
@@ -56,11 +56,11 @@
 				from post p, users u
 			where p.USR_SEQ = u.USR_SEQ
 			  and p.usr_seq = #{usrSeq }
-			order by crt_date desc
-			limit #{page}, 3
+	order by p.crt_date desc
+		limit #{page},3
 		]]>
 	</select>
-	
+		
 	<select id="getTotalCounts" resultType="integer" parameterType="integer">
 	    <![CDATA[
 			select count(*)
@@ -126,8 +126,20 @@
 			  FROM POST
 			 WHERE POST_SEQ = #{postSeq }
 		]]>
-
-
 	</delete>
+	
+	<select id="getPostListbyPoolSeq" resultType="reviewvo" parameterType="integer">
+		<![CDATA[
+			select p.post_seq as postSeq,
+				   title,
+				   contents,
+				   p.usr_seq as usrSeq,
+				   p.crt_date as crtDate
+				from post p, pool_post pp
+			where p.POST_SEQ = pp.POST_SEQ
+			  and pp.POOL_SEQ = #{poolSeq }
+	order by p.crt_date desc
+		]]>
+	</select>
 
 </mapper>

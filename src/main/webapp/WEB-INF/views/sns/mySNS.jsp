@@ -7,14 +7,14 @@
 <div class="row object-non-visible" data-animation-effect="fadeIn">
 	<div class="col-md-12">
 		<div class="filters text-center">
-			<form class="form-horizontal" name="write-form" action="${pageContext.request.contextPath}/sns/post/upload" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" action="${pageContext.request.contextPath}/sns/post/upload" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<th>
 							제목
 						</th>
 						<td>
-							<input type='text' class="form-control" id="title" name="title">			
+							<input type="text" class="form-control" id="title" name="title">			
 						</td>
 					</tr>
 					<tr>
@@ -22,8 +22,8 @@
 							내용
 						</th>
 						<td>
-							<textarea class="form-control" id="contents" name="contents" rows="5">
-							</textarea>
+							<textarea class="form-control" id="contents" name="contents" rows="5"></textarea>
+							
 						</td>
 					</tr>
 					<tr>
@@ -31,7 +31,7 @@
 							여행지
 						</th>
 						<td>
-							<select name="trvSeq1" style="width: 100%;">
+							<select name="trvSeq" id="sns-trv-seq" style="width: 100%;">
 							<c:forEach items="${travelVo }" var="travelVo" varStatus="status">
 								<option value="${travelVo.trvSeq }">${travelVo.name }</option>
 							</c:forEach>
@@ -68,8 +68,8 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button type="submit"
-									class="btn btn-default col-lg-12">게시글 올리기</button>
+							<input type="submit"
+									class="btn btn-default col-lg-12" value="게시글 올리기">
 						</td>
 					</tr>
 				</table>

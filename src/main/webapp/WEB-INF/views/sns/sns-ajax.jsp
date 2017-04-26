@@ -8,17 +8,26 @@
 var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
-var render = function( vo ) {
-	var html = "<tr><th> postSeq </th>" +
-			   "<td>" + vo.postSeq + "</td></tr>" +
-			   "<tr><th> 내용  </th>" +
-			   "<td>" + vo.contents + "</td></tr>" +
-			   "<tr><th> 작성일  </th>" +
-			   "<td>" + vo.crtDate + "</td></tr>";
-	   
-	 
-		   $( "#my-sns-list" ).append(html);
+var post_render = function( vo ) {
+	var post_html = "<tr><td colspan='2'>" + vo.postSeq + "</td>" +
+			   		"<td colspan='10' id='title-" + vo.postSeq + "'>" + vo.title + "</td></tr>";
+
+		 		    $( "#my-sns-list" ).append(post_html);
 }
+
+var postPic_render = function(vo2, vo) {
+	var postPic_html = "<tr><td colspan='12' id='post-pic-" + vo.postSeq + "'>" + vo2.fileName + "</td></tr>";
+
+					   $( "#title-"+vo.postSeq ).append(postPic_html);
+}
+
+var last_render = function(vo) {
+	var last_html = "<tr><td colspan='12'>" + vo.contents + "</td></tr>" +
+					"<tr><td colspan='7'>" + "" + "</td>" + 
+	   				"<td colspan='5'>" + vo.crtDate + "</td></tr>";
+
+					$("#post-pic-"+vo.postSeq).append(last_html);
+} 
 
 var fetchList = function() {
 	if( isEnd == true ) {
@@ -32,7 +41,7 @@ var fetchList = function() {
 		dataType: "json",
 		data : "",
 		success: function( response ) {
-			
+			//console.log(response);
 			if( response.result != "success" ) {
 				return 
 			}
@@ -42,9 +51,16 @@ var fetchList = function() {
 				return;
 			}
 			++page;
-			$( response.data ).each( function( index, vo) {
-					render( vo );
+			$( response.data.post ).each( function( index, vo) {
+				//console.log(index + "  ++++"+ vo.title); 	
+				post_render( vo );
+				$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
+					//console.log(index + " " + vo2.fileName); 
+					postPic_render( vo2, vo );
+				});
+				last_render( vo );
 			});
+			
 			return;
 
 		},
@@ -55,33 +71,7 @@ var fetchList = function() {
 };
 
 $(function() {
-	$("#write-form").submit(function(event) {
-		event.preventDefault();
 		
-		/* ajax 입력 */
-		$.ajax( {
-			url : "sns/post/upload",
-			type: "post",
-		    dataType: "json",
-		    data: "title=" + $("input[title='title']").val() + "&" + 
-		          "content=" + $('textarea').val() + "&" + 
-		          "reviewPubYn=" + $("input[name='reviewPubYn']").val() + "&" +
-		          "trvSeq=" + $("input[name='trvSeq1']").val() + "&" + 
-		          "file=" + $("input[name='file']").val() + "&" +
-		          "hidden=" + $("input[name='hidden']").val(),
-		          
-		    success: function( response ){
-				console.log( response );
-				render( response.data, true );
-		    },
-		    error: function( XHR, status, error ){
-		       console.error( status + " : " + error );
-		   	}
-	    });
-		
-		return false;
-	});
-	
 	$( window ).scroll(function(){
 		var $window = $(this);
 		var scrollTop = $window.scrollTop();
@@ -92,7 +82,6 @@ $(function() {
 			fetchList();
 		}
 	});
-	
 	fetchList();
 });
 

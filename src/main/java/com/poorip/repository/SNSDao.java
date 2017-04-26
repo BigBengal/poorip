@@ -23,7 +23,7 @@ public class SNSDao {
 		return sqlSession.selectList( "travelInfo.getALLTravelInfo");
 	}
 
-	public List<PostVo> getpostList(int usrSeq, int page) {
+	public List<ReviewVo> getpostList(int usrSeq, int page) {
 		Map<String , Object> map = new HashMap<String, Object>();
 		map.put( "usrSeq", usrSeq);
 		map.put( "page", page);
@@ -35,8 +35,8 @@ public class SNSDao {
 		return sqlSession.selectOne( "post.getTotalCount", usrSeq );
 	}
 
-	public boolean addPost(PostVo postVo) {
-		int count = sqlSession.insert( "post.addPost", postVo );
+	public boolean addPost(ReviewVo reviewVo) {
+		int count = sqlSession.insert( "post.addPost", reviewVo );
 		return( count == 1 );
 	}
 
@@ -47,6 +47,10 @@ public class SNSDao {
 
 	public List<ReviewVo> getAddPostList(int usrSeq) {
 		return sqlSession.selectList( "post.getAddPostList", usrSeq );
+	}
+
+	public List<PostPicVo> getpostPicList(int postSeq) {
+		return sqlSession.selectList( "postpic.getpostPicList", postSeq );
 	}
 
 }

@@ -32,19 +32,25 @@ public class SNSService {
 		return snsDao.getTravelInfo();
 	}
 	
-	public List<PostVo> getpostList(int usrSeq, int page) {
+	public List<ReviewVo> getpostList(int usrSeq, int page) {
 	
-		List<PostVo> list = snsDao.getpostList( usrSeq, page );
+		List<ReviewVo> postlist = snsDao.getpostList( usrSeq, page );
 		
-		return list;
+		return postlist;
+	}
+	
+	public List<PostPicVo> getpostPicList(int postSeq) {
+		
+		List<PostPicVo> postPicList = snsDao.getpostPicList( postSeq );
+		return postPicList;
 	}
 
-	public boolean addPost(PostVo postVo, List<MultipartFile> postUploadFiles) throws IOException {
+	public boolean addPost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles) throws IOException {
 		
-		boolean postReturn = snsDao.addPost( postVo );
+		boolean postReturn = snsDao.addPost( reviewVo );
 		boolean postPicReturn = true;
 		
-		String pathName = POST_SAVE_PATH + "/" + postVo.getUsrSeq() +"/" + postVo.getTrvSeq();
+		String pathName = POST_SAVE_PATH + "/" + reviewVo.getUsrSeq() +"/" + reviewVo.getTrvSeq();
 		
 		for ( int i=0; i < postUploadFiles.size(); i++ ) {
 			File file = new File( pathName );
@@ -58,7 +64,7 @@ public class SNSService {
 			
 			IOUtils.copy( postUploadFiles.get(i).getInputStream(), new FileOutputStream( pathName + "/" + saveFile ) );
 			PostPicVo postPicVo = new PostPicVo();
-			postPicVo.setPostPicSeq( postVo.getPostSeq() );
+			postPicVo.setPostPicSeq( reviewVo.getPostSeq() );
 			postPicVo.setPath( pathName );
 			postPicVo.setFileName( saveFile );
 			
