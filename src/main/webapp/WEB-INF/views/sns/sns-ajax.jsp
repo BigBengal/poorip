@@ -43,10 +43,7 @@ var fetchList = function() {
 			}
 			++page;
 			$( response.data ).each( function( index, vo) {
-// 				$( response.data ).each( function( index, vo ) {
-					console.log(vo);
-					console.log("222");
-					render( vo);
+					render( vo );
 			});
 			return;
 
@@ -63,14 +60,15 @@ $(function() {
 		
 		/* ajax 입력 */
 		$.ajax( {
-			url : "/sns/add",
+			url : "sns/post/upload",
 			type: "post",
 		    dataType: "json",
 		    data: "title=" + $("input[title='title']").val() + "&" + 
-		          "content=" + $("textarea").val() + "&" + 
+		          "content=" + $('textarea').val() + "&" + 
 		          "reviewPubYn=" + $("input[name='reviewPubYn']").val() + "&" +
 		          "trvSeq=" + $("input[name='trvSeq1']").val() + "&" + 
-		          "file=" + $("input[name='file']").val(),
+		          "file=" + $("input[name='file']").val() + "&" +
+		          "hidden=" + $("input[name='hidden']").val(),
 		          
 		    success: function( response ){
 				console.log( response );
@@ -91,7 +89,7 @@ $(function() {
 		var documentHeight = $(document).height();
 		
 		if( scrollTop + windowHeight + 10 > documentHeight ) {
-			fetchList();	
+			fetchList();
 		}
 	});
 	

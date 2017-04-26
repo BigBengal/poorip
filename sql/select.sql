@@ -139,19 +139,22 @@ select rownum as rn, a.*
 					   where a.TRV_SEQ = b.trv_seq 
 					   and a.REVIEW_PUB_YN='Y' and b.trv_seq=14
 				   order by crtDate desc
-				limit 1, 3;
+				limit 0, 1;
+				
 select * from post_pic;
+			
+select * from post;
+select p.post_seq as postSeq,
+	   title,
+	   contents,
+	   path,
+	   file_name as fileName,
+	   p.crt_date as crtDate
+	   		from post p, post_pic pp
+   where p.post_seq = pp.post_seq
+	  and p.usr_seq = 14
+      and pp.post_seq = (select max(post.post_seq) as postSeq
+	  									from post post, post_pic postpic
+							where post.POST_SEQ = postpic.POST_SEQ
+							  and post.usr_seq = 14); 
 
-select max(post_seq)
-	from(select p.post_seq,
-				p.title,
-				p.contents,
-				p.review_pub_yn,
-				p.trv_seq,
-				p.HIDDEN,
-				pp.file_name,
-				pp.PATH,
-				pp.CRT_DATE
-					from  post p, post_pic pp
-			where p.usr_seq = 14);
-select max(p.post_seq) as postSeq from post p, post_pic pp where usr_seq = 14; 
