@@ -128,17 +128,18 @@
 		]]>
 	</delete>
 	
-	<select id="getPostListbyPoolSeq" resultType="reviewvo" parameterType="integer">
+	<select id="getPostListbyPoolSeq" resultType="reviewvo" parameterType="map">
 		<![CDATA[
 			select p.post_seq as postSeq,
 				   title,
 				   contents,
 				   p.usr_seq as usrSeq,
 				   p.crt_date as crtDate
-				from post p, pool_post pp
+			 from post p, pool_post pp
 			where p.POST_SEQ = pp.POST_SEQ
 			  and pp.POOL_SEQ = #{poolSeq }
-	order by p.crt_date desc
+			order by p.crt_date desc
+			limit #{page}, 5
 		]]>
 	</select>
 

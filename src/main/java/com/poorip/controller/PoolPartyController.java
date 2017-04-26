@@ -20,6 +20,7 @@ import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
 
 @Controller
@@ -32,7 +33,7 @@ public class PoolPartyController {
 	private PoolPartyService poolPartyService;
 	
 	@Autowired
-	private SNSService sNSService;
+	private SNSService SNSService;
 	
 	
 	@RequestMapping(value={""})
@@ -46,7 +47,7 @@ public class PoolPartyController {
 	public String enterPool(@PathVariable(value="poolseq") int poolSeq,
 							Model model) {
 		// 조회수 증가
-		poolPartyService.updateHit(poolSeq);
+//		poolPartyService.updateHit(poolSeq);
 	
 		// 풀 정보
 		model.addAttribute("pool", poolPartyService.getPoolInfo(poolSeq));
@@ -55,7 +56,9 @@ public class PoolPartyController {
 		model.addAttribute("poolmember", poolPartyService.getPoolMembers(poolSeq));
 
 		// 풀 포스트
-		model.addAttribute("poolpost", sNSService.getPostListbyPoolSeq(poolSeq));
+		List<ReviewVo> list = SNSService.getPostListbyPoolSeq(poolSeq, 0);
+		System.out.println(list);
+//		model.addAttribute("poolpost", SNSService.getPostListbyPoolSeq(poolSeq));
 				
 		
 		return "/poolparty/poolparty_detail";

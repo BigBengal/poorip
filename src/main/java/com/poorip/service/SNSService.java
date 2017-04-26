@@ -96,8 +96,8 @@ public class SNSService {
 		return snsDao.getAddPostList( usrSeq );
 	}
 	
-	public List<ReviewVo> getPostListbyPoolSeq( int poolSeq ) {
-		return snsDao.getPostListbyPoolSeq( poolSeq );
+	public List<ReviewVo> getPostListbyPoolSeq( int poolSeq, int page) {
+		return snsDao.getPostListbyPoolSeq( poolSeq, page );
 	}
 
 }

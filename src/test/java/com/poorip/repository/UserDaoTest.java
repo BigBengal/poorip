@@ -120,7 +120,7 @@ public class UserDaoTest {
 		UserVo uservo = new UserVo();
 		uservo.setUsrEmail("teseUser2");
 //		userdao.delete(uservo);
-		assertEquals(sqlSession.selectOne("user.selectbyemail", uservo), 1);
+		assertEquals(sqlSession.selectOne("user.selectbyemail", uservo), uservo);
 	}
 	
 

@@ -53,8 +53,11 @@ public class SNSDao {
 		return sqlSession.selectList( "postpic.getpostPicList", postSeq );
 	}
 	
-	public List<ReviewVo> getPostListbyPoolSeq( int poolSeq ) {
-		return sqlSession.selectList( "post.getPostListbyPoolSeq", poolSeq );
+	public List<ReviewVo> getPostListbyPoolSeq(int poolSeq, int page) {
+		Map<String , Object> map = new HashMap<String, Object>();
+		map.put( "poolSeq", poolSeq);
+		map.put( "page", page);
+		return sqlSession.selectList( "post.getPostListbyPoolSeq", map );
 	}
 
 }

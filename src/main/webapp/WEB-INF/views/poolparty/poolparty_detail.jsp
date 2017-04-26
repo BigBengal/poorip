@@ -102,7 +102,9 @@ $(document).ready(function(){
 			</div>
 			<div class="col-md-2">
 			<img src="/poorip/assets/images/gear.png" width="30px">
-			가입요청
+			<c:if test="${authUser == null }">
+				가입요청
+			</c:if>
 			</div>
 		<div class="col-md-12">
 		<h3>${pool.poolComment} </h3>

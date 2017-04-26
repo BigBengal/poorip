@@ -65,8 +65,7 @@ public class ScrapCityDaoTest {
 	public void select() {
 		ScrapCityVo vo = new ScrapCityVo();
 		vo.setScpCitySeq(1);
-		System.out.println(sqlSession.selectOne("scrapcity.selectbyseq", vo));
-		assertEquals(sqlSession.selectOne("scrapcity.selectbyseq", vo), 1);
+		assertEquals(sqlSession.selectOne("scrapcity.selectbyseq", vo), vo);
 	}
 
 }
