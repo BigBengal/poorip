@@ -20,6 +20,10 @@ public class PoolPartyDao {
 		return 1 == sqlSession.insert("poolparty.insert", poolPartyVo);
 	}
 	
+	public boolean updatehit(int poolpartrySeq) {
+		return 1 == sqlSession.update("poolparty.updatehit", poolpartrySeq);
+	}
+	
 	public boolean delete(PoolPartyVo poolPartyVo){
 		return 1 <= sqlSession.delete("poolparty.delete",poolPartyVo);
 	}
@@ -40,8 +44,13 @@ public class PoolPartyDao {
 		return sqlSession.selectList("poolparty.selectbycty", poolPartyVo);
 	}
 	
+	public List<PoolPartyVo> selectTop10(){
+		return sqlSession.selectList("poolparty.selecttop10");
+	}
+	
 	public List<CityVo> getCityNames(String ctyName) {
 		return sqlSession.selectList("travelInfo.getKwdData", ctyName);
 	}
-	
+
+
 }

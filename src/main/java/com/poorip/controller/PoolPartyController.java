@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,9 +31,25 @@ public class PoolPartyController {
 	private PoolPartyService poolPartyService;
 	
 	@RequestMapping(value={""})
-	public String searchPool() {
+	public String searchPool(Model model) {
 		
-		return "/poolparty/poolMain";
+		model.addAttribute("top10", poolPartyService.getPoolTop10List());
+		return "/poolparty/poolparty";
+	}
+	
+	@RequestMapping(value={"{poolseq}"})
+	public String enterPool(@PathVariable(value="poolseq") int poolSeq,
+							Model model) {
+		// 조회수 증가
+		poolPartyService.updateHit(poolSeq);
+	
+		// 풀 정보
+		model.addAttribute("pool", poolPartyService.getPoolInfo(poolSeq));
+		
+		// 풀 맴버
+		model.addAttribute("poolmember", poolPartyService.getPoolMembers(poolSeq));
+		
+		return "/poolparty/poolparty_detail";
 	}
 
 	

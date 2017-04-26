@@ -194,6 +194,10 @@ blockquote {
 	padding: 80px 0;
 }
 
+.center {
+	margin: 0 auto;
+}
+
 /* Backgrounds
 ----------------------------------------------------------------------------- */
 .default-bg {

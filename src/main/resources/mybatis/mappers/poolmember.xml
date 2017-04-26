@@ -6,22 +6,43 @@
 	<insert id="insert"  parameterType="poolmembervo">
 		<![CDATA[
 			insert 
-			  into POOL_MEMBER (POOLMEM_SEQ, POOL_SEQ, USR_SEQ, APPROVE)
-			values ( #{poolMemSeq }, #{poolSeq }, #{usrSeq }, #{approve } ) 
+			  into POOL_MEMBER (POOLMEM_SEQ, POOL_SEQ, USR_SEQ, APPROVE, APRV_USR)
+			values ( #{poolMemSeq }, #{poolSeq }, #{usrSeq }, #{approve } , #{aprvUsr } ) 
 		]]>
 	</insert>
 	
-	<select id="selectbyno" resultType="poolmembervo" parameterType="integer">
+	<select id="selectbyusrseq" resultType="poolmembervo" parameterType="integer">
 		<![CDATA[
-			select POOLMEM_SEQ as poolMemSeq, 
-			       POOL_SEQ as poolSeq, 
-			       USR_SEQ as usrSeq, 
-			       APPROVE as approve, 
-			       CRT_DATE as crtDate
-			  from POOL_MEMBER
-			 where USR_SEQ = #{usrSeq }
+			select POOL_MEMBER.POOLMEM_SEQ as poolMemSeq, 
+			       POOL_MEMBER.POOL_SEQ as poolSeq, 
+			       POOL_MEMBER.USR_SEQ as usrSeq, 
+			       POOL_MEMBER.APPROVE as approve, 
+			       POOL_MEMBER.CRT_DATE as crtDate,
+			       USERS.USR_NICK as usrNick,
+			       USERS.USR_PROFILE as profile, 
+			       USERS.USR_GENDER as gender
+			  from POOL_MEMBER, USERS
+  			 WHERE POOL_MEMBER.USR_SEQ = USERS.USR_SEQ
+			   and POOL_MEMBER.USR_SEQ = #{usrSeq }
 		]]>
 	</select>
+	
+	<select id="selectbypoolseq" resultType="poolmembervo" parameterType="integer">
+		<![CDATA[
+			select POOL_MEMBER.POOLMEM_SEQ as poolMemSeq, 
+			       POOL_MEMBER.POOL_SEQ as poolSeq, 
+			       POOL_MEMBER.USR_SEQ as usrSeq, 
+			       POOL_MEMBER.APPROVE as approve, 
+			       POOL_MEMBER.CRT_DATE as crtDate,
+			       USERS.USR_NICK as usrNick,
+			       USERS.USR_PROFILE as profile, 
+			       USERS.USR_GENDER as gender
+			  from POOL_MEMBER, USERS
+  			 WHERE POOL_MEMBER.USR_SEQ = USERS.USR_SEQ
+			   and POOL_MEMBER.POOL_SEQ = #{poolSeq }
+		]]>
+	</select>
+	
 	
 	<delete id="delete" parameterType="poolmembervo">
 		<![CDATA[
@@ -30,6 +51,23 @@
 			 where POOL_SEQ = #{poolSeq }
 		]]>
 	</delete>
+	
+	<select id="requestlist" resultType="poolmembervo" parameterType="integer">
+		<![CDATA[
+			select POOL_MEMBER.POOLMEM_SEQ as poolMemSeq, 
+			       POOL_MEMBER.POOL_SEQ as poolSeq, 
+			       POOL_MEMBER.USR_SEQ as usrSeq, 
+			       POOL_MEMBER.APPROVE as approve, 
+			       POOL_MEMBER.CRT_DATE as crtDate,
+			       USERS.USR_NICK as usrNick,
+			       USERS.USR_PROFILE as profile, 
+			       USERS.USR_GENDER as gender
+			  from POOL_MEMBER, USERS
+  			 WHERE POOL_MEMBER.USR_SEQ = USERS.USR_SEQ
+			   AND POOL_MEMBER.APRV_USR = #{aprvUsr }
+			   AND POOL_MEMBER.APPROVE = 'N'
+		]]>
+	</select>
 	
 	<update id="approve" parameterType="poolmembervo">
 		<![CDATA[

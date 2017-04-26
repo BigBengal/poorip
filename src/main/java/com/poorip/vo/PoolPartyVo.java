@@ -21,7 +21,28 @@ public class PoolPartyVo {
 	private String toDate;
 	private int hit;
 	private String ctyName;
+	private String managerUsrNick;
+	private String managerProfile;
+	private String managerGender;
 	
+	public String getManagerUsrNick() {
+		return managerUsrNick;
+	}
+	public String getManagerProfile() {
+		return managerProfile;
+	}
+	public String getManagerGender() {
+		return managerGender;
+	}
+	public void setManagerUsrNick(String managerUsrNick) {
+		this.managerUsrNick = managerUsrNick;
+	}
+	public void setManagerProfile(String managerProfile) {
+		this.managerProfile = managerProfile;
+	}
+	public void setManagerGender(String managerGender) {
+		this.managerGender = managerGender;
+	}
 	public String getCtyName() {
 		return ctyName;
 	}
@@ -96,12 +117,13 @@ public class PoolPartyVo {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+	
 	@Override
 	public String toString() {
 		return "PoolPartyVo [poolSeq=" + poolSeq + ", poolName=" + poolName + ", poolComment=" + poolComment
 				+ ", poolPic=" + poolPic + ", ctySeq=" + ctySeq + ", managerUsrSeq=" + managerUsrSeq + ", poolPublicYn="
 				+ poolPublicYn + ", crtDate=" + crtDate + ", fromDate=" + fromDate + ", toDate=" + toDate + ", hit="
-				+ hit + ", ctyName=" + ctyName + "]";
+				+ hit + ", ctyName=" + ctyName + ", managerUsrNick=" + managerUsrNick + ", managerProfile="
+				+ managerProfile + ", managerGender=" + managerGender + "]";
 	}
-	
 }
