@@ -47,7 +47,7 @@ public class PoolPartyController {
 	public String enterPool(@PathVariable(value="poolseq") int poolSeq,
 							Model model) {
 		// 조회수 증가
-//		poolPartyService.updateHit(poolSeq);
+		poolPartyService.updateHit(poolSeq);
 	
 		// 풀 정보
 		model.addAttribute("pool", poolPartyService.getPoolInfo(poolSeq));
