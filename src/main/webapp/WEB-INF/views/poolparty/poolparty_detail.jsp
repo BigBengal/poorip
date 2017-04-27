@@ -69,6 +69,25 @@
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <script>
 $(document).ready(function(){
+	
+	// Animations
+	//-----------------------------------------------
+	if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {
+		$("[data-animation-effect]").each(function() {
+			var $this = $(this),
+			animationEffect = $this.attr("data-animation-effect");
+			if(Modernizr.mq('only all and (min-width: 768px)') && Modernizr.csstransitions) {
+				$this.appear(function() {
+					setTimeout(function() {
+						$this.addClass('animated object-visible ' + animationEffect);
+					}, 400);
+				}, {accX: 0, accY: -130});
+			} else {
+				$this.addClass('object-visible');
+			}
+		});
+	};
+
 });
 </script>
 
@@ -135,17 +154,23 @@ $(document).ready(function(){
 	</div>
 </c:forEach>	
 </div>
-<div class="row col-md-12">
-<c:forEach var="post" items="${post}" varStatus="status">
-	<p> SEQ: ${post.postSeq} </p>  
-	<p> TITLE: ${post.title}  </p>
-	<p> CONTENTS : ${post.contents}  </p>
-	<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
-		<c:if test="${post.postSeq ==postpic.postSeq}">
-			<img src="${postpic.path }${postpic.fileName }">
-		</c:if>
+<a onclick="showWrite()">
+잘
+</a>
+<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
+
+<div class="col-md-12">
+	<c:forEach var="post" items="${post}" varStatus="status">
+		<div class="col-md-6 col-md-offset-4">
+		<p> TITLE: ${post.title}  </p>
+		<p> CONTENTS : ${post.contents}  </p>
+		<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
+			<c:if test="${post.postSeq ==postpic.postSeq}">
+				<img src="/poorip${postpic.path }/${postpic.fileName }">
+			</c:if>
+		</c:forEach>
+		</div>
 	</c:forEach>
-</c:forEach>
 
 
 </div>
