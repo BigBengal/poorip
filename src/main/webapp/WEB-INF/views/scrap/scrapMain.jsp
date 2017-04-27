@@ -79,7 +79,7 @@
 	<!-- ================ -->
 	<div id="banner" class="banner">
 		<div class="banner-image">
-			<div class="backstretch">
+			<div class="backstretch" style="position:relative;">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/greece-santorini.jpg">
 			</div>

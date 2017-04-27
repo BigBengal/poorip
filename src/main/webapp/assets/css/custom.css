@@ -59,15 +59,13 @@ File Description: Place here your custom CSS styles
 }
 
 .backstretch img {
-	position: absolute;
     margin: 0px;
     padding: 0px;
     border: none;
-    width: 1433.96px;
-    height: 950px;
     max-height: none;
     max-width: none;
+    min-width:700px;
+    min-height:700px;
     z-index: -999999;
-    left: -172.981px;
     top: 0px;
 }
