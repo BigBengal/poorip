@@ -62,7 +62,7 @@
 <!-- Initialization of Plugins -->
 <%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
 <!-- Custom Scripts -->
-<script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
 <!-- facebook  -->
 <script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 <!-- Vaildation-->

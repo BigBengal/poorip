@@ -8,42 +8,42 @@
 var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
+var globalPostSeq = 0;
 var post_render = function( vo ) {
+		
 	var post_html = "<div class='form-group' id='first-html-" + vo.postSeq + "'>" + 
 						"<p class='col-sm-2'>" + vo.postSeq + "</p>" +
 				   		"<p class='col-sm-10 text-center' style='font-size: 20px'><strong>" + vo.title + "</strong></p>" +
-			   		"</div>";
+			   		"</div>" +
+			   		"<div class='form-group' id='middle-html-" + vo.postSeq + "'>" +
+					"<div class='col-md-offset-4'>" +
+				   		"<p class='col-md-12'>" + 
+				   			"<div class='cycle-slideshow'" +
+					   			"data-cycle-fx='scrollHorz'" +
+					   			"data-cycle-timeout='0'" +
+					   			"data-cycle-prev='prev'" +
+					   			"data-cycle-next='#next'" +
+								">";
 
 		 		    $( "#my-sns-list" ).append(post_html);
 }
 
-var postPic_render = function(vo2, vo) {
-	var postPic_html = "<div class='form-group' id='middle-html-" + vo.postSeq + "'>" +
-							"<div class='col-md-offset-4'>" +
-						   		"<p class='col-md-12'>" + 
-						   			"<div class='cycle-slideshow'" +
-							   			"data-cycle-fx='scrollHorz'" +
-							   			"data-cycle-timeout='0'" +
-							   			"data-cycle-prev='prev'" +
-							   			"data-cycle-next='#next'" +
-										">" +
-										"<c:forEach items='${" + vo2 + "}' var='" + vo2 + "' varStatus='status'>" +
-						   					"<img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px'>" + vo2.postPicSeq +
-							   			"</c:forEach>" +
-							   		"</div>" +
-							   		"<div class='text-center'>" +
-								   		"<a herf=# id='prev'> ! </a>" +
-								   		"<a herf=# id='nexr'> < </a>" +
-							   		"</div>" +
-					   			"</p>" +
-					   		"</div>" +
-					   "</div>";
-
-					   $( "#first-html-"+vo.postSeq ).after(postPic_html);
+var postPic_render = function(vo2) {
+	var postPic_html = "<img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px'>" + vo2.postPicSeq;
+					   $( "#my-sns-list" ).append(postPic_html);
 }
 
 var last_render = function(vo) {
-	var last_html = "<div class='form-group'>" +
+	var last_html = "</div>" +
+						"<div class='text-center'>" +
+				   		"<a herf=# id='prev'> ! </a>" +
+				   		"<a herf=# id='nexr'> < </a>" +
+						"</div>" +
+					"</p>" +
+				"</div>" +
+				"</div>" + 
+		
+		"<div class='form-group'>" +
 						"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
 					"</div>" + 
 					"<div class='form-group'>" +
@@ -56,7 +56,7 @@ var last_render = function(vo) {
 		   				"<p class='col-md-4' align='right'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 30px'></p>" + 
 	   				"</div>";
 
-					$("#middle-html-"+vo.postSeq).after(last_html);
+					$("#my-sns-list").append(last_html);
 } 
 
 var fetchList = function() {
@@ -81,16 +81,25 @@ var fetchList = function() {
 				return;
 			}
 			++page;
+
 			$( response.data.post ).each( function( index, vo) {
-				//console.log(index + "  ++++"+ vo.title); 	
+				//console.log(index + "  ++++"+ vo.title);
+				if ( globalPostSeq > vo.postSeq )
+					return;
+				console.log("여기서 한번 시작")
 				post_render( vo );
 				
 				$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
-					postPic_render( vo2, vo );
-					console.log(vo2);
-					console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
+					console.log("여기서 사진")
+					postPic_render(vo2);
+// 					console.log(vo2);
+// 					console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
 				});
-			last_render( vo );
+				last_render( vo );
+				console.log("여기서 한번 마지막")
+				
+				if ( globalPostSeq <= response.data.post.postSeq )
+					globalPostSeq = response.data.post.postSeq;
 			});
 			
 			return;
@@ -105,16 +114,18 @@ var fetchList = function() {
 $(function() {
 		
 	$( window ).scroll(function(){
+		
+		
 		var $window = $(this);
 		var scrollTop = $window.scrollTop();
 		var windowHeight = $window.height();
 		var documentHeight = $(document).height();
 		
-		if( scrollTop + windowHeight + 10 > documentHeight ) {
+		if( scrollTop + windowHeight + 10 >= documentHeight ) {
 			fetchList();
 		}
 	});
-	fetchList();
+	//fetchList();
 });
 
 

@@ -97,3 +97,5 @@
 		</div>
 	</div>
 </div>
+<div class="fromDatePick"></div>
+<div class="toDatePick"></div>
