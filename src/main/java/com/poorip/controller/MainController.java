@@ -22,6 +22,7 @@ import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.MainService;
 import com.poorip.service.SNSService;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 import com.poorip.vo.UserVo;
@@ -114,7 +115,6 @@ public class MainController {
 		int trvSeq1 = Integer.parseInt(trvSeq);
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
 	
-	
 
 		return JSONResult.success(reviews);
 	}
@@ -125,12 +125,36 @@ public class MainController {
 		int postSeq1 = Integer.parseInt(postSeq);
 		List<ReviewVo> reviewPic = mainService.selectReviewPics(postSeq1);
 		if(reviewPic.isEmpty() || reviewPic==null) {
-			System.out.println("null");
 			return JSONResult.fail("사진이 없습니다");
 		}
 		return JSONResult.success(reviewPic);
 		
 	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/reviewLike/{postSeq}")
+	public JSONResult increaseReviewLike(@PathVariable("postSeq") String postSeq, @AuthUser UserVo userVo) {
+		int postSeq1 = Integer.parseInt(postSeq);
+		if(snsService.checkPostLike(postSeq1, userVo.getUsrSeq())==null) {
+			snsService.increasePostLike(postSeq1, userVo.getUsrSeq());
+			return JSONResult.success("increased_like");
+		};
+		snsService.decreasePostLike(postSeq1,userVo.getUsrSeq());
+		return JSONResult.success("decreased_like");
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/reviewLikeValidate/{trvSeq}")
+	public JSONResult validateReviewLike(@PathVariable("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
+		int trvSeq1 = Integer.parseInt(trvSeq);
+		System.out.println(trvSeq1 + " +!! " + userVo.getUsrSeq());
+		List<PostVo> postLikeList =  snsService.showPostLike(trvSeq1, userVo.getUsrSeq());
+		return JSONResult.success(postLikeList);
+	}
+	
+	
 
 	@ResponseBody
 	@RequestMapping(value = { "/search", "/city/search" })

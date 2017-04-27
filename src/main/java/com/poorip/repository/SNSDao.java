@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
+import com.poorip.web.util.WebUtil;
 
 @Repository
 public class SNSDao {
@@ -57,6 +58,40 @@ public class SNSDao {
 		map.put( "poolSeq", poolSeq);
 		map.put( "page", page);
 		return sqlSession.selectList( "post.getPostListbyPoolSeq", map );
+	}
+	
+	public boolean increaseLike(int postSeq, int usrSeq) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("postSeq", postSeq);
+		return 1== sqlSession.update("post.increasePostLike", map);
+	}
+	
+	public Integer checkPostLike(int postSeq, int usrSeq) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("postSeq", postSeq);
+		
+		return sqlSession.selectOne("post.checkPostLike", map);
+	}
+	
+	public boolean decreaseLike(int postSeq, int usrSeq) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("postSeq", postSeq);
+		return 1== sqlSession.update("post.decreasePostLike", map);
+	}
+	
+	public List<PostVo> showPostLike (int trvSeq, int usrSeq) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("trvSeq", trvSeq);
+		map.put("usrSeq", usrSeq);
+		
+		return sqlSession.selectList("post.selectPostLike", map);
+	}
+	
+	public List<PostVo> showAllPostSeqsofTravel(int trvSeq) {
+		return sqlSession.selectList("post.selectAllPostSeqOfTravelInfo", trvSeq);
 	}
 
 }
