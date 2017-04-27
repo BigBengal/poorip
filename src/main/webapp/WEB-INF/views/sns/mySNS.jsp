@@ -87,7 +87,7 @@
 				<div class="selectbox">
 					<label class="control-label col-sm-3" for="trvSeq">관련 여행지 선택</label>
 					<div class='col-sm-7'>
-						<select id="sns-trv-seq">
+						<select id="sns-trv-seq" name="trvSeq">
 							<option selected>관련 여행지 선택</option>
 							<c:forEach items="${travelVo }" var="travelVo" varStatus="status">
 								<option value="${travelVo.trvSeq }">${travelVo.name }</option>

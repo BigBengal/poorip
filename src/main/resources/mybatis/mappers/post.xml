@@ -30,7 +30,8 @@
 						#{usrSeq }, 
 						#{trvSeq },
 						now(),
-						#{hidden })
+						#{hidden },
+						default)
 		]]>
 	</insert>
 	
