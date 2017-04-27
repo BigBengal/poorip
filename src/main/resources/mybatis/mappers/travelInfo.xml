@@ -150,7 +150,7 @@
 	<!-- 사용자가 입력한 키워드 입력 관련 데이터 추출 -->
 	<select id="getCitySeq" parameterType="string" resultType="integer">
    		<![CDATA[
-         select cty_seq as ctySeq from seach where cty_name = #{ctyName }
+         select cty_seq as ctySeq from city_search where cty_name = #{ctyName }
     	]]>
 	</select>
 </mapper>
