@@ -168,7 +168,8 @@ public class UserService {
 	public boolean UpdateBlack(UserVo userVo) {
 		return userDao.updateBlack(userVo);
 	}
-
+	
+	// 전체 유저 가져오기
 	public List<UserVo> SearchPersonList(){
 		return userDao.list();
 	}

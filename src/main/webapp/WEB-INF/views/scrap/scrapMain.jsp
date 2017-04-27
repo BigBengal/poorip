@@ -56,7 +56,6 @@
 
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
-
 </head>
 
 
@@ -71,6 +70,7 @@
 	<!-- ================ -->
 	<header class="header fixed clearfix navbar navbar-fixed-top">
 		<div class="container">
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 			<div class="row">
 	<div class="col-md-3">
 
@@ -161,6 +161,7 @@
 
 	</div>
 </div>
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
 		</div>
 	</header>
 	<!-- header end -->
@@ -263,6 +264,17 @@
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	
 	<c:import url="/WEB-INF/views/include/ajax.jsp" />
+	<script>
+		$(document).ready(function(){
+			
+			var $alink = $("#navbar-collapse-1 ul li a");
+			for(var i=0;i<2;i++){
+				var $ori = $alink.eq(i);
+				var oriLink = $ori.attr("href");
+				$ori.attr("href","/poorip/"+oriLink);	 
+			}
+		});
+</script>
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>
 <%-- </c:forEach> --%>
