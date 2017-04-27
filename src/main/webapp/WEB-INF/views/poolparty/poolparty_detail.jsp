@@ -85,20 +85,22 @@ $(document).ready(function(){
 	        width: 600,
 	        modal: true,
 	        buttons: {
-	          "Save": saveSetting,
+	          "Save": function submit_form(){
+	        	    $('#poolsetting').submit();
+	          },
 	          Cancel: function() {
 	            dialog.dialog( "close" );
 	          }
 	        },
 	        close: function() {
-	          form[ 0 ].reset();
+	        	dialog.dialog( "close" );
 // 	          allFields.removeClass( "ui-state-error" );
 	        }
 	  } );
-	form = dialog.find( "form" ).on( "submit", function( event ) {
-	      event.preventDefault();
-	      saveSetting();
-	    });
+// 	form = dialog.find( "form" ).on( "submit", function( event ) {
+// // 	      event.preventDefault();
+// 	      saveSetting();
+// 	    });
 	
 	$( "#setting" ).on( "click", function() {
 	      dialog.dialog( "open" );
@@ -145,7 +147,7 @@ $(document).ready(function(){
 	});
 	
 	$( ".datepicker" ).datepicker({
-    	dateFormat: 'yy/mm/dd',
+    	dateFormat: 'yy-mm-dd',
         showOtherMonths: true,
         selectOtherMonths: true,
         autoclose: true,
@@ -165,9 +167,9 @@ function showWrite(){
 	
 }
 
-function saveSetting(){
-	console.log("ss");
-}
+// function saveSetting(){
+// 	console.log("ss");
+// }
 
 
 </script>
@@ -193,8 +195,9 @@ function saveSetting(){
 </div>
 
 <div id="dialog-form" title="풀파티 설정 변경">
-<form class="form-horizontal">
+<form class="form-horizontal" id="poolsetting" action="saveSetting" method="post" enctype="multipart/form-data">
 <fieldset>
+	<input type="hidden" name="poolSeq" value="${pool.poolSeq}">
 	<div class="form-group">
 		<label class="control-label" for="name">풀파티 제목</label>
 		<input type="text" name="poolName" id="name" value="${pool.poolName}" class="text ui-widget-content ui-corner-all">
@@ -205,14 +208,23 @@ function saveSetting(){
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="pic">풀파티 이미지</label>
-		<input type="file" name="poolPic" id="pic" class="text ui-widget-content ui-corner-all">
+		<input type="file" name="poolPicture" id="pic" class="text ui-widget-content ui-corner-all">
 	</div>
 	
 	<div class="form-group">
 		<label for="control-label" for="city">대표 도시</label>
 		<select id="city" name="ctySeq">
+			<option></option>
 			<c:forEach items="${cityList }" var="cityList" varStatus="status">
-				<option value="${cityList.ctySeq }">${cityList.ctyName }</option>
+				<c:choose>
+				<c:when test="${pool.ctySeq == cityList.ctySeq}">
+					<option value="${cityList.ctySeq }" selected>${cityList.ctyName }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${cityList.ctySeq }">${cityList.ctyName }</option>
+				</c:otherwise>
+				</c:choose>
+				
 			</c:forEach>
 		</select>		
 	</div>
@@ -222,8 +234,8 @@ function saveSetting(){
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="fromdate"> 여행기간</label>
-		<input type="text" name="fromDate" id="fromdate" class="datepicker text ui-widget-content ui-corner-all"> ~
-		<input type="text" name="toDate" id="todate" class="datepicker text ui-widget-content ui-corner-all">
+		<input type="text" name="fromDate" id="fromdate" value="${pool.fromDate}" class="datepicker text ui-widget-content ui-corner-all"> ~
+		<input type="text" name="toDate" id="todate" value="${pool.toDate}" class="datepicker text ui-widget-content ui-corner-all">
 	</div>
 	
 	<!-- Allow form submission with keyboard without duplicating the dialog button -->
@@ -236,7 +248,7 @@ function saveSetting(){
 
 <div class="col-md-10">
 	<div class="col-md-4">
-		<img src="${pool.poolPic}">
+		<img src="/poorip${pool.poolPic}">
 	</div>
 	<div class="col-md-8">
 		<div class="col-md-10">
@@ -244,7 +256,7 @@ function saveSetting(){
 		</div>
 		<div class="col-md-2">
 			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
-				<a onclick="showSetting();"><img src="/poorip/assets/images/gear.png" width="30px" id="setting"></a>
+				<img src="/poorip/assets/images/gear.png" width="30px" id="setting">
 			</c:if>
 		<c:if test="${authUser == null }">
 			가입요청
@@ -258,7 +270,7 @@ function saveSetting(){
 	<c:if test="${pool.fromDate != null or pool.toDate != null}">
 	 여행 기간 : ${pool.fromDate} ~ ${pool.toDate} 
 	</c:if>
-	
+	( ${pool.ctyName} )
 	
 	</h5>
 	</div>

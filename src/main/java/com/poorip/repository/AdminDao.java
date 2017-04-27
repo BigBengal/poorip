@@ -87,7 +87,7 @@ public class AdminDao {
 	}
 
 	public boolean addPostPic(PostPicVo postPicVo ) {
-		int count = sqlSession.insert( "postpic.addPostPic", postPicVo );
+		int count = sqlSession.insert( "postpic.insert", postPicVo );
 		return ( count == 1 );
 	}
 	

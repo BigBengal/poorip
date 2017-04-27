@@ -1,0 +1,186 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>내 풀파티</title>
+<!-- Date Picker -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Mobile Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Web Fonts -->
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300'
+	rel='stylesheet' type='text/css'>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">	
+<link rel="stylesheet" href="/poorip/assets/bootstrap/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- Web Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300'
+	rel='stylesheet' type='text/css'>
+<!-- Font Awesome CSS -->
+<link href="${pageContext.request.contextPath}/assets/fonts/font-awesome/css/font-awesome.css"
+	rel="stylesheet">
+<!-- Plugins -->
+<link href="${pageContext.request.contextPath}/assets/css/animations.css"
+	rel="stylesheet">
+<!-- Worthy core CSS file -->
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet">
+<!-- Custom css -->
+<link href="${pageContext.request.contextPath}/assets/css/custom.css"
+	rel="stylesheet">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<!-- <script src="/poorip/assets/bootstrap/js/moment.js"></script> -->
+<!-- <script src="/poorip/assets/bootstrap/js/transition.js"></script> -->
+<!-- <script src="/poorip/assets/bootstrap/js/collapse.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Modernizr javascript -->
+<script src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
+<!-- Isotope javascript -->
+<script src="${pageContext.request.contextPath }/assets/plugins/isotope/isotope.pkgd.min.js"></script>
+<!-- Backstretch javascript -->
+<script src="${pageContext.request.contextPath }/assets/plugins/jquery.backstretch.min.js"></script>
+<!-- Appear javascript -->
+<script src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
+<!-- Initialization of Plugins -->
+<%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
+<!-- Custom Scripts -->
+<script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+<!-- facebook  -->
+<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+<!-- Vaildation-->
+<script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	var $alink = $("#navbar-collapse-1 ul li a");
+	for(var i=0;i<2;i++){
+		var $ori = $alink.eq(i);
+		var oriLink = $ori.attr("href");
+		$ori.attr("href","/poorip/"+oriLink);	 
+	}
+			
+	// Fixed header
+	//-----------------------------------------------
+	$(window).scroll(function() {
+		if (($(".header.fixed").length > 0)) { 
+			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
+				$("body").addClass("fixed-header-on");
+			} else {
+				$("body").removeClass("fixed-header-on");
+			}
+		};
+	});
+
+	$(window).load(function() {
+		if (($(".header.fixed").length > 0)) { 
+			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
+				$("body").addClass("fixed-header-on");
+			} else {
+				$("body").removeClass("fixed-header-on");
+			}
+		};
+	});
+
+		
+	// Animations
+	//-----------------------------------------------
+	if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {
+		$("[data-animation-effect]").each(function() {
+			var $this = $(this),
+			animationEffect = $this.attr("data-animation-effect");
+			if(Modernizr.mq('only all and (min-width: 768px)') && Modernizr.csstransitions) {
+				$this.appear(function() {
+					setTimeout(function() {
+						$this.addClass('animated object-visible ' + animationEffect);
+					}, 400);
+				}, {accX: 0, accY: -130});
+			} else {
+				$this.addClass('object-visible');
+			}
+		});
+	};
+	
+}); // End document ready
+
+</script>
+</head>
+<body class="no-trans">
+<!-- scrollToTop -->
+	<!-- ================ -->
+	<div class="scrollToTop">
+		<i class="icon-up-open-big"></i>
+	</div>
+
+	<!-- header start -->
+	<!-- ================ -->
+	<header class="header fixed clearfix navbar navbar-fixed-top">
+		<div class="container">
+			<c:import url="/WEB-INF/views/include/header.jsp" />
+		</div>
+	</header>
+	<!-- header end -->
+
+	<!-- banner start -->
+	<!-- ================ -->
+	<div id="banner" class="banner">
+		<div class="banner-image">
+			<div class="backstretch">
+				<img
+					src="${pageContext.request.contextPath }/assets/images/bg-image-4.jpg">
+			</div>
+		</div>
+		<div class="banner-caption">
+<!-- 			<div class="container"> -->
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 object-non-visible"
+						data-animation-effect="fadeIn">
+					<h1 class="text-center">
+						Poorip <span>과 함께 가요 </span>
+					</h1>
+					<p class="lead text-center">함께 즐기는 여행</p>
+					</div>
+				</div>
+				
+				
+		</div>
+	</div>
+	<!-- banner end -->
+	<div class="row col-lg-4 col-md-4 col-sm-4"></div>
+		<form class="navbar-form navbar-left" role="search">
+		<div class="form-group">
+			<input type="text" class="form-control" id="ctyName" placeholder="Search">
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+
+		</form>
+	
+	<div class="row col-lg-12 col-md-12 col-sm-12">
+	
+	</div>
+
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

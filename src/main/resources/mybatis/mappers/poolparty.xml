@@ -30,18 +30,20 @@
 			       POOL_NAME as poolName,
 			       POOL_COMMENT as poolComment,
 			       POOL_PIC as poolPic,
-			       cty_Seq as ctySeq,
+			       POOL_PARTY.CTY_SEQ as ctySeq,
 			       MANAGER_USR_SEQ as managerUsrSeq,
 			       POOL_PUBLIC_YN as poolPublic_yn,
-			       CRT_DATE as crtDate,
+			       POOL_PARTY.CRT_DATE as crtDate,
 			       FROM_DATE as fromDate,
 			       TO_DATE as toDate,
 			       HIT,
+			       CITY.CTY_NAME as ctyName,
 			       USERS.USR_NICK as managerUsrNick,
 			       USERS.USR_PROFILE as managerProfile,
 			       USERS.USR_GENDER as managerGender
-			  FROM POOL_PARTY, USERS
+			  FROM POOL_PARTY, USERS, CITY
  			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
+ 			   AND CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ
 			   AND POOL_SEQ = #{integer }
 		]]>
 	</select>
@@ -117,16 +119,26 @@
 			   	,cty_Seq  = #{ctySeq }
 			   ]]>
 			</if>  
-			<if test="managerUsrSeq != null">
+<!-- 			<if test="managerUsrSeq != null"> -->
+<!-- 			   <![CDATA[ -->
+<!-- 			   	,MANAGER_USR_SEQ  = #{managerUsrSeq } -->
+<!-- 			   ]]> -->
+<!-- 			</if>     -->
+			 <if test="poolPublicYn != null">
 			   <![CDATA[
-			   	,MANAGER_USR_SEQ  = #{managerUsrSeq }
+			   	,POOL_PUBLIC_YN  = #{poolPublicYn }
 			   ]]>
-			</if>    
-			 <if test="poolPublic_yn != null">
+			</if>
+			<if test="fromDate != null">
 			   <![CDATA[
-			   	,POOL_PUBLIC_YN  = #{poolPublic_yn }
+			   	,FROM_DATE  = ${fromDate }
 			   ]]>
 			</if> 
+			<if test="toDate != null">
+			   <![CDATA[
+			   	,TO_DATE  = ${toDate }
+			   ]]>
+			</if>  
 			<![CDATA[ 
 			WHERE POOL_SEQ = #{poolSeq }
 		]]>

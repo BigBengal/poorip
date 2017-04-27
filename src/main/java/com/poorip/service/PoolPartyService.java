@@ -1,11 +1,17 @@
 package com.poorip.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.poorip.repository.PoolLikeDao;
 import com.poorip.repository.PoolMemberDao;
@@ -16,6 +22,7 @@ import com.poorip.vo.PoolMemberVo;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.TravelInfoVo;
 import com.poorip.vo.UserVo;
+import com.poorip.web.util.WebUtil;
 
 @Service
 public class PoolPartyService {
@@ -25,7 +32,7 @@ public class PoolPartyService {
 	private static final String defaultPoolpartName = "님의 풀파티";
 	private static final String defaultPublicYn = "Y";
 	private static final String defaultPoolpartImage = "/poorip/assets/images/none.png";
-	
+	private static final String POOLPARTY_SAVE_PATH = "/pool/";
 	
 	@Autowired
 	private PoolPartyDao poolPartyDao;
@@ -186,6 +193,46 @@ public class PoolPartyService {
 		}
 		
 		return (rejectsuccess && deleteMember && deleteParty);
+	}
+
+	// 풀파티 설정 저장
+	public boolean postSetSave(PoolPartyVo poolPartyVo, MultipartFile file) {
+		
+		String pathName = POOLPARTY_SAVE_PATH;
+		try {
+			String saveFile = WebUtil.saveFile(file, pathName);
+			if ( ! "".equals(saveFile) ) {
+				logger.info("파일없음");
+				poolPartyVo.setPoolPic(pathName + saveFile);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// 시작 일자 셋팅
+		String fromDate = poolPartyVo.getFromDate();
+		if(fromDate != null && fromDate.isEmpty() == false){
+			logger.info("fromDate existed");
+			poolPartyVo.setFromDate("STR_TO_DATE('"+fromDate+"','%Y-%m-%d/')");
+		} else 
+			poolPartyVo.setFromDate("null");
+		
+		// 종료 일자 셋팅
+		String toDate = poolPartyVo.getToDate();
+		if(toDate != null && toDate.isEmpty() == false){
+			logger.info("toDate existed");
+			poolPartyVo.setToDate("STR_TO_DATE('"+toDate+"','%Y-%m-%d/')");
+		} else 
+			poolPartyVo.setToDate("null");
+		
+		// 공개여부 설정 (cause checkBox 이기 때문에
+		String poolPublicYn = poolPartyVo.getPoolPublicYn();
+		if (poolPublicYn == null) 
+			poolPartyVo.setPoolPublicYn("N");
+		
+		poolPartyDao.update(poolPartyVo);
+		
+		return true;
 	}
 	
 }

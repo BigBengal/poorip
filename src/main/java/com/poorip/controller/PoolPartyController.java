@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
@@ -47,14 +48,17 @@ public class PoolPartyController {
 	// 풀파티 설정 시 대표도시 가져오기
 	@Autowired
 	private AdminService adminService;
-		
+
+	
+	// 풀파티 메인 URL
 	@RequestMapping(value={""})
 	public String searchPool(Model model) {
 		
 		model.addAttribute("top10", poolPartyService.getPoolTop10List());
 		return "/poolparty/poolparty";
 	}
-	
+
+	// 각각의 풀파티 Detail URL
 	@RequestMapping(value={"{poolseq}"})
 	public String enterPool(@PathVariable(value="poolseq") int poolSeq,
 							@AuthUser UserVo authUser,
@@ -94,6 +98,7 @@ public class PoolPartyController {
 	}
 
 	
+	// 도시 이름 가져오기
 	@ResponseBody
 	@RequestMapping("/poolsearch")
 	public JSONResult searchPoolForm(Model model,
@@ -105,7 +110,7 @@ public class PoolPartyController {
 		return JSONResult.success(cityNames);
 	}
 	
-	
+	// 풀파티 메인 에서 도시이름과 날짜로 검색  
 	@ResponseBody
 	@RequestMapping("/poolsearchList")
 	public JSONResult searchPool(@ModelAttribute PoolPartyVo poolPartyVo) {
@@ -114,6 +119,7 @@ public class PoolPartyController {
 		return JSONResult.success(poolList);
 	}
 	
+	// 풀파티 생성 URL
 	@Auth
 	@ResponseBody
 	@RequestMapping("/make")
@@ -124,6 +130,7 @@ public class PoolPartyController {
 		return "OK "+ poolpartyNum;
 	}
 	
+	// 풀파티 좋아요/좋아요 취소 URL
 	@Auth
 	@ResponseBody
 	@RequestMapping("/liketoggle")
@@ -135,6 +142,8 @@ public class PoolPartyController {
 		return "OK";
 	}
 	
+	
+	// 풀파티 초대 URL
 	@Auth
 	@ResponseBody
 	@RequestMapping("/invite")
@@ -144,6 +153,18 @@ public class PoolPartyController {
 		
 		poolPartyService.enterPoolparty(poolpartySeq, usrSeq, false);
 		return "OK";
+	}
+
+	// 풀파티 설정 변경
+	@Auth
+	@RequestMapping("/saveSetting")
+	public String saveSetting(@ModelAttribute PoolPartyVo poolPartyVo,
+								@RequestParam("poolPicture") MultipartFile file){
+		System.out.println(poolPartyVo);
+		
+		poolPartyService.postSetSave(poolPartyVo, file);
+		
+		return "redirect:/poolparty/"+poolPartyVo.getPoolSeq();
 	}
 
 }

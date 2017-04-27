@@ -1,12 +1,8 @@
 package com.poorip.service;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +17,7 @@ import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.TravelInfoPicVo;
 import com.poorip.vo.TravelInfoVo;
+import com.poorip.web.util.WebUtil;
 
 @Service
 public class AdminService {
@@ -39,19 +36,11 @@ public class AdminService {
 			}
 			// 폴더가 없으면 폴더 생성
 			String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoVo.getTrvSeq();
-			File file = new File( pathName );
-			if( file.isDirectory() == false )
-				file.mkdirs();
-			
-			String orgFile = multipartFile.getOriginalFilename();
-			String fileExtName = orgFile.substring( orgFile.lastIndexOf('.') + 1, orgFile.length() );
-			String saveFile = generateSaveFileName( fileExtName );
-			
-			// 파일 저장
-			IOUtils.copy( multipartFile.getInputStream(), new FileOutputStream( pathName + "/" + saveFile ) );
+			String saveFile = WebUtil.saveFile(multipartFile, pathName);
 			
 			// DB에 저장
-			travelInfoVo.setPicture(saveFile);
+			travelInfoVo.setPicture(pathName+"/"+saveFile);
+			
 			
 		} catch (IOException ex) {
 			//1.log 남기기
@@ -66,26 +55,16 @@ public class AdminService {
 		boolean travelPicReturn = true;
 		
 		String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoPicVo.getTrvSeq();
-		for (int i=0; i < travelfiles.size(); i++) {
-			File file = new File( pathName );
+		
+		for ( MultipartFile travelfile : travelfiles){
 			
-			// 폴더가 없으면 폴더 생성
-			if( file.isDirectory() == false )
-				file.mkdirs();
-			
-			// 서버 저장용 파일이름 변경
-			String orgFile = travelfiles.get(i).getOriginalFilename();
-			String fileExtName = orgFile.substring( orgFile.lastIndexOf( '.' ) + 1, orgFile.length() );
-			String saveFile = generateSaveFileName( fileExtName );
-			
-			// 서버에 저장
-			IOUtils.copy( travelfiles.get(i).getInputStream(), new FileOutputStream( pathName + "/" + saveFile) );
+			String saveFile = WebUtil.saveFile(travelfile, pathName);
 			travelInfoPicVo.setFileName( saveFile );
 			travelInfoPicVo.setPath( pathName );
 			
-			//addTravelPic 저장
 			travelPicReturn =  adminDao.addTravelPic( travelInfoPicVo );
 		}
+		
 		return travelPicReturn;
 		
 	}
@@ -96,29 +75,19 @@ public class AdminService {
 		boolean postReturn = adminDao.addPost( postVo );
 		boolean postPicReturn = true;
 		String pathName = POST_SAVE_PATH + "/" + postVo.getTrvSeq();
-		for (int i=0; i < files.size(); i++) {
-			File file = new File( pathName );
+		
+		for ( MultipartFile file : files){
 			
-			// 폴더가 없으면 폴더 생성
-			if(file.isDirectory() == false)
-				file.mkdirs();
-
-			// 서버 저장용 파일이름 변경
-			String orgFile = files.get(i).getOriginalFilename();
-			String fileExtName = orgFile.substring( orgFile.lastIndexOf( '.' ) + 1, orgFile.length() );
-			String saveFile = generateSaveFileName( fileExtName );
+			String saveFile = WebUtil.saveFile(file, pathName);
 			
-			// 서버에 저장
-			IOUtils.copy( files.get(i).getInputStream(), new FileOutputStream(pathName+"/"+saveFile));
 			PostPicVo postPicVo = new PostPicVo();
 			postPicVo.setPostSeq(postVo.getPostSeq());
 			postPicVo.setPath(pathName);
 			postPicVo.setFileName(saveFile);
-
+			
 			//PostPic 저장
-			postPicReturn = postPicReturn && adminDao.addPostPic(postPicVo);
+			postPicReturn = postPicReturn && adminDao.addPostPic(postPicVo);	
 		}
-		
 		return postReturn && postPicReturn; //adminDao.addPostAndPic( postVo, postPicVo );
 	}
 
@@ -136,22 +105,6 @@ public class AdminService {
 		this.files = files;
 	}
 	
-	private String generateSaveFileName(String extName) {
-		String fileName = "";
-		Calendar calendar = Calendar.getInstance();
-
-		fileName += calendar.get(Calendar.YEAR);
-		fileName += calendar.get(Calendar.MONTH);
-		fileName += calendar.get(Calendar.DATE);
-		fileName += calendar.get(Calendar.HOUR);
-		fileName += calendar.get(Calendar.MINUTE);
-		fileName += calendar.get(Calendar.SECOND);
-		fileName += calendar.get(Calendar.MILLISECOND);
-		fileName += ("." + extName);
-
-		return fileName;
-	}
-
 	public List<CityVo> getCityName() {
 		return adminDao.getCityName();
 	}

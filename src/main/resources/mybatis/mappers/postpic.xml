@@ -12,19 +12,6 @@
 		]]>
 	</insert>
 	
-	<insert id="addPostPic"  parameterType="postpicvo">
-		<![CDATA[
-			insert into
-				post_pic values(null,
-								#{path },
-								#{fileName },
-								(select max(post_seq) as postSeq
-									from post
-								where usr_seq = {usrSeq }),
-								now())
-		]]>
-	</insert>
-	
 	<select id="getList" resultType="postpicvo">
 		<![CDATA[
 			SELECT POST_PIC_SEQ as postPicSeq, 

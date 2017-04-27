@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.poorip.dto.FileMeta;
 import com.poorip.dto.JSONResult;
+import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.AdminService;
 import com.poorip.vo.CityVo;
@@ -42,6 +43,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
+	@Auth
 	@RequestMapping("/basic")
 	public String adminBasic( Model model) {
 		model.addAttribute( "travelinfoVo", adminService.getTravelInfo() );
@@ -52,6 +54,7 @@ public class AdminController {
 		return "/admin/admin-basic";
 	}
 	
+	@Auth
 	@RequestMapping("/addInfo")
 	public String addTravelInfoForm( Model model ) {
 		
