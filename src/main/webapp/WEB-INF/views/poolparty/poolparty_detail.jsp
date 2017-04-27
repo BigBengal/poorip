@@ -76,66 +76,80 @@ $(document).ready(function(){
 <body>
 <body class="no-trans">
 <!-- scrollToTop -->
-	<!-- ================ -->
-	<div class="scrollToTop">
-		<i class="icon-up-open-big"></i>
-	</div>
+<!-- ================ -->
+<div class="scrollToTop">
+	<i class="icon-up-open-big"></i>
+</div>
 
-	<!-- header start -->
-	<!-- ================ -->
-	<header class="header fixed clearfix navbar navbar-fixed-top">
-		<div class="container">
-			<c:import url="/WEB-INF/views/include/header.jsp" />
-		</div>
-	</header>
-	<!-- header end -->
-	<div style="height: 200px;">
+<!-- header start -->
+<!-- ================ -->
+<header class="header fixed clearfix navbar navbar-fixed-top">
+	<div class="container">
+		<c:import url="/WEB-INF/views/include/header.jsp" />
 	</div>
-	
-	<div class="col-md-10">
-		<div class="col-md-4">
-			<img src="${pool.poolPic}">
+</header>
+<!-- header end -->
+<div style="height: 200px;">
+</div>
+
+<div class="col-md-10">
+	<div class="col-md-4">
+		<img src="${pool.poolPic}">
+	</div>
+	<div class="col-md-8">
+		<div class="col-md-10">
+		<h1>${pool.poolName} </h1>
 		</div>
-		<div class="col-md-8">
-			<div class="col-md-10">
-			<h1>${pool.poolName} </h1>
-			</div>
-			<div class="col-md-2">
-			<img src="/poorip/assets/images/gear.png" width="30px">
-			<c:if test="${authUser == null }">
-				가입요청
-			</c:if>
-			</div>
-		<div class="col-md-12">
-		<h3>${pool.poolComment} </h3>
-		<p> 관리자 : <img src="${pool.managerProfile}"> ${pool.managerUsrNick } </p>
-		
-		<h5>
-		<c:if test="${pool.fromDate != null or pool.toDate != null}">
-		 여행 기간 : ${pool.fromDate} ~ ${pool.toDate} 
+		<div class="col-md-2">
+		<img src="/poorip/assets/images/gear.png" width="30px">
+		<c:if test="${authUser == null }">
+			가입요청
 		</c:if>
-		
-		
-		</h5>
 		</div>
-		</div>
-		
-		${ poolpost }
-		
+	<div class="col-md-12">
+	<h3>${pool.poolComment} </h3>
+	<p> 관리자 : <img src="${pool.managerProfile}"> ${pool.managerUsrNick } </p>
+	
+	<h5>
+	<c:if test="${pool.fromDate != null or pool.toDate != null}">
+	 여행 기간 : ${pool.fromDate} ~ ${pool.toDate} 
+	</c:if>
+	
+	
+	</h5>
+	</div>
 	</div>
 	
-	<div class="col-md-2 hidden-xs">
-	풀파티 맴버
+	${ poolpost }
+	
+</div>
+
+<div class="col-md-2 hidden-xs">
+풀파티 맴버
 <%-- 	${poolmember } --%>
-	<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
-		<div class=gender_${memberlist.gender}>
-			<img src="${memberlist.profile}">
-			${memberlist.usrNick}
-			${memberlist.approve}
-		</div>
-	</c:forEach>	
+<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
+	<div class=gender_${memberlist.gender}>
+		<img src="${memberlist.profile}">
+		${memberlist.usrNick}
+		${memberlist.approve}
 	</div>
-	
+</c:forEach>	
+</div>
+<div class="row col-md-12">
+<c:forEach var="post" items="${post}" varStatus="status">
+	<p> SEQ: ${post.postSeq} </p>  
+	<p> TITLE: ${post.title}  </p>
+	<p> CONTENTS : ${post.contents}  </p>
+	<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
+		<c:if test="${post.postSeq ==postpic.postSeq}">
+			<img src="${postpic.path }${postpic.fileName }">
+		</c:if>
+	</c:forEach>
+</c:forEach>
+
+
+</div>
+
 	
 </body>
 </html>

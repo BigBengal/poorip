@@ -36,7 +36,7 @@ public class SNSController {
 	@Autowired SNSService snsService;
 	
 	@Auth
-	@ResponseBody
+	@ResponseBody	
 	@RequestMapping("/main/{page}")
 	public JSONResult mySNS( @AuthUser UserVo userVo,
 							 @PathVariable ( "page" ) Integer page,

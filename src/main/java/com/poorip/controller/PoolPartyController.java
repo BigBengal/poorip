@@ -1,5 +1,8 @@
 package com.poorip.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -20,6 +23,7 @@ import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.PostPicVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
 
@@ -49,17 +53,32 @@ public class PoolPartyController {
 		// 조회수 증가
 		poolPartyService.updateHit(poolSeq);
 	
+
+		// 풀 포스트
+		List<ReviewVo> postList = SNSService.getPostListbyPoolSeq(poolSeq, 0);
+		System.out.println(postList);
+		List<PostPicVo> postPicList = new ArrayList<>();
+//		model.addAttribute("poolpost", SNSService.getPostListbyPoolSeq(poolSeq));
+		for(int i=0; i < postList.size();i++){
+			int postSeq = postList.get(i).getPostSeq();
+			System.out.println(postSeq);
+			List<PostPicVo> postPic = SNSService.getpostPicList(postSeq);
+			System.out.println(postPic);
+			postPicList.addAll(postPic);
+		}
+		
+		System.out.println(postPicList);
+		
+		// 풀 포스트 (글 + 사진)
+		model.addAttribute("post", postList);
+		model.addAttribute("postPic", postPicList);
+		
 		// 풀 정보
 		model.addAttribute("pool", poolPartyService.getPoolInfo(poolSeq));
 		
 		// 풀 맴버
 		model.addAttribute("poolmember", poolPartyService.getPoolMembers(poolSeq));
 
-		// 풀 포스트
-		List<ReviewVo> list = SNSService.getPostListbyPoolSeq(poolSeq, 0);
-		System.out.println(list);
-//		model.addAttribute("poolpost", SNSService.getPostListbyPoolSeq(poolSeq));
-				
 		
 		return "/poolparty/poolparty_detail";
 	}
