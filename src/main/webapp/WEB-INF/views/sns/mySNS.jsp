@@ -8,7 +8,8 @@
 	<div class="col-md-12">
 		<div class="filters text-center">
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/sns/post/upload" method="post" enctype="multipart/form-data">
-				<table>
+				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
+				<%-- <table>
 					<tr>
 						<th>
 							제목
@@ -72,7 +73,56 @@
 									class="btn btn-default col-lg-12" value="게시글 올리기">
 						</td>
 					</tr>
-				</table>
+				</table> --%>
+				<div class="form-group" id="title">
+			        <label class="control-label col-sm-3" for="title">제목 : </label>
+			        <div class='col-sm-7'>
+			        	<input type="text" id="title" name="title" />
+			        </div>
+			    </div>
+				<div>
+					<label class="control-label col-sm-3" for="contents">contents : </label>
+					<textarea id="contents" name="contents"></textarea>
+				</div>
+				<div class="selectbox">
+					<label class="control-label col-sm-3" for="trvSeq">관련 여행지 선택</label>
+					<div class='col-sm-7'>
+						<select id="sns-trv-seq">
+							<option selected>관련 여행지 선택</option>
+							<c:forEach items="${travelVo }" var="travelVo" varStatus="status">
+								<option value="${travelVo.trvSeq }">${travelVo.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div>
+					<label class="control-label col-sm-3" for="file">사진 올리기</label>
+					<input type="file" name="file" multiple="multiple">
+				</div>
+				<div class="checks">
+					<label class="control-label col-sm-3" for="reviewPubYn">공개 여부 : </label>
+					<div class='col-sm-7'>
+						<label for="reviewPubYn">공개</label>
+	                    <input type="radio" id="reviewPubYn" name="reviewPubYn" value="Y" checked data-toggle="toggle"> 
+	                    <label for="reviewPubYn">비공개</label> 
+	                    <input type="radio" id="reviewPubYn" name="reviewPubYn" value="N" checked data-toggle="toggle">
+                 	</div>
+                 </div>
+                 <div class="checks">
+					<label class="control-label col-sm-3" for="reviewPubYn">공유 여부 : </label>
+					<div class='col-sm-7'>
+						<label for="hidden">공유</label>
+	                    <input type="radio" id="hidden" name="hidden" value="Y" checked data-toggle="toggle"> 
+	                    <label for="hidden">공유 안함</label> 
+	                    <input type="radio" id="hidden" name="hidden" value="N" checked data-toggle="toggle">
+                 	</div>
+                 </div>
+				<div class="form-group-button">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-7">
+			        <button type="submit" class="btn btn-default col-lg-6 center-block">게시글 올리기</button>
+			    </div>
+			    </div>
 			</form>
 			<table id="my-sns-list">
 			</table>

@@ -9,22 +9,22 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo ) {
-	var post_html = "<tr><td colspan='2'>" + vo.postSeq + "</td>" +
-			   		"<td colspan='10' id='title-" + vo.postSeq + "'>" + vo.title + "</td></tr>";
+	var post_html = "<tr id='title-" + vo.postSeq + "'><td style='width: 20%'>" + vo.postSeq + "</td>" +
+			   		"<td style='width: 80%'>" + vo.title + "</td></tr>";
 
 		 		    $( "#my-sns-list" ).append(post_html);
 }
 
 var postPic_render = function(vo2, vo) {
-	var postPic_html = "<tr><td colspan='12' id='post-pic-" + vo.postSeq + "'>" + vo2.fileName + "</td></tr>";
+	var postPic_html = "<tr id='post-pic-" + vo.postSeq + "'><td colspan='2'>" + vo2.fileName + "</td></tr>";
 
 					   $( "#title-"+vo.postSeq ).append(postPic_html);
 }
 
 var last_render = function(vo) {
-	var last_html = "<tr><td colspan='12'>" + vo.contents + "</td></tr>" +
-					"<tr><td colspan='7'>" + "" + "</td>" + 
-	   				"<td colspan='5'>" + vo.crtDate + "</td></tr>";
+	var last_html = "<tr><td colspan='2'>" + vo.contents + "</td></tr>" +
+					"<tr><td colspan='2' style='text-align: right;'>" + vo.crtDate + "</td></tr>" +
+	   				"<tr><td colspan='2' style='text-align: right;'><a href='' title='삭제' data-no=' " + vo.postSeq + "'>삭제</a></td></tr>";
 
 					$("#post-pic-"+vo.postSeq).append(last_html);
 } 
