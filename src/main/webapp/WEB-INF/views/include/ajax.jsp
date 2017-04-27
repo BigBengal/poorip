@@ -5,8 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 <%-- <link href="<c:url value='/resources/css/jquery-ui.css' />" rel="stylesheet" type="text/css"/> --%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
 <script type="text/javascript">
 $(function(){
 	$("#kwd").autocomplete({

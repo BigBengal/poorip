@@ -239,7 +239,7 @@ function searchPool(){
 	<!-- ================ -->
 	<div id="banner" class="banner">
 		<div class="banner-image">
-			<div class="backstretch">
+			<div class="backstretch" style="z-index: -999998; position: absolute; width: 100%; height: 100%; min-width:700px;">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/bg-image-4.jpg">
 			</div>

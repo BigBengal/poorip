@@ -28,12 +28,12 @@
 						style="text-align: center; display: inline-block">
 						<p class="text-center" style="text-align: center;">
 							<label for="from">출발</label> 
-							<input type="text"
+							<input type="text" class="fromDatePick"
 								  name="dateFrom" id="fromDate-${cityList.ctyName }"
 								style="color: #000000; border-radius: 10px"> 
 								<label
 								for="to" style="margin-left: 5px">도착</label> 
-							<input type="text"
+							<input type="text" class="toDatePick"
 								id="toDate-${cityList.ctyName }" name="dateTo"
 								style="color: #000000; border-radius: 10px; margin-top: 10px">
 							<input class="btn btn-sm btn-default" type="submit"

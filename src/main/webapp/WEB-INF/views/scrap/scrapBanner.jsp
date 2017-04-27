@@ -17,13 +17,3 @@
 
 </body>
 </html>
-
-<!-- <form class="test-form MultiFile-intercepted" action="test/test.php"
-		method="post" enctype="multipart/form-data" target="upload-frame">
-		<button type="submit">Upload</button>
-		<div class="MultiFile-wrap" id="MultiFile10">
-			<input type="file" multiple="multiple" accept="gif|jpg"
-				name="multifile-test[]" id="MultiFile10" value="">
-			<div class="MultiFile-list" id="MultiFile10_list"></div>
-		</div>
-	</form> -->

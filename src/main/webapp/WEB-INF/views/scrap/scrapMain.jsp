@@ -79,7 +79,7 @@
 	<!-- ================ -->
 	<div id="banner" class="banner">
 		<div class="banner-image">
-			<div class="backstretch">
+			<div class="backstretch" style="position:relative;">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/greece-santorini.jpg">
 			</div>
@@ -163,27 +163,13 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
-	
-	<!-- DatePicker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+	<c:import url="/WEB-INF/views/include/ajax.jsp" />
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	
-	<c:import url="/WEB-INF/views/include/ajax.jsp" />
-	<script>
-		$(document).ready(function(){
-			
-			var $alink = $("#navbar-collapse-1 ul li a");
-			for(var i=0;i<2;i++){
-				var $ori = $alink.eq(i);
-				var oriLink = $ori.attr("href");
-				$ori.attr("href","/poorip/"+oriLink);	 
-			}
-		});
-</script>
+	
+	
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>
 <%-- </c:forEach> --%>
