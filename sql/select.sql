@@ -56,14 +56,16 @@ select a.CTY_NAME, b.CTR_NAME from city a, country b
 	where a.CTR_SEQ = b.CTR_SEQ
 	  and a.CTY_NAME like '%르셀%';
 
-create view search
+create view city_search
 	as select ci.CTY_SEQ, ci.CTY_NAME, cu.CTR_NAME
 	from city ci, country cu
 where ci.CTR_SEQ = cu.CTR_SEQ;
 
-select * from seach;
+drop view seach;
 
-select cty_seq from seach where cty_name = '파리';
+select * from city_search;
+
+select cty_seq from city_search where cty_name = '파리';
 
 select CAT_SEQ as catSeq, CAT_NAME as catName from category;
 

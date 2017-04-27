@@ -48,20 +48,6 @@
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
-
-
-<!-- SNS CSS -->
-<style type="text/css">
-	th, td {
-		padding: 5px;
-	}
-	
-	table {
-		border-spacing: 5px;
-		width: 100%;
-		border: 1px solid #bcbcbc;
-	}
-</style>
 </head>
 
 <body class="no-trans scroll-spy">
@@ -147,10 +133,17 @@
 	<!-- date picker -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<!-- sns post img next -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+	
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 	<c:import url="/WEB-INF/views/sns/sns-ajax.jsp" />
 	<script>
+		var writeVisible = false;
+		
 		$(function() {
 			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
 				defaultDate : "+1w",
@@ -177,6 +170,17 @@
 				return date;
 			}
 		});
+		
+		function showWrite(){
+			if ( writeVisible == true ) {
+				$("#sns-write").hide();	
+				writeVisible = false;
+			} else {
+				$("#sns-write").show();
+				writeVisible = true;
+			}
+			
+		}
 
 	</script>
 

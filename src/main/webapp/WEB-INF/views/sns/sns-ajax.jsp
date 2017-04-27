@@ -21,8 +21,21 @@ var postPic_render = function(vo2, vo) {
 	var postPic_html = "<div class='form-group' id='middle-html-" + vo.postSeq + "'>" +
 							"<div class='col-md-offset-4'>" +
 						   		"<p class='col-md-12'>" + 
-					   				"<img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px'>" +
-						   		"</p>" +
+						   			"<div class='cycle-slideshow'" +
+							   			"data-cycle-fx='scrollHorz'" +
+							   			"data-cycle-timeout='0'" +
+							   			"data-cycle-prev='prev'" +
+							   			"data-cycle-next='#next'" +
+										">" +
+										"<c:forEach items='${" + vo2 + "}' var='" + vo2 + "' varStatus='status'>" +
+						   					"<img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px'>" + vo2.postPicSeq +
+							   			"</c:forEach>" +
+							   		"</div>" +
+							   		"<div class='text-center'>" +
+								   		"<a herf=# id='prev'> ! </a>" +
+								   		"<a herf=# id='nexr'> < </a>" +
+							   		"</div>" +
+					   			"</p>" +
 					   		"</div>" +
 					   "</div>";
 
@@ -38,9 +51,9 @@ var last_render = function(vo) {
 						"<p class='col-md-5' align='left'>" + vo.crtDate + "</p>" +
 					"</div>" +
 					"<div class='form-group'>" +
-						"<p class='col-md-2'><img alt='' src='''>삭제</p>" +
-		   				"<p class='col-md-8'></p>" + 
-		   				"<p class='col-md-2'><img alt='' src='''>공유</p>" +
+						"<p class='col-md-4' align='left' data-postSeq='" + vo.postSeq + "'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 30px'></p>" +
+		   				"<p class='col-md-4' align='center'><img alt='공유' src='/poorip/assets/images/share-btn.png' style='width: 30px'></p>" +
+		   				"<p class='col-md-4' align='right'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 30px'></p>" + 
 	   				"</div>";
 
 					$("#middle-html-"+vo.postSeq).after(last_html);
@@ -71,11 +84,13 @@ var fetchList = function() {
 			$( response.data.post ).each( function( index, vo) {
 				//console.log(index + "  ++++"+ vo.title); 	
 				post_render( vo );
+				
 				$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
-					//console.log(index + " " + vo2.fileName); 
 					postPic_render( vo2, vo );
+					console.log(vo2);
+					console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
 				});
-				last_render( vo );
+			last_render( vo );
 			});
 			
 			return;

@@ -30,6 +30,14 @@ public class SNSController {
 	@Autowired SNSService snsService;
 	
 	@Auth
+	@RequestMapping("")
+	public String goSNS( @AuthUser UserVo userVo,
+						 Model model ) {
+		model.addAttribute( "travelVo", snsService.getTravelInfo() );
+		return "sns/snsmain";
+	}
+	
+	@Auth
 	@ResponseBody	
 	@RequestMapping("/main/{page}")
 	public JSONResult mySNS( @AuthUser UserVo userVo,
@@ -52,7 +60,6 @@ public class SNSController {
 		return JSONResult.success( map );
 	}
 	
-	
 	@Auth
 	@RequestMapping("/post/upload")
 	public String mySNSadd( @AuthUser UserVo userVo,
@@ -66,5 +73,5 @@ public class SNSController {
 		
 		return "redirect:/sns";
 	}
-
+		
 }

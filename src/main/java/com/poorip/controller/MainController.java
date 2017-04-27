@@ -180,15 +180,5 @@ public class MainController {
 			return "redirect:/";
 		return "redirect:/city/" + seq;
 	}
-	
-	@Auth
-	@RequestMapping("/sns")
-	public String mySNS( @AuthUser UserVo userVo,
-						 Model model ) {
-				
-		model.addAttribute( "travelVo", snsService.getTravelInfo() );
-		
-		return "sns/snsmain";
-	}
 
 }
