@@ -177,9 +177,4 @@
 	]]>
 	</select>
 	
-	<select id="selectAllPostSeqOfTravelInfo" resultType="postvo" parameterType="integer">
-	<![CDATA[
-	select post_seq, count(post_seq) from post_like group by post_seq order by count(post_seq) desc
-	]]>
-	</select>
 </mapper>
