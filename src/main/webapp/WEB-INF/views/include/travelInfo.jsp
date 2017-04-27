@@ -169,6 +169,7 @@
 											</h3>
 											<div class="row">
 												<div id="review-${travelInfoFood.trvSeq}"></div>
+												
 											</div>
 											<div class='col-md-3' id="reviewpic-${travelInfoFood.trvSeq}">
 												<div id="reviewpic-${travelInfoFood.trvSeq}"></div>
@@ -516,7 +517,7 @@
 									<div class="modal-body">
 									<c:if test="${!empty authUser }">
 										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoActivityMain.trvSeq}"
-											src="--"
+											src=""
 											style="float: right;"
 											data-trvSeq="${travelInfoActivityMain.trvSeq}" onclick="validate(${travelInfoActivityMain.trvSeq})"/></a>
 									</c:if>

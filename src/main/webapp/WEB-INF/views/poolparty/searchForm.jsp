@@ -75,7 +75,7 @@ body {
 	<div class="container">
 		<h2 align="center">가고싶은 여행지를 검색하세요</h2>
 		<form id="search_form" method="post" style="text-align:center">
-			<input type="text" style="margin: auto;"
+			<input type="text" style="margin: auto; color:black;"
 				placeholder="Search..." class="form-control-travel" id="ctyName"
 				name="ctyName" >
 			<p class="text-center" style="text-align: center;">

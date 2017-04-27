@@ -1,13 +1,10 @@
 package com.poorip.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,8 +20,6 @@ import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.SNSService;
-import com.poorip.vo.PostPicVo;
-import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
 
@@ -54,9 +48,7 @@ public class SNSController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put( "postPic", picMap);
 		map.put( "post", post);
-		System.out.println(map);
 		
-		System.out.println(page);
 		return JSONResult.success( map );
 	}
 	

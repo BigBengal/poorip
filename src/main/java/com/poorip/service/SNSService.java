@@ -3,11 +3,8 @@ package com.poorip.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.poorip.repository.SNSDao;
 import com.poorip.vo.PostPicVo;
-import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
@@ -92,12 +88,31 @@ public class SNSService {
 	}
 
 	public List<ReviewVo> getAddPostList(int usrSeq) {
-		System.out.println(usrSeq);
 		return snsDao.getAddPostList( usrSeq );
 	}
 	
 	public List<ReviewVo> getPostListbyPoolSeq( int poolSeq, int page) {
 		return snsDao.getPostListbyPoolSeq( poolSeq, page );
+	}
+	
+	public boolean increasePostLike(int postSeq, int usrSeq) {
+		return snsDao.increaseLike(postSeq, usrSeq);
+	}
+	
+	public Integer checkPostLike(int postSeq, int usrSeq) {
+		return snsDao.checkPostLike(postSeq, usrSeq);
+	}
+	
+	public boolean decreasePostLike(int postSeq, int usrSeq) {
+		return snsDao.decreaseLike(postSeq, usrSeq);
+	}
+	
+	public List<PostVo> showPostLike(int trvSeq, int usrSeq) {
+		return snsDao.showPostLike(trvSeq, usrSeq);
+	}
+	
+	public List<PostVo> showAllPostSeqsofTravel(int trvSeq) {
+		return snsDao.showAllPostSeqsofTravel(trvSeq);
 	}
 
 }

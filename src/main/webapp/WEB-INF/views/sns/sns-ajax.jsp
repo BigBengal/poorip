@@ -9,24 +9,41 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo ) {
-	var post_html = "<tr id='title-" + vo.postSeq + "'><td style='width: 20%'>" + vo.postSeq + "</td>" +
-			   		"<td style='width: 80%'>" + vo.title + "</td></tr>";
+	var post_html = "<div class='form-group' id='first-html-" + vo.postSeq + "'>" + 
+						"<p class='col-sm-2'>" + vo.postSeq + "</p>" +
+				   		"<p class='col-sm-10 text-center' style='font-size: 20px'><strong>" + vo.title + "</strong></p>" +
+			   		"</div>";
 
 		 		    $( "#my-sns-list" ).append(post_html);
 }
 
 var postPic_render = function(vo2, vo) {
-	var postPic_html = "<tr id='post-pic-" + vo.postSeq + "'><td colspan='2'>" + vo2.fileName + "</td></tr>";
+	var postPic_html = "<div class='form-group' id='middle-html-" + vo.postSeq + "'>" +
+							"<div class='col-md-offset-4'>" +
+						   		"<p class='col-md-12'>" + 
+					   				"<img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px'>" +
+						   		"</p>" +
+					   		"</div>" +
+					   "</div>";
 
-					   $( "#title-"+vo.postSeq ).append(postPic_html);
+					   $( "#first-html-"+vo.postSeq ).after(postPic_html);
 }
 
 var last_render = function(vo) {
-	var last_html = "<tr><td colspan='2'>" + vo.contents + "</td></tr>" +
-					"<tr><td colspan='2' style='text-align: right;'>" + vo.crtDate + "</td></tr>" +
-	   				"<tr><td colspan='2' style='text-align: right;'><a href='' title='삭제' data-no=' " + vo.postSeq + "'>삭제</a></td></tr>";
+	var last_html = "<div class='form-group'>" +
+						"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
+					"</div>" + 
+					"<div class='form-group'>" +
+						"<p class='col-md-7'> </p>" +
+						"<p class='col-md-5' align='left'>" + vo.crtDate + "</p>" +
+					"</div>" +
+					"<div class='form-group'>" +
+						"<p class='col-md-2'><img alt='' src='''>삭제</p>" +
+		   				"<p class='col-md-8'></p>" + 
+		   				"<p class='col-md-2'><img alt='' src='''>공유</p>" +
+	   				"</div>";
 
-					$("#post-pic-"+vo.postSeq).append(last_html);
+					$("#middle-html-"+vo.postSeq).after(last_html);
 } 
 
 var fetchList = function() {
