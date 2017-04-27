@@ -20,7 +20,7 @@
 								#{fileName },
 								(select max(post_seq) as postSeq
 									from post
-								where usr_seq = 14),
+								where usr_seq = {usrSeq }),
 								now())
 		]]>
 	</insert>
