@@ -99,5 +99,25 @@ public class SNSService {
 	public List<ReviewVo> getPostListbyPoolSeq( int poolSeq, int page) {
 		return snsDao.getPostListbyPoolSeq( poolSeq, page );
 	}
+	
+	public boolean increasePostLike(int postSeq, int usrSeq) {
+		return snsDao.increaseLike(postSeq, usrSeq);
+	}
+	
+	public Integer checkPostLike(int postSeq, int usrSeq) {
+		return snsDao.checkPostLike(postSeq, usrSeq);
+	}
+	
+	public boolean decreasePostLike(int postSeq, int usrSeq) {
+		return snsDao.decreaseLike(postSeq, usrSeq);
+	}
+	
+	public List<PostVo> showPostLike(int trvSeq, int usrSeq) {
+		return snsDao.showPostLike(trvSeq, usrSeq);
+	}
+	
+	public List<PostVo> showAllPostSeqsofTravel(int trvSeq) {
+		return snsDao.showAllPostSeqsofTravel(trvSeq);
+	}
 
 }

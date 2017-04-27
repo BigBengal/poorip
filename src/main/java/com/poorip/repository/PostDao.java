@@ -24,6 +24,5 @@ public class PostDao {
 		return sqlSession.selectOne("post.selectbyno", seq);
 	}
 	
-	
 
 }

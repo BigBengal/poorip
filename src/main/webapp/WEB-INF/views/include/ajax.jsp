@@ -42,7 +42,7 @@ $(function(){
 var render = function( vo, reviewNum, postSeq ){
 	
 	var html = "<div class='col-md-12' style='border-style:solid; border-width:1px; margin:2px; padding:2px'>" +
-				"<p id='reviewtitle'>" + vo.title + "</p>" +
+				"<p id='reviewtitle'>" + vo.title + "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")><img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/water-tube.png' style='width:100%' ></a></p>" +
 			   "<p id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "</p>" + 
 			   "</div>"
 			   ;			
@@ -66,7 +66,8 @@ function hasNull(target) {
 }
 function send(trvSeq, reviewNum){
 	var likeIcon = document.getElementById("scrapTrvInfo-"+trvSeq);
-	console.log(likeIcon);
+	
+	
 	
 	$.ajax({
         url : "/poorip/scrap/scrapValidate",
@@ -74,13 +75,11 @@ function send(trvSeq, reviewNum){
         data: "trvSeq="+ trvSeq,
         dataType: "text",
         success : function(data) {
-        	console.log(data);
             if(data==="YES") {
-            	
-            	console.log("들어오냐고");
+
             	likeIcon.src="/poorip/assets/images/scrapicon-scraped.png";
             }else {
-            	console.log("들어오냐고222");
+ 
         		likeIcon.src="/poorip/assets/images/scrapicon.png";
         	}
         },
@@ -98,8 +97,25 @@ function send(trvSeq, reviewNum){
         	
         		$( response.data ).each( function(index, vo){
 				var postSeq = vo.postSeq;
-				console.log(postSeq);
         		render( vo, reviewNum, postSeq );
+        		
+        		$.ajax({
+			        url : "/poorip/reviewLikeValidate/" +trvSeq,
+			        type : "post",
+			        data: "",
+			        dataType: "json",
+			        success : function(result) {
+			        	$( result.data ).each( function(index, vo){
+			        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
+			        		console.log(likePostIcon);
+			        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
+			        	});
+			         
+			        },
+			        error : function(data) {
+						    alert("ajax 에러가 발생하였습니다.")
+			        }
+			    });
         		
 				
         		$.ajax({
@@ -108,9 +124,8 @@ function send(trvSeq, reviewNum){
         			type: "post",
         			dataType: "json",
         			success : function(review) {
-        				console.log(review.data);
         					if( review.result != "success" ) {
-        		    		console.log( response.message );
+  							
         		    		return;
         		    		} 
         					if(hasNull(review.data)) {
@@ -120,10 +135,12 @@ function send(trvSeq, reviewNum){
         					$(review.data).each(function (index,vo){        					
         					renderpic(vo, reviewNum, postSeq);
         				});
+        					
+        					
         			}
         			
         		});
-        		$("#reviewpic-"+reviewNum ).empty();
+        	
 		        });
         	},
 		        error : function(data) {
@@ -131,6 +148,35 @@ function send(trvSeq, reviewNum){
 		//             alert("ajax 에러가 발생하였습니다.")
 		        }
 		    });
+		
+		
+		
+		$("#reviewpic-"+reviewNum ).empty();
 		$("#review-"+reviewNum ).empty();
 	}
+	
+function reviewLike(postSeq) {
+	var likePostIcon = document.getElementById("like-button-img-"+postSeq);
+	console.log("yay?" + postSeq);
+	$.ajax({
+        url : "/poorip/reviewLike/" +postSeq,
+        type : "post",
+        data: "",
+        dataType: "json",
+        success : function(result) {
+        	if(result.data=="decreased_like") {
+ 
+        		likePostIcon.src = "/poorip/assets/images/water-tube.png";
+        	}
+        	if(result.data=="increased_like") {
+        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
+        	}
+         
+        },
+        error : function(data) {
+			    alert("ajax 에러가 발생하였습니다.")
+        }
+    });
+};
+
 </script>
