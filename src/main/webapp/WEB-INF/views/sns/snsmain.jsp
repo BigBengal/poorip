@@ -126,8 +126,8 @@
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
 
 	<!-- Custom Scripts -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 	<!-- date picker -->
@@ -143,34 +143,6 @@
 	<c:import url="/WEB-INF/views/sns/sns-ajax.jsp" />
 	<script>
 		var writeVisible = false;
-		
-		$(function() {
-			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				to.datepicker("option", "minDate", getDate(this));
-			}), to = $("#to").datepicker({
-				defaultDate : "+1w",
-				changeMonth : true,
-				numberOfMonths : 2
-			}).on("change", function() {
-				from.datepicker("option", "maxDate", getDate(this));
-			});
-
-			function getDate(element) {
-				var date;
-				try {
-					date = $.datepicker.parseDate(dateFormat, element.value);
-				} catch (error) {
-					date = null;
-				}
-
-				return date;
-			}
-		});
-		
 		function showWrite(){
 			if ( writeVisible == true ) {
 				$("#sns-write").hide();	
