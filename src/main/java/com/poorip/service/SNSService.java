@@ -64,7 +64,7 @@ public class SNSService {
 			
 			IOUtils.copy( postUploadFiles.get(i).getInputStream(), new FileOutputStream( pathName + "/" + saveFile ) );
 			PostPicVo postPicVo = new PostPicVo();
-			postPicVo.setPostPicSeq( reviewVo.getPostSeq() );
+			postPicVo.setPostSeq( reviewVo.getPostSeq() );
 			postPicVo.setPath( pathName );
 			postPicVo.setFileName( saveFile );
 			

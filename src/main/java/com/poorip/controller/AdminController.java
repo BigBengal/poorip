@@ -103,8 +103,8 @@ public class AdminController {
 						   @AuthUser UserVo authUser,
 						   MultipartHttpServletRequest request,
 						   Model model ) throws IOException {
-//		postVo.setUsrSeq( authUser.getUsrSeq() );
-		postVo.setUsrSeq( 14 );
+		postVo.setUsrSeq( authUser.getUsrSeq() );
+//		postVo.setUsrSeq( aut );
 		postVo.setTrvSeq( trvSeq );
 		List< MultipartFile > files = request.getFiles( "file" );
 		adminService.addPost( postVo, files );

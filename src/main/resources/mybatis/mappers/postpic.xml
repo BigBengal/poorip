@@ -20,7 +20,7 @@
 								#{fileName },
 								(select max(post_seq) as postSeq
 									from post
-								where usr_seq = 14),
+								where usr_seq = {usrSeq }),
 								now())
 		]]>
 	</insert>
@@ -38,10 +38,13 @@
 	
 	<select id="getpostPicList" resultType="postpicvo" parameterType="integer">
     <![CDATA[
-		select file_name as fileName
-			from post_pic pp, post p
-				where pp.post_seq = p.post_seq
-			  	  and pp.post_seq = #{postSeq }
+		SELECT PP.POST_PIC_SEQ as postPicSeq,
+			   PP.PATH,
+			   PP.FILE_NAME as fileName,
+			   PP.POST_SEQ as postSeq
+		  FROM POST_PIC PP, POST P
+		 WHERE PP.POST_SEQ = P.POST_SEQ
+		   AND PP.POST_SEQ = #{postSeq }
 		]]>
 	</select>
 	

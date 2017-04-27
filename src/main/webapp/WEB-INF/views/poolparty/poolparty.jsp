@@ -310,6 +310,5 @@ function searchPool(){
 			
 		</c:forEach>
 	</div>
-
 </body>
 </html>
