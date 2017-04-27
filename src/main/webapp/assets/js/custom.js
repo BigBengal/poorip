@@ -12,14 +12,14 @@
 
 $(function() {
 
-	var dateFormat = "mm/dd/yy", from = $("#fromDate").datepicker({
+	var dateFormat = "mm/dd/yy", from = $(".fromDatePick").datepicker({
 		defaultDate : "+1w",
 		changeMonth : true,
 		numberOfMonths : 2
 	}).on("change", function() {
 		to.datepicker("option", "minDate", getDate(this));
 
-	}), to = $("#toDate").datepicker({
+	}), to = $(".toDatePick").datepicker({
 		defaultDate : "+1w",
 		changeMonth : true,
 		numberOfMonths : 2

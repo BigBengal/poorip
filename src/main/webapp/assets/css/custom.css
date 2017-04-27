@@ -57,3 +57,17 @@ File Description: Place here your custom CSS styles
 #complaints:hover {
 	color:#FFFFF;
 }
+
+.backstretch img {
+	position: absolute;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    width: 1433.96px;
+    height: 950px;
+    max-height: none;
+    max-width: none;
+    z-index: -999999;
+    left: -172.981px;
+    top: 0px;
+}
