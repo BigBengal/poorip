@@ -144,8 +144,6 @@ $(document).ready(function(){
 	$( function() {
 		    $( "#datetimepicker1" ).datepicker({
 		    	dateFormat: 'yy/mm/dd',
-// 		    	altFormat: "yy-mm-dd",
- 				language: 'KO',
 	            showOtherMonths: true,
 	            selectOtherMonths: true,
 	            autoclose: true,

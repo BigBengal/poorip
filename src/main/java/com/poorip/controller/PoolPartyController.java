@@ -1,7 +1,5 @@
 package com.poorip.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
+import com.poorip.service.AdminService;
 import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
+import com.poorip.service.ScrapService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostPicVo;
@@ -36,10 +36,18 @@ public class PoolPartyController {
 	@Autowired
 	private PoolPartyService poolPartyService;
 	
+	// 풀파티 포스팅 가져오기
 	@Autowired
 	private SNSService SNSService;
 	
+	// 풀파티에서 글쓰기 시 스크랩 정보 선택 
+	@Autowired
+	private ScrapService scrapService;
 	
+	// 풀파티 설정 시 대표도시 가져오기
+	@Autowired
+	private AdminService adminService;
+		
 	@RequestMapping(value={""})
 	public String searchPool(Model model) {
 		
@@ -49,6 +57,7 @@ public class PoolPartyController {
 	
 	@RequestMapping(value={"{poolseq}"})
 	public String enterPool(@PathVariable(value="poolseq") int poolSeq,
+							@AuthUser UserVo authUser,
 							Model model) {
 		// 조회수 증가
 		poolPartyService.updateHit(poolSeq);
@@ -56,19 +65,13 @@ public class PoolPartyController {
 
 		// 풀 포스트
 		List<ReviewVo> postList = SNSService.getPostListbyPoolSeq(poolSeq, 0);
-		System.out.println(postList);
 		List<PostPicVo> postPicList = new ArrayList<>();
-//		model.addAttribute("poolpost", SNSService.getPostListbyPoolSeq(poolSeq));
 		for(int i=0; i < postList.size();i++){
 			int postSeq = postList.get(i).getPostSeq();
-			System.out.println(postSeq);
 			List<PostPicVo> postPic = SNSService.getpostPicList(postSeq);
-			System.out.println(postPic);
 			postPicList.addAll(postPic);
 		}
-		
-		System.out.println(postPicList);
-		
+				
 		// 풀 포스트 (글 + 사진)
 		model.addAttribute("post", postList);
 		model.addAttribute("postPic", postPicList);
@@ -79,6 +82,13 @@ public class PoolPartyController {
 		// 풀 맴버
 		model.addAttribute("poolmember", poolPartyService.getPoolMembers(poolSeq));
 
+		// 글쓰기시 스크랩 정보 리스트 가져오기
+		if (authUser != null) {
+			model.addAttribute( "travelVo", scrapService.showScraps(authUser.getUsrSeq()) );
+		}
+		
+		// 관리자 설정 시 대표 도시 설정 리스트
+		model.addAttribute("cityList", adminService.getCity());
 		
 		return "/poolparty/poolparty_detail";
 	}

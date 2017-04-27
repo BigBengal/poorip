@@ -56,7 +56,6 @@
 
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
-
 </head>
 
 
@@ -71,93 +70,7 @@
 	<!-- ================ -->
 	<header class="header fixed clearfix navbar navbar-fixed-top">
 		<div class="container">
-			<div class="row">
-	<div class="col-md-3">
-
-		<!-- header-left start -->
-		<!-- ================ -->
-		<div class="header-left clearfix">
-
-			<!-- logo -->
-			<div class="logo smooth-scroll">
-				<a href="${pageContext.request.contextPath}/"><img id="logo"
-					src="${pageContext.request.contextPath }/assets/images/poorip_logo_small.png"
-					alt="poorip"></a>
-			</div>
-
-			<!-- name-and-slogan -->
-			<div class="site-name-and-slogan smooth-scroll">
-				<div class="site-name">
-					<a href="${pageContext.request.contextPath}">PoOrip</a>
-				</div>
-				<!-- <div class="site-slogan">
-					<a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>
-				</div> -->
-			</div>
-
-		</div>
-		<!-- header-left end -->
-
-	</div>
-	<div class="col-md-9">
-
-		<!-- header-right start -->
-		<!-- ================ -->
-		<div class="header-right clearfix">
-
-			<!-- main-navigation start -->
-			<!-- ================ -->
-			<div class="main-navigation animated">
-
-				<!-- navbar start -->
-				<!-- ================ -->
-				<nav class="navbar navbar-default" role="navigation">
-					<div class="container-fluid">
-
-						<!-- Toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle"
-								data-toggle="collapse" data-target="#navbar-collapse-1">
-								<span class="sr-only">Toggle navigation</span> <span
-									class="icon-bar"></span> <span class="icon-bar"></span> <span
-									class="icon-bar"></span>
-							</button>
-						</div>
-
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse scrollspy smooth-scroll"
-							id="navbar-collapse-1">
-							<ul class="nav navbar-nav navbar-right">
-								<li class="active"><a href="#banner">poOrip</a></li>
-								<li><a href="${pageContext.request.contextPath }/#portfolio">여행정보</a></li>
-								<li><a href="${pageContext.request.contextPath }/#clients">풀친구</a></li>
-								<li><a href="${pageContext.request.contextPath }/#contact">건의사항</a></li>
-								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
-									   </fb:login-button>
-									</a>
-									<div id="profileDropdown" class="dropdown-content">
-							    		<a href="${pageContext.request.contextPath }/user/addinfo">사용자 정보 수정</a>
-							    		<a href="${pageContext.request.contextPath }/scrap/main">내 스크랩 정보</a>
-							    		<a href="${pageContext.request.contextPath }/sns">내 sns</a>
-							  		</div>
-						  		</li>
-								<li><a href=#><img onclick="openOptions()" id="loginpic" src="${authUser.usrProfile}"></a></li>
-							</ul>
-							
-						</div>
-
-					</div>
-				</nav>
-				<!-- navbar end -->
-
-			</div>
-			<!-- main-navigation end -->
-
-		</div>
-		<!-- header-right end -->
-
-	</div>
-</div>
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
 	</header>
 	<!-- header end -->
@@ -260,6 +173,17 @@
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	
 	<c:import url="/WEB-INF/views/include/ajax.jsp" />
+	<script>
+		$(document).ready(function(){
+			
+			var $alink = $("#navbar-collapse-1 ul li a");
+			for(var i=0;i<2;i++){
+				var $ori = $alink.eq(i);
+				var oriLink = $ori.attr("href");
+				$ori.attr("href","/poorip/"+oriLink);	 
+			}
+		});
+</script>
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>
 <%-- </c:forEach> --%>
