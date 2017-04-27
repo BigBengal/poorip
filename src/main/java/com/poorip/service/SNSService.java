@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.poorip.repository.SNSDao;
 import com.poorip.vo.PostPicVo;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.TravelInfoVo;
 
