@@ -110,7 +110,7 @@ $(function() {
 		var windowHeight = $window.height();
 		var documentHeight = $(document).height();
 		
-		if( scrollTop + windowHeight +0.5 > documentHeight ) {
+		if( scrollTop + windowHeight +1.5 > documentHeight ) {
 			fetchList();
 		}
 	});
