@@ -85,13 +85,15 @@
 				    data-cycle-next='#next'
 				    >
 				    <c:forEach items='${vo }' var='postPicVo' varStatus='status'>
-					    <img src='/poorip/" + vo2.path + "/" + vo2.fileName + "'>
+					    <img src="http://malsup.github.io/images/p1.jpg">
+					    <img src="http://malsup.github.io/images/p2.jpg">
+					    <img src="http://malsup.github.io/images/p3.jpg">
+					    <img src="http://malsup.github.io/images/p4.jpg">
 				    </c:forEach>
-				    
 				</div>
 				<div class="center">
-				    <a href=# id="prev"> ! </a> 
-				    <a href=# id="next"> > </a>
+				    <a href=# id="prev">Prev</a> 
+				    <a href=# id="next">Next</a>
 				</div>
 			</form>
 		</div>
