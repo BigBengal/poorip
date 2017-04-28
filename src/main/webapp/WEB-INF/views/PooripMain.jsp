@@ -115,11 +115,7 @@
 
 	<!-- finder start -->
 	<!-- ================ -->
-	<div class="default-bg space">
-		<div class="container">
-			<c:import url="/WEB-INF/views/include/finder.jsp" />
-		</div>
-	</div>
+
 	<!-- finder end -->
 
 	<!-- footer start -->
