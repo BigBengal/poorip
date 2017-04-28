@@ -23,7 +23,7 @@
 		]]>
 	</insert>
 	
-	<!-- 풀 파티 조회-->
+	<!-- 지정 풀 파티 1개 조회-->
 	<select id="selectbyseq" resultType="poolpartyvo" parameterType="integer">
 		<![CDATA[
 			SELECT POOL_SEQ as poolSeq,
@@ -32,7 +32,7 @@
 			       POOL_PIC as poolPic,
 			       POOL_PARTY.CTY_SEQ as ctySeq,
 			       MANAGER_USR_SEQ as managerUsrSeq,
-			       POOL_PUBLIC_YN as poolPublic_yn,
+			       POOL_PUBLIC_YN as poolPublicYn,
 			       POOL_PARTY.CRT_DATE as crtDate,
 			       FROM_DATE as fromDate,
 			       TO_DATE as toDate,
@@ -57,7 +57,7 @@
 			       POOL_PIC as poolPic,
 			       cty_Seq as ctySeq,
 			       MANAGER_USR_SEQ as managerUsrSeq,
-			       POOL_PUBLIC_YN as poolPublic_yn,
+			       POOL_PUBLIC_YN as poolPublicYn,
 			       CRT_DATE as crtDate,
 			       FROM_DATE as fromDate,
 			       TO_DATE as toDate,
@@ -69,6 +69,59 @@
 		]]>
 	</select>
 	
+	<!-- 내가 가입한 풀 파티 조회-->
+	<select id="selectlistbyusrseq" resultType="poolpartyvo" parameterType="integer">
+		<![CDATA[
+			SELECT POOL_PARTY.POOL_SEQ as poolSeq,
+			       POOL_PARTY.POOL_NAME as poolName,
+			       POOL_PARTY.POOL_COMMENT as poolComment,
+			       POOL_PARTY.POOL_PIC as poolPic,
+			       POOL_PARTY.CTY_SEQ as ctySeq,
+			       POOL_PARTY.MANAGER_USR_SEQ as managerUsrSeq,
+			       POOL_PARTY.POOL_PUBLIC_YN as poolPublicYn,
+			       POOL_PARTY.CRT_DATE as crtDate,
+			       POOL_PARTY.FROM_DATE as fromDate,
+			       POOL_PARTY.TO_DATE as toDate,
+			       POOL_PARTY.HIT,
+			       CITY.CTY_NAME as ctyName,
+			       USERS.USR_NICK as managerUsrNick,
+			       USERS.USR_PROFILE as managerProfile,
+			       USERS.USR_GENDER as managerGender
+			  FROM POOL_PARTY LEFT OUTER JOIN CITY ON CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ,
+			       USERS, POOL_MEMBER
+ 			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
+ 				AND POOL_PARTY.POOL_SEQ = POOL_MEMBER.POOL_SEQ
+			   AND POOL_MEMBER.USR_SEQ = #{usrSeq }
+			   AND POOL_MEMBER.APPROVE = 'Y'
+		]]>
+	</select>
+	
+	<!-- 내가 가입한 풀 파티 조회-->
+	<select id="selectwaitlistbyusrseq" resultType="poolpartyvo" parameterType="integer">
+		<![CDATA[
+			SELECT POOL_PARTY.POOL_SEQ as poolSeq,
+			       POOL_PARTY.POOL_NAME as poolName,
+			       POOL_PARTY.POOL_COMMENT as poolComment,
+			       POOL_PARTY.POOL_PIC as poolPic,
+			       POOL_PARTY.CTY_SEQ as ctySeq,
+			       POOL_PARTY.MANAGER_USR_SEQ as managerUsrSeq,
+			       POOL_PARTY.POOL_PUBLIC_YN as poolPublicYn,
+			       POOL_PARTY.CRT_DATE as crtDate,
+			       POOL_PARTY.FROM_DATE as fromDate,
+			       POOL_PARTY.TO_DATE as toDate,
+			       POOL_PARTY.HIT,
+			       CITY.CTY_NAME as ctyName,
+			       USERS.USR_NICK as managerUsrNick,
+			       USERS.USR_PROFILE as managerProfile,
+			       USERS.USR_GENDER as managerGender
+			  FROM POOL_PARTY LEFT OUTER JOIN CITY ON CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ,
+			       USERS, POOL_MEMBER
+ 			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
+ 				AND POOL_PARTY.POOL_SEQ = POOL_MEMBER.POOL_SEQ
+			   AND POOL_MEMBER.USR_SEQ = #{usrSeq }
+			   AND POOL_MEMBER.APPROVE = 'N'
+		]]>
+	</select>
 	
 	<!-- 메인화면에서 도시이름/ 날짜로 풀파티 조회 -->
 	<select id="selectbycty" resultType="poolpartyvo" parameterType="poolpartyvo">

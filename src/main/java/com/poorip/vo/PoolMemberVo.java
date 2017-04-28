@@ -10,6 +10,9 @@ public class PoolMemberVo {
 	private String usrNick;
 	private String profile;
 	private String gender;
+	private String poolPic;
+	private String poolInfo;
+	
 	
 	public String getUsrNick() {
 		return usrNick;
@@ -67,11 +70,25 @@ public class PoolMemberVo {
 		this.aprvUsr = aprvUsr;
 	}
 	
+	public String getPoolPic() {
+		return poolPic;
+	}
+	public String getPoolInfo() {
+		return poolInfo;
+	}
+	public void setPoolPic(String poolPic) {
+		this.poolPic = poolPic;
+	}
+	public void setPoolInfo(String poolInfo) {
+		this.poolInfo = poolInfo;
+	}
 	@Override
 	public String toString() {
 		return "PoolMemberVo [poolMemSeq=" + poolMemSeq + ", poolSeq=" + poolSeq + ", usrSeq=" + usrSeq + ", approve="
 				+ approve + ", crtDate=" + crtDate + ", aprvUsr=" + aprvUsr + ", usrNick=" + usrNick + ", profile="
-				+ profile + ", gender=" + gender + "]";
+				+ profile + ", gender=" + gender + ", poolPic=" + poolPic + ", poolInfo=" + poolInfo + "]";
 	}
+
+	
 
 }

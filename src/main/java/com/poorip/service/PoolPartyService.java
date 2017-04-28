@@ -31,7 +31,7 @@ public class PoolPartyService {
 	
 	private static final String defaultPoolpartName = "님의 풀파티";
 	private static final String defaultPublicYn = "Y";
-	private static final String defaultPoolpartImage = "/poorip/assets/images/none.png";
+	private static final String defaultPoolpartImage = "/assets/images/none.png";
 	private static final String POOLPARTY_SAVE_PATH = "/pool/";
 	
 	@Autowired
@@ -50,7 +50,7 @@ public class PoolPartyService {
 		return travelInfoList;
 	}
 	
-	// ??
+	// 도시 정보 가져오기
 	public List<CityVo> getCityNames(String ctyName) {
 		return poolPartyDao.getCityNames(ctyName);
 	}
@@ -68,7 +68,7 @@ public class PoolPartyService {
 	}
 
 	
-	// 해당 풀파티 정보 가져오기
+	// 1개의 해당 풀파티 정보 가져오기
 	public PoolPartyVo getPoolInfo(int poolSeq){
 		return poolPartyDao.select(poolSeq); 
 	}
@@ -78,6 +78,16 @@ public class PoolPartyService {
 		return poolMemberDao.getListbyPoolSeq(poolSeq);
 	}
 	
+	// 내가 가입한 풀파티 정보 리스트 가져오기
+	public List<PoolPartyVo> getMyPoolList(int usrSeq){
+		return poolPartyDao.getMyPoolList(usrSeq);
+	}
+	
+	// 내가 가입 "대기 중"인 풀파티 정보 리스트 가져오기
+	public List<PoolPartyVo> getMyWaitPoolList(int usrSeq){
+		return poolPartyDao.getMyWaitPoolList(usrSeq);
+	}
+		
 	// 사용자가 다른 사용자와 함께 풀 생성
 	// 파라미터 UserVo myUser : 생성하는 사람
 	//       String userSeq : Join 하는 유저 Seq 
@@ -96,10 +106,10 @@ public class PoolPartyService {
 		logger.info("풀파티 맴버 생성 시작");
 		
 		// 방 생성자 insert
-		enterPoolparty(vo.getPoolSeq(), myUser.getUsrSeq(), true);
+		enterPoolparty(vo.getPoolSeq(), myUser.getUsrSeq(), true, myUser.getUsrSeq());
 		
 		// 방 초대자 insert
-		enterPoolparty(vo.getPoolSeq(), userSeq, false);
+		enterPoolparty(vo.getPoolSeq(), userSeq, false, userSeq);
 		
 		logger.info("풀파티 맴버 생성 완료");
 		
@@ -110,7 +120,8 @@ public class PoolPartyService {
 	// int poolSeq : 풀파티 Seq, 
 	// int usrSeq : 참여하는 사람
 	// boolean owner : true = 방장, false = 초대받는 이
-	public boolean enterPoolparty(int poolpartySeq, int usrSeq, boolean owner){
+	// aprvUsr : 승인하는 사람 
+	public boolean enterPoolparty(int poolpartySeq, int usrSeq, boolean owner, int aprvUsr){
 		PoolMemberVo poolMemberVo = new PoolMemberVo();
 		poolMemberVo.setPoolSeq(poolpartySeq);
 		poolMemberVo.setUsrSeq(usrSeq);
@@ -119,6 +130,10 @@ public class PoolPartyService {
 		} else {
 			poolMemberVo.setApprove("N");
 		}
+		// 데이터 생성자가 방장이면 초대받는 이가 승인자
+		// 데이터 생성자가 방장이 아니면 방장이 승인자
+		poolMemberVo.setAprvUsr(aprvUsr);
+		
 		return poolMemberDao.join(poolMemberVo);
 	}
 	
@@ -165,21 +180,23 @@ public class PoolPartyService {
 	}
 	
 	//풀파티 초대 수락
-	public boolean approvePoolparty(int poolpartySeq, int userSeq){
+	public boolean approvePoolparty(int poolpartySeq, int userSeq, int aprvUsr){
 		PoolMemberVo poolmembervo = new PoolMemberVo();
 		poolmembervo.setPoolSeq(poolpartySeq);
 		poolmembervo.setUsrSeq(userSeq);
+		poolmembervo.setAprvUsr(aprvUsr);
 		return poolMemberDao.approve(poolmembervo);
 	}
 	
 	//풀파티 초대 거절
-	public boolean rejectPoolparty(int poolpartySeq, int userSeq){
+	public boolean rejectPoolparty(int poolpartySeq, int userSeq, int aprvUsr){
 		boolean rejectsuccess = false;
 		boolean deleteMember = false;
 		boolean deleteParty = false;
 		PoolMemberVo poolmembervo = new PoolMemberVo();
 		poolmembervo.setPoolSeq(poolpartySeq);
 		poolmembervo.setUsrSeq(userSeq);
+		poolmembervo.setAprvUsr(aprvUsr);
 		rejectsuccess = poolMemberDao.reject(poolmembervo);
 		
 		if (poolMemberDao.isDestoryPoolParty(poolmembervo) ){

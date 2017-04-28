@@ -247,10 +247,10 @@ function showWrite(){
 
 
 <div class="col-md-10">
-	<div class="col-md-4">
+	<div class="col-md-5">
 		<img src="/poorip${pool.poolPic}">
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-7">
 		<div class="col-md-10">
 		<h1>${pool.poolName} </h1>
 		</div>
@@ -264,8 +264,8 @@ function showWrite(){
 		</div>
 	<div class="col-md-12">
 	<h3>${pool.poolComment} </h3>
-	<p> 관리자 : <img src="${pool.managerProfile}"> ${pool.managerUsrNick } </p>
-	
+	<p class="poolmemberlist"> 관리자 : <img src="${pool.managerProfile}"> ${pool.managerUsrNick } </p>
+
 	<h5>
 	<c:if test="${pool.fromDate != null or pool.toDate != null}">
 	 여행 기간 : ${pool.fromDate} ~ ${pool.toDate} 
@@ -282,7 +282,7 @@ function showWrite(){
 풀파티 맴버
 <%-- 	${poolmember } --%>
 <c:forEach var="memberlist" items="${poolmember }" varStatus="status">
-	<div class=gender_${memberlist.gender}>
+	<div class="gender_${memberlist.gender} poolmemberlist">
 		<img src="${memberlist.profile}">
 		${memberlist.usrNick}
 		${memberlist.approve}

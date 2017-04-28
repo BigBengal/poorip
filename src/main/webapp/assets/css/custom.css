@@ -69,3 +69,19 @@ File Description: Place here your custom CSS styles
     z-index: -999999;
     top: 0px;
 }
+
+.poolparty {
+	min-height: 250px;
+}
+
+.poolmember {
+	min-height: 180px;
+	margin: 0 0 10px;
+}
+.poolmember span{
+	display : block;
+}
+.poolmemberlist img{
+	display : inline;
+	margin: 0 0 10px;
+}
