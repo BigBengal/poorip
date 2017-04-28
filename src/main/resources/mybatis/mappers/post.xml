@@ -80,7 +80,8 @@
 				   b.TRV_SEQ as trvSeq
 	from travel_info a, post b, post_like c 
 	where a.TRV_SEQ = b.TRV_SEQ 
-	and b.`POST_SEQ` = c.post_seq and a.trv_seq =#{trvSeq} 
+	and b.`POST_SEQ` = c.post_seq and a.trv_seq =#{trvSeq}
+	and b.REVIEW_PUB_YN='Y' 
 	group by  c.post_seq order by count(c.post_seq) desc
 	]]>
 	</select>
@@ -108,14 +109,16 @@
 		parameterType="integer">
 		<![CDATA[
 			select a.POST_SEQ as postSeq, 
+					count(c.post_seq) as likeCount,
 				   a.title as title, 
 				   a.contents as contents, 
 				   a.CRT_DATE as crtDate, 
 				   a.TRV_SEQ as trvSeq 
-					   from post a, travel_info b 
+					   from post a, travel_info b, post_like c  
 					   where a.TRV_SEQ = b.trv_seq 
-					   and a.REVIEW_PUB_YN='Y' and b.trv_seq=#{trvSeq}
-				   order by crtDate desc
+					   and a.POST_SEQ = c.post_seq 
+					   and a.REVIEW_PUB_YN='Y' and b.trv_seq=#{trvSeq}				
+				   group by  c.post_seq order by crtDate desc;
 		]]>
 	</select>
 
