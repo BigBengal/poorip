@@ -62,7 +62,7 @@
 <!-- Initialization of Plugins -->
 <%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
 <!-- Custom Scripts -->
-<script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
 <!-- facebook  -->
 <script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 <!-- Vaildation-->
@@ -76,7 +76,7 @@ $(document).ready(function(){
 		var oriLink = $ori.attr("href");
 		$ori.attr("href","/poorip/"+oriLink);	 
 	}
-			
+	
 	// Fixed header
 	//-----------------------------------------------
 	$(window).scroll(function() {
@@ -217,6 +217,11 @@ function searchPool(){
 
    });
 }
+
+function openOptions() {
+	document.getElementById("profileDropdown").classList.toggle("show");
+}
+
 </script>
 </head>
 <body class="no-trans">

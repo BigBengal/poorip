@@ -57,7 +57,7 @@
 			where p.USR_SEQ = u.USR_SEQ
 			  and p.usr_seq = #{usrSeq }
 	order by p.crt_date desc
-		limit #{page},3
+		limit #{page}, 3
 		]]>
 	</select>
 		
