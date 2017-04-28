@@ -32,7 +32,7 @@ body.lb-disable-scrolling {
 .lightbox .lb-image {
   display: block;
   height: auto;
-  max-width: inherit;
+  max-width: 80%;
   max-height: none;
   border-radius: 3px;
 
@@ -211,3 +211,5 @@ body.lb-disable-scrolling {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
+
+

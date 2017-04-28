@@ -140,21 +140,9 @@
 	
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
-	<c:import url="/WEB-INF/views/sns/sns-ajax.jsp" />
-	<script>
-		var writeVisible = false;
-		function showWrite(){
-			if ( writeVisible == true ) {
-				$("#sns-write").hide();	
-				writeVisible = false;
-			} else {
-				$("#sns-write").show();
-				writeVisible = true;
-			}
-			
-		}
-
-	</script>
+	
+	<!-- sns ajax -->
+	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
 
 </body>
 </html>
