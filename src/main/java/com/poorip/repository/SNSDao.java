@@ -95,4 +95,9 @@ public class SNSDao {
 		return sqlSession.selectList("post.selectAllPostSeqOfTravelInfo", trvSeq);
 	}
 
+	public boolean deletePost(PostVo postVo) {
+		int count = sqlSession.delete( "post.delete", postVo);
+		return ( count == 1 );
+	}
+
 }

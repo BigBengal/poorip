@@ -116,4 +116,8 @@ public class SNSService {
 		return snsDao.showAllPostSeqsofTravel(trvSeq);
 	}
 
+	public boolean deletePost(PostVo postVo) {
+		return snsDao.deletePost( postVo );
+	}
+
 }

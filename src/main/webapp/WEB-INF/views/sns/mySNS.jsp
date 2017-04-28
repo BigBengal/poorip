@@ -9,9 +9,9 @@
 		<div class="block"  style="padding-top: 30px" >
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/sns/post/upload" method="post" enctype="multipart/form-data">
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
-					<img onclick="showWrite();" alt="글쓰기"
+					<a href="javascript:;"><img  onclick="showWrite();" alt="글쓰기"
 								src="${pageContext.request.contextPath}/assets/images/write-btn.png"
-								style="width: 30px" >
+								style="width: 30px" ></a>
 					<div class="write-main block" id="sns-write" style="display: none;">
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="title">제목 : </label>
@@ -89,10 +89,9 @@
 					<div class="container">
 						<div id="my-sns-list" class="block" style="padding-top: 100px">
 						</div>
-						<div class="loading">
-						</div>
+<!-- 						<div class="loading"> -->
+<!-- 						</div> -->
 					</div>
-
 			</form>
 		</div>
 	</div>
