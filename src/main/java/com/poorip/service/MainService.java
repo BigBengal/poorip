@@ -50,5 +50,10 @@ public class MainService {
 		List<ReviewVo> picsList = travelInfoDao.getReviewPics(postSeq);
 		return picsList;
 	}
+	
+	public List<ReviewVo> getReviewsByLikes(int trvSeq) {
+		List<ReviewVo> reviewList = travelInfoDao.getReviewsByLikes(trvSeq);
+		return reviewList;
+	}
 		
 }

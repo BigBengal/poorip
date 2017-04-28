@@ -10,9 +10,9 @@
 			values ( #{postSeq}, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
 		]]>
 	</insert>
-	
+
 	<insert id="addPost" parameterType="reviewvo">
-	    <selectKey keyProperty="postSeq" resultType="integer" order="BEFORE">
+		<selectKey keyProperty="postSeq" resultType="integer" order="BEFORE">
 			<![CDATA[
 			select auto_increment
 			  from information_schema.tables
@@ -33,7 +33,7 @@
 						#{hidden })
 		]]>
 	</insert>
-	
+
 	<select id="getPostList" resultType="postvo">
 	    <![CDATA[
 			SELECT POST_SEQ as postSeq,
@@ -45,8 +45,9 @@
 			  FROM POST
 		]]>
 	</select>
-	
-	<select id="getUserPostList" resultType="reviewvo" parameterType="map">
+
+	<select id="getUserPostList" resultType="reviewvo"
+		parameterType="map">
 	    <![CDATA[
 			select p.post_seq as postSeq,
 				   title,
@@ -60,13 +61,28 @@
 		limit #{page}, 3
 		]]>
 	</select>
-		
+
 	<select id="getTotalCounts" resultType="integer" parameterType="integer">
 	    <![CDATA[
 			select count(*)
 		  		from post
 		  	where usr_seq = #{usrSeq }
 		]]>
+	</select>
+
+	<select id="getReviewsByLikes" resultType="reviewvo" parameterType="integer">
+	    <![CDATA[
+		select	c.post_seq as postSeq, 
+				count(c.post_seq) as likeCount, 
+				   b.title as title, 
+				   b.contents as contents, 
+				   b.CRT_DATE as crtDate, 
+				   b.TRV_SEQ as trvSeq
+	from travel_info a, post b, post_like c 
+	where a.TRV_SEQ = b.TRV_SEQ 
+	and b.`POST_SEQ` = c.post_seq and a.trv_seq =#{trvSeq} 
+	group by  c.post_seq order by count(c.post_seq) desc
+	]]>
 	</select>
 
 	<select id="selectbyno" resultType="postvo" parameterType="integer">
@@ -88,7 +104,8 @@
 		as crtDate FROM POST WHERE TRV_SEQ = #{trvSeq } AND REVIEW_PUB_YN = 'Y' ]]> 
 		</select> -->
 
-	<select id="selectbytravelseq" resultType="reviewvo" parameterType="integer">
+	<select id="selectbytravelseq" resultType="reviewvo"
+		parameterType="integer">
 		<![CDATA[
 			select a.POST_SEQ as postSeq, 
 				   a.title as title, 
@@ -101,7 +118,7 @@
 				   order by crtDate desc
 		]]>
 	</select>
-	
+
 	<select id="getAddPostList" resultType="reviewvo" parameterType="integer">
 		<![CDATA[
 			select p.post_seq as postSeq,
@@ -127,8 +144,9 @@
 			 WHERE POST_SEQ = #{postSeq }
 		]]>
 	</delete>
-	
-	<select id="getPostListbyPoolSeq" resultType="reviewvo" parameterType="map">
+
+	<select id="getPostListbyPoolSeq" resultType="reviewvo"
+		parameterType="map">
 		<![CDATA[
 			select p.post_seq as postSeq,
 				   title,
@@ -142,27 +160,27 @@
 			limit #{page}, 5
 		]]>
 	</select>
-	
-	
-	<update id="increasePostLike"  parameterType="map">
+
+
+	<update id="increasePostLike" parameterType="map">
 		<![CDATA[
 	insert into post_like values(null, #{postSeq}, #{usrSeq}, now())
 	]]>
 	</update>
-	
+
 	<select id="checkPostLike" resultType="Integer" parameterType="map">
 		<![CDATA[
 	select ifnull(post_seq, 0) as postSeq from post_like where usr_seq=#{usrSeq} and post_seq=#{postSeq}		
 		]]>
 	</select>
-	
-	
-	<delete id="decreasePostLike"  parameterType="map">
+
+
+	<delete id="decreasePostLike" parameterType="map">
 		<![CDATA[
 	delete from post_like where usr_seq=#{usrSeq} and post_seq=#{postSeq}
 	]]>
 	</delete>
-	
+
 	<select id="selectPostLike" resultType="postvo" parameterType="map">
 		<![CDATA[
 	select a.post_seq as postSeq 
@@ -170,11 +188,12 @@
 	where a.POST_SEQ = b.post_seq and trv_seq=#{trvSeq} and b.usr_seq=#{usrSeq}
 	]]>
 	</select>
-	
-	<select id="selectAllPostSeqOfTravelInfo" resultType="postvo" parameterType="integer">
+
+	<select id="selectAllPostSeqOfTravelInfo" resultType="postvo"
+		parameterType="integer">
 	<![CDATA[
 	select post_seq from post where trv_seq=#{trvSeq}
 	]]>
 	</select>
-	
+
 </mapper>

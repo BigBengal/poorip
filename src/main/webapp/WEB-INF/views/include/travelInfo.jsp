@@ -142,12 +142,12 @@
 										<h4 class="modal-title" id="project-2-label${status.index }">${travelInfoFood.name}</h4>
 									</div>
 									<div class="modal-body">
-									<c:if test="${!empty authUser }">
-										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoFood.trvSeq}"
-											src="--"
-											style="float: right;"
-											data-trvSeq="${travelInfoFood.trvSeq}" onclick="validate(${travelInfoFood.trvSeq})"/></a>
-									</c:if>
+										<c:if test="${!empty authUser }">
+											<a href="javascript:;"><img
+												id="scrapTrvInfo-${travelInfoFood.trvSeq}" src="--"
+												style="float: right;" data-trvSeq="${travelInfoFood.trvSeq}"
+												onclick="validate(${travelInfoFood.trvSeq})" /></a>
+										</c:if>
 										<h2>
 											<b>${travelInfoFood.name}</b>
 										</h2>
@@ -163,13 +163,29 @@
 										</div>
 
 										<c:set var="reviewNum" value="${travelInfoFood.trvSeq}" />
-										<div class='col-md-12'>
+										<div class='col-md-12'>	
+											<div class='review-header'>
 											<h3>
 												<b>후기</b>
+
 											</h3>
+											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
+												data-toggle="buttons">
+					
+									
+												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoFood.trvSeq},${travelInfoFood.trvSeq})" > <input
+													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoFood.trvSeq }"
+													autocomplete="off" /> 날짜순
+												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoFood.trvSeq})"> <input
+													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
+													autocomplete="off"/> 좋아요순 
+												</label>
+								
+											</div>
+											</div>
 											<div class="row">
 												<div id="review-${travelInfoFood.trvSeq}"></div>
-												
+
 											</div>
 											<div class='col-md-3' id="reviewpic-${travelInfoFood.trvSeq}">
 												<div id="reviewpic-${travelInfoFood.trvSeq}"></div>
@@ -221,12 +237,13 @@
 										<h4 class="modal-title" id="project-3-label">${travelInfoFoodMain.name}</h4>
 									</div>
 									<div class="modal-body" id="${status.index }">
-									<c:if test="${!empty authUser }">
-										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoFoodMain.trvSeq}"
-											src="--"
-											style="float: right;"
-											data-trvSeq="${travelInfoFoodMain.trvSeq}" onclick="validate(${travelInfoFoodMain.trvSeq})"/></a>
-									</c:if>
+										<c:if test="${!empty authUser }">
+											<a href="javascript:;"><img
+												id="scrapTrvInfo-${travelInfoFoodMain.trvSeq}" src="--"
+												style="float: right;"
+												data-trvSeq="${travelInfoFoodMain.trvSeq}"
+												onclick="validate(${travelInfoFoodMain.trvSeq})" /></a>
+										</c:if>
 										<h3>${travelInfoFoodMain.name}</h3>
 
 										<div class="col-md-6">
@@ -239,9 +256,25 @@
 										</div>
 										<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
 										<div class='col-md-12'>
+											<div class='review-header'>
 											<h3>
 												<b>후기</b>
+
 											</h3>
+											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
+												data-toggle="buttons">
+					
+									
+												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoFoodMain.trvSeq},${travelInfoFoodMain.trvSeq})" > <input
+													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoFoodMain.trvSeq }"
+													autocomplete="off" /> 날짜순
+												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoFoodMain.trvSeq})"> <input
+													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
+													autocomplete="off"/> 좋아요순 
+												</label>
+								
+											</div>
+											</div>
 											<div class="row">
 												<div id="review-${travelInfoFoodMain.trvSeq}"></div>
 											</div>
@@ -296,13 +329,14 @@
 										<h4 class="modal-title" id="project-4-label">${travelInfoAttraction.name}</h4>
 									</div>
 									<div class="modal-body">
-									<c:if test="${!empty authUser }">
-										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoAttraction.trvSeq}"
-											src="--"
-											style="float: right;"
-											data-trvSeq="${travelInfoAttraction.trvSeq}" onclick="validate(${travelInfoAttraction.trvSeq})"/></a>
-									</c:if>
-									
+										<c:if test="${!empty authUser }">
+											<a href="javascript:;"><img
+												id="scrapTrvInfo-${travelInfoAttraction.trvSeq}" src="--"
+												style="float: right;"
+												data-trvSeq="${travelInfoAttraction.trvSeq}"
+												onclick="validate(${travelInfoAttraction.trvSeq})" /></a>
+										</c:if>
+
 										<h3>${travelInfoAttraction.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -313,9 +347,25 @@
 											</div>
 											<c:set var="reviewNum" value="${travelInfoAttraction.trvSeq}" />
 											<div class='col-md-6'>
-												<h3>
-													<b>후기</b>
-												</h3>
+												<div class='review-header'>
+											<h3>
+												<b>후기</b>
+
+											</h3>
+											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
+												data-toggle="buttons">
+					
+									
+												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoAttraction.trvSeq},${travelInfoAttraction.trvSeq})" > <input
+													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoAttraction.trvSeq }"
+													autocomplete="off" /> 날짜순
+												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoAttraction.trvSeq})"> <input
+													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
+													autocomplete="off"/> 좋아요순 
+												</label>
+								
+											</div>
+											</div>
 												<div class="row">
 													<div id="review-${travelInfoAttraction.trvSeq}"></div>
 												</div>
@@ -369,12 +419,13 @@
 										<h4 class="modal-title" id="project-5-label">${travelInfoAttractionMain.name}</h4>
 									</div>
 									<div class="modal-body">
-									<c:if test="${!empty authUser }">
-										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoAttractionMain.trvSeq}"
-											src="--"
-											style="float: right;"
-											data-trvSeq="${travelInfoAttractionMain.trvSeq}" onclick="validate(${travelInfoAttractionMain.trvSeq})"/></a>
-									</c:if>
+										<c:if test="${!empty authUser }">
+											<a href="javascript:;"><img
+												id="scrapTrvInfo-${travelInfoAttractionMain.trvSeq}"
+												src="--" style="float: right;"
+												data-trvSeq="${travelInfoAttractionMain.trvSeq}"
+												onclick="validate(${travelInfoAttractionMain.trvSeq})" /></a>
+										</c:if>
 										<h3>${travelInfoAttractionMain.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -386,9 +437,25 @@
 											<c:set var="reviewNum"
 												value="${travelInfoAttractionMain.trvSeq}" />
 											<div class='col-md-6'>
-												<h3>
-													<b>후기</b>
-												</h3>
+												<div class='review-header'>
+											<h3>
+												<b>후기</b>
+
+											</h3>
+											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
+												data-toggle="buttons">
+					
+									
+												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoAttractionMain.trvSeq},${travelInfoAttractionMain.trvSeq})" > <input
+													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoAttractionMain.trvSeq }"
+													autocomplete="off" /> 날짜순
+												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoAttractionMain.trvSeq})"> <input
+													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
+													autocomplete="off"/> 좋아요순 
+												</label>
+								
+											</div>
+											</div>
 												<div class="row">
 													<div id="review-${travelInfoAttractionMain.trvSeq}"></div>
 												</div>
@@ -443,12 +510,13 @@
 										<h4 class="modal-title" id="project-6-label">${travelInfoActivity.name}</h4>
 									</div>
 									<div class="modal-body">
-									<c:if test="${!empty authUser }">
-										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoActivity.trvSeq}"
-											src="--"
-											style="float: right;"
-											data-trvSeq="${travelInfoActivity.trvSeq}" onclick="validate(${travelInfoActivity.trvSeq})"/></a>
-									</c:if>
+										<c:if test="${!empty authUser }">
+											<a href="javascript:;"><img
+												id="scrapTrvInfo-${travelInfoActivity.trvSeq}" src="--"
+												style="float: right;"
+												data-trvSeq="${travelInfoActivity.trvSeq}"
+												onclick="validate(${travelInfoActivity.trvSeq})" /></a>
+										</c:if>
 										<h3>Project Description</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -459,9 +527,25 @@
 											</div>
 											<c:set var="reviewNum" value="${travelInfoActivity.trvSeq}" />
 											<div class='col-md-6'>
-												<h3>
-													<b>후기</b>
-												</h3>
+												<div class='review-header'>
+											<h3>
+												<b>후기</b>
+
+											</h3>
+											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
+												data-toggle="buttons">
+					
+									
+												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoActivity.trvSeq},${travelInfoActivity.trvSeq})" > <input
+													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoActivity.trvSeq }"
+													autocomplete="off" /> 날짜순
+												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoActivity.trvSeq})"> <input
+													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
+													autocomplete="off"/> 좋아요순 
+												</label>
+								
+											</div>
+											</div>
 												<div class="row">
 													<div id="review-${travelInfoActivity.trvSeq}"></div>
 												</div>
@@ -515,12 +599,13 @@
 										<h4 class="modal-title" id="project-7-label">${travelInfoActivityMain.name}</h4>
 									</div>
 									<div class="modal-body">
-									<c:if test="${!empty authUser }">
-										<a href="javascript:;"><img id="scrapTrvInfo-${travelInfoActivityMain.trvSeq}"
-											src=""
-											style="float: right;"
-											data-trvSeq="${travelInfoActivityMain.trvSeq}" onclick="validate(${travelInfoActivityMain.trvSeq})"/></a>
-									</c:if>
+										<c:if test="${!empty authUser }">
+											<a href="javascript:;"><img
+												id="scrapTrvInfo-${travelInfoActivityMain.trvSeq}" src=""
+												style="float: right;"
+												data-trvSeq="${travelInfoActivityMain.trvSeq}"
+												onclick="validate(${travelInfoActivityMain.trvSeq})" /></a>
+										</c:if>
 										<h3>Project Description</h3>
 										<div class="row">
 											<div class="col-md-6">
@@ -532,9 +617,25 @@
 											<c:set var="reviewNum"
 												value="${travelInfoActivityMain.trvSeq}" />
 											<div class='col-md-6'>
-												<h3>
-													<b>후기</b>
-												</h3>
+												<div class='review-header'>
+											<h3>
+												<b>후기</b>
+
+											</h3>
+											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
+												data-toggle="buttons">
+					
+									
+												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoActivityMain.trvSeq},${travelInfoActivityMain.trvSeq})" > <input
+													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoActivityMain.trvSeq }"
+													autocomplete="off" /> 날짜순
+												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoActivityMain.trvSeq})"> <input
+													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
+													autocomplete="off"/> 좋아요순 
+												</label>
+								
+											</div>
+											</div>
 												<div class="row">
 													<div id="review-${travelInfoActivityMain.trvSeq}"></div>
 												</div>

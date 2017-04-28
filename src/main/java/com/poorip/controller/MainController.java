@@ -107,12 +107,23 @@ public class MainController {
 
 	@ResponseBody
 	@RequestMapping("/reviews/{trvSeq}")
-	public JSONResult getReviews(Model model, @PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum) {
+	public JSONResult getReviews(Model model, @PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum, @RequestParam(value="like", required=false) String like) {
 		/*if (trvSeq == null || trvSeq.equals("")) {
 			return JSONResult.fail("실패");
 		}*/
-
 		int trvSeq1 = Integer.parseInt(trvSeq);
+		if(like==null){
+			like="ReviewByDate";
+		}
+		if(like.equals("like")) {
+			System.out.println("LIKE REALLY IN");
+			List<ReviewVo> reviewsByLike = mainService.getReviewsByLikes(trvSeq1);
+			return JSONResult.success(reviewsByLike);
+			
+		}
+	
+
+		
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
 	
 

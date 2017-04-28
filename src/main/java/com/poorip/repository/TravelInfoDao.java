@@ -59,4 +59,8 @@ public class TravelInfoDao {
 		
 	}
 	
+	public List<ReviewVo> getReviewsByLikes(int trvSeq) {
+		return sqlSession.selectList("post.getReviewsByLikes", trvSeq);
+	}
+	
 }

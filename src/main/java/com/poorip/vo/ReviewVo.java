@@ -22,7 +22,16 @@ public class ReviewVo {
 	private String contact;
 	private String reviewNum;
 	private String hidden;
+	private int likeCount;
 	
+	
+	
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
 	public String getReviewNum() {
 		return reviewNum;
 	}
@@ -151,7 +160,7 @@ public class ReviewVo {
 				+ reviewPubYn + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", name=" + name + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", ctySeq=" + ctySeq + ", ctyName=" + ctyName
 				+ ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", reviewNum=" + reviewNum
-				+ ", hidden=" + hidden + "]";
+				+ ", hidden=" + hidden + ", likeCount=" + likeCount + "]";
 	}
 	public String getCtyName() {
 		return ctyName;

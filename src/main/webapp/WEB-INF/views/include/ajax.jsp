@@ -178,4 +178,67 @@ function reviewLike(postSeq) {
     });
 };
 
+
+function sendTrvSeq1(trvSeq) {
+			event.preventDefault();
+			$.ajax({
+		        url : "/poorip/reviews/" +trvSeq,
+		        type : "post",
+		        data: "like=like",
+		        dataType: "json",
+		        success : function(response) {
+		        	$( response.data ).each( function(index, vo){
+						var reviewNum = vo.trvSeq;
+		        		var postSeq = vo.postSeq;
+		        		render( vo, reviewNum, postSeq );
+		        		$.ajax({
+					        url : "/poorip/reviewLikeValidate/" +trvSeq,
+					        type : "post",
+					        data: "",
+					        dataType: "json",
+					        success : function(result) {
+					        	$( result.data ).each( function(index, vo){
+					        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
+					        		console.log(likePostIcon);
+					        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
+					        	});
+					         
+					        },
+					        error : function(data) {
+								    alert("ajax 에러가 발생하였습니다.")
+					        }
+					    });
+		        		
+		        		$.ajax({
+		        			
+		        			url:"/poorip/reviewpic/" + postSeq,
+		        			type: "post",
+		        			dataType: "json",
+		        			success : function(review) {
+		        					if( review.result != "success" ) {
+		  							
+		        		    		return;
+		        		    		} 
+		        					if(hasNull(review.data)) {
+		        						return;
+		        					}
+		        			 							
+		        					$(review.data).each(function (index,vo){        					
+		        					renderpic(vo, reviewNum, postSeq);
+		        				});
+		        					
+		        					
+		        			}
+		        			
+		        		});
+		        	});
+		        },
+		        error : function(data) {
+					    alert("ajax 에러가 발생하였습니다.")
+		        }
+		    });
+			$("#review-"+trvSeq ).empty();
+		};
+
+
 </script>
