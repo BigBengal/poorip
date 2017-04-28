@@ -61,9 +61,15 @@
 			       POOL_MEMBER.CRT_DATE as crtDate,
 			       USERS.USR_NICK as usrNick,
 			       USERS.USR_PROFILE as profile, 
-			       USERS.USR_GENDER as gender
-			  from POOL_MEMBER, USERS
+			       USERS.USR_GENDER as gender,
+			       POOL_PARTY.POOL_PIC as poolPic,
+			       CONCAT(POOL_PARTY.POOL_NAME, IF(POOL_PARTY.FROM_DATE != "null" || POOL_PARTY.TO_DATE != "null",' ( ',''),
+			       		IF(POOL_PARTY.FROM_DATE != "null", POOL_PARTY.FROM_DATE,''),
+			       		IF(POOL_PARTY.TO_DATE != "null", CONCAT(' ~ ',POOL_PARTY.TO_DATE) ,''),
+					 		IF(POOL_PARTY.FROM_DATE != "null" || POOL_PARTY.TO_DATE != "null",' )','')) as poolInfo
+			  from POOL_MEMBER, USERS, POOL_PARTY
   			 WHERE POOL_MEMBER.USR_SEQ = USERS.USR_SEQ
+  			   AND POOL_MEMBER.POOL_SEQ = POOL_PARTY.POOL_SEQ
 			   AND POOL_MEMBER.APRV_USR = #{aprvUsr }
 			   AND POOL_MEMBER.APPROVE = 'N'
 		]]>
@@ -75,6 +81,7 @@
 			   SET APPROVE = 'Y'
 			 WHERE USR_SEQ  = #{usrSeq }
 			   AND POOL_SEQ = #{poolSeq }
+			   AND APRV_USR = #{aprvUsr }
 		]]>
 	</update>
 	
@@ -85,6 +92,7 @@
 			 WHERE USR_SEQ  = #{usrSeq }
 			   AND POOL_SEQ = #{poolSeq }
 			   AND APPROVE = 'N'
+			   AND APRV_USR = #{aprvUsr }
 		]]>
 	</delete>
 	

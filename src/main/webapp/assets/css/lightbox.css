@@ -1,15 +1,65 @@
-/* Preload images */
-body:after {
-  content: url(../images/close.png) url(../images/loading.gif) url(../images/prev.png) url(../images/next.png);
-  display: none;
+.lightbox {
+
 }
 
-body.lb-disable-scrolling {
+.lightbox-zoom {
+  border: 0;
+  box-shadow: none;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}
+
+  .lightbox-zoom img {
+    display: block;
+  }
+
+  .lightbox-zoom-icon {
+    background: #fff;
+    bottom: 0;
+    color: #2727a4;
+    line-height: 1;
+    padding: .306em .5em;
+    position: absolute;
+    right: 0
+  }
+
+.lightbox-no-scroll {
+  overflow-y: hidden;
+}
+
+
+/* Overlay */
+.lightbox-overlay {
+  background: rgba(17, 17, 17, .8);
+  bottom: 0;
+  box-sizing: border-box;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 32;
   overflow: hidden;
 }
 
-.lightboxOverlay {
+  .lightbox-overlay *,
+  .lightbox-overlay *::before,
+  .lightbox-overlay *::after {
+    box-sizing: inherit;
+  }
+
+  .lightbox-overlay[aria-hidden="true"] {
+    display: none;
+  }
+
+
+/* Slider */
+.lightbox-slider {
+  -webkit-transition: left .3s ease, -webkit-transform .3s ease;
+  bottom: 0;
+  left: 0;
   position: absolute;
+<<<<<<< HEAD
   top: 0;
   left: 0;
   z-index: 9999;
@@ -125,89 +175,176 @@ body.lb-disable-scrolling {
 
 .lb-nav a.lb-next {
   width: 64%;
+=======
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
   right: 0;
-  float: right;
-  background: url(../images/next.png) right 48% no-repeat;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
+  top: 0;
+  transition: left .3s ease, -webkit-transform .3s ease;
+  transition: left .3s ease, transform .3s ease, -webkit-transform .3s ease;
+  transition: left .3s ease, transform .3s ease;
+  white-space: nowrap;
 }
 
-.lb-nav a.lb-next:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
 
-.lb-dataContainer {
-  margin: 0 auto;
-  padding-top: 5px;
-  *zoom: 1;
+/* Content */
+.lightbox-content {
+  display: inline-block;
+  position: relative;
+  height: 100%;
   width: 100%;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
-  border-bottom-right-radius: 4px;
 }
 
-.lb-dataContainer:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  .lightbox-figure-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
 
-.lb-data {
-  padding: 0 4px;
-  color: #ccc;
-}
+    .lightbox-content figure {
+      margin: 0;
+      position: relative;
+    }
 
-.lb-data .lb-details {
-  width: 85%;
-  float: left;
-  text-align: left;
-  line-height: 1.1em;
-}
+      .lightbox-content img {
+        display: block;
+        height: auto;
+        max-height: 85vh;
+        max-width: 85vw;
+        width: auto;
+      }
 
-.lb-data .lb-caption {
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1em;
-}
+      .lightbox-content figcaption {
+        background: rgba(17, 17, 17, .8);
+        bottom: 0;
+        color: #fff;
+        display: block;
+        left: 0;
+        padding: .25em .5em;
+        position: absolute;
+        white-space: initial;
+        width: 100%;
+      }
 
-.lb-data .lb-caption a {
-  color: #4ae;
-}
 
-.lb-data .lb-number {
-  display: block;
-  clear: left;
-  padding-bottom: 1em;
-  font-size: 12px;
-  color: #999999;
-}
+.lightbox-overlay button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 
-.lb-data .lb-close {
-  display: block;
-  float: right;
-  width: 30px;
-  height: 30px;
-  background: url(../images/close.png) top right no-repeat;
-  text-align: right;
-  outline: none;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-  opacity: 0.7;
-  -webkit-transition: opacity 0.2s;
-  -moz-transition: opacity 0.2s;
-  -o-transition: opacity 0.2s;
-  transition: opacity 0.2s;
-}
-
-.lb-data .lb-close:hover {
+  background: transparent;
+  border: 0;
+  color: #fff;
   cursor: pointer;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
+  font-size: 1.6em;
+  height: 1.6em;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  width: 1.6em;
 }
+
+  .lightbox-overlay button:focus {
+    border: 1px solid #fff;
+    outline: 0;
+  }
+
+  .lightbox-overlay button:disabled {
+    cursor: default;
+    opacity: .5;
+  }
+
+  .lightbox-overlay button[aria-label="Previous"],
+  .lightbox-overlay button[aria-label="Next"] {
+    top: 50%;
+    top: calc(50% - (1.6em / 2));
+  }
+
+    .lightbox-overlay button[aria-label="Previous"] {
+      left: 2%;
+    }
+
+    .lightbox-overlay button[aria-label="Next"] {
+      right: 2%;
+    }
+
+  .lightbox-overlay button[aria-label="Close"] {
+    top: 1em;
+    right: 2%;
+  }
+
+.lightbox-counter {
+  background: transparent;
+  color: #fff;
+  font-size: 1.15em;
+  left: 2%;
+  position: absolute;
+  top: 1em;
+}
+<<<<<<< HEAD
+=======
+
+
+.lightbox-loader {
+  width: 5em;
+  height: 5em;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -2.5em;
+  margin-left: -2.5em;
+}
+
+  .lightbox-loader::before {
+    -webkit-animation: spin 1s infinite;
+    animation: spin 1s infinite;
+    border-radius: 100%;
+    border: .5em solid #9f9f9f;
+    border-top-color: #2727a4;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git

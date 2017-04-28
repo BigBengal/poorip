@@ -258,36 +258,48 @@ function openOptions() {
 						Poorip <span>과 함께 가요 </span>
 					</h1>
 					<p class="lead text-center">함께 즐기는 여행</p>
+						<form class="navbar-form lead text-center" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" id="ctyName" placeholder="Search">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+							<p class="lead"> <p>
+							<label for="from">날짜</label> 
+							<input type="text" id="from" name="fromDate" class="datepick">
+							<label for="to"> ~ </label>
+							<input type="text" id="to" name="toDate" class="datepick" >
+						</form>
+					
 					</div>
 				</div>
 				
+<!-- 					<div class="row col-lg-4 col-md-4 col-sm-4"></div> -->
+<!-- 					<form class="navbar-form navbar-left" role="search"> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<input type="text" class="form-control" id="ctyName" placeholder="Search"> -->
+<!-- 					</div> -->
+<!-- 					<button type="submit" class="btn btn-default">Submit</button> -->
+			
+<!-- 					</form> -->
 				
+<!-- 				<div class="row col-lg-12 col-md-12 col-sm-12"> -->
+				
+<!-- 					<div class="form-group"> -->
+						
+<!-- 					<div class="navbar-form"> -->
+<!-- 					<label for="from">출발</label>  -->
+<!-- 					<input type="text" id="from" name="fromDate" class="datepick"> -->
+<!-- 					<label for="to">도착</label> -->
+<!-- 					<input type="text" id="to" name="toDate" class="datepick" > -->
+					
+<!-- 					</div> -->
+<!-- 					</div> -->
+				
+<!-- 				</div> -->
 		</div>
 	</div>
 	<!-- banner end -->
-	<div class="row col-lg-4 col-md-4 col-sm-4"></div>
-		<form class="navbar-form navbar-left" role="search">
-		<div class="form-group">
-			<input type="text" class="form-control" id="ctyName" placeholder="Search">
-		</div>
-		<button type="submit" class="btn btn-default">Submit</button>
-
-		</form>
 	
-	<div class="row col-lg-12 col-md-12 col-sm-12">
-	
-		<div class="form-group">
-			
-		<div class="navbar-form">
-		<label for="from">출발</label> 
-		<input type="text" id="from" name="fromDate" class="datepick">
-		<label for="to">도착</label>
-		<input type="text" id="to" name="toDate" class="datepick" >
-		
-		</div>
-		</div>
-	
-		</div>
 <!-- 							<p class="text-center" style="text-align: center;"> -->
 <!-- 							<label for="from">출발</label>  -->
 <!-- 							<input type="text" id="fromDate" name="fromDate" style="color: #000000; border-radius: 10px"> -->
@@ -297,20 +309,18 @@ function openOptions() {
 <!-- 								style="width: 75; font-family: 맑은고딕; background-color: black"> -->
 <!-- 						</p> -->
 <!-- 					</form> -->
-
+<p/>
 		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea">
 		<c:forEach var="list" items="${top10 }">
-			<div class="col-md-6">
-				<div class="col-md-2 text-right">
-					풀이름 
+			<div class="col-md-6 poolmember">
+				<div class="col-md-5 text-right">
+					<img src="/poorip${list.poolPic}">
 				</div>
-				<div class="col-md-4 text-center">
 				<a href="poolparty/${list.poolSeq}">
-					${list.poolName}
-					${list.poolComment }
-					${list.managerUsrSeq }
+					<p>${list.poolName}</p>
+					<p>${list.poolComment }</p>
 				</a>
-				</div>
+				
 			</div>
 			
 		</c:forEach>

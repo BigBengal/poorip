@@ -98,6 +98,44 @@ public class PoolPartyController {
 	}
 
 	
+	// 내 풀파티
+	@Auth
+	@RequestMapping("/mypool")
+	public String myPool(@AuthUser UserVo authUser,
+						Model model) {
+		
+		//내가 가입하여 승인된 풀파티 리스트 
+		model.addAttribute("myPoolList", poolPartyService.getMyPoolList(authUser.getUsrSeq() ) );
+		
+		//내가 가입하여 승인 대기된 풀파티 리스트
+		model.addAttribute("myWaitPoolList", poolPartyService.getMyWaitPoolList(authUser.getUsrSeq() ) );
+
+		// 수락 대기 중인 리스트
+		model.addAttribute("requestList", poolPartyService.getRequestList(authUser.getUsrSeq() ) );
+
+		return "/poolparty/myPoolList";
+	}
+	
+	// 풀파티 설정 변경
+	@Auth
+	@RequestMapping("/saveSetting")
+	public String saveSetting(@ModelAttribute PoolPartyVo poolPartyVo,
+								@RequestParam("poolPicture") MultipartFile file){
+		System.out.println(poolPartyVo);
+		
+		poolPartyService.postSetSave(poolPartyVo, file);
+		
+		return "redirect:/poolparty/"+poolPartyVo.getPoolSeq();
+	}
+	
+	
+	///////////////////////////////////////
+	
+	//  AJAX 통신
+	
+	//////////////////////////////////////
+	
+	
 	// 도시 이름 가져오기
 	@ResponseBody
 	@RequestMapping("/poolsearch")
@@ -148,23 +186,45 @@ public class PoolPartyController {
 	@ResponseBody
 	@RequestMapping("/invite")
 	public String invitePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
-								@RequestParam(value="usrSeq",required=true) int usrSeq
+								@RequestParam(value="usrSeq",required=true) int usrSeq,
+								@AuthUser UserVo authUser
 								){
 		
-		poolPartyService.enterPoolparty(poolpartySeq, usrSeq, false);
+		// 데이터 생성자가 방장이면 초대받는 이가 승인자 (usrSeq == 세션유저) 
+		// 데이터 생성자가 방장이 아니면 방장이 승인자
+		int aprvUsr;
+		int poolAdminUsrSeq = poolPartyService.getPoolInfo(poolpartySeq).getManagerUsrSeq(); 
+		if( authUser.getUsrSeq() == poolAdminUsrSeq){
+			aprvUsr = usrSeq;
+		}else {
+			aprvUsr = poolAdminUsrSeq;
+		}
+			
+		poolPartyService.enterPoolparty(poolpartySeq, usrSeq, false, aprvUsr);
 		return "OK";
 	}
 
-	// 풀파티 설정 변경
 	@Auth
-	@RequestMapping("/saveSetting")
-	public String saveSetting(@ModelAttribute PoolPartyVo poolPartyVo,
-								@RequestParam("poolPicture") MultipartFile file){
-		System.out.println(poolPartyVo);
-		
-		poolPartyService.postSetSave(poolPartyVo, file);
-		
-		return "redirect:/poolparty/"+poolPartyVo.getPoolSeq();
+	@ResponseBody
+	@RequestMapping("/invite/aprv")
+	public JSONResult approveInvite(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
+								@RequestParam(value="usrSeq",required=true) int usrSeq,
+								@AuthUser UserVo authUser){
+		System.out.println(poolpartySeq + "," + usrSeq);
+		return JSONResult.success(poolPartyService.approvePoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "OK" : "ERR");
+//		return JSONResult.success("aprvOK");
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/invite/reject")
+	public JSONResult rejectInvite(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
+								@RequestParam(value="usrSeq",required=true) int usrSeq,
+								@AuthUser UserVo authUser
+			){
+		System.out.println(poolpartySeq + "," + usrSeq);
+		return JSONResult.success(poolPartyService.rejectPoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "OK" : "ERR");		
+//		return JSONResult.success("rejectOK");
 	}
 
 }

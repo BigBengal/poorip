@@ -30,7 +30,19 @@ var last_render = function(vo, postPicSeq) {
    var last_html =   		"</p>" +
                    		"</div>" +
                   "</div>" + 
-                  "<div class='form-group'>" +
+//=======
+//	console.log("1,2,3!!!!!" + postPicSeq);
+//  if(postPicSeq!=null) {
+//   var last_html =               "</div>" +
+//                           "<div class='text-center'>" +
+//                              "<a herf=# id='prev'> ! </a>" +
+//                              "<a herf=# id='nexr'> < </a>" +
+//                           "</div>" +
+//                        "</p>" +
+//                     "</div>" +
+//                     "</div>" + 
+//>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
+//                  "<div class='form-group'>" +
                   		"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
                   "</div>" + 
                   "<div class='form-group'>" +
@@ -45,7 +57,33 @@ var last_render = function(vo, postPicSeq) {
                   "</div>";
 
                $("#middle-html-"+postPicSeq).after(last_html);
-} 
+  }  
+//  else {
+//	  var last_html =	   "</div>" +
+//       "<div class='text-center'>" +
+//          "<a herf=# id='prev'> ! </a>" +
+//          "<a herf=# id='nexr'> < </a>" +
+//       "</div>" +
+//    "</p>" +
+// "</div>" +
+// "</div>" + 
+//"<div class='form-group'>" +
+//"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
+//"</div>" + 
+//"<div class='form-group'>" +
+//"<p class='col-md-7'> </p>" +
+//"<p class='col-md-5' align='left'>" + vo.crtDate + "</p>" +
+//"</div>" +
+//"<div class='form-group'>" +
+//"<p class='col-md-4' align='left' data-postSeq='" + vo.postSeq + "'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 30px'></p>" +
+// "<p class='col-md-4' align='center'><img alt='공유' src='/poorip/assets/images/share-btn.png' style='width: 30px'></p>" +
+// "<p class='col-md-4' align='right'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 30px'></p>" + 
+//"</div>";
+//
+//$("#first-html-"+vo.postSeq).after(last_html);
+//	  
+//  };
+//} 
 
 var fetchList = function() {
 	if( isEnd == true ) {
@@ -68,7 +106,6 @@ var fetchList = function() {
 					if( response.result != "success" ) {
 						return 
 					}
-
 					if( response.data.length == 0 ) {
 						isEnd = true;
 						return;

@@ -173,12 +173,12 @@
 												data-toggle="buttons">
 					
 									
-												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoFood.trvSeq},${travelInfoFood.trvSeq})" > <input
-													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoFood.trvSeq }"
-													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoFood.trvSeq})"> <input
-													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
-													autocomplete="off"/> 좋아요순 
+												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoFood.trvSeq},${travelInfoFood.trvSeq})"  > <input
+													type="radio" name="sort-by" value="date" id="sort-by-btn "
+													 value="" checked> 날짜순
+												</label> <label class="btn btn-default " id="notiN" onClick="sendTrvSeq1(${travelInfoFood.trvSeq})"> <input
+													type="radio" name="sort-by" value="like" id="sort-by-btn"
+													> 좋아요순 
 												</label>
 								
 											</div>
@@ -265,10 +265,11 @@
 												data-toggle="buttons">
 					
 									
-												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoFoodMain.trvSeq},${travelInfoFoodMain.trvSeq})" > <input
+												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoFoodMain.trvSeq},${travelInfoFoodMain.trvSeq})" > <input
 													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoFoodMain.trvSeq }"
 													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoFoodMain.trvSeq})"> <input
+												</label> 
+												<label class="btn btn-default " id="notiN" onClick="sendTrvSeq1(${travelInfoFoodMain.trvSeq})"> <input
 													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
 													autocomplete="off"/> 좋아요순 
 												</label>
@@ -356,10 +357,10 @@
 												data-toggle="buttons">
 					
 									
-												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoAttraction.trvSeq},${travelInfoAttraction.trvSeq})" > <input
+												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoAttraction.trvSeq},${travelInfoAttraction.trvSeq})" > <input
 													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoAttraction.trvSeq }"
 													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoAttraction.trvSeq})"> <input
+												</label> <label class="btn btn-default " id="notiN" onClick="sendTrvSeq1(${travelInfoAttraction.trvSeq})"> <input
 													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
 													autocomplete="off"/> 좋아요순 
 												</label>
@@ -446,10 +447,10 @@
 												data-toggle="buttons">
 					
 									
-												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoAttractionMain.trvSeq},${travelInfoAttractionMain.trvSeq})" > <input
+												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoAttractionMain.trvSeq},${travelInfoAttractionMain.trvSeq})" > <input
 													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoAttractionMain.trvSeq }"
 													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoAttractionMain.trvSeq})"> <input
+												</label> <label class="btn btn-default" id="notiN" onClick="sendTrvSeq1(${travelInfoAttractionMain.trvSeq})"> <input
 													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
 													autocomplete="off"/> 좋아요순 
 												</label>
@@ -536,10 +537,10 @@
 												data-toggle="buttons">
 					
 									
-												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoActivity.trvSeq},${travelInfoActivity.trvSeq})" > <input
+												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoActivity.trvSeq},${travelInfoActivity.trvSeq})" > <input
 													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoActivity.trvSeq }"
 													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoActivity.trvSeq})"> <input
+												</label> <label class="btn btn-default " id="notiN" onClick="sendTrvSeq1(${travelInfoActivity.trvSeq})"> <input
 													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
 													autocomplete="off"/> 좋아요순 
 												</label>
@@ -626,10 +627,10 @@
 												data-toggle="buttons">
 					
 									
-												<label class="btn btn-default" id="notiY" onClick="send(${travelInfoActivityMain.trvSeq},${travelInfoActivityMain.trvSeq})" > <input
+												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoActivityMain.trvSeq},${travelInfoActivityMain.trvSeq})" > <input
 													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoActivityMain.trvSeq }"
 													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default active" id="notiN" onClick="sendTrvSeq1(${travelInfoActivityMain.trvSeq})"> <input
+												</label> <label class="btn btn-default" id="notiN" onClick="sendTrvSeq1(${travelInfoActivityMain.trvSeq})"> <input
 													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
 													autocomplete="off"/> 좋아요순 
 												</label>

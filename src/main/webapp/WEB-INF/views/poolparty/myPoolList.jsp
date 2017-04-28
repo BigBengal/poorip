@@ -87,17 +87,6 @@ $(document).ready(function(){
 			}
 		};
 	});
-
-	$(window).load(function() {
-		if (($(".header.fixed").length > 0)) { 
-			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-				$("body").addClass("fixed-header-on");
-			} else {
-				$("body").removeClass("fixed-header-on");
-			}
-		};
-	});
-
 		
 	// Animations
 	//-----------------------------------------------
@@ -118,7 +107,89 @@ $(document).ready(function(){
 	};
 	
 }); // End document ready
+function aprvConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
+	
+	 $( "#dialog-confirm_aprv" ).dialog({
+	    resizable: false,
+	    height: "auto",
+	    width: 400,
+	    modal: true,
+	    buttons: {
+	      "Confirm": function() {
+	        console.log(poolMemSeq + ',' + poolPartySeq + ',' + usrSeq)
+	     	// Ajax 통신
+			$.ajax( {
+			    url : "${pageContext.request.contextPath }/poolparty/invite/aprv",
+			    type: "post",
+			    dataType: "json",
+			    data: "poolpartySeq="+poolPartySeq+"&usrSeq="+usrSeq,
+			//  contentType: "application/json",
+			    success: function( response ){
+			    	console.log	( response );
+			       if( response.result == "failed") {
+			    	   console.log( response );
+			    	   return;
+			       }
+			    	//통신 성공 (response.result == "success" )
+					console.log( "APPROVE" + response.data );
+			    	$( "#request-"+poolMemSeq ).hide();
+			    	
+			    },
+			    error: function( XHR, status, error ){
+			       console.error( status + " : " + error );
+			    }
 
+			   });
+	        $( this ).dialog( "close" );
+	      },
+	      Cancel: function() {
+	        $( this ).dialog( "close" );
+	      }
+	    }
+	  });
+}
+
+function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
+	
+	 $( "#dialog-confirm_reject" ).dialog({
+	    resizable: false,
+	    height: "auto",
+	    width: 400,
+	    modal: true,
+	    buttons: {
+	      "Confirm": function() {
+	        console.log(poolMemSeq + ',' + poolPartySeq + ',' + usrSeq)
+	     // Ajax 통신
+			$.ajax( {
+			    url : "${pageContext.request.contextPath }/poolparty/invite/reject",
+			    type: "post",
+			    dataType: "json",
+			    data: "poolpartySeq="+poolPartySeq+"&usrSeq="+usrSeq,
+			//  contentType: "application/json",
+			    success: function( response ){
+			    	console.log	( response );
+			       if( response.result == "failed") {
+			    	   console.log( response );
+			    	   return;
+			       }
+			    	//통신 성공 (response.result == "success" )
+					console.log( "APPROVE" + response.data );
+			    	$( "#request-"+poolMemSeq ).hide();
+			    	
+			    },
+			    error: function( XHR, status, error ){
+			       console.error( status + " : " + error );
+			    }
+
+			   });
+	        $( this ).dialog( "close" );
+	      },
+	      Cancel: function() {
+	        $( this ).dialog( "close" );
+	      }
+	    }
+	  });
+}
 </script>
 </head>
 <body class="no-trans">
@@ -139,26 +210,23 @@ $(document).ready(function(){
 
 	<!-- banner start -->
 	<!-- ================ -->
-	<div id="banner" class="banner">
-		<div class="banner-image">
+	<div id="banner" class="banner-addinfo">
+		<div class="banner-addinfo-image">
 			<div class="backstretch">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/bg-image-4.jpg">
+					src="${pageContext.request.contextPath }/assets/images/bg-image-5.jpg">
 			</div>
 		</div>
 		<div class="banner-caption">
-<!-- 			<div class="container"> -->
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
 					<h1 class="text-center">
-						Poorip <span>과 함께 가요 </span>
+						Poorip <span>와 인연</span>
 					</h1>
-					<p class="lead text-center">함께 즐기는 여행</p>
 					</div>
 				</div>
-				
-				
+
 		</div>
 	</div>
 	<!-- banner end -->
@@ -171,16 +239,90 @@ $(document).ready(function(){
 
 		</form>
 	
-	<div class="row col-lg-12 col-md-12 col-sm-12">
 	
+	<div class="row col-lg-12 col-md-12 col-sm-12">
+		<div class="text-center">
+			<h2>내 풀파티 리스트</h2>
+		</div>
+	
+		<div class="row col-lg-12 col-md-12 col-sm-12">
+			<c:forEach var="myPoolList" items="${myPoolList}">
+				<div class="col-md-6 poolparty">
+					<div class="col-md-6">
+					<img src="/poorip${myPoolList.poolPic }">
+					</div>
+					<div class="col-md-6">
+					<a href="${myPoolList.poolSeq}">
+					
+					${myPoolList.poolSeq}
+					${myPoolList.poolName}
+					${myPoolList.fromDate}
+					${myPoolList.toDate}
+					${myPoolList.ctyName}
+					${myPoolList.poolComment}
+					${myPoolList.poolPublicYn}
+					</a>
+					</div>
+					
+				</div>
+			</c:forEach>
+		</div>
 	</div>
-
-
-
-
-
-</head>
-<body>
-
+	
+	<div class="row col-lg-12 col-md-12 col-sm-12">
+		<div class="text-center">
+			<h2>대기 중인 풀파티 리스트</h2>
+		</div>
+		<div class="row col-lg-12 col-md-12 col-sm-12">
+			<c:forEach var="myPoolList" items="${myWaitPoolList}">
+				<div class="col-md-6 poolparty">
+					<div class="col-md-6">
+					<img src="/poorip${myPoolList.poolPic }">
+					</div>
+					<div class="col-md-6">
+					<a href="${myPoolList.poolSeq}">
+					
+					${myPoolList.poolSeq}
+					${myPoolList.poolName}
+					${myPoolList.fromDate}
+					${myPoolList.toDate}
+					${myPoolList.ctyName}
+					${myPoolList.poolComment}
+					${myPoolList.poolPublicYn}
+					</a>
+					</div>	
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	
+	<div class="row col-lg-12 col-md-12 col-sm-12">
+		<div class="text-center">
+			<h2>요청 리스트</h2>
+		</div>
+		<div class="row">
+			<c:forEach var="requestList" items="${requestList}">
+				<div class="col-md-6 poolmember" id="request-${requestList.poolMemSeq}">
+					
+					<div class="col-md-4">
+						<img src="/poorip${requestList.poolPic}">
+					</div>
+					${requestList.poolInfo}
+					<span class="poolmemberlist">
+					<img src="${requestList.profile}">
+						${requestList.usrNick}
+					<button class="btn btn-small" onclick="aprvConfirmDialog(${requestList.poolMemSeq},${requestList.poolSeq},${requestList.usrSeq});">수락 </button>
+					<button class="btn btn-small" onclick="rejectConfirmDialog(${requestList.poolMemSeq},${requestList.poolSeq},${requestList.usrSeq});">거절</button>
+					</span>
+					</div>
+			</c:forEach>
+		</div>
+		<div id="dialog-confirm_aprv" title="요청 리스트 수락" style="display:none">
+		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>요청를 수락하시겠습니까?</p>
+		</div>
+		<div id="dialog-confirm_reject" title="요청 리스트 거절" style="display:none">
+		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>요청를 거절하시겠습니까?</p>
+		</div>
+	</div>
 </body>
 </html>
