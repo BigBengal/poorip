@@ -69,3 +69,8 @@ File Description: Place here your custom CSS styles
     z-index: -999999;
     top: 0px;
 }
+
+.review-header {
+	display:inline-block;
+	width:100%;
+}
