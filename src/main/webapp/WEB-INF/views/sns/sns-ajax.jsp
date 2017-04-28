@@ -9,6 +9,9 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var globalPostSeq = 0;
+var delta = 300;
+var timer = null;
+
 var post_render = function( vo ) {
 		
 	var post_html = "<div class='form-group' id='first-html-" + vo.postSeq + "'>" + 
@@ -61,9 +64,9 @@ var last_render = function(vo) {
 
 var fetchList = function() {
 	if( isEnd == true ) {
+		$("#loading").removeClass("lb-cancel");
 		return;
 	}
-	console.log("!");
 	
 	$.ajax( {
 		url : "sns/main/" + page,
@@ -80,12 +83,13 @@ var fetchList = function() {
 				isEnd = true;
 				return;
 			}
-			++page;
-
+			
 			$( response.data.post ).each( function( index, vo) {
 				//console.log(index + "  ++++"+ vo.title);
-				if ( globalPostSeq > vo.postSeq )
+				console.log(globalPostSeq + "," + vo.postSeq + ", page : "+ page);
+				if ( globalPostSeq != 0 && globalPostSeq <= vo.postSeq ){
 					return;
+				}
 				console.log("여기서 한번 시작")
 				post_render( vo );
 				
@@ -98,10 +102,10 @@ var fetchList = function() {
 				last_render( vo );
 				console.log("여기서 한번 마지막")
 				
-				if ( globalPostSeq <= response.data.post.postSeq )
-					globalPostSeq = response.data.post.postSeq;
+				globalPostSeq = vo.postSeq;
 			});
-			
+			page++;
+			$("#loading").removeClass("lb-cancel");
 			return;
 
 		},
@@ -112,20 +116,22 @@ var fetchList = function() {
 };
 
 $(function() {
-		
-	$( window ).scroll(function(){
-		
-		
-		var $window = $(this);
+	
+	$( window ).on( 'scroll', function( ) {
+		clearTimeout( timer );
+	    
+	    var $window = $(this);
 		var scrollTop = $window.scrollTop();
 		var windowHeight = $window.height();
 		var documentHeight = $(document).height();
 		
 		if( scrollTop + windowHeight + 10 >= documentHeight ) {
-			fetchList();
+			$("#loading").addClass("lb-cancel");
+			timer = setTimeout( fetchList, delta );
 		}
-	});
-	//fetchList();
+   
+	} );
+
 });
 
 

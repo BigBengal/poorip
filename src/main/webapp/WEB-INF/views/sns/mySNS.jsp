@@ -77,6 +77,7 @@
 			    <div class="container">
 				    <div id="my-sns-list" class="block" style="padding-top: 100px">
 					</div>
+					<div id="loading"></div>
 				</div>
 				<div class='cycle-slideshow'
 				    data-cycle-fx='scrollHorz'
