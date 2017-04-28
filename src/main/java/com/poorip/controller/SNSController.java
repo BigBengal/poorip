@@ -20,6 +20,7 @@ import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.SNSService;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
 
@@ -72,6 +73,24 @@ public class SNSController {
 		snsService.addPost( reviewVo, postUploadFiles );
 		
 		return "redirect:/sns";
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/deletePost")
+	public JSONResult deletePost( @ModelAttribute PostVo postVo ) {
+		boolean result = snsService.deletePost( postVo );
+		if( result ){
+			System.out.println("duaekgnadjkogfj"+postVo.getPostSeq());
+			Integer postSeq = postVo.getPostSeq();
+			return JSONResult.success( postSeq);
+
+
+		}else{
+			System.out.println("fail"+postVo.getPostSeq());
+			return JSONResult.fail( "DB error" );
+			
+		}
 	}
 		
 }
