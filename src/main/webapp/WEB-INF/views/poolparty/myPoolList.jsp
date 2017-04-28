@@ -230,16 +230,6 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 		</div>
 	</div>
 	<!-- banner end -->
-	<div class="row col-lg-4 col-md-4 col-sm-4"></div>
-		<form class="navbar-form navbar-left" role="search">
-		<div class="form-group">
-			<input type="text" class="form-control" id="ctyName" placeholder="Search">
-		</div>
-		<button type="submit" class="btn btn-default">Submit</button>
-
-		</form>
-	
-	
 	<div class="row col-lg-12 col-md-12 col-sm-12">
 		<div class="text-center">
 			<h2>내 풀파티 리스트</h2>
