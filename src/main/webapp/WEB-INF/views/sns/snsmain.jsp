@@ -126,10 +126,9 @@
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
 
 	<!-- Custom Scripts -->
-<!-- 	<script type="text/javascript" -->
-<%-- 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
-	<!-- Light Box -->
-	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+
 	<!-- date picker -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -140,9 +139,11 @@
 	
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
-	
+
 	<!-- sns ajax -->
 	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
 
+	<!-- Light Box -->
+	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 </body>
 </html>

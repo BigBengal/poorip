@@ -52,7 +52,7 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   		<link rel="stylesheet" href="/resources/demos/style.css"> -->
-<%-- <c:import url="/WEB-INF/views/include/ajax.jsp" /> --%>
+<%-- <c:import url="/WEB-INF/views/include/ajax.jsp" />  --%>
 
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">

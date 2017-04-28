@@ -9,11 +9,9 @@
 		<div class="block"  style="padding-top: 30px" >
 			<form class="form-horizontal" action="${pageContext.request.contextPath}/sns/post/upload" method="post" enctype="multipart/form-data">
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
-					<div class="center">
-						<a href=# id="prev">Prev</a> <a href=# id="next">Next</a>
-					</div> <img onclick="showWrite();" alt="글쓰기"
-					src="${pageContext.request.contextPath}/assets/images/write-btn.png"
-					style="width: 30px">
+					<img onclick="showWrite();" alt="글쓰기"
+								src="${pageContext.request.contextPath}/assets/images/write-btn.png"
+								style="width: 30px" >
 					<div class="write-main block" id="sns-write" style="display: none;">
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="title">제목 : </label>
@@ -94,6 +92,7 @@
 						<div class="loading">
 						</div>
 					</div>
+
 			</form>
 		</div>
 	</div>

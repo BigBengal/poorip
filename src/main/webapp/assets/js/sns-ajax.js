@@ -118,3 +118,16 @@ $(function() {
       }
    });
 });
+
+var writeVisible = false;
+
+function showWrite(){
+	if ( writeVisible == true ) {
+		$("#sns-write").hide();	
+		writeVisible = false;
+	} else {
+		$("#sns-write").show();
+		writeVisible = true;
+	}
+	
+}
