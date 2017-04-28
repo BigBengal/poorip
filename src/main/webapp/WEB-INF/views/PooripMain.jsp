@@ -58,7 +58,7 @@
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
-<c:import url="/WEB-INF/views/include/ajax.jsp" />
+
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
@@ -202,5 +202,6 @@
 	<%-- <c:forEach items="${sessionScope}" var="attr">
     ${attr.key}=${attr.value}<br>
 	</c:forEach> --%>
+	<c:import url="/WEB-INF/views/include/ajax.jsp" />
 </body>
 </html>

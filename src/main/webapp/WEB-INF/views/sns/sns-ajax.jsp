@@ -26,13 +26,13 @@ var post_render = function( vo ) {
 }
 
 var postPic_render = function(vo2, vo) {
-	var postPic_html = "<img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo.postSeq + "'>" + vo2.postPicSeq;
+	var postPic_html = "<a href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' ></a>";
 							   		
 
-					   $( "#first-html-"+vo.postSeq ).after(postPic_html);
+					   $( "#first-html-"+vo.postSeq ).append(postPic_html);
 }
 
-var last_render = function(vo) {
+var last_render = function(vo, postPicSeq) {
 	var last_html =					"</div>" +
 									"<div class='text-center'>" +
 							   		"<a herf=# id='prev'> ! </a>" +
@@ -54,7 +54,7 @@ var last_render = function(vo) {
 		   				"<p class='col-md-4' align='right'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 30px'></p>" + 
 	   				"</div>";
 
-					$("#middle-html-"+vo.postSeq).after(last_html);
+					$("#middle-html-"+postPicSeq).after(last_html);
 } 
 
 var fetchList = function() {
@@ -62,55 +62,64 @@ var fetchList = function() {
 		return;
 	}
 	console.log("!");
+	$(window).data('ajaxready', true).scroll(function(e) {
+	    if ($(window).data('ajaxready') == false) {
+	    	return;
+	    };
+	    if ($(window).scrollTop() >= ($(document).height() - $(window).height())) {
+	    	 $(window).data('ajaxready', false);
+					$.ajax( {
+					url : "sns/main/" + page,
+					type : "get",
+					dataType: "json",
+					data : "",
+					success: function( response ) {
+						//console.log(response);
+						if( response.result != "success" ) {
+							return 
+						}
+						
+						if( response.data.length == 0 ) {
+							isEnd = true;
+							return;
+						}
+						var postPicSeq = null;
+						++page;
+						$( response.data.post ).each( function( index, vo) {
+							//console.log(index + "  ++++"+ vo.title); 	
+							console.log(1);
+							post_render( vo );
 	
-	$.ajax( {
-		url : "sns/main/" + page,
-		type : "get",
-		dataType: "json",
-		data : "",
-		success: function( response ) {
-			//console.log(response);
-			if( response.result != "success" ) {
-				return 
-			}
+							$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
+								postPic_render( vo2, vo );
+								console.log(2);
+								console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
+								if(index == $( response.data.postPic[vo.postSeq]).length-1) {
+									postPicSeq= vo2.postPicSeq;
+								}
+							});
+						last_render( vo, postPicSeq );
+						});
+						$(window).data('ajaxready', true);
 			
-			if( response.data.length == 0 ) {
-				isEnd = true;
-				return;
-			}
-			++page;
-			$( response.data.post ).each( function( index, vo) {
-				//console.log(index + "  ++++"+ vo.title); 	
-				console.log(1);
-				post_render( vo );
-				
-				$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
-					postPic_render( vo2, vo );
-					console.log(2);
-					console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
-				});
-				console.log(3);
-			last_render( vo );
-			});
-			
-			return;
-
-		},
-		error: function( XHR, status, error ) {
-			console.error( status + " : " + error );
-		}
-});
+					},
+					error: function( XHR, status, error ) {
+						console.error( status + " : " + error );
+					}
+					});
 };
-
+	});
+};
 $(function() {
-		
+	
+
 	$( window ).scroll(function(){
 		var $window = $(this);
 		var scrollTop = $window.scrollTop();
 		var windowHeight = $window.height();
 		var documentHeight = $(document).height();
 		
-		if( scrollTop + windowHeight +0.5 > documentHeight ) {
+		if( scrollTop + windowHeight +3 > documentHeight ) {
 			fetchList();
 		}
 	});
