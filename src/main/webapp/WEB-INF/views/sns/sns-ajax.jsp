@@ -124,11 +124,10 @@ $(function() {
 		var scrollTop = $window.scrollTop();
 		var windowHeight = $window.height();
 		var documentHeight = $(document).height();
-		
+
 		if( scrollTop + windowHeight + 10 >= documentHeight ) {
 			$("#loading").addClass("lb-cancel");
 			timer = setTimeout( fetchList, delta );
-		}
    
 	} );
 
