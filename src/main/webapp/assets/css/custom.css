@@ -85,3 +85,9 @@ File Description: Place here your custom CSS styles
 	display : inline;
 	margin: 0 0 10px;
 }
+
+.review-header {
+	display:inline-block;
+	width:100%;
+
+}
