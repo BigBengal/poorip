@@ -170,6 +170,14 @@ public class UserController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping("getProfile")
+	public JSONResult getProfile(){
+		
+		
+		return JSONResult.success("OD");
+	}
+	
 			
 	
 }

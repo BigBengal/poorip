@@ -178,6 +178,10 @@ public class UserService {
 	public List<UserVo> SearchPersonList(){
 		return userDao.list();
 	}
-
-
+	
+	// 유저 Seq로 유저 정보 가져오기
+	public List<UserVo> SearchPersonListbySeq(){
+		return userDao.list();
+	}
+	
 }

@@ -95,17 +95,31 @@ $(document).ready(function(){
 	        },
 	        close: function() {
 	        	dialog.dialog( "close" );
-// 	          allFields.removeClass( "ui-state-error" );
 	        }
 	  } );
-// 	form = dialog.find( "form" ).on( "submit", function( event ) {
-// // 	      event.preventDefault();
-// 	      saveSetting();
-// 	    });
 	
 	$( "#setting" ).on( "click", function() {
 	      dialog.dialog( "open" );
 	    });
+		
+	$(".poolmemberlist").on("click", function() {
+		var usrSeq = $(this).data("usrseq");
+		console.log(usrSeq);
+		
+		
+		
+		$( "#profile" ).dialog({
+// 	    	autoOpen: false,
+	        height: 300,
+	        width: 200,
+	        modal: true,
+	        buttons: {
+	          Close: function() {
+	        	$(this).dialog( "close" );
+	          }
+	        }
+	  } );
+	});
 	
 	// Animations
 	//-----------------------------------------------
@@ -252,6 +266,11 @@ function invite() {
 	    }
 	   });
 }
+
+function showprofile(usrSeq){
+	console.log("profile"+usrSeq);
+	profileDialog.dialog( "open" );
+}
 </script>
 
 </head>
@@ -379,10 +398,8 @@ function invite() {
 <div class="col-md-2 hidden-xs">
 풀파티 맴버
 <c:forEach var="memberlist" items="${poolmember }" varStatus="status">
-	<div class="gender_${memberlist.gender} poolmemberlist">
-		<img src="${memberlist.profile}">
-		${memberlist.usrNick}
-		${memberlist.approve}
+	<div class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links" data-usrseq="${memberlist.usrSeq}">
+		<img src="${memberlist.profile}"> ${memberlist.usrNick}<c:if test="${memberlist.approve == 'N'}">(승인대기중)</c:if>
 	</div>
 </c:forEach>
 <c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
@@ -416,6 +433,9 @@ function invite() {
 		</div>
 	</c:forEach>
 </div>
-	
+
+<div id="profile" title="프로필 보기">
+아아아아
+</div>
 </body>
 </html>

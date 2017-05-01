@@ -104,7 +104,30 @@ File Description: Place here your custom CSS styles
 }
 .poolmemberlist img{
 	display : inline;
-	margin: 0 0 10px;
+/* 	margin: 0 0 10px; */
+}
+.gender_M {
+	border: 1px solid;
+	border-color: Royalblue;
+	border-radius: 3px;
+	margin-bottom: 4px;
+	background-color: Skyblue;
+}
+.gender_F {
+	border: 1px double;
+	border-color: Hotpink;
+	border-radius: 3px;
+	margin-bottom: 4px;
+	background-color: pink;
+}
+.gender_M {
+	border: 1px solid;
+	border-color: Royalblue;
+	border-radius: 3px;
+	margin-bottom: 4px;
+}
+.aproveN {
+	background-color: silver;
 }
 
 .review-header {

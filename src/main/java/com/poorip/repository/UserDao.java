@@ -18,8 +18,8 @@ public class UserDao {
 		return sqlSession.selectList("user.getList");
 	}
 	
-	public List<UserVo> listByKeyword(UserVo userVo){
-		return sqlSession.selectList("user.getListbykeyword", userVo);
+	public List<UserVo> listByUsrSeq(UserVo userVo){
+		return sqlSession.selectList("user.getListbyusrseq", userVo);
 	}
 	
 	public boolean isExist(UserVo uservo) {
