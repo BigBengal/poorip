@@ -34,4 +34,14 @@
 		]]>
 	</select>
 	
+	<!-- 풀의 라이크 갯수 조회 -->
+	<select id="selectlike" resultType="integer" parameterType="integer">
+		<![CDATA[
+			select count(*)
+			  from POOL_LIKE
+			 where POOL_SEQ = #{poolSeq } 
+		]]>
+	</select>
+	
+	
 </mapper>

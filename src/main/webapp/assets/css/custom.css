@@ -70,8 +70,29 @@ File Description: Place here your custom CSS styles
     top: 0px;
 }
 
+.blackcolor {
+	color: black !important;
+}
+
+.menu_links { cursor: pointer; }
+
 .poolparty {
 	min-height: 250px;
+}
+.img100 {
+	width : 100% !important ;
+}
+
+.poollikeon {
+	background: url("/poorip/assets/images/poolparty_like_on.png") 100% 100% no-repeat;
+	height : 32px;
+	padding-top: 5px;
+}
+
+.poollikeoff {
+	background: url("/poorip/assets/images/poolparty_like_off.png") 100% 100% no-repeat;
+	height : 32px;
+	padding-top: 5px;
 }
 
 .poolmember {

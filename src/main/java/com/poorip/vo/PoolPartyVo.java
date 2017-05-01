@@ -24,7 +24,14 @@ public class PoolPartyVo {
 	private String managerUsrNick;
 	private String managerProfile;
 	private String managerGender;
+	private int likeCnt;
 	
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
+	}
 	public String getManagerUsrNick() {
 		return managerUsrNick;
 	}
@@ -117,13 +124,14 @@ public class PoolPartyVo {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	
 	@Override
 	public String toString() {
 		return "PoolPartyVo [poolSeq=" + poolSeq + ", poolName=" + poolName + ", poolComment=" + poolComment
 				+ ", poolPic=" + poolPic + ", ctySeq=" + ctySeq + ", managerUsrSeq=" + managerUsrSeq + ", poolPublicYn="
 				+ poolPublicYn + ", crtDate=" + crtDate + ", fromDate=" + fromDate + ", toDate=" + toDate + ", hit="
 				+ hit + ", ctyName=" + ctyName + ", managerUsrNick=" + managerUsrNick + ", managerProfile="
-				+ managerProfile + ", managerGender=" + managerGender + "]";
+				+ managerProfile + ", managerGender=" + managerGender + ", likeCnt=" + likeCnt + "]";
 	}
+	
+	
 }

@@ -40,15 +40,16 @@
 			       CITY.CTY_NAME as ctyName,
 			       USERS.USR_NICK as managerUsrNick,
 			       USERS.USR_PROFILE as managerProfile,
-			       USERS.USR_GENDER as managerGender
-			  FROM POOL_PARTY, USERS, CITY
+			       USERS.USR_GENDER as managerGender,
+			       (select count(*) from pool_like where pool_like.pool_seq = pool_party.pool_seq) as likeCnt
+			  FROM POOL_PARTY LEFT OUTER JOIN CITY ON CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ,
+			  	   USERS
  			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
- 			   AND CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ
-			   AND POOL_SEQ = #{integer }
+ 			   AND POOL_SEQ = #{integer }
 		]]>
 	</select>
 	
-	<!-- 풀 파티 조회-->
+	<!-- TOP 10 풀 파티 조회-->
 	<select id="selecttop10" resultType="poolpartyvo">
 		<![CDATA[
 			SELECT POOL_SEQ as poolSeq,
@@ -90,7 +91,7 @@
 			  FROM POOL_PARTY LEFT OUTER JOIN CITY ON CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ,
 			       USERS, POOL_MEMBER
  			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
- 				AND POOL_PARTY.POOL_SEQ = POOL_MEMBER.POOL_SEQ
+ 			   AND POOL_PARTY.POOL_SEQ = POOL_MEMBER.POOL_SEQ
 			   AND POOL_MEMBER.USR_SEQ = #{usrSeq }
 			   AND POOL_MEMBER.APPROVE = 'Y'
 		]]>
@@ -140,8 +141,8 @@
  		]]>
  		<if test="fromDate != null and fromDate != ''">
  			<![CDATA[
-	 		`from_date` BETWEEN str_to_date(#{fromDate}, '%c/%e/%Y') 
-	 			AND DATE_sub(str_to_date(#{toDate}, '%c/%e/%Y'), INTERVAL 1 day)
+	 		AND from_date BETWEEN str_to_date(#{fromDate}, '%Y/%m/%d') 
+	 			AND DATE_sub(str_to_date(#{toDate}, '%Y/%m/%d'), INTERVAL 1 day)
  			]]> 
  		</if>
  		<![CDATA[

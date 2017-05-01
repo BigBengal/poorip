@@ -46,6 +46,10 @@ public class PoolMemberDao {
 		// 0이면 폭파(방장빼고 가입수락한 사람 없는 경우)
 		return 0 == (Integer)sqlSession.selectOne("poolmember.isdestorable",poolmembervo);
 	}
-
 	
+	public boolean isMember(PoolMemberVo poolmembervo){
+		// 가입이 되어 있는지 확인
+		return 1 == (Integer)sqlSession.selectOne("poolmember.ismember",poolmembervo);
+	}
+		
 }

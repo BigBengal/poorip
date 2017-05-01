@@ -75,6 +75,7 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script>
 var writeVisible = false;
+var poolikeyn = false; 
 
 $(document).ready(function(){
 	
@@ -154,7 +155,12 @@ $(document).ready(function(){
         changeMonth: true,
         changeYear: true,
     });
-
+	
+		
+	$("#poollike").click(function(){
+		likeToggle(poolikeyn);
+	});
+		
 });
 function showWrite(){
 	if ( writeVisible == true ) {
@@ -166,12 +172,86 @@ function showWrite(){
 	}
 	
 }
+function likeToggle(poolike){
 
-// function saveSetting(){
-// 	console.log("ss");
-// }
-
-
+	$.ajax({
+	          url : "liketoggle",
+	          type : "post",
+	          dataType : "json",
+	          data: { "poolpartySeq" : ${pool.poolSeq} } ,
+	          success: function(data) {
+	          	if(data.result != "success"){
+	          		console.log("err");
+	          		return
+	          	}
+	        	if (poolike == false){
+	        		$("#poollike").removeClass("poollikeon");
+		  			$("#poollike").addClass("poollikeoff");
+		  			poolikeyn = true;
+		  			console.log(data.data);
+		  			$("#poollike").text(data.data);
+	        	} else {
+	        		$("#poollike").removeClass("poollikeoff");
+	        		$("#poollike").addClass("poollikeon");
+	        		poolikeyn = false;
+	        		console.log(data.data);
+	        		$("#poollike").text(data.data);
+	        	} 
+	          }
+	        		
+	      });
+}
+function reqeustJoin(){
+	console.log("reqeustJoin");
+	// Ajax 통신
+	$.ajax( {
+	    url : "invite",
+	    type: "post",
+	    dataType: "json",
+	    data: { "poolpartySeq" : ${pool.poolSeq} },
+	    success: function( response ){
+	    	console.log	( response );
+		       if( response.result == "fail") {
+		    	   console.log( response );
+		    	   return;
+		       }
+	    	//통신 성공 (response.result == "success" )
+	    	if(response.result == "success" ) {
+	    		$("#reqeustjoin").text("요청중");
+	    	}
+	       return true;
+	    }
+	   });
+	
+	
+}
+function invite() {
+	console.log("invite");
+	
+	if ($("#inviteNick").val() == ""){
+		$("#inviteMsg").text("닉네임입력하세요");
+		return;
+	}
+	$.ajax( {
+	    url : "invite",
+	    type: "post",
+	    dataType: "json",
+	    data: { "poolpartySeq" :${pool.poolSeq},
+	    	    "usrNm" : $("#inviteNick").val()},
+	    success: function( response ){
+	    	console.log	( response );
+		       if( response.result == "fail") {
+		    	   $("#inviteMsg").text("요청실패");
+		    	   return;
+		       }
+	    	//통신 성공 (response.result == "success" )
+	    	if(response.result == "success" ) {
+	    		$("#inviteMsg").text("요청완료");
+	    	}
+	       return true;
+	    }
+	   });
+}
 </script>
 
 </head>
@@ -252,15 +332,32 @@ function showWrite(){
 	</div>
 	<div class="col-md-7">
 		<div class="col-md-10">
-		<h1>${pool.poolName} </h1>
+		<h1>${pool.poolName} 
+		</h1>
 		</div>
 		<div class="col-md-2">
-			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
-				<img src="/poorip/assets/images/gear.png" width="30px" id="setting">
+			<c:if test="${like == true}">
+				<div id="poollike" class="poollikeon menu_links">
+				${pool.likeCnt}
+				</div>
 			</c:if>
-		<c:if test="${authUser == null }">
-			가입요청
+			
+			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
+				<div>
+				<img src="/poorip/assets/images/gear.png" width="30px" id="setting" class="menu_links">
+				</div>
+			</c:if>
+		<c:if test="${authUser != null and memberYn == 'NO'}">
+			<div id="reqeustjoin">
+			<a onclick="reqeustJoin()" class="menu_links">가입요청</a>
+			</div>
 		</c:if>
+		<c:if test="${authUser != null and memberYn == 'ING'}">
+			<div id="reqeustjoin">
+			요청중
+			</div>
+		</c:if>
+		
 		</div>
 	<div class="col-md-12">
 	<h3>${pool.poolComment} </h3>
@@ -270,8 +367,9 @@ function showWrite(){
 	<c:if test="${pool.fromDate != null or pool.toDate != null}">
 	 여행 기간 : ${pool.fromDate} ~ ${pool.toDate} 
 	</c:if>
-	( ${pool.ctyName} )
-	
+	<c:if test="${pool.ctyName != null}">
+		( ${pool.ctyName} )
+	</c:if>
 	</h5>
 	</div>
 	</div>
@@ -280,14 +378,22 @@ function showWrite(){
 
 <div class="col-md-2 hidden-xs">
 풀파티 맴버
-<%-- 	${poolmember } --%>
 <c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 	<div class="gender_${memberlist.gender} poolmemberlist">
 		<img src="${memberlist.profile}">
 		${memberlist.usrNick}
 		${memberlist.approve}
 	</div>
-</c:forEach>	
+</c:forEach>
+<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
+	<div class="input-group">
+      <input type="text" id="inviteNick" class="form-control" placeholder="Nickname">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-xsmall" type="button" onclick="invite()">Invite</button>
+      </span>
+    </div>
+    <div id="inviteMsg"></div>
+</c:if>	
 </div>
 
 <button onclick="showWrite();">

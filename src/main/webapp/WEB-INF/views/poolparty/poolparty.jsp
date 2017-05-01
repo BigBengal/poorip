@@ -200,18 +200,15 @@ function searchPool(){
 	    	}
 	    	console.log("ok");
 			$( response.data ).each( function(index, vo){
-				var html =  "<div class='col-md-6'>" +
-						"<div class='col-md-2 text-right'>" +
-							"풀이름" +
-						"</div>" +
-						"<div class='col-md-4 text-center'>" +
-						"<a href='poolparty/"+vo.poolSeq+"'>"+
-							vo.poolName +
-							vo.poolComment +
-							vo.poolPic +
-						"/<a>"+
-						"</div>" +
-						"</div>";
+				var html =  "<div class='col-md-6 poolmember'>" +
+							"<div class='col-md-5 text-right'>" +
+								"<a href='poolparty/"+vo.poolSeq+"'>"+
+									"<img src='/poorip"+vo.poolPic+"'>"+
+							"</div>" +
+								"<p>" + vo.poolName + "</p>" +
+								"<p>" +vo.poolComment +  "</p>" +
+							"/<a>"+
+							"</div>";
 				$("#searchArea").append(html);
 			})
 			return
@@ -271,9 +268,9 @@ function openOptions() {
 							<button type="submit" class="btn btn-default">Submit</button>
 							<p class="lead"> <p>
 							<label for="from">날짜</label> 
-							<input type="text" id="from" name="fromDate" class="datepick">
+							<input type="text" id="from" name="fromDate" class="datepick blackcolor">
 							<label for="to"> ~ </label>
-							<input type="text" id="to" name="toDate" class="datepick" >
+							<input type="text" id="to" name="toDate" class="datepick blackcolor" >
 						</form>
 					
 					</div>
@@ -320,12 +317,13 @@ function openOptions() {
 		<c:forEach var="list" items="${top10 }">
 			<div class="col-md-6 poolmember">
 				<div class="col-md-5 text-right">
-					<img src="/poorip${list.poolPic}">
+					<a href="poolparty/${list.poolSeq}">
+						<img src="/poorip${list.poolPic}">
 				</div>
-				<a href="poolparty/${list.poolSeq}">
+				
 					<p>${list.poolName}</p>
 					<p>${list.poolComment }</p>
-				</a>
+					</a>
 				
 			</div>
 			

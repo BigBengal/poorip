@@ -7,7 +7,7 @@
 <div class="container object-non-visible" data-animation-effect="fadeIn">
 	<h1 id="clients" class="title text-center">Clients</h1>
 	<div class="space"></div>
-	<c:forEach items="${UserList }" var="userList" varStatus="status">
+	<c:forEach items="${UserList}" var="userList" varStatus="status">
 		<c:if test="${status.index % 3 == 0}">
 			<div class="row">
 		</c:if>

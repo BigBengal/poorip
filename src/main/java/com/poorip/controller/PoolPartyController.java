@@ -22,7 +22,9 @@ import com.poorip.service.AdminService;
 import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
 import com.poorip.service.ScrapService;
+import com.poorip.service.UserService;
 import com.poorip.vo.CityVo;
+import com.poorip.vo.PoolMemberVo;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.ReviewVo;
@@ -49,6 +51,9 @@ public class PoolPartyController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private UserService userService;
+	
 	
 	// 풀파티 메인 URL
 	@RequestMapping(value={""})
@@ -58,12 +63,17 @@ public class PoolPartyController {
 		return "/poolparty/poolparty";
 	}
 
+	
 	// 각각의 풀파티 Detail URL
 	@RequestMapping(value={"{poolseq}"})
 	public String enterPool(@PathVariable(value="poolseq") int poolSeq,
 							@AuthUser UserVo authUser,
 							Model model) {
-		// 조회수 증가
+		
+		// 풀파티의 맴버인지 (초기값 NO)
+		String memberYn = "NO";
+		
+		// 풀 파티 조회수 증가
 		poolPartyService.updateHit(poolSeq);
 	
 
@@ -75,24 +85,48 @@ public class PoolPartyController {
 			List<PostPicVo> postPic = SNSService.getpostPicList(postSeq);
 			postPicList.addAll(postPic);
 		}
-				
-		// 풀 포스트 (글 + 사진)
+		
+		// 풀파티 포스트 (글 + 사진)
 		model.addAttribute("post", postList);
 		model.addAttribute("postPic", postPicList);
 		
-		// 풀 정보
-		model.addAttribute("pool", poolPartyService.getPoolInfo(poolSeq));
-		
-		// 풀 맴버
-		model.addAttribute("poolmember", poolPartyService.getPoolMembers(poolSeq));
+		// 풀파티 정보
+		PoolPartyVo poolPartyVo = poolPartyService.getPoolInfo(poolSeq);
+		model.addAttribute("pool", poolPartyVo);
 
-		// 글쓰기시 스크랩 정보 리스트 가져오기
-		if (authUser != null) {
-			model.addAttribute( "travelVo", scrapService.showScraps(authUser.getUsrSeq()) );
-		}
+		// 풀파티 맴버
+		List<PoolMemberVo> memberList = poolPartyService.getPoolMembers(poolSeq);
+		model.addAttribute("poolmember", memberList);
+
 		
+		// 로그인 사용자 전용
+		if (authUser != null) {
+			// 풀 좋아요 정보 가져오기 (true/false)			
+			model.addAttribute("like", poolPartyService.isLikePoolparty(poolSeq, authUser));
+			
+			// 글쓰기시 스크랩 정보 리스트 가져오기
+			model.addAttribute( "travelVo", scrapService.showScraps(authUser.getUsrSeq()) );
+			
+			// 해당 풀파티의 맴버인지
+			for( PoolMemberVo member : memberList ){
+				if (member.getUsrSeq() == authUser.getUsrSeq() ) {
+					if ("Y".equals(member.getApprove()) ){
+						// 가입완료
+						memberYn = "YES";
+					} else {
+						// 가입 요청 중
+						memberYn = "ING";
+					}
+					break;
+				}
+			}
+			logger.info("맴버입니다:" + memberYn);
+			model.addAttribute( "memberYn", memberYn );
+		} 
+
 		// 관리자 설정 시 대표 도시 설정 리스트
-		model.addAttribute("cityList", adminService.getCity());
+		if (authUser != null && poolPartyVo.getManagerUsrSeq() == authUser.getUsrSeq())
+			model.addAttribute("cityList", adminService.getCity());
 		
 		return "/poolparty/poolparty_detail";
 	}
@@ -121,8 +155,6 @@ public class PoolPartyController {
 	@RequestMapping("/saveSetting")
 	public String saveSetting(@ModelAttribute PoolPartyVo poolPartyVo,
 								@RequestParam("poolPicture") MultipartFile file){
-		System.out.println(poolPartyVo);
-		
 		poolPartyService.postSetSave(poolPartyVo, file);
 		
 		return "redirect:/poolparty/"+poolPartyVo.getPoolSeq();
@@ -172,36 +204,47 @@ public class PoolPartyController {
 	@Auth
 	@ResponseBody
 	@RequestMapping("/liketoggle")
-	public String ToggleLikePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
+	public JSONResult ToggleLikePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
 								@AuthUser UserVo authUser
 								){
 		
-		poolPartyService.togglePoolparty(poolpartySeq, authUser);
-		return "OK";
+		int likeCount = poolPartyService.togglePoolparty(poolpartySeq, authUser);
+		return JSONResult.success(likeCount);
 	}
-	
 	
 	// 풀파티 초대 URL
 	@Auth
 	@ResponseBody
 	@RequestMapping("/invite")
-	public String invitePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
-								@RequestParam(value="usrSeq",required=true) int usrSeq,
+	public JSONResult invitePoolParty(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
+								@RequestParam(value="usrNm",required=false,defaultValue="") String usrNick,
 								@AuthUser UserVo authUser
 								){
 		
+		int aprvUsr = 0;
+		int usrSeq = authUser.getUsrSeq();
+		if ( ! "".equals(usrNick) ){
+			logger.info("usrNick:"+usrNick);
+			usrSeq = userService.getSeqByNick(usrNick);
+			logger.info("usrSeq:"+usrSeq);
+			if(usrSeq == 0){
+				return JSONResult.fail("No User Seq");
+			}
+		}
+		
 		// 데이터 생성자가 방장이면 초대받는 이가 승인자 (usrSeq == 세션유저) 
 		// 데이터 생성자가 방장이 아니면 방장이 승인자
-		int aprvUsr;
-		int poolAdminUsrSeq = poolPartyService.getPoolInfo(poolpartySeq).getManagerUsrSeq(); 
+		int poolAdminUsrSeq = poolPartyService.getPoolInfo(poolpartySeq).getManagerUsrSeq();
 		if( authUser.getUsrSeq() == poolAdminUsrSeq){
 			aprvUsr = usrSeq;
 		}else {
 			aprvUsr = poolAdminUsrSeq;
 		}
 			
-		poolPartyService.enterPoolparty(poolpartySeq, usrSeq, false, aprvUsr);
-		return "OK";
+		if (poolPartyService.enterPoolparty(poolpartySeq, usrSeq, false, aprvUsr))
+			return JSONResult.success("RequestOK");
+		else 
+			return JSONResult.fail("RequestErr");
 	}
 
 	@Auth
@@ -210,9 +253,8 @@ public class PoolPartyController {
 	public JSONResult approveInvite(@RequestParam(value="poolpartySeq",required=true) int poolpartySeq,
 								@RequestParam(value="usrSeq",required=true) int usrSeq,
 								@AuthUser UserVo authUser){
-		System.out.println(poolpartySeq + "," + usrSeq);
-		return JSONResult.success(poolPartyService.approvePoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "OK" : "ERR");
-//		return JSONResult.success("aprvOK");
+		logger.info(poolpartySeq + "," + usrSeq);
+		return JSONResult.success(poolPartyService.approvePoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "aprvOK" : "ERR");
 	}
 	
 	@Auth
@@ -222,9 +264,8 @@ public class PoolPartyController {
 								@RequestParam(value="usrSeq",required=true) int usrSeq,
 								@AuthUser UserVo authUser
 			){
-		System.out.println(poolpartySeq + "," + usrSeq);
-		return JSONResult.success(poolPartyService.rejectPoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "OK" : "ERR");		
-//		return JSONResult.success("rejectOK");
+		logger.info(poolpartySeq + "," + usrSeq);
+		return JSONResult.success(poolPartyService.rejectPoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "rejectOK" : "ERR");		
 	}
 
 }

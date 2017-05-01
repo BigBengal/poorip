@@ -24,4 +24,8 @@ public class PoolLikeDao {
 		return 1 == (Integer)sqlSession.selectOne("poollike.select", poolLikeVo );
 	}
 	
+	public int likeCount(PoolLikeVo poolLikeVo) {
+		return sqlSession.selectOne("poollike.selectlike", poolLikeVo );
+	}
+	
 }

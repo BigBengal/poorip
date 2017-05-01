@@ -125,6 +125,12 @@ public class PoolPartyService {
 		PoolMemberVo poolMemberVo = new PoolMemberVo();
 		poolMemberVo.setPoolSeq(poolpartySeq);
 		poolMemberVo.setUsrSeq(usrSeq);
+		
+		//이미 참여하고 있으면 오류
+		if (poolMemberDao.isMember(poolMemberVo)) {
+			return false;
+		}
+		
 		if (owner){
 			poolMemberVo.setApprove("Y");
 		} else {
@@ -158,8 +164,19 @@ public class PoolPartyService {
 		return poolLikeDao.delete(vo);
 	}
 	
+	// 풀파티 좋아요 표시 (true면 좋아요 표시, false는 미표시)
+		public boolean isLikePoolparty(int poolpartySeq, UserVo myUser) {
+			PoolLikeVo vo = new PoolLikeVo();
+			vo.setPoolSeq(poolpartySeq);
+			vo.setUsrSeq(myUser.getUsrSeq());
+			
+			return poolLikeDao.isExisted(vo);
+		}
+	
 	// 풀파티 좋아요/좋아요 취소 합침
-	public boolean togglePoolparty(int poolpartySeq, UserVo myUser) {
+	public int togglePoolparty(int poolpartySeq, UserVo myUser) {
+		
+		System.out.println(poolpartySeq);
 		PoolLikeVo vo = new PoolLikeVo();
 		vo.setPoolSeq(poolpartySeq);
 		vo.setUsrSeq(myUser.getUsrSeq());
@@ -167,10 +184,13 @@ public class PoolPartyService {
 		// 추천한 내역이 있는지 확인 true면 이미 추천
 		if ( poolLikeDao.isExisted(vo) ) {
 			// 추천내역이 있는 경우
-			return poolLikeDao.delete(vo);
+			poolLikeDao.delete(vo);
+			return poolLikeDao.likeCount(vo);
 		} else {
 			// 추천내역이 없는 경우
-			return poolLikeDao.insert(vo);
+			poolLikeDao.insert(vo);
+			return poolLikeDao.likeCount(vo);
+			
 		}
 	}
 	

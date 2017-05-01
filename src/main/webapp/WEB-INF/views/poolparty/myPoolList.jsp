@@ -235,15 +235,14 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			<h2>내 풀파티 리스트</h2>
 		</div>
 	
-		<div class="row col-lg-12 col-md-12 col-sm-12">
+		<div class="row col-lg-12 col-md-12 	">
 			<c:forEach var="myPoolList" items="${myPoolList}">
 				<div class="col-md-6 poolparty">
+					<a href="${myPoolList.poolSeq}">
 					<div class="col-md-6">
-					<img src="/poorip${myPoolList.poolPic }">
+					<img src="/poorip${myPoolList.poolPic }" class="img100">
 					</div>
 					<div class="col-md-6">
-					<a href="${myPoolList.poolSeq}">
-					
 					${myPoolList.poolSeq}
 					${myPoolList.poolName}
 					${myPoolList.fromDate}
@@ -266,11 +265,12 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 		<div class="row col-lg-12 col-md-12 col-sm-12">
 			<c:forEach var="myPoolList" items="${myWaitPoolList}">
 				<div class="col-md-6 poolparty">
+					<a href="${myPoolList.poolSeq}">
+					
 					<div class="col-md-6">
-					<img src="/poorip${myPoolList.poolPic }">
+					<img src="/poorip${myPoolList.poolPic }" class="img100">
 					</div>
 					<div class="col-md-6">
-					<a href="${myPoolList.poolSeq}">
 					
 					${myPoolList.poolSeq}
 					${myPoolList.poolName}

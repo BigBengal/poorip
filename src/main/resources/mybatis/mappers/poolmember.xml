@@ -97,7 +97,7 @@
 	</delete>
 	
 	
-	<select id="isdestorable" parameterType="poolmembervo">
+	<select id="isdestorable" resultType="integer" parameterType="poolmembervo">
 		<![CDATA[
 			select count(*)
 			 from pool_party p, pool_member m                                 
@@ -108,7 +108,13 @@
 		]]>
 	</select>
 	
-	
-	
-	
+	<select id="ismember" resultType="integer" parameterType="poolmembervo">
+		<![CDATA[
+			select count(*)
+			 from pool_member                                 
+			where USR_SEQ = #{usrSeq }                                   
+			  and POOL_SEQ = #{poolSeq }                                            
+		]]>
+	</select>
+		
 </mapper>
