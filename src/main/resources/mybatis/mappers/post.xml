@@ -49,13 +49,15 @@
 	<select id="getUserPostList" resultType="reviewvo"
 		parameterType="map">
 	    <![CDATA[
-			select p.post_seq as postSeq,
-				   title,
-				   contents,
+			select p.trv_Seq as trvSeq,
+				   p.post_seq as postSeq,
+				   p.title,
+				   p.contents,
 				   p.usr_seq as usrSeq,
 				   p.crt_date as crtDate
-				from post p, users u
-			where p.USR_SEQ = u.USR_SEQ
+				from post p, users u, travel_info t
+			  where p.USR_SEQ = u.USR_SEQ
+				and p.trv_Seq = t.trv_Seq
 			  and p.usr_seq = #{usrSeq }
 	order by p.crt_date desc
 		limit #{page}, 3

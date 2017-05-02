@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,6 +27,7 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <!-- Font Awesome CSS -->
 <link
@@ -75,7 +76,7 @@
 					src="${pageContext.request.contextPath }/assets/images/mySNS.jpg">
 			</div>
 		</div>
-		<div class="banner-caption">
+		<div class="banner-caption" >
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
@@ -92,9 +93,10 @@
 
 	<!-- mySNS start -->
 	<!-- ================ -->
-	<div id="mySNS" class="mySNS">
+	<div id="mySNS" class="mySNS"  >
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 	</div>
+	
 	<!-- footer end -->
 
 	<!-- JavaScript files placed at the end of the document so the pages load faster
@@ -104,6 +106,8 @@
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+		<script src="http://malsup.github.com/jquery.form.js"></script> 
 
 	<!-- Modernizr javascript -->
 	<script type="text/javascript"
@@ -124,26 +128,23 @@
 	<!-- Initialization of Plugins -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
-
-	<!-- Custom Scripts -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
-
-	<!-- date picker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- sns post img next -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+
 	
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+	
+	<!-- Light Box -->
+	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 
 	<!-- sns ajax -->
 	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
 
-	<!-- Light Box -->
-	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
+	
+	
+	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display:none">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>이 글을 정말로 삭제하시겠습니까?</p>
+</div>
 </body>
 </html>

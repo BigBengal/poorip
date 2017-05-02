@@ -127,3 +127,12 @@
 
 	}); // End document ready
 })(this.jQuery);
+
+
+$(document).ready(function(){
+	$(".sns-post-edit").click (function () {
+		$( ".sns-post-edit" ).each(function() {
+		console.log("YAYYYYY" + $("#sns-post-edit").attr("data-postSeq"));
+		});
+	});
+	});
