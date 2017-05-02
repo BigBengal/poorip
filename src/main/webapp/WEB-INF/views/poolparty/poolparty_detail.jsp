@@ -74,8 +74,9 @@
 <!-- Bootstrap toggle -->
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script>
-var writeVisible = false;
-var poolikeyn = false; 
+var writeVisible = false;	//글쓰기 버튼
+var poolikeyn = false; 		//풀파티 좋아요 버튼 flag
+var isEnd = false; // 프로필 가져오기 Data 종료
 
 $(document).ready(function(){
 	
@@ -106,12 +107,74 @@ $(document).ready(function(){
 		var usrSeq = $(this).data("usrseq");
 		console.log(usrSeq);
 		
+		// Ajax 통신
+		$.ajax( {
+		    url : "/poorip/user/getProfile",
+		    type: "post",
+		    dataType: "json",
+		    data: { "usrSeq" : usrSeq },
+		    success: function( response ){
+		    	var usrInfo = "";
+				var scrapCityInfo = "";
+// 		    	var scrapInfo = "";
+// 				var lastCity = "";
+		    	
+		    	console.log	( response );
+			       if( response.result == "fail") {
+			    	   console.log( response );
+			    	   return;
+			       }
+// 			       	if( response.data.scrapcity.length== 0 ) {
+// 			    		isEnd = true;
+// 			    		return;
+// 			    	}
+			    	//통신 성공 (response.result == "success" )
+			    	if(response.result == "success" ) {
+			    		usrInfo += "<p> 닉네임 : " + response.data.profile.usrNick + "</p>";
+			    		usrInfo += "<p> <img src=" + response.data.profile.usrProfile + "></p>";
+			    		usrInfo += "<p> 자기소개 : ";
+			    		if (response.data.profile.usrInfo != null )
+					    	usrInfo += response.data.profile.usrInfo + "</p>";
+				    	else
+				    		usrInfo += "없음 </p>";
+					    usrInfo += "<p> 해쉬태그 : ";
+			    		if (response.data.profile.usrHashtag != null )
+			    			usrInfo += response.data.profile.usrHashtag + "</p>";
+			    		else 
+			    			usrInfo += "없음 </p>";
+			    		
+			    		$( response.data.scrapcity ).each( function(index, vo){
+			    			//스크랩 도시 정보
+			    			scrapCityInfo += "<p> 방문 예정 나라 : " + vo.ctyName + " ( ";
+			    			if (vo.dateFrom != null )
+			    				scrapCityInfo += vo.dateFrom;
+			    			if (vo.dateTo != null )	
+			    				scrapCityInfo += " ~ " + vo.dateTo; 
+							if (vo.dateFrom == null && vo.dateTo == null)	
+								scrapCityInfo += "미정";
+							scrapCityInfo += " )</p>";
+			    			
+			    		});	
+// 			    		$( response.data.scrap ).each( function(index, vo){
+// 			    			//스크랩 정보
+// 		 				});
+
+			    		$("#profile").html(usrInfo + scrapCityInfo);	
+			    	}
+			    	
+			    	
+// 			    	$( response.data.scrap ).each( function(index, vo){
+// 					})
+					
+			       return true;
+		    }
+		   });
 		
 		
 		$( "#profile" ).dialog({
 // 	    	autoOpen: false,
-	        height: 300,
-	        width: 200,
+	        height: 400,
+	        width: 450,
 	        modal: true,
 	        buttons: {
 	          Close: function() {
@@ -192,7 +255,7 @@ function likeToggle(poolike){
 	          url : "liketoggle",
 	          type : "post",
 	          dataType : "json",
-	          data: { "poolpartySeq" : ${pool.poolSeq} } ,
+	          data: { "poolpartySeq" : ${pool.poolSeq} },
 	          success: function(data) {
 	          	if(data.result != "success"){
 	          		console.log("err");
@@ -251,7 +314,7 @@ function invite() {
 	    type: "post",
 	    dataType: "json",
 	    data: { "poolpartySeq" :${pool.poolSeq},
-	    	    "usrNm" : $("#inviteNick").val()},
+	    	    "usrNm" : $("#inviteNick").val() },
 	    success: function( response ){
 	    	console.log	( response );
 		       if( response.result == "fail") {
@@ -267,10 +330,6 @@ function invite() {
 	   });
 }
 
-function showprofile(usrSeq){
-	console.log("profile"+usrSeq);
-	profileDialog.dialog( "open" );
-}
 </script>
 
 </head>

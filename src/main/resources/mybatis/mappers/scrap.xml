@@ -38,23 +38,64 @@
 	<!-- 해당 유저의 스크랩 정보 보여주기 -->
 	<select id="showScrap" resultType="reviewvo" parameterType="integer">
 		<![CDATA[
-			select a.trv_seq as trvSeq, b.crt_date as crtDate, 
-				   b.name as name, b.contents as contents, b.hours as hours, 
-				   b.location as location, b.picture as picture, b.price as price, 
-				   b.cat_seq as catSeq, b.contact as contact, c.cty_name as ctyName, c.cty_seq as ctySeq
-			from scrap a, travel_info b, city c
-			where usr_seq = #{usrSeq}
-			and a.trv_seq = b.trv_seq
-			and b.cty_seq = c.cty_seq
+		
+		select tb1.trvSeq,
+		       tb1.crtDate,
+		       tb1.name,
+		       tb1.contents,
+		       tb1.hours,
+		       tb1.location,
+		       tb1.picture,
+		       tb1.price,
+		       tb1.catSeq,
+		       tb1.contact,
+		       tb1.ctyName,
+		       tb1.ctySeq,
+		       tb1.usrSeq,
+		       sc.date_from as dateFrom,
+		       sc.date_to as dateTo
+		from (
+			select a.trv_seq as trvSeq,
+		       	b.crt_date as crtDate, 
+					b.name as name,
+					b.contents as contents,
+					b.hours as hours, 
+					b.location as location,
+					b.picture as picture,
+					b.price as price, 
+					b.cat_seq as catSeq,
+					b.contact as contact,
+					c.cty_name as ctyName,
+					c.cty_seq as ctySeq,
+					a.usr_seq as usrSeq,
+					c.ctr_seq
+				from scrap a,
+				     travel_info b,
+					 city c
+				where a.usr_seq = #{usrSeq }
+				and a.trv_seq = b.trv_seq
+				and b.cty_seq = c.cty_seq) tb1
+		left outer join scrap_city sc on (tb1.ctySeq = sc.cty_seq and tb1.usrSeq = sc.usr_seq)
+		order by ifnull(sc.date_from,str_to_date('3000-01-01','%Y-%m-%d')), tb1.ctr_seq, tb1.ctySeq 
 		]]>
 	</select>
 	
 	<!-- 유저 스크랩 정보중 도시 정보만 가져오기 -->
 	<select id="showCity" resultType="scrapcityvo" parameterType="integer">
 		<![CDATA[
-		select c.CTY_NAME as ctyName, c.CTY_SEQ as ctySeq
-		from scrap a, travel_info b, city c
-		where usr_seq = #{usrSeq} and a.trv_seq = b.trv_seq and b.CTY_SEQ = c.cty_seq group by c.cty_name
+		select tb1.ctyName,
+			   tb1.ctySeq,
+		       sc.date_from as dateFrom,
+		       sc.date_to   as dateTo
+		from (
+			select c.CTY_NAME as ctyName,
+			       c.CTY_SEQ as ctySeq,
+			       a.usr_seq as usrSeq
+				from scrap a, travel_info b, city c
+				where usr_seq = #{usrSeq }
+				  and a.trv_seq = b.trv_seq and b.CTY_SEQ = c.cty_seq 
+				group by c.cty_name) tb1
+		left outer join scrap_city sc on (tb1.ctySeq = sc.cty_seq and tb1.usrSeq = sc.usr_seq)
 	]]>
 	</select>
 

@@ -1,11 +1,15 @@
 package com.poorip.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
+import com.poorip.service.ScrapCityService;
+import com.poorip.service.ScrapService;
 import com.poorip.service.UserService;
 import com.poorip.vo.FacebookUserVo;
 import com.poorip.vo.UserVo;
@@ -27,6 +33,14 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+
+	// 프로필에서 스크랩정보 가져오기
+	@Autowired
+	ScrapService scrapService;
+	
+	// 프로필에서 스크랩시티 정보 가져오기
+	@Autowired
+	ScrapCityService scrapCityService;
 	
 //	public void init(){
 //		ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -165,17 +179,28 @@ public class UserController {
 	
 	@RequestMapping("facebooklogout")
 	public String logout(){
-		logger.info("Logout");
+		logger.info("Logou11t");
 		return "redirect:/user/logout";
 		
 	}
 	
 	@ResponseBody
-	@RequestMapping("getProfile")
-	public JSONResult getProfile(){
+	@RequestMapping("/getProfile")
+	public JSONResult getProfile(@RequestParam(value="usrSeq") int usrSeq){
+		System.out.println("까꿍");
+		if ( usrSeq == 0)
+			return JSONResult.fail("No usrSeq");
 		
+		System.out.println("getProfile():usrSeq" + usrSeq);
+		System.out.println(userService.SearchPersonListbySeq(usrSeq) );
+		System.out.println(scrapService.showScraps(usrSeq));
 		
-		return JSONResult.success("OD");
+		Map<String, Object> map = new HashMap<>();
+		map.put("profile", userService.SearchPersonListbySeq(usrSeq) );
+//		map.put("scrap", scrapService.showScraps(usrSeq));
+		map.put("scrapcity", scrapCityService.showCity(usrSeq));
+		
+		return JSONResult.success(map);
 	}
 	
 			

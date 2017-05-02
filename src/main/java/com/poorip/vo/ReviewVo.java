@@ -23,9 +23,22 @@ public class ReviewVo {
 	private String reviewNum;
 	private String hidden;
 	private int likeCount;
+	private String dateFrom;
+	private String dateTo;
 	
 	
-	
+	public String getDateFrom() {
+		return dateFrom;
+	}
+	public String getDateTo() {
+		return dateTo;
+	}
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+	public void setDateTo(String dateTo) {
+		this.dateTo = dateTo;
+	}
 	public int getLikeCount() {
 		return likeCount;
 	}
@@ -153,6 +166,12 @@ public class ReviewVo {
 		this.hidden = hidden;
 	}
 	
+	public String getCtyName() {
+		return ctyName;
+	}
+	public void setCtyName(String ctyName) {
+		this.ctyName = ctyName;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVo [postPicSeq=" + postPicSeq + ", path=" + path + ", fileName=" + fileName + ", postSeq="
@@ -160,12 +179,8 @@ public class ReviewVo {
 				+ reviewPubYn + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", name=" + name + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", ctySeq=" + ctySeq + ", ctyName=" + ctyName
 				+ ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", reviewNum=" + reviewNum
-				+ ", hidden=" + hidden + ", likeCount=" + likeCount + "]";
+				+ ", hidden=" + hidden + ", likeCount=" + likeCount + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo
+				+ "]";
 	}
-	public String getCtyName() {
-		return ctyName;
-	}
-	public void setCtyName(String ctyName) {
-		this.ctyName = ctyName;
-	}
+	
 }

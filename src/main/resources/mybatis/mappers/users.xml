@@ -77,7 +77,7 @@
 			  	   USR_LOGIN_DATE 	as usrLoginDate,  
 			  	   USR_BLACK_YN  	as usrBlackYN
 			from users
-		   weere USR_SEQ = #{usrSeq }
+		   where USR_SEQ = #{usrSeq }
 		]]>
 	</select>
 
@@ -93,7 +93,7 @@
 	</insert>
 
 	<!-- 프로필 수정에 표시할 내용 불러오기 -->
-	<select id="selectbyemail" resultType="uservo" parameterType="uservo">
+	<select id="selectbyemail" resultType="uservo" parameterType="integer">
 		<![CDATA[
 			select USR_SEQ		as usrSeq,
 			  	   USR_EMAIL	as usrEmail,

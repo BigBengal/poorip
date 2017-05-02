@@ -18,8 +18,8 @@ public class UserDao {
 		return sqlSession.selectList("user.getList");
 	}
 	
-	public List<UserVo> listByUsrSeq(UserVo userVo){
-		return sqlSession.selectList("user.getListbyusrseq", userVo);
+	public UserVo listByUsrSeq(int usrSeq){
+		return sqlSession.selectOne("user.getListbyusrseq", usrSeq);
 	}
 	
 	public boolean isExist(UserVo uservo) {
