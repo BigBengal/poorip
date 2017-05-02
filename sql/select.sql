@@ -162,7 +162,7 @@ select p.post_seq as postSeq,
 							  and post.usr_seq = 14); 
 							  
 select*from post a, post_pic b where a.`POST_SEQ`=b.`POST_SEQ`;							  
-select * from post;
+select * from post where post_seq = 112;
 select * from post_pic;
 select p.post_seq as postSeq,
 				   title,
@@ -178,7 +178,7 @@ select p.post_seq as postSeq,
 select file_name as fileName
 	from post_pic pp, post p
 		where pp.post_seq = p.post_seq
-	  	  and pp.post_seq = 68;
+	  	  and pp.post_seq = 95;
 		  
 		  select p.post_seq as postSeq,
 				   title,

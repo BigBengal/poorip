@@ -88,3 +88,5 @@ where ti.TRV_SEQ = tip.TRV_SEQ;
 select * from scrap;
 select * from users;
 select * from travel_info_pic;
+
+select * from post;
