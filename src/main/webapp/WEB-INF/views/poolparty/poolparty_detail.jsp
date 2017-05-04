@@ -352,6 +352,8 @@ function invite() {
 <div style="height: 200px;">
 </div>
 
+
+<!-- 풀파티 설정 -->
 <div id="dialog-form" title="풀파티 설정 변경">
 <form class="form-horizontal" id="poolsetting" action="saveSetting" method="post" enctype="multipart/form-data">
 <fieldset>
@@ -401,9 +403,9 @@ function invite() {
 </fieldset>
 </form>
 </div>
-	
 
 
+<!-- 풀파티 상단 내용 -->
 <div class="col-md-10">
 	<div class="col-md-5">
 		<img src="/poorip${pool.poolPic}">
@@ -453,7 +455,7 @@ function invite() {
 	</div>
 
 </div>
-
+<!-- 풀파티 맴버 -->
 <div class="col-md-2 hidden-xs">
 풀파티 맴버
 <c:forEach var="memberlist" items="${poolmember }" varStatus="status">
@@ -472,13 +474,12 @@ function invite() {
 </c:if>	
 </div>
 
-<button onclick="showWrite();">
-글쓰기
-</button>
-
-<div id="write" style="display:none;">
+<!-- 글쓰기 -->
+<div id="write">
 <c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 </div>
+
+<!-- 글 보기 -->
 <div class="col-md-12">
 	<c:forEach var="post" items="${post}" varStatus="status">
 		<div class="col-md-6 col-md-offset-4">
@@ -493,8 +494,8 @@ function invite() {
 	</c:forEach>
 </div>
 
+<!-- 프로필 보기 다이얼로그 -->
 <div id="profile" title="프로필 보기">
-아아아아
 </div>
 </body>
 </html>

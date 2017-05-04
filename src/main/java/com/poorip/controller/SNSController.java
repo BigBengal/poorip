@@ -78,7 +78,6 @@ public class SNSController {
 		
 		System.out.println("HEY?" + request);
 		if(postUploadFiles.get(0).getOriginalFilename()==null||postUploadFiles.get(0).getOriginalFilename().equals("")) {
-			System.out.println("왔냐!!!!");
 			snsService.addPostOnly(reviewVo);
 			return "redirect:/sns";
 		}
