@@ -1,6 +1,8 @@
 package com.poorip.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -73,6 +75,13 @@ public class SNSController {
 		
 		reviewVo.setUsrSeq( userVo.getUsrSeq() );
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
+		
+		System.out.println("HEY?" + request);
+		if(postUploadFiles.get(0).getOriginalFilename()==null||postUploadFiles.get(0).getOriginalFilename().equals("")) {
+			System.out.println("왔냐!!!!");
+			snsService.addPostOnly(reviewVo);
+			return "redirect:/sns";
+		}
 		snsService.addPost( reviewVo, postUploadFiles );
 		
 		return "redirect:/sns";
@@ -98,18 +107,69 @@ public class SNSController {
 	
 	@Auth
 	@ResponseBody
-	@RequestMapping("/editPost")
-	public String editPost(@RequestParam ("title") String title, @RequestParam("contents") String contents, Model model, MultipartHttpServletRequest req){
-
-		System.out.println(title);
-		System.out.println(contents);
+	@RequestMapping("/editPost/{postSeq}")
+	public JSONResult editPost(@RequestParam ("title") String title, 
+			@RequestParam("contents") String contents,
+			@RequestParam("trvSeq") String trvSeq1, 
+			@RequestParam("reviewPubYn") String reviewPubYn, 
+			@RequestParam("hidden") String hidden, 
+			@PathVariable(value="postSeq", required=false) String postSeq1, 
+			@RequestParam (value ="postPicSeqArray", required=false) List<Integer> postPicSeqArray, 
+			Model model, MultipartHttpServletRequest req, @AuthUser UserVo userVo) throws FileNotFoundException, IOException{
+		
+		int postSeq = Integer.parseInt(postSeq1);
+		List<MultipartFile> files = new ArrayList<MultipartFile>();
 		Iterator<String> itr = req.getFileNames();
-	
-		MultipartFile files = req.getFile(itr.next());
-		System.out.println(files.getOriginalFilename());
+		
+		System.out.println("POSTPICSEQ" + postPicSeqArray);
+		
+		while(itr.hasNext()) {
+		
+		files = req.getFiles(itr.next());
+		
+		}
+		
+		if(postPicSeqArray.isEmpty()||postPicSeqArray==null) {
+			postPicSeqArray.add(-1);
+			ReviewVo reviewVo = new ReviewVo();
+			int trvSeq = Integer.parseInt(trvSeq1);
+			reviewVo.setUsrSeq(userVo.getUsrSeq());
+			reviewVo.setTrvSeq(trvSeq);
+			reviewVo.setTitle(title);
+			reviewVo.setContents(contents);
+			reviewVo.setReviewPubYn(reviewPubYn);
+			reviewVo.setHidden(hidden);
+			reviewVo.setPostSeq(postSeq);
+			PostVo edited = snsService.updatePost( reviewVo, files, postPicSeqArray );
+			
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put( "post", edited);
+			
+			System.out.println(edited);
+			return JSONResult.success(map);
+		}
+		
+		System.out.println(postPicSeqArray);
+		ReviewVo reviewVo = new ReviewVo();
+		int trvSeq = Integer.parseInt(trvSeq1);
+		reviewVo.setUsrSeq(userVo.getUsrSeq());
+		reviewVo.setTrvSeq(trvSeq);
+		reviewVo.setTitle(title);
+		reviewVo.setContents(contents);
+		reviewVo.setReviewPubYn(reviewPubYn);
+		reviewVo.setHidden(hidden);
+		reviewVo.setPostSeq(postSeq);
 
-		return "";
-	};
+		PostVo edited = snsService.updatePost( reviewVo, files, postPicSeqArray );
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put( "post", edited);
+		map.put("postPic", snsService.getpostPicList(postSeq));
+		System.out.println(edited);
+		System.out.println(snsService.getpostPicList(postSeq));
+		return JSONResult.success(map);
+		}
 	}
 	
 

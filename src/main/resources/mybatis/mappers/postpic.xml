@@ -7,10 +7,19 @@
 		<![CDATA[
 			INSERT 
 			  INTO POST_PIC (POST_PIC_SEQ, PATH, FILE_NAME, POST_SEQ)
-			values (#{postPicSeq }, #{path }, #{fileName }, #{postSeq })
+			values (null, #{path }, #{fileName }, #{postSeq })
 	
 		]]>
 	</insert>
+	
+	<update id="updatePostPic"  parameterType="postpicvo">
+		<![CDATA[
+			INSERT 
+			  INTO POST_PIC (POST_PIC_SEQ, PATH, FILE_NAME, POST_SEQ)
+			values (#{postPicSeq }, #{path }, #{fileName }, #{postSeq })
+	
+		]]>
+	</update>
 	
 	<select id="getList" resultType="postpicvo">
 		<![CDATA[
@@ -47,7 +56,7 @@
 		]]>
 	</select>
 	
-	<delete id="delete" parameterType="postpicvo">
+	<delete id="delete" parameterType="integer">
 		<![CDATA[
 			delete 
 			  from POST_PIC
@@ -67,4 +76,6 @@
 	  				 where po.REVIEW_PUB_YN='Y' and po.post_seq=#{postSeq}
 	]]>
 	</select>
+	
+	
 </mapper>
