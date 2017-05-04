@@ -194,37 +194,30 @@
 				return date;
 			}
 			
-			$('#project-31').on('show.bs.modal', function () {
-				  // do something…
-				  console.log("aaa");
-				  showtMap(1);
+			$('.modal').on('shown.bs.modal', function () {
+				var tagId = $(this).attr('id');
+
+				if(tagId.substring(8,9)!=1)
+					showMap(tagId);
 				})
 				
 		});
 		function initMap() {
-			console.log("intiMap()");
 			return 0
-// 		      var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
-		      
-// 		      var mapOptions = {
-// 		        zoom: 15,
-// 		        center: myLatlng
-// 		      }
-// 		      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-// 		      var marker = new google.maps.Marker({
-// 		          position: myLatlng,
-// 		          title:"Poorip!!"
-// 		      });
-		      
-// 			// To add the marker to the map, call setMap();
-// 		      marker.setMap(map);
-
 		      }
-		function showtMap(seq) {
-		    var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
-		    var mapId = "map-food";
-		    //+seq;
+		
+		function showMap(seq) {
+		    var mapId = "map-"+seq;
+		    var url = $('#'+mapId).data("url");
+		    if (url == ""){
+		    	$('#'+mapId).removeClass("googlemap");
+		    	$('#'+mapId).text("정보없음");
+		    	return;
+		    }
+		    var locArray = url.split(",");
+		    var myLatlng = new google.maps.LatLng($.trim(locArray[0]),$.trim(locArray[1]));
+// 		    console.log("url:"+url);
+		    
 		    var mapOptions = {
 		      zoom: 15,
 		      center: myLatlng
@@ -238,24 +231,8 @@
 		    
 			// To add the marker to the map, call setMap();
 		    marker.setMap(map);
-		}
 
-// 		$('.launch-map').on('click', function () {
-		    
-// 			var trvSeq = "#modal-google-"+$(this).data("trvseq");
-// 			 console.log("trvSeq:"+trvSeq);
-// //		 	showtMap(trvSeq); 
-			
-// 		    $('#modal-google').modal({
-// 		    	 console.log("OK1");
-// 		    })
-// 		     .on('shown.bs.modal', function () {
-// 		    	 console.log("OK2");
-// // 		         google.maps.event.trigger(map, 'resize');
-// // 		         map.setCenter(center);
-// 		     });
-		    
-// 		});
+		}
 
 	</script>
 
