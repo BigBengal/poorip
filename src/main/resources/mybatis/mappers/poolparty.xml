@@ -172,7 +172,7 @@
 			   <![CDATA[
 			   	,cty_Seq  = #{ctySeq }
 			   ]]>
-			</if>  
+			</if>
 <!-- 			<if test="managerUsrSeq != null"> -->
 <!-- 			   <![CDATA[ -->
 <!-- 			   	,MANAGER_USR_SEQ  = #{managerUsrSeq } -->
