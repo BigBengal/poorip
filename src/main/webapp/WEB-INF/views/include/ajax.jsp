@@ -37,6 +37,7 @@ $(function(){
 			$(location).attr('href','/poorip/city/'+ui.item.value);
 		}
     });
+	
 });
 var render = function( vo, reviewNum, postSeq ){
 	
@@ -47,7 +48,6 @@ var render = function( vo, reviewNum, postSeq ){
 			   ;			
 		
 	$("#review-"+reviewNum ).append(html);
-	console.log("PLLLLLLLLLLLLEASE" + reviewNum);
 }
 var renderpic = function(vo, reviewNum, postSeq) {
 	if(vo.path!='null'&&vo.path!=null) {
@@ -66,8 +66,7 @@ function hasNull(target) {
 function send(trvSeq, reviewNum){
 	var likeIcon = document.getElementById("scrapTrvInfo-"+trvSeq);
 	
-	
-	
+	showtMap(trvSeq);
 	$.ajax({
         url : "/poorip/scrap/scrapValidate",
         type : "post",
@@ -152,8 +151,35 @@ function send(trvSeq, reviewNum){
 		
 		$("#reviewpic-"+reviewNum ).empty();
 		$("#review-"+reviewNum ).empty();
+		
+		
+		console.log("나와라");
+		$("#project-31").on("shown.bs.modal", function () {
+			console.log("나와라2");
+	        google.maps.event.trigger(map, 'resize');
+	        map.setCenter(center);
+		});
+		
 	}
-	
+
+function showtMap(seq) {
+    var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
+    var mapId = "map-"+seq;
+    var mapOptions = {
+      zoom: 15,
+      center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById(mapId), mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        title:"Poorip!!"
+    });
+    
+	// To add the marker to the map, call setMap();
+    marker.setMap(map);
+    }
+
 function reviewLike(postSeq) {
 
 	var likePostIcon = document.getElementById("like-button-img-"+postSeq);
