@@ -40,6 +40,10 @@ public class SNSDao {
 		int count = sqlSession.insert( "post.addPost", reviewVo );
 		return( count == 1 );
 	}
+	
+	public boolean updatePost(ReviewVo reviewVo) {
+		return 1 == sqlSession.update("post.updatePost", reviewVo);
+	}
 
 	public boolean addPostPic(PostPicVo postPicVo) {
 		int count = sqlSession.insert( "postpic.insert", postPicVo );
@@ -99,5 +103,22 @@ public class SNSDao {
 		int count = sqlSession.delete( "post.delete", postVo);
 		return ( count == 1 );
 	}
+	
+	public boolean deletePicture(List<Integer> postPicSeqArray) {
+		int count =0;
+		for(int i=0; i < postPicSeqArray.size(); i++) {
+			count = sqlSession.delete("postpic.delete", postPicSeqArray.get(i));
+		}
+		return count==1;
+	}
+	
+	public PostVo showEditedPost(ReviewVo reviewVo) {
+		return sqlSession.selectOne("post.getEditedPostList", reviewVo);
+	}
+	
+	public boolean addPostOnly(ReviewVo reviewVo) {
+		return 1== sqlSession.insert("post.insert", reviewVo);
+	}
+	
 
 }

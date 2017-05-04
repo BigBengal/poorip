@@ -1,6 +1,7 @@
 package com.poorip.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
@@ -70,6 +71,42 @@ public class SNSService {
 		
 		return postReturn && postPicReturn;
 	}
+	
+public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, List<Integer> postPicSeqArray) throws FileNotFoundException, IOException {
+		boolean postReturn = snsDao.updatePost( reviewVo );
+		boolean postPicReturn = true;
+		
+		String pathName = POST_SAVE_PATH + "/" + reviewVo.getUsrSeq() +"/" + reviewVo.getTrvSeq();
+		if(postUploadFiles!=null) {
+		for ( int i=0; i < postUploadFiles.size(); i++ ) {
+			File file = new File( pathName );
+			
+			if( file.isDirectory() == false )
+				file.mkdirs();
+			
+			String orgFile = postUploadFiles.get(i).getOriginalFilename();
+			String fileExtName = orgFile.substring( orgFile.lastIndexOf( '.' ) + 1, orgFile.length() );
+			String saveFile = generateSaveFileName( fileExtName );
+			
+			IOUtils.copy( postUploadFiles.get(i).getInputStream(), new FileOutputStream( pathName + "/" + saveFile ) );
+			PostPicVo postPicVo = new PostPicVo();
+			postPicVo.setPostSeq( reviewVo.getPostSeq() );
+			postPicVo.setPath( pathName );
+			postPicVo.setFileName( saveFile );
+			
+			if(postPicSeqArray.get(0)==-1) {
+				snsDao.addPostPic( postPicVo );
+				return snsDao.showEditedPost(reviewVo);
+			}
+			
+			snsDao.deletePicture(postPicSeqArray);
+			postPicReturn = postPicReturn && snsDao.addPostPic( postPicVo );
+			
+		}
+		}
+		return snsDao.showEditedPost(reviewVo);
+	
+	}
 
 	private String generateSaveFileName(String fileExtName) {
 		String fileName = "";
@@ -118,6 +155,10 @@ public class SNSService {
 
 	public boolean deletePost(PostVo postVo) {
 		return snsDao.deletePost( postVo );
+	}
+	
+	public boolean addPostOnly(ReviewVo reviewVo) {
+		return snsDao.addPostOnly(reviewVo);
 	}
 
 }

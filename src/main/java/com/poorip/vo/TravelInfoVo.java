@@ -15,7 +15,30 @@ public class TravelInfoVo {
 	private String mapURL;
 	private String contact;
 	private int hit;
+	private int trvPicSeq;
+	private String path;
+	private String fileName;
 	
+	
+	
+	public int getTrvPicSeq() {
+		return trvPicSeq;
+	}
+	public void setTrvPicSeq(int trvPicSeq) {
+		this.trvPicSeq = trvPicSeq;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public int getTrvSeq() {
 		return trvSeq;
 	}
@@ -101,7 +124,7 @@ public class TravelInfoVo {
 		return "TravelInfoVo [trvSeq=" + trvSeq + ", name=" + name + ", contents=" + contents + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", price=" + price + ", crtDate=" + crtDate
 				+ ", ctySeq=" + ctySeq + ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", hit="
-				+ hit + "]";
+				+ hit + ", trvPicSeq=" + trvPicSeq + ", path=" + path + ", fileName=" + fileName + "]";
 	}
 	
 	
