@@ -127,10 +127,18 @@
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 	<!-- Jquery and Bootstap core js files -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+		<script type="text/javascript"
+			src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+		
+<!-- jQuery library -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- <!-- Latest compiled JavaScript --> -->
+<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
 
 	<!-- Modernizr javascript -->
 	<script type="text/javascript"
@@ -194,7 +202,8 @@
 			}		
 		});
 		function initMap() {
-			
+			console.log("intiMap()");
+			return 0
 // 		      var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
 		      
 // 		      var mapOptions = {
@@ -212,6 +221,44 @@
 // 		      marker.setMap(map);
 
 		      }
+		function showtMap(seq) {
+		    var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
+		    var mapId = "map-"+seq;
+		    var mapOptions = {
+		      zoom: 15,
+		      center: myLatlng
+		    }
+		    var map = new google.maps.Map(document.getElementById(mapId), mapOptions);
+
+		    var marker = new google.maps.Marker({
+		        position: myLatlng,
+		        title:"Poorip!!"
+		    });
+		    
+			// To add the marker to the map, call setMap();
+		    marker.setMap(map);
+		}
+
+		$('.launch-map').on('click', function () {
+		    
+			var trvSeq = "#modal-google-"+$(this).data("trvseq");
+			 console.log("trvSeq:"+trvSeq);
+//		 	showtMap(trvSeq); 
+			
+			$('#modal-google').modal('show');	
+			
+			
+// 		    $("#modal-google").modal({
+// 		        backdrop: 'static',
+// 		        keyboard: false
+// 		    });
+//		     .on('shown.bs.modal', function () {
+//		         google.maps.event.trigger(map, 'resize');
+//		         map.setCenter(center);
+//		     });
+		    
+		});
+
 	</script>
 
 	<%-- <c:forEach items="${sessionScope}" var="attr">
