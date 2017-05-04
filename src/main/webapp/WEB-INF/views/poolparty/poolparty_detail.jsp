@@ -262,6 +262,7 @@ function showWrite(){
 	}
 	
 }
+
 function likeToggle(poolike){
 
 	$.ajax({
