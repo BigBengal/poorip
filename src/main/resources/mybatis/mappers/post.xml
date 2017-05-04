@@ -3,11 +3,11 @@
 
 <mapper namespace="post">
 
-	<insert id="insert" parameterType="postvo">
+	<insert id="insert" parameterType="reviewvo">
 		<![CDATA[
 			INSERT 
 			  INTO POST (POST_SEQ,  title, contents,  REVIEW_PUB_YN,  USR_SEQ,  TRV_SEQ)
-			values ( #{postSeq}, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
+			values ( null, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
 		]]>
 	</insert>
 
@@ -33,6 +33,20 @@
 						#{hidden })
 		]]>
 	</insert>
+	
+	
+	<update id="updatePost" parameterType="reviewvo">
+		
+		<![CDATA[
+		update post 
+			set contents =#{contents}, 
+			title =#{title}, 
+			REVIEW_PUB_YN =#{reviewPubYn}, 
+			hidden=#{hidden},
+			trv_seq=#{trvSeq}
+		where post_seq = #{postSeq} and USR_SEQ= #{usrSeq}
+		]]>
+	</update>
 
 	<select id="getPostList" resultType="postvo">
 	    <![CDATA[
@@ -61,6 +75,23 @@
 			  and p.usr_seq = #{usrSeq }
 	order by p.crt_date desc
 		limit #{page}, 3
+		]]>
+	</select>
+	
+	<select id="getEditedPostList" resultType="postvo"
+		parameterType="reviewvo">
+	    <![CDATA[
+			select p.trv_Seq as trvSeq,
+				   p.post_seq as postSeq,
+				   p.title,
+				   p.contents,
+				   p.usr_seq as usrSeq,
+				   p.crt_date as crtDate
+				from post p, users u, travel_info t
+			  where p.USR_SEQ = u.USR_SEQ
+				and p.trv_Seq = t.trv_Seq
+			  and p.usr_seq = #{usrSeq }
+			  and p.post_seq =#{postSeq}
 		]]>
 	</select>
 
@@ -200,5 +231,7 @@
 	select post_seq from post where trv_seq=#{trvSeq}
 	]]>
 	</select>
+	
+	
 
 </mapper>

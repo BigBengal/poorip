@@ -134,3 +134,7 @@ File Description: Place here your custom CSS styles
 	display:inline-block;
 	width:100%;
 }
+
+.googlemap {
+	height: 400px;
+}

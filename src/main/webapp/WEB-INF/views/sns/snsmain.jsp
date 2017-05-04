@@ -49,6 +49,10 @@
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
+	
+<!-- multiselect -->
+<link href="${pageContext.request.contextPath}/assets/css/multi-select.css"
+	rel="stylesheet">
 </head>
 
 <body class="no-trans scroll-spy">
@@ -141,6 +145,8 @@
 	<!-- sns ajax -->
 	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
 
+	<!-- multiselect -->
+	<script src="${pageContext.request.contextPath }/assets/js/jquery.multi-select.js"></script>
 	
 	
 	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display:none">

@@ -11,9 +11,6 @@
 </p>
 <br>
 
-
-
-
 <form id="travel_search"
 	action="${pageContext.request.contextPath}/searchResult" method="get"
 	style="text-align: center">
@@ -229,7 +226,7 @@
 								${travelInfoFoodMain.name}</a>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="project-3${status.index }"
+						<div class="modal fade" id="project-3${status.index}"
 							tabindex="-1" role="dialog" aria-labelledby="project-3-label"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg">
@@ -258,6 +255,7 @@
 												src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
 												alt="">
 										</div>
+										<div id="map-${travelInfoFoodMain.trvSeq}" class="col-md-12 googlemap"></div>
 										<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
 										<div class='col-md-12'>
 											<div class='review-header'>
@@ -522,13 +520,13 @@
 												data-trvSeq="${travelInfoActivity.trvSeq}"
 												onclick="validate(${travelInfoActivity.trvSeq})" /></a>
 										</c:if>
-										<h3>Project Description</h3>
+										<h3>${travelInfoActivity.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoActivity.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="assets/images/portfolio-10.jpg" alt="">
+												<img src="${travelInfoActivity.picture}" alt="">
 											</div>
 											<c:set var="reviewNum" value="${travelInfoActivity.trvSeq}" />
 											<div class='col-md-6'>
