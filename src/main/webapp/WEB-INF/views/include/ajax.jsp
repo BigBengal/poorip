@@ -43,7 +43,7 @@ var render = function( vo, reviewNum, postSeq ){
 	
 	var html = "<div class='col-md-12' style='border-style:solid; border-width:1px; margin:2px; padding:2px'>" +
 				"<div id='reviewtitle' style='margin-bottom:20px'>" + vo.title + "<h6 style='display:inline-block; float:right'>" + vo.crtDate + "</h6></div>" +
-			   "<div id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")><img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/water-tube.png' style='width:100%' ></a><h5 style='float:right; margin-right:10px'> 라이크" + vo.likeCount + "</h5></div>" + 
+			   "<div id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")><img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/water-tube.png' style='width:100%' ></a><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px'> 라이크" + vo.likeCount + "</h5></div>" + 
 			   "</div>"
 			   ;			
 		
@@ -166,11 +166,20 @@ function reviewLike(postSeq) {
         data: "",
         dataType: "json",
         success : function(result) {
-        	if(result.data=="decreased_like") {
- 
+        	var likes = result.data;
+        	if(likes.length > 5){
+        	var lastIndex = likes.lastIndexOf('-');
+        	var decreasedLike = likes.substring(lastIndex+1, likes.length );
+        	if(decreasedLike=="decreased_like") {
+        		console.log("여기??");
+        		var decreased = likes.slice(0, -15);
+        		$("#like-count-"+ postSeq).text("라이크" + decreased);
         		likePostIcon.src = "/poorip/assets/images/water-tube.png";
         	}
-        	if(result.data=="increased_like") {
+        	}
+        	else {
+        		console.log("라이크충");
+        		$("#like-count-"+ postSeq).text("라이크" + result.data);
         		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
         	}
          

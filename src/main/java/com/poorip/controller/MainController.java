@@ -126,7 +126,6 @@ public class MainController {
 			
 		}
 	
-
 		
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
 		System.out.println(reviews);
@@ -154,10 +153,12 @@ public class MainController {
 		int postSeq1 = Integer.parseInt(postSeq);
 		if(snsService.checkPostLike(postSeq1, userVo.getUsrSeq())==null) {
 			snsService.increasePostLike(postSeq1, userVo.getUsrSeq());
-			return JSONResult.success("increased_like");
+			int likeCounts = mainService.selectPostLikeAjax(postSeq1);
+			return JSONResult.success(likeCounts);
 		};
 		snsService.decreasePostLike(postSeq1,userVo.getUsrSeq());
-		return JSONResult.success("decreased_like");
+		int likeCounts = mainService.selectPostLikeAjax(postSeq1);
+		return JSONResult.success(likeCounts + "-decreased_like");
 	}
 	
 	@Auth

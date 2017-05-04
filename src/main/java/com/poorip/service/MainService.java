@@ -55,5 +55,9 @@ public class MainService {
 		List<ReviewVo> reviewList = travelInfoDao.getReviewsByLikes(trvSeq);
 		return reviewList;
 	}
+	
+	public int selectPostLikeAjax(int postSeq) {
+		return travelInfoDao.getPostLikeAjax(postSeq);
+	}
 		
 }

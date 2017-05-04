@@ -63,4 +63,13 @@ public class TravelInfoDao {
 		return sqlSession.selectList("post.getReviewsByLikes", trvSeq);
 	}
 	
+	public int getPostLikeAjax(int postSeq) {
+		if(sqlSession.selectOne("post.selectPostLikeAjax", postSeq)!=null) {
+		return sqlSession.selectOne("post.selectPostLikeAjax", postSeq);
+		}
+		else {
+			return 0;
+		}
+	}
+	
 }
