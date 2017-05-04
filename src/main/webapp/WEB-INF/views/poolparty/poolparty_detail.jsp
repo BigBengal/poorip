@@ -102,7 +102,9 @@ $(document).ready(function(){
 	$( "#setting" ).on( "click", function() {
 	      dialog.dialog( "open" );
 	    });
-		
+	
+	
+	// 풀파티 맴버 프로필 보기
 	$(".poolmemberlist").on("click", function() {
 		var usrSeq = $(this).data("usrseq");
 		console.log(usrSeq);
@@ -222,6 +224,16 @@ $(document).ready(function(){
 				$("body").removeClass("fixed-header-on");
 			}
 		};
+		var likeonoff = $("#poollike").data("onoff");
+		console.log("likeonoff:"+likeonoff);
+		if(likeonoff == 'on'){
+			console.log("on");
+			poolikeyn = true;
+		} else {
+			console.log("off");
+			poolikeyn = false;
+		}
+			
 	});
 	
 	$( ".datepicker" ).datepicker({
@@ -235,6 +247,7 @@ $(document).ready(function(){
 	
 		
 	$("#poollike").click(function(){
+		console.log("poolikeyn:"+poolikeyn)
 		likeToggle(poolikeyn);
 	});
 		
@@ -416,12 +429,18 @@ function invite() {
 		</h1>
 		</div>
 		<div class="col-md-2">
-			<c:if test="${like == true}">
-				<div id="poollike" class="poollikeon menu_links">
-				${pool.likeCnt}
-				</div>
-			</c:if>
-			
+			<c:choose>
+				<c:when test="${like == true}">
+					<div id="poollike" class="poollikeon menu_links" data-onoff="off">
+					${pool.likeCnt}
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="poollike" class="poollikeoff menu_links" data-onoff="on">
+					${pool.likeCnt}
+					</div>
+				</c:otherwise>
+			</c:choose>
 			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 				<div>
 				<img src="/poorip/assets/images/gear.png" width="30px" id="setting" class="menu_links">
@@ -476,7 +495,7 @@ function invite() {
 
 <!-- 글쓰기 -->
 <div id="write">
-<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
+<%-- <c:import url="/WEB-INF/views/sns/mySNS.jsp" /> --%>
 </div>
 
 <!-- 글 보기 -->

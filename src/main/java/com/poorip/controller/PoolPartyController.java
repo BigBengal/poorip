@@ -120,7 +120,7 @@ public class PoolPartyController {
 					break;
 				}
 			}
-			logger.info("맴버입니다:" + memberYn);
+//			logger.info("맴버입니다:" + memberYn);
 			model.addAttribute( "memberYn", memberYn );
 		} 
 

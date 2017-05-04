@@ -176,7 +176,6 @@ public class PoolPartyService {
 	// 풀파티 좋아요/좋아요 취소 합침
 	public int togglePoolparty(int poolpartySeq, UserVo myUser) {
 		
-		System.out.println(poolpartySeq);
 		PoolLikeVo vo = new PoolLikeVo();
 		vo.setPoolSeq(poolpartySeq);
 		vo.setUsrSeq(myUser.getUsrSeq());
