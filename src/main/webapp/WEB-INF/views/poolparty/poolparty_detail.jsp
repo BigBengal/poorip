@@ -73,277 +73,8 @@
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <!-- Bootstrap toggle -->
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<script>
-var writeVisible = false;	//글쓰기 버튼
-var poolikeyn = false; 		//풀파티 좋아요 버튼 flag
-var isEnd = false; // 프로필 가져오기 Data 종료
-
-$(document).ready(function(){
-	
-	// 풀파티 설정 다이얼로그 
-	dialog = $( "#dialog-form" ).dialog({
-	    	autoOpen: false,
-	        height: 480,
-	        width: 600,
-	        modal: true,
-	        buttons: {
-	          "Save": function submit_form(){
-	        	    $('#poolsetting').submit();
-	          },
-	          Cancel: function() {
-	            dialog.dialog( "close" );
-	          }
-	        },
-	        close: function() {
-	        	dialog.dialog( "close" );
-	        }
-	  } );
-	
-	$( "#setting" ).on( "click", function() {
-	      dialog.dialog( "open" );
-	    });
-	
-	
-	// 풀파티 맴버 프로필 보기
-	$(".poolmemberlist").on("click", function() {
-		var usrSeq = $(this).data("usrseq");
-		console.log(usrSeq);
-		
-		// Ajax 통신
-		$.ajax( {
-		    url : "/poorip/user/getProfile",
-		    type: "post",
-		    dataType: "json",
-		    data: { "usrSeq" : usrSeq },
-		    success: function( response ){
-		    	var usrInfo = "";
-				var scrapCityInfo = "";
-// 		    	var scrapInfo = "";
-// 				var lastCity = "";
-		    	
-		    	console.log	( response );
-			       if( response.result == "fail") {
-			    	   console.log( response );
-			    	   return;
-			       }
-// 			       	if( response.data.scrapcity.length== 0 ) {
-// 			    		isEnd = true;
-// 			    		return;
-// 			    	}
-			    	//통신 성공 (response.result == "success" )
-			    	if(response.result == "success" ) {
-			    		usrInfo += "<p> 닉네임 : " + response.data.profile.usrNick + "</p>";
-			    		usrInfo += "<p> <img src=" + response.data.profile.usrProfile + "></p>";
-			    		usrInfo += "<p> 자기소개 : ";
-			    		if (response.data.profile.usrInfo != null )
-					    	usrInfo += response.data.profile.usrInfo + "</p>";
-				    	else
-				    		usrInfo += "없음 </p>";
-					    usrInfo += "<p> 해쉬태그 : ";
-			    		if (response.data.profile.usrHashtag != null )
-			    			usrInfo += response.data.profile.usrHashtag + "</p>";
-			    		else 
-			    			usrInfo += "없음 </p>";
-			    		
-			    		$( response.data.scrapcity ).each( function(index, vo){
-			    			//스크랩 도시 정보
-			    			scrapCityInfo += "<p> 방문 예정 나라 : " + vo.ctyName + " ( ";
-			    			if (vo.dateFrom != null )
-			    				scrapCityInfo += vo.dateFrom;
-			    			if (vo.dateTo != null )	
-			    				scrapCityInfo += " ~ " + vo.dateTo; 
-							if (vo.dateFrom == null && vo.dateTo == null)	
-								scrapCityInfo += "미정";
-							scrapCityInfo += " )</p>";
-			    			
-			    		});	
-// 			    		$( response.data.scrap ).each( function(index, vo){
-// 			    			//스크랩 정보
-// 		 				});
-
-			    		$("#profile").html(usrInfo + scrapCityInfo);	
-			    	}
-			    	
-			    	
-// 			    	$( response.data.scrap ).each( function(index, vo){
-// 					})
-					
-			       return true;
-		    }
-		   });
-		
-		
-		$( "#profile" ).dialog({
-// 	    	autoOpen: false,
-	        height: 400,
-	        width: 450,
-	        modal: true,
-	        buttons: {
-	          Close: function() {
-	        	$(this).dialog( "close" );
-	          }
-	        }
-	  } );
-	});
-	
-	// Animations
-	//-----------------------------------------------
-	if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {
-		$("[data-animation-effect]").each(function() {
-			var $this = $(this),
-			animationEffect = $this.attr("data-animation-effect");
-			if(Modernizr.mq('only all and (min-width: 768px)') && Modernizr.csstransitions) {
-				$this.appear(function() {
-					setTimeout(function() {
-						$this.addClass('animated object-visible ' + animationEffect);
-					}, 400);
-				}, {accX: 0, accY: -130});
-			} else {
-				$this.addClass('object-visible');
-			}
-		});
-	};
-	
-	// Fixed header
-	//-----------------------------------------------
-	$(window).scroll(function() {
-		if (($(".header.fixed").length > 0)) { 
-			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-				$("body").addClass("fixed-header-on");
-			} else {
-				$("body").removeClass("fixed-header-on");
-			}
-		};
-	});
-
-	$(window).load(function() {
-		if (($(".header.fixed").length > 0)) { 
-			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-				$("body").addClass("fixed-header-on");
-			} else {
-				$("body").removeClass("fixed-header-on");
-			}
-		};
-		var likeonoff = $("#poollike").data("onoff");
-		console.log("likeonoff:"+likeonoff);
-		if(likeonoff == 'on'){
-			console.log("on");
-			poolikeyn = true;
-		} else {
-			console.log("off");
-			poolikeyn = false;
-		}
-			
-	});
-	
-	$( ".datepicker" ).datepicker({
-    	dateFormat: 'yy-mm-dd',
-        showOtherMonths: true,
-        selectOtherMonths: true,
-        autoclose: true,
-        changeMonth: true,
-        changeYear: true,
-    });
-	
-		
-	$("#poollike").click(function(){
-		console.log("poolikeyn:"+poolikeyn)
-		likeToggle(poolikeyn);
-	});
-		
-});
-function showWrite(){
-	if ( writeVisible == true ) {
-		$("#write").hide();	
-		writeVisible = false;
-	} else {
-		$("#write").show();
-		writeVisible = true;
-	}
-	
-}
-function likeToggle(poolike){
-
-	$.ajax({
-	          url : "liketoggle",
-	          type : "post",
-	          dataType : "json",
-	          data: { "poolpartySeq" : ${pool.poolSeq} },
-	          success: function(data) {
-	          	if(data.result != "success"){
-	          		console.log("err");
-	          		return
-	          	}
-	        	if (poolike == false){
-	        		$("#poollike").removeClass("poollikeon");
-		  			$("#poollike").addClass("poollikeoff");
-		  			poolikeyn = true;
-		  			console.log(data.data);
-		  			$("#poollike").text(data.data);
-	        	} else {
-	        		$("#poollike").removeClass("poollikeoff");
-	        		$("#poollike").addClass("poollikeon");
-	        		poolikeyn = false;
-	        		console.log(data.data);
-	        		$("#poollike").text(data.data);
-	        	} 
-	          }
-	        		
-	      });
-}
-function reqeustJoin(){
-	console.log("reqeustJoin");
-	// Ajax 통신
-	$.ajax( {
-	    url : "invite",
-	    type: "post",
-	    dataType: "json",
-	    data: { "poolpartySeq" : ${pool.poolSeq} },
-	    success: function( response ){
-	    	console.log	( response );
-		       if( response.result == "fail") {
-		    	   console.log( response );
-		    	   return;
-		       }
-	    	//통신 성공 (response.result == "success" )
-	    	if(response.result == "success" ) {
-	    		$("#reqeustjoin").text("요청중");
-	    	}
-	       return true;
-	    }
-	   });
-	
-	
-}
-function invite() {
-	console.log("invite");
-	
-	if ($("#inviteNick").val() == ""){
-		$("#inviteMsg").text("닉네임입력하세요");
-		return;
-	}
-	$.ajax( {
-	    url : "invite",
-	    type: "post",
-	    dataType: "json",
-	    data: { "poolpartySeq" :${pool.poolSeq},
-	    	    "usrNm" : $("#inviteNick").val() },
-	    success: function( response ){
-	    	console.log	( response );
-		       if( response.result == "fail") {
-		    	   $("#inviteMsg").text("요청실패");
-		    	   return;
-		       }
-	    	//통신 성공 (response.result == "success" )
-	    	if(response.result == "success" ) {
-	    		$("#inviteMsg").text("요청완료");
-	    	}
-	       return true;
-	    }
-	   });
-}
-
-</script>
+<!-- PoolParty Detail Js-->
+<script src="${pageContext.request.contextPath }/assets/js/poolparty_detail.js"></script>
 
 </head>
 <body>
@@ -370,7 +101,7 @@ function invite() {
 <div id="dialog-form" title="풀파티 설정 변경">
 <form class="form-horizontal" id="poolsetting" action="saveSetting" method="post" enctype="multipart/form-data">
 <fieldset>
-	<input type="hidden" name="poolSeq" value="${pool.poolSeq}">
+	<input type="hidden" id="poolSeq" name="poolSeq" value="${pool.poolSeq}">
 	<div class="form-group">
 		<label class="control-label" for="name">풀파티 제목</label>
 		<input type="text" name="poolName" id="name" value="${pool.poolName}" class="text ui-widget-content ui-corner-all">
@@ -387,7 +118,7 @@ function invite() {
 	<div class="form-group">
 		<label for="control-label" for="city">대표 도시</label>
 		<select id="city" name="ctySeq">
-			<option></option>
+			<option value="0"></option>
 			<c:forEach items="${cityList }" var="cityList" varStatus="status">
 				<c:choose>
 				<c:when test="${pool.ctySeq == cityList.ctySeq}">
@@ -460,7 +191,7 @@ function invite() {
 		</div>
 	<div class="col-md-12">
 	<h3>${pool.poolComment} </h3>
-	<p class="poolmemberlist"> 관리자 : <img src="${pool.managerProfile}"> ${pool.managerUsrNick } </p>
+	<p class="poolmemberlist" data-usrseq="${pool.managerUsrSeq}"> 관리자 : <img src="${pool.managerProfile}"> ${pool.managerUsrNick } </p>
 
 	<h5>
 	<c:if test="${pool.fromDate != null or pool.toDate != null}">
@@ -494,8 +225,8 @@ function invite() {
 </div>
 
 <!-- 글쓰기 -->
-<div id="write">
-<%-- <c:import url="/WEB-INF/views/sns/mySNS.jsp" /> --%>
+<div id="write" class="row">
+<c:import url="/WEB-INF/views/poolparty/poolparty_write.jsp" />
 </div>
 
 <!-- 글 보기 -->

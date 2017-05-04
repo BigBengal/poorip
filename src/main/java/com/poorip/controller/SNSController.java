@@ -23,7 +23,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
+import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
+import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
@@ -34,10 +36,14 @@ public class SNSController {
 	
 	@Autowired SNSService snsService;
 	
+	@Autowired PoolPartyService poolPartyService;
+	
 	@Auth
 	@RequestMapping("")
 	public String goSNS( @AuthUser UserVo userVo,
 						 Model model ) {
+		int usrSeq = userVo.getUsrSeq();
+		model.addAttribute( "poolpartyList", poolPartyService.getMyPoolList(usrSeq) );
 		model.addAttribute( "travelVo", snsService.getTravelInfo() );
 		return "sns/snsmain";
 	}
@@ -70,18 +76,19 @@ public class SNSController {
 	@RequestMapping("/post/upload")
 	public String mySNSadd( @AuthUser UserVo userVo,
 							@ModelAttribute ReviewVo reviewVo,
-							MultipartHttpServletRequest request,			
+							@RequestParam ("to[]") int[] poolPostSeq,
+							MultipartHttpServletRequest request,
 							Model model ) throws IOException {
 		
 		reviewVo.setUsrSeq( userVo.getUsrSeq() );
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
 		
-		System.out.println("HEY?" + request);
 		if(postUploadFiles.get(0).getOriginalFilename()==null||postUploadFiles.get(0).getOriginalFilename().equals("")) {
-			snsService.addPostOnly(reviewVo);
+			snsService.addPostOnly(reviewVo, poolPostSeq );
 			return "redirect:/sns";
 		}
-		snsService.addPost( reviewVo, postUploadFiles );
+		snsService.addPost( reviewVo, postUploadFiles,  poolPostSeq );
+		
 		
 		return "redirect:/sns";
 	}
@@ -95,8 +102,6 @@ public class SNSController {
 			System.out.println("duaekgnadjkogfj"+postVo.getPostSeq());
 			Integer postSeq = postVo.getPostSeq();
 			return JSONResult.success( postSeq);
-
-
 		}else{
 			System.out.println("fail"+postVo.getPostSeq());
 			return JSONResult.fail( "DB error" );

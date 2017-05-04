@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.poorip.repository.PoolPostDao;
 import com.poorip.repository.SNSDao;
+import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.PoolPostVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
@@ -25,6 +28,10 @@ public class SNSService {
 	
 	@Autowired
 	private SNSDao snsDao;
+	
+	@Autowired
+	private PoolPostDao poolPostDao;
+	
 	
 	public List<TravelInfoVo> getTravelInfo() {
 		return snsDao.getTravelInfo();
@@ -43,9 +50,11 @@ public class SNSService {
 		return postPicList;
 	}
 
-	public boolean addPost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles) throws IOException {
+	public boolean addPost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, int[] poolPostSeq) throws IOException {
 		
 		boolean postReturn = snsDao.addPost( reviewVo );
+		boolean addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+		
 		boolean postPicReturn = true;
 		
 		String pathName = POST_SAVE_PATH + "/" + reviewVo.getUsrSeq() +"/" + reviewVo.getTrvSeq();
@@ -69,7 +78,22 @@ public class SNSService {
 			postPicReturn = postPicReturn && snsDao.addPostPic( postPicVo );
 		}
 		
-		return postReturn && postPicReturn;
+		return postReturn && postPicReturn && addPoolPostReturn;
+	}
+	
+	public boolean addPostOnly(ReviewVo reviewVo, int[] poolPostSeq) {
+		boolean addPoolPostReturn = snsDao.addPostOnly(reviewVo);
+		return addPoolPostReturn && addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+	}
+	
+	public boolean addPoolPost( int[] poolPostSeq, int postSeq ) {
+		PoolPostVo poolPostVo = new PoolPostVo();
+		for(int i=0; i<poolPostSeq.length; i++) {
+			int poolSeq = poolPostSeq[i];
+			poolPostVo.setPoolSeq(poolSeq);
+			poolPostVo.setPostSeq(postSeq);
+		}
+		return poolPostDao.write(poolPostVo);
 	}
 	
 public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, List<Integer> postPicSeqArray) throws FileNotFoundException, IOException {
@@ -157,8 +181,6 @@ public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles,
 		return snsDao.deletePost( postVo );
 	}
 	
-	public boolean addPostOnly(ReviewVo reviewVo) {
-		return snsDao.addPostOnly(reviewVo);
-	}
+	
 
 }
