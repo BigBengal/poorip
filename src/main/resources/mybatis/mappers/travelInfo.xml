@@ -69,18 +69,18 @@
     <select id="getInfomain" resultType="travelinfovo">
       <![CDATA[
          select 
-         		trv_seq as trvSeq,
-         		cat_seq as catSeq,
-         		crt_date as crtDate,
-         		name as name,
-         		contents,
-         		hours,
-         		location,
-         		picture,
-         		price,
-         		map_url as mapURL,
-         		contact
-		 from travel_info where trv_seq > 0
+         		a.trv_seq as trvSeq,
+         		a.cat_seq as catSeq,
+         		a.crt_date as crtDate,
+         		a.name as name,
+         		a.contents as contents,
+         		a.hours as hours,
+         		a.location as location,
+         		a.picture as picture,
+         		a.price as price,
+         		a.map_url as mapURL,
+         		a.contact as contact
+		 from travel_info a left join travel_info_pic b on a.TRV_SEQ = b.TRV_SEQ
       ]]>
 	</select>
 	

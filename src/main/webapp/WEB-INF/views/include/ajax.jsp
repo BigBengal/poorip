@@ -51,7 +51,7 @@ var render = function( vo, reviewNum, postSeq ){
 }
 var renderpic = function(vo, reviewNum, postSeq) {
 	if(vo.path!='null'&&vo.path!=null) {
-		var htmlpic = "<a href=${pageContext.request.contextPath}/assets/images/pool-party.jpg data-lightbox='image-1' data-title='My caption' ><img src=${pageContext.request.contextPath}/assets/images/pool-party.jpg></a>" + vo.path ;
+		var htmlpic = "<a href=/poorip" + vo.path + "/" + vo.fileName + " data-lightbox='image-" + postSeq + "' data-title='My caption' class='review-pics-anchor' ><img src=/poorip" + vo.path + "/" + vo.fileName + " class='review-pics'></a>";
 		$("#reviewbody-"+postSeq).after(htmlpic);
 	}
 	
@@ -93,6 +93,7 @@ function send(trvSeq, reviewNum){
         success : function(response) {
         	
         		$( response.data ).each( function(index, vo){
+        			console.log(vo);
 				var postSeq = vo.postSeq;
         		render( vo, reviewNum, postSeq );
         		
@@ -103,6 +104,7 @@ function send(trvSeq, reviewNum){
 			        dataType: "json",
 			        success : function(result) {
 			        	$( result.data ).each( function(index, vo){
+			        		
 			        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
 // 			        		console.log(likePostIcon);
 			        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
@@ -129,7 +131,8 @@ function send(trvSeq, reviewNum){
         						return;
         					}
         			 							
-        					$(review.data).each(function (index,vo){        					
+        					$(review.data).each(function (index,vo){
+        						console.log(vo);
         					renderpic(vo, reviewNum, postSeq);
         				});
         					
