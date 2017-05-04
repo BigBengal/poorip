@@ -68,8 +68,9 @@ public class AdminController {
 	@RequestMapping("/upload/travel")
 	public String addTravelInfo( @ModelAttribute TravelInfoVo travelInfoVo,
 								 @RequestParam("file") MultipartFile multipartFile,
+								 @RequestParam(value="ctrSeq", required=false) int ctrSeq,
 								 Model model ) {
-		adminService.addtarvelInfo( travelInfoVo, multipartFile );
+		adminService.addtarvelInfo( travelInfoVo, multipartFile, ctrSeq );
 		
 		return "redirect:/admin/basic";
 	}
@@ -161,7 +162,7 @@ public class AdminController {
 	public String addCity( @ModelAttribute CityVo cityVo,
 						   @RequestParam ( "ctrSeq2" ) String ctrSeq1,
 						   Model model ) {
-		
+	
 		int ctrSeq = Integer.parseInt(ctrSeq1);
 		cityVo.setCtrSeq( ctrSeq );
 		adminService.addCity( cityVo );

@@ -62,9 +62,11 @@ public class MainController {
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 4) {
 				citylistMain.add(travelInfoVo.get(i));
+	
 			}
 
 		}
+		System.out.println("씨튀!" + citylistMain);
 		model.addAttribute("travelInfoFoodMain", foodlistMain);
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);

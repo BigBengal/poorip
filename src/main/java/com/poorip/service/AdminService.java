@@ -29,7 +29,8 @@ public class AdminService {
 	private AdminDao adminDao;
 	private CommonsMultipartFile[] files;
 
-	public void addtarvelInfo(TravelInfoVo travelInfoVo, MultipartFile multipartFile) {
+	public void addtarvelInfo(TravelInfoVo travelInfoVo, MultipartFile multipartFile, int ctrSeq) {
+		CityVo cityVo = new CityVo();
 		try {
 			if (multipartFile.isEmpty() == true) {
 				throw new GalleryUploadException( "MultipartFile is Empty" );
@@ -47,6 +48,10 @@ public class AdminService {
 			//2.runtime exception 전환 
 			throw new GalleryUploadException( "save file uploded" );
 		}
+		cityVo.setCtyName(travelInfoVo.getName());
+		cityVo.setCtrSeq(ctrSeq);
+		adminDao.addCity(cityVo);
+		
 		adminDao.addInfo(travelInfoVo);
 	}
 
@@ -93,8 +98,9 @@ public class AdminService {
 
 
 	public boolean addCity(CityVo cityVo) {
-		return adminDao.addCity( cityVo );
 		
+		
+		return adminDao.addCity(cityVo);
 	}
 	
 	public CommonsMultipartFile[] getFiles() {
