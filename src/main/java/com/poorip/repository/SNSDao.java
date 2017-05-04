@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
@@ -119,6 +120,5 @@ public class SNSDao {
 	public boolean addPostOnly(ReviewVo reviewVo) {
 		return 1== sqlSession.insert("post.insert", reviewVo);
 	}
-	
 
 }
