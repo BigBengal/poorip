@@ -527,13 +527,13 @@
 												data-trvSeq="${travelInfoActivity.trvSeq}"
 												onclick="validate(${travelInfoActivity.trvSeq})" /></a>
 										</c:if>
-										<h3>Project Description</h3>
+										<h3>${travelInfoActivity.name}</h3>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoActivity.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="assets/images/portfolio-10.jpg" alt="">
+												<img src="${travelInfoActivity.picture}" alt="">
 											</div>
 											<c:set var="reviewNum" value="${travelInfoActivity.trvSeq}" />
 											<div class='col-md-6'>
