@@ -104,7 +104,12 @@
 														alt="" />
 												</div>
 											</div>
-
+											<div class="col-md-12">
+											<h3>위치 확인</h3>
+												<div class="row">
+													<div id="map"></div>
+												</div>
+											</div>
 											<c:set var="reviewNum" value="${scrapList.trvSeq}" />
 											<div class='col-md-12'>
 												<h3>

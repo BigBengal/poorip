@@ -161,13 +161,17 @@
 													alt="" />
 											</div>
 										</div>
-
+										<div class="row">
+											<div class="col-md-12">
+												<h5>위치 확인</h5>
+													<c:import url="/WEB-INF/views/include/map.jsp"></c:import>
+											</div>
+										</div>
 										<c:set var="reviewNum" value="${travelInfoFood.trvSeq}" />
 										<div class='col-md-12'>	
 											<div class='review-header'>
 											<h3>
 												<b>후기</b>
-
 											</h3>
 											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
 												data-toggle="buttons">

@@ -169,7 +169,6 @@
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	
 	
-	
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>
 <%-- </c:forEach> --%>

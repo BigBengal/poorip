@@ -164,7 +164,6 @@
 	<!-- facebook  -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
-
 	<script>
 		$(function() {
 			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
