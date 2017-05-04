@@ -65,7 +65,7 @@ function hasNull(target) {
 }
 function send(trvSeq, reviewNum){
 	var likeIcon = document.getElementById("scrapTrvInfo-"+trvSeq);
-	
+
 	showtMap(trvSeq);
 	$.ajax({
         url : "/poorip/scrap/scrapValidate",
@@ -73,11 +73,12 @@ function send(trvSeq, reviewNum){
         data: "trvSeq="+ trvSeq,
         dataType: "text",
         success : function(data) {
+
             if(data==="YES") {
 
             	likeIcon.src="/poorip/assets/images/scrapicon-scraped.png";
             }else {
- 
+
         		likeIcon.src="/poorip/assets/images/scrapicon.png";
         	}
         },
