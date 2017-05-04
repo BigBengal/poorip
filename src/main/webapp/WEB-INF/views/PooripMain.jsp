@@ -127,18 +127,14 @@
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 	<!-- Jquery and Bootstap core js files -->
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
-		
-<!-- jQuery library -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+			<!-- date picker -->
+<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- <!-- Latest compiled JavaScript --> -->
-<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
 
 	<!-- Modernizr javascript -->
 	<script type="text/javascript"
@@ -165,9 +161,6 @@
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
-	<!-- date picker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
@@ -199,31 +192,32 @@
 				}
 
 				return date;
-			}		
+			}
+			
+			$('.modal').on('shown.bs.modal', function () {
+				var tagId = $(this).attr('id');
+
+				if(tagId.substring(8,9)!=1)
+					showMap(tagId);
+				})
+				
 		});
 		function initMap() {
-			console.log("intiMap()");
 			return 0
-// 		      var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
-		      
-// 		      var mapOptions = {
-// 		        zoom: 15,
-// 		        center: myLatlng
-// 		      }
-// 		      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-// 		      var marker = new google.maps.Marker({
-// 		          position: myLatlng,
-// 		          title:"Poorip!!"
-// 		      });
-		      
-// 			// To add the marker to the map, call setMap();
-// 		      marker.setMap(map);
-
 		      }
-		function showtMap(seq) {
-		    var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
+		
+		function showMap(seq) {
 		    var mapId = "map-"+seq;
+		    var url = $('#'+mapId).data("url");
+		    if (url == ""){
+		    	$('#'+mapId).removeClass("googlemap");
+		    	$('#'+mapId).text("정보없음");
+		    	return;
+		    }
+		    var locArray = url.split(",");
+		    var myLatlng = new google.maps.LatLng($.trim(locArray[0]),$.trim(locArray[1]));
+// 		    console.log("url:"+url);
+		    
 		    var mapOptions = {
 		      zoom: 15,
 		      center: myLatlng
@@ -237,27 +231,8 @@
 		    
 			// To add the marker to the map, call setMap();
 		    marker.setMap(map);
-		}
 
-		$('.launch-map').on('click', function () {
-		    
-			var trvSeq = "#modal-google-"+$(this).data("trvseq");
-			 console.log("trvSeq:"+trvSeq);
-//		 	showtMap(trvSeq); 
-			
-			$('#modal-google').modal('show');	
-			
-			
-// 		    $("#modal-google").modal({
-// 		        backdrop: 'static',
-// 		        keyboard: false
-// 		    });
-//		     .on('shown.bs.modal', function () {
-//		         google.maps.event.trigger(map, 'resize');
-//		         map.setCenter(center);
-//		     });
-		    
-		});
+		}
 
 	</script>
 

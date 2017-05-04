@@ -59,7 +59,7 @@
 							<div class="image-box">
 								<div class="overlay-container">
 									<img
-										src="${pageContext.request.contextPath }/assets/images/paris.png"
+										src="/poorip${scrapList.picture }"
 										alt=""> <a class="overlay" data-toggle="modal"
 										data-target="#project-2${status.index }"
 										onclick="send(${scrapList.trvSeq}, ${scrapList.trvSeq})">
@@ -100,7 +100,7 @@
 												</div>
 												<div class="col-md-6">
 													<img
-														src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
+														src="/poorip${scrapList.picture }"
 														alt="" />
 												</div>
 											</div>

@@ -100,6 +100,10 @@
 			      			<td><input type="text" size="40" name="contact"></td>
 			      		</tr>
 			      		<tr>
+			      			<td class="t">나라 SEQ</td>
+			      			<td><input type="text" size="40" name="ctrSeq"></td>
+			      		</tr>
+			      		<tr>
 			      			<td class="t">&nbsp;</td>
 			      			<td class="s"><input type="submit" value="여행지 추가"></td>      			
 			      		</tr>           		
@@ -190,6 +194,10 @@
 			      		<tr>
 			      			<td class="t">나라 seq</td>
 			      			<td><input type="text" name="ctrSeq2"></td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">도시 대표 사진</td>
+			      			<td><input type="file" name="cityMainPic" multiple="multiple"></td>   			
 			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>

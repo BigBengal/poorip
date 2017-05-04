@@ -42,13 +42,14 @@ public class MainController {
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) {
-
+		
 		List<TravelInfoVo> foodlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> activitylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> attractionlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> citylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
-
+		
+		
 		for (int i = 0; i < travelInfoVo.size(); i++) {
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
 				foodlistMain.add(travelInfoVo.get(i));
@@ -61,9 +62,11 @@ public class MainController {
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 4) {
 				citylistMain.add(travelInfoVo.get(i));
+	
 			}
 
 		}
+		System.out.println("씨튀!" + citylistMain);
 		model.addAttribute("travelInfoFoodMain", foodlistMain);
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
@@ -118,6 +121,7 @@ public class MainController {
 		if(like.equals("like")) {
 			System.out.println("LIKE REALLY IN");
 			List<ReviewVo> reviewsByLike = mainService.getReviewsByLikes(trvSeq1);
+			System.out.println(reviewsByLike);
 			return JSONResult.success(reviewsByLike);
 			
 		}
@@ -125,6 +129,7 @@ public class MainController {
 
 		
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
+		System.out.println(reviews);
 	
 
 		return JSONResult.success(reviews);

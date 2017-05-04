@@ -6,7 +6,15 @@ public class CityVo {
 	private String ctyName;
 	private String crtDate;
 	private int ctrSeq;
+	private String picture;
 	
+	
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 	public int getCtySeq() {
 		return ctySeq;
 	}
@@ -35,7 +43,7 @@ public class CityVo {
 	@Override
 	public String toString() {
 		return "CityVo [ctySeq=" + ctySeq + ", ctyName=" + ctyName + ", crtDate=" + crtDate + ", ctrSeq=" + ctrSeq
-				+ "]";
+				+ ", picture=" + picture + "]";
 	}
 	
 }

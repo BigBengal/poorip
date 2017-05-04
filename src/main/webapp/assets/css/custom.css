@@ -127,7 +127,7 @@ File Description: Place here your custom CSS styles
 	margin-bottom: 4px;
 }
 .aproveN {
-	background-color: silver;
+	background-color: LightGray;
 }
 
 .review-header {
@@ -137,4 +137,25 @@ File Description: Place here your custom CSS styles
 
 .googlemap {
 	height: 400px;
+}
+
+.modal-body .col-md-6 p {
+	margin-top: 6%;
+}
+
+.modal-body .col-md-6 img {
+	margin-top: 7%;
+}
+
+.modal-body .col-md-12 .review-pics-anchor {
+	display: inline-block;
+	width : 20%;
+}
+
+.modal-body .col-md-12 a .review-pics {
+	width : 100%;
+}
+
+.modal-body .review-header .btn.btn-default {
+	float: right;
 }

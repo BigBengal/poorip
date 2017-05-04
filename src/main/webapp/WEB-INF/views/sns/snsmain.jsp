@@ -86,7 +86,7 @@
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
 						<h1 class="text-center">
-							혜영's <span>Travel Story</span>
+							${authUser.usrNick}'s <span>Travel Story</span>
 						</h1>
 					</div>
 				</div>

@@ -10,16 +10,13 @@
 			<form class="form-horizontal" id="sns-edit-ajax"
 				action="${pageContext.request.contextPath}/sns/editPost"
 				method="post" enctype="multipart/form-data">
-				
+
 				<!-- 글쓰기 버튼 까꿍 이벤트-->
-				<input class="ignore" type="hidden" name="usrSeq"
-					value="${authUser.usrSeq}"> <input class="ignore"
-					id="postSeq" type="hidden" name="postSeq" value="">
-				<input class="ignore" id="postPicSeqArray" type="hidden"
-					name="postPicSeqArray" value="">
-					<a href="javascript:;"><img onclick="showWrite();" alt="글쓰기"
-					src="${pageContext.request.contextPath}/assets/images/write-btn.png"
-					style="width: 30px"></a>
+				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
+				<input class="ignore" id="postSeq" type="hidden" name="postSeq" value=""> 
+				<input class="ignore" id="postPicSeqArray" type="hidden" name="postPicSeqArray" value=""> 
+				<a href="javascript:;">
+				<img onclick="showWrite();" alt="글쓰기" src="${pageContext.request.contextPath}/assets/images/write-btn.png" style="width: 30px"></a>
 				<div class="write-main block" id="sns-edit" style="display: none;">
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="title">제목 : </label>
@@ -108,8 +105,7 @@
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/sns/post/upload"
 				method="post" enctype="multipart/form-data">
-				<input class="ignore" type="hidden" name="usrSeq"
-					value="${authUser.usrSeq}">
+				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 
 				<div class="write-main block" id="sns-write" style="display: none;">
 					<div class="form-group">
@@ -217,5 +213,5 @@
 	</div>
 </div>
 
-<div class="fromDatePick"></div>
-<div class="toDatePick"></div>
+<!-- <div class="fromDatePick"></div> -->
+<!-- <div class="toDatePick"></div> -->

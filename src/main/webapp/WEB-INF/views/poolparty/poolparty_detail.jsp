@@ -102,7 +102,9 @@ $(document).ready(function(){
 	$( "#setting" ).on( "click", function() {
 	      dialog.dialog( "open" );
 	    });
-		
+	
+	
+	// 풀파티 맴버 프로필 보기
 	$(".poolmemberlist").on("click", function() {
 		var usrSeq = $(this).data("usrseq");
 		console.log(usrSeq);
@@ -222,6 +224,16 @@ $(document).ready(function(){
 				$("body").removeClass("fixed-header-on");
 			}
 		};
+		var likeonoff = $("#poollike").data("onoff");
+		console.log("likeonoff:"+likeonoff);
+		if(likeonoff == 'on'){
+			console.log("on");
+			poolikeyn = true;
+		} else {
+			console.log("off");
+			poolikeyn = false;
+		}
+			
 	});
 	
 	$( ".datepicker" ).datepicker({
@@ -235,6 +247,7 @@ $(document).ready(function(){
 	
 		
 	$("#poollike").click(function(){
+		console.log("poolikeyn:"+poolikeyn)
 		likeToggle(poolikeyn);
 	});
 		
@@ -352,6 +365,8 @@ function invite() {
 <div style="height: 200px;">
 </div>
 
+
+<!-- 풀파티 설정 -->
 <div id="dialog-form" title="풀파티 설정 변경">
 <form class="form-horizontal" id="poolsetting" action="saveSetting" method="post" enctype="multipart/form-data">
 <fieldset>
@@ -401,9 +416,9 @@ function invite() {
 </fieldset>
 </form>
 </div>
-	
 
 
+<!-- 풀파티 상단 내용 -->
 <div class="col-md-10">
 	<div class="col-md-5">
 		<img src="/poorip${pool.poolPic}">
@@ -414,12 +429,18 @@ function invite() {
 		</h1>
 		</div>
 		<div class="col-md-2">
-			<c:if test="${like == true}">
-				<div id="poollike" class="poollikeon menu_links">
-				${pool.likeCnt}
-				</div>
-			</c:if>
-			
+			<c:choose>
+				<c:when test="${like == true}">
+					<div id="poollike" class="poollikeon menu_links" data-onoff="off">
+					${pool.likeCnt}
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="poollike" class="poollikeoff menu_links" data-onoff="on">
+					${pool.likeCnt}
+					</div>
+				</c:otherwise>
+			</c:choose>
 			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 				<div>
 				<img src="/poorip/assets/images/gear.png" width="30px" id="setting" class="menu_links">
@@ -453,7 +474,7 @@ function invite() {
 	</div>
 
 </div>
-
+<!-- 풀파티 맴버 -->
 <div class="col-md-2 hidden-xs">
 풀파티 맴버
 <c:forEach var="memberlist" items="${poolmember }" varStatus="status">
@@ -472,13 +493,12 @@ function invite() {
 </c:if>	
 </div>
 
-<button onclick="showWrite();">
-글쓰기
-</button>
-
-<div id="write" style="display:none;">
-<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
+<!-- 글쓰기 -->
+<div id="write">
+<%-- <c:import url="/WEB-INF/views/sns/mySNS.jsp" /> --%>
 </div>
+
+<!-- 글 보기 -->
 <div class="col-md-12">
 	<c:forEach var="post" items="${post}" varStatus="status">
 		<div class="col-md-6 col-md-offset-4">
@@ -493,8 +513,8 @@ function invite() {
 	</c:forEach>
 </div>
 
+<!-- 프로필 보기 다이얼로그 -->
 <div id="profile" title="프로필 보기">
-아아아아
 </div>
 </body>
 </html>
