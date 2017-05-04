@@ -216,9 +216,8 @@
 		    }
 		    var locArray = url.split(",");
 		    var myLatlng = new google.maps.LatLng($.trim(locArray[0]),$.trim(locArray[1]));
-		    console.log("url:"+url);
+// 		    console.log("url:"+url);
 		    
-// 		    return ;
 		    var mapOptions = {
 		      zoom: 15,
 		      center: myLatlng
@@ -232,7 +231,6 @@
 		    
 			// To add the marker to the map, call setMap();
 		    marker.setMap(map);
-		    console.log("end");
 
 		}
 
