@@ -129,6 +129,10 @@
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+			<!-- date picker -->
+<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
 
@@ -157,9 +161,6 @@
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
-	<!-- date picker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
@@ -191,10 +192,18 @@
 				}
 
 				return date;
-			}		
+			}
+			
+			$('#project-31').on('show.bs.modal', function () {
+				  // do something…
+				  console.log("aaa");
+				  showtMap(1);
+				})
+				
 		});
 		function initMap() {
-			
+			console.log("intiMap()");
+			return 0
 // 		      var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
 		      
 // 		      var mapOptions = {
@@ -212,6 +221,42 @@
 // 		      marker.setMap(map);
 
 		      }
+		function showtMap(seq) {
+		    var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
+		    var mapId = "map-food";
+		    //+seq;
+		    var mapOptions = {
+		      zoom: 15,
+		      center: myLatlng
+		    }
+		    var map = new google.maps.Map(document.getElementById(mapId), mapOptions);
+
+		    var marker = new google.maps.Marker({
+		        position: myLatlng,
+		        title:"Poorip!!"
+		    });
+		    
+			// To add the marker to the map, call setMap();
+		    marker.setMap(map);
+		}
+
+// 		$('.launch-map').on('click', function () {
+		    
+// 			var trvSeq = "#modal-google-"+$(this).data("trvseq");
+// 			 console.log("trvSeq:"+trvSeq);
+// //		 	showtMap(trvSeq); 
+			
+// 		    $('#modal-google').modal({
+// 		    	 console.log("OK1");
+// 		    })
+// 		     .on('shown.bs.modal', function () {
+// 		    	 console.log("OK2");
+// // 		         google.maps.event.trigger(map, 'resize');
+// // 		         map.setCenter(center);
+// 		     });
+		    
+// 		});
+
 	</script>
 
 	<%-- <c:forEach items="${sessionScope}" var="attr">

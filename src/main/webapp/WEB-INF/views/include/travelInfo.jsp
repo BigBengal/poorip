@@ -141,7 +141,7 @@
 									<div class="modal-body">
 										<c:if test="${!empty authUser }">
 											<a href="javascript:;"><img
-												id="scrapTrvInfo-${travelInfoFood.trvSeq}" src="--"
+												id="scrapTrvInfo-${travelInfoFood.trvSeq}" src=""
 												style="float: right;" data-trvSeq="${travelInfoFood.trvSeq}"
 												onclick="validate(${travelInfoFood.trvSeq})" /></a>
 										</c:if>
@@ -158,13 +158,17 @@
 													alt="" />
 											</div>
 										</div>
-
+										<div class="row">
+											<div class="col-md-12">
+												<h5>위치 확인</h5>
+													<c:import url="/WEB-INF/views/include/map.jsp"></c:import>
+											</div>
+										</div>
 										<c:set var="reviewNum" value="${travelInfoFood.trvSeq}" />
 										<div class='col-md-12'>	
 											<div class='review-header'>
 											<h3>
 												<b>후기</b>
-
 											</h3>
 											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
 												data-toggle="buttons">
@@ -236,7 +240,7 @@
 									<div class="modal-body" id="${status.index }">
 										<c:if test="${!empty authUser }">
 											<a href="javascript:;"><img
-												id="scrapTrvInfo-${travelInfoFoodMain.trvSeq}" src="--"
+												id="scrapTrvInfo-${travelInfoFoodMain.trvSeq}" src=""
 												style="float: right;"
 												data-trvSeq="${travelInfoFoodMain.trvSeq}"
 												onclick="validate(${travelInfoFoodMain.trvSeq})" /></a>
@@ -251,7 +255,9 @@
 												src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
 												alt="">
 										</div>
-										<div id="map-${travelInfoFoodMain.trvSeq}" class="col-md-12 googlemap"></div>
+										<!--  구글 맵 넣기   -->
+										<div id="map-food" class="col-md-12 googlemap"></div>
+										
 										<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
 										<div class='col-md-12'>
 											<div class='review-header'>
@@ -291,11 +297,10 @@
 								</div>
 							</div>
 						</div>
-						<!-- Modal end -->
+						
 					</div>
 				</c:forEach>
 			</c:if>
-
 
 			<c:if test="${!empty travelInfoAttraction }">
 				<c:forEach var="travelInfoAttraction"
@@ -330,10 +335,10 @@
 									<div class="modal-body">
 										<c:if test="${!empty authUser }">
 											<a href="javascript:;"><img
-												id="scrapTrvInfo-${travelInfoAttraction.trvSeq}" src="--"
+												id="scrapTrvInfo-${travelInfoAttraction.trvSeq}" src=""
 												style="float: right;"
 												data-trvSeq="${travelInfoAttraction.trvSeq}"
-												onclick="validate(${travelInfoAttraction.trvSeq})" /></a>
+												onclick="validate(${travelInfoAttraction.trvSeq})"></a>
 										</c:if>
 
 										<h3>${travelInfoAttraction.name}</h3>
@@ -421,7 +426,7 @@
 										<c:if test="${!empty authUser }">
 											<a href="javascript:;"><img
 												id="scrapTrvInfo-${travelInfoAttractionMain.trvSeq}"
-												src="--" style="float: right;"
+												src="" style="float: right;"
 												data-trvSeq="${travelInfoAttractionMain.trvSeq}"
 												onclick="validate(${travelInfoAttractionMain.trvSeq})" /></a>
 										</c:if>
@@ -511,7 +516,7 @@
 									<div class="modal-body">
 										<c:if test="${!empty authUser }">
 											<a href="javascript:;"><img
-												id="scrapTrvInfo-${travelInfoActivity.trvSeq}" src="--"
+												id="scrapTrvInfo-${travelInfoActivity.trvSeq}" src=""
 												style="float: right;"
 												data-trvSeq="${travelInfoActivity.trvSeq}"
 												onclick="validate(${travelInfoActivity.trvSeq})" /></a>

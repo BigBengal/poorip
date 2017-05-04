@@ -20,6 +20,7 @@ import com.poorip.service.ScrapService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
+import com.poorip.vo.TravelInfoVo;
 import com.poorip.vo.UserVo;
 import com.poorip.web.util.WebUtil;
 
@@ -150,6 +151,17 @@ public class ScrapController {
 		ScrapCityVo travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
 		
 		return JSONResult.success(travelDuration);
+	}
+	
+	@RequestMapping("/map")	
+	public String map(Model model) {
+//		TravelInfoVo travelInfoVo = new TravelInfoVo();
+//		String key = "AIzaSyCgCFe9BgFDA2zVfQdTeLPIDqLiXvBNUhs";
+//		String mapURL = key;
+//		travelInfoVo.setMapURL(mapURL);
+//		model.addAttribute( "mapURL", travelInfoVo);
+//		
+		return "";
 	}
 	
 
