@@ -161,7 +161,8 @@
 										<div class="row">
 											<div class="col-md-12">
 												<h5>위치 확인</h5>
-													<c:import url="/WEB-INF/views/include/map.jsp"></c:import>
+													<!--  구글 맵 넣기   -->
+													<div id="map-project-2${status.index}" class="col-md-12 googlemap" data-url="${travelInfoFood.mapURL}"></div>
 											</div>
 										</div>
 										<c:set var="reviewNum" value="${travelInfoFood.trvSeq}" />
@@ -255,8 +256,13 @@
 												src="${pageContext.request.contextPath }/assets/images/pool-party2.jpg"
 												alt="">
 										</div>
-										<!--  구글 맵 넣기   -->
-										<div id="map-food" class="col-md-12 googlemap"></div>
+										<div class="row">
+											<div class="col-md-12">
+												<h5>위치 확인</h5>
+													<!--  구글 맵 넣기   -->
+													<div id="map-project-3${status.index}" class="col-md-12 googlemap" data-url="${travelInfoFoodMain.mapURL}"></div>
+											</div>
+										</div>
 										
 										<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
 										<div class='col-md-12'>
@@ -349,6 +355,13 @@
 											<div class="col-md-6">
 												<img src="assets/images/portfolio-12.jpg" alt="">
 											</div>
+											<div class="row">
+												<div class="col-md-12">
+												<h5>위치 확인</h5>
+													<!--  구글 맵 넣기   -->
+													<div id="map-project-4${status.index}" class="col-md-12 googlemap" data-url="${travelInfoAttraction.mapURL}"></div>
+												</div>
+											</div>
 											<c:set var="reviewNum" value="${travelInfoAttraction.trvSeq}" />
 											<div class='col-md-6'>
 												<div class='review-header'>
@@ -438,6 +451,15 @@
 											<div class="col-md-6">
 												<img src="assets/images/portfolio-12.jpg" alt="">
 											</div>
+											
+											<div class="row">
+												<div class="col-md-12">
+												<h5>위치 확인</h5>
+													<!--  구글 맵 넣기   -->
+													<div id="map-project-5${status.index}" class="col-md-12 googlemap" data-url="${travelInfoAttractionMain.mapURL}"></div>
+												</div>
+											</div>
+											
 											<c:set var="reviewNum"
 												value="${travelInfoAttractionMain.trvSeq}" />
 											<div class='col-md-6'>
@@ -529,6 +551,15 @@
 											<div class="col-md-6">
 												<img src="${travelInfoActivity.picture}" alt="">
 											</div>
+											
+											<div class="row">
+												<div class="col-md-12">
+												<h5>위치 확인</h5>
+													<!--  구글 맵 넣기   -->
+													<div id="map-project-6${status.index}" class="col-md-12 googlemap" data-url="${travelInfoActivity.mapURL}"></div>
+												</div>
+											</div>
+											
 											<c:set var="reviewNum" value="${travelInfoActivity.trvSeq}" />
 											<div class='col-md-6'>
 												<div class='review-header'>
@@ -618,6 +649,15 @@
 											<div class="col-md-6">
 												<img src="assets/images/portfolio-10.jpg" alt="">
 											</div>
+											
+											<div class="row">
+												<div class="col-md-12">
+												<h5>위치 확인</h5>
+													<!--  구글 맵 넣기   -->
+													<div id="map-project-7${status.index}" class="col-md-12 googlemap" data-url="${travelInfoActivityMain.mapURL}"></div>
+												</div>
+											</div>
+											
 											<c:set var="reviewNum"
 												value="${travelInfoActivityMain.trvSeq}" />
 											<div class='col-md-6'>

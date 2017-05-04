@@ -104,7 +104,7 @@ function send(trvSeq, reviewNum){
 			        success : function(result) {
 			        	$( result.data ).each( function(index, vo){
 			        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
-			        		console.log(likePostIcon);
+// 			        		console.log(likePostIcon);
 			        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
 			        	});
 			         
