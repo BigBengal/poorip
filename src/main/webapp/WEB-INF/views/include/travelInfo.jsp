@@ -256,7 +256,7 @@
 												alt="">
 										</div>
 										<!--  구글 맵 넣기   -->
-										<button class="btn launch-map" data-trvseq="${travelInfoFoodMain.trvSeq}">Launch Map</button>
+										<div id="map-food" class="col-md-12 googlemap"></div>
 										
 										<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
 										<div class='col-md-12'>
@@ -301,16 +301,6 @@
 					</div>
 				</c:forEach>
 			</c:if>
-<!-- Modal end -->
-						<div id="modal-google" class="modal hide fade">
-						    <div class="modal-body">
-						        <div id="map-food" class="col-md-12 googlemap"></div>
-						    </div>
-						    <div class="modal-footer">
-						        <button type="button" data-dismiss="modal" class="btn btn-primary" data-value="1">Continue</button>
-						        <button type="button" data-dismiss="modal" class="btn" data-value="0">Cancel</button>
-						    </div>
-						</div>
 
 			<c:if test="${!empty travelInfoAttraction }">
 				<c:forEach var="travelInfoAttraction"

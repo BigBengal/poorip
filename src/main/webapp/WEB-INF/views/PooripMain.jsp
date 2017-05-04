@@ -127,18 +127,14 @@
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 	<!-- Jquery and Bootstap core js files -->
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
-		
-<!-- jQuery library -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+			<!-- date picker -->
+<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- <!-- Latest compiled JavaScript --> -->
-<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
 
 	<!-- Modernizr javascript -->
 	<script type="text/javascript"
@@ -165,9 +161,6 @@
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
-	<!-- date picker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
@@ -199,7 +192,14 @@
 				}
 
 				return date;
-			}		
+			}
+			
+			$('#project-31').on('show.bs.modal', function () {
+				  // do something…
+				  console.log("aaa");
+				  showtMap(1);
+				})
+				
 		});
 		function initMap() {
 			console.log("intiMap()");
@@ -223,7 +223,8 @@
 		      }
 		function showtMap(seq) {
 		    var myLatlng = new google.maps.LatLng(48.858450, 2.294494);
-		    var mapId = "map-"+seq;
+		    var mapId = "map-food";
+		    //+seq;
 		    var mapOptions = {
 		      zoom: 15,
 		      center: myLatlng
@@ -239,25 +240,22 @@
 		    marker.setMap(map);
 		}
 
-		$('.launch-map').on('click', function () {
+// 		$('.launch-map').on('click', function () {
 		    
-			var trvSeq = "#modal-google-"+$(this).data("trvseq");
-			 console.log("trvSeq:"+trvSeq);
-//		 	showtMap(trvSeq); 
+// 			var trvSeq = "#modal-google-"+$(this).data("trvseq");
+// 			 console.log("trvSeq:"+trvSeq);
+// //		 	showtMap(trvSeq); 
 			
-			$('#modal-google').modal('show');	
-			
-			
-// 		    $("#modal-google").modal({
-// 		        backdrop: 'static',
-// 		        keyboard: false
-// 		    });
-//		     .on('shown.bs.modal', function () {
-//		         google.maps.event.trigger(map, 'resize');
-//		         map.setCenter(center);
-//		     });
+// 		    $('#modal-google').modal({
+// 		    	 console.log("OK1");
+// 		    })
+// 		     .on('shown.bs.modal', function () {
+// 		    	 console.log("OK2");
+// // 		         google.maps.event.trigger(map, 'resize');
+// // 		         map.setCenter(center);
+// 		     });
 		    
-		});
+// 		});
 
 	</script>
 
