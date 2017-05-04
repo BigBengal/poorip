@@ -10,6 +10,8 @@
 			<form class="form-horizontal" id="sns-edit-ajax"
 				action="${pageContext.request.contextPath}/sns/editPost"
 				method="post" enctype="multipart/form-data">
+
+				<!-- 글쓰기 버튼 까꿍 이벤트-->
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 				<input class="ignore" id="postSeq" type="hidden" name="postSeq" value=""> 
 				<input class="ignore" id="postPicSeqArray" type="hidden" name="postPicSeqArray" value=""> 
@@ -83,16 +85,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<select multiple="multiple" id="my-select" name="my-select[]">
-							<option value='elem_1'>elem 1</option>
-							<option value='elem_2'>elem 2</option>
-							<option value='elem_3'>elem 3</option>
-							<option value='elem_4'>elem 4</option>
-
-							<option value='elem_100'>elem 100</option>
-						</select>
-					</div>
+			
 					<div class="form-group-button">
 						<div class="col-md-12" style="padding-left: 40%">
 							<button type="submit"
@@ -174,46 +167,34 @@
 								풀 공유 여부 : </label>
 							<div class='col-sm-7 text-center'>
 								<label for="hidden">공유</label> <input type="radio" id="hidden"
-									name="hidden" value="Y" checked data-toggle="toggle">
+									name="hidden" value="Y" checked data-toggle="toggle" onclick="showShare();">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
 									for="hidden">공유안함</label> <input type="radio" id="hidden"
 									name="hidden" value="N" data-toggle="toggle">
 							</div>
 						</div>
 					</div>
-					
-					<div class="ms-container" id="ms-pre-selected-options" style="margin:auto;">
-						<div class="ms-selectable">
-							<ul class="ms-list" tabindex="-1">
-								<li  class="ms-elem-selectable " 
-									id="-1300566143-selectable"><span>elem
-										1</span></li>
-								<li class="ms-elem-selectable" id="-1300566142-selectable"><span>elem
-										2</span></li>
-								<li class="ms-elem-selectable" id="-1300566141-selectable"><span>elem
-										3</span></li>
-								<li  class="ms-elem-selectable"
-									id="-1300566140-selectable"><span>elem
-										4</span></li>
-								<li class="ms-elem-selectable" id="-8578751-selectable"><span>elem
-										100</span></li>
-							</ul>
-						</div>
-						<div class="ms-selection">
-							<ul class="ms-list" tabindex="-1">
-								<li class="ms-elem-selection"
-									id="-1300566143-selection" style="display: none;"><span>elem 1</span></li>
-								<li class="ms-elem-selection" id="-1300566142-selection"
-									style="display: none;"><span>elem 2</span></li>
-								<li class="ms-elem-selection" id="-1300566141-selection"
-									style="display: none;"><span>elem 3</span></li>
-								<li  class="ms-elem-selection"
-									id="-1300566140-selection" style="display: none;"><span>elem 4</span></li>
-								<li class="ms-elem-selection" id="-8578751-selection"
-									style="display: none;"><span>elem 100</span></li>
-							</ul>
+					<div class="form-group">
+						<div class="row">
+						    <div class="col-xs-5">
+						        <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
+						        	<c:forEach items="${poolpartyList }" var="poolpartyList" varStatus="status">
+						        		<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
+						        	</c:forEach>
+						        </select>
+						    </div>
+						    <div class="col-xs-2">
+						        <button type="button" id="js_right_All_1" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+						        <button type="button" id="js_right_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+						        <button type="button" id="js_left_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+						        <button type="button" id="js_left_All_1" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+						    </div>
+						    <div class="col-xs-5">
+						        <select name="to[]" id="js_multiselect_to_1" class="form-control" size="8" multiple="multiple"></select>
+						    </div>
 						</div>
 					</div>
+					
 					<div class="form-group-button">
 						<div class="col-md-12" style="padding-left: 40%">
 							<button type="submit"

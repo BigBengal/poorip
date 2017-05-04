@@ -16,6 +16,7 @@
 <!-- Mobile Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Web Fonts -->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext'
@@ -103,8 +104,14 @@
 	
 	<!-- footer end -->
 
+	<!-- jquery ui -->
+		
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
+	<script src="${pageContext.request.contextPath }/assets/js/javascript-options.spec.js"></script>
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
@@ -146,8 +153,10 @@
 	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
 
 	<!-- multiselect -->
-	<script src="${pageContext.request.contextPath }/assets/js/jquery.multi-select.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath }/assets/js/jquery.multi-select.js"></script>	 --%>
 	
+	<script src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
 	
 	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display:none">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>이 글을 정말로 삭제하시겠습니까?</p>

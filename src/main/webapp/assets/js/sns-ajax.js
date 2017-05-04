@@ -183,6 +183,7 @@ $(function() {
 
 
 var writeVisible = false;
+var shareVisible = false;
 
 function postDelete(postSeq){
 	
@@ -232,6 +233,16 @@ function showWrite(){
 		writeVisible = true;
 	}
 	
+}
+
+function showShare() {
+	if( shareVisible == true ){
+		$("#sns-share").hide();
+		shareVisible = false;
+	} else {
+		$("#sns-share").show();
+		writeVisible = true;
+	}
 }
 
 function showPostEdit(contents, title, trvSeq, postSeq, postPicSeqArray) {
@@ -316,8 +327,6 @@ window.onclick = function(event) {
 		}
 	}
 };
-
-;
 
 
 
