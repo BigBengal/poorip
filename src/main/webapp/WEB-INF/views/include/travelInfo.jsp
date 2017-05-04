@@ -549,7 +549,7 @@
 												<p>${travelInfoActivity.contents}</p>
 											</div>
 											<div class="col-md-6">
-												<img src="${travelInfoActivity.picture}" alt="">
+												<img src="/poorip/${travelInfoActivity.picture}" alt="">
 											</div>
 											
 											<div class="row">
@@ -636,7 +636,7 @@
 									<div class="modal-body">
 										<c:if test="${!empty authUser }">
 											<a href="javascript:;"><img
-												id="scrapTrvInfo-${travelInfoActivityMain.trvSeq}" src=""
+												id="scrapTrvInfo-${travelInfoActivityMain.trvSeq}" src="-"
 												style="float: right;"
 												data-trvSeq="${travelInfoActivityMain.trvSeq}"
 												onclick="validate(${travelInfoActivityMain.trvSeq})" /></a>
