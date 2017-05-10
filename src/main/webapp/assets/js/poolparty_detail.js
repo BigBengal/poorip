@@ -3,6 +3,10 @@
  */
 var writeVisible = false;	//글쓰기 버튼
 var poolikeyn = false; 		//풀파티 좋아요 버튼 flag
+var delta = 300;			// 리스트 부르기 시간 텀
+var timer = null;			// 타이머 변수
+var page = 1;
+var isEnd = false;
 
 $(document).ready(function(){
 	
@@ -163,19 +167,161 @@ $(document).ready(function(){
         changeYear: true,
     });
 	
-		
+	// 풀파티 좋아요 버튼
 	$("#poollike").click(function(){
 		likeToggle(poolikeyn);
 	});
 		
+	// 글 수정 버튼
+	$(document).on("click",".modify",function() {
+		var postSeq = $(this).data("postseq");
+		console.log(postSeq);
+	});
+
+	// 글 삭제 버튼
+	$(document).on("click",".delete",function() {
+		var postSeq = $(this).data("postseq");
+		console.log(postSeq);
+		$( "#dialog-confirm_delete" ).dialog({
+		    resizable: false,
+		    height: "auto",
+		    width: 400,
+		    modal: true,
+		    buttons: {
+		      "Confirm": function() {
+		        console.log(poolMemSeq + ',' + poolPartySeq + ',' + usrSeq)
+		     	// Ajax 통신
+				$.ajax( {
+				    url : "${pageContext.request.contextPath }/poolparty/delete/"+postSeq,
+				    type: "post",
+				    dataType: "json",
+				    data: "poolpartySeq="+poolPartySeq+"&usrSeq="+usrSeq,
+				//  contentType: "application/json",
+				    success: function( response ){
+				    	console.log	( response );
+				       if( response.result == "failed") {
+				    	   console.log( response );
+				    	   return;
+				       }
+				    	//통신 성공 (response.result == "success" )
+						console.log( "APPROVE" + response.data );
+				    	$( "#request-"+poolMemSeq ).hide();
+				    	
+				    },
+				    error: function( XHR, status, error ){
+				       console.error( status + " : " + error );
+				    }
+
+				   });
+		        $( this ).dialog( "close" );
+		      },
+		      Cancel: function() {
+		        $( this ).dialog( "close" );
+		      }
+		    }
+		  });
+	});
+	
+
+	// 스크롤 Live mapping
+	$( window ).on( 'scroll', function( ) {
+		if ( isEnd == false ){
+			$("#loading").addClass("loading")
+		}
+		
+		var $window = $(this);
+		var scrollTop = $window.scrollTop();
+		var windowHeight = $window.height();
+		var documentHeight = $(document).height();
+		
+		clearTimeout( timer );
+		// 스크롤이 바닥이 되었을 때 
+		if( scrollTop + windowHeight + 10 >= documentHeight ) {
+			timer = setTimeout( showList, delta );
+		}
+	} );
+	
+	
 });
+
+
+function showList(){
+	
+	var poolseq = $("#poolSeq").val();
+	var html = "";
+	if ( isEnd == true ){
+		$("#loading").removeClass("loading")
+		return;
+	}
+	
+	// Ajax 통신
+	$.ajax( {
+	    url : "/poorip/poolparty/"+poolseq+"/view/"+page,
+	    type: "get",
+	    dataType: "json",
+	    data: "",
+	//  contentType: "application/json",
+	    success: function( response ){
+	    	if( response.result != "success" ) {
+	    		console.log( response.message );
+	    		return;
+	    	}
+	    	if( response.data.post.length== 0 ) {
+//	 	    		console.log("FINISH");
+	    		isEnd = true;
+	    		return;
+	    	}
+//	 	    	console.log( response );
+			$( response.data.post ).each( function(index, vo){
+//	 				console.log( index + ":" + vo.post + vo.postPic );
+				html = html + "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4'>" +
+				"<h3>"+vo.title+"</h3>";
+
+				 if(response.data.postPic.length> 0) {
+//					 console.log("exist postPic");
+					 $( response.data.postPic).each( function( index2, picvo) {
+						 if(vo.postSeq == picvo.postSeq){
+							 html = html+"<img src='/poorip"+picvo.path+"/"+picvo.fileName+"'>";
+						 }
+					 });
+					 
+				 }
+				 html = html + "<p>"+vo.contents+"</p>"+
+					"<div class='row margin_up_down'>"+
+					"<div class='col-md-6 img_inline'>"+
+					"	<img src='"+vo.picture+"'> "+vo.name+
+					"</div>"+
+					"<div class='col-md-6'>"+
+					vo.crtDate+
+					"</div>"+
+					"</div>"+
+					"<div class='row margin_up_down underline'>"+
+					"<div class='col-md-3'>"+
+					"	<img alt='수정' src='/poorip/assets/images/post_modify.png' class='menu_links modify' data-postseq='"+vo.postSeq +"' style='max-height: 30px;'>"+
+					"</div>"+
+					"<div class='col-md-3 col-md-offset-6'>"+
+					"	<img alt='삭제' src='/poorip/assets/images/post_delete.png' class='menu_links rightalign delete' data-postseq='"+vo.postSeq +"' style='max-height: 30px;'>"+
+					"</div>"+
+					"</div>"+
+					"</div>";
+				 	$("#postList").append(html);
+			})
+			page++;
+	    },
+	    error: function( XHR, status, error ){
+	       console.error("ERROR");
+	    }
+   });
+//	console.log("page:"+page);
+	$("#loading").removeClass("loading")
+}
 
 function showWrite(){
 	if ( writeVisible == true ) {
-		$("#write").hide();	
+		$("#post-write").hide();	
 		writeVisible = false;
 	} else {
-		$("#write").show();
+		$("#post-write").show();
 		writeVisible = true;
 	}
 	
