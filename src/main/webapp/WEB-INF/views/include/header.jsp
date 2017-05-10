@@ -62,7 +62,7 @@
 							id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="active"><a href="#banner">poOrip</a></li>
-								<li><a href="#portfolio">여행정보</a></li>
+								<li><a href="/poorip/#portfolio">여행정보</a></li>
 								<li><a href="/poorip/poolparty">풀파티</a></li>
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button></a>

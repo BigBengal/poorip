@@ -159,3 +159,7 @@ File Description: Place here your custom CSS styles
 .modal-body .review-header .btn.btn-default {
 	float: right;
 }
+
+.col-sm-6.col-md-3.isotope-item.web-design .overlay-container {
+	height: 175px;
+}

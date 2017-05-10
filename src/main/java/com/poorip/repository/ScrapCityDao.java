@@ -29,7 +29,6 @@ public class ScrapCityDao {
 	}
 	
 	public List<ScrapCityVo> showCity(int usrSeq) {
-
 		return sqlSession.selectList("scrap.showCity", usrSeq);
 	}
 	
@@ -38,6 +37,7 @@ public class ScrapCityDao {
 	}
 	
 	public ScrapCityVo showTravelDuration (int usrSeq) {
+		sqlSession.delete("scrapcity.deletetrvduration", usrSeq);
 		return sqlSession.selectOne("scrapcity.selecttrvlduration", usrSeq);
 	}
 	

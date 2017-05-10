@@ -69,7 +69,7 @@ $(document).ready(function(){
 	for(var i=0;i<2;i++){
 		var $ori = $alink.eq(i);
 		var oriLink = $ori.attr("href")
-		$ori.attr("href","/poorip/"+oriLink);	 
+		$ori.attr("href",oriLink);	 
 	}
 	 var validator = $("form[name='addinfo']").validate({
 		 	ignore: ".ignore",
