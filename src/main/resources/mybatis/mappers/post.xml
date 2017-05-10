@@ -80,9 +80,10 @@
 				from post p, users u, travel_info t
 			  where p.USR_SEQ = u.USR_SEQ
 				and p.trv_Seq = t.trv_Seq
-			  and p.usr_seq = #{usrSeq }
-	order by p.crt_date desc
-		limit #{page}, 3
+				and p.HIDDEN = 'N'
+			  	and p.usr_seq = #{usrSeq }
+			  order by p.crt_date desc
+			  limit #{page}, 3
 		]]>
 	</select>
 	
