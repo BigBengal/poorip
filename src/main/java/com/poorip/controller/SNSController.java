@@ -87,6 +87,7 @@ public class SNSController {
 			snsService.addPostOnly(reviewVo, poolPostSeq );
 			return "redirect:/sns";
 		}
+		System.out.println("번호번호번호"+poolPostSeq.length);
 		snsService.addPost( reviewVo, postUploadFiles,  poolPostSeq );
 		
 		
@@ -99,11 +100,9 @@ public class SNSController {
 	public JSONResult deletePost( @ModelAttribute PostVo postVo ) {
 		boolean result = snsService.deletePost( postVo );
 		if( result ){
-			System.out.println("duaekgnadjkogfj"+postVo.getPostSeq());
 			Integer postSeq = postVo.getPostSeq();
 			return JSONResult.success( postSeq);
 		}else{
-			System.out.println("fail"+postVo.getPostSeq());
 			return JSONResult.fail( "DB error" );
 			
 		}
@@ -124,9 +123,7 @@ public class SNSController {
 		int postSeq = Integer.parseInt(postSeq1);
 		List<MultipartFile> files = new ArrayList<MultipartFile>();
 		Iterator<String> itr = req.getFileNames();
-		
-		System.out.println("POSTPICSEQ" + postPicSeqArray);
-		
+				
 		while(itr.hasNext()) {
 		
 		files = req.getFiles(itr.next());
@@ -150,11 +147,9 @@ public class SNSController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put( "post", edited);
 			
-			System.out.println(edited);
 			return JSONResult.success(map);
 		}
 		
-		System.out.println(postPicSeqArray);
 		ReviewVo reviewVo = new ReviewVo();
 		int trvSeq = Integer.parseInt(trvSeq1);
 		reviewVo.setUsrSeq(userVo.getUsrSeq());
@@ -170,8 +165,7 @@ public class SNSController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put( "post", edited);
 		map.put("postPic", snsService.getpostPicList(postSeq));
-		System.out.println(edited);
-		System.out.println(snsService.getpostPicList(postSeq));
+		
 		return JSONResult.success(map);
 		}
 	}
