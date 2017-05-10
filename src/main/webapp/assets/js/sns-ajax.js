@@ -99,68 +99,69 @@ $("#first-html-"+vo.postSeq).after(last_html);
 } 
 
 var fetchList = function() {
-   if( isEnd == true ) {
-      return;
-   }
-   $(window).data('ajaxready', true).scroll(function(e) {
-       if ($(window).data('ajaxready') == false) {
-          return;
-       };
-       if ($(window).scrollTop() >= ($(document).height() - $(window).height())) {
-           $(window).data('ajaxready', false);
-               $.ajax( {
-               url : "sns/main/" + page,
-               type : "get",
-               dataType: "json",
-               data : "",
-               success: function( response ) {
-                  //console.log(response);
-                  if( response.result != "success" ) {
-                     return 
-                  }
-                  
-                  if( response.data.length == 0 ) {
-                     isEnd = true;
-                     return;
-                  }
-                  var postPicSeq = null;
-                  var postPicSeqArray = [];
-                  ++page;
-                  $( response.data.post ).each( function( index, vo) {
-                     //console.log(index + "  ++++"+ vo.title);    
-                     console.log(1);
-                     post_render( vo );
-                     console.log("datalength" + response.data.postPic[vo.postSeq].length);
-                     if(response.data.postPic[vo.postSeq].length> 0) {
-                     $( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
-                    	 postPicSeqArray.push(vo2.postPicSeq); 
-                    	 postPic_render( vo2, vo );
-                       
-                        console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
-                        	if(index == $( response.data.postPic[vo.postSeq]).length-1) {
-                        		postPicSeq= vo2.postPicSeq;
-                        		console.log(postPicSeq);
-                        	};
-                        
-                     });
-                     };
-                     console.log(postPicSeqArray);
-                     last_render( vo, postPicSeq, postPicSeqArray );
-                     postPicSeqArray = [];
-                  postPicSeq= null;
-                  });
-                  
-                  
-                  $(window).data('ajaxready', true);
-         
-               },
-               error: function( XHR, status, error ) {
-                  console.error( status + " : " + error );
-               }
-               });
+	if( isEnd == true ) {
+		return;
+	}
+	$(window).data('ajaxready', true).scroll(function(e) {
+		if ($(window).data('ajaxready') == false) {
+			return;
+		};
+		if ($(window).scrollTop() >= ($(document).height() - $(window).height())) {
+			$(window).data('ajaxready', false);
+			$.ajax( {
+				url : "sns/main/" + page,
+				type : "get",
+				dataType: "json",
+				data : "",
+				success: function( response ) {
+					//console.log(response);
+					if( response.result != "success" ) {
+						return 
+					}
+
+					if( response.data.length == 0 ) {
+						isEnd = true;
+						return;
+					}
+					var postPicSeq = null;
+					var postPicSeqArray = [];
+					++page;
+					$( response.data.post ).each( function( index, vo) {
+						//console.log(index + "  ++++"+ vo.title);    
+						console.log(1);
+						post_render( vo );
+						console.log("datalength" + response.data.postPic[vo.postSeq].length);
+						if(response.data.postPic[vo.postSeq].length> 0) {
+							$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
+								postPicSeqArray.push(vo2.postPicSeq); 
+								postPic_render( vo2, vo );
+
+								console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
+								if(index == $( response.data.postPic[vo.postSeq]).length-1) {
+									postPicSeq= vo2.postPicSeq;
+									console.log(postPicSeq);
+								};
+
+							});
+						};
+						console.log(postPicSeqArray);
+						last_render( vo, postPicSeq, postPicSeqArray );
+						postPicSeqArray = [];
+						postPicSeq= null;
+					});
+
+
+					$(window).data('ajaxready', true);
+
+				},
+				error: function( XHR, status, error ) {
+					console.error( status + " : " + error );
+				}
+			});
+		};
+	});
 };
-   });
-};
+
 $(function() {
 	
 
@@ -221,50 +222,6 @@ function postDelete(postSeq){
 	});
 
 }
-//
-//function shareShowDialog(poolSeq, postSeq, usrSeq){
-//	
-//	 $( "#dialog-share_form" ).dialog({
-//	    resizable: false,
-//	    height: "auto",
-//	    width: 400,
-//	    modal: true,
-//	    buttons: {
-//	      "share": function() {
-//	    	$( this ).dialog( "close" );
-//	        console.log(poolSeq + ',' + postSeq + ',' + usrSeq)
-//	     // Ajax 통신
-//			$.ajax( {
-//			    url : "${pageContext.request.contextPath }/sns/post/share",
-//			    type: "post",
-//			    dataType: "json",
-//			    data: "poolSeq="+poolSeq+"postSeq="+postSeq+"&usrSeq="+usrSeq,
-//			//  contentType: "application/json",
-//			    success: function( response ){
-//			    	console.log	( response );
-//			       if( response.result == "failed") {
-//			    	   console.log( response );
-//			    	   return;
-//			       }
-//			    	//통신 성공 (response.result == "success" )
-//					console.log( "APPROVE" + response.data );
-//			    	$( "#request-"+poolMemSeq ).hide();
-//			    	
-//			    },
-//			    error: function( XHR, status, error ){
-//			       console.error( status + " : " + error );
-//			    }
-//
-//			   });
-//	        $( this ).dialog( "close" );
-//	      },
-//	      Cancel: function() {
-//	        $( this ).dialog( "close" );
-//	      }
-//	    }
-//	  });
-//}
-
 
 function showWrite(){
 	if ( writeVisible == true ) {
@@ -392,32 +349,32 @@ function postShare(postSeq){
 	      height: "auto",
 	      width: 1000,
 	      modal: true,
-	      buttons: {
-	        "공유": function() {
-	          $( this ).dialog( "close" );
-	          $.ajax( {
-	      		url : "sns/deletePost",
-	      		type: "post",
-	      	    dataType: "json",
-	      	    data: "postSeq="+postSeq,
-	      	    success: function( response ){
-	      	    	if( response.result != "success" ) {
-	      	    		console.log( response.message );
-	      	    		return;
-	      	    	} else {
-	      	    		$("#sns-post-"+response.data).remove();
-	      	    		return;
-	      	    	} 
-	      	    },
-	      	    error: function( XHR, status, error ){
-	      	       console.error("Error" );
-	      	   	}
-	          });
-	        },
-	        "취소": function() {
-	          $( this ).dialog( "close" );
-	        }
-	      }
+//	      buttons: {
+//	        "공유": function() {
+//	          $( this ).dialog( "close" );
+//	          $.ajax( {
+//	      		url : "sns/deletePost",
+//	      		type: "post",
+//	      	    dataType: "json",
+//	      	    data: "postSeq="+postSeq,
+//	      	    success: function( response ){
+//	      	    	if( response.result != "success" ) {
+//	      	    		console.log( response.message );
+//	      	    		return;
+//	      	    	} else {
+//	      	    		$("#sns-post-"+response.data).remove();
+//	      	    		return;
+//	      	    	} 
+//	      	    },
+//	      	    error: function( XHR, status, error ){
+//	      	       console.error("Error" );
+//	      	   	}
+//	          });
+//	        },
+//	        "취소": function() {
+//	          $( this ).dialog( "close" );
+//	        }
+//	      }
 	});
 
 }

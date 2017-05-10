@@ -182,37 +182,38 @@
 	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display:none">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>이 글을 정말로 삭제하시겠습니까?</p>
 </div>
+
+<!-- 공유 창 내용 -->
 <div id="share-sns-post" title="SNS 포스트 공유" style="display:none">
  <p>공유할 풀을 선택해주세요</p>
-<div class="form-group" id="img-div-share-dialog">
 	<form action="${pageContext.request.contextPath}/sns/post/share" id="share-form">
-		<div class="row">
-		    <div class="col-xs-5">
-		        <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
-		        	<c:forEach items="${poolpartyList }" var="poolpartyList" varStatus="status">
-		        		<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
-		        	</c:forEach>
-		        </select>
-		    </div>
-		    <div class="col-xs-2">
-		        <button type="button" id="js_right_All_1" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
-		        <button type="button" id="js_right_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
-		        <button type="button" id="js_left_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-		        <button type="button" id="js_left_All_1" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
-		    </div>
-		    <div class="col-xs-5">
-		        <select name="to[]" id="js_multiselect_to_1" class="form-control" size="8" multiple="multiple"></select>
-		    </div>
+		<div class="form-group">
+			<div class="row">
+			    <div class="col-xs-5">
+			        <select name="from[]_1" class="js-multiselect1 form-control" size="8" multiple="multiple">
+			        	<c:forEach items="${poolpartyList }" var="poolpartyList" varStatus="status">
+			        		<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
+			        	</c:forEach>
+			        </select>
+			    </div>
+			    <div class="col-xs-2">
+			        <button type="button" id="js_right_All_1" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+			        <button type="button" id="js_right_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+			        <button type="button" id="js_left_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+			        <button type="button" id="js_left_All_1" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+			    </div>
+			    <div class="col-xs-5">
+			        <select name="to[]_1" id="js_multiselect_to_2" class="form-control" size="8" multiple="multiple"></select>
+			    </div>
+			</div>
+		</div>
+		<div class="form-group-button">
 		    <div class="col-md-12" style="padding-left: 40%">
 				<button type="submit"
 					class="btn btn-default col-lg-6 center-block">공유하기</button>
-				<button id="btn-close-dialog"
-					class="btn btn-default col-lg-6 center-block">창 닫기</button>
 			</div>
 		</div>
 	</form>
-</div>
- 
 </div>
 </body>
 </html>

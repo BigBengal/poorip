@@ -205,8 +205,6 @@
 				<div class="container">
 					<div id="my-sns-list" class="block" style="padding-top: 100px">
 					</div>
-					<!-- 						<div class="loading"> -->
-					<!-- 						</div> -->
 				</div>
 			</form>
 		</div>
@@ -216,3 +214,4 @@
 
 <!-- <div class="fromDatePick"></div> -->
 <!-- <div class="toDatePick"></div> -->
+
