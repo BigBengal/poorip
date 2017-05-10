@@ -267,13 +267,8 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 					</div>
 					<div class="col-md-6">
 					
-					${myPoolList.poolSeq}
 					${myPoolList.poolName}
-					${myPoolList.fromDate}
-					${myPoolList.toDate}
-					${myPoolList.ctyName}
 					${myPoolList.poolComment}
-					${myPoolList.poolPublicYn}
 					</a>
 					</div>	
 				</div>

@@ -134,7 +134,15 @@
 	</div>
 	<div class="form-group">
 		<label for="control-label" for="public">공개 여부</label>
-		<input type="checkbox" name="poolPublicYn" value="Y" checked data-toggle="toggle" class="btn btn-default btn-xs">
+		<c:choose>
+			<c:when test="${pool.poolPublicYn =='Y'}">
+				<input type="checkbox" name="poolPublicYn" value="Y" checked data-toggle="toggle" class="btn btn-default btn-xs">
+			</c:when>
+			<c:otherwise>
+				<input type="checkbox" name="poolPublicYn" value="Y" data-toggle="toggle" class="btn btn-default btn-xs">
+			</c:otherwise>
+		</c:choose>
+		
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="fromdate"> 여행기간</label>
