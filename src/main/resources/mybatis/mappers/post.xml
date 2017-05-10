@@ -4,10 +4,18 @@
 <mapper namespace="post">
 
 	<insert id="insert" parameterType="reviewvo">
+	    <selectKey keyProperty="postSeq" resultType="integer" order="BEFORE">
+			<![CDATA[
+			select auto_increment
+			  from information_schema.tables
+			 where table_schema='bengal'
+			   and table_name='post'
+			]]>
+		</selectKey>
 		<![CDATA[
 			INSERT 
 			  INTO POST (POST_SEQ,  title, contents,  REVIEW_PUB_YN,  USR_SEQ,  TRV_SEQ)
-			values ( null, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
+			values ( #{postSeq }, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
 		]]>
 	</insert>
 
@@ -189,11 +197,14 @@
 				   title,
 				   contents,
 				   p.usr_seq as usrSeq,
-				   p.crt_date as crtDate
-			 from post p, pool_post pp
+				   p.crt_date as crtDate,
+				   u.USR_NICK as name,
+				   u.USR_PROFILE as picture
+			 from post p, pool_post pp, users u
 			where p.POST_SEQ = pp.POST_SEQ
 			  and pp.POOL_SEQ = #{poolSeq }
-			order by p.crt_date desc
+			  and p.usr_seq = u.usr_seq
+			order by pp.crt_date desc
 			limit #{page}, 5
 		]]>
 	</select>
@@ -240,5 +251,10 @@
 	]]>
 	</select>
 	
+	<select id="getHiddenValue" resultType="string">
+	<![CDATA[
+		select hidden from post where post_Seq = #{postSeq } and usr_Seq = #{usrSeq }
+	]]>
+	</select>
 
 </mapper>

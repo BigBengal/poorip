@@ -243,13 +243,8 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 					<img src="/poorip${myPoolList.poolPic }" class="img100">
 					</div>
 					<div class="col-md-6">
-					${myPoolList.poolSeq}
-					${myPoolList.poolName}
-					${myPoolList.fromDate}
-					${myPoolList.toDate}
-					${myPoolList.ctyName}
+					${myPoolList.poolName}<br>
 					${myPoolList.poolComment}
-					${myPoolList.poolPublicYn}
 					</a>
 					</div>
 					
