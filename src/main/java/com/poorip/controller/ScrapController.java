@@ -20,9 +20,7 @@ import com.poorip.service.ScrapService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
-import com.poorip.vo.TravelInfoVo;
 import com.poorip.vo.UserVo;
-import com.poorip.web.util.WebUtil;
 
 @Controller
 @RequestMapping("/scrap")
