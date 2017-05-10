@@ -25,7 +25,6 @@ import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
-import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
@@ -77,8 +76,7 @@ public class SNSController {
 	public String mySNSadd( @AuthUser UserVo userVo,
 							@ModelAttribute ReviewVo reviewVo,
 							@RequestParam ("to[]") int[] poolPostSeq,
-							MultipartHttpServletRequest request,
-							Model model ) throws IOException {
+							MultipartHttpServletRequest request) throws IOException {
 		
 		reviewVo.setUsrSeq( userVo.getUsrSeq() );
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
@@ -89,8 +87,24 @@ public class SNSController {
 		}
 		snsService.addPost( reviewVo, postUploadFiles,  poolPostSeq );
 		
-		
 		return "redirect:/sns";
+	}
+	
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/post/share")
+	public JSONResult postShare(@AuthUser UserVo userVo,
+								@RequestParam("postSeq") int postSeq,
+								@RequestParam("to[]") int[] poolPostSeq) {
+		String getHidden = snsService.getHidden(userVo.getUsrSeq(), postSeq);
+		
+		if ( getHidden == "Y" ) {
+			snsService.addPoolPost(poolPostSeq, postSeq);
+			return JSONResult.success("성공");
+		} else {
+			return JSONResult.fail( "공유 설정이 되어있지 않습니다. 수정에서 설정 해 주세요" );
+		}
 	}
 	
 	@Auth
@@ -99,11 +113,9 @@ public class SNSController {
 	public JSONResult deletePost( @ModelAttribute PostVo postVo ) {
 		boolean result = snsService.deletePost( postVo );
 		if( result ){
-			System.out.println("duaekgnadjkogfj"+postVo.getPostSeq());
 			Integer postSeq = postVo.getPostSeq();
 			return JSONResult.success( postSeq);
 		}else{
-			System.out.println("fail"+postVo.getPostSeq());
 			return JSONResult.fail( "DB error" );
 			
 		}
@@ -124,9 +136,7 @@ public class SNSController {
 		int postSeq = Integer.parseInt(postSeq1);
 		List<MultipartFile> files = new ArrayList<MultipartFile>();
 		Iterator<String> itr = req.getFileNames();
-		
-		System.out.println("POSTPICSEQ" + postPicSeqArray);
-		
+				
 		while(itr.hasNext()) {
 		
 		files = req.getFiles(itr.next());
@@ -150,11 +160,9 @@ public class SNSController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put( "post", edited);
 			
-			System.out.println(edited);
 			return JSONResult.success(map);
 		}
 		
-		System.out.println(postPicSeqArray);
 		ReviewVo reviewVo = new ReviewVo();
 		int trvSeq = Integer.parseInt(trvSeq1);
 		reviewVo.setUsrSeq(userVo.getUsrSeq());
@@ -170,10 +178,10 @@ public class SNSController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put( "post", edited);
 		map.put("postPic", snsService.getpostPicList(postSeq));
-		System.out.println(edited);
-		System.out.println(snsService.getpostPicList(postSeq));
+		
 		return JSONResult.success(map);
 		}
+	
 	}
 	
 

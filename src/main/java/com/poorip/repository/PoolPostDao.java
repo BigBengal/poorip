@@ -13,12 +13,14 @@ public class PoolPostDao {
 	private SqlSession sqlSession;
 	
 	public boolean write(PoolPostVo poolpostvo){
+		System.out.println("공유다오다오"+poolpostvo);
 		return 1 == sqlSession.insert("poolpost.insert", poolpostvo);
 	}
 	
 	public boolean delete(PoolPostVo poolpostvo){
 		return 1 == sqlSession.delete("poolpost.delete",poolpostvo);
 	}
+	
 	public PoolPostVo select(int seq){
 		return sqlSession.selectOne("poolpost.selectbyno", seq);
 	}

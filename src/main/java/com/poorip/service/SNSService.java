@@ -82,21 +82,24 @@ public class SNSService {
 	}
 	
 	public boolean addPostOnly(ReviewVo reviewVo, int[] poolPostSeq) {
-		boolean addPoolPostReturn = snsDao.addPostOnly(reviewVo);
-		return addPoolPostReturn && addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+		boolean addOnlyPostReturn = snsDao.addPostOnly(reviewVo);
+		boolean addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+		return addOnlyPostReturn && addPoolPostReturn;
 	}
 	
 	public boolean addPoolPost( int[] poolPostSeq, int postSeq ) {
+		boolean count = true;
 		PoolPostVo poolPostVo = new PoolPostVo();
 		for(int i=0; i<poolPostSeq.length; i++) {
 			int poolSeq = poolPostSeq[i];
 			poolPostVo.setPoolSeq(poolSeq);
 			poolPostVo.setPostSeq(postSeq);
+			count = poolPostDao.write(poolPostVo);
 		}
-		return poolPostDao.write(poolPostVo);
+		return count;
 	}
 	
-public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, List<Integer> postPicSeqArray) throws FileNotFoundException, IOException {
+	public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, List<Integer> postPicSeqArray) throws FileNotFoundException, IOException {
 		boolean postReturn = snsDao.updatePost( reviewVo );
 		boolean postPicReturn = true;
 		
@@ -179,6 +182,10 @@ public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles,
 
 	public boolean deletePost(PostVo postVo) {
 		return snsDao.deletePost( postVo );
+	}
+
+	public String getHidden(int usrSeq, int postSeq) {
+		return snsDao.getHidden( usrSeq, postSeq);
 	}
 	
 	
