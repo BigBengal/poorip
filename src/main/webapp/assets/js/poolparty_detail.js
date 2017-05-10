@@ -189,13 +189,12 @@ $(document).ready(function(){
 		    modal: true,
 		    buttons: {
 		      "Confirm": function() {
-		        console.log(poolMemSeq + ',' + poolPartySeq + ',' + usrSeq)
-		     	// Ajax 통신
+		        // Ajax 통신
 				$.ajax( {
-				    url : "${pageContext.request.contextPath }/poolparty/delete/"+postSeq,
+				    url : "/poorip/poolparty/delete/"+postSeq,
 				    type: "post",
 				    dataType: "json",
-				    data: "poolpartySeq="+poolPartySeq+"&usrSeq="+usrSeq,
+//				    data: ,
 				//  contentType: "application/json",
 				    success: function( response ){
 				    	console.log	( response );
@@ -205,11 +204,11 @@ $(document).ready(function(){
 				       }
 				    	//통신 성공 (response.result == "success" )
 						console.log( "APPROVE" + response.data );
-				    	$( "#request-"+poolMemSeq ).hide();
+				    	$( "#post-"+postSeq ).remove();
 				    	
 				    },
 				    error: function( XHR, status, error ){
-				       console.error( status + " : " + error );
+				       console.error("ERROR");
 				    }
 
 				   });

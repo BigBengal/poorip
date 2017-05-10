@@ -28,4 +28,8 @@ public class PoolLikeDao {
 		return sqlSession.selectOne("poollike.selectlike", poolLikeVo );
 	}
 	
+	public boolean deleteByPostSeq( int postSeq ) {
+		return 1 <= sqlSession.delete( "poollike.deletebypostseq", postSeq );
+	}
+	
 }

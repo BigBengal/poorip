@@ -62,8 +62,14 @@
 			  from POST_PIC
 			 where POST_PIC_SEQ = #{postPicSeq }
 		]]>
-		
+	</delete>
 	
+	<delete id="deletebypostseq" parameterType="integer">
+		<![CDATA[
+			delete 
+			  from POST_PIC
+			 where POST_SEQ = #{postSeq }
+		]]>
 	</delete>
 	
 	<select id="selectreviewpic" resultType="reviewvo" parameterType="integer">

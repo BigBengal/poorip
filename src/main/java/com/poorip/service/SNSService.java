@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.poorip.repository.PoolLikeDao;
 import com.poorip.repository.PoolPostDao;
+import com.poorip.repository.PostPicDao;
 import com.poorip.repository.SNSDao;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PoolPostVo;
@@ -32,6 +34,12 @@ public class SNSService {
 	@Autowired
 	private PoolPostDao poolPostDao;
 	
+	@Autowired
+	private PostPicDao postPicDao;
+	
+	@Autowired
+	private PoolLikeDao poolLikeDao;
+
 	
 	public List<TravelInfoVo> getTravelInfo() {
 		return snsDao.getTravelInfo();
@@ -181,7 +189,13 @@ public class SNSService {
 	}
 
 	public boolean deletePost(PostVo postVo) {
-		return snsDao.deletePost( postVo );
+		int postSeq = postVo.getPostSeq();
+		boolean delPost = snsDao.deletePost( postVo );
+		boolean delPostPic = postPicDao.deleteByPostSeq(postSeq);
+		boolean delPostLike = snsDao.deletePostLikeByPostSeq(postSeq);
+		boolean delPoolPost = poolPostDao.deleteByPostSeq(postSeq);
+		
+		return delPost || delPostPic || delPostLike || delPoolPost;
 	}
 
 	public String getHidden(int usrSeq, int postSeq) {

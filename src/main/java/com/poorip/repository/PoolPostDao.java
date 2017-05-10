@@ -24,4 +24,11 @@ public class PoolPostDao {
 	public PoolPostVo select(int seq){
 		return sqlSession.selectOne("poolpost.selectbyno", seq);
 	}
+	
+	public boolean deleteByPostSeq(int postSeq){
+		return 1 == sqlSession.delete("poolpost.deletebypostseq",postSeq);
+	}
+	
+	
+	
 }

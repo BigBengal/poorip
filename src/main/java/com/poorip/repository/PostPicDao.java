@@ -23,4 +23,10 @@ public class PostPicDao {
 	public PostPicVo select(int seq) {
 		return sqlSession.selectOne("postpic.selectbyno", seq);
 	}
+	
+	public boolean deleteByPostSeq(int postSeq){
+		return 1 <= sqlSession.delete("postpic.deletebypostseq", postSeq);
+	}
+	
+	
 }

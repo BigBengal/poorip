@@ -28,8 +28,14 @@
 			  from pool_post
 			 where pp_seq = #{ppSeq }
 		]]>
-		
+	</delete>
 	
+	<delete id="deletebypostseq" parameterType="integer">
+		<![CDATA[
+			delete 
+			  from pool_post
+			 where post_seq = #{integer }
+		]]>
 	</delete>
 	
 </mapper>

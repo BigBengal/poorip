@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.poorip.dto.JSONResult;
+import com.poorip.repository.PoolPostDao;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.AdminService;
@@ -58,9 +59,13 @@ public class PoolPartyController {
 	@Autowired
 	private AdminService adminService;
 
+	// 초대시 이름으로 SEQ 가져오기
 	@Autowired
 	private UserService userService;
 	
+	// 포스팅 삭제
+	@Autowired
+	private PoolPostDao poolPostDao;
 	
 	// 풀파티 메인 URL
 	@RequestMapping(value={""})
@@ -337,10 +342,8 @@ public class PoolPartyController {
 	public JSONResult getListbyPage(@PathVariable("postSeq") int postSeq){
 		PostVo postVo = new PostVo();
 		postVo.setPostSeq(postSeq);
-		SNSService.deletePost(postVo);
-//		SNSService.d(postVo);
-		
-		return JSONResult.success("Success");
+
+		return JSONResult.success(poolPostDao.deleteByPostSeq(postSeq));
 	}
 	
 }

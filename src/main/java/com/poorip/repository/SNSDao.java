@@ -117,6 +117,11 @@ public class SNSDao {
 		return count==1;
 	}
 	
+	public boolean deletePostLikeByPostSeq(int postSeq) {
+		return 1 <= sqlSession.delete( "postlike.deletebypostseq", postSeq);
+	}
+	
+	
 	public PostVo showEditedPost(ReviewVo reviewVo) {
 		return sqlSession.selectOne("post.getEditedPostList", reviewVo);
 	}
