@@ -69,7 +69,7 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
                "</div>" +
                "<div class='form-group' style='display:block; text-align:center; width:100%; margin-bottom:20%'>" +
                   "<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 5%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-                     "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' style='width: 5%; display:inline-block;'></a>" +
+                     "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;'></a>" +
                      "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 5%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")' class='sns-post-edit'><a/>" + 
                   "</div></div>";
 
@@ -89,7 +89,7 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
 		"</div>" +
 		"<div class='form-group' style='text-align:center; display:block; width:100%; margin-bottom:20%'>" +
 				"<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 5%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-				 "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' style='width: 5%; display:inline-block;' ></a>" +
+				 "<a href=javascript:;><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;' ></a>" +
 				 "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 5%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'  class='sns-post-edit'></a>" + 
 		"</div>" ;
 
@@ -219,9 +219,52 @@ function postDelete(postSeq){
 	        }
 	      }
 	});
-	
-	
+
 }
+//
+//function shareShowDialog(poolSeq, postSeq, usrSeq){
+//	
+//	 $( "#dialog-share_form" ).dialog({
+//	    resizable: false,
+//	    height: "auto",
+//	    width: 400,
+//	    modal: true,
+//	    buttons: {
+//	      "share": function() {
+//	    	$( this ).dialog( "close" );
+//	        console.log(poolSeq + ',' + postSeq + ',' + usrSeq)
+//	     // Ajax 통신
+//			$.ajax( {
+//			    url : "${pageContext.request.contextPath }/sns/post/share",
+//			    type: "post",
+//			    dataType: "json",
+//			    data: "poolSeq="+poolSeq+"postSeq="+postSeq+"&usrSeq="+usrSeq,
+//			//  contentType: "application/json",
+//			    success: function( response ){
+//			    	console.log	( response );
+//			       if( response.result == "failed") {
+//			    	   console.log( response );
+//			    	   return;
+//			       }
+//			    	//통신 성공 (response.result == "success" )
+//					console.log( "APPROVE" + response.data );
+//			    	$( "#request-"+poolMemSeq ).hide();
+//			    	
+//			    },
+//			    error: function( XHR, status, error ){
+//			       console.error( status + " : " + error );
+//			    }
+//
+//			   });
+//	        $( this ).dialog( "close" );
+//	      },
+//	      Cancel: function() {
+//	        $( this ).dialog( "close" );
+//	      }
+//	    }
+//	  });
+//}
+
 
 function showWrite(){
 	if ( writeVisible == true ) {
@@ -327,6 +370,20 @@ window.onclick = function(event) {
 		}
 	}
 };
+
+function div_share_show(s,h) {
+	if(s == "Y") {
+		document.getElementById(h).style.display = "";
+	} else {
+		document.getElementById(h).style.display = "none";
+	}
+}
+
+$(function(){
+	$("#share-dialog,#dialog-background,#btn-close-dialog").click(function () {
+		$("#img-div-share-dialog,#dialog-background").show();
+	});
+})
 
 
 

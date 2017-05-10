@@ -53,7 +53,6 @@ public class SNSService {
 	public boolean addPost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, int[] poolPostSeq) throws IOException {
 		
 		boolean postReturn = snsDao.addPost( reviewVo );
-		System.out.println(poolPostSeq);
 		boolean addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
 		
 		boolean postPicReturn = true;
@@ -83,8 +82,9 @@ public class SNSService {
 	}
 	
 	public boolean addPostOnly(ReviewVo reviewVo, int[] poolPostSeq) {
-		boolean addPoolPostReturn = snsDao.addPostOnly(reviewVo);
-		return addPoolPostReturn && addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+		boolean addOnlyPostReturn = snsDao.addPostOnly(reviewVo);
+		boolean addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+		return addOnlyPostReturn && addPoolPostReturn;
 	}
 	
 	public boolean addPoolPost( int[] poolPostSeq, int postSeq ) {
@@ -99,7 +99,7 @@ public class SNSService {
 		return count;
 	}
 	
-public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, List<Integer> postPicSeqArray) throws FileNotFoundException, IOException {
+	public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, List<Integer> postPicSeqArray) throws FileNotFoundException, IOException {
 		boolean postReturn = snsDao.updatePost( reviewVo );
 		boolean postPicReturn = true;
 		
@@ -182,6 +182,10 @@ public PostVo updatePost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles,
 
 	public boolean deletePost(PostVo postVo) {
 		return snsDao.deletePost( postVo );
+	}
+
+	public String getHidden(int usrSeq, int postSeq) {
+		return snsDao.getHidden( usrSeq, postSeq);
 	}
 	
 	

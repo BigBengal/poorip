@@ -13,6 +13,7 @@ public class PoolPostDao {
 	private SqlSession sqlSession;
 	
 	public boolean write(PoolPostVo poolpostvo){
+		System.out.println("공유다오다오"+poolpostvo);
 		return 1 == sqlSession.insert("poolpost.insert", poolpostvo);
 	}
 	

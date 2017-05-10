@@ -54,6 +54,27 @@
 <!-- multiselect -->
 <link href="${pageContext.request.contextPath}/assets/css/multi-select.css"
 	rel="stylesheet">
+	
+<style>
+#dialog-background {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,.3);
+    z-index: 10;
+}
+#my-dialog {
+    display: none;
+    position: fixed;
+    left: calc( 50% - 160px ); top: calc( 50% - 70px );
+    width: 320px; height: 140px; 
+    background: #fff;
+    z-index: 11;
+    padding: 10px;
+}
+</style>
+
 </head>
 
 <body class="no-trans scroll-spy">

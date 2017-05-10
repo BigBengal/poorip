@@ -167,14 +167,14 @@
 								풀 공유 여부 : </label>
 							<div class='col-sm-7 text-center'>
 								<label for="hidden">공유</label> <input type="radio" id="hidden"
-									name="hidden" value="Y" checked data-toggle="toggle" onclick="showShare();">
+									name="hidden" value="Y" checked data-toggle="toggle" onclick="div_share_show(this.value,'div-share-show');">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
 									for="hidden">공유안함</label> <input type="radio" id="hidden"
-									name="hidden" value="N" data-toggle="toggle">
+									name="hidden" value="N" data-toggle="toggle" onclick="div_share_show(this.value,'div-share-show');">
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="div-share-show">
 						<div class="row">
 						    <div class="col-xs-5">
 						        <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
@@ -212,6 +212,36 @@
 		</div>
 	</div>
 </div>
+<!-- 공유 창 내용 -->
+<div class="form-group" id="img-div-share-dialog">
+	<form action="${pageContext.request.contextPath}/sns/post/share" id="share-form">
+		<div class="row">
+		    <div class="col-xs-5">
+		        <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
+		        	<c:forEach items="${poolpartyList }" var="poolpartyList" varStatus="status">
+		        		<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
+		        	</c:forEach>
+		        </select>
+		    </div>
+		    <div class="col-xs-2">
+		        <button type="button" id="js_right_All_1" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+		        <button type="button" id="js_right_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+		        <button type="button" id="js_left_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+		        <button type="button" id="js_left_All_1" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+		    </div>
+		    <div class="col-xs-5">
+		        <select name="to[]" id="js_multiselect_to_1" class="form-control" size="8" multiple="multiple"></select>
+		    </div>
+		    <div class="col-md-12" style="padding-left: 40%">
+				<button type="submit"
+					class="btn btn-default col-lg-6 center-block">공유하기</button>
+				<button id="btn-close-dialog"
+					class="btn btn-default col-lg-6 center-block">창 닫기</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="dialog-background"></div>
 
 <!-- <div class="fromDatePick"></div> -->
 <!-- <div class="toDatePick"></div> -->

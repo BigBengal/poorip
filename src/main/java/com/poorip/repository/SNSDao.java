@@ -42,6 +42,10 @@ public class SNSDao {
 		return( count == 1 );
 	}
 	
+	public boolean addPostOnly(ReviewVo reviewVo) {
+		return 1== sqlSession.insert("post.insert", reviewVo);
+	}
+	
 	public boolean updatePost(ReviewVo reviewVo) {
 		return 1 == sqlSession.update("post.updatePost", reviewVo);
 	}
@@ -116,9 +120,9 @@ public class SNSDao {
 	public PostVo showEditedPost(ReviewVo reviewVo) {
 		return sqlSession.selectOne("post.getEditedPostList", reviewVo);
 	}
-	
-	public boolean addPostOnly(ReviewVo reviewVo) {
-		return 1== sqlSession.insert("post.insert", reviewVo);
+
+	public String getHidden(int usrSeq, int postSeq) {
+		return sqlSession.selectOne("post.getHiddenValue");
 	}
 
 }
