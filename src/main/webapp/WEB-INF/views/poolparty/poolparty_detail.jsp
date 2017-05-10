@@ -44,6 +44,8 @@
 	rel="stylesheet">
 <!-- Bootstrap toggle -->
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<!-- lightBox -->
+<link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -52,8 +54,8 @@
 <!-- <script src="/poorip/assets/bootstrap/js/collapse.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/poorip/assets/plugins/jquery-1.12.4.js"></script>
+<script src="/poorip/assets/plugins/jquery-ui.min.js"></script>
  
 <!-- Modernizr javascript -->
 <script src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
@@ -69,6 +71,8 @@
 <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 <!-- facebook  -->
 <script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+<!-- Light Box -->
+<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 <!-- Vaildation-->
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <!-- Bootstrap toggle -->
@@ -245,7 +249,9 @@
 		<h3>${post.title}  </h3>
 		<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
 			<c:if test="${post.postSeq ==postpic.postSeq}">
-				<img src="/poorip${postpic.path }/${postpic.fileName }">
+				<a href="/poorip${postpic.path}/${postpic.fileName}" data-lightbox="${postpic.postSeq}" data-title="${post.title}">
+					<img src="/poorip${postpic.path}/${postpic.fileName}">
+				</a>
 			</c:if>
 		</c:forEach>
 		<p> ${post.contents}  </p>

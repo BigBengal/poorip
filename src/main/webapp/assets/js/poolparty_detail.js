@@ -1,9 +1,10 @@
 /**
  * 
  */
-var writeVisible = false;	//글쓰기 버튼
+var writeVisible = false;	//글쓰기 화면
+var modifyVisible = false;	//글수정 화면
 var poolikeyn = false; 		//풀파티 좋아요 버튼 flag
-var delta = 300;			// 리스트 부르기 시간 텀
+var delta = 500;			// 리스트 부르기 시간 텀
 var timer = null;			// 타이머 변수
 var page = 1;
 var isEnd = false;
@@ -175,13 +176,58 @@ $(document).ready(function(){
 	// 글 수정 버튼
 	$(document).on("click",".modify",function() {
 		var postSeq = $(this).data("postseq");
-		console.log(postSeq);
+		
+		if (modifyVisible == true){
+			showModify();
+			return;
+		}
+			
+//		console.log(postSeq);
+		$.ajax( {
+		    url : "/poorip/poolparty/get/"+postSeq,
+		    type: "post",
+		    dataType: "json",
+	//				    data: ,
+		    success: function( response ){
+		    	
+		    	console.log	( response );
+		    	if( response.result == "failed") {
+		    	   console.log( response );
+		    	   return;
+		    	}
+		    	$("#modifyeachform").remove();
+				
+		       	var html = "<div id='modifyeachform'>" + $("#modifyform").html();
+				$( "#post-"+postSeq ).append(html);
+				showModify();
+
+				
+				$("#modifyeachform #update-postSeq").val(postSeq);
+			    $("#modifyeachform #update-title").val(response.data.title);
+			    $("#modifyeachform #update-contents").val(response.data.contents);
+			    $("#modifyeachform #update-trv-seq").val(response.data.trvSeq).change();
+			    if (response.data.reviewPubYn == 'Y'){
+			    	$("#modifyeachform #update-reviewPubYn-y").prop("checked", true);
+			    } else {
+			    	$("#modifyeachform #update-reviewPubYn-n").prop("checked", true);
+			    }
+//			    $("#modifyeachform #update-reviewPubYn").val(response.data.reviewPubYn).change();
+			    if (response.data.hidden == 'Y'){
+			    	$("#modifyeachform #update-hidden-y").prop("checked", true);
+			    } else {
+			    	$("#modifyeachform #update-hidden-n").prop("checked", true);
+			    }
+		    },
+		    error: function( XHR, status, error ){
+		       console.error("ERROR");
+		    }
+		});    
 	});
 
 	// 글 삭제 버튼
 	$(document).on("click",".delete",function() {
 		var postSeq = $(this).data("postseq");
-		console.log(postSeq);
+//		console.log(postSeq);
 		$( "#dialog-confirm_delete" ).dialog({
 		    resizable: false,
 		    height: "auto",
@@ -241,6 +287,8 @@ $(document).ready(function(){
 	} );
 	
 	
+	
+	
 });
 
 
@@ -273,14 +321,15 @@ function showList(){
 //	 	    	console.log( response );
 			$( response.data.post ).each( function(index, vo){
 //	 				console.log( index + ":" + vo.post + vo.postPic );
-				html = html + "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4'>" +
+				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4'>" +
 				"<h3>"+vo.title+"</h3>";
 
 				 if(response.data.postPic.length> 0) {
 //					 console.log("exist postPic");
 					 $( response.data.postPic).each( function( index2, picvo) {
 						 if(vo.postSeq == picvo.postSeq){
-							 html = html+"<img src='/poorip"+picvo.path+"/"+picvo.fileName+"'>";
+							 html = html+"<a href='/poorip"+picvo.path+"/"+picvo.fileName+"' data-lightbox='"+picvo.postSeq+"' data-title='"+vo.title+"'>" +
+							        "<img src='/poorip"+picvo.path+"/"+picvo.fileName+"'> </a>" ;
 						 }
 					 });
 					 
@@ -306,22 +355,34 @@ function showList(){
 				 	$("#postList").append(html);
 			})
 			page++;
+			console.log("page:"+page);
 	    },
 	    error: function( XHR, status, error ){
 	       console.error("ERROR");
 	    }
    });
-//	console.log("page:"+page);
+	
 	$("#loading").removeClass("loading")
 }
 
 function showWrite(){
 	if ( writeVisible == true ) {
-		$("#post-write").hide();	
+		$("#post-write").hide();
 		writeVisible = false;
 	} else {
 		$("#post-write").show();
 		writeVisible = true;
+	}
+	
+}
+
+function showModify(){
+	if ( modifyVisible == true ) {
+		$("#modifyeachform").hide();
+		modifyVisible = false;
+	} else {
+		$("#modifyeachform").show();
+		modifyVisible = true;
 	}
 	
 }

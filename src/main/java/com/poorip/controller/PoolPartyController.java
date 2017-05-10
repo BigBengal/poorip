@@ -5,6 +5,7 @@ import static org.mockito.Matchers.intThat;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.poorip.dto.JSONResult;
 import com.poorip.repository.PoolPostDao;
+import com.poorip.repository.PostDao;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.AdminService;
@@ -66,6 +68,10 @@ public class PoolPartyController {
 	// 포스팅 삭제
 	@Autowired
 	private PoolPostDao poolPostDao;
+	
+	// 글수정시 정보 가져오기
+	@Autowired
+	private PostDao postDao;
 	
 	// 풀파티 메인 URL
 	@RequestMapping(value={""})
@@ -172,22 +178,35 @@ public class PoolPartyController {
 		
 		
 		String pool = Integer.toString(poolPostSeq[0]);
-		
 		logger.info(reviewVo.toString());
-		
 		logger.info("poolSeq:"+pool);
-		
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
 		
 		if(postUploadFiles.get(0).getOriginalFilename()==null||postUploadFiles.get(0).getOriginalFilename().equals("")) {
 			SNSService.addPostOnly(reviewVo, poolPostSeq );
-			return "redirect:/poolparty/"+poolPostSeq;
+			return "redirect:/poolparty/"+pool;
 		}
 		SNSService.addPost( reviewVo, postUploadFiles, poolPostSeq );
 		
 		return "redirect:/poolparty/"+pool;
 	}
 	
+	// 포스트 수정 
+	@Auth
+	@RequestMapping("/update")
+	public String getPost(	@AuthUser UserVo userVo,
+							@ModelAttribute ReviewVo reviewVo,
+							@RequestParam("poolSeq") String poolSeq,
+							MultipartHttpServletRequest request) throws Exception{
+		System.out.println("오예");
+		System.out.println(reviewVo);
+		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
+
+		SNSService.updatePost( reviewVo, postUploadFiles);
+		
+		return "redirect:/poolparty/"+poolSeq;
+	}
+
 	
 	// 풀파티 설정 변경
 	@Auth
@@ -336,6 +355,7 @@ public class PoolPartyController {
 		return JSONResult.success(map);
 	}
 
+	// 포스트 삭제(POOL_POST 만 삭제, 개인 SNS에는 남김)
 	@Auth
 	@ResponseBody
 	@RequestMapping("/delete/{postSeq}")
@@ -345,5 +365,13 @@ public class PoolPartyController {
 
 		return JSONResult.success(poolPostDao.deleteByPostSeq(postSeq));
 	}
-	
+
+	// 포스트 가져오기 
+	@Auth
+	@ResponseBody
+	@RequestMapping("/get/{postSeq}")
+	public JSONResult getPost(@PathVariable("postSeq") int postSeq){
+		return JSONResult.success(postDao.select(postSeq));
+	}
+		
 }

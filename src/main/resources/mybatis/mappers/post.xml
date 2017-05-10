@@ -135,7 +135,8 @@
 			       CONTENTS as contents, 
 			       REVIEW_PUB_YN as reviewPubYn, 
 			       USR_SEQ as usrSeq, 
-			       TRV_SEQ as trvSeq
+			       TRV_SEQ as trvSeq,
+			       hidden
 			  FROM POST
 			 WHERE POST_SEQ = #{postSeq }
 		]]>
