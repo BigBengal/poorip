@@ -69,7 +69,7 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
                "</div>" +
                "<div class='form-group' style='display:block; text-align:center; width:100%; margin-bottom:20%'>" +
                   "<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 5%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-                     "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;'></a>" +
+                     "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")'></a>" +
                      "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 5%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")' class='sns-post-edit'><a/>" + 
                   "</div></div>";
 
@@ -89,7 +89,7 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
 		"</div>" +
 		"<div class='form-group' style='text-align:center; display:block; width:100%; margin-bottom:20%'>" +
 				"<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 5%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-				 "<a href=javascript:;><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;' ></a>" +
+				 "<a href=javascript:;><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")' ></a>" +
 				 "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 5%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'  class='sns-post-edit'></a>" + 
 		"</div>" ;
 
@@ -384,6 +384,43 @@ $(function(){
 		$("#img-div-share-dialog,#dialog-background").show();
 	});
 })
+
+function postShare(postSeq){
+	
+	$("#share-sns-post").dialog({
+		resizable: false,
+	      height: "auto",
+	      width: 1000,
+	      modal: true,
+	      buttons: {
+	        "공유": function() {
+	          $( this ).dialog( "close" );
+	          $.ajax( {
+	      		url : "sns/deletePost",
+	      		type: "post",
+	      	    dataType: "json",
+	      	    data: "postSeq="+postSeq,
+	      	    success: function( response ){
+	      	    	if( response.result != "success" ) {
+	      	    		console.log( response.message );
+	      	    		return;
+	      	    	} else {
+	      	    		$("#sns-post-"+response.data).remove();
+	      	    		return;
+	      	    	} 
+	      	    },
+	      	    error: function( XHR, status, error ){
+	      	       console.error("Error" );
+	      	   	}
+	          });
+	        },
+	        "취소": function() {
+	          $( this ).dialog( "close" );
+	        }
+	      }
+	});
+
+}
 
 
 

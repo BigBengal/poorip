@@ -93,7 +93,7 @@
 	
 	
 	<!-- banner end -->
-	<div class="section">
+	<div class="section" style="padding-bottom: 400px">
 		<div class="container">
 			<c:import url="/WEB-INF/views/scrap/scrapInfo.jsp" />
 		</div>

@@ -1,7 +1,12 @@
 package com.poorip.controller;
 
+import static org.mockito.Matchers.intThat;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
@@ -27,6 +33,7 @@ import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolMemberVo;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostPicVo;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
 
@@ -150,6 +157,33 @@ public class PoolPartyController {
 		return "/poolparty/myPoolList";
 	}
 	
+	//풀파티 글 쓰기
+	@Auth
+	@RequestMapping("/post")
+	public String PoolpartyPost (@AuthUser UserVo userVo,
+								@ModelAttribute ReviewVo reviewVo,
+								@RequestParam("poolSeq") int[] poolPostSeq,
+								MultipartHttpServletRequest request) throws Exception{
+		
+		
+		String pool = Integer.toString(poolPostSeq[0]);
+		
+		logger.info(reviewVo.toString());
+		
+		logger.info("poolSeq:"+pool);
+		
+		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
+		
+		if(postUploadFiles.get(0).getOriginalFilename()==null||postUploadFiles.get(0).getOriginalFilename().equals("")) {
+			SNSService.addPostOnly(reviewVo, poolPostSeq );
+			return "redirect:/poolparty/"+poolPostSeq;
+		}
+		SNSService.addPost( reviewVo, postUploadFiles, poolPostSeq );
+		
+		return "redirect:/poolparty/"+pool;
+	}
+	
+	
 	// 풀파티 설정 변경
 	@Auth
 	@RequestMapping("/saveSetting")
@@ -247,6 +281,8 @@ public class PoolPartyController {
 			return JSONResult.fail("RequestErr");
 	}
 
+	
+	// 초대 수락
 	@Auth
 	@ResponseBody
 	@RequestMapping("/invite/aprv")
@@ -256,7 +292,8 @@ public class PoolPartyController {
 		logger.info(poolpartySeq + "," + usrSeq);
 		return JSONResult.success(poolPartyService.approvePoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "aprvOK" : "ERR");
 	}
-	
+
+	// 초대 거절
 	@Auth
 	@ResponseBody
 	@RequestMapping("/invite/reject")
@@ -267,5 +304,43 @@ public class PoolPartyController {
 		logger.info(poolpartySeq + "," + usrSeq);
 		return JSONResult.success(poolPartyService.rejectPoolparty(poolpartySeq, usrSeq, authUser.getUsrSeq()) == true ? "rejectOK" : "ERR");		
 	}
+	
+	
+	
+	// 포스팅 리스트 갱신
+	@Auth
+	@ResponseBody
+	@RequestMapping("{poolSeq}/view/{page}")
+	public JSONResult getListbyPage(@PathVariable("page") int page,
+									@PathVariable("poolSeq") int poolSeq){
+		int startSeq = page * 5;
+		// 풀 포스트
+		List<ReviewVo> postList = SNSService.getPostListbyPoolSeq(poolSeq, startSeq);
+		List<PostPicVo> postPicList = new ArrayList<>();
+		for(int i=0; i < postList.size();i++){
+			int postSeq = postList.get(i).getPostSeq();
+			List<PostPicVo> postPic = SNSService.getpostPicList(postSeq);
+			postPicList.addAll(postPic);
+		}
+		
+		// 풀파티 포스트 (글 + 사진)
+		Map<String , Object> map = new HashMap<>();
+		map.put("post", postList);
+		map.put("postPic", postPicList);
+		
+		return JSONResult.success(map);
+	}
 
+	@Auth
+	@ResponseBody
+	@RequestMapping("/delete/{postSeq}")
+	public JSONResult getListbyPage(@PathVariable("postSeq") int postSeq){
+		PostVo postVo = new PostVo();
+		postVo.setPostSeq(postSeq);
+		SNSService.deletePost(postVo);
+//		SNSService.d(postVo);
+		
+		return JSONResult.success("Success");
+	}
+	
 }

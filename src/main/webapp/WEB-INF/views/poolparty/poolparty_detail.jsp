@@ -134,7 +134,15 @@
 	</div>
 	<div class="form-group">
 		<label for="control-label" for="public">공개 여부</label>
-		<input type="checkbox" name="poolPublicYn" value="Y" checked data-toggle="toggle" class="btn btn-default btn-xs">
+		<c:choose>
+			<c:when test="${pool.poolPublicYn =='Y'}">
+				<input type="checkbox" name="poolPublicYn" value="Y" checked data-toggle="toggle" class="btn btn-default btn-xs">
+			</c:when>
+			<c:otherwise>
+				<input type="checkbox" name="poolPublicYn" value="Y" data-toggle="toggle" class="btn btn-default btn-xs">
+			</c:otherwise>
+		</c:choose>
+		
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="fromdate"> 여행기간</label>
@@ -225,27 +233,50 @@
 </div>
 
 <!-- 글쓰기 -->
-<div id="write" class="row">
+
+<!-- <div id="write" class="col-md-12"> -->
 <c:import url="/WEB-INF/views/poolparty/poolparty_write.jsp" />
-</div>
+<!-- </div> -->
 
 <!-- 글 보기 -->
-<div class="col-md-12">
+<div id="postList" class="col-md-12">
 	<c:forEach var="post" items="${post}" varStatus="status">
-		<div class="col-md-6 col-md-offset-4">
-		<p> TITLE: ${post.title}  </p>
-		<p> CONTENTS : ${post.contents}  </p>
+		<div id="post-${post.postSeq}" class="col-md-6 col-md-offset-4">
+		<h3>${post.title}  </h3>
 		<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
 			<c:if test="${post.postSeq ==postpic.postSeq}">
 				<img src="/poorip${postpic.path }/${postpic.fileName }">
 			</c:if>
 		</c:forEach>
+		<p> ${post.contents}  </p>
+			<div class="row margin_up_down">
+			<div class="col-md-6 img_inline">
+				<img src="${post.picture}"> ${post.name}
+			</div>
+			<div class="col-md-6">
+				${post.crtDate}
+			</div>
+			</div>
+			<div class="row margin_up_down underline">
+			<div class="col-md-3">
+				<img alt='수정' src='/poorip/assets/images/post_modify.png' class="menu_links modify" data-postseq="${post.postSeq}" style="max-height: 30px;">
+			</div>
+			<div class="col-md-3 col-md-offset-6">
+				<img alt='삭제' src='/poorip/assets/images/post_delete.png' class="menu_links rightalign delete" data-postseq="${post.postSeq}" style="max-height: 30px;">
+			</div>
+			</div>
+		
 		</div>
 	</c:forEach>
+</div>
+<div id="loading" class="col-md-10 col-md-offset-2">
 </div>
 
 <!-- 프로필 보기 다이얼로그 -->
 <div id="profile" title="프로필 보기">
+</div>
+<div id="dialog-confirm_delete" title="삭제 확인" style="display:none">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>삭제 하시겠습니까?</p>
 </div>
 </body>
 </html>

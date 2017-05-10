@@ -74,6 +74,14 @@ File Description: Place here your custom CSS styles
 	color: black !important;
 }
 
+.writebutton {
+	margin: 2px;
+    padding: 2px;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 3px;
+}
+
 .menu_links { cursor: pointer; }
 
 .poolparty {
@@ -105,6 +113,21 @@ File Description: Place here your custom CSS styles
 .poolmemberlist img{
 	display : inline;
 /* 	margin: 0 0 10px; */
+}
+.img_inline img{
+	display : inline;
+}
+
+.margin_up_down {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.underline {
+	border-bottom: 1px dashed;
+	margin-bottom: 10px;
+}
+.rightalign {
+	float: right;
 }
 .gender_M {
 	border: 1px solid;
@@ -139,6 +162,11 @@ File Description: Place here your custom CSS styles
 	height: 400px;
 }
 
+.loading {
+  background: url("/poorip/assets/images/loading.gif") center 100% no-repeat ;
+  height: 32px;
+}
+
 .modal-body .col-md-6 p {
 	margin-top: 6%;
 }
@@ -158,4 +186,8 @@ File Description: Place here your custom CSS styles
 
 .modal-body .review-header .btn.btn-default {
 	float: right;
+}
+
+.col-sm-6.col-md-3.isotope-item.web-design .overlay-container {
+	height: 175px;
 }
