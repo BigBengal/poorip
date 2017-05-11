@@ -51,7 +51,6 @@ public class AdminService {
 		}
 		cityVo.setCtyName(travelInfoVo.getName());
 		cityVo.setCtrSeq(ctrSeq);
-		adminDao.addCity(cityVo);
 		
 		adminDao.addInfo(travelInfoVo);
 	}
