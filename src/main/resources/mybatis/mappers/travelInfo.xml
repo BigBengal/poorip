@@ -21,9 +21,11 @@
          		a.contact,
 				b.FILE_NAME as fileName,
 				b.PATH as path,
-				a.picture as picture
+				a.picture as picture,
+				a.hit as hit
 		 from travel_info a left join travel_info_pic b on a.TRV_SEQ = b.TRV_SEQ
-		 where a.cty_seq = #{ctySeq} and a.trv_seq > 0
+		 where a.cty_seq = #{ctySeq} and a.trv_seq > 0 
+		 order by hit desc 
       ]]>
 	</select>
 	
@@ -79,8 +81,10 @@
          		a.picture as picture,
          		a.price as price,
          		a.map_url as mapURL,
-         		a.contact as contact
+         		a.contact as contact,
+         		a.hit as hit
 		 from travel_info a left join travel_info_pic b on a.TRV_SEQ = b.TRV_SEQ
+		 order by hit desc
       ]]>
 	</select>
 	

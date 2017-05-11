@@ -107,9 +107,7 @@
 	<!-- travel-Info end -->
 	<!-- member start -->
 	<!-- ================ -->
-	<div class="section translucent-bg bg-image-2 pb-clear">
-		<c:import url="/WEB-INF/views/include/member.jsp" />
-	</div>
+
 	<!-- member end -->
 
 	<!-- finder start -->
