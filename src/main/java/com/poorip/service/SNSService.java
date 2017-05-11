@@ -16,7 +16,6 @@ import com.poorip.repository.PoolLikeDao;
 import com.poorip.repository.PoolPostDao;
 import com.poorip.repository.PostPicDao;
 import com.poorip.repository.SNSDao;
-import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PoolPostVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
