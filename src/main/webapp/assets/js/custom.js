@@ -107,8 +107,8 @@ function setDate(ctySeq) {
 
 				success : function(result) {
 
-					var htmlDate = "<p >" + result.data.dateFrom + " ~ "
-							+ result.data.dateTo + "</p>";
+					var htmlDate = "<div ><h3>" + result.data.dateFrom + " ~ "
+							+ result.data.dateTo + "<h3></div>";
 					console.log(htmlDate);
 					$("#scrap-date-info-" + ctySeq).prepend(htmlDate);
 
@@ -125,6 +125,8 @@ function setDate(ctySeq) {
 								;
 							console.log(htmlTravelDate);
 							$("#travel-date-info").prepend(htmlTravelDate);
+							
+						
 
 						},
 						error : function(data) {
@@ -162,4 +164,6 @@ function onSignIn(googleUser) {
 	      console.log('User signed out.');
 	    });
 	  };
+
+	  
 

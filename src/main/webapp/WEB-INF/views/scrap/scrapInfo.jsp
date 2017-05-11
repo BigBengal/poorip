@@ -15,15 +15,15 @@
 		<div class="filters text-center">
 			<ul class="nav nav-pills">
 				<c:forEach var="cityList" items="${cityList }" varStatus="status">
-					<li><a  class="ScrapcityName" href="#" data-filter=".scrap-${cityList.ctyName }" data-city-name="${cityList.ctyName }"
-						data-show="Y">${cityList.ctyName }</a></li>
+					<li><a  class="ScrapcityName" href="#" data-filter=".scrap-${cityList.ctySeq }" data-city-name="${cityList.ctySeq }"
+						data-show="Y" style="border: 2px solid #cacaca;"><strong>${cityList.ctyName }</strong></a></li>
 				</c:forEach>
 			</ul>
 		</div>
 		<div class="isotope-container row grid-space-20">
 
 			<c:forEach var="cityList" items="${cityList }" varStatus="status">
-				<div style="text-align:center" class="col-sm-12 col-md-12 isotope-item scrap-${cityList.ctyName}">
+				<div style="text-align:center; display:block; width:100%;" class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctySeq}">
 					<form id="set-date-scrap-${cityList.ctySeq }" method="post"
 						style="text-align: center; display: inline-block">
 						<p class="text-center" style="text-align: center;">
@@ -42,10 +42,10 @@
 					</form>
 					<c:forEach var="dateList" items="${dateList }" varStatus="status">
 					<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
-					<h2 id="scrap-date-info-${cityList.ctySeq }"> ${dateList.dateFrom }  ~ ${dateList.dateTo }</h2>
+					<div id="scrap-date-info-${cityList.ctySeq }"><h3>${cityList.ctyName} 여행 기간은 ${dateList.dateFrom }  ~ ${dateList.dateTo } 입니다</h3></div>
 					</c:if>
 					</c:forEach>
-					<h2 id="scrap-date-info-${cityList.ctySeq }"></h2>
+				
 					
 				</div>
 
@@ -53,7 +53,7 @@
 				<c:forEach var="scrapList" items="${scrapList }" varStatus="status">
 					<c:if
 						test="${cityList.ctyName == scrapList.ctyName or cityList.ctyName eq scrapList.ctyName}">
-						<div class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctyName}">
+						<div class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctySeq}">
 
 
 							<div class="image-box">

@@ -392,32 +392,7 @@ function postShare(postSeq){
 	      height: "auto",
 	      width: 1000,
 	      modal: true,
-	      buttons: {
-	        "공유": function() {
-	          $( this ).dialog( "close" );
-	          $.ajax( {
-	      		url : "sns/deletePost",
-	      		type: "post",
-	      	    dataType: "json",
-	      	    data: "postSeq="+postSeq,
-	      	    success: function( response ){
-	      	    	if( response.result != "success" ) {
-	      	    		console.log( response.message );
-	      	    		return;
-	      	    	} else {
-	      	    		$("#sns-post-"+response.data).remove();
-	      	    		return;
-	      	    	} 
-	      	    },
-	      	    error: function( XHR, status, error ){
-	      	       console.error("Error" );
-	      	   	}
-	          });
-	        },
-	        "취소": function() {
-	          $( this ).dialog( "close" );
-	        }
-	      }
+	     
 	});
 
 }

@@ -134,42 +134,5 @@
 </div>
 <!-- section start -->
 <!-- ================ -->
-<div class="translucent-bg blue">
-	<div class="container">
-		<div class="list-horizontal">
-			<div class="row">
-				<div class="col-xs-2">
-					<div class="list-horizontal-item">
-						<img src="assets/images/client-1.png" alt="client">
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="list-horizontal-item">
-						<img src="assets/images/client-2.png" alt="client">
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="list-horizontal-item">
-						<img src="assets/images/client-3.png" alt="client">
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="list-horizontal-item">
-						<img src="assets/images/client-4.png" alt="client">
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="list-horizontal-item">
-						<img src="assets/images/client-5.png" alt="client">
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="list-horizontal-item">
-						<img src="assets/images/client-6.png" alt="client">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+
 <!-- section end -->
