@@ -79,12 +79,14 @@ public class SNSController {
 							MultipartHttpServletRequest request) throws IOException {
 		
 		reviewVo.setUsrSeq( userVo.getUsrSeq() );
+		reviewVo.setHidden("N");
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
 		
 		if(postUploadFiles.get(0).getOriginalFilename()==null||postUploadFiles.get(0).getOriginalFilename().equals("")) {
 			snsService.addPostOnly(reviewVo, poolPostSeq );
 			return "redirect:/sns";
 		}
+		System.out.println(reviewVo);
 		snsService.addPost( reviewVo, postUploadFiles,  poolPostSeq );
 		
 		return "redirect:/sns";
@@ -92,19 +94,14 @@ public class SNSController {
 	
 	
 	@Auth
-	@ResponseBody
 	@RequestMapping("/post/share")
-	public JSONResult postShare(@AuthUser UserVo userVo,
-								@RequestParam("postSeq") int postSeq,
-								@RequestParam("to[]") int[] poolPostSeq) {
-		String getHidden = snsService.getHidden(userVo.getUsrSeq(), postSeq);
+	public String postShare(@AuthUser UserVo userVo,
+							@RequestParam("postSeq") int postSeq,
+							@RequestParam("share_to[]") int[] poolPostSeq) {
+		System.out.println(postSeq);
+		snsService.addPoolPost(poolPostSeq, postSeq);
 		
-		if ( getHidden == "Y" ) {
-			snsService.addPoolPost(poolPostSeq, postSeq);
-			return JSONResult.success("성공");
-		} else {
-			return JSONResult.fail( "공유 설정이 되어있지 않습니다. 수정에서 설정 해 주세요" );
-		}
+		return "redirect:/sns";
 	}
 	
 	@Auth

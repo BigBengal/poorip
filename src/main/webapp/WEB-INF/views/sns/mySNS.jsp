@@ -166,11 +166,11 @@
 							<label class="control-label col-sm-3" for="reviewPubYn">그룹
 								풀 공유 여부 : </label>
 							<div class='col-sm-7 text-center'>
-								<label for="hidden">공유</label> <input type="radio" id="hidden"
-									name="hidden" value="Y" checked data-toggle="toggle" onclick="div_share_show(this.value,'div-share-show');">
+								<label for="share">공유</label> <input type="radio" id="share"
+									name="share" value="Y" checked data-toggle="toggle" onclick="div_share_show(this.value,'div-share-show');">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-									for="hidden">공유안함</label> <input type="radio" id="hidden"
-									name="hidden" value="N" data-toggle="toggle" onclick="div_share_show(this.value,'div-share-show');">
+									for="share">공유안함</label> <input type="radio" id="share"
+									name="share" value="N" data-toggle="toggle" onclick="div_share_show(this.value,'div-share-show');">
 							</div>
 						</div>
 					</div>
@@ -194,7 +194,6 @@
 						    </div>
 						</div>
 					</div>
-					
 					<div class="form-group-button">
 						<div class="col-md-12" style="padding-left: 40%">
 							<button type="submit"
@@ -205,8 +204,6 @@
 				<div class="container">
 					<div id="my-sns-list" class="block" style="padding-top: 100px">
 					</div>
-					<!-- 						<div class="loading"> -->
-					<!-- 						</div> -->
 				</div>
 			</form>
 		</div>
@@ -216,3 +213,4 @@
 
 <!-- <div class="fromDatePick"></div> -->
 <!-- <div class="toDatePick"></div> -->
+
