@@ -43,7 +43,10 @@ var render = function( vo, reviewNum, postSeq ){
 	
 	var html = "<div class='col-md-12' style='border-style:solid; border-width:1px; margin:2px; padding:2px'>" +
 				"<div id='reviewtitle' style='margin-bottom:20px'>" + vo.title + "<h6 style='display:inline-block; float:right'>" + vo.crtDate + "</h6></div>" +
-			   "<div id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")><c:if test='${!empty authUser }'> <img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/water-tube.png' style='width:100%' ></a></c:if><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px'> 라이크" + vo.likeCount + "</h5></div>" + 
+			   "<div id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "<c:if test='${!empty authUser }'>" +
+			   "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")> " + 
+			   "<img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/water-tube.png' style='width:100%' ></a> " + 
+			   "</c:if><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px'> 라이크" + vo.likeCount + "</h5></div>" + 
 			   "</div>"
 			   ;			
 		
@@ -123,6 +126,7 @@ function send(trvSeq, reviewNum){
         			type: "post",
         			dataType: "json",
         			success : function(review) {
+        					console.log(review);
         					if( review.result != "success" ) {
   							
         		    		return;
@@ -217,7 +221,7 @@ function sendTrvSeq1(trvSeq) {
 					         
 					        },
 					        error : function(data) {
-								    alert("ajax 에러가 발생하였습니다.")
+								    //alert("ajax 에러가 발생하였습니다.")
 					        }
 					    });
 		        		
@@ -246,7 +250,7 @@ function sendTrvSeq1(trvSeq) {
 		        	});
 		        },
 		        error : function(data) {
-					    alert("ajax 에러가 발생하였습니다.")
+					    //alert("ajax 에러가 발생하였습니다.")
 		        }
 		    });
 			$("#review-"+trvSeq ).empty();
