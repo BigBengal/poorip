@@ -90,8 +90,14 @@ public class SNSService {
 	
 	public boolean addPostOnly(ReviewVo reviewVo, int[] poolPostSeq) {
 		boolean addOnlyPostReturn = snsDao.addPostOnly(reviewVo);
-		boolean addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
-		return addOnlyPostReturn && addPoolPostReturn;
+		
+		if(poolPostSeq == null) {
+			return addOnlyPostReturn;
+		} else {
+			boolean addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+			return addOnlyPostReturn && addPoolPostReturn;
+		}
+		
 	}
 	
 	public boolean addPoolPost( int[] poolPostSeq, int postSeq ) {

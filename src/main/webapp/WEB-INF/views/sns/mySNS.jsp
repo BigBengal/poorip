@@ -128,7 +128,7 @@
 								선택</label>
 							<div class='col-sm-7'>
 								<select class="form-control" name="trvSeq">
-									<option value="-1" selected>관련 여행지 선택</option>
+									<option value="-1" selected>관련 여행지 없음</option>
 									<c:forEach items="${travelVo }" var="travelVo"
 										varStatus="status">
 										<option value="${travelVo.trvSeq }">${travelVo.name }</option>

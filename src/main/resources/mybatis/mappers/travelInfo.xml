@@ -108,7 +108,7 @@
 			       now(),
 			       #{ctySeq },
 			       #{catSeq },
-			       null,
+			       #{mapURL },
 			       #{contact },
 			       null)
       ]]>

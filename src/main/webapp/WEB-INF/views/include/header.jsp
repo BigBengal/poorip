@@ -67,7 +67,7 @@
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button></a>
 									
-									<div id="profileDropdown" class="dropdown-content">
+									<div id="profileDropdown" style="margin-left:25px; margin-top:2px" class="dropdown-content">
 							    		<a href="${pageContext.request.contextPath }/sns">내 SNS</a>
 							    		<a href="${pageContext.request.contextPath }/scrap/main">내 스크랩 정보</a>
 							    		<a href="${pageContext.request.contextPath }/poolparty/mypool">내 풀파티</a>
