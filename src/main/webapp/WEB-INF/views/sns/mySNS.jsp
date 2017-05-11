@@ -72,19 +72,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="checks">
-							<label class="control-label col-sm-3" for="reviewPubYn">그룹
-								풀 공유 여부 : </label>
-							<div class='col-sm-7 text-center'>
-								<label for="hidden">공유</label> <input type="radio" id="hidden"
-									name="hidden" value="Y" checked data-toggle="toggle">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-									for="hidden">공유안함</label> <input type="radio" id="hidden"
-									name="hidden" value="N" data-toggle="toggle">
-							</div>
-						</div>
-					</div>
+					
 			
 					<div class="form-group-button">
 						<div class="col-md-12" style="padding-left: 40%">

@@ -123,8 +123,7 @@ public class SNSController {
 	public JSONResult editPost(@RequestParam ("title") String title, 
 			@RequestParam("contents") String contents,
 			@RequestParam("trvSeq") String trvSeq1, 
-			@RequestParam("reviewPubYn") String reviewPubYn, 
-			@RequestParam("hidden") String hidden, 
+			@RequestParam("reviewPubYn") String reviewPubYn,  
 			@PathVariable(value="postSeq", required=false) String postSeq1, 
 			@RequestParam (value ="postPicSeqArray", required=false) List<Integer> postPicSeqArray, 
 			Model model, MultipartHttpServletRequest req, @AuthUser UserVo userVo) throws FileNotFoundException, IOException{
@@ -148,7 +147,7 @@ public class SNSController {
 			reviewVo.setTitle(title);
 			reviewVo.setContents(contents);
 			reviewVo.setReviewPubYn(reviewPubYn);
-			reviewVo.setHidden(hidden);
+			reviewVo.setHidden("N");
 			reviewVo.setPostSeq(postSeq);
 			PostVo edited = snsService.updatePost( reviewVo, files, postPicSeqArray );
 			
@@ -166,7 +165,7 @@ public class SNSController {
 		reviewVo.setTitle(title);
 		reviewVo.setContents(contents);
 		reviewVo.setReviewPubYn(reviewPubYn);
-		reviewVo.setHidden(hidden);
+		reviewVo.setHidden("N");
 		reviewVo.setPostSeq(postSeq);
 
 		PostVo edited = snsService.updatePost( reviewVo, files, postPicSeqArray );

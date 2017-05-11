@@ -15,16 +15,16 @@ public class ScrapCityDao {
 	private SqlSession sqlSession;
 	
 	
-	public boolean insert(ScrapCityVo scrapcityvo){
-		return 1 == sqlSession.insert("scrapcity.insert", scrapcityvo);
+	public boolean insert(ScrapCityVo scrapCityvo){
+		return 1 == sqlSession.insert("scrapcity.insert", scrapCityvo);
 	}
 	
-	public boolean update(ScrapCityVo scrapcityvo){
-		return 1 == sqlSession.delete("scrapcity.update",scrapcityvo);
+	public boolean update(ScrapCityVo scrapCityvo){
+		return 1 == sqlSession.delete("scrapcity.update",scrapCityvo);
 	}
 	
-	public ScrapCityVo select(ScrapCityVo scrapcityvo) {
-		ScrapCityVo vo = sqlSession.selectOne("scrapcity.selectbyseq", scrapcityvo);
+	public ScrapCityVo select(ScrapCityVo scrapCityvo) {
+		ScrapCityVo vo = sqlSession.selectOne("scrapcity.selectbyseq", scrapCityvo);
 		return vo;
 	}
 	
@@ -32,8 +32,8 @@ public class ScrapCityDao {
 		return sqlSession.selectList("scrap.showCity", usrSeq);
 	}
 	
-	public boolean updateDate(ScrapCityVo scrapcityvo) {
-		return 1== sqlSession.update("scrapcity.update", scrapcityvo);
+	public boolean updateDate(ScrapCityVo scrapCityvo) {
+		return 1== sqlSession.update("scrapcity.update", scrapCityvo);
 	}
 	
 	public ScrapCityVo showTravelDuration (int usrSeq) {
@@ -41,5 +41,8 @@ public class ScrapCityDao {
 		return sqlSession.selectOne("scrapcity.selecttrvlduration", usrSeq);
 	}
 	
+	public boolean clearDate(ScrapCityVo scrapCityVo) {
+		return 1== sqlSession.delete("scrapcity.cleartrvdurationforcity", scrapCityVo);
+	}
 	
 }

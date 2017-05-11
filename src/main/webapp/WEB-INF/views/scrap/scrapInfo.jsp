@@ -9,7 +9,11 @@
 <div style="margin-bottom:30px">
 <h3 id="travel-date-info" style="text-align:center">${travelDuration.dateFrom } ~ ${travelDuration.dateTo } 총 여행일 수는 ${travelDuration.dateDiff }일 입니다</h3>
 </div>
+
 </c:if>
+<div style="margin-bottom:30px">
+<h3 id="travel-date-info" style="text-align:center"></h3>
+</div>
 <div class="row object-non-visible" data-animation-effect="fadeIn">
 	<div class="col-md-12">
 		<div class="filters text-center">
@@ -26,7 +30,7 @@
 				<div style="text-align:center; display:block; width:100%;" class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctySeq}">
 					<form id="set-date-scrap-${cityList.ctySeq }" method="post"
 						style="text-align: center; display: inline-block">
-						<p class="text-center" style="text-align: center;">
+						<div class="text-center" style="text-align: center;">
 							<label for="from">출발</label> 
 							<input type="text" class="fromDatePick"
 								  name="dateFrom" id="fromDate-${cityList.ctyName }"
@@ -36,16 +40,21 @@
 							<input type="text" class="toDatePick"
 								id="toDate-${cityList.ctyName }" name="dateTo"
 								style="color: #000000; border-radius: 10px; margin-top: 10px">
-							<input class="btn btn-sm btn-default" type="submit"
+							
+						</div>
+						<div style="margin-top:30px; margin-bottom:30px">
+						<input class="btn btn-sm btn-default" type="submit"
 												value="저장" id="scrapDate-${cityList.ctySeq }" onclick="setDate(${cityList.ctySeq })">
-						</p>
+							<input class="btn btn-sm btn-default" type="submit" style="margin-left:20px;"
+												value="초기화" id="scrapDateRenew-${cityList.ctySeq }" onclick="clearDate(${cityList.ctySeq })">
+						</div>
 					</form>
 					<c:forEach var="dateList" items="${dateList }" varStatus="status">
 					<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
-					<div id="scrap-date-info-${cityList.ctySeq }"><h3>${cityList.ctyName} 여행 기간은 ${dateList.dateFrom }  ~ ${dateList.dateTo } 입니다</h3></div>
+					<div id="scrap-date-info-${cityList.ctySeq }"><div id="city-travel-duration-${cityList.ctySeq }"><h4>${cityList.ctyName} 여행 기간은 ${dateList.dateFrom }  ~ ${dateList.dateTo } 입니다</h4></div></div>
 					</c:if>
 					</c:forEach>
-				
+					<div id="scrap-date-info-${cityList.ctySeq }"></div>
 					
 				</div>
 

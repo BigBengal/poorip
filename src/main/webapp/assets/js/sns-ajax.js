@@ -23,10 +23,9 @@ var post_render = function( vo ) {
 var edit_post_render = function( vo ) {
 	   var post_html = "<div id='sns-post-" + vo.postSeq + "'>" + 
 	   					"<div class='form-group'>" + 
-	                  "<p class='col-sm-2'>" + vo.postSeq + "</p>" +
 	                     "<p class='col-sm-10 text-center' style='font-size: 20px'><strong>" + vo.title + "</strong></p>" +
 	                  "</div>" +
-	                  "<div class='form-group' style='display:block; margin:auto; width:70%'>" +
+	                  "<div class='form-group' style='display:block; width:70%'>" +
 	               "<div class='col-md-offset-4'>" +
 	                     "<p class='col-md-12'>" + 
 	                        "<div class='cycle-slideshow'" +

@@ -33,5 +33,9 @@ public class ScrapService {
 		return scrapDao.showScraps(usrSeq);
 	}
 	
+	public boolean updateHit(int trvSeq) {
+		return scrapDao.updateHit(trvSeq);
+	}
+	
 
 }

@@ -90,8 +90,10 @@ public class ScrapController {
 	@ResponseBody
 	@RequestMapping("/scrapValidate")
 	public String validateScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
-		ScrapVo scrapVo = new ScrapVo();
 		int trvSeq1 = Integer.parseInt(trvSeq);
+		scrapService.updateHit(trvSeq1);
+		ScrapVo scrapVo = new ScrapVo();
+		
 		scrapVo.setTrvSeq(trvSeq1);
 		scrapVo.setUsrSeq(userVo.getUsrSeq());
 		if(scrapService.selectScrap(scrapVo)==0) {
@@ -156,6 +158,19 @@ public class ScrapController {
 //		model.addAttribute( "mapURL", travelInfoVo);
 //		
 		return "";
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/renewDate")
+	public JSONResult clearDate(@RequestParam ("ctySeq") int ctySeq, @AuthUser UserVo userVo) {
+		ScrapCityVo scrapCityVo = new ScrapCityVo();
+		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+		scrapCityVo.setCtySeq(ctySeq);
+		scrapCityService.clearCityDate(scrapCityVo);
+		
+		return JSONResult.success("deleted");
+		
 	}
 	
 
