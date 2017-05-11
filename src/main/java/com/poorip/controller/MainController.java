@@ -32,7 +32,7 @@ import com.poorip.web.util.WebUtil;
 public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-	private static final int MAX_COUNT = 10;
+	private static final int MAX_COUNT = 12;
 	
 	@Autowired
 	private MainService mainService;
