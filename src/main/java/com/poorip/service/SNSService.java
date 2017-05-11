@@ -60,8 +60,10 @@ public class SNSService {
 	public boolean addPost(ReviewVo reviewVo, List<MultipartFile> postUploadFiles, int[] poolPostSeq) throws IOException {
 		
 		boolean postReturn = snsDao.addPost( reviewVo );
-		boolean addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
-		
+		boolean addPoolPostReturn = true;
+		if( poolPostSeq != null ) {
+			addPoolPostReturn = addPoolPost(poolPostSeq, reviewVo.getPostSeq());
+		}
 		boolean postPicReturn = true;
 		
 		String pathName = POST_SAVE_PATH + "/" + reviewVo.getUsrSeq() +"/" + reviewVo.getTrvSeq();
@@ -101,6 +103,9 @@ public class SNSService {
 	}
 	
 	public boolean addPoolPost( int[] poolPostSeq, int postSeq ) {
+		if(poolPostSeq == null) {
+			return true;
+		}
 		boolean count = true;
 		PoolPostVo poolPostVo = new PoolPostVo();
 		for(int i=0; i<poolPostSeq.length; i++) {
