@@ -32,7 +32,8 @@ import com.poorip.web.util.WebUtil;
 public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-
+	private static final int MAX_COUNT = 10;
+	
 	@Autowired
 	private MainService mainService;
 	
@@ -52,25 +53,25 @@ public class MainController {
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
 		
 		for (int i = 0; i < travelInfoVo.size(); i++) {
-			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= 20)
+			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= MAX_COUNT*4)
 				break;
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
-				if (++foodlistMainCnt > 5)
+				if (++foodlistMainCnt > MAX_COUNT)
 					continue;
 				foodlistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
-				if (++attractionlistMainCnt > 5)
+				if (++attractionlistMainCnt > MAX_COUNT)
 					continue;
 				attractionlistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 3) {
-				if (++activitylistMainCnt > 5)
+				if (++activitylistMainCnt > MAX_COUNT)
 					continue;
 				activitylistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 4) {
-				if (++citylistMainCnt > 5)
+				if (++citylistMainCnt > MAX_COUNT)
 					continue;
 				citylistMain.add(travelInfoVo.get(i));
 			}
