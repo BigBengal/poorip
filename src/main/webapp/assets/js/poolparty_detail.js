@@ -159,14 +159,37 @@ $(document).ready(function(){
 			
 	});
 	
-	$( ".datepicker" ).datepicker({
+	var fromdt = $( "#fromdate" ).datepicker({
     	dateFormat: 'yy-mm-dd',
         showOtherMonths: true,
         selectOtherMonths: true,
-        autoclose: true,
         changeMonth: true,
         changeYear: true,
+        numberOfMonths : 2
+    }).on("change", function() {
+		todt.datepicker("option", "minDate", getDate(this));
     });
+	var todt = $( "#todate" ).datepicker({
+    	dateFormat: 'yy-mm-dd',
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        changeMonth: true,
+        changeYear: true,
+        numberOfMonths : 2
+	}).on("change", function() {
+	   	fromdt.datepicker("option", "maxDate", getDate(this));
+	});
+	
+	function getDate(element) {
+		var date;
+
+		try {
+			date = $.datepicker.parseDate('yy-mm-dd', element.value);
+		} catch (error) {
+			date = null;
+		}
+		return date;
+	}
 	
 	// 풀파티 좋아요 버튼
 	$("#poollike").click(function(){
