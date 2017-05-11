@@ -32,7 +32,8 @@ import com.poorip.web.util.WebUtil;
 public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-
+	private static final int MAX_COUNT = 12;
+	
 	@Autowired
 	private MainService mainService;
 	
@@ -43,26 +44,36 @@ public class MainController {
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) {
 		
+		int foodlistMainCnt = 0, attractionlistMainCnt = 0, activitylistMainCnt = 0, citylistMainCnt = 0;
+		
 		List<TravelInfoVo> foodlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> activitylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> attractionlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> citylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
 		
-		
 		for (int i = 0; i < travelInfoVo.size(); i++) {
+			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= MAX_COUNT*4)
+				break;
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
+				if (++foodlistMainCnt > MAX_COUNT)
+					continue;
 				foodlistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
+				if (++attractionlistMainCnt > MAX_COUNT)
+					continue;
 				attractionlistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 3) {
+				if (++activitylistMainCnt > MAX_COUNT)
+					continue;
 				activitylistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 4) {
+				if (++citylistMainCnt > MAX_COUNT)
+					continue;
 				citylistMain.add(travelInfoVo.get(i));
-	
 			}
 
 		}

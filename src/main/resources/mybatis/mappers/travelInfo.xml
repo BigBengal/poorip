@@ -72,6 +72,7 @@
       <![CDATA[
          select 
          		a.trv_seq as trvSeq,
+         		a.cty_seq as ctySeq,
          		a.cat_seq as catSeq,
          		a.crt_date as crtDate,
          		a.name as name,
