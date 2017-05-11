@@ -345,10 +345,12 @@ $(function(){
 function postShare(postSeq){
 	
 	$("#share-sns-post").dialog({
+		
+
 		resizable: false,
 	      height: "auto",
 	      width: 1000,
-	      modal: true,
+	      modal: true
 //	      buttons: {
 //	        "공유": function() {
 //	          $( this ).dialog( "close" );
@@ -376,7 +378,8 @@ function postShare(postSeq){
 //	        }
 //	      }
 	});
-
+	
+	document.getElementById("sns-share-postSeq").value = postSeq;
 }
 
 

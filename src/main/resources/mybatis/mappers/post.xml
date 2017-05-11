@@ -41,8 +41,7 @@
 						#{hidden })
 		]]>
 	</insert>
-	
-	
+
 	<update id="updatePost" parameterType="reviewvo">
 		
 		<![CDATA[
@@ -250,12 +249,6 @@
 		parameterType="integer">
 	<![CDATA[
 	select ifnull(count(post_seq), 0) as likeCount from post_like where post_seq=#{postSeq} group by post_seq
-	]]>
-	</select>
-	
-	<select id="getHiddenValue" resultType="string">
-	<![CDATA[
-		select hidden from post where post_Seq = #{postSeq } and usr_Seq = #{usrSeq }
 	]]>
 	</select>
 
