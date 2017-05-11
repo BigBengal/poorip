@@ -43,26 +43,36 @@ public class MainController {
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) {
 		
+		int foodlistMainCnt = 0, attractionlistMainCnt = 0, activitylistMainCnt = 0, citylistMainCnt = 0;
+		
 		List<TravelInfoVo> foodlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> activitylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> attractionlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> citylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
 		
-		
 		for (int i = 0; i < travelInfoVo.size(); i++) {
+			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= 20)
+				break;
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
+				if (++foodlistMainCnt > 5)
+					continue;
 				foodlistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
+				if (++attractionlistMainCnt > 5)
+					continue;
 				attractionlistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 3) {
+				if (++activitylistMainCnt > 5)
+					continue;
 				activitylistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 4) {
+				if (++citylistMainCnt > 5)
+					continue;
 				citylistMain.add(travelInfoVo.get(i));
-	
 			}
 
 		}
