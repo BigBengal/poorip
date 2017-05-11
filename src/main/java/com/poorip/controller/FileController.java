@@ -38,7 +38,6 @@ public class FileController {
 	public LinkedList<FileMeta> upload(
 			MultipartHttpServletRequest request, HttpServletResponse response) {
 
-		System.out.println("upload");
 		//1. build an iterator
 		Iterator<String> itr = request.getFileNames();
 		MultipartFile mpf = null;
@@ -47,8 +46,7 @@ public class FileController {
 		while(itr.hasNext()){
 
 			//2.1 get next MultipartFile
-			mpf = request.getFile(itr.next()); 
-			System.out.println(mpf.getOriginalFilename() +" uploaded! "+files.size());
+			mpf = request.getFile(itr.next());
 
 			//2.2 if files > 10 remove the first from the list
 			if(files.size() >= 10)
@@ -96,7 +94,6 @@ public class FileController {
 	 ****************************************************/
 	@RequestMapping(value = "/get/{value}", method = RequestMethod.GET)
 	public void get(HttpServletResponse response,@PathVariable String value){
-		System.out.println("value:"+value);
 		FileMeta getFile = files.get(Integer.parseInt(value));
 		try {      
 			response.setContentType(getFile.getFileType());

@@ -23,13 +23,11 @@ public class RequestController {
 		if(userVo==null) {
 			requestVo.setUsrSeq(-1);
 			requestService.insertComments(requestVo);
-			System.out.println("유저 로그인 없을시" + requestVo);
 			return "redirect:/";
 		}
 		
 		requestVo.setUsrSeq(userVo.getUsrSeq());
 		requestService.insertComments(requestVo);
-		System.out.println("유저 로그인 있!!을시" + requestVo);
 		return "redirect:/";
 		
 	}

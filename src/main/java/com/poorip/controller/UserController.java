@@ -113,7 +113,6 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/isExistNick")
 	public String isExistNick(@RequestParam("usrNick") String nickName){
-		System.out.println("OK " + nickName);
 		UserVo userVo = new UserVo();
 		userVo.setUsrNick(nickName);
 		return (userService.isExistNick(userVo)==true ? "Already used" : "true");
@@ -126,7 +125,6 @@ public class UserController {
 	public String addInfo(Model model, @AuthUser UserVo authUser){
 		logger.info("addinfo() Start");
 		UserVo uservo = userService.getUser(authUser);
-		//System.out.println(uservo);
 		model.addAttribute("user", uservo);
 		return "user/addinfo";
 	}
@@ -136,7 +134,6 @@ public class UserController {
 	public String addInfoSave(@ModelAttribute UserVo userVo,
 							Model model){
 		logger.info("addinfoSave() Start");
-		//System.out.println(userVo);
 		// UsrSeq는 jsp 페이지에서 같이 보내주어야 함
 		
 		// 필수정보 (언어, 닉네임, 성별(페북연동은 필요없음,주석)
@@ -153,7 +150,6 @@ public class UserController {
 	public String addRequiredSave(@ModelAttribute UserVo userVo,
 							Model model){
 		logger.info("addreqsave() Start");
-		//System.out.println(userVo);
 		
 		// UsrSeq는 jsp 페이지에서 같이 보내주어야 함
 		// 필수정보 (언어, 닉네임, 성별(페북연동은 필요없음,주석)
@@ -187,14 +183,9 @@ public class UserController {
 	public JSONResult getProfile(@RequestParam(value="usrSeq") int usrSeq){
 		if ( usrSeq == 0)
 			return JSONResult.fail("No usrSeq");
-		
-		//System.out.println("getProfile():usrSeq" + usrSeq);
-		//System.out.println(userService.SearchPersonListbySeq(usrSeq) );
-		//System.out.println(scrapService.showScraps(usrSeq));
-		
+				
 		Map<String, Object> map = new HashMap<>();
 		map.put("profile", userService.SearchPersonListbySeq(usrSeq) );
-//		map.put("scrap", scrapService.showScraps(usrSeq));
 		map.put("scrapcity", scrapCityService.showCity(usrSeq));
 		
 		return JSONResult.success(map);

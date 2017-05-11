@@ -80,12 +80,8 @@ public class AdminController {
 								@RequestParam ("trvSeq1") int trvSeq,
 								MultipartHttpServletRequest request,
 								Model model) throws IOException {
-		System.out.println(travelInfoPicVo);
 		travelInfoPicVo.setTrvSeq( trvSeq );
-		System.out.println(trvSeq);
 		List< MultipartFile > Travelfiles = request.getFiles( "travelfile" );
-		System.out.println(Travelfiles);
-		System.out.println(travelInfoPicVo);
 		adminService.addTravelPic( travelInfoPicVo, Travelfiles );
 		
 		return "redirect:/admin/basic";

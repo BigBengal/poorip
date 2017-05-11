@@ -51,7 +51,6 @@ public class ScrapController {
 				if(scrapCityService.showTravelDuration(userVo.getUsrSeq())!=null) {
 					travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
 					model.addAttribute("travelDuration", travelDuration);
-					System.out.println(travelDuration);
 				}
 				return "/scrap/scrapMain";
 			}
@@ -79,8 +78,6 @@ public class ScrapController {
 	
 		int trvSeq1 = Integer.parseInt(trvSeq);
 		scrapVo.setTrvSeq(trvSeq1);
-		System.out.println(scrapVo);
-		System.out.println(scrapService.selectScrap(scrapVo));
 		if(scrapService.selectScrap(scrapVo)==0) {
 			scrapService.insertScrap(scrapVo);
 			return JSONResult.success("성공");
@@ -136,7 +133,6 @@ public class ScrapController {
 		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
 		ScrapCityVo scrapDate = scrapCityService.select(scrapCityVo);
 		
-		System.out.println(ctySeq + " ++++ " + scrapDate);
 		if(scrapDate==null) {
 			return JSONResult.fail("no-data");
 		}
