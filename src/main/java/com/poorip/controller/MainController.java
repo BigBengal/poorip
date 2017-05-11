@@ -170,6 +170,11 @@ public class MainController {
 	@RequestMapping("/reviewLikeValidate/{trvSeq}")
 	public JSONResult validateReviewLike(@PathVariable("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
 		int trvSeq1 = Integer.parseInt(trvSeq);
+
+		if(userVo==null) {
+			userVo = new UserVo();
+			userVo.setUsrSeq(0);
+		}
 		List<PostVo> postLikeList =  snsService.showPostLike(trvSeq1, userVo.getUsrSeq());
 		return JSONResult.success(postLikeList);
 	}
