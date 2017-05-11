@@ -265,10 +265,14 @@
 			</div>
 			<div class="row margin_up_down underline">
 			<div class="col-md-3">
-				<img alt='수정' src='/poorip/assets/images/post_modify.png' class="menu_links modify" data-postseq="${post.postSeq}" style="max-height: 30px;">
+				<c:if test="${authUser.usrSeq == post.usrSeq}">
+					<img alt='수정' src='/poorip/assets/images/post_modify.png' class="menu_links modify" data-postseq="${post.postSeq}" style="max-height: 30px;">
+				</c:if>
 			</div>
 			<div class="col-md-3 col-md-offset-6">
-				<img alt='삭제' src='/poorip/assets/images/post_delete.png' class="menu_links rightalign delete" data-postseq="${post.postSeq}" style="max-height: 30px;">
+				<c:if test="${authUser.usrSeq == post.usrSeq}">
+					<img alt='삭제' src='/poorip/assets/images/post_delete.png' class="menu_links rightalign delete" data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}" style="max-height: 30px;">
+				</c:if>
 			</div>
 			</div>
 		

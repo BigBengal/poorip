@@ -8,7 +8,7 @@
 <!-- 글 작성 -->
 	<form class="form-horizontal"
 		action="${pageContext.request.contextPath}/poolparty/post" method="post" enctype="multipart/form-data">
-		<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
+		<input class="ignore" type="hidden" id="authuser" name="usrSeq" value="${authUser.usrSeq}">
 		<input class="ignore" type="hidden" name="poolSeq" value="${pool.poolSeq}">
 		<div class="col-sm-1 img_inline menu_links" onclick="showWrite();">
 			<img alt="글쓰기" src="${pageContext.request.contextPath}/assets/images/post_write.png">
