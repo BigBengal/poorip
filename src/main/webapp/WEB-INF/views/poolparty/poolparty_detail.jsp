@@ -48,7 +48,7 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="/poorip/assets/plugins/jquery-3.2.1.js"></script>
 <!-- <script src="/poorip/assets/bootstrap/js/moment.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/transition.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/collapse.js"></script> -->

@@ -93,8 +93,9 @@
 										</div>
 									</div>
 									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-default" id="citygo" data-ctyseq="${travelInfoCityMain.ctySeq}">Search</button>
 										<button type="button" class="btn btn-sm btn-default"
-											data-dismiss="modal">Close</button>
+										data-dismiss="modal">Close</button>
 									</div>
 								</div>
 							</div>

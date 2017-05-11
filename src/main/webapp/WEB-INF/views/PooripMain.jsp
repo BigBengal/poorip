@@ -107,9 +107,7 @@
 	<!-- travel-Info end -->
 	<!-- member start -->
 	<!-- ================ -->
-	<div class="section translucent-bg bg-image-2 pb-clear">
-		<c:import url="/WEB-INF/views/include/member.jsp" />
-	</div>
+
 	<!-- member end -->
 
 	<!-- finder start -->
@@ -199,8 +197,13 @@
 
 				if(tagId.substring(8,9)!=1)
 					showMap(tagId);
-				})
+				});
 				
+			$(document).on("click","#citygo",function(){
+				var ctyseq = $(this).data("ctyseq");
+				console.log(ctyseq);
+				location.href="/poorip/city/"+ctyseq;
+			});
 		});
 		function initMap() {
 			return 0
@@ -233,7 +236,7 @@
 		    marker.setMap(map);
 
 		}
-
+		
 	</script>
 
 	<%-- <c:forEach items="${sessionScope}" var="attr">
