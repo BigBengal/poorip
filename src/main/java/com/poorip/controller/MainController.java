@@ -56,9 +56,10 @@ public class MainController {
 			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= MAX_COUNT*4)
 				break;
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
+				System.out.println(travelInfoVo.get(i));
 				if (++foodlistMainCnt > MAX_COUNT)
 					continue;
-				foodlistMain.add(travelInfoVo.get(i));
+				citylistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
 				if (++attractionlistMainCnt > MAX_COUNT)
@@ -81,7 +82,7 @@ public class MainController {
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
 		model.addAttribute("travelInfoCityMain", citylistMain);
-		
+		System.out.println(citylistMain);
 		return "/PooripMain";
 
 	}
