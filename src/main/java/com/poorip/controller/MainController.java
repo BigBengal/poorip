@@ -66,7 +66,6 @@ public class MainController {
 			}
 
 		}
-		System.out.println("씨튀!" + citylistMain);
 		model.addAttribute("travelInfoFoodMain", foodlistMain);
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
@@ -95,7 +94,6 @@ public class MainController {
 				attractionlist.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 3) {
-				/* System.out.println(travelInfoVo.get(i)); */
 				activitylist.add(travelInfoVo.get(i));
 			}
 
@@ -119,16 +117,11 @@ public class MainController {
 			like="ReviewByDate";
 		}
 		if(like.equals("like")) {
-			System.out.println("LIKE REALLY IN");
 			List<ReviewVo> reviewsByLike = mainService.getReviewsByLikes(trvSeq1);
-			System.out.println(reviewsByLike);
 			return JSONResult.success(reviewsByLike);
-			
 		}
-	
-		
+
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
-		System.out.println(reviews);
 	
 
 		return JSONResult.success(reviews);

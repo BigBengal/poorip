@@ -194,8 +194,6 @@ public class PoolPartyController {
 							@ModelAttribute ReviewVo reviewVo,
 							@RequestParam("poolSeq") String poolSeq,
 							MultipartHttpServletRequest request) throws Exception{
-		System.out.println("오예");
-		System.out.println(reviewVo);
 		if (userVo.getUsrSeq() != reviewVo.getUsrSeq())
 			return "redirect:/poolparty/"+poolSeq;
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );

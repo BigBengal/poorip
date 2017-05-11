@@ -87,7 +87,6 @@ public class UserDao {
 				return sqlSession.selectOne("user.getseqbynick", usrNick);	
 		}
 		catch(Exception e){
-			System.out.println("DB ERR (NO DATA FOUND)");
 			return 0;
 		}
 		

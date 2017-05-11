@@ -87,7 +87,6 @@ public class SNSController {
 			snsService.addPostOnly(reviewVo, poolPostSeq );
 			return "redirect:/sns";
 		}
-		System.out.println(reviewVo);
 		snsService.addPost( reviewVo, postUploadFiles,  poolPostSeq );
 		
 		return "redirect:/sns";
@@ -99,7 +98,6 @@ public class SNSController {
 	public String postShare(@AuthUser UserVo userVo,
 							@RequestParam("postSeq") int postSeq,
 							@RequestParam("share_to[]") int[] poolPostSeq) {
-		System.out.println(postSeq);
 		snsService.addPoolPost(poolPostSeq, postSeq);
 		
 		return "redirect:/sns";
