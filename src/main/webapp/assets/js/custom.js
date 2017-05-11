@@ -107,8 +107,8 @@ function setDate(ctySeq) {
 
 				success : function(result) {
 
-					var htmlDate = "<div id='city-travel-duration-'" + ctySeq + "' ><h3> 여행 기간은 " + result.data.dateFrom + " ~ "
-							+ result.data.dateTo + " 입니다<h3></div>";
+					var htmlDate = "<div id='city-travel-duration-'" + ctySeq + "' ><h4><strong> 여행 기간은 " + result.data.dateFrom + " ~ "
+							+ result.data.dateTo + " 입니다<strong><h4></div>";
 					console.log(htmlDate + "HEY??");
 					$("#scrap-date-info-" + ctySeq).prepend(htmlDate);
 

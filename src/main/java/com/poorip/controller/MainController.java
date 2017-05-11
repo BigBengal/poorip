@@ -165,7 +165,7 @@ public class MainController {
 		return JSONResult.success(likeCounts + "-decreased_like");
 	}
 	
-	@Auth
+	
 	@ResponseBody
 	@RequestMapping("/reviewLikeValidate/{trvSeq}")
 	public JSONResult validateReviewLike(@PathVariable("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
