@@ -199,8 +199,13 @@
 
 				if(tagId.substring(8,9)!=1)
 					showMap(tagId);
-				})
+				});
 				
+			$(document).on("click","#citygo",function(){
+				var ctyseq = $(this).data("ctyseq");
+				console.log(ctyseq);
+				location.href="/poorip/city/"+ctyseq;
+			});
 		});
 		function initMap() {
 			return 0
@@ -233,7 +238,7 @@
 		    marker.setMap(map);
 
 		}
-
+		
 	</script>
 
 	<%-- <c:forEach items="${sessionScope}" var="attr">
