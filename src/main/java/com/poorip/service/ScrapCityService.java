@@ -33,4 +33,8 @@ public class ScrapCityService {
 	public ScrapCityVo showTravelDuration(int usrSeq) {
 		return scrapCityDao.showTravelDuration(usrSeq);
 	}
+	
+	public boolean clearCityDate(ScrapCityVo scrapCityVo) {
+		return scrapCityDao.clearDate(scrapCityVo);
+	}
 }

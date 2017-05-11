@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.poorip.vo.ReviewVo;
+import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
 
 @Repository
@@ -42,6 +43,8 @@ public class ScrapDao {
 	public boolean updateHit(int trvSeq) {
 		return 1== sqlSession.update("travelInfo.updateHit", trvSeq);
 	}
+	
+	
 	
 	
 }

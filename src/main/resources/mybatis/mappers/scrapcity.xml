@@ -43,4 +43,11 @@
 			  and a.usr_seq=#{usrSeq} group by c.cty_seq )
 		]]>
 	</select>
+	
+	<!--  선택한 도시 날짜 초기화 -->
+	<select id="cleartrvdurationforcity" parameterType="scrapcityvo">
+		<![CDATA[	
+	 delete from scrap_city where cty_seq = #{ctySeq} and usr_seq = #{usrSeq}
+	 ]]>
+	</select>
 </mapper>

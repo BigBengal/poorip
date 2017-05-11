@@ -160,5 +160,18 @@ public class ScrapController {
 		return "";
 	}
 	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/renewDate")
+	public JSONResult clearDate(@RequestParam ("ctySeq") int ctySeq, @AuthUser UserVo userVo) {
+		ScrapCityVo scrapCityVo = new ScrapCityVo();
+		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+		scrapCityVo.setCtySeq(ctySeq);
+		scrapCityService.clearCityDate(scrapCityVo);
+		
+		return JSONResult.success("deleted");
+		
+	}
+	
 
 }

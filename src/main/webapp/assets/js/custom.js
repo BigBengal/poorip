@@ -107,9 +107,9 @@ function setDate(ctySeq) {
 
 				success : function(result) {
 
-					var htmlDate = "<div ><h3>" + result.data.dateFrom + " ~ "
-							+ result.data.dateTo + "<h3></div>";
-					console.log(htmlDate);
+					var htmlDate = "<div id='city-travel-duration-'" + ctySeq + "' ><h3> 여행 기간은 " + result.data.dateFrom + " ~ "
+							+ result.data.dateTo + " 입니다<h3></div>";
+					console.log(htmlDate + "HEY??");
 					$("#scrap-date-info-" + ctySeq).prepend(htmlDate);
 
 					$.ajax({
@@ -149,6 +149,53 @@ function setDate(ctySeq) {
 
 	});
 };
+
+
+
+function clearDate(ctySeq) {
+	event.preventDefault();
+	$("#travel-date-info").empty();
+	$.ajax({
+	url : "/poorip/scrap/renewDate",
+	type : "post",
+	data : "ctySeq=" + ctySeq,
+
+	success : function(result) {
+
+		console.log(result);
+		document.getElementById("scrap-date-info-" + ctySeq).innerHTML = "";
+		
+		$.ajax({
+			url : "/poorip/scrap/showDuration",
+			type : "post",
+			data : "",
+
+			success : function(result) {
+
+				var htmlTravelDate =  result.data.dateFrom
+						+ " ~ " + result.data.dateTo
+						+ " 총 여행일 수는   " + result.data.dateDiff + "일 입니다"
+					;
+				console.log(htmlTravelDate);
+				$("#travel-date-info").prepend(htmlTravelDate);
+				
+			
+
+			},
+			error : function(data) {
+				// alert("ajax 에러가 발생하였습니다.")
+			}
+
+		});
+	
+
+	},
+	error : function(data) {
+		// alert("ajax 에러가 발생하였습니다.")
+	}
+
+});
+}
 
 function onSignIn(googleUser) {
 	  var profile = googleUser.getBasicProfile();
