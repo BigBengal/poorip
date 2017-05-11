@@ -191,3 +191,9 @@ File Description: Place here your custom CSS styles
 .col-sm-6.col-md-3.isotope-item.web-design .overlay-container {
 	height: 175px;
 }
+
+.overlay-container img {
+	height: 175px;
+	width: 400px;
+    object-fit: cover;
+}
