@@ -93,8 +93,10 @@ public class ScrapController {
 	@ResponseBody
 	@RequestMapping("/scrapValidate")
 	public String validateScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
-		ScrapVo scrapVo = new ScrapVo();
 		int trvSeq1 = Integer.parseInt(trvSeq);
+		scrapService.updateHit(trvSeq1);
+		ScrapVo scrapVo = new ScrapVo();
+		
 		scrapVo.setTrvSeq(trvSeq1);
 		scrapVo.setUsrSeq(userVo.getUsrSeq());
 		if(scrapService.selectScrap(scrapVo)==0) {

@@ -59,11 +59,10 @@
 					<div class="col-sm-6 col-md-3 isotope-item cities">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img
-									src="/poorip/${travelInfoCityMain.picture}"
-									alt=""> <a class="overlay" data-toggle="modal"
-									data-target="#project-1${status.index }"> <i
-									class="fa fa-search-plus"></i>
+								<img src="/poorip/${travelInfoCityMain.picture}" alt=""> 
+								<a class="overlay" data-toggle="modal"
+									data-target="#project-1${status.index }">
+									 <i	class="fa fa-search-plus"></i>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"

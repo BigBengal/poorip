@@ -39,5 +39,9 @@ public class ScrapDao {
 		return sqlSession.selectList("scrap.showScrap", usrSeq);
 	}
 	
+	public boolean updateHit(int trvSeq) {
+		return 1== sqlSession.update("travelInfo.updateHit", trvSeq);
+	}
+	
 	
 }

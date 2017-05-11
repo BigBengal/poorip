@@ -110,7 +110,7 @@
 			       #{catSeq },
 			       null,
 			       #{contact },
-			       null)
+			       0)
       ]]>
     </insert>
     
@@ -156,4 +156,11 @@
          select cty_seq as ctySeq from city_search where cty_name = #{ctyName }
     	]]>
 	</select>
+	
+	<!-- 사용자가 클릭시 여행정보 조회수 증가 -->
+	<update id="updateHit" parameterType="integer">
+   		<![CDATA[
+	update travel_info set hit=hit+1 where trv_seq= #{trvSeq}
+	]]>
+	</update>
 </mapper>
