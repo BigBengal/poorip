@@ -196,6 +196,8 @@ public class PoolPartyController {
 							MultipartHttpServletRequest request) throws Exception{
 		System.out.println("오예");
 		System.out.println(reviewVo);
+		if (userVo.getUsrSeq() != reviewVo.getUsrSeq())
+			return "redirect:/poolparty/"+poolSeq;
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
 
 		SNSService.updatePost( reviewVo, postUploadFiles);
@@ -355,10 +357,14 @@ public class PoolPartyController {
 	@Auth
 	@ResponseBody
 	@RequestMapping("/delete/{postSeq}")
-	public JSONResult getListbyPage(@PathVariable("postSeq") int postSeq){
+	public JSONResult getListbyPage(@PathVariable("postSeq") int postSeq,
+									@RequestParam("usrSeq") int usrSeq,
+									@AuthUser UserVo userVo){
 		PostVo postVo = new PostVo();
 		postVo.setPostSeq(postSeq);
-
+		if (userVo.getUsrSeq() != usrSeq)
+			return JSONResult.fail("Not Yours");
+		
 		return JSONResult.success(poolPostDao.deleteByPostSeq(postSeq));
 	}
 

@@ -75,11 +75,12 @@ public class SNSController {
 	@RequestMapping("/post/upload")
 	public String mySNSadd( @AuthUser UserVo userVo,
 							@ModelAttribute ReviewVo reviewVo,
-							@RequestParam ("to[]") int[] poolPostSeq,
+							@RequestParam (value="to[]", required=false) int[] poolPostSeq ,
 							MultipartHttpServletRequest request) throws IOException {
 		
 		reviewVo.setUsrSeq( userVo.getUsrSeq() );
 		reviewVo.setHidden("N");
+		
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
 		
 		if(postUploadFiles.get(0).getOriginalFilename()==null||postUploadFiles.get(0).getOriginalFilename().equals("")) {

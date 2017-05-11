@@ -69,12 +69,12 @@
 <script>
 $(document).ready(function(){
 	
-	var $alink = $("#navbar-collapse-1 ul li a");
-	for(var i=0;i<2;i++){
-		var $ori = $alink.eq(i);
-		var oriLink = $ori.attr("href");
-		$ori.attr("href","/poorip/"+oriLink);	 
-	}
+// 	var $alink = $("#navbar-collapse-1 ul li a");
+// 	for(var i=0;i<2;i++){
+// 		var $ori = $alink.eq(i);
+// 		var oriLink = $ori.attr("href");
+// 		$ori.attr("href","/poorip/"+oriLink);	 
+// 	}
 			
 	// Fixed header
 	//-----------------------------------------------
