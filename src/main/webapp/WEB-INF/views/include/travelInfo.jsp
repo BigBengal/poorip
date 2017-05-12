@@ -39,10 +39,14 @@
 					<li class="active"><a href="#" data-filter=".web-design">Delicious한
 							맛집</a></li>
 				</c:if>
-
+				
+				<c:if test="${!empty travelInfoAttraction }">
 				<li><a href="#" data-filter=".app-development">Attractive한
 						관광지</a></li>
+				</c:if>
+				<c:if test="${!empty travelInfoActivity }">
 				<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
+				</c:if>
 			</ul>
 		</div>
 		<!-- isotope filters end -->

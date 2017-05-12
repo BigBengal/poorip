@@ -98,14 +98,14 @@ public class MainController {
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(citySeq1);
 
 		for (int i = 0; i < travelInfoVo.size(); i++) {
-			if (travelInfoVo.get(i).getCatSeq() == 1) {
+			if (travelInfoVo.get(i).getCatSeq() == 2) {
 				foodlist.add(travelInfoVo.get(i));
 			
 			}
-			if (travelInfoVo.get(i).getCatSeq() == 2) {
+			if (travelInfoVo.get(i).getCatSeq() == 3) {
 				attractionlist.add(travelInfoVo.get(i));
 			}
-			if (travelInfoVo.get(i).getCatSeq() == 3) {
+			if (travelInfoVo.get(i).getCatSeq() == 4) {
 				activitylist.add(travelInfoVo.get(i));
 			}
 

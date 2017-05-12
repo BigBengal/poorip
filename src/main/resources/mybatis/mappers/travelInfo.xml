@@ -85,7 +85,33 @@
          		a.contact as contact,
          		a.hit as hit
 		 from travel_info a left join travel_info_pic b on a.TRV_SEQ = b.TRV_SEQ
-		 order by hit desc
+		 where a.CAT_SEQ <> 1
+		 
+		 union all
+		 
+		 select a.trv_seq as trvSeq,
+         		a.cty_seq as ctySeq,
+         		a.cat_seq as catSeq,
+         		a.crt_date as crtDate,
+         		a.name as name,
+         		a.contents as contents,
+         		a.hours as hours,
+         		a.location as location,
+         		a.picture as picture,
+         		a.price as price,
+         		a.map_url as mapURL,
+         		a.contact as contact,
+				cty_rank.hit
+		 from travel_info a left join travel_info_pic b on a.TRV_SEQ = b.TRV_SEQ,
+		 		 (select cty_seq, sum(hit) as hit
+				 from travel_info
+				 where CAT_SEQ != 1
+				 group by cty_seq
+				 order by sum(hit)
+				 limit 0,12 ) cty_rank
+		where a.CAT_SEQ = 1
+		  and a.CTY_SEQ = cty_rank.cty_seq
+		order by hit desc
       ]]>
 	</select>
 	
