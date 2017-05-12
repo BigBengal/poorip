@@ -233,10 +233,10 @@ public class SNSService {
 
 	public boolean deletePost(PostVo postVo) {
 		int postSeq = postVo.getPostSeq();
-		boolean delPost = snsDao.deletePost( postVo );
+		boolean delPostLike = snsDao.deletePostLikeByPostSeq(postSeq);		
 		boolean delPostPic = postPicDao.deleteByPostSeq(postSeq);
-		boolean delPostLike = snsDao.deletePostLikeByPostSeq(postSeq);
 		boolean delPoolPost = poolPostDao.deleteByPostSeq(postSeq);
+		boolean delPost = snsDao.deletePost( postVo );
 		
 		return delPost || delPostPic || delPostLike || delPoolPost;
 	}
