@@ -29,6 +29,9 @@
 					<li class="active"><a href="#" data-filter=".cities"
 						data-show="Y">Hot한 도시</a></li>
 					<li><a href="#" data-filter=".web-design">Delicious한 맛집</a></li>
+					<li><a href="#" data-filter=".app-development">Attractive한
+						관광지</a></li>
+						<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
 				</c:if>
 				<c:if test="${empty travelInfoCityMain }">
 					<li class="active"><a href="#" data-filter=".cities"
