@@ -162,7 +162,6 @@ public class AdminController {
 		int ctrSeq = Integer.parseInt(ctrSeq1);
 		cityVo.setCtrSeq( ctrSeq );
 		adminService.addCity( cityVo );
-		
 		return "redirect:/admin/basic";
 	}
 

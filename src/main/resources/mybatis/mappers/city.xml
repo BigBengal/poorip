@@ -16,7 +16,7 @@
 		<![CDATA[
 			insert 
 			  into city 
-			values (null, #{ctyName }, now(), #{picture}, #{ctrSeq } )
+			values (null, #{ctyName }, now(), #{ctrSeq } )
 		]]>
 	</insert>
 	
