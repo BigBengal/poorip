@@ -253,7 +253,7 @@ function openOptions() {
 			</div>
 		</div>
 		<div class="banner-caption">
-<!-- 			<div class="container"> -->
+			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
@@ -298,7 +298,26 @@ function openOptions() {
 <!-- 					</div> -->
 <!-- 					</div> -->
 				
-<!-- 				</div> -->
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<p/>
+		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea">
+			<c:forEach var="list" items="${top10 }">
+				<div class="col-md-6 poolmember">
+					<div class="col-md-5 text-right">
+						<a href="poolparty/${list.poolSeq}">
+							<img src="/poorip${list.poolPic}">
+					</div>
+					
+						<p>${list.poolName}</p>
+						<p>${list.poolComment }</p>
+						</a>
+					
+				</div>
+				
+			</c:forEach>
 		</div>
 	</div>
 	<!-- banner end -->
@@ -312,22 +331,6 @@ function openOptions() {
 <!-- 								style="width: 75; font-family: 맑은고딕; background-color: black"> -->
 <!-- 						</p> -->
 <!-- 					</form> -->
-<p/>
-		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea">
-		<c:forEach var="list" items="${top10 }">
-			<div class="col-md-6 poolmember">
-				<div class="col-md-5 text-right">
-					<a href="poolparty/${list.poolSeq}">
-						<img src="/poorip${list.poolPic}">
-				</div>
-				
-					<p>${list.poolName}</p>
-					<p>${list.poolComment }</p>
-					</a>
-				
-			</div>
-			
-		</c:forEach>
-	</div>
+
 </body>
 </html>
