@@ -183,7 +183,7 @@ $(document).ready(function(){
 		<div class="banner-caption">
 			<div class="container">
 				<div class="row">
-					<h1 class="text-center">
+					<h1 class="text-center" style="color:grey">
 							회원 정보 수정
 						</h1>
 					
