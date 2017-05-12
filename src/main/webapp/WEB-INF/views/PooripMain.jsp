@@ -126,7 +126,7 @@
 		================================================== -->
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+		src="${pageContext.request.contextPath }/assets/plugins/jquery-1.12.4.js"></script>
 			<!-- date picker -->
 <!-- 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
