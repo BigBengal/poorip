@@ -163,6 +163,9 @@
 											<div class="col-md-6">
 												<p>${travelInfoFood.contents}</p>
 											</div>
+											<div class="col-md-6">
+												<img src="/poorip/${travelInfoFood.picture}" alt="" />
+											</div>
 											<div class="col-md-6 detail">
 												<h3>영업시간</h3>
 												<p>${travelInfoFood.hours}</p>
@@ -175,9 +178,7 @@
 												<h3>연락 정보</h3>
 												<p>${travelInfoFood.contact}</p>
 											</div>
-											<div class="col-md-6">
-												<img src="/poorip/${travelInfoFood.picture}" alt="" />
-											</div>
+											
 										</div>
 										<div class="row">
 											<div class="col-md-12">
@@ -276,6 +277,9 @@
 										<div class="col-md-6">
 											<p>${travelInfoFoodMain.contents}</p>
 										</div>
+										<div class="col-md-6">
+											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
+										</div>
 										<div class="col-md-6 detail">
 											<h3>영업시간</h3>
 											<p>${travelInfoFoodMain.hours}</p>
@@ -288,9 +292,7 @@
 											<h3>연락 정보</h3>
 											<p>${travelInfoFoodMain.contact}</p>
 										</div>
-										<div class="col-md-6">
-											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
-										</div>
+										
 										<div class="row">
 											<div class="col-md-12">
 												<h5>위치 확인</h5>
@@ -391,6 +393,9 @@
 											<div class="col-md-6">
 												<p>${travelInfoAttraction.contents}</p>
 											</div>
+											<div class="col-md-6">
+												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
+											</div>
 											<div class="col-md-6 detail">
 												<h3>영업시간</h3>
 												<p>${travelInfoAttraction.hours}</p>
@@ -403,9 +408,7 @@
 												<h3>연락 정보</h3>
 												<p>${travelInfoAttraction.contact}</p>
 											</div>
-											<div class="col-md-6">
-												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
-											</div>
+											
 											<div class="row">
 												<div class="col-md-12">
 													<h5>위치 확인</h5>
@@ -504,6 +507,10 @@
 											<div class="col-md-6">
 												<p>${travelInfoAttractionMain.contents}</p>
 											</div>
+											<div class="col-md-6">
+												<img src="/poorip/${travelInfoAttractionMain.picture}"
+													alt="">
+											</div>
 											<div class="col-md-6 detail">
 												<h3>영업시간</h3>
 												<p>${travelInfoAttractionMain.hours}</p>
@@ -516,10 +523,7 @@
 												<h3>연락 정보</h3>
 												<p>${travelInfoAttractionMain.contact}</p>
 											</div>
-											<div class="col-md-6">
-												<img src="/poorip/${travelInfoAttractionMain.picture}"
-													alt="">
-											</div>
+											
 
 											<div class="row">
 												<div class="col-md-12">
@@ -622,6 +626,9 @@
 											<div class="col-md-6">
 												<p>${travelInfoActivity.contents}</p>
 											</div>
+											<div class="col-md-6">
+												<img src="/poorip/${travelInfoActivity.picture}" alt="">
+											</div>
 											<div class="col-md-6 detail">
 												<h3>영업시간</h3>
 												<p>${travelInfoActivity.hours}</p>
@@ -634,9 +641,7 @@
 												<h3>연락 정보</h3>
 												<p>${travelInfoActivity.contact}</p>
 											</div>
-											<div class="col-md-6">
-												<img src="/poorip/${travelInfoActivity.picture}" alt="">
-											</div>
+											
 
 											<div class="row">
 												<div class="col-md-12">
@@ -737,6 +742,9 @@
 											<div class="col-md-6">
 												<p>${travelInfoActivityMain.contents}</p>
 											</div>
+											<div class="col-md-6">
+												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
+											</div>
 											<div class="col-md-6 detail">
 												<h3>영업시간</h3>
 												<p>${travelInfoActivityMain.hours}</p>
@@ -749,9 +757,7 @@
 												<h3>연락 정보</h3>
 												<p>${travelInfoActivityMain.contact}</p>
 											</div>
-											<div class="col-md-6">
-												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
-											</div>
+											
 
 											<div class="row">
 												<div class="col-md-12">
