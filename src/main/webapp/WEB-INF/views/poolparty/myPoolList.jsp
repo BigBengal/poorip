@@ -230,78 +230,80 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 		</div>
 	</div>
 	<!-- banner end -->
-	<div class="row col-lg-12 col-md-12 col-sm-12">
-		<div class="text-center">
-			<h2>내 풀파티 리스트</h2>
-		</div>
-	
-		<div class="row col-lg-12 col-md-12 	">
-			<c:forEach var="myPoolList" items="${myPoolList}">
-				<div class="col-md-6 poolparty">
-					<a href="${myPoolList.poolSeq}">
-					<div class="col-md-6">
-					<img src="/poorip${myPoolList.poolPic }" class="img100">
-					</div>
-					<div class="col-md-6">
-					${myPoolList.poolName}<br>
-					${myPoolList.poolComment}
-					</a>
-					</div>
-					
-				</div>
-			</c:forEach>
-		</div>
-	</div>
-	
-	<div class="row col-lg-12 col-md-12 col-sm-12">
-		<div class="text-center">
-			<h2>대기 중인 풀파티 리스트</h2>
-		</div>
+	<div class="container">
 		<div class="row col-lg-12 col-md-12 col-sm-12">
-			<c:forEach var="myPoolList" items="${myWaitPoolList}">
-				<div class="col-md-6 poolparty">
-					<a href="${myPoolList.poolSeq}">
-					
-					<div class="col-md-6">
-					<img src="/poorip${myPoolList.poolPic }" class="img100">
+			<div class="text-center">
+				<h2>내 풀파티 리스트</h2>
+			</div>
+		
+			<div class="row col-lg-12 col-md-12 	">
+				<c:forEach var="myPoolList" items="${myPoolList}">
+					<div class="col-md-6 poolparty">
+						<a href="${myPoolList.poolSeq}">
+						<div class="col-md-6">
+						<img src="/poorip${myPoolList.poolPic }" class="img100">
+						</div>
+						<div class="col-md-6">
+						${myPoolList.poolName}<br>
+						${myPoolList.poolComment}
+						</a>
+						</div>
+						
 					</div>
-					<div class="col-md-6">
-					
-					${myPoolList.poolName}
-					${myPoolList.poolComment}
-					</a>
-					</div>	
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</div>
-	</div>
-	
-	<div class="row col-lg-12 col-md-12 col-sm-12">
-		<div class="text-center">
-			<h2>요청 리스트</h2>
-		</div>
-		<div class="row">
-			<c:forEach var="requestList" items="${requestList}">
-				<div class="col-md-6 poolmember" id="request-${requestList.poolMemSeq}">
-					
-					<div class="col-md-4">
-						<img src="/poorip${requestList.poolPic}">
+		
+		<div class="row col-lg-12 col-md-12 col-sm-12">
+			<div class="text-center">
+				<h2>대기 중인 풀파티 리스트</h2>
+			</div>
+			<div class="row col-lg-12 col-md-12 col-sm-12">
+				<c:forEach var="myPoolList" items="${myWaitPoolList}">
+					<div class="col-md-6 poolparty">
+						<a href="${myPoolList.poolSeq}">
+						
+						<div class="col-md-6">
+						<img src="/poorip${myPoolList.poolPic }" class="img100">
+						</div>
+						<div class="col-md-6">
+						
+						${myPoolList.poolName}
+						${myPoolList.poolComment}
+						</a>
+						</div>	
 					</div>
-					${requestList.poolInfo}
-					<span class="poolmemberlist">
-					<img src="${requestList.profile}">
-						${requestList.usrNick}
-					<button class="btn btn-small" onclick="aprvConfirmDialog(${requestList.poolMemSeq},${requestList.poolSeq},${requestList.usrSeq});">수락 </button>
-					<button class="btn btn-small" onclick="rejectConfirmDialog(${requestList.poolMemSeq},${requestList.poolSeq},${requestList.usrSeq});">거절</button>
-					</span>
-					</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</div>
-		<div id="dialog-confirm_aprv" title="요청 리스트 수락" style="display:none">
-		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>요청를 수락하시겠습니까?</p>
-		</div>
-		<div id="dialog-confirm_reject" title="요청 리스트 거절" style="display:none">
-		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>요청를 거절하시겠습니까?</p>
+		
+		<div class="row col-lg-12 col-md-12 col-sm-12">
+			<div class="text-center">
+				<h2>요청 리스트</h2>
+			</div>
+			<div class="row">
+				<c:forEach var="requestList" items="${requestList}">
+					<div class="col-md-6 poolmember" id="request-${requestList.poolMemSeq}">
+						
+						<div class="col-md-4">
+							<img src="/poorip${requestList.poolPic}">
+						</div>
+						${requestList.poolInfo}
+						<span class="poolmemberlist">
+						<img src="${requestList.profile}">
+							${requestList.usrNick}
+						<button class="btn btn-small" onclick="aprvConfirmDialog(${requestList.poolMemSeq},${requestList.poolSeq},${requestList.usrSeq});">수락 </button>
+						<button class="btn btn-small" onclick="rejectConfirmDialog(${requestList.poolMemSeq},${requestList.poolSeq},${requestList.usrSeq});">거절</button>
+						</span>
+						</div>
+				</c:forEach>
+			</div>
+			<div id="dialog-confirm_aprv" title="요청 리스트 수락" style="display:none">
+			  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>요청를 수락하시겠습니까?</p>
+			</div>
+			<div id="dialog-confirm_reject" title="요청 리스트 거절" style="display:none">
+			  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>요청를 거절하시겠습니까?</p>
+			</div>
 		</div>
 	</div>
 </body>

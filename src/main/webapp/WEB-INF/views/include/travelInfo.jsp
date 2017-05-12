@@ -163,18 +163,18 @@
 											<div class="col-md-6">
 												<p>${travelInfoFood.contents}</p>
 											</div>
-											<div class="col-md-6">
+											<div class="col-sm-12 col-md-6">
 												<img src="/poorip/${travelInfoFood.picture}" alt="" />
 											</div>
-											<div class="col-md-6 detail">
+											<div class="col-sm-12 col-md-6 detail">
 												<h3>영업시간</h3>
 												<p>${travelInfoFood.hours}</p>
 											</div>
-											<div class="col-md-6 detail">
+											<div class="col-sm-12 col-md-6 detail">
 												<h3>가격</h3>
 												<p>${travelInfoFood.price}</p>
 											</div>
-											<div class="col-md-6 detail">
+											<div class="col-sm-12 col-md-6 detail">
 												<h3>연락 정보</h3>
 												<p>${travelInfoFood.contact}</p>
 											</div>
@@ -185,7 +185,7 @@
 												<h5>위치 확인</h5>
 												<!--  구글 맵 넣기   -->
 												<div id="map-project-2${status.index}"
-													class="col-md-12 googlemap"
+													class="col-sm-12 col-md-12 googlemap"
 													data-url="${travelInfoFood.mapURL}"></div>
 											</div>
 										</div>
@@ -277,18 +277,18 @@
 										<div class="col-md-6">
 											<p>${travelInfoFoodMain.contents}</p>
 										</div>
-										<div class="col-md-6">
+										<div class="col-sm-12 col-md-6">
 											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
 										</div>
-										<div class="col-md-6 detail">
+										<div class="col-sm-12 col-md-6 detail">
 											<h3>영업시간</h3>
 											<p>${travelInfoFoodMain.hours}</p>
 										</div>
-										<div class="col-md-6 detail">
+										<div class="col-sm-12 col-md-6 detail">
 											<h3>가격</h3>
 											<p>${travelInfoFoodMain.price}</p>
 										</div>
-										<div class="col-md-6 detail">
+										<div class="col-sm-12 col-md-6 detail">
 											<h3>연락 정보</h3>
 											<p>${travelInfoFoodMain.contact}</p>
 										</div>
