@@ -258,7 +258,7 @@
 										<div class="col-md-6">
 											<p>${travelInfoFoodMain.contents}</p>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-6 hours">
 											<h3>영업시간</h3>
 											<p>${travelInfoFoodMain.hours}</p>
 										</div>
