@@ -89,11 +89,12 @@
 										<h4 class="modal-title" id="project-1-label${status.index }">${travelInfoCityMain.name}</h4>
 									</div>
 									<div class="modal-body">
-										<h3>${travelInfoCityMain.name}</h3>
+										<h2>${travelInfoCityMain.name}</h2>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoCityMain.contents}</p>
 											</div>
+											
 											<div class="col-md-6">
 												<img src="/poorip/${travelInfoCityMain.picture}" alt="">
 											</div>
@@ -252,10 +253,13 @@
 												data-trvSeq="${travelInfoFoodMain.trvSeq}"
 												onclick="validate(${travelInfoFoodMain.trvSeq})" /></a>
 										</c:if>
-										<h3>${travelInfoFoodMain.name}</h3>
+										<h2>${travelInfoFoodMain.name}</h2>
 
 										<div class="col-md-6">
 											<p>${travelInfoFoodMain.contents}</p>
+										</div>
+										<div class="col-md-6">
+											<p>${travelInfoFoodMain.hours}</p>
 										</div>
 										<div class="col-md-6">
 											<img
