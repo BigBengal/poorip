@@ -15,7 +15,7 @@
 	action="${pageContext.request.contextPath}/searchResult" method="get"
 	style="text-align: center">
 	<input type="text" style="margin-bottom: 20px; display: inline-block; width: 90%"
-		placeholder="Search..." class="form-control" id="kwd" name="ctySeq">
+		placeholder="Search..." class="form-control" id="city-kwd" name="ctySeq">
 	<input type="submit" value="find" style="display:inline-block; float:right;">
 </form>
 
