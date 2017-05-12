@@ -38,5 +38,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/bit-pc/Downloads/apache-log4j-2.8.2-bin/log4j-api-2.8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bit-pc/Downloads/apache-log4j-2.8.2-bin/log4j-core-2.8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bit-pc/Downloads/apache-log4j-2.8.2-bin/log4j-slf4j-impl-2.8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bit-pc/Downloads/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bit-pc/Downloads/jsonevent-layout-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bit-pc/Downloads/json-smart-1.1.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
