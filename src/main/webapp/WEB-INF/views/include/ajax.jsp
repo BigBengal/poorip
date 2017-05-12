@@ -16,6 +16,10 @@ $(function(){
                 dataType : "json",
                 data: "kwd="+$("#kwd").val(),
                 success : function(data) {
+                	
+                	if( response.result == "fail") {
+     		    	   return;
+     		    	}
                     var result = data;
 //                     console.log(JSON.stringify(result.data));
                     response(
