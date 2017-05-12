@@ -198,7 +198,8 @@ File Description: Place here your custom CSS styles
     object-fit: cover;
 }
 
-.modal-body .col-md-6.hours {
+.modal-body .col-md-6.detail {
 	float:left;
 	clear:both;
+	margin-top:30px;
 }

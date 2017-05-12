@@ -14,9 +14,11 @@
 <form id="travel_search"
 	action="${pageContext.request.contextPath}/searchResult" method="get"
 	style="text-align: center">
-	<input type="text" style="margin-bottom: 20px; display: inline-block; width: 90%"
-		placeholder="Search..." class="form-control" id="city-kwd" name="ctySeq">
-	<input type="submit" value="find" style="display:inline-block; float:right;">
+	<input type="text"
+		style="margin-bottom: 20px; display: inline-block; width: 90%"
+		placeholder="Search..." class="form-control" id="city-kwd"
+		name="ctySeq"> <input type="submit" value="find"
+		style="display: inline-block; float: right;">
 </form>
 
 <div class="row object-non-visible" data-animation-effect="fadeIn">
@@ -30,8 +32,8 @@
 						data-show="Y">Hot한 도시</a></li>
 					<li><a href="#" data-filter=".web-design">Delicious한 맛집</a></li>
 					<li><a href="#" data-filter=".app-development">Attractive한
-						관광지</a></li>
-						<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
+							관광지</a></li>
+					<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
 				</c:if>
 				<c:if test="${empty travelInfoCityMain }">
 					<li class="active"><a href="#" data-filter=".cities"
@@ -42,13 +44,13 @@
 					<li class="active"><a href="#" data-filter=".web-design">Delicious한
 							맛집</a></li>
 				</c:if>
-				
+
 				<c:if test="${!empty travelInfoAttraction }">
-				<li><a href="#" data-filter=".app-development">Attractive한
-						관광지</a></li>
+					<li><a href="#" data-filter=".app-development">Attractive한
+							관광지</a></li>
 				</c:if>
 				<c:if test="${!empty travelInfoActivity }">
-				<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
+					<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -66,10 +68,10 @@
 					<div class="col-sm-6 col-md-3 isotope-item cities">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img src="/poorip/${travelInfoCityMain.picture}" alt=""> 
-								<a class="overlay" data-toggle="modal"
-									data-target="#project-1${status.index }">
-									 <i	class="fa fa-search-plus"></i>
+								<img src="/poorip/${travelInfoCityMain.picture}" alt=""> <a
+									class="overlay" data-toggle="modal"
+									data-target="#project-1${status.index }"> <i
+									class="fa fa-search-plus"></i>
 								</a>
 							</div>
 							<a class="btn btn-default btn-block" data-toggle="modal"
@@ -94,16 +96,19 @@
 											<div class="col-md-6">
 												<p>${travelInfoCityMain.contents}</p>
 											</div>
-											
+
 											<div class="col-md-6">
 												<img src="/poorip/${travelInfoCityMain.picture}" alt="">
 											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
- -										<button type="button" class="btn btn-sm btn-default" id="citygo" data-ctyseq="${travelInfoCityMain.ctySeq}">Search</button>
-  										<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-  									</div>
+										-
+										<button type="button" class="btn btn-sm btn-default"
+											id="citygo" data-ctyseq="${travelInfoCityMain.ctySeq}">Search</button>
+										<button type="button" class="btn btn-sm btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -118,9 +123,8 @@
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img
-									src="/poorip/${travelInfoFood.picture}"
-									alt=""> <a class="overlay" data-toggle="modal"
+								<img src="/poorip/${travelInfoFood.picture}" alt=""> <a
+									class="overlay" data-toggle="modal"
 									data-target="#project-2${status.index }"
 									onclick="send(${travelInfoFood.trvSeq}, ${travelInfoFood.trvSeq})">
 									<i class="fa fa-search-plus"></i> <span>${travelInfoFood.name}</span>
@@ -159,38 +163,53 @@
 											<div class="col-md-6">
 												<p>${travelInfoFood.contents}</p>
 											</div>
+											<div class="col-md-6 detail">
+												<h3>영업시간</h3>
+												<p>${travelInfoFood.hours}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>가격</h3>
+												<p>${travelInfoFood.price}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>연락 정보</h3>
+												<p>${travelInfoFood.contact}</p>
+											</div>
 											<div class="col-md-6">
-												<img
-													src="/poorip/${travelInfoFood.picture}"
-													alt="" />
+												<img src="/poorip/${travelInfoFood.picture}" alt="" />
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
 												<h5>위치 확인</h5>
-													<!--  구글 맵 넣기   -->
-													<div id="map-project-2${status.index}" class="col-md-12 googlemap" data-url="${travelInfoFood.mapURL}"></div>
+												<!--  구글 맵 넣기   -->
+												<div id="map-project-2${status.index}"
+													class="col-md-12 googlemap"
+													data-url="${travelInfoFood.mapURL}"></div>
 											</div>
 										</div>
 										<c:set var="reviewNum" value="${travelInfoFood.trvSeq}" />
-										<div class='col-md-12'>	
+										<div class='col-md-12'>
 											<div class='review-header'>
-											<h3>
-												<b>후기</b>
-											</h3>
-											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
-												data-toggle="buttons">
-					
-									
-												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoFood.trvSeq},${travelInfoFood.trvSeq})"  > <input
-													type="radio" name="sort-by" value="date" id="sort-by-btn "
-													 value="" checked> 날짜순
-												</label> <label class="btn btn-default " id="notiN" onClick="sendTrvSeq1(${travelInfoFood.trvSeq})"> <input
-													type="radio" name="sort-by" value="like" id="sort-by-btn"
-													> 좋아요순 
-												</label>
-								
-											</div>
+												<h3>
+													<b>후기</b>
+												</h3>
+												<div class="btn-group col-sm-6"
+													style="margin-bottom: 1.5em; float: right"
+													data-toggle="buttons">
+
+
+													<label class="btn btn-default active" id="notiY"
+														onClick="send(${travelInfoFood.trvSeq},${travelInfoFood.trvSeq})">
+														<input type="radio" name="sort-by" value="date"
+														id="sort-by-btn " value="" checked> 날짜순
+													</label> <label class="btn btn-default " id="notiN"
+														onClick="sendTrvSeq1(${travelInfoFood.trvSeq})"> <input
+														type="radio" name="sort-by" value="like" id="sort-by-btn">
+														좋아요순
+													</label>
+
+												</div>
 											</div>
 											<div class="row">
 												<div id="review-${travelInfoFood.trvSeq}"></div>
@@ -220,9 +239,8 @@
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img
-									src="/poorip/${travelInfoFoodMain.picture}"
-									alt=""> <a class="overlay" data-toggle="modal"
+								<img src="/poorip/${travelInfoFoodMain.picture}" alt=""> <a
+									class="overlay" data-toggle="modal"
 									data-target="#project-3${status.index }"
 									onclick="send(${travelInfoFoodMain.trvSeq}, ${travelInfoFoodMain.trvSeq })">
 									<i class="fa fa-search-plus"></i> <span>${travelInfoFoodMain.name}</span>
@@ -258,44 +276,55 @@
 										<div class="col-md-6">
 											<p>${travelInfoFoodMain.contents}</p>
 										</div>
-										<div class="col-md-6 hours">
+										<div class="col-md-6 detail">
 											<h3>영업시간</h3>
 											<p>${travelInfoFoodMain.hours}</p>
 										</div>
+										<div class="col-md-6 detail">
+											<h3>가격</h3>
+											<p>${travelInfoFoodMain.price}</p>
+										</div>
+										<div class="col-md-6 detail">
+											<h3>연락 정보</h3>
+											<p>${travelInfoFoodMain.contact}</p>
+										</div>
 										<div class="col-md-6">
-											<img
-												src="/poorip/${travelInfoFoodMain.picture}"
-												alt="">
+											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
 										</div>
 										<div class="row">
 											<div class="col-md-12">
 												<h5>위치 확인</h5>
-													<!--  구글 맵 넣기   -->
-													<div id="map-project-3${status.index}" class="col-md-12 googlemap" data-url="${travelInfoFoodMain.mapURL}"></div>
+												<!--  구글 맵 넣기   -->
+												<div id="map-project-3${status.index}"
+													class="col-md-12 googlemap"
+													data-url="${travelInfoFoodMain.mapURL}"></div>
 											</div>
 										</div>
-										
+
 										<c:set var="reviewNum" value="${travelInfoFoodMain.trvSeq}" />
 										<div class='col-md-12'>
 											<div class='review-header'>
-											<h3>
-												<b>후기</b>
+												<h3>
+													<b>후기</b>
 
-											</h3>
-											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
-												data-toggle="buttons">
-					
-									
-												<label class="btn btn-default active"  onClick="send(${travelInfoFoodMain.trvSeq},${travelInfoFoodMain.trvSeq})" > <input
-													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoFoodMain.trvSeq }"
-													autocomplete="off" /> 날짜순
-												</label> 
-												<label class="btn btn-default "  onClick="sendTrvSeq1(${travelInfoFoodMain.trvSeq})"> <input
-													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
-													autocomplete="off"/> 좋아요순 
-												</label>
-								
-											</div>
+												</h3>
+												<div class="btn-group col-sm-6"
+													style="margin-bottom: 1.5em; float: right"
+													data-toggle="buttons">
+
+
+													<label class="btn btn-default active"
+														onClick="send(${travelInfoFoodMain.trvSeq},${travelInfoFoodMain.trvSeq})">
+														<input type="radio" name="sort-by-date" value="date"
+														id="sort-by-date-btn=${travelInfoFoodMain.trvSeq }"
+														autocomplete="off" /> 날짜순
+													</label> <label class="btn btn-default "
+														onClick="sendTrvSeq1(${travelInfoFoodMain.trvSeq})">
+														<input type="radio" name="sort-by-like" value="like"
+														id="sort-by-like-btn" autocomplete="off" /> 좋아요순
+													</label>
+
+												</div>
 											</div>
 											<div class="row">
 												<div id="review-${travelInfoFoodMain.trvSeq}"></div>
@@ -314,7 +343,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 				</c:forEach>
 			</c:if>
@@ -325,9 +354,8 @@
 					<div class="col-sm-6 col-md-3 isotope-item app-development">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img
-									src="/poorip/${travelInfoAttraction.picture}"
-									alt=""> <a class="overlay" data-toggle="modal"
+								<img src="/poorip/${travelInfoAttraction.picture}" alt="">
+								<a class="overlay" data-toggle="modal"
 									data-target="#project-4${status.index }"
 									onclick="send(${travelInfoAttraction.trvSeq}, ${travelInfoAttraction.trvSeq})">
 									<i class="fa fa-search-plus"></i> <span>${travelInfoAttraction.name}</span>
@@ -363,37 +391,55 @@
 											<div class="col-md-6">
 												<p>${travelInfoAttraction.contents}</p>
 											</div>
+											<div class="col-md-6 detail">
+												<h3>영업시간</h3>
+												<p>${travelInfoAttraction.hours}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>가격</h3>
+												<p>${travelInfoAttraction.price}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>연락 정보</h3>
+												<p>${travelInfoAttraction.contact}</p>
+											</div>
 											<div class="col-md-6">
 												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
 											</div>
 											<div class="row">
 												<div class="col-md-12">
-												<h5>위치 확인</h5>
+													<h5>위치 확인</h5>
 													<!--  구글 맵 넣기   -->
-													<div id="map-project-4${status.index}" class="col-md-12 googlemap" data-url="${travelInfoAttraction.mapURL}"></div>
+													<div id="map-project-4${status.index}"
+														class="col-md-12 googlemap"
+														data-url="${travelInfoAttraction.mapURL}"></div>
 												</div>
 											</div>
 											<c:set var="reviewNum" value="${travelInfoAttraction.trvSeq}" />
 											<div class='col-md-12'>
 												<div class='review-header'>
-											<h3>
-												<b>후기</b>
+													<h3>
+														<b>후기</b>
 
-											</h3>
-											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
-												data-toggle="buttons">
-					
-									
-												<label class="btn btn-default active" onClick="send(${travelInfoAttraction.trvSeq},${travelInfoAttraction.trvSeq})" > <input
-													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoAttraction.trvSeq }"
-													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default " onClick="sendTrvSeq1(${travelInfoAttraction.trvSeq})"> <input
-													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
-													autocomplete="off"/> 좋아요순 
-												</label>
-								
-											</div>
-											</div>
+													</h3>
+													<div class="btn-group col-sm-6"
+														style="margin-bottom: 1.5em; float: right"
+														data-toggle="buttons">
+
+
+														<label class="btn btn-default active"
+															onClick="send(${travelInfoAttraction.trvSeq},${travelInfoAttraction.trvSeq})">
+															<input type="radio" name="sort-by-date" value="date"
+															id="sort-by-date-btn=${travelInfoAttraction.trvSeq }"
+															autocomplete="off" /> 날짜순
+														</label> <label class="btn btn-default "
+															onClick="sendTrvSeq1(${travelInfoAttraction.trvSeq})">
+															<input type="radio" name="sort-by-like" value="like"
+															id="sort-by-like-btn" autocomplete="off" /> 좋아요순
+														</label>
+
+													</div>
+												</div>
 												<div class="row">
 													<div id="review-${travelInfoAttraction.trvSeq}"></div>
 												</div>
@@ -422,9 +468,8 @@
 					<div class="col-sm-6 col-md-3 isotope-item app-development">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img
-									src="/poorip/${travelInfoAttractionMain.picture}"
-									alt=""> <a class="overlay" data-toggle="modal"
+								<img src="/poorip/${travelInfoAttractionMain.picture}" alt="">
+								<a class="overlay" data-toggle="modal"
 									data-target="#project-5${status.index }"
 									onclick="send(${travelInfoAttractionMain.trvSeq}, ${travelInfoAttractionMain.trvSeq})">
 									<i class="fa fa-search-plus"></i> <span>${travelInfoAttractionMain.name}</span>
@@ -449,8 +494,8 @@
 									<div class="modal-body">
 										<c:if test="${!empty authUser }">
 											<a href="javascript:;"><img
-												id="scrapTrvInfo-${travelInfoAttractionMain.trvSeq}"
-												src="" style="float: right;"
+												id="scrapTrvInfo-${travelInfoAttractionMain.trvSeq}" src=""
+												style="float: right;"
 												data-trvSeq="${travelInfoAttractionMain.trvSeq}"
 												onclick="validate(${travelInfoAttractionMain.trvSeq})" /></a>
 										</c:if>
@@ -459,40 +504,59 @@
 											<div class="col-md-6">
 												<p>${travelInfoAttractionMain.contents}</p>
 											</div>
-											<div class="col-md-6">
-												<img src="/poorip/${travelInfoAttractionMain.picture}" alt="">
+											<div class="col-md-6 detail">
+												<h3>영업시간</h3>
+												<p>${travelInfoAttractionMain.hours}</p>
 											</div>
-											
+											<div class="col-md-6 detail">
+												<h3>가격</h3>
+												<p>${travelInfoAttractionMain.price}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>연락 정보</h3>
+												<p>${travelInfoAttractionMain.contact}</p>
+											</div>
+											<div class="col-md-6">
+												<img src="/poorip/${travelInfoAttractionMain.picture}"
+													alt="">
+											</div>
+
 											<div class="row">
 												<div class="col-md-12">
-												<h5>위치 확인</h5>
+													<h5>위치 확인</h5>
 													<!--  구글 맵 넣기   -->
-													<div id="map-project-5${status.index}" class="col-md-12 googlemap" data-url="${travelInfoAttractionMain.mapURL}"></div>
+													<div id="map-project-5${status.index}"
+														class="col-md-12 googlemap"
+														data-url="${travelInfoAttractionMain.mapURL}"></div>
 												</div>
 											</div>
-											
+
 											<c:set var="reviewNum"
 												value="${travelInfoAttractionMain.trvSeq}" />
 											<div class='col-md-12'>
 												<div class='review-header'>
-											<h3>
-												<b>후기</b>
+													<h3>
+														<b>후기</b>
 
-											</h3>
-											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
-												data-toggle="buttons">
-					
-									
-												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoAttractionMain.trvSeq},${travelInfoAttractionMain.trvSeq})" > <input
-													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoAttractionMain.trvSeq }"
-													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default" id="notiN" onClick="sendTrvSeq1(${travelInfoAttractionMain.trvSeq})"> <input
-													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
-													autocomplete="off"/> 좋아요순 
-												</label>
-								
-											</div>
-											</div>
+													</h3>
+													<div class="btn-group col-sm-6"
+														style="margin-bottom: 1.5em; float: right"
+														data-toggle="buttons">
+
+
+														<label class="btn btn-default active" id="notiY"
+															onClick="send(${travelInfoAttractionMain.trvSeq},${travelInfoAttractionMain.trvSeq})">
+															<input type="radio" name="sort-by-date" value="date"
+															id="sort-by-date-btn=${travelInfoAttractionMain.trvSeq }"
+															autocomplete="off" /> 날짜순
+														</label> <label class="btn btn-default" id="notiN"
+															onClick="sendTrvSeq1(${travelInfoAttractionMain.trvSeq})">
+															<input type="radio" name="sort-by-like" value="like"
+															id="sort-by-like-btn" autocomplete="off" /> 좋아요순
+														</label>
+
+													</div>
+												</div>
 												<div class="row">
 													<div id="review-${travelInfoAttractionMain.trvSeq}"></div>
 												</div>
@@ -522,9 +586,8 @@
 					<div class="col-sm-6 col-md-3 isotope-item site-building">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img
-									src="/poorip/${travelInfoActivity.picture}"
-									alt=""> <a class="overlay" data-toggle="modal"
+								<img src="/poorip/${travelInfoActivity.picture}" alt=""> <a
+									class="overlay" data-toggle="modal"
 									data-target="#project-6${status.index }"
 									onclick="send(${travelInfoActivity.trvSeq},${travelInfoActivity.trvSeq})">
 									<i class="fa fa-search-plus"></i> <span>${travelInfoActivity.name}</span>
@@ -559,39 +622,57 @@
 											<div class="col-md-6">
 												<p>${travelInfoActivity.contents}</p>
 											</div>
+											<div class="col-md-6 detail">
+												<h3>영업시간</h3>
+												<p>${travelInfoActivity.hours}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>가격</h3>
+												<p>${travelInfoActivity.price}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>연락 정보</h3>
+												<p>${travelInfoActivity.contact}</p>
+											</div>
 											<div class="col-md-6">
 												<img src="/poorip/${travelInfoActivity.picture}" alt="">
 											</div>
-											
+
 											<div class="row">
 												<div class="col-md-12">
-												<h5>위치 확인</h5>
+													<h5>위치 확인</h5>
 													<!--  구글 맵 넣기   -->
-													<div id="map-project-6${status.index}" class="col-md-12 googlemap" data-url="${travelInfoActivity.mapURL}"></div>
+													<div id="map-project-6${status.index}"
+														class="col-md-12 googlemap"
+														data-url="${travelInfoActivity.mapURL}"></div>
 												</div>
 											</div>
-											
+
 											<c:set var="reviewNum" value="${travelInfoActivity.trvSeq}" />
 											<div class='col-md-12'>
 												<div class='review-header'>
-											<h3>
-												<b>후기</b>
+													<h3>
+														<b>후기</b>
 
-											</h3>
-											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
-												data-toggle="buttons">
-					
-									
-												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoActivity.trvSeq},${travelInfoActivity.trvSeq})" > <input
-													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoActivity.trvSeq }"
-													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default " id="notiN" onClick="sendTrvSeq1(${travelInfoActivity.trvSeq})"> <input
-													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
-													autocomplete="off"/> 좋아요순 
-												</label>
-								
-											</div>
-											</div>
+													</h3>
+													<div class="btn-group col-sm-6"
+														style="margin-bottom: 1.5em; float: right"
+														data-toggle="buttons">
+
+
+														<label class="btn btn-default active" id="notiY"
+															onClick="send(${travelInfoActivity.trvSeq},${travelInfoActivity.trvSeq})">
+															<input type="radio" name="sort-by-date" value="date"
+															id="sort-by-date-btn=${travelInfoActivity.trvSeq }"
+															autocomplete="off" /> 날짜순
+														</label> <label class="btn btn-default " id="notiN"
+															onClick="sendTrvSeq1(${travelInfoActivity.trvSeq})">
+															<input type="radio" name="sort-by-like" value="like"
+															id="sort-by-like-btn" autocomplete="off" /> 좋아요순
+														</label>
+
+													</div>
+												</div>
 												<div class="row">
 													<div id="review-${travelInfoActivity.trvSeq}"></div>
 												</div>
@@ -620,9 +701,8 @@
 					<div class="col-sm-6 col-md-3 isotope-item site-building">
 						<div class="image-box">
 							<div class="overlay-container">
-								<img
-									src="/poorip/${travelInfoActivityMain.picture}"
-									alt=""> <a class="overlay" data-toggle="modal"
+								<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
+								<a class="overlay" data-toggle="modal"
 									data-target="#project-7${status.index }"
 									onclick="send(${travelInfoActivityMain.trvSeq}, ${travelInfoActivityMain.trvSeq})">
 									<i class="fa fa-search-plus"></i> <span>${travelInfoActivityMain.name}</span>
@@ -657,40 +737,58 @@
 											<div class="col-md-6">
 												<p>${travelInfoActivityMain.contents}</p>
 											</div>
+											<div class="col-md-6 detail">
+												<h3>영업시간</h3>
+												<p>${travelInfoActivityMain.hours}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>가격</h3>
+												<p>${travelInfoActivityMain.price}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3>연락 정보</h3>
+												<p>${travelInfoActivityMain.contact}</p>
+											</div>
 											<div class="col-md-6">
 												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
 											</div>
-											
+
 											<div class="row">
 												<div class="col-md-12">
-												<h5>위치 확인</h5>
+													<h5>위치 확인</h5>
 													<!--  구글 맵 넣기   -->
-													<div id="map-project-7${status.index}" class="col-md-12 googlemap" data-url="${travelInfoActivityMain.mapURL}"></div>
+													<div id="map-project-7${status.index}"
+														class="col-md-12 googlemap"
+														data-url="${travelInfoActivityMain.mapURL}"></div>
 												</div>
 											</div>
-											
+
 											<c:set var="reviewNum"
 												value="${travelInfoActivityMain.trvSeq}" />
 											<div class='col-md-12'>
 												<div class='review-header'>
-											<h3>
-												<b>후기</b>
+													<h3>
+														<b>후기</b>
 
-											</h3>
-											<div class="btn-group col-sm-6" style="margin-bottom: 1.5em; float:right"
-												data-toggle="buttons">
-					
-									
-												<label class="btn btn-default active" id="notiY" onClick="send(${travelInfoActivityMain.trvSeq},${travelInfoActivityMain.trvSeq})" > <input
-													type="radio" name="sort-by-date" value="date" id="sort-by-date-btn=${travelInfoActivityMain.trvSeq }"
-													autocomplete="off" /> 날짜순
-												</label> <label class="btn btn-default" id="notiN" onClick="sendTrvSeq1(${travelInfoActivityMain.trvSeq})"> <input
-													type="radio" name="sort-by-like" value="like" id="sort-by-like-btn"
-													autocomplete="off"/> 좋아요순 
-												</label>
-								
-											</div>
-											</div>
+													</h3>
+													<div class="btn-group col-sm-6"
+														style="margin-bottom: 1.5em; float: right"
+														data-toggle="buttons">
+
+
+														<label class="btn btn-default active" id="notiY"
+															onClick="send(${travelInfoActivityMain.trvSeq},${travelInfoActivityMain.trvSeq})">
+															<input type="radio" name="sort-by-date" value="date"
+															id="sort-by-date-btn=${travelInfoActivityMain.trvSeq }"
+															autocomplete="off" /> 날짜순
+														</label> <label class="btn btn-default" id="notiN"
+															onClick="sendTrvSeq1(${travelInfoActivityMain.trvSeq})">
+															<input type="radio" name="sort-by-like" value="like"
+															id="sort-by-like-btn" autocomplete="off" /> 좋아요순
+														</label>
+
+													</div>
+												</div>
 												<div class="row">
 													<div id="review-${travelInfoActivityMain.trvSeq}"></div>
 												</div>
