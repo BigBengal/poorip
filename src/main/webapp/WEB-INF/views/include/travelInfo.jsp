@@ -259,6 +259,7 @@
 											<p>${travelInfoFoodMain.contents}</p>
 										</div>
 										<div class="col-md-6">
+											<h3>영업시간</h3>
 											<p>${travelInfoFoodMain.hours}</p>
 										</div>
 										<div class="col-md-6">
@@ -357,7 +358,7 @@
 												onclick="validate(${travelInfoAttraction.trvSeq})"></a>
 										</c:if>
 
-										<h3>${travelInfoAttraction.name}</h3>
+										<h2>${travelInfoAttraction.name}</h2>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoAttraction.contents}</p>
@@ -453,7 +454,7 @@
 												data-trvSeq="${travelInfoAttractionMain.trvSeq}"
 												onclick="validate(${travelInfoAttractionMain.trvSeq})" /></a>
 										</c:if>
-										<h3>${travelInfoAttractionMain.name}</h3>
+										<h2>${travelInfoAttractionMain.name}</h2>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoAttractionMain.contents}</p>
@@ -553,7 +554,7 @@
 												data-trvSeq="${travelInfoActivity.trvSeq}"
 												onclick="validate(${travelInfoActivity.trvSeq})" /></a>
 										</c:if>
-										<h3>${travelInfoActivity.name}</h3>
+										<h2>${travelInfoActivity.name}</h2>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoActivity.contents}</p>
@@ -651,7 +652,7 @@
 												data-trvSeq="${travelInfoActivityMain.trvSeq}"
 												onclick="validate(${travelInfoActivityMain.trvSeq})" /></a>
 										</c:if>
-										<h3>${travelInfoActivityMain.name}</h3>
+										<h2>${travelInfoActivityMain.name}</h2>
 										<div class="row">
 											<div class="col-md-6">
 												<p>${travelInfoActivityMain.contents}</p>
