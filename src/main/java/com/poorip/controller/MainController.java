@@ -57,24 +57,24 @@ public class MainController {
 				break;
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
 				System.out.println(travelInfoVo.get(i));
-				if (++foodlistMainCnt > MAX_COUNT)
+				if (++citylistMainCnt > MAX_COUNT)
 					continue;
 				citylistMain.add(travelInfoVo.get(i));
 			}
 			if (travelInfoVo.get(i).getCatSeq() == 2) {
+				if (++foodlistMainCnt > MAX_COUNT)
+					continue;
+				foodlistMain.add(travelInfoVo.get(i));
+			}
+			if (travelInfoVo.get(i).getCatSeq() == 3) {
 				if (++attractionlistMainCnt > MAX_COUNT)
 					continue;
 				attractionlistMain.add(travelInfoVo.get(i));
 			}
-			if (travelInfoVo.get(i).getCatSeq() == 3) {
+			if (travelInfoVo.get(i).getCatSeq() == 4) {
 				if (++activitylistMainCnt > MAX_COUNT)
 					continue;
 				activitylistMain.add(travelInfoVo.get(i));
-			}
-			if (travelInfoVo.get(i).getCatSeq() == 4) {
-				if (++citylistMainCnt > MAX_COUNT)
-					continue;
-				citylistMain.add(travelInfoVo.get(i));
 			}
 
 		}
@@ -98,14 +98,14 @@ public class MainController {
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(citySeq1);
 
 		for (int i = 0; i < travelInfoVo.size(); i++) {
-			if (travelInfoVo.get(i).getCatSeq() == 1) {
+			if (travelInfoVo.get(i).getCatSeq() == 2) {
 				foodlist.add(travelInfoVo.get(i));
 			
 			}
-			if (travelInfoVo.get(i).getCatSeq() == 2) {
+			if (travelInfoVo.get(i).getCatSeq() == 3) {
 				attractionlist.add(travelInfoVo.get(i));
 			}
-			if (travelInfoVo.get(i).getCatSeq() == 3) {
+			if (travelInfoVo.get(i).getCatSeq() == 4) {
 				activitylist.add(travelInfoVo.get(i));
 			}
 
@@ -187,18 +187,19 @@ public class MainController {
 	public JSONResult getKwdData(Model model,
 			@RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-
 		logger.debug("텍스트창에 입력된 단어 : " + keyword);
-
 		// DB문 실행
 		List<TravelInfoVo> autoList = mainService.getKwdData(keyword);
-		if (autoList.isEmpty())
+		System.out.println(autoList);
+		if (autoList.isEmpty()){
 			return JSONResult.fail("No-DATA");
+		}
 		return JSONResult.success(autoList);
 	}
 
 	@RequestMapping("/searchResult")
 	public String getSearchResult(@RequestParam(value = "ctySeq", required = true, defaultValue = "") String cityName) {
+		
 		if ("".equals(cityName))
 			return "redirect:/";
 		int seq = mainService.getCitySeq(cityName);

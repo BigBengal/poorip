@@ -8,18 +8,24 @@
 
 <script type="text/javascript">
 $(function(){
-	$("#kwd").autocomplete({
+	$("#city-kwd").autocomplete({
         source : function(request, response) {
             $.ajax({
                 url : "search",
                 type : "post",
                 dataType : "json",
-                data: "kwd="+$("#kwd").val(),
+                data: "kwd="+$("#city-kwd").val(),
                 success : function(data) {
+                	
+                	if( response.result == "fail") {
+     		    	   return;
+     		    	}
                     var result = data;
-//                     console.log(JSON.stringify(result.data));
+					//console.log(JSON.stringify(result.data));
+					//console.log("YO"+ result);
                     response(
                             $.map($.parseJSON(JSON.stringify(result.data)), function(item) {
+                            	console.log(result);
                                 return {
                                     label: item.name,
                                     value: item.ctySeq
