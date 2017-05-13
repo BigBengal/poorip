@@ -31,10 +31,6 @@ File Description: Place here your custom CSS styles
     display: inline-block;
 }
 
-#MyMenuHover:hover{
-	display: inherit;
-}
-
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
@@ -42,14 +38,16 @@ File Description: Place here your custom CSS styles
 /*     min-width: 160px; */
 /*     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
 /*     background-color: #f9f9f9; */
-    text-align:center;
+    text-align: right;
     z-index: 1;
-    margin-top: 10px;
+/*     margin-top: -10px; */
+/*     margin-bottom: 10px; */
+    padding-right: 120px;
 }
 
 .dropdown-content.fixed {
 	position: fixed;
-	top:94px;
+	top:77px;
 	right:0px;
 	left:0px;
 }
@@ -68,8 +66,8 @@ File Description: Place here your custom CSS styles
     border-radius: 5px;
 /*     border-bottom-right-radius: 5px; */
 /*     border-color: black; */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    background-color: rgba(255, 255, 255, 0.40);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    background-color: rgba(255, 255, 255, 0.70);
 }
 
 /* Change color of dropdown links on hover */

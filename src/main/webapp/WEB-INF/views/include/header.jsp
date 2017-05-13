@@ -90,7 +90,7 @@
 
 	</div>
 </div>
-<div id="myMenu" class="container dropdown-content">
+<div id="myMenu" class="container dropdown-content myMenushow">
 	<a href="${pageContext.request.contextPath }/sns">내 SNS</a>
 	<a href="${pageContext.request.contextPath }/scrap/main">내 스크랩 정보</a>
 	<a href="${pageContext.request.contextPath }/poolparty/mypool">내 풀파티</a>
