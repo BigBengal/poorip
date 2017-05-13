@@ -203,3 +203,9 @@ File Description: Place here your custom CSS styles
 	clear:both;
 	margin-top:30px;
 }
+
+.my-info-banner
+ {
+	width: 55%;
+	min-height:55%;
+}
