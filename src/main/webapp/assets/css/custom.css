@@ -17,6 +17,7 @@ File Description: Place here your custom CSS styles
     font-size: 16px;
     border: none;
     cursor: pointer;
+    margin: auto;
 }
 
 /* Dropdown button on hover & focus */
@@ -30,29 +31,53 @@ File Description: Place here your custom CSS styles
     display: inline-block;
 }
 
+#MyMenuHover:hover{
+	display: inherit;
+}
+
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+/*     position: absolute; */
+/*     min-width: 160px; */
+/*     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+/*     background-color: #f9f9f9; */
+    text-align:center;
     z-index: 1;
+    margin-top: 10px;
 }
 
+.dropdown-content.fixed {
+	position: fixed;
+	top:94px;
+	right:0px;
+	left:0px;
+}
+.dropdown-content.fixed a {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
 /* Links inside the dropdown */
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding:5px 15px;
     text-decoration: none;
-    display: block;
+/*     display: block; */
+    min-width: 160px;
+/*     border: 1px solid; */
+    border-radius: 5px;
+/*     border-bottom-right-radius: 5px; */
+/*     border-color: black; */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.40);
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color: #55acee}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
 
 #complaints:hover {
 	color:#FFFFF;
@@ -202,4 +227,10 @@ File Description: Place here your custom CSS styles
 	float:left;
 	clear:both;
 	margin-top:30px;
+}
+
+.my-info-banner
+ {
+	width: 55%;
+	min-height:55%;
 }
