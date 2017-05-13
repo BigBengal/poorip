@@ -44,6 +44,7 @@ public class MainController {
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) {
 		
+		
 		int foodlistMainCnt = 0, attractionlistMainCnt = 0, activitylistMainCnt = 0, citylistMainCnt = 0;
 		
 		List<TravelInfoVo> foodlistMain = new ArrayList<TravelInfoVo>();
