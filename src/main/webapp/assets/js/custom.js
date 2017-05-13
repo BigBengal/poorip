@@ -38,12 +38,11 @@ $(function() {
 		}
 		return date;
 	}
-
 });
 
-function openOptions() {
-	document.getElementById("profileDropdown").classList.toggle("show");
-}
+//function openOptions() {
+//	document.getElementById("profileDropdown").classList.toggle("show");
+//}
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {

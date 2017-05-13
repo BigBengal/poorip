@@ -7,14 +7,27 @@
  * File Description: Initializations of plugins 
  */
 
-
-
-
-
 (function($){
 	$(document).ready(function(){
 	
 		$(".banner-image").backstretch('assets/images/pool-party2.jpg');
+		
+		// MyMenu 고정
+		if (($(".dropdown-content").length > 0)) { 
+		    // My메뉴 위치 구하기
+			var $myMenu = $("#myMenu");
+		    var myMenuPos = $myMenu.offset().top;
+		}
+	    
+		// myMenu 보기
+		$("#MyMenuHover").mouseenter(function(){
+			console.log("add");
+			$myMenu.addClass("show");
+		});
+		$("#myMenu").mouseleave(function(){
+			console.log("remove");
+			$myMenu.removeClass("show");
+		});
 		
 		// Fixed header
 		//-----------------------------------------------
@@ -26,6 +39,17 @@
 					$("body").removeClass("fixed-header-on");
 				}
 			};
+			//myMenu 고정
+			if (($(".dropdown-content").length > 0)) { 
+				// 스크롤 위치 값 구하기
+		        var scrollY = window.pageYOffset;
+		        // 스크롤 위치 값이 탭메뉴 위치 보다 큰 경우만 탭메뉴에 fixed 클래스 적용. 그렇지 않은 경우 fixed 클래스 제거
+		        if(scrollY>myMenuPos){
+		        	$myMenu.addClass("fixed");
+		        }else {
+		        	$myMenu.removeClass("fixed");
+		        }
+			}
 		});
 
 		$(window).load(function() {
@@ -124,6 +148,8 @@
 				
 			});
 		}
+		
+		
 
 	}); // End document ready
 })(this.jQuery);

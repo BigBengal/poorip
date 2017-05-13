@@ -48,7 +48,7 @@
 <!-- Appear javascript -->
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 <!-- Initialization of Plugins -->
-<%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
+<script src="${pageContext.request.contextPath }/assets/js/template.js"></script> 
 <!-- Custom Scripts -->
 <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 <!-- facebook  -->
@@ -65,12 +65,12 @@
  </script> -->
 <script>
 $(document).ready(function(){
-	var $alink = $("#navbar-collapse-1 ul li a");
-	for(var i=0;i<2;i++){
-		var $ori = $alink.eq(i);
-		var oriLink = $ori.attr("href")
-		$ori.attr("href",oriLink);	 
-	}
+// 	var $alink = $("#navbar-collapse-1 ul li a");
+// 	for(var i=0;i<2;i++){
+// 		var $ori = $alink.eq(i);
+// 		var oriLink = $ori.attr("href")
+// 		$ori.attr("href",oriLink);	 
+// 	}
 	 var validator = $("form[name='addinfo']").validate({
 		 	ignore: ".ignore",
 		 	onkeyup: false, //turn off auto validate whilst typing

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<h1 style="text-align:center">스크랩 정보입니다</h1>
+	<h1 style="text-align:center" class="my-info-banner">스크랩 정보입니다</h1>
 	
 
 
