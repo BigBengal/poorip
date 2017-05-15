@@ -106,6 +106,67 @@
 		        }
 			}
 		});
+		
+		//Scroll Spy
+		//-----------------------------------------------
+		if($(".scrollspy").length>0) {
+			$("body").addClass("scroll-spy");
+			$('body').scrollspy({ 
+				target: '.scrollspy',
+				offset: 152
+			});
+		}
+
+		// Animations
+		//-----------------------------------------------
+		if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {
+			$("[data-animation-effect]").each(function() {
+				var $this = $(this),
+				animationEffect = $this.attr("data-animation-effect");
+				if(Modernizr.mq('only all and (min-width: 768px)') && Modernizr.csstransitions) {
+					$this.appear(function() {
+						setTimeout(function() {
+							$this.addClass('animated object-visible ' + animationEffect);
+						}, 400);
+					}, {accX: 0, accY: -130});
+				} else {
+					$this.addClass('object-visible');
+				}
+			});
+		};
+
+		// Isotope filters
+		//-----------------------------------------------
+		if ($('.isotope-container').length>0) {
+			$(window).load(function() {
+				if ($(".filters").find("li.active a").data('show') == 'Y') {
+					$('.isotope-container').fadeIn();
+					var $container = $('.isotope-container').isotope({
+						itemSelector: '.isotope-item',
+						layoutMode: 'masonry',
+						transitionDuration: '0.6s',
+						filter: '.cities'
+					});	
+				} else {
+					$('.isotope-container').fadeIn();
+					var $container = $('.isotope-container').isotope({
+						itemSelector: '.isotope-item',
+						layoutMode: 'masonry',
+						transitionDuration: '0.6s',
+						filter: '.web-design'
+					});	
+				};
+
+				// filter items on button click
+				$('.filters').on( 'click', 'ul.nav li a', function() {
+					var filterValue = $(this).attr('data-filter');
+					$(".filters").find("li.active").removeClass("active");
+					$(this).parent().addClass("active");
+					$container.isotope({ filter: filterValue });
+					return false;
+				});
+			});
+		};
 	});
 		
 function aprvConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
@@ -212,7 +273,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	<!-- banner start -->
 	<!-- ================ -->
 	<div id="banner" class="banner-addinfo">
-		<div class="banner-addinfo-image">
+		<div class="banner-addinfo-image" style="top:-80px">
 			<div class="backstretch">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/bg-image-5.jpg">
