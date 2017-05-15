@@ -21,11 +21,9 @@
 	    
 		// myMenu 보기
 		$("#MyMenuHover").mouseenter(function(){
-			console.log("add");
 			$myMenu.addClass("show");
 		});
 		$("#myMenu").mouseleave(function(){
-			console.log("remove");
 			$myMenu.removeClass("show");
 		});
 		

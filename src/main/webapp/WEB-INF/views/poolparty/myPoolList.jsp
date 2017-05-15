@@ -59,7 +59,7 @@
 <!-- Appear javascript -->
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 <!-- Initialization of Plugins -->
-<script src="${pageContext.request.contextPath }/assets/js/template.js"></script> 
+<%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
 <!-- Custom Scripts -->
 <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 <!-- facebook  -->
@@ -67,6 +67,47 @@
 <!-- Vaildation-->
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <script>
+	$(document).ready(function(){
+
+		// MyMenu 고정
+		if (($(".dropdown-content").length > 0)) { 
+		    // My메뉴 위치 구하기
+			var $myMenu = $("#myMenu");
+		    var myMenuPos = $myMenu.offset().top;
+		}
+	    
+		// myMenu 보기
+		$("#MyMenuHover").mouseenter(function(){
+			$myMenu.addClass("show");
+		});
+		$("#myMenu").mouseleave(function(){
+			$myMenu.removeClass("show");
+		});
+		
+		// Fixed header
+		//-----------------------------------------------
+		$(window).scroll(function() {
+			if (($(".header.fixed").length > 0)) { 
+				if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
+					$("body").addClass("fixed-header-on");
+				} else {
+					$("body").removeClass("fixed-header-on");
+				}
+			};
+			//myMenu 고정
+			if (($(".dropdown-content").length > 0)) { 
+				// 스크롤 위치 값 구하기
+		        var scrollY = window.pageYOffset;
+		        // 스크롤 위치 값이 탭메뉴 위치 보다 큰 경우만 탭메뉴에 fixed 클래스 적용. 그렇지 않은 경우 fixed 클래스 제거
+		        if(scrollY>myMenuPos){
+		        	$myMenu.addClass("fixed");
+		        }else {
+		        	$myMenu.removeClass("fixed");
+		        }
+			}
+		});
+	});
+		
 function aprvConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	
 	 $( "#dialog-confirm_aprv" ).dialog({

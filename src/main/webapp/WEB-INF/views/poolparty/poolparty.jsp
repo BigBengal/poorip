@@ -60,7 +60,7 @@
 <!-- Appear javascript -->
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 <!-- Initialization of Plugins -->
-<script src="${pageContext.request.contextPath }/assets/js/template.js"></script> 
+<%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
 <!-- Custom Scripts -->
 <%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
 <!-- facebook  -->
@@ -77,9 +77,77 @@ $(document).ready(function(){
 // 		$ori.attr("href","/poorip/"+oriLink);
 		
 // 	}
+	$(".banner-image").backstretch('/poorip/assets/images/bg-image-4.jpg');				
+		
 	$("#navbar-collapse-1 ul li").eq(0).removeClass("active");
-	$("#navbar-collapse-1 ul li").eq(2).addClass("active");
-			
+	$("#navbar-collapse-1 ul li").eq(1).addClass("active");
+
+	// MyMenu 고정
+	if (($(".dropdown-content").length > 0)) { 
+	    // My메뉴 위치 구하기
+		var $myMenu = $("#myMenu");
+	    var myMenuPos = $myMenu.offset().top;
+	}
+    
+	// myMenu 보기
+	$("#MyMenuHover").mouseenter(function(){
+		$myMenu.addClass("show");
+	});
+	$("#myMenu").mouseleave(function(){
+		$myMenu.removeClass("show");
+	});
+	
+	// Fixed header
+	//-----------------------------------------------
+	$(window).scroll(function() {
+		if (($(".header.fixed").length > 0)) { 
+			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
+				$("body").addClass("fixed-header-on");
+			} else {
+				$("body").removeClass("fixed-header-on");
+			}
+		};
+		//myMenu 고정
+		if (($(".dropdown-content").length > 0)) { 
+			// 스크롤 위치 값 구하기
+	        var scrollY = window.pageYOffset;
+	        // 스크롤 위치 값이 탭메뉴 위치 보다 큰 경우만 탭메뉴에 fixed 클래스 적용. 그렇지 않은 경우 fixed 클래스 제거
+	        if(scrollY>myMenuPos){
+	        	$myMenu.addClass("fixed");
+	        }else {
+	        	$myMenu.removeClass("fixed");
+	        }
+		}
+	});
+
+// 	$(window).load(function() {
+// 		if (($(".header.fixed").length > 0)) { 
+// 			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
+// 				$("body").addClass("fixed-header-on");
+// 			} else {
+// 				$("body").removeClass("fixed-header-on");
+// 			}
+// 		};
+// 	});
+	
+	// Animations
+	//-----------------------------------------------
+	if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {
+		$("[data-animation-effect]").each(function() {
+			var $this = $(this),
+			animationEffect = $this.attr("data-animation-effect");
+			if(Modernizr.mq('only all and (min-width: 768px)') && Modernizr.csstransitions) {
+				$this.appear(function() {
+					setTimeout(function() {
+						$this.addClass('animated object-visible ' + animationEffect);
+					}, 400);
+				}, {accX: 0, accY: -130});
+			} else {
+				$this.addClass('object-visible');
+			}
+		});
+	};
+	
 	$(function(){
 		$("#ctyName").autocomplete({
 	        source : function(request, response) {
@@ -177,9 +245,9 @@ function searchPool(){
    });
 }
 
-function openOptions() {
-	document.getElementById("profileDropdown").classList.toggle("show");
-}
+// function openOptions() {
+// 	document.getElementById("profileDropdown").classList.toggle("show");
+// }
 
 </script>
 </head>
@@ -204,8 +272,8 @@ function openOptions() {
 	<div id="banner" class="banner">
 		<div class="banner-image">
 			<div class="backstretch" style="z-index: -999998; position: absolute; width: 100%; height: 100%; ">
-				<img
-					src="${pageContext.request.contextPath }/assets/images/bg-image-4.jpg">
+<!-- 				<img -->
+<%-- 					src="${pageContext.request.contextPath }/assets/images/bg-image-4.jpg"> --%>
 			</div>
 		</div>
 		<div class="banner-caption">
