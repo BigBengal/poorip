@@ -10,9 +10,8 @@
 <!-- ================ -->
 <div id="banner" class="banner">
 	<div class="banner-image">
-		<div class="backstretch">
-			<img
-				src="${pageContext.request.contextPath }/assets/images/bg-image-6.jpg">
+		<div class="backstretch" style="background:#E0FFFF">
+			
 		</div>
 	</div>
 	<div class="banner-caption">

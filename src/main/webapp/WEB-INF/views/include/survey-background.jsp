@@ -61,7 +61,8 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
   border:2px solid #f00;
 }
 </style>
-<body class="no-trans">
+
+<body >
 
 	<!-- scrollToTop -->
 	<!-- ================ -->
@@ -71,11 +72,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
 	<!-- header start -->
 	<!-- ================ -->
-	<header class="header fixed clearfix navbar navbar-fixed-top">
-		<div class="container">
-			<c:import url="/WEB-INF/views/include/header.jsp" />
-		</div>
-	</header>
+
 	<!-- header end -->
 
 	

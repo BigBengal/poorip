@@ -75,8 +75,8 @@
 	<!-- banner start -->
 	<!-- ================ -->
 	<div id="banner" class="banner-addinfo">
-		<div class="banner-image-sns">
-			<div class="backstretch">
+		<div class="banner-image-sns banner-image-common">
+			<div class="backstretch mypage-backstretch">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/mySNS.jpg">
 			</div>

@@ -8,10 +8,11 @@
 
 <!-- banner start -->
 <!-- ================ -->
-<div id="banner" class="banner" style="background:#E0FFFF">
-	
-		<div class="backstretch" >
-		
+<div id="banner" class="banner">
+	<div class="banner-image">
+		<div class="backstretch" style="background:#E0FFFF">
+			
+		</div>
 	</div>
 	<div class="banner-caption">
 		<div class="container">
@@ -20,7 +21,7 @@
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
 						<h1 class="text-center" style="font-size: 50px">
-							<span style="font-size: 50px; color: teal;">Q1</span> 1장의 사진을
+							<span style="font-size: 50px; color: teal;">Q2</span> 1장의 사진을
 							골라주세요.
 						</h1>
 						<p class="lead text-center"></p>
@@ -70,7 +71,7 @@
 						</p>
 						<p class="col-md-4"></p>
 						<p class="col-md-4">
-							<a href="${pageContext.request.contextPath }/matching/survey-Q2">
+							<a href="${pageContext.request.contextPath }/matching/survey-Q3">
 								<img alt=""
 								src="${pageContext.request.contextPath }/assets/images/Right.png"
 								style="width: 80px; display: inline-block; float: right;">
