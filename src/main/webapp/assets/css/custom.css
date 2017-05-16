@@ -88,11 +88,7 @@ File Description: Place here your custom CSS styles
     max-height: none;
     max-width: none;
     min-width:700px;
-<<<<<<< HEAD
     min-height:400px;
-=======
-    min-height:500px;
->>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
     z-index: -999999;
     top: 0px;
 }
