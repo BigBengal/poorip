@@ -97,6 +97,7 @@ $("#first-html-"+vo.postSeq).after(last_html);
 } 
 
 var fetchList = function() {
+//	console.log("fetchList");
 	if( isEnd == true ) {
 		return;
 	}
@@ -126,23 +127,21 @@ var fetchList = function() {
 					++page;
 					$( response.data.post ).each( function( index, vo) {
 						//console.log(index + "  ++++"+ vo.title);    
-						console.log(1);
 						post_render( vo );
-						console.log("datalength" + response.data.postPic[vo.postSeq].length);
+//						console.log("datalength" + response.data.postPic[vo.postSeq].length);
 						if(response.data.postPic[vo.postSeq].length> 0) {
 							$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
 								postPicSeqArray.push(vo2.postPicSeq); 
 								postPic_render( vo2, vo );
 
-								console.log("yyy"+ response.data.postPic[vo.postSeq][index].postPicSeq);
 								if(index == $( response.data.postPic[vo.postSeq]).length-1) {
 									postPicSeq= vo2.postPicSeq;
-									console.log(postPicSeq);
+//									console.log(postPicSeq);
 								};
 
 							});
 						};
-						console.log(postPicSeqArray);
+//						console.log(postPicSeqArray);
 						last_render( vo, postPicSeq, postPicSeqArray );
 						postPicSeqArray = [];
 						postPicSeq= null;
@@ -161,9 +160,7 @@ var fetchList = function() {
 };
 
 $(function() {
-	
 
-	
    $( window ).scroll(function(){
       var $window = $(this);
       var scrollTop = $window.scrollTop();
@@ -177,9 +174,51 @@ $(function() {
      	};
      	
       });
-   
-   });
 
+   });
+$(document).ready(function(){
+	console.log("ss");
+	$.ajax( {
+		url : "sns/main/" + page,
+		type : "get",
+		dataType: "json",
+		data : "",
+		success: function( response ) {
+			//console.log(response);
+			if( response.result != "success" ) {
+				return 
+			}
+
+			if( response.data.length == 0 ) {
+				isEnd = true;
+				return;
+			}
+			var postPicSeq = null;
+			var postPicSeqArray = [];
+			++page;
+			$( response.data.post ).each( function( index, vo) {
+				post_render( vo );
+				if(response.data.postPic[vo.postSeq].length> 0) {
+					$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
+						postPicSeqArray.push(vo2.postPicSeq); 
+						postPic_render( vo2, vo );
+
+						if(index == $( response.data.postPic[vo.postSeq]).length-1) {
+							postPicSeq= vo2.postPicSeq;
+						};
+
+					});
+				};
+				last_render( vo, postPicSeq, postPicSeqArray );
+				postPicSeqArray = [];
+				postPicSeq= null;
+			});
+		},
+		error: function( XHR, status, error ) {
+			console.log('ERROR');
+		}
+	});
+});
 
 var writeVisible = false;
 var shareVisible = false;
@@ -201,7 +240,7 @@ function postDelete(postSeq){
 	      	    data: "postSeq="+postSeq,
 	      	    success: function( response ){
 	      	    	if( response.result != "success" ) {
-	      	    		console.log( response.message );
+//	      	    		console.log( response.message );
 	      	    		return;
 	      	    	} else {
 	      	    		$("#sns-post-"+response.data).remove();
@@ -291,7 +330,7 @@ $("#sns-edit-button").click(function() {
                        
                     });
                    
-                    console.log(postPicSeqArray);
+//                    console.log(postPicSeqArray);
                     last_render( vo, postPicSeq, postPicSeqArray );
                     postPicSeqArray = [];
                  postPicSeq= null;

@@ -213,7 +213,7 @@
 			$(document).on("click","#citygo",function(){
 				var ctyseq = $(this).data("ctyseq");
 				console.log(ctyseq);
-				location.href="/poorip/city/"+ctyseq;
+				location.href="/poorip/city/"+ctyseq+"#portfolio";
 			});
 		});
 		function initMap() {

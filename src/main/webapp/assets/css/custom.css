@@ -16,7 +16,7 @@ File Description: Place here your custom CSS styles
     color: white;
     font-size: 16px;
     border: none;
-    cursor: pointer;
+/*     cursor: pointer; */
     margin: auto;
 }
 
@@ -47,7 +47,7 @@ File Description: Place here your custom CSS styles
 
 .dropdown-content.fixed {
 	position: fixed;
-	top:77px;
+	top:105px;
 	right:0px;
 	left:0px;
 }

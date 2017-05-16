@@ -71,6 +71,7 @@
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button></a>									
 						  		</li>
+						  		<li><a><img id="loginpic" src="${authUser.usrProfile}"></a></li>
 <%-- 								<li><a href=#><img onclick="openOptions()" id="loginpic" src="${authUser.usrProfile}"></a></li> --%>
 							</ul>
 <!-- 							<div id="profileDropdown" class="dropdown-content" style="margin-left: 25px; margin-top:3px;"> -->
