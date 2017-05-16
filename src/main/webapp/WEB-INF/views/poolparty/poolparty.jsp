@@ -293,7 +293,7 @@ function searchPool(){
 							<p class="lead"> <p>
 							
 							<input style="border-radius:5px;" type="text" id="from" name="fromDate" class="datepick blackcolor">
-							
+							~
 							<input style="border-radius:5px;" type="text" id="to" name="toDate" class="datepick blackcolor" >
 						</form>
 					
