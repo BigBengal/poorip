@@ -135,7 +135,6 @@ File Description: Place here your custom CSS styles
     bottom: -1px;
     content: '';
     left: -1px;
-    pointer-events: none;  
     right: -1px;
     top: -1px;
 }
