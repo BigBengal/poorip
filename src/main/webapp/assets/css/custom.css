@@ -139,6 +139,7 @@ File Description: Place here your custom CSS styles
 }
 .img_inline img{
 	display : inline;
+	max-width: 90px;
 }
 
 .margin_up_down {

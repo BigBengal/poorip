@@ -95,6 +95,8 @@
 	<!-- banner end -->
 	<div class="section" style="padding-bottom: 400px">
 		<div class="container">
+		
+			<div id="testmap" class="googlemap"></div>
 			<c:import url="/WEB-INF/views/scrap/scrapInfo.jsp" />
 		</div>
 	</div>
@@ -172,5 +174,126 @@
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>
 <%-- </c:forEach> --%>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdfn7ld2w_RvKQbflObkV6r5ClLuqqUp4&callback=initMap">
+    </script>
+<script>
+$(document).ready(function(){
+	console.log("ss");
+	$(".nav-pills > li").eq(0).addClass("active");
+	
+	$('.modal').on('shown.bs.modal', function () {
+		console.log("ss");	
+// 		showMap(tagId);
+	});
+	
+	
+});
+
+function initMap() {
+	var bounds = new google.maps.LatLngBounds();
+    var map = new google.maps.Map(document.getElementById('testmap'), {
+         zoom: 15,
+         center: {lat: 1.88934575, lng: 2.4879015},
+         mapTypeId: 'terrain'
+    });
+
+    var tourDirection = [
+    	{lat: 41.889886, lng:12.492031},
+   		{lat: 41.889778, lng:12.490612},
+   		{lat: 41.889517, lng:12.487460},
+		{lat: 41.888202, lng:12.481503}
+        ];
+        
+	var flightPath = new google.maps.Polyline({
+          path: tourDirection,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        
+        
+	var beaches = [
+        	['진실의 입',41.889886, 12.492031,1,'aaaaa'],
+       		['콜로세움',41.889778, 12.490612,2,'bbbbb'],
+   			['우쭈쭈',41.889517, 12.487460,3,'cccccc'],
+			['잘 되면 대박',41.888202, 12.481503,4,'ddddddd']
+        	];
+//  var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+        
+	// Add multiple markers to map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+	// Place each marker on the map  
+    for( i = 0; i < beaches.length; i++ ) {
+    	var beach = beaches[i];
+        var position = new google.maps.LatLng(beach[1], beach[2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+        	position: position,
+    		map: map,
+// 	        icon: image,
+// 	        shape: shape,
+    		nimation: google.maps.Animation.DROP,
+//     	    icon: image,
+    		label: beach[0],
+    		title: beach[0],
+    		zIndex: beach[3],
+    		info:beach[4]
+        });
+        
+        // Add info window to marker    
+        google.maps.event.addListener(marker, 'click', (function(marker) {
+            return function() {
+                infoWindow.setContent(marker.info);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Center the map to fit all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Set zoom level
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(14);
+        google.maps.event.removeListener(boundsListener);
+    });   
+    
+        
+
+//         setMarkers(map);
+    flightPath.setMap(map);
+};
+
+function showMap(seq) {
+    var mapId = "map-"+seq;
+    var url = $('#'+mapId).data("url");
+    if (url == ""){
+    	$('#'+mapId).removeClass("googlemap");
+    	$('#'+mapId).text("정보없음");
+    	return;
+    }
+    var locArray = url.split(",");
+    var myLatlng = new google.maps.LatLng($.trim(locArray[0]),$.trim(locArray[1]));
+//	    console.log("url:"+url);
+    
+    var mapOptions = {
+      zoom: 15,
+      center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById(mapId), mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        title:"Poorip!!"
+    });
+    
+	// To add the marker to the map, call setMap();
+    marker.setMap(map);
+
+}
+</script>
 </body>
 </html>

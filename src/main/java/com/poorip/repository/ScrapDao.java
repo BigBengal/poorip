@@ -21,7 +21,9 @@ public class ScrapDao {
 	}
 	
 	public boolean delete(ScrapVo scrapVo){
-		return 1 == sqlSession.delete("scrap.delete",scrapVo);
+		sqlSession.delete("scrap.delete",scrapVo);
+		// 스크랩 삭제 시 스크랩 도시 정보가 한개도 없을 때는 삭제 처리( scrap 먼저 삭제 후 해야함)
+		return 1 == sqlSession.delete("scrapcity.deletetrvduration", scrapVo.getUsrSeq()); 
 	}
 	
 	public boolean addScrapByBall(ScrapVo scrapVo) {

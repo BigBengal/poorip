@@ -35,39 +35,38 @@ public class ScrapController {
 	@Auth
 	@RequestMapping("/main")
 	public String searchPool(Model model,@AuthUser UserVo userVo) {
+				
+		// 해당 유저의 스크랩 정보 가져오기
 		List<ReviewVo> scrapList = scrapService.showScraps(userVo.getUsrSeq());
-		List<ScrapCityVo> cityList = scrapCityService.showCity(userVo.getUsrSeq());
-		List<ScrapCityVo> dateList = new ArrayList<ScrapCityVo>();
-		ScrapCityVo travelDuration = new ScrapCityVo();
 		
+		// 유저 스크랩 정보 중 도시 정보 가져오기
+		List<ScrapCityVo> cityList = scrapCityService.showCity(userVo.getUsrSeq());
+		
+		//유저 스크랩 정보 중 도시의 출발,종료 일자 가져오기
+		List<ScrapCityVo> dateList = new ArrayList<ScrapCityVo>();
+		ScrapCityVo scrapCityVo = new ScrapCityVo();
+		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+	
 		for(int i=0; i<cityList.size(); i++ ) {
-			ScrapCityVo scrapCityVo = new ScrapCityVo();
 			scrapCityVo.setCtySeq(cityList.get(i).getCtySeq());
-			scrapCityVo.setUsrSeq(userVo.getUsrSeq());
-			if(scrapCityService.select(scrapCityVo)==null) {
-				model.addAttribute("dateList", dateList);
-				model.addAttribute("cityList", cityList);
-				model.addAttribute("scrapList", scrapList);
-				if(scrapCityService.showTravelDuration(userVo.getUsrSeq())!=null) {
-					travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
-					model.addAttribute("travelDuration", travelDuration);
-				}
-				return "/scrap/scrapMain";
-			}
-			
-			dateList.add(scrapCityService.select(scrapCityVo));
-			
-			}
-		travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
-		model.addAttribute("travelDuration", travelDuration);
-		model.addAttribute("dateList", dateList);
+			ScrapCityVo scrapCitydateList = scrapCityService.select(scrapCityVo);
+			// 도서의 날짜가 저장되어 있으면 
+			if (scrapCitydateList != null)	dateList.add(scrapCitydateList);
+		}
+		
+		//유저 스크랩 정보 중 전체 도시의 전체 출발, 전체 종료 일자 가져오기
+		ScrapCityVo travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
+		
 		model.addAttribute("cityList", cityList);
 		model.addAttribute("scrapList", scrapList);
-
+		model.addAttribute("dateList", dateList);
+		model.addAttribute("travelDuration", travelDuration);
 		
 		return "/scrap/scrapMain";
 	}
 	
+	
+	// 여행정보 스크랩 토글 (스크랩 데이터 저장 or 삭제)
 	@Auth
 	@ResponseBody
 	@RequestMapping("/scrapInput")
@@ -86,11 +85,13 @@ public class ScrapController {
 		return JSONResult.fail("이미 있는 여행정보");
 	}
 	
+	// 여행정보 스크랩 아이콘 ON/OFF 
 	@Auth
 	@ResponseBody
 	@RequestMapping("/scrapValidate")
 	public String validateScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
 		int trvSeq1 = Integer.parseInt(trvSeq);
+		//사용자가 클릭시 여행정보 조회수 증가
 		scrapService.updateHit(trvSeq1);
 		ScrapVo scrapVo = new ScrapVo();
 		
@@ -102,6 +103,7 @@ public class ScrapController {
 		return "YES";
 	}
 	
+	// 여행정보 스크랩 출발/종료 일자 저장
 	@Auth
 	@ResponseBody
 	@RequestMapping("/scrapSave/{ctySeq}")
@@ -123,6 +125,7 @@ public class ScrapController {
 
 	}
 	
+	// 스크랩 도시 날짜 구하기
 	@Auth
 	@ResponseBody
 	@RequestMapping("/showDate")
@@ -140,6 +143,8 @@ public class ScrapController {
 		return JSONResult.success(scrapDate);
 	}
 	
+	
+	// 전체 일정 조회
 	@Auth
 	@ResponseBody
 	@RequestMapping("/showDuration")
@@ -160,6 +165,8 @@ public class ScrapController {
 		return "";
 	}
 	
+	
+	// 날짜 초기화
 	@Auth
 	@ResponseBody
 	@RequestMapping("/renewDate")

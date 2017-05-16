@@ -6,48 +6,59 @@
 	<!-- 도시별 여행 날짜 지정 -->
 	<insert id="insert" parameterType="scrapcityvo">
 		<![CDATA[
-			insert into scrap_city values(null, str_to_date(#{dateFrom}, '%c/%e/%Y'), str_to_date(#{dateTo},'%c/%e/%Y') , now(), #{usrSeq}, #{ctySeq})
+			insert into scrap_city 
+			values(null, str_to_date(#{dateFrom}, '%c/%e/%Y'), str_to_date(#{dateTo},'%c/%e/%Y') , now(), #{usrSeq}, #{ctySeq})
 		]]>
 	</insert>
 
 	<!-- 도시별 여행 날짜 변경 -->
 	<update id="update" parameterType="scrapcityvo">
 		<![CDATA[
-			update scrap_city set date_from = str_to_date(#{dateFrom}, '%c/%e/%Y'), date_to = str_to_date(#{dateTo},'%c/%e/%Y') where cty_seq=#{ctySeq} and usr_seq=#{usrSeq}
+			update scrap_city 
+			   set date_from = str_to_date(#{dateFrom}, '%c/%e/%Y'), date_to = str_to_date(#{dateTo},'%c/%e/%Y') 
+			 where cty_seq=#{ctySeq} and usr_seq=#{usrSeq}
 		]]>
 	</update>
 	
 	<!-- 도시별 날짜 표시 -->
 	<select id="selectbyseq" resultType="scrapcityvo" parameterType="scrapcityvo">
 		<![CDATA[
-			select date_from as dateFrom, date_to as dateTo, cty_seq as ctySeq from scrap_city where usr_seq=#{usrSeq} and cty_seq=#{ctySeq}
+			select date_from as dateFrom, date_to as dateTo, cty_seq as ctySeq 
+			from scrap_city 
+			where usr_seq=#{usrSeq} and cty_seq=#{ctySeq}
 		]]>
 	</select>
 
 	<!-- 총 여행 일정 표시 -->
 	<select id="selecttrvlduration" resultType="scrapcityvo" parameterType="integer">
 		<![CDATA[	
-	select min(date_from) as dateFrom, max(date_to) as dateTo, datediff(max(date_to), min(date_from)) as dateDiff from scrap_city where usr_seq =#{usrSeq}
+			select min(date_from) as dateFrom, max(date_to) as dateTo, datediff(max(date_to), min(date_from)) as dateDiff 
+			  from scrap_city 
+			 where usr_seq =#{usrSeq}
 	]]>
 	</select>
 	
 	<!-- 도시 날짜 주기적으로 지우기...포린키가 없어서 발생한 이슈... -->
 	<select id="deletetrvduration" parameterType="integer">
 		<![CDATA[	
-	DELETE FROM scrap_city 
-		WHERE cty_seq NOT IN 
-			( select c.cty_seq 
-			  from scrap a, travel_info b, city c 
-			  where a.`TRV_SEQ` = b.`TRV_SEQ` 
-			  and b.cty_seq = c.cty_seq 
-			  and a.usr_seq=#{usrSeq} group by c.cty_seq )
+		DELETE FROM scrap_city 
+			WHERE cty_seq NOT IN 
+				( select c.cty_seq 
+				  from scrap a, travel_info b, city c 
+				  where a.`TRV_SEQ` = b.`TRV_SEQ` 
+				  and b.cty_seq = c.cty_seq 
+				  and a.usr_seq=#{usrSeq} 
+				group by c.cty_seq )
+			  and USR_SEQ = #{usrSeq}
 		]]>
 	</select>
 	
 	<!--  선택한 도시 날짜 초기화 -->
 	<select id="cleartrvdurationforcity" parameterType="scrapcityvo">
 		<![CDATA[	
-	 delete from scrap_city where cty_seq = #{ctySeq} and usr_seq = #{usrSeq}
+		 delete 
+		   from scrap_city 
+		  where cty_seq = #{ctySeq} and usr_seq = #{usrSeq}
 	 ]]>
 	</select>
 </mapper>
