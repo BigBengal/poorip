@@ -1,5 +1,6 @@
 package com.poorip.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,9 @@ import com.poorip.web.util.WebUtil;
 
 @Controller
 public class MainController {
+	
+	
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	private static final int MAX_COUNT = 12;
@@ -42,11 +46,11 @@ public class MainController {
 	
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
-	public String getTravelInfo(Model model) {
-		
+	public String getTravelInfo(Model model) throws FileNotFoundException, IOException {
+	
 		
 		int foodlistMainCnt = 0, attractionlistMainCnt = 0, activitylistMainCnt = 0, citylistMainCnt = 0;
-		
+	
 		List<TravelInfoVo> foodlistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> activitylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> attractionlistMain = new ArrayList<TravelInfoVo>();
@@ -57,7 +61,7 @@ public class MainController {
 			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= MAX_COUNT*4)
 				break;
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
-				System.out.println(travelInfoVo.get(i));
+		
 				if (++citylistMainCnt > MAX_COUNT)
 					continue;
 				citylistMain.add(travelInfoVo.get(i));
@@ -79,11 +83,12 @@ public class MainController {
 			}
 
 		}
+		
+		
 		model.addAttribute("travelInfoFoodMain", foodlistMain);
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
 		model.addAttribute("travelInfoCityMain", citylistMain);
-		System.out.println(citylistMain);
 		return "/PooripMain";
 
 	}
@@ -191,7 +196,6 @@ public class MainController {
 		logger.debug("텍스트창에 입력된 단어 : " + keyword);
 		// DB문 실행
 		List<TravelInfoVo> autoList = mainService.getKwdData(keyword);
-		System.out.println(autoList);
 		if (autoList.isEmpty()){
 			return JSONResult.fail("No-DATA");
 		}

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.poorip.vo.ReviewVo;
-import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
 
 @Repository
