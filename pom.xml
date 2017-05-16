@@ -224,6 +224,12 @@
 			<artifactId>jsonevent-layout</artifactId>
 			<version>1.7</version>
 		</dependency>
+		<dependency>
+			<groupId>net.minidev</groupId>
+			<artifactId>json-smart</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
