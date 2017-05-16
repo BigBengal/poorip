@@ -162,8 +162,8 @@
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 
 	<!-- Initialization of Plugins -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath }/assets/js/template.js"></script> --%>
 
 	<!-- Custom Scripts -->
 	<script type="text/javascript"

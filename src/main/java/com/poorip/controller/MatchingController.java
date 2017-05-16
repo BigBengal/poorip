@@ -12,9 +12,15 @@ public class MatchingController {
 		return "";
 	}
 	
-	@RequestMapping("/survey")
+	@RequestMapping("/survey-main")
+	public String matchingSurveyMain() {
+		return "/matching/survey-main";
+	}
+	
+	@RequestMapping("/survey-Q1")
 	public String matchingSurvey() {
-		return "/matching/survey";
+		
+		return "/matching/survey-q1";
 	}
 
 }

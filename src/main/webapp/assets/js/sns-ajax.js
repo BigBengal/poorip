@@ -39,7 +39,6 @@ var edit_post_render = function( vo ) {
 
 
 var postPic_render = function(vo2, vo) {
-	console.log("YOPOOPPP" + vo2.fileName);
    if(vo2.fileName!=null) {
    var postPic_html = "<a href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' ></a>";
                               
