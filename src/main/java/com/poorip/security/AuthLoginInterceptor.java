@@ -12,7 +12,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.poorip.service.UserService;
 import com.poorip.vo.UserVo;
-
 public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthLoginInterceptor.class);
