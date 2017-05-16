@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <h1 style="text-align: center; margin-bottom: 50px;" >도시별 스크랩 정보입니다</h1>
 <c:if test="${travelDuration ne null }">
 <div style="margin-bottom:30px">
@@ -49,6 +49,7 @@
 												value="초기화" id="scrapDateRenew-${cityList.ctySeq }" onclick="clearDate(${cityList.ctySeq })">
 						</div>
 					</form>
+					
 					<c:forEach var="dateList" items="${dateList }" varStatus="status">
 					<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
 					<div id="scrap-date-info-${cityList.ctySeq }"><div id="city-travel-duration-${cityList.ctySeq }"><h4>${cityList.ctyName} 여행 기간은 ${dateList.dateFrom }  ~ ${dateList.dateTo } 입니다</h4></div></div>
@@ -116,7 +117,7 @@
 											<div class="col-md-12">
 											<h3>위치 확인</h3>
 												<div class="row">
-													<div id="map"></div>
+													<div id="map" class="googlemap" data-url="${scrapList.mapURL}"></div>
 												</div>
 											</div>
 											<c:set var="reviewNum" value="${scrapList.trvSeq}" />
