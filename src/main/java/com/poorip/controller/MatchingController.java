@@ -2,10 +2,13 @@ package com.poorip.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poorip.security.Auth;
+import com.poorip.security.AuthUser;
 import com.poorip.service.MatchingService;
+import com.poorip.vo.UserVo;
 
 @Controller
 @RequestMapping("/matching")
@@ -21,7 +24,9 @@ public class MatchingController {
 	
 	@Auth
 	@RequestMapping("/survey-main")
-	public String matchingSurveyMain() {
+	public String matchingSurveyMain(@AuthUser UserVo userVo,
+									 Model model) {
+		
 		
 		return "/matching/survey-main";
 	}
