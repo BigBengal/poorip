@@ -23,11 +23,11 @@ public class UserDao {
 	}
 	
 	public boolean isExist(UserVo uservo) {
-		return 1 == (Integer)sqlSession.selectOne("user.isexistuser", uservo);
+		return 1 <= (Integer)sqlSession.selectOne("user.isexistuser", uservo);
 	}
 	
 	public boolean isNick(UserVo uservo) {
-		return 1 == (Integer)sqlSession.selectOne("user.isexistnick", uservo);
+		return 1 <= (Integer)sqlSession.selectOne("user.isexistnick", uservo);
 	}
 	
 	public boolean join(UserVo uservo){
