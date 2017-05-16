@@ -10,7 +10,7 @@
 (function($){
 	$(document).ready(function(){
 	
-		$(".banner-image").backstretch('/poorip/assets/images/bg-image-6.jpg');
+		$(".banner-image").backstretch('assets/images/pool-party2.jpg');
 		
 		// MyMenu 고정
 		if (($(".dropdown-content").length > 0)) { 
@@ -21,11 +21,9 @@
 	    
 		// myMenu 보기
 		$("#MyMenuHover").mouseenter(function(){
-			console.log("add");
 			$myMenu.addClass("show");
 		});
 		$("#myMenu").mouseleave(function(){
-			console.log("remove");
 			$myMenu.removeClass("show");
 		});
 		
@@ -153,3 +151,5 @@
 
 	}); // End document ready
 })(this.jQuery);
+
+

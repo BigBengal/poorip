@@ -36,7 +36,9 @@
 <!-- Initialization of Plugins -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/js/survey-animation.js"></script>
-
+<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
+	
 <!-- Custom Scripts -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/js/custom.js"></script>

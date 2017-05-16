@@ -28,19 +28,36 @@
 						<p class="lead text-center"></p>
 					</div>
 				</div>
-				<div>
-					<fieldset>
-					    <label for="radio-1"><img alt="" src="${pageContext.request.contextPath }/assets/images/swim.jpg"></label>
-					    <input type="radio" name="radio-1" id="radio-1">
-					    <label for="radio-2"><img alt="" src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"></label>
-					    <input type="radio" name="radio-1" id="radio-2">
-					    <label for="radio-3"><img alt="" src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"></label>
-					    <input type="radio" name="radio-1" id="radio-3">
-					    <label for="radio-3"><img alt="" src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"></label>
-					    <input type="radio" name="radio-1" id="radio-4">
-					    <label for="radio-3"><img alt="" src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"></label>
-					    <input type="radio" name="radio-1" id="radio-5">
-					  </fieldset>				
+				<div class="form-group">
+					<div class="col-md-12">
+						<label class="col-sm-6 col-md-4">
+							<input type="radio" name="fb" value="1" />
+							<img src="${pageContext.request.contextPath }/assets/images/swim.jpg" style="width: 250px">
+						</label>
+						  
+						<label class="col-sm-6 col-md-4">
+							<input type="radio" name="fb" value="2"/>
+							<img src="${pageContext.request.contextPath }/assets/images/skydiving.jpg" style="width: 250px">
+						</label>
+						  
+						<label class="col-sm-6 col-md-4">
+							<input id="fb3" type="radio" name="fb" value="3" />
+							<img src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg" style="width: 250px">
+						</label>
+					</div>
+					<div class="col-md-12">						  
+						<label class="col-sm-6 col-md-4">
+							<input id="fb4" type="radio" name="fb" value="4" />
+							<img src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg" style="width: 250px">
+						</label>
+						  
+						<label class="col-sm-6 col-md-4">
+							<input id="fb4" type="radio" name="fb" value="5" />
+							<img src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg" style="width: 250px">
+						</label>
+					</div>
+   				 </div>
+					  
 				</div>
 				<div class="form-group">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
