@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="poolparty">
+
+
+	<!-- 풀 파티 추가 -->
+	<insert id="insert"  parameterType="poolpartyvo">
+	<selectKey keyProperty="poolSeq" resultType="integer" order="BEFORE">
+			<![CDATA[
+			select auto_increment
+			  from information_schema.tables
+			 where table_schema='bengal'
+			   and table_name='pool_party'
+			]]>
+		</selectKey>
+		
+		<![CDATA[
+			insert into pool_party
+			(POOL_SEQ, POOL_NAME,  POOL_COMMENT,  POOL_PIC,  cty_Seq,  MANAGER_USR_SEQ,  POOL_PUBLIC_YN)
+			values
+			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{ctySeq }, #{managerUsrSeq }, #{poolPublicYn } )
+		]]>
+	</insert>
+	
+	<!-- 지정 풀 파티 1개 조회-->
+	<select id="selectbyseq" resultType="poolpartyvo" parameterType="integer">
+		<![CDATA[
+			SELECT POOL_SEQ as poolSeq,
+			       POOL_NAME as poolName,
+			       POOL_COMMENT as poolComment,
+			       POOL_PIC as poolPic,
+			       POOL_PARTY.CTY_SEQ as ctySeq,
+			       MANAGER_USR_SEQ as managerUsrSeq,
+			       POOL_PUBLIC_YN as poolPublicYn,
+			       POOL_PARTY.CRT_DATE as crtDate,
+			       FROM_DATE as fromDate,
+			       TO_DATE as toDate,
+			       HIT,
+			       CITY.CTY_NAME as ctyName,
+			       USERS.USR_NICK as managerUsrNick,
+			       USERS.USR_PROFILE as managerProfile,
+			       USERS.USR_GENDER as managerGender,
+			       (select count(*) from pool_like where pool_like.pool_seq = pool_party.pool_seq) as likeCnt
+			  FROM POOL_PARTY LEFT OUTER JOIN CITY ON CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ,
+			  	   USERS
+ 			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
+ 			   AND POOL_SEQ = #{integer }
+		]]>
+	</select>
+	
+	<!-- TOP 10 풀 파티 조회-->
+	<select id="selecttop10" resultType="poolpartyvo">
+		<![CDATA[
+			SELECT POOL_SEQ as poolSeq,
+			       POOL_NAME as poolName,
+			       POOL_COMMENT as poolComment,
+			       POOL_PIC as poolPic,
+			       cty_Seq as ctySeq,
+			       MANAGER_USR_SEQ as managerUsrSeq,
+			       POOL_PUBLIC_YN as poolPublicYn,
+			       CRT_DATE as crtDate,
+			       FROM_DATE as fromDate,
+			       TO_DATE as toDate,
+			       HIT
+			  FROM POOL_PARTY
+			 WHERE POOL_PUBLIC_YN = 'Y'
+			 ORDER BY HIT desc
+			 LIMIT 0,10
+		]]>
+	</select>
+	
+	<!-- 내가 가입한 풀 파티 조회-->
+	<select id="selectlistbyusrseq" resultType="poolpartyvo" parameterType="integer">
+		<![CDATA[
+			SELECT POOL_PARTY.POOL_SEQ as poolSeq,
+			       POOL_PARTY.POOL_NAME as poolName,
+			       POOL_PARTY.POOL_COMMENT as poolComment,
+			       POOL_PARTY.POOL_PIC as poolPic,
+			       POOL_PARTY.CTY_SEQ as ctySeq,
+			       POOL_PARTY.MANAGER_USR_SEQ as managerUsrSeq,
+			       POOL_PARTY.POOL_PUBLIC_YN as poolPublicYn,
+			       POOL_PARTY.CRT_DATE as crtDate,
+			       POOL_PARTY.FROM_DATE as fromDate,
+			       POOL_PARTY.TO_DATE as toDate,
+			       POOL_PARTY.HIT,
+			       CITY.CTY_NAME as ctyName,
+			       USERS.USR_NICK as managerUsrNick,
+			       USERS.USR_PROFILE as managerProfile,
+			       USERS.USR_GENDER as managerGender
+			  FROM POOL_PARTY LEFT OUTER JOIN CITY ON CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ,
+			       USERS, POOL_MEMBER
+ 			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
+ 			   AND POOL_PARTY.POOL_SEQ = POOL_MEMBER.POOL_SEQ
+			   AND POOL_MEMBER.USR_SEQ = #{usrSeq }
+			   AND POOL_MEMBER.APPROVE = 'Y'
+		]]>
+	</select>
+	
+	<!-- 내가 가입한 풀 파티 조회-->
+	<select id="selectwaitlistbyusrseq" resultType="poolpartyvo" parameterType="integer">
+		<![CDATA[
+			SELECT POOL_PARTY.POOL_SEQ as poolSeq,
+			       POOL_PARTY.POOL_NAME as poolName,
+			       POOL_PARTY.POOL_COMMENT as poolComment,
+			       POOL_PARTY.POOL_PIC as poolPic,
+			       POOL_PARTY.CTY_SEQ as ctySeq,
+			       POOL_PARTY.MANAGER_USR_SEQ as managerUsrSeq,
+			       POOL_PARTY.POOL_PUBLIC_YN as poolPublicYn,
+			       POOL_PARTY.CRT_DATE as crtDate,
+			       POOL_PARTY.FROM_DATE as fromDate,
+			       POOL_PARTY.TO_DATE as toDate,
+			       POOL_PARTY.HIT,
+			       CITY.CTY_NAME as ctyName,
+			       USERS.USR_NICK as managerUsrNick,
+			       USERS.USR_PROFILE as managerProfile,
+			       USERS.USR_GENDER as managerGender
+			  FROM POOL_PARTY LEFT OUTER JOIN CITY ON CITY.CTY_SEQ = POOL_PARTY.CTY_SEQ,
+			       USERS, POOL_MEMBER
+ 			 WHERE POOL_PARTY.MANAGER_USR_SEQ = USERS.USR_SEQ
+ 				AND POOL_PARTY.POOL_SEQ = POOL_MEMBER.POOL_SEQ
+			   AND POOL_MEMBER.USR_SEQ = #{usrSeq }
+			   AND POOL_MEMBER.APPROVE = 'N'
+		]]>
+	</select>
+	
+	<!-- 메인화면에서 도시이름/ 날짜로 풀파티 조회 -->
+	<select id="selectbycty" resultType="poolpartyvo" parameterType="poolpartyvo">
+		<![CDATA[
+	 SELECT pool_seq as poolSeq, 
+	 	    pool_name as poolName, 
+	 	    pool_comment as poolComment, 
+	 	    pool_pic as poolPic, 
+	 	    MANAGER_USR_SEQ as managerUsrSeq, 
+ 		    pool_public_yn as poolPublicYn, 
+ 		    from_date as fromDate, 
+ 		    to_date as toDate,
+	        HIT
+ 		FROM pool_party, city
+ 		WHERE 1=1
+ 		]]>
+ 		<if test="fromDate != null and fromDate != ''">
+ 			<![CDATA[
+	 		AND from_date BETWEEN str_to_date(#{fromDate}, '%Y/%m/%d') 
+	 			AND DATE_sub(str_to_date(#{toDate}, '%Y/%m/%d'), INTERVAL 1 day)
+ 			]]> 
+ 		</if>
+ 		<![CDATA[
+ 		AND city.cty_name = #{ctyName}
+ 		AND city.cty_seq = pool_party.cty_seq
+ 		AND pool_public_yn = 'Y'
+		]]>
+	</select>
+	
+	<!-- 풀 파티 변경-->
+	<update id="update" parameterType="poolpartyvo">
+		<![CDATA[
+			UPDATE POOL_PARTY
+			   SET POOL_NAME = #{poolName }
+			]]>
+			<if test="poolComment != null">
+			   <![CDATA[
+			   	,POOL_COMMENT  = #{poolComment }
+			   ]]>
+			</if>
+			<if test="poolPic != null">
+			   <![CDATA[
+			   	,POOL_PIC  = #{poolPic }
+			   ]]>
+			</if>
+			<if test="ctySeq != null">
+			   <![CDATA[
+			   	,cty_Seq  = #{ctySeq }
+			   ]]>
+			</if>
+<!-- 			<if test="managerUsrSeq != null"> -->
+<!-- 			   <![CDATA[ -->
+<!-- 			   	,MANAGER_USR_SEQ  = #{managerUsrSeq } -->
+<!-- 			   ]]> -->
+<!-- 			</if>     -->
+			 <if test="poolPublicYn != null">
+			   <![CDATA[
+			   	,POOL_PUBLIC_YN  = #{poolPublicYn }
+			   ]]>
+			</if>
+			<if test="fromDate != null">
+			   <![CDATA[
+			   	,FROM_DATE  = ${fromDate }
+			   ]]>
+			</if> 
+			<if test="toDate != null">
+			   <![CDATA[
+			   	,TO_DATE  = ${toDate }
+			   ]]>
+			</if>  
+			<![CDATA[ 
+			WHERE POOL_SEQ = #{poolSeq }
+		]]>
+	</update>
+	
+	<!-- 풀 파티 삭제 -->
+	<delete id="delete" parameterType="poolpartyvo">
+		<![CDATA[
+			delete 
+			  from POOL_PARTY
+			 where POOL_SEQ = #{poolSeq }
+		]]>
+		
+	
+	</delete>
+	
+	<update id="updatehit" parameterType="integer">
+		<![CDATA[
+			UPDATE POOL_PARTY
+			   SET HIT = HIT + 1
+			 WHERE POOL_SEQ = #{poolSeq }
+		]]>
+	</update>
+	
+</mapper>
