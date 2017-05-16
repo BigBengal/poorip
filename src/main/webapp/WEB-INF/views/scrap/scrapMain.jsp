@@ -78,8 +78,8 @@
 	<!-- banner start -->
 	<!-- ================ -->
 	<div id="banner" class="banner-addinfo">
-		<div class="banner-image">
-			<div class="backstretch" style="position:relative;">
+		<div class="banner-image banner-image-common">
+			<div class="backstretch mypage-backstretch" style="position:relative;">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/greece-santorini.jpg">
 			</div>

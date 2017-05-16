@@ -286,15 +286,15 @@ function searchPool(){
 					</h1>
 					<p class="lead text-center">함께 즐기는 여행</p>
 						<form class="navbar-form lead text-center" role="search">
-							<div class="form-group">
-								<input type="text" class="form-control" id="ctyName" placeholder="Search">
+							<div class="form-group" style="width:52.5%">
+								<input style="width:100%;" type="text" class="form-control" id="ctyName" placeholder="도시를 입력해주세요">
 							</div>
-							<button type="submit" class="btn btn-default">Submit</button>
+							<button type="submit" class="btn btn-default" style="border-radius:5px;">FIND</button>
 							<p class="lead"> <p>
-							<label for="from">날짜</label> 
-							<input type="text" id="from" name="fromDate" class="datepick blackcolor">
-							<label for="to"> ~ </label>
-							<input type="text" id="to" name="toDate" class="datepick blackcolor" >
+							
+							<input style="border-radius:5px;" type="text" id="from" name="fromDate" class="datepick blackcolor">
+							~
+							<input style="border-radius:5px;" type="text" id="to" name="toDate" class="datepick blackcolor" >
 						</form>
 					
 					</div>
@@ -329,7 +329,7 @@ function searchPool(){
 		<p/>
 		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea">
 			<c:forEach var="list" items="${top10 }">
-				<div class="col-md-6 poolmember">
+				<div class="col-md-4 poolmember">
 					<div class="col-md-5 text-right">
 						<a href="poolparty/${list.poolSeq}">
 							<img src="/poorip${list.poolPic}">

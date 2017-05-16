@@ -273,8 +273,8 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	<!-- banner start -->
 	<!-- ================ -->
 	<div id="banner" class="banner-addinfo">
-		<div class="banner-addinfo-image" style="top:-80px">
-			<div class="backstretch">
+		<div class="banner-addinfo-image banner-image-common" style="top:-80px">
+			<div class="backstretch mypage-backstretch">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/bg-image-5.jpg">
 			</div>

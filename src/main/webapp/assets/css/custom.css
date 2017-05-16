@@ -88,7 +88,11 @@ File Description: Place here your custom CSS styles
     max-height: none;
     max-width: none;
     min-width:700px;
+<<<<<<< HEAD
     min-height:400px;
+=======
+    min-height:500px;
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
     z-index: -999999;
     top: 0px;
 }
@@ -129,6 +133,15 @@ File Description: Place here your custom CSS styles
 .poolmember {
 	min-height: 180px;
 	margin: 0 0 10px;
+	 border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 4px;
+    bottom: -1px;
+    content: '';
+    left: -1px;
+    pointer-events: none;  
+    right: -1px;
+    top: -1px;
 }
 .poolmember span{
 	display : block;
@@ -232,4 +245,20 @@ File Description: Place here your custom CSS styles
  {
 	width: 55%;
 	min-height:55%;
+}
+
+#banner .mypage-backstretch img {
+	-webkit-mask-image: -webkit-gradient(linear, left 450, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0 0;
+}
+
+.banner-image-common {
+	height: 100%;
+}
+
+.mypage-backstretch {
+	height:100%;
 }

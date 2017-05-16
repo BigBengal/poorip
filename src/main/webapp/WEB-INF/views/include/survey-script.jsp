@@ -9,6 +9,7 @@
 <!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 <!-- Jquery and Bootstap core js files -->
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
 
@@ -36,7 +37,7 @@
 <!-- Initialization of Plugins -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/js/survey-animation.js"></script>
-
+	
 <!-- Custom Scripts -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/js/custom.js"></script>

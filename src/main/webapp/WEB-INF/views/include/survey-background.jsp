@@ -7,8 +7,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-signin-client_id"
-	content="124530211520-gtfp80s234icq65e85pn302nhlmpulku.apps.googleusercontent.com">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>나의 성향 설문조사</title>
 <meta name="description"
@@ -29,6 +27,8 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+	
 
 <!-- Font Awesome CSS -->
 <link
@@ -47,7 +47,22 @@
 <!-- Custom css -->
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
-<body class="no-trans">
+
+<style type="text/css">
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
+}
+</style>
+
+<body >
 
 	<!-- scrollToTop -->
 	<!-- ================ -->
@@ -57,11 +72,7 @@
 
 	<!-- header start -->
 	<!-- ================ -->
-	<header class="header fixed clearfix navbar navbar-fixed-top">
-		<div class="container">
-			<c:import url="/WEB-INF/views/include/header.jsp" />
-		</div>
-	</header>
+
 	<!-- header end -->
 
 	
