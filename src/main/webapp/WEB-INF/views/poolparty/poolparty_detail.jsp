@@ -48,13 +48,15 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="/poorip/assets/plugins/jquery-3.2.1.js"></script>
+<!-- <script src="/poorip/assets/plugins/jquery-3.2.1.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/moment.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/transition.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/collapse.js"></script> -->
+<script src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+<!-- <script src="/poorip/assets/plugins/jquery-1.12.4.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
-<script src="/poorip/assets/plugins/jquery-1.12.4.js"></script>
+
 <script src="/poorip/assets/plugins/jquery-ui.min.js"></script>
  
 <!-- Modernizr javascript -->

@@ -179,7 +179,6 @@
     </script>
 <script>
 $(document).ready(function(){
-	console.log("ss");
 	$(".nav-pills > li").eq(0).addClass("active");
 	
 	$('.modal').on('shown.bs.modal', function () {
