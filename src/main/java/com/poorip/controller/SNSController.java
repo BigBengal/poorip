@@ -50,8 +50,7 @@ public class SNSController {
 	@ResponseBody	
 	@RequestMapping("/main/{page}")
 	public JSONResult mySNS( @AuthUser UserVo userVo,
-							 @PathVariable ( "page" ) Integer page,
-							  Model model ) {
+							 @PathVariable ( "page" ) Integer page) {
 		int usrSeq = userVo.getUsrSeq();
 		page = page * 3;
 		List<ReviewVo> post = snsService.getpostList(usrSeq, page);
@@ -125,7 +124,7 @@ public class SNSController {
 			@RequestParam("reviewPubYn") String reviewPubYn,  
 			@PathVariable(value="postSeq", required=false) String postSeq1, 
 			@RequestParam (value ="postPicSeqArray", required=false) List<Integer> postPicSeqArray, 
-			Model model, MultipartHttpServletRequest req, @AuthUser UserVo userVo) throws FileNotFoundException, IOException{
+			MultipartHttpServletRequest req, @AuthUser UserVo userVo) throws FileNotFoundException, IOException{
 		
 		int postSeq = Integer.parseInt(postSeq1);
 		List<MultipartFile> files = new ArrayList<MultipartFile>();

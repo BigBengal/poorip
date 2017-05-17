@@ -65,7 +65,6 @@
 								<li><a href="/poorip/matching/survey-main">Party People</a></li>
 								<li><a href="/poorip/poolparty">PoolParty</a></li>
 								<li id="MyMenuHover"><a href="#">MyPage</a></li>
-
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button></a>									
 						  		</li>
