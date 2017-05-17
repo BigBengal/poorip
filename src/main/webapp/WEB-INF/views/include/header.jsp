@@ -64,7 +64,7 @@
 								<li><a href="/poorip/#portfolio">여행정보</a></li>
 								<li><a href="/poorip/poolparty">풀파티</a></li>
 
-								<li><a href="/poorip/matching/survey-main">백팩족찾기</a></li>
+								<li><a href="/poorip/matching/survey">백팩족찾기</a></li>
 
 								<li id="MyMenuHover"><a href="/poorip/sns">MyPage</a></li>
 

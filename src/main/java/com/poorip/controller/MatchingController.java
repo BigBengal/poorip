@@ -3,6 +3,7 @@ package com.poorip.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poorip.security.Auth;
@@ -17,53 +18,45 @@ public class MatchingController {
 	@Autowired MatchingService matchingService;
 	
 	@Auth
-	@RequestMapping("/main/matching")
+	@RequestMapping("/")
 	public String matchingMain() {
 		return "matching/matchingMain";
 	}
 	
+	// 사용사 설문조사 정보 입력화면
 	@Auth
-	@RequestMapping("/survey-main")
-	public String matchingSurveyMain(@AuthUser UserVo userVo,
-									 Model model) {
+	@RequestMapping("/survey")
+	public String matchingSurveyMain(@AuthUser UserVo userVo) {
+		int usrSeq = userVo.getUsrSeq();
 		
-		
-		return "/matching/survey-main";
+		// 1. 사용자가 설문을 했는지 먼저 확인한다.
+		int surveyYN = matchingService.getusrPrefValue( usrSeq );
+		// 2. 설문조사를 한 회원은 결과창으로 넘겨준다.
+		if( surveyYN != 0){
+			return "redirect:/matching/";
+		}
+		return "/matching/survey";
 	}
 	
+	// 설문조사 정보 입력
 	@Auth
-	@RequestMapping("/survey-Q1")
-	public String matchingSurvey1() {
-		
+	@RequestMapping("/surveyQ")
+	public String surveyQ(@AuthUser UserVo userVo) {
 		return "/matching/survey-q1";
 	}
 	
+	// 설문조사 정보 입력
 	@Auth
-	@RequestMapping("/survey-Q2")
-	public String matchingSurvey2() {
+	@RequestMapping("/updatePrefer")
+	public String updatePrefer(@AuthUser UserVo userVo,
+							   @ModelAttribute UserVo userVo2) {
+		System.out.println(userVo2);
+		Integer.parseInt(userVo2.getUsrPref1());
 		
-		return "/matching/survey-q2";
-	}
-	
-	@Auth
-	@RequestMapping("/survey-Q3")
-	public String matchingSurvey3() {
-		
-		return "/matching/survey-q3";
-	}
-	
-	@Auth
-	@RequestMapping("/survey-Q4")
-	public String matchingSurvey4() {
-		
-		return "/matching/survey-q4";
-	}
-	
-	@Auth
-	@RequestMapping("/survey-Q5")
-	public String matchingSurvey5() {
-		
-		return "/matching/survey-q5";
+		userVo2.setUsrSeq(userVo.getUsrSeq());
+		matchingService.updateprefer( userVo2 );
+		System.out.println(userVo2);
+		return "redirect:/matching/";
 	}
 
 }
