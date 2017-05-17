@@ -67,6 +67,8 @@
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 <!-- Initialization of Plugins -->
 <%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
+<!-- 상단 메뉴 및 기본 -->
+<script src="${pageContext.request.contextPath }/assets/js/header.js"></script>
 <!-- Custom Scripts -->
 <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 <!-- facebook  -->

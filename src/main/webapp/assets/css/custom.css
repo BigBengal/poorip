@@ -34,7 +34,8 @@ File Description: Place here your custom CSS styles
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
-/*     position: absolute; */
+    position: relative;
+    top:-20px;
 /*     min-width: 160px; */
 /*     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
 /*     background-color: #f9f9f9; */
@@ -42,36 +43,38 @@ File Description: Place here your custom CSS styles
     z-index: 1;
 /*     margin-top: -10px; */
 /*     margin-bottom: 10px; */
-    padding-right: 120px;
+    padding-right: 155px;
 }
 
-.dropdown-content.fixed {
-	position: fixed;
-	top:105px;
-	right:0px;
-	left:0px;
-}
-.dropdown-content.fixed a {
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-}
+/* .dropdown-content.fixed { */
+/* 	position: fixed; */
+/* 	top:105px; */
+/* 	right:0px; */
+/* 	left:0px; */
+/* } */
+/* .dropdown-content.fixed a { */
+/* 	border-top-left-radius: 0px; */
+/* 	border-top-right-radius: 0px; */
+/* } */
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
+    color: white;
     padding:5px 15px;
     text-decoration: none;
-/*     display: block; */
     min-width: 160px;
+    top:-100px;
+/*     display: block; */
+    
 /*     border: 1px solid; */
-    border-radius: 5px;
+/*     border-radius: 5px; */
 /*     border-bottom-right-radius: 5px; */
 /*     border-color: black; */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
-    background-color: rgba(255, 255, 255, 0.70);
+/*     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4); */
+/*     background-color: rgba(255, 255, 255, 0.70); */
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #55acee}
+.dropdown-content a:hover {color: #126db1}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}

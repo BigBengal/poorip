@@ -44,13 +44,17 @@
 	rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/moment.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/transition.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/collapse.js"></script> -->
+
+<script src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <!-- Modernizr javascript -->
 <script src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
 <!-- Isotope javascript -->
@@ -63,90 +67,19 @@
 <%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
 <!-- Custom Scripts -->
 <%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
+<!-- 상단 메뉴 및 기본 -->
+<script src="${pageContext.request.contextPath }/assets/js/header.js"></script>
 <!-- facebook  -->
 <script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 <!-- Vaildation-->
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <script>
 $(document).ready(function(){
-	
-// 	var $alink = $("#navbar-collapse-1 ul li a");
-// 	for(var i=0;i<2;i++){
-// 		var $ori = $alink.eq(i);
-// 		var oriLink = $ori.attr("href");
-// 		$ori.attr("href","/poorip/"+oriLink);
-		
-// 	}
+
 	$(".banner-image").backstretch('/poorip/assets/images/bg-image-4.jpg');				
 		
-	$("#navbar-collapse-1 ul li").eq(0).removeClass("active");
-	$("#navbar-collapse-1 ul li").eq(1).addClass("active");
-
-	// MyMenu 고정
-	if (($(".dropdown-content").length > 0)) { 
-	    // My메뉴 위치 구하기
-		var $myMenu = $("#myMenu");
-	    var myMenuPos = $myMenu.offset().top;
-	}
-    
-	// myMenu 보기
-	$("#MyMenuHover").mouseenter(function(){
-		$myMenu.addClass("show");
-	});
-	$("#myMenu").mouseleave(function(){
-		$myMenu.removeClass("show");
-	});
-	
-	// Fixed header
-	//-----------------------------------------------
-	$(window).scroll(function() {
-		if (($(".header.fixed").length > 0)) { 
-			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-				$("body").addClass("fixed-header-on");
-			} else {
-				$("body").removeClass("fixed-header-on");
-			}
-		};
-		//myMenu 고정
-		if (($(".dropdown-content").length > 0)) { 
-			// 스크롤 위치 값 구하기
-	        var scrollY = window.pageYOffset;
-	        // 스크롤 위치 값이 탭메뉴 위치 보다 큰 경우만 탭메뉴에 fixed 클래스 적용. 그렇지 않은 경우 fixed 클래스 제거
-	        if(scrollY>myMenuPos){
-	        	$myMenu.addClass("fixed");
-	        }else {
-	        	$myMenu.removeClass("fixed");
-	        }
-		}
-	});
-
-// 	$(window).load(function() {
-// 		if (($(".header.fixed").length > 0)) { 
-// 			if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-// 				$("body").addClass("fixed-header-on");
-// 			} else {
-// 				$("body").removeClass("fixed-header-on");
-// 			}
-// 		};
-// 	});
-	
-	// Animations
-	//-----------------------------------------------
-	if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {
-		$("[data-animation-effect]").each(function() {
-			var $this = $(this),
-			animationEffect = $this.attr("data-animation-effect");
-			if(Modernizr.mq('only all and (min-width: 768px)') && Modernizr.csstransitions) {
-				$this.appear(function() {
-					setTimeout(function() {
-						$this.addClass('animated object-visible ' + animationEffect);
-					}, 400);
-				}, {accX: 0, accY: -130});
-			} else {
-				$this.addClass('object-visible');
-			}
-		});
-	};
+// 	$("#navbar-collapse-1 ul li").eq(0).removeClass("active");
+// 	$("#navbar-collapse-1 ul li").eq(1).addClass("active");
 	
 	$(function(){
 		$("#ctyName").autocomplete({

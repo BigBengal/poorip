@@ -61,12 +61,10 @@
 						<div class="collapse navbar-collapse scrollspy smooth-scroll"
 							id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="/poorip/#portfolio">여행정보</a></li>
-								<li><a href="/poorip/poolparty">풀파티</a></li>
-
-								<li><a href="/poorip/matching/survey-main">백팩족찾기</a></li>
-
-								<li id="MyMenuHover"><a href="/poorip/sns">MyPage</a></li>
+								<li><a href="/poorip/#portfolio">Travel Info</a></li>
+								<li><a href="/poorip/matching/survey-main">Party People</a></li>
+								<li><a href="/poorip/poolparty">PoolParty</a></li>
+								<li id="MyMenuHover"><a href="#">MyPage</a></li>
 
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button></a>									
@@ -95,8 +93,8 @@
 	</div>
 </div>
 <div id="myMenu" class="container dropdown-content myMenushow">
-	<a href="${pageContext.request.contextPath }/sns">내 SNS</a>
-	<a href="${pageContext.request.contextPath }/scrap/main">내 스크랩 정보</a>
-	<a href="${pageContext.request.contextPath }/poolparty/mypool">내 풀파티</a>
-	<a href="${pageContext.request.contextPath }/user/addinfo">사용자 정보 수정</a>
+	<a href="${pageContext.request.contextPath }/sns">Story</a>
+	<a href="${pageContext.request.contextPath }/scrap/main">Scrap</a>
+	<a href="${pageContext.request.contextPath }/poolparty/mypool">Pool</a>
+	<a href="${pageContext.request.contextPath }/user/addinfo">Profile</a>
 </div>
