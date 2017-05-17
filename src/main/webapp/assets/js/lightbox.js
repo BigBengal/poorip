@@ -492,6 +492,13 @@
       }
     }
   };
+  
+  lightbox.option({
+    'resizeDuration': 20,
+    'fadeDuration': 20,
+    'imageFadeDuration': 30,
+    'wrapAround': false,
+  })
 
   // Closing time. :-(
   Lightbox.prototype.end = function() {
