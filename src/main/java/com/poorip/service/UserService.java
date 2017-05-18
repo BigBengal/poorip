@@ -195,7 +195,6 @@ public class UserService {
 		int catSeq = travelInfoDao.getCatSeq( trvSeq1 );
 		if( catSeq == 2 ) {
 			if(catSeq == 2 && luxuryY.equals( "Y" )) {
-				System.out.println(luxuryY);
 				boolean LuxuryHit = userDao.updateLuxuryHit( trvSeq1, usrSeq );
 				boolean FoodHit = userDao.updateFoodHit( trvSeq1, usrSeq );
 				return LuxuryHit && FoodHit;
@@ -210,6 +209,47 @@ public class UserService {
 			return userDao.updateActivityHit( trvSeq1, usrSeq );
 		
 		return true;
+	}
+
+	public boolean updateScrapHit(int trvSeq1, int usrSeq, String luxuryY) {
+		int catSeq = travelInfoDao.getCatSeq( trvSeq1 );
+		if( catSeq == 2 ) {
+			if(catSeq == 2 && luxuryY.equals( "Y" )) {
+				boolean ScrapLuxuryHit = userDao.updateScrapLuxuryHit( trvSeq1, usrSeq );
+				boolean ScrapFoodHit = userDao.updateScrapFoodHit( trvSeq1, usrSeq );
+				return ScrapLuxuryHit && ScrapFoodHit;
+			}
+			return userDao.updateScrapFoodHit( trvSeq1, usrSeq );
+		}
+	
+		if( catSeq == 3 )
+			return userDao.updateScrapSightHit( trvSeq1, usrSeq );
+		
+		if( catSeq == 4 )
+			return userDao.updateScrapActivityHit( trvSeq1, usrSeq );
+		
+		return true;	
+	}
+
+	public boolean updateDeleteScrapHit(int trvSeq1, int usrSeq, String luxuryY) {
+		int catSeq = travelInfoDao.getCatSeq( trvSeq1 );
+		if( catSeq == 2 ) {
+			if(catSeq == 2 && luxuryY.equals( "Y" )) {
+				boolean DeleteScrapLuxuryHit = userDao.updateDeleteScrapLuxuryHit( trvSeq1, usrSeq );
+				boolean DeleteScrapFoodHit = userDao.updateDeleteScrapFoodHit( trvSeq1, usrSeq );
+				return DeleteScrapLuxuryHit && DeleteScrapFoodHit;
+			}
+			return userDao.updateDeleteScrapFoodHit( trvSeq1, usrSeq );
+		}
+	
+		if( catSeq == 3 )
+			return userDao.updateDeleteScrapSightHit( trvSeq1, usrSeq );
+		
+		if( catSeq == 4 )
+			return userDao.updateDeleteScrapActivityHit( trvSeq1, usrSeq );
+		
+		return true;
+		
 	}
 	
 }

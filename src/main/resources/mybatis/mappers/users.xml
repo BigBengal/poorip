@@ -247,7 +247,7 @@
 	</select>
 
 		
-	<!-- 사용자가 클릭시 맛집 조회수 증가 -->
+	<!-- 사용자가 맛집 클릭시 맛집 조회수 증가 -->
 	<update id="updateFoodHit" parameterType="map">
    		<![CDATA[
 	update users u, travel_info t
@@ -258,7 +258,29 @@
 	]]>
 	</update>
 	
-	<!-- 사용자가 클릭시 관광지 조회수 증가 -->
+	<!-- 사용자가 맛집을 스크랩하면 조회수 100 증가 -->
+	<update id="updateScrapFoodHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t
+		set u.food_hit = u.food_hit + 100
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 2
+	]]>
+	</update>
+	
+	<!-- 사용자가 맛집을 스크랩을 삭제하면 조회수 100 감소 -->
+	<update id="updateDeleteScrapFoodHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t
+		set u.food_hit = u.food_hit - 100
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 2
+	]]>
+	</update>
+	
+	<!-- 사용자가 관광지 클릭시 관광지 조회수 증가 -->
 	<update id="updateSightHit" parameterType="map">
    		<![CDATA[
 	update users u, travel_info t
@@ -269,11 +291,55 @@
 	]]>
 	</update>
 	
-	<!-- 사용자가 클릭시 액티비티 조회수 증가 -->
+	<!-- 사용자가 관광지 스크랩 추가할시 조회수 100 증가 -->
+	<update id="updateScrapSightHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t
+		set u.SIGHT_HIT = u.SIGHT_HIT + 100
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 3
+	]]>
+	</update>
+	
+	<!-- 사용자가 관광지 스크랩 삭제할시 조회수 100 감소 -->
+	<update id="updateDeleteScrapSightHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t
+		set u.SIGHT_HIT = u.SIGHT_HIT - 100
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 3
+	]]>
+	</update>
+	
+	<!-- 사용자가  액티비티 클릭시 액티비티 조회수 증가 -->
 	<update id="updateActivityHit" parameterType="map">
    		<![CDATA[
 	update users u, travel_info t 
 		set u.ACTIVITY_HIT = u.ACTIVITY_HIT + 1
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 4
+	]]>
+	</update>
+	
+	<!-- 사용자가 액티비티 스크랩 추가할시 조회수 100 증가 -->
+	<update id="updateScrapActivityHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t 
+		set u.ACTIVITY_HIT = u.ACTIVITY_HIT + 100
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 4
+	]]>
+	</update>
+	
+	<!-- 사용자가 액티비티 스크랩 추가할시 조회수 100 감소-->
+	<update id="updateDeleteScrapActivityHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t 
+		set u.ACTIVITY_HIT = u.ACTIVITY_HIT - 100
 			where t.TRV_SEQ = #{trvSeq }
 			and u.USR_SEQ = #{usrSeq }
 			and t.CAT_SEQ = 4
@@ -291,4 +357,29 @@
 			and t.LUXURY_YN = 'Y'
 	]]>
 	</update>
+	
+	<!-- 사용자가 럭셔리 음식점 스크랩 추가할시 조회수 100 증가 -->
+	<update id="updateScrapLuxuryHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t 
+		set u.LUXURY_HIT = u.LUXURY_HIT + 100
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 2
+			and t.LUXURY_YN = 'Y'
+	]]>
+	</update>
+	
+	<!-- 사용자가 럭셔리 음식점 스크랩 추가할시 조회수 100 감소 -->
+	<update id="updateDeleteScrapLuxuryHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t 
+		set u.LUXURY_HIT = u.LUXURY_HIT - 100
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 2
+			and t.LUXURY_YN = 'Y'
+	]]>
+	</update>
+	
 </mapper>

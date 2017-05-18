@@ -80,12 +80,18 @@ public class ScrapController {
 		scrapVo.setUsrSeq(userVo.getUsrSeq());
 	
 		int trvSeq1 = Integer.parseInt(trvSeq);
+		int usrSeq = userVo.getUsrSeq();
+		String luxuryY = scrapService.getLuxuryY( trvSeq1 );
+		
 		scrapVo.setTrvSeq(trvSeq1);
 		if(scrapService.selectScrap(scrapVo)==0) {
 			scrapService.insertScrap(scrapVo);
+			userService.updateScrapHit( trvSeq1, usrSeq, luxuryY );
 			return JSONResult.success("성공");
 		}
 		scrapService.deleteScrap(scrapVo);
+		userService.updateDeleteScrapHit( trvSeq1, usrSeq, luxuryY );
+		
 		return JSONResult.fail("이미 있는 여행정보");
 	}
 	

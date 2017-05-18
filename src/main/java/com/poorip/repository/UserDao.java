@@ -93,6 +93,7 @@ public class UserDao {
 		}
 	}
 
+//--------------------------------1점 추가 ------------------------------------------------//
 	public boolean updateFoodHit(int trvSeq1, int usrSeq) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("usrSeq", usrSeq);
@@ -101,7 +102,7 @@ public class UserDao {
 		return count == 1;
 		
 	}
-
+	
 	public boolean updateSightHit(int trvSeq1, int usrSeq) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("usrSeq", usrSeq);
@@ -125,5 +126,71 @@ public class UserDao {
 		int count = sqlSession.update("user.updateLuxuryHit", map);
 		return count == 1;
 	}
+
+//--------------------------------100점 추가 ------------------------------------------------//
+	public boolean updateScrapFoodHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateScrapFoodHit", map);
+		return count == 1;
+	}
 	
+	public boolean updateScrapSightHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateScrapSightHit", map);
+		return count == 1;
+	}
+	
+	public boolean updateScrapActivityHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateScrapActivityHit", map);
+		return count == 1;
+	}
+	
+	public boolean updateScrapLuxuryHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateScrapLuxuryHit", map);
+		return count == 1;
+	}
+
+//--------------------------------100점 감소------------------------------------------------//
+	public boolean updateDeleteScrapFoodHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateDeleteScrapFoodHit", map);
+		return count == 1;
+	}
+
+	public boolean updateDeleteScrapSightHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateDeleteScrapSightHit", map);
+		return count == 1;
+	}
+
+	public boolean updateDeleteScrapActivityHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateDeleteScrapActivityHit", map);
+		return count == 1;
+	}
+
+	public boolean updateDeleteScrapLuxuryHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateDeleteScrapLuxuryHit", map);
+		return count == 1;
+	}
+
 }
