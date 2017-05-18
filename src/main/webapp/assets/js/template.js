@@ -91,24 +91,30 @@
 		// Isotope filters
 		//-----------------------------------------------
 		if ($('.isotope-container').length>0) {
-			$(window).load(function() {
-				if ($(".filters").find("li.active a").data('show') == 'Y') {
+			$(window).load(function() {	
+				var initFilter = $(".filters").find("li.active a").data('filter')
+//				if ($(".filters").find("li.active a").data('filter') == 'Y') {
 					$('.isotope-container').fadeIn();
 					var $container = $('.isotope-container').isotope({
 						itemSelector: '.isotope-item',
+//						stamp: '.setup',
 						layoutMode: 'masonry',
 						transitionDuration: '0.6s',
-						filter: '.cities'
+						filter: initFilter,
+						masonry: {
+						    columnWidth: '.col-md-3'
+						  }
+//						filter: '.cities'
 					});	
-				} else {
-					$('.isotope-container').fadeIn();
-					var $container = $('.isotope-container').isotope({
-						itemSelector: '.isotope-item',
-						layoutMode: 'masonry',
-						transitionDuration: '0.6s',
-						filter: '.web-design'
-					});	
-				};
+//				} else {
+//					$('.isotope-container').fadeIn();
+//					var $container = $('.isotope-container').isotope({
+//						itemSelector: '.isotope-item',
+//						layoutMode: 'masonry',
+//						transitionDuration: '0.6s',
+//						filter: '.web-design'
+//					});	
+//				};
 
 				// filter items on button click
 				$('.filters').on( 'click', 'ul.nav li a', function() {
