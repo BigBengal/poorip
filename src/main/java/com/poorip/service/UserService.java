@@ -193,9 +193,9 @@ public class UserService {
 	// 매칭알고리즘을 위한 update hit
 	public boolean updateHit(int trvSeq1, int usrSeq, String luxuryY) {
 		int catSeq = travelInfoDao.getCatSeq( trvSeq1 );
-
 		if( catSeq == 2 ) {
-			if(catSeq == 2 && luxuryY.equals( 'Y' )) {
+			if(catSeq == 2 && luxuryY.equals( "Y" )) {
+				System.out.println(luxuryY);
 				boolean LuxuryHit = userDao.updateLuxuryHit( trvSeq1, usrSeq );
 				boolean FoodHit = userDao.updateFoodHit( trvSeq1, usrSeq );
 				return LuxuryHit && FoodHit;
@@ -206,9 +206,9 @@ public class UserService {
 		if( catSeq == 3 )
 			return userDao.updateSightHit( trvSeq1, usrSeq );
 		
-		if( catSeq == 4 ) {
+		if( catSeq == 4 )
 			return userDao.updateActivityHit( trvSeq1, usrSeq );
-		}
+		
 		return true;
 	}
 	
