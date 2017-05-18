@@ -24,7 +24,7 @@ public class MatchingController {
 	public String matchingMain(@AuthUser UserVo userVo,
 							   Model model) {
 		List<UserVo> matchingList = matchingService.getMatchingList( userVo );
-		System.out.println(matchingList);
+		int surveyScore = matchingService.getSurveyScore(matchingList);
 		model.addAttribute( "matchingList", matchingList);
 		return "matching/matchingMain";
 	}
@@ -36,9 +36,9 @@ public class MatchingController {
 		int usrSeq = userVo.getUsrSeq();
 		
 		// 1. 사용자가 설문을 했는지 먼저 확인한다.
-		int surveyYN = matchingService.getusrPrefValue( usrSeq );
+		String surveyYN = matchingService.getusrPrefValue( usrSeq );
 		// 2. 설문조사를 한 회원은 결과창으로 넘겨준다.
-		if( surveyYN != 0){
+		if( surveyYN != null){
 			return "redirect:/matching/";
 		}
 		return "/matching/survey";
@@ -56,12 +56,9 @@ public class MatchingController {
 	@RequestMapping("/updatePrefer")
 	public String updatePrefer(@AuthUser UserVo userVo,
 							   @ModelAttribute UserVo userVo2) {
-		System.out.println(userVo2);
-		Integer.parseInt(userVo2.getUsrPref1());
-		
+
 		userVo2.setUsrSeq(userVo.getUsrSeq());
 		matchingService.updateprefer( userVo2 );
-		System.out.println(userVo2);
 		return "redirect:/matching/";
 	}
 

@@ -18,7 +18,7 @@ public class MatchingDao {
 		return sqlSession.insert("");
 	}
 
-	public int getusrPrefValue(int usrSeq) {
+	public String getusrPrefValue(int usrSeq) {
 		return sqlSession.selectOne( "user.getusrPrefValue", usrSeq );
 	}
 

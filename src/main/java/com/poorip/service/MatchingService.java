@@ -22,8 +22,8 @@ public class MatchingService {
 		return userDao.isExist( userVo );
 	}
 
-	public int getusrPrefValue( int usrSeq ) {
-		int surveyYN = matchingDao.getusrPrefValue( usrSeq );
+	public String getusrPrefValue( int usrSeq ) {
+		String surveyYN = matchingDao.getusrPrefValue( usrSeq );
 		return surveyYN;
 	}
 
@@ -39,6 +39,26 @@ public class MatchingService {
 		List<UserVo> matchingList = matchingDao.getMatchingList( userVo );
 		
 		return matchingList;
+	}
+
+	public int getSurveyScore(List<UserVo> matchingList) {
+		for(int i=0; i<matchingList.size(); i++) {
+			for(int j=0; j<matchingList.size(); j++) {
+				String q1 = matchingList.get(j).getUsrPref1();
+				String q2 = matchingList.get(j).getUsrPref2();
+				String q3 = matchingList.get(j).getUsrPref3();
+				String q4 = matchingList.get(j).getUsrPref4();
+				String q5 = matchingList.get(j).getUsrPref5();
+				UserVo usrQj = new UserVo();
+				usrQj.setUsrPref1(q1);
+				usrQj.setUsrPref2(q2);
+				usrQj.setUsrPref3(q3);
+				usrQj.setUsrPref4(q4);
+				usrQj.setUsrPref5(q5);
+			}
+		
+		}
+		return 0;
 	}
 
 }
