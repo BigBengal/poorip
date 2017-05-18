@@ -104,7 +104,7 @@ $(document).ready(function(){
 // 	    		//  contentType: "application/json",
 // 	    		    success: function( response ){
 // 	    		    	console.log	( response );
-// 	    		       if( response.result == "failed") {
+// 	    		       if( response.result == "fail") {
 // 	    		    	   console.log( response );
 // 	    		       }
 // 	    		    	//통신 성공 (response.result == "success" )

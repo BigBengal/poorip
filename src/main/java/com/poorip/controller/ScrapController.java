@@ -54,8 +54,9 @@ public class ScrapController {
 		for(int i=0; i<cityList.size(); i++ ) {
 			scrapCityVo.setCtySeq(cityList.get(i).getCtySeq());
 			ScrapCityVo scrapCitydateList = scrapCityService.select(scrapCityVo);
-			// 도서의 날짜가 저장되어 있으면 
-			if (scrapCitydateList != null)	dateList.add(scrapCitydateList);
+			// 도시의 날짜가 저장되어 있으면 
+			if (scrapCitydateList != null && (scrapCitydateList.getDateFrom() != null || scrapCitydateList.getDateTo() != null) )
+				dateList.add(scrapCitydateList);
 		}
 		
 		//유저 스크랩 정보 중 전체 도시의 전체 출발, 전체 종료 일자 가져오기
@@ -192,9 +193,23 @@ public class ScrapController {
 		scrapCityVo.setCtySeq(ctySeq);
 		scrapCityService.clearCityDate(scrapCityVo);
 		
-		return JSONResult.success("deleted");
+		// 초기화하면서 전체 일정을 다시 불러줌 
+		return JSONResult.success(scrapCityService.showTravelDuration(userVo.getUsrSeq()));
 		
 	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/saveCityOrder")
+	public JSONResult saveCityOrder(@RequestParam("ctySeq[]") int[] ctySeq,
+								@AuthUser UserVo userVo){
+		
+		int usrSeq = userVo.getUsrSeq();
+		scrapCityService.updateCityOrder(usrSeq, ctySeq);
+		
+		return JSONResult.success("OK");
+	}
+	
 	
 
 }

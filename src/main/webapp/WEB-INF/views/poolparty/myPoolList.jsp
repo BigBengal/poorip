@@ -90,7 +90,7 @@ function aprvConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			//  contentType: "application/json",
 			    success: function( response ){
 			    	console.log	( response );
-			       if( response.result == "failed") {
+			       if( response.result == "fail") {
 			    	   console.log( response );
 			    	   return;
 			       }
@@ -132,7 +132,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			//  contentType: "application/json",
 			    success: function( response ){
 			    	console.log	( response );
-			       if( response.result == "failed") {
+			       if( response.result == "fail") {
 			    	   console.log( response );
 			    	   return;
 			       }

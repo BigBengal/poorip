@@ -1,6 +1,8 @@
 package com.poorip.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class ScrapCityDao {
 	}
 	
 	public boolean updateDate(ScrapCityVo scrapCityvo) {
-		return 1== sqlSession.update("scrapcity.update", scrapCityvo);
+		return 1 == sqlSession.update("scrapcity.update", scrapCityvo);
 	}
 	
 	public ScrapCityVo showTravelDuration (int usrSeq) {
@@ -42,7 +44,19 @@ public class ScrapCityDao {
 	}
 	
 	public boolean clearDate(ScrapCityVo scrapCityVo) {
-		return 1== sqlSession.delete("scrapcity.cleartrvdurationforcity", scrapCityVo);
+		return 1 == sqlSession.delete("scrapcity.cleartrvdurationforcity", scrapCityVo);
+	}
+
+	public boolean insertTravelOrder(ScrapCityVo scrapCityvo){
+		return 1 == sqlSession.insert("scrapcity.inserttravelorder", scrapCityvo);
+	}
+	
+	public boolean updateCityOrder(int usrSeq, int ctySeq, int i) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("usrSeq", usrSeq);
+		map.put("ctySeq", ctySeq);
+		map.put("trvOrd", i);
+		return 1 == sqlSession.delete("scrapcity.updateCityOrder", map);
 	}
 	
 }

@@ -17,10 +17,19 @@
 <div class="row object-non-visible" data-animation-effect="fadeIn">
 	<div class="col-md-12">
 		<div class="filters text-center">
-			<ul class="nav nav-pills">
+			<ul id="sortable"class="nav nav-pills">
 				<c:forEach var="cityList" items="${cityList }" varStatus="status">
-					<li><a  class="ScrapcityName" href="#" data-filter=".scrap-${cityList.ctySeq }" data-city-name="${cityList.ctySeq }"
-						style="border: 2px solid #cacaca;"><strong>${cityList.ctyName }</strong></a></li>
+					<li class="ui-state-default" data-start_pos="${status.index}">
+						<a class="ScrapcityName" href="#" data-filter=".scrap-${cityList.ctySeq }" data-city-name="${cityList.ctySeq }">
+							${cityList.ctySeq } <strong>${cityList.ctyName }</strong>
+							<div> &nbsp;
+							<c:forEach var="dateList" items="${dateList }">
+								<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
+									${dateList.dateFrom } ~ ${dateList.dateTo }
+								</c:if>
+							</c:forEach>
+							&nbsp; </div>
+						</a></li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -28,29 +37,31 @@
 
 			<c:forEach var="cityList" items="${cityList }" varStatus="status">
 <%-- 				<div style="text-align:center; display:block; width:100%;" class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctySeq}"> --%>
-				<div class="col-sm-12 col-md-12 isotope-item scrap-${cityList.ctySeq}">
-					<form id="set-date-scrap-${cityList.ctySeq }" method="post">
+				<div class="text-center col-sm-12 col-md-12 isotope-item scrap-${cityList.ctySeq}">
+					<form class="text-center" id="set-date-scrap-${cityList.ctySeq }" method="post">
 <!-- 						style="text-align: center; display: inline-block"> -->
 						<div class="text-center">
 							<label for="from">출발</label> 
-							<input type="text" class="fromDatePick" name="dateFrom" id="fromDate-${cityList.ctyName }" style="color: #000000; border-radius: 10px"> 
+							<input type="text" class="fromDatePick" name="dateFrom" id="fromDate-${cityList.ctySeq}" style="color: #000000; border-radius: 10px"> 
 							<label for="to" style="margin-left: 5px">도착</label> 
-							<input type="text" class="toDatePick" name="dateTo" id="toDate-${cityList.ctyName }" style="color: #000000; border-radius: 10px; margin-top: 10px">
+							<input type="text" class="toDatePick" name="dateTo" id="toDate-${cityList.ctySeq}" style="color: #000000; border-radius: 10px; margin-top: 10px">
 						</div>
-						<div style="margin-top:30px; margin-bottom:30px">
+						<div class="text-center" style="margin-top:30px; margin-bottom:30px">
 							<input class="btn btn-sm btn-default" type="submit"
 												value="저장" id="scrapDate-${cityList.ctySeq }" onclick="setDate(${cityList.ctySeq })">
 							<input class="btn btn-sm btn-default" type="submit" style="margin-left:20px;"
 												value="초기화" id="scrapDateRenew-${cityList.ctySeq }" onclick="clearDate(${cityList.ctySeq })">
 						</div>
 					</form>
-					
+
+					<div id="scrap-date-info-${cityList.ctySeq }">					
 					<c:forEach var="dateList" items="${dateList }" varStatus="status">
-					<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
-					<div id="scrap-date-info-${cityList.ctySeq }"><div id="city-travel-duration-${cityList.ctySeq }"><h4>${cityList.ctyName} 여행 기간은 ${dateList.dateFrom }  ~ ${dateList.dateTo } 입니다</h4></div></div>
-					</c:if>
+						<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
+							<div id="city-travel-duration-${cityList.ctySeq }"><h4>${cityList.ctyName} 여행 기간은 ${dateList.dateFrom }  ~ ${dateList.dateTo } 입니다</h4>
+							</div>
+						</c:if>
 					</c:forEach>
-					<div id="scrap-date-info-${cityList.ctySeq }"></div>
+					</div>
 					
 				</div>
 

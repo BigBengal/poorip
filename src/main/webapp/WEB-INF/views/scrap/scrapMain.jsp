@@ -152,20 +152,24 @@
 	<!-- Appear javascript -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
-
+	
 	<!-- Initialization of Plugins -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
-
+	
 	
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 	<!-- date picker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- facebook  -->
 	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+	
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
+	
+	
 	<c:import url="/WEB-INF/views/include/ajax.jsp" />
+	
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
@@ -179,15 +183,67 @@
     </script>
 <script>
 $(document).ready(function(){
-	$(".nav-pills > li").eq(0).addClass("active");
 	
 	$('.modal').on('shown.bs.modal', function () {
-		console.log("ss");	
+		console.log("ss");
 // 		showMap(tagId);
 	});
-	
+	$( "#sortable" ).sortable({
+		update: function( event, ui ) {
+// 			console.log(event);
+// 			console.log(ui.item);
+		 	var start_pos = ui.item.data('start_pos');
+            var idx = ui.item.index();
+// 			console.log(start_pos+","+idx);
+// 			ui.item.data('start_pos',index);
+// 			console.log("done"+ui.item.data('start_pos'));
+			$( ".ui-state-default" ).each(function(index){
+				$( ".ui-state-default" ).eq(index).data('start_pos',index);
+// 				console.log("wow");
+			})
+			saveCityOrder();
+// 			var ctyseq=$( ".ui-state-default a" ).eq(idx).data('city-name');
+// 			console.log("done:"+ctyseq+","+ui.item.data('start_pos'));
+		}
+	});
+    $( "#sortable" ).disableSelection();
 	
 });
+
+function saveCityOrder(){
+	
+	var ctySeq = [];
+	console.log("----------");
+	var $dragItem = $( ".ui-state-default a" );
+	$dragItem.each(function(index){
+		ctySeq[index] = $dragItem.eq(index).data('city-name');
+	});
+	console.log(ctySeq);
+	
+	// Ajax 통신
+	$.ajax( {
+	    url : "${pageContext.request.contextPath }/scrap/saveCityOrder",
+	    type: "post",
+	    dataType: "json",
+	    data: { ctySeq : ctySeq },
+	//  contentType: "application/json",
+	    success: function( response ){
+	    	console.log	( response );
+	       if( response.result == "fail") {
+	    	   console.log( response );
+	    	   return;
+	       }
+	    	//통신 성공 (response.result == "success" )
+	       console.log( response.data );
+	    	
+	    },
+	    error: function( XHR, status, error ){
+	       console.log("ERROR");
+	    }
+
+	   });
+	
+} 
 
 function initMap() {
 	var bounds = new google.maps.LatLngBounds();

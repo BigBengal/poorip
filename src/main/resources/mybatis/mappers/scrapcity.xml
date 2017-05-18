@@ -10,22 +10,47 @@
 			values(null, str_to_date(#{dateFrom}, '%c/%e/%Y'), str_to_date(#{dateTo},'%c/%e/%Y') , now(), #{usrSeq}, #{ctySeq}, 0)
 		]]>
 	</insert>
+	
+	<!-- 도시별 여행 순서 지정 삽입 -->
+	<insert id="inserttravelorder" parameterType="scrapcityvo">
+		<![CDATA[
+			insert into scrap_city 
+			values(null, null, null , now(), #{usrSeq}, #{ctySeq}, 0)
+		]]>
+	</insert>
 
 	<!-- 도시별 여행 날짜 변경 -->
 	<update id="update" parameterType="scrapcityvo">
 		<![CDATA[
 			update scrap_city 
-			   set date_from = str_to_date(#{dateFrom}, '%c/%e/%Y'), date_to = str_to_date(#{dateTo},'%c/%e/%Y') 
-			 where cty_seq=#{ctySeq} and usr_seq=#{usrSeq}
+			   set CTY_SEQ = CTY_SEQ
+		]]>
+			<if test="dateFrom != null">
+			   <![CDATA[
+			   	  ,date_from = str_to_date(#{dateFrom}, '%c/%e/%Y')
+				]]>
+			</if>
+			<if test="dateTo != null">
+			   <![CDATA[
+			   	   ,date_to = str_to_date(#{dateTo},'%c/%e/%Y')
+				]]>
+			</if>
+		<![CDATA[
+			 where cty_seq=#{ctySeq} 
+			   and usr_seq=#{usrSeq}
 		]]>
 	</update>
 	
 	<!-- 도시별 날짜 표시 -->
 	<select id="selectbyseq" resultType="scrapcityvo" parameterType="scrapcityvo">
 		<![CDATA[
-			select date_from as dateFrom, date_to as dateTo, cty_seq as ctySeq 
-			from scrap_city 
-			where usr_seq=#{usrSeq} and cty_seq=#{ctySeq}
+			select IF(DATE_FORMAT(date_from, '%m%d')='0000', null, DATE_FORMAT(date_from, '%m.%d') ) as dateFrom, 
+				   IF(DATE_FORMAT(date_to, '%m%d')='0000', null, DATE_FORMAT(date_to, '%m.%d') ) as dateTo,      
+			       cty_seq as ctySeq,
+			       trv_ord as trvOrd
+			  from scrap_city 
+			 where usr_seq=#{usrSeq} 
+			   and cty_seq=#{ctySeq}
 		]]>
 	</select>
 
@@ -38,7 +63,7 @@
 	]]>
 	</select>
 	
-	<!-- 도시 날짜 주기적으로 지우기...포린키가 없어서 발생한 이슈... -->
+	<!-- 스크랩을 삭제하면  해당 도시의 날짜가 남기 때문에 날짜 및 순서 삭제 처리 -->
 	<select id="deletetrvduration" parameterType="integer">
 		<![CDATA[	
 		DELETE FROM scrap_city 
@@ -56,9 +81,22 @@
 	<!--  선택한 도시 날짜 초기화 -->
 	<select id="cleartrvdurationforcity" parameterType="scrapcityvo">
 		<![CDATA[	
-		 delete 
-		   from scrap_city 
-		  where cty_seq = #{ctySeq} and usr_seq = #{usrSeq}
+		  update scrap_city 
+			   set date_from = null,
+			       date_to = null 
+			 where cty_seq=#{ctySeq} and usr_seq=#{usrSeq}
 	 ]]>
 	</select>
+	
+	<!-- 도시별 여행 순서 변경 -->
+	<update id="updateCityOrder" parameterType="map">
+		<![CDATA[
+			update scrap_city 
+			   set trv_ord=#{trvOrd }
+			 where cty_seq=#{ctySeq } 
+			   and usr_seq=#{usrSeq }  
+		]]>
+	</update>
+	
+	
 </mapper>

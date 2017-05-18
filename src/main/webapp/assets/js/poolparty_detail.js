@@ -214,7 +214,7 @@ $(document).ready(function(){
 		    success: function( response ){
 		    	
 		    	console.log	( response );
-		    	if( response.result == "failed") {
+		    	if( response.result == "fail") {
 		    	   console.log( response );
 		    	   return;
 		    	}

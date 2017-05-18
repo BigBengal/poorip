@@ -37,4 +37,17 @@ public class ScrapCityService {
 	public boolean clearCityDate(ScrapCityVo scrapCityVo) {
 		return scrapCityDao.clearDate(scrapCityVo);
 	}
+	public boolean updateCityOrder(int usrSeq, int[] ctySeq){
+		int totalCount = ctySeq.length;
+		boolean rtn = true;
+		ScrapCityVo scrapCityvo = new ScrapCityVo();
+		scrapCityvo.setUsrSeq(usrSeq);
+		for(int i=0; i < totalCount; i++){
+			scrapCityvo.setCtySeq(ctySeq[i]);
+			if(scrapCityDao.select(scrapCityvo)==null)
+				scrapCityDao.insertTravelOrder(scrapCityvo);
+			rtn = rtn && scrapCityDao.updateCityOrder(usrSeq, ctySeq[i], i);
+		}
+		return rtn;
+	}
 }

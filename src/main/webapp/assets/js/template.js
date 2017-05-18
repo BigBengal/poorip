@@ -92,6 +92,7 @@
 		//-----------------------------------------------
 		if ($('.isotope-container').length>0) {
 			$(window).load(function() {	
+				$(".nav-pills > li").eq(0).addClass("active");
 				var initFilter = $(".filters").find("li.active a").data('filter')
 //				if ($(".filters").find("li.active a").data('filter') == 'Y') {
 					$('.isotope-container').fadeIn();
@@ -119,9 +120,17 @@
 				// filter items on button click
 				$('.filters').on( 'click', 'ul.nav li a', function() {
 					var filterValue = $(this).attr('data-filter');
+					
 					$(".filters").find("li.active").removeClass("active");
 					$(this).parent().addClass("active");
 					$container.isotope({ filter: filterValue });
+					
+					// 달력이 있으면 달력 초기화
+					if ($('.fromDatePick').length>0) {
+						var cityName = $(this).attr('data-city-name');
+						$('#fromDate-'+cityName).datepicker( "option", "maxDate", null );
+						$('#toDate-'+cityName).datepicker( "option", "minDate", null );
+					}
 					return false;
 				});
 			});

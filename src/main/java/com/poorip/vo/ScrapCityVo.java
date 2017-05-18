@@ -8,10 +8,18 @@ public class ScrapCityVo {
 	private String crtDate;
 	private int ctySeq;
 	private int usrSeq;
+	private int trvOrd;
 	private String ctyName;
 	private int dateDiff;
 	
 	
+	
+	public int getTrvOrd() {
+		return trvOrd;
+	}
+	public void setTrvOrd(int trvOrd) {
+		this.trvOrd = trvOrd;
+	}
 	public int getDateDiff() {
 		return dateDiff;
 	}
@@ -64,9 +72,10 @@ public class ScrapCityVo {
 	@Override
 	public String toString() {
 		return "ScrapCityVo [scpCitySeq=" + scpCitySeq + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", crtDate="
-				+ crtDate + ", ctySeq=" + ctySeq + ", usrSeq=" + usrSeq + ", ctyName=" + ctyName + ", dateDiff="
-				+ dateDiff + "]";
+				+ crtDate + ", ctySeq=" + ctySeq + ", usrSeq=" + usrSeq + ", trvOrd=" + trvOrd + ", ctyName=" + ctyName
+				+ ", dateDiff=" + dateDiff + "]";
 	}
+
 	
 	
 }

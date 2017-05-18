@@ -266,3 +266,8 @@ File Description: Place here your custom CSS styles
 .mypage-backstretch {
 	height:100%;
 }
+
+.ScrapcityName {
+	border: 2px solid #cacaca;
+/* 	min-height:56px; */
+}

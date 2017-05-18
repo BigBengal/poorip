@@ -25,7 +25,7 @@ $(function() {
 		numberOfMonths : 2
 	}).on("change", function() {
 		from.datepicker("option", "maxDate", getDate(this));
-		dateTo = getDate(this);
+//		dateTo = getDate(this);
 	});
 
 	function getDate(element) {
@@ -106,10 +106,11 @@ function setDate(ctySeq) {
 
 				success : function(result) {
 
-					var htmlDate = "<div id='city-travel-duration-'" + ctySeq + "' ><h4><strong> 여행 기간은 " + result.data.dateFrom + " ~ "
+					var htmlDate = "<div id='city-travel-duration-" + ctySeq + "' ><h4><strong> 여행 기간은 " + result.data.dateFrom + " ~ "
 							+ result.data.dateTo + " 입니다<strong><h4></div>";
 					console.log(htmlDate + "HEY??");
 					$("#scrap-date-info-" + ctySeq).prepend(htmlDate);
+					
 
 					$.ajax({
 						url : "/poorip/scrap/showDuration",
@@ -164,30 +165,11 @@ function clearDate(ctySeq) {
 		console.log(result);
 		document.getElementById("scrap-date-info-" + ctySeq).innerHTML = "";
 		
-		$.ajax({
-			url : "/poorip/scrap/showDuration",
-			type : "post",
-			data : "",
-
-			success : function(result) {
-
-				var htmlTravelDate =  result.data.dateFrom
-						+ " ~ " + result.data.dateTo
-						+ " 총 여행일 수는   " + result.data.dateDiff + "일 입니다"
-					;
-				console.log(htmlTravelDate);
-				$("#travel-date-info").prepend(htmlTravelDate);
-				
-			
-
-			},
-			error : function(data) {
-				// alert("ajax 에러가 발생하였습니다.")
-			}
-
-		});
-	
-
+		var htmlTravelDate =  result.data.dateFrom
+		+ " ~ " + result.data.dateTo
+		+ " 총 여행일 수는   " + result.data.dateDiff + "일 입니다";
+		console.log(htmlTravelDate);
+		$("#travel-date-info").prepend(htmlTravelDate);
 	},
 	error : function(data) {
 		// alert("ajax 에러가 발생하였습니다.")
