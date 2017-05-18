@@ -25,7 +25,7 @@ $(document).ready(function(){
 		};
 	});
 
-	//Scroll Spy
+	//Scroll Spy (스크롤 위치를 기반으로 네비게이션 대상을 갱신하기 위하)
 	//-----------------------------------------------
 	if($(".scrollspy").length>0) {
 		$("body").addClass("scroll-spy");
@@ -35,7 +35,7 @@ $(document).ready(function(){
 		});
 	}
 
-	//Smooth Scroll
+	//Smooth Scroll ( 스크롤을 에니메이션으로 내려주는 것)
 	//-----------------------------------------------
 	if ($(".smooth-scroll").length>0) {
 		$('.smooth-scroll a[href*=#]:not([href=#]), a[href*=#]:not([href=#]).smooth-scroll').click(function() {
@@ -70,36 +70,4 @@ $(document).ready(function(){
 		});
 	};
 
-	// Isotope filters
-	//-----------------------------------------------
-	if ($('.isotope-container').length>0) {
-		$(window).load(function() {
-			if ($(".filters").find("li.active a").data('show') == 'Y') {
-				$('.isotope-container').fadeIn();
-				var $container = $('.isotope-container').isotope({
-					itemSelector: '.isotope-item',
-					layoutMode: 'masonry',
-					transitionDuration: '0.6s',
-					filter: '.cities'
-				});	
-			} else {
-				$('.isotope-container').fadeIn();
-				var $container = $('.isotope-container').isotope({
-					itemSelector: '.isotope-item',
-					layoutMode: 'masonry',
-					transitionDuration: '0.6s',
-					filter: '.web-design'
-				});	
-			};
-
-			// filter items on button click
-			$('.filters').on( 'click', 'ul.nav li a', function() {
-				var filterValue = $(this).attr('data-filter');
-				$(".filters").find("li.active").removeClass("active");
-				$(this).parent().addClass("active");
-				$container.isotope({ filter: filterValue });
-				return false;
-			});
-		});
-	};
 });

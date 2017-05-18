@@ -208,7 +208,7 @@
 
 				if(tagId.substring(8,9)!=1)
 					showMap(tagId);
-				});
+			});
 				
 			$(document).on("click","#citygo",function(){
 				var ctyseq = $(this).data("ctyseq");

@@ -20,30 +20,25 @@
 			<ul class="nav nav-pills">
 				<c:forEach var="cityList" items="${cityList }" varStatus="status">
 					<li><a  class="ScrapcityName" href="#" data-filter=".scrap-${cityList.ctySeq }" data-city-name="${cityList.ctySeq }"
-						data-show="Y" style="border: 2px solid #cacaca;"><strong>${cityList.ctyName }</strong></a></li>
+						style="border: 2px solid #cacaca;"><strong>${cityList.ctyName }</strong></a></li>
 				</c:forEach>
 			</ul>
 		</div>
 		<div class="isotope-container row grid-space-20">
 
 			<c:forEach var="cityList" items="${cityList }" varStatus="status">
-				<div style="text-align:center; display:block; width:100%;" class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctySeq}">
-					<form id="set-date-scrap-${cityList.ctySeq }" method="post"
-						style="text-align: center; display: inline-block">
-						<div class="text-center" style="text-align: center;">
+<%-- 				<div style="text-align:center; display:block; width:100%;" class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctySeq}"> --%>
+				<div class="col-sm-12 col-md-12 isotope-item scrap-${cityList.ctySeq}">
+					<form id="set-date-scrap-${cityList.ctySeq }" method="post">
+<!-- 						style="text-align: center; display: inline-block"> -->
+						<div class="text-center">
 							<label for="from">출발</label> 
-							<input type="text" class="fromDatePick"
-								  name="dateFrom" id="fromDate-${cityList.ctyName }"
-								style="color: #000000; border-radius: 10px"> 
-								<label
-								for="to" style="margin-left: 5px">도착</label> 
-							<input type="text" class="toDatePick"
-								id="toDate-${cityList.ctyName }" name="dateTo"
-								style="color: #000000; border-radius: 10px; margin-top: 10px">
-							
+							<input type="text" class="fromDatePick" name="dateFrom" id="fromDate-${cityList.ctyName }" style="color: #000000; border-radius: 10px"> 
+							<label for="to" style="margin-left: 5px">도착</label> 
+							<input type="text" class="toDatePick" name="dateTo" id="toDate-${cityList.ctyName }" style="color: #000000; border-radius: 10px; margin-top: 10px">
 						</div>
 						<div style="margin-top:30px; margin-bottom:30px">
-						<input class="btn btn-sm btn-default" type="submit"
+							<input class="btn btn-sm btn-default" type="submit"
 												value="저장" id="scrapDate-${cityList.ctySeq }" onclick="setDate(${cityList.ctySeq })">
 							<input class="btn btn-sm btn-default" type="submit" style="margin-left:20px;"
 												value="초기화" id="scrapDateRenew-${cityList.ctySeq }" onclick="clearDate(${cityList.ctySeq })">
@@ -97,7 +92,7 @@
 										</div>
 										<div class="modal-body">
 											<a href="javascript:;"><img
-												id="scrapTrvInfo-${scrapList.trvSeq}" src="--"
+												id="scrapTrvInfo-${scrapList.trvSeq}" src=""
 												style="float: right;" data-trvSeq="${scrapList.trvSeq}"
 												onclick="validate(${scrapList.trvSeq})" /></a>
 
