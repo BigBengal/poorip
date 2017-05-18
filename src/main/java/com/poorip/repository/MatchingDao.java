@@ -27,4 +27,8 @@ public class MatchingDao {
 		return (count == 1);
 	}
 
+	public List<UserVo> getMatchingList(UserVo userVo) {
+		return sqlSession.selectList( "user.getMatchingList", userVo );
+	}
+
 }

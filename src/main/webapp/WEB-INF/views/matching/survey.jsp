@@ -147,6 +147,7 @@
 							<span style="font-size: 75px; color: teal;">${authUser.usrNick}님</span>의
 							<br>성향 조사를 시작하시겠습니까?
 						</h1>
+						<p class="lead text-center" style="color: white; font-size: 16px">※스크랩한 여행지가 없을시 계획이 비슷한 여행자와 매칭됩니다.</p>
 					</div>
 				</div>
 				<div class="form-group">

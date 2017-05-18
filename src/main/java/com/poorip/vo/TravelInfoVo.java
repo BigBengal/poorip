@@ -18,8 +18,7 @@ public class TravelInfoVo {
 	private int trvPicSeq;
 	private String path;
 	private String fileName;
-	
-	
+	private String luxury;
 	
 	public int getTrvPicSeq() {
 		return trvPicSeq;
@@ -119,12 +118,20 @@ public class TravelInfoVo {
 		this.hit = hit;
 	}
 	
+	public String getLuxury() {
+		return luxury;
+	}
+	public void setLuxury(String luxury) {
+		this.luxury = luxury;
+	}
+	
 	@Override
 	public String toString() {
 		return "TravelInfoVo [trvSeq=" + trvSeq + ", name=" + name + ", contents=" + contents + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", price=" + price + ", crtDate=" + crtDate
 				+ ", ctySeq=" + ctySeq + ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", hit="
-				+ hit + ", trvPicSeq=" + trvPicSeq + ", path=" + path + ", fileName=" + fileName + "]";
+				+ hit + ", trvPicSeq=" + trvPicSeq + ", path=" + path + ", fileName=" + fileName + ", luxury=" + luxury
+				+ "]";
 	}
 	
 	

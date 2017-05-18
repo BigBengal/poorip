@@ -17,6 +17,7 @@ import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.ScrapCityService;
 import com.poorip.service.ScrapService;
+import com.poorip.service.UserService;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
@@ -31,6 +32,9 @@ public class ScrapController {
 	
 	@Autowired
 	ScrapCityService scrapCityService;
+	
+	@Autowired
+	UserService userService;
 	
 	@Auth
 	@RequestMapping("/main")
@@ -89,10 +93,16 @@ public class ScrapController {
 	@Auth
 	@ResponseBody
 	@RequestMapping("/scrapValidate")
-	public String validateScrap(@RequestParam ("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
+	public String validateScrap(@RequestParam ("trvSeq") String trvSeq,
+								@AuthUser UserVo userVo) {
 		int trvSeq1 = Integer.parseInt(trvSeq);
+		int usrSeq = userVo.getUsrSeq();
+		String luxuryY = scrapService.getLuxuryY( trvSeq1 );
 		//사용자가 클릭시 여행정보 조회수 증가
 		scrapService.updateHit(trvSeq1);
+		//매칭알고리즘 조회수 증가
+		userService.updateHit( trvSeq1, usrSeq, luxuryY );
+		
 		ScrapVo scrapVo = new ScrapVo();
 		
 		scrapVo.setTrvSeq(trvSeq1);

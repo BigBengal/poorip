@@ -20,7 +20,10 @@ public class UserVo {
 	private String usrJoinDate;
 	private String usrLoginDate;
 	private String usrBlackYN;
-
+	private int foodHit;
+	private int sightHit;
+	private int activityHit;
+	private int luxuryHit;
 	
 	public int getUsrSeq() {
 		return usrSeq;
@@ -201,6 +204,44 @@ public class UserVo {
 		this.usrBlackYN = usrBlackYN;
 	}
 
+	public int getFoodHit() {
+		return foodHit;
+	}
+
+
+	public void setFoodHit(int foodHit) {
+		this.foodHit = foodHit;
+	}
+
+
+	public int getSightHit() {
+		return sightHit;
+	}
+
+
+	public void setSightHit(int sightHit) {
+		this.sightHit = sightHit;
+	}
+
+
+	public int getActivityHit() {
+		return activityHit;
+	}
+
+
+	public void setActivityHit(int activityHit) {
+		this.activityHit = activityHit;
+	}
+
+
+	public int getLuxuryHit() {
+		return luxuryHit;
+	}
+
+
+	public void setLuxuryHit(int luxuryHit) {
+		this.luxuryHit = luxuryHit;
+	}
 
 	@Override
 	public String toString() {
@@ -209,7 +250,8 @@ public class UserVo {
 				+ usrInfo + ", usrHashtag=" + usrHashtag + ", usrPref1=" + usrPref1 + ", usrPref2=" + usrPref2
 				+ ", usrPref3=" + usrPref3 + ", usrPref4=" + usrPref4 + ", usrPref5=" + usrPref5 + ", usrNoti="
 				+ usrNoti + ", usrJoinDate=" + usrJoinDate + ", usrLoginDate=" + usrLoginDate + ", usrBlackYN="
-				+ usrBlackYN + "]";
+				+ usrBlackYN + ", foodHit=" + foodHit + ", sightHit=" + sightHit + ", activityHit=" + activityHit
+				+ ", luxuryHit=" + luxuryHit + "]";
 	}
 
 }

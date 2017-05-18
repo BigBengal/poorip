@@ -1,6 +1,8 @@
 package com.poorip.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,9 +91,39 @@ public class UserDao {
 		catch(Exception e){
 			return 0;
 		}
-		
+	}
+
+	public boolean updateFoodHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateFoodHit", map);
+		return count == 1;
 		
 	}
 
+	public boolean updateSightHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateSightHit", map);
+		return count == 1;
+	}
+
+	public boolean updateActivityHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateActivityHit", map);
+		return count == 1;
+	}
+
+	public boolean updateLuxuryHit(int trvSeq1, int usrSeq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("usrSeq", usrSeq);
+		map.put("trvSeq", trvSeq1);
+		int count = sqlSession.update("user.updateLuxuryHit", map);
+		return count == 1;
+	}
 	
 }

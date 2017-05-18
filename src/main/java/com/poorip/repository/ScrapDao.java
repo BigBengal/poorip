@@ -44,8 +44,9 @@ public class ScrapDao {
 	public boolean updateHit(int trvSeq) {
 		return 1== sqlSession.update("travelInfo.updateHit", trvSeq);
 	}
-	
-	
-	
+
+	public String getLuxuryY(int trvSeq1) {
+		return sqlSession.selectOne( "travelInfo.getLuxuryY", trvSeq1 );
+	}	
 	
 }

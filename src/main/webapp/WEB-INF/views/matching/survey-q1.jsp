@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="form-group">
+					<div class="form-group" id="q1">
 						<div class="col-md-12" data-animation-effect="fadeIn">
 							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-1"
 								type="radio" name="usrPref1" value="1" /> <img
@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="form-group">
+					<div class="form-group" id="q2">
 						<div class="col-md-12" data-animation-effect="fadeIn">
 							<label class="col-sm-6 col-md-4" for="usrPref2"> <input id="q2-1"
 								type="radio" name="usrPref2" value="1" /> <img
@@ -171,7 +171,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="form-group">
+					<div class="form-group" id="q3">
 						<div class="col-md-12" data-animation-effect="fadeIn">
 							<label class="col-sm-6 col-md-4" for="usrPref3"> <input id="q3-1"
 								type="radio" name="usrPref3" value="1" /> <img
@@ -238,7 +238,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="form-group">
+					<div class="form-group" id="q4">
 						<div class="col-md-12" data-animation-effect="fadeIn">
 							<label class="col-sm-6 col-md-4" for="usrPref4"> <input id="q4-1"
 								type="radio" name="usrPref4" value="1" /> <img
@@ -305,7 +305,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="form-group">
+					<div class="form-group" id="q5">
 						<div class="col-md-12" data-animation-effect="fadeIn">
 							<label class="col-sm-6 col-md-4" for="usrPref5"> <input id="q5-1"
 								type="radio" name="usrPref5" value="1" /> <img

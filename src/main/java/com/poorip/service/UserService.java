@@ -1,12 +1,15 @@
 package com.poorip.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.poorip.repository.TravelInfoDao;
 import com.poorip.repository.UserDao;
 import com.poorip.vo.UserVo;
 
@@ -17,6 +20,9 @@ public class UserService {
 	
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	TravelInfoDao travelInfoDao;
 	
 	// 유저가 가입했는 지 확인
 	public boolean isExistUser(UserVo userVo){
@@ -182,6 +188,28 @@ public class UserService {
 	// 유저 Seq로 유저 정보 가져오기
 	public UserVo SearchPersonListbySeq(int usrSeq){
 		return userDao.listByUsrSeq(usrSeq);
+	}
+	
+	// 매칭알고리즘을 위한 update hit
+	public boolean updateHit(int trvSeq1, int usrSeq, String luxuryY) {
+		int catSeq = travelInfoDao.getCatSeq( trvSeq1 );
+
+		if( catSeq == 2 ) {
+			if(catSeq == 2 && luxuryY.equals( 'Y' )) {
+				boolean LuxuryHit = userDao.updateLuxuryHit( trvSeq1, usrSeq );
+				boolean FoodHit = userDao.updateFoodHit( trvSeq1, usrSeq );
+				return LuxuryHit && FoodHit;
+			}
+			return userDao.updateFoodHit( trvSeq1, usrSeq );
+		}
+	
+		if( catSeq == 3 )
+			return userDao.updateSightHit( trvSeq1, usrSeq );
+		
+		if( catSeq == 4 ) {
+			return userDao.updateActivityHit( trvSeq1, usrSeq );
+		}
+		return true;
 	}
 	
 }

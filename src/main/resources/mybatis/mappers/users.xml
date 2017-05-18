@@ -80,8 +80,31 @@
 		   where USR_SEQ = #{usrSeq }
 		]]>
 	</select>
-
-		
+	
+	<!-- 매칭 알고리즘 -->
+	<select id="getMatchingList" resultType="uservo" parameterType="uservo">
+		<![CDATA[
+			select USR_SEQ		as usrSeq,
+			  	   USR_EMAIL	as usrEmail,
+			  	   USR_PROFILE 	as usrProfile, 
+			  	   USR_GENDER 	as usrGender,  
+			  	   USR_LANG 	as usrLang,
+			  	   USR_BD 		as usrBd,  
+			  	   USR_NICK 	as usrNick,  
+			  	   USR_INFO 	as usrInfo,  
+			  	   USR_HASHTAG 	as usrHashtag,  
+			  	   USR_PREF1 	as usrPref1,  
+			  	   USR_PREF2 	as usrPref2,  
+			  	   USR_PREF3 	as usrPref3,  
+			  	   USR_PREF4 	as usrPref4,  
+			  	   USR_PREF5 	as usrPref5,  
+			  	   USR_NOTI 	as usrNoti,  
+			  	   USR_JOIN_DATE 	as usrJoinDate,  
+			  	   USR_LOGIN_DATE 	as usrLoginDate,  
+			  	   USR_BLACK_YN  	as usrBlackYN
+			from users
+		]]>
+	</select>
 
 	<!-- 새로운 유저 입력 -->
 	<insert id="insert" parameterType="uservo">
@@ -223,4 +246,49 @@
 		]]>
 	</select>
 
+		
+	<!-- 사용자가 클릭시 맛집 조회수 증가 -->
+	<update id="updateFoodHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t
+		set u.food_hit = u.food_hit + 1
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 2
+	]]>
+	</update>
+	
+	<!-- 사용자가 클릭시 관광지 조회수 증가 -->
+	<update id="updateSightHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t
+		set u.SIGHT_HIT = u.SIGHT_HIT + 1
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 3
+	]]>
+	</update>
+	
+	<!-- 사용자가 클릭시 액티비티 조회수 증가 -->
+	<update id="updateActivityHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t 
+		set u.ACTIVITY_HIT = u.ACTIVITY_HIT + 1
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 4
+	]]>
+	</update>
+	
+	<!-- 사용자가 클릭시 럭셔리 조회수 증가 -->
+	<update id="updateLuxuryHit" parameterType="map">
+   		<![CDATA[
+	update users u, travel_info t 
+		set u.LUXURY_HIT = u.LUXURY_HIT + 1
+			where t.TRV_SEQ = #{trvSeq }
+			and u.USR_SEQ = #{usrSeq }
+			and t.CAT_SEQ = 2
+			and t.LUXURY_YN = 'Y'
+	]]>
+	</update>
 </mapper>

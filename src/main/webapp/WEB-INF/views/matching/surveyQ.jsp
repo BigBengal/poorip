@@ -76,64 +76,18 @@
 
 
 <script>
-	$(document).ready(function() {
-
-		// MyMenu 고정
-		if (($(".dropdown-content").length > 0)) {
-			// My메뉴 위치 구하기
-			var $myMenu = $("#myMenu");
-			var myMenuPos = $myMenu.offset().top;
-		}
-
-		// myMenu 보기
-		$("#MyMenuHover").mouseenter(function() {
-			$myMenu.addClass("show");
+	jQuery(function() {
+		jQuery('#showall').click(function() {
+			jQuery('.targetDiv').show();
 		});
-		$("#myMenu").mouseleave(function() {
-			$myMenu.removeClass("show");
+		jQuery('.showSingle').click(function() {
+			jQuery('.targetDiv').hide();
+			jQuery('#div' + $(this).attr('target')).show();
 		});
 
-		// Fixed header
-		//-----------------------------------------------
-		$(window).scroll(function() {
-			if (($(".header.fixed").length > 0)) {
-				if (($(this).scrollTop() > 0) && ($(window).width() > 767)) {
-					$("body").addClass("fixed-header-on");
-				} else {
-					$("body").removeClass("fixed-header-on");
-				}
-			}
-			;
-			//myMenu 고정
-			if (($(".dropdown-content").length > 0)) {
-				// 스크롤 위치 값 구하기
-				var scrollY = window.pageYOffset;
-				// 스크롤 위치 값이 탭메뉴 위치 보다 큰 경우만 탭메뉴에 fixed 클래스 적용. 그렇지 않은 경우 fixed 클래스 제거
-				if (scrollY > myMenuPos) {
-					$myMenu.addClass("fixed");
-				} else {
-					$myMenu.removeClass("fixed");
-				}
-			}
+		$('#survey-submit').click(function() {
+			console.log("Dddd");
+			$('#survey-form').submit();
 		});
 	});
-	
-	
-	
-	jQuery(function(){
-        jQuery('#showall').click(function(){
-              jQuery('.targetDiv').show();
-       });
-       jQuery('.showSingle').click(function(){
-             jQuery('.targetDiv').hide();
-             jQuery('#div'+$(this).attr('target')).show();
-       });
-       
-       $('#survey-submit').click(function(){
-   		console.log("Dddd");
-   		$('#survey-form').submit();
-   	});
-});
-	
-	
 </script>

@@ -194,4 +194,24 @@
 	update travel_info set hit=hit+1 where trv_seq= #{trvSeq}
 	]]>
 	</update>
+	
+	<!-- 럭셔리 음식점 인지 확인 여부 -->
+	<select id="getLuxuryY" parameterType="integer" resultType="string">
+   		<![CDATA[
+         select luxury_yn as luxuryYN
+         	from travel_info 
+		where trv_seq = #{trvSeq }
+		and cat_seq = 2
+    	]]>
+	</select>
+	
+	<!-- 여행지의 카테고리 번호 확인 -->
+	<select id="getCatSeq" parameterType="integer" resultType="integer">
+   		<![CDATA[
+         select cat_Seq as catSeq
+         	from travel_info
+		where trv_seq = #{trvSeq }
+    	]]>
+	</select>
+
 </mapper>

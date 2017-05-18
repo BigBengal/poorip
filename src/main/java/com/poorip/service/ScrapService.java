@@ -36,6 +36,10 @@ public class ScrapService {
 	public boolean updateHit(int trvSeq) {
 		return scrapDao.updateHit(trvSeq);
 	}
+
+	public String getLuxuryY(int trvSeq1) {
+		return scrapDao.getLuxuryY( trvSeq1 );
+	}
 	
 
 }

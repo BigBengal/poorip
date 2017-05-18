@@ -71,5 +71,9 @@ public class TravelInfoDao {
 			return 0;
 		}
 	}
+
+	public int getCatSeq(int trvSeq1) {
+		return sqlSession.selectOne( "travelInfo.getCatSeq", trvSeq1 );
+	}
 	
 }

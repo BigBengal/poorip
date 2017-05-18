@@ -169,7 +169,6 @@ function send(trvSeq, reviewNum){
 function reviewLike(postSeq) {
 
 	var likePostIcon = document.getElementById("like-button-img-"+postSeq);
-	console.log("yay?" + postSeq);
 	$.ajax({
         url : "/poorip/reviewLike/" +postSeq,
         type : "post",
