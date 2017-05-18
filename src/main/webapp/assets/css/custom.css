@@ -8,6 +8,9 @@ License: Creative Commons Attribution 3.0 License (https://creativecommons.org/l
 File Description: Place here your custom CSS styles
 */
 
+
+
+
 .ui-autocomplete { position: absolute; cursor: default;z-index:30 !important;}
 
 /* Dropdown Button */
@@ -57,6 +60,9 @@ File Description: Place here your custom CSS styles
 /* 	border-top-right-radius: 0px; */
 /* } */
 /* Links inside the dropdown */
+
+
+
 .dropdown-content a {
     color: white;
     padding:5px 15px;

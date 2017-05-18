@@ -104,7 +104,9 @@
 				<c:import url="/WEB-INF/views/include/banner.jsp" />
 			</div>
 		</div>
+	
 	</div>
+	
 	<!-- banner end -->
 
 
@@ -254,5 +256,6 @@
     ${attr.key}=${attr.value}<br>
 	</c:forEach> --%>
 	<c:import url="/WEB-INF/views/include/ajax.jsp" />
+	
 </body>
 </html>
