@@ -24,6 +24,7 @@ public class UserVo {
 	private int sightHit;
 	private int activityHit;
 	private int luxuryHit;
+	private int useriSurveyScore;
 	
 	public int getUsrSeq() {
 		return usrSeq;
@@ -242,6 +243,15 @@ public class UserVo {
 	public void setLuxuryHit(int luxuryHit) {
 		this.luxuryHit = luxuryHit;
 	}
+	
+	public int getUseriSurveyScore() {
+		return useriSurveyScore;
+	}
+
+
+	public void setUseriSurveyScore(int useriSurveyScore) {
+		this.useriSurveyScore = useriSurveyScore;
+	}
 
 	@Override
 	public String toString() {
@@ -251,7 +261,7 @@ public class UserVo {
 				+ ", usrPref3=" + usrPref3 + ", usrPref4=" + usrPref4 + ", usrPref5=" + usrPref5 + ", usrNoti="
 				+ usrNoti + ", usrJoinDate=" + usrJoinDate + ", usrLoginDate=" + usrLoginDate + ", usrBlackYN="
 				+ usrBlackYN + ", foodHit=" + foodHit + ", sightHit=" + sightHit + ", activityHit=" + activityHit
-				+ ", luxuryHit=" + luxuryHit + "]";
+				+ ", luxuryHit=" + luxuryHit + ", useriSurveyScore=" + useriSurveyScore + "]";
 	}
 
 }

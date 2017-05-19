@@ -94,7 +94,6 @@
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 	
 <!-- Pentagon graph -->
-<%-- <script src="${pageContext.request.contextPath }/assets/js/pentagon.js"></script> --%>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/radar.js"></script>
 

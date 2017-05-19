@@ -1,6 +1,8 @@
 package com.poorip.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.MatchingService;
+import com.poorip.vo.CityVo;
+import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.UserVo;
 
 @Controller
@@ -23,10 +27,22 @@ public class MatchingController {
 	@RequestMapping("/")
 	public String matchingMain(@AuthUser UserVo userVo,
 							   Model model) {
+		int usrSeq = userVo.getUsrSeq();
+		UserVo target = matchingService.getUserInfo( usrSeq );
+		List<CityVo> city = matchingService.getCity();
+//		List<ScrapCityVo> targetScrapCityInfo = matchingService.getScrapInfo( usrSeq );
+		List<ScrapCityVo> usersScrapCityInfo = matchingService.getUsersScrapInfo( userVo );
 		List<UserVo> matchingList = matchingService.getMatchingList( userVo );
-		int surveyScore = matchingService.getSurveyScore(matchingList);
-		model.addAttribute( "matchingList", matchingList);
-		return "matching/matchingMain";
+		List<ScrapCityVo> getUsersScrapInfoByCtySeq = new ArrayList<ScrapCityVo>();
+		
+		
+		
+		Map<String, Object> surveyScore = matchingService.getMatchingScore(
+					target, matchingList, usersScrapCityInfo, city, getUsersScrapInfoByCtySeq );
+		
+		model.addAttribute( "surveyScore", surveyScore );
+		
+		return "/matchingMain";
 	}
 	
 	// 사용사 설문조사 정보 입력화면

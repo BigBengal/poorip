@@ -98,5 +98,31 @@
 		]]>
 	</update>
 	
+	<!-- 유저SEQ로 스크랩시티 정보 -->
+	<select id="getScrapCityInfobyUsrSeqAndCtySeq" resultType="scrapcityvo" parameterType="map">
+	    <![CDATA[
+			select scp_city_seq as scpCitySeq,
+				   date_from as dateFrom,
+				   date_to as dateTo,
+				   usr_seq as usrSeq,
+				   cty_seq as ctySeq,
+				   trv_ord as trvOrd
+				   		from scrap_city
+			where usr_seq = #{usrSeq }
+			and cty_seq = #{ctySeq }
+		]]>
+	</select>
 	
+	<!-- 모든 사용자의 스크랩시티 정보 -->
+	<select id="getUsersScrapCityInfo" resultType="scrapcityvo">
+	    <![CDATA[
+			select scp_city_seq as scpCitySeq,
+				   date_from as dateFrom,
+				   date_to as dateTo,
+				   usr_seq as usrSeq,
+				   cty_seq as ctySeq,
+				   trv_ord as trvOrd
+				   		from scrap_city
+		]]>
+	</select>
 </mapper>

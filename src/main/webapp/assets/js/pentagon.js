@@ -1,38 +1,27 @@
 
-var chart = AmCharts.makeChart( "chartdiv", {
-  "type": "radar",
-  "theme": "light",
-  "dataProvider": [ {
-    "country": "Czech Republic",
-    "litres": 156.9
-  }, {
-    "country": "Ireland",
-    "litres": 131.1
-  }, {
-    "country": "Germany",
-    "litres": 115.8
-  }, {
-    "country": "Australia",
-    "litres": 109.9
-  }, {
-    "country": "Austria",
-    "litres": 108.3
-  }, {
-    "country": "UK",
-    "litres": 99
-  } ],
-  "valueAxes": [ {
-    "axisTitleOffset": 20,
-    "minimum": 0,
-    "axisAlpha": 0.15
-  } ],
-  "startDuration": 2,
-  "graphs": [ {
-    "balloonText": "[[value]] litres of beer per year",
-    "bullet": "round",
-    "lineThickness": 2,
-    "valueField": "litres"
-  } ],
-  "categoryField": "country"
- 
-} );
+//Create Radar chart
+var ctx2 = document.getElementById("radarChart").getContext("2d");
+var myNewChart = new Chart(ctx2).Radar(radarData);
+
+new Chart(ctx2).Radar(radarData,options);
+
+//radar chart data
+var radarData = {
+	labels : ["Eating","Drinking","Sleeping","Designing","Coding","Partying","Running"],
+	datasets : [
+		{
+			 fillColor: "rgba(102,45,145,.1)",
+			 strokeColor: "rgba(102,45,145,1)",
+			pointColor : "rgba(220,220,220,1)",
+			pointStrokeColor : "#fff",
+			data : [65,59,90,81,56,55,40]
+		},
+		{
+	        fillColor: "rgba(63,169,245,.1)",
+            strokeColor: "rgba(63,169,245,1)",
+			pointColor : "rgba(151,187,205,1)",
+			pointStrokeColor : "#fff",
+			data : [28,48,40,19,96,27,100]
+		}
+	]
+}
