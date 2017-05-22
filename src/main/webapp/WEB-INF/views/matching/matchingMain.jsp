@@ -201,22 +201,21 @@
 			</div>
 		</div>
 		<!-- /.row -->
-
 		<!-- Project One -->
-		<c:forEach var="matchingList" items="${matchingList }"
+		<c:forEach var="matchingScore" items="${matchingScore }"
 			varStatus="status">
 			<div class="row">
 				<div class="col-md-3">
 					<a href="#"> <img class="img-responsive"
-						src="${matchingList.usrProfile }" alt="${matchingList.usrNick}"
+						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
 						style="width: 80%">
 					</a>
 				</div>
 				<div class="col-md-6">
-					<h3>${matchingList.usrNick}</h3>
+					<h3>${matchingScore.usrNick}</h3>
 					<h4>Subheading</h4>
-					<p>${matchingList.usrInfo}</p>
-					<p>${matchingList.usrHashtag}</p>
+					<p>${matchingScore.usrInfo}</p>
+<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
 					<a class="btn btn-primary" href="#">make a pool <span
 						class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
