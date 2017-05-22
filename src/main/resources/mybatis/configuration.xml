@@ -18,6 +18,7 @@
 		<typeAlias alias="travelinfopicvo" type="com.poorip.vo.TravelInfoPicVo" />
 		<typeAlias alias="travelinfovo" type="com.poorip.vo.TravelInfoVo" />
 		<typeAlias alias="reviewvo" type="com.poorip.vo.ReviewVo" />
+		<typeAlias alias="crawldatavo" type="com.poorip.vo.CrawlDataVo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />
@@ -36,6 +37,7 @@
 		<mapper resource="mybatis/mappers/scrapcity.xml" />  
 		<mapper resource="mybatis/mappers/request.xml" />
 		<mapper resource="mybatis/mappers/postlike.xml" />
+		<mapper resource="mybatis/mappers/crawldata.xml" />
 	</mappers>
 
 </configuration>

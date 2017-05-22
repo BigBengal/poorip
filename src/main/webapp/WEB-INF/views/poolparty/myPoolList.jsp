@@ -270,5 +270,6 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			</div>
 		</div>
 	</div>
+	<div class="se-pre-con"></div>
 </body>
 </html>
