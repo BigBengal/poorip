@@ -25,6 +25,12 @@ public class UserVo {
 	private int activityHit;
 	private int luxuryHit;
 	private int useriSurveyScore;
+	private int foodScore;
+	private int sightScore;
+	private int activityScore;
+	private int luxuryScore;
+	private int dateScore;
+	private int matchingScore;
 	
 	public int getUsrSeq() {
 		return usrSeq;
@@ -253,6 +259,66 @@ public class UserVo {
 		this.useriSurveyScore = useriSurveyScore;
 	}
 
+	public int getFoodScore() {
+		return foodScore;
+	}
+
+
+	public void setFoodScore(int foodScore) {
+		this.foodScore = foodScore;
+	}
+
+
+	public int getSightScore() {
+		return sightScore;
+	}
+
+
+	public void setSightScore(int sightScore) {
+		this.sightScore = sightScore;
+	}
+
+
+	public int getActivityScore() {
+		return activityScore;
+	}
+
+
+	public void setActivityScore(int activityScore) {
+		this.activityScore = activityScore;
+	}
+
+
+	public int getLuxuryScore() {
+		return luxuryScore;
+	}
+
+
+	public void setLuxuryScore(int luxuryScore) {
+		this.luxuryScore = luxuryScore;
+	}
+
+
+	public int getDateScore() {
+		return dateScore;
+	}
+
+
+	public void setDateScore(int dateScore) {
+		this.dateScore = dateScore;
+	}
+
+
+	public int getMatchingScore() {
+		return matchingScore;
+	}
+
+
+	public void setMatchingScore(int matchingScore) {
+		this.matchingScore = matchingScore;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UserVo [usrSeq=" + usrSeq + ", usrEmail=" + usrEmail + ", usrProfile=" + usrProfile + ", usrGender="
@@ -261,7 +327,9 @@ public class UserVo {
 				+ ", usrPref3=" + usrPref3 + ", usrPref4=" + usrPref4 + ", usrPref5=" + usrPref5 + ", usrNoti="
 				+ usrNoti + ", usrJoinDate=" + usrJoinDate + ", usrLoginDate=" + usrLoginDate + ", usrBlackYN="
 				+ usrBlackYN + ", foodHit=" + foodHit + ", sightHit=" + sightHit + ", activityHit=" + activityHit
-				+ ", luxuryHit=" + luxuryHit + ", useriSurveyScore=" + useriSurveyScore + "]";
+				+ ", luxuryHit=" + luxuryHit + ", useriSurveyScore=" + useriSurveyScore + ", foodScore=" + foodScore
+				+ ", sightScore=" + sightScore + ", activityScore=" + activityScore + ", luxuryScore=" + luxuryScore
+				+ ", dateScore=" + dateScore + ", matchingScore=" + matchingScore + "]";
 	}
 
 }

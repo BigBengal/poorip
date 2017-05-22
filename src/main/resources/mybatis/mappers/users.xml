@@ -81,6 +81,36 @@
 		]]>
 	</select>
 	
+	<!-- 매칭알고리즘 by usrSeq -->
+	<select id="getMatchingListByUsrSeq" resultType="uservo" parameterType="uservo">
+		<![CDATA[
+			select USR_SEQ		as usrSeq,
+			  	   USR_EMAIL	as usrEmail,
+			  	   USR_PROFILE 	as usrProfile, 
+			  	   USR_GENDER 	as usrGender,  
+			  	   USR_LANG 	as usrLang,
+			  	   USR_BD 		as usrBd,  
+			  	   USR_NICK 	as usrNick,  
+			  	   USR_INFO 	as usrInfo,  
+			  	   USR_HASHTAG 	as usrHashtag,  
+			  	   USR_PREF1 	as usrPref1,  
+			  	   USR_PREF2 	as usrPref2,  
+			  	   USR_PREF3 	as usrPref3,  
+			  	   USR_PREF4 	as usrPref4,  
+			  	   USR_PREF5 	as usrPref5,  
+			  	   USR_NOTI 	as usrNoti,  
+			  	   USR_JOIN_DATE 	as usrJoinDate,  
+			  	   USR_LOGIN_DATE 	as usrLoginDate,  
+			  	   USR_BLACK_YN  	as usrBlackYN,
+			  	   FOOD_HIT as foodHit,
+			  	   SIGHT_HIT as sightHit,
+			  	   ACTIVITY_HIT as activityHit,
+			  	   LUXURY_HIT as luxuryHit
+			from users
+		   where USR_SEQ = #{usrSeq }
+		]]>
+	</select>
+	
 	<!-- 매칭 알고리즘 -->
 	<select id="getMatchingList" resultType="uservo">
 		<![CDATA[
@@ -101,7 +131,11 @@
 			  	   USR_NOTI 	as usrNoti,  
 			  	   USR_JOIN_DATE 	as usrJoinDate,  
 			  	   USR_LOGIN_DATE 	as usrLoginDate,  
-			  	   USR_BLACK_YN  	as usrBlackYN
+			  	   USR_BLACK_YN  	as usrBlackYN,
+			  	   FOOD_HIT as foodHit,
+			  	   SIGHT_HIT as sightHit,
+			  	   ACTIVITY_HIT as activityHit,
+			  	   LUXURY_HIT as luxuryHit
 			from users
 		]]>
 	</select>
