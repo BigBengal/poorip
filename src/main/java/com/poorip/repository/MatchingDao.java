@@ -77,4 +77,19 @@ public class MatchingDao {
 		return top5;
 	}
 
+	public List<UserVo> getSamePlanMember(List<UserVo> samePlanMember) {
+		for(int i=0; i<samePlanMember.size(); i++) {
+			System.out.println(samePlanMember);
+			int usrSeq = samePlanMember.get(i).getUsrSeq();
+			UserVo member = sqlSession.selectOne( "user.getListbyusrseq", usrSeq );
+			samePlanMember.get(i).setUsrEmail(member.getUsrEmail());
+			samePlanMember.get(i).setUsrGender(member.getUsrGender());
+			samePlanMember.get(i).setUsrProfile(member.getUsrProfile());
+			samePlanMember.get(i).setUsrNick(member.getUsrNick());
+			samePlanMember.get(i).setUsrInfo(member.getUsrInfo());
+		}
+		System.out.println("daodaodao"+samePlanMember);
+		return samePlanMember;
+	}
+
 }

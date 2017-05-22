@@ -53,7 +53,9 @@
 <link href="${pageContext.request.contextPath}/assets/css/matching.css"
 	rel="stylesheet">
 <!-- Pentagon graph -->
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<link rel="stylesheet"
+	href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+	type="text/css" media="all" />
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
@@ -67,6 +69,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
 
 <!-- Modernizr javascript -->
 <script
@@ -83,7 +87,7 @@
 <!-- Initialization of Plugins -->
 <%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
 <!-- Custom Scripts -->
-<%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
+
 <!-- 상단 메뉴 및 기본 -->
 <script src="${pageContext.request.contextPath }/assets/js/header.js"></script>
 <!-- facebook  -->
@@ -92,7 +96,7 @@
 <!-- Vaildation-->
 <script
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
-	
+
 <!-- Pentagon graph -->
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/radar.js"></script>
@@ -108,48 +112,55 @@
 
 			});
 
-	var chart = AmCharts.makeChart( "chartdiv", {
-	  "type": "radar",
-	  "theme": "light",
-	  "dataProvider": [ {
-	    "country": "Czech Republic",
-	    "litres": 156.9
-	  }, {
-	    "country": "Ireland",
-	    "litres": 131.1
-	  }, {
-	    "country": "Germany",
-	    "litres": 115.8
-	  }, {
-	    "country": "Australia",
-	    "litres": 109.9
-	  }, {
-	    "country": "Austria",
-	    "litres": 108.3
-	  }, {
-	    "country": "UK",
-	    "litres": 99
-	  } ],
-	  "valueAxes": [ {
-	    "axisTitleOffset": 20,
-	    "minimum": 0,
-	    "axisAlpha": 0.15
-	  } ],
-	  "startDuration": 2,
-	  "graphs": [ {
-	    "balloonText": "[[value]] litres of beer per year",
-	    "bullet": "round",
-	    "lineThickness": 2,
-	    "valueField": "litres"
-	  } ],
-	  "categoryField": "country",
-	  "export": {
-	    "enabled": true
-	  }
-	} );
+	var chart = AmCharts.makeChart("chartdiv", {
+		"type" : "radar",
+		"theme" : "light",
+		"dataProvider" : [ {
+			"country" : "Czech Republic",
+			"litres" : 156.9
+		}, {
+			"country" : "Ireland",
+			"litres" : 131.1
+		}, {
+			"country" : "Germany",
+			"litres" : 115.8
+		}, {
+			"country" : "Australia",
+			"litres" : 109.9
+		}, {
+			"country" : "Austria",
+			"litres" : 108.3
+		}, {
+			"country" : "UK",
+			"litres" : 99
+		} ],
+		"valueAxes" : [ {
+			"axisTitleOffset" : 20,
+			"minimum" : 0,
+			"axisAlpha" : 0.15
+		} ],
+		"startDuration" : 2,
+		"graphs" : [ {
+			"balloonText" : "[[value]] litres of beer per year",
+			"bullet" : "round",
+			"lineThickness" : 2,
+			"valueField" : "litres"
+		} ],
+		"categoryField" : "country",
+		"export" : {
+			"enabled" : true
+		}
+	});
+
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");
+		;
+	});
 </script>
 </head>
 <body class="no-trans">
+	<div class="se-pre-con">Loading...</div>
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -215,12 +226,12 @@
 					<h3>${matchingScore.usrNick}</h3>
 					<h4>Subheading</h4>
 					<p>${matchingScore.usrInfo}</p>
-<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
+					<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
 					<a class="btn btn-primary" href="#">make a pool <span
 						class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
-				<div class="col-md-3" style=" height:300px">
-					<div id="chartdiv"style="width:100%; height:100%"></div>
+				<div class="col-md-3" style="height: 300px">
+					<div id="chartdiv" style="width: 100%; height: 100%"></div>
 				</div>
 			</div>
 			<hr>
@@ -236,68 +247,45 @@
 					<h1 class="page-header">
 						${authUser.usrNick}님과 계획이 비슷한 여행자 <small>Have a good Time!</small>
 					</h1>
-					<p>${authUser.usrNick}님께서 관광할 여행지가 비슷한 여행자들 입니다. 즐거운 여행이 되시길...</p>
+					<p>${authUser.usrNick}님께서관광할여행지가비슷한 여행자들 입니다. 즐거운 여행이 되시길...</p>
 				</div>
 			</div>
 
 			<!-- Team Members Row -->
 			<div class="row">
-				<div class="col-lg-4 col-sm-6 text-center">
-					<img class="img-circle img-responsive img-center"
-						src="http://placehold.it/200x200" alt="">
-					<h3>
-						John Smith <small>Job Title</small>
-					</h3>
-					<p>What does this team member to? Keep it short! This is also a
-						great spot for social links!</p>
-				</div>
-				<div class="col-lg-4 col-sm-6 text-center">
-					<img class="img-circle img-responsive img-center"
-						src="http://placehold.it/200x200" alt="">
-					<h3>
-						John Smith <small>Job Title</small>
-					</h3>
-					<p>What does this team member to? Keep it short! This is also a
-						great spot for social links!</p>
-				</div>
-				<div class="col-lg-4 col-sm-6 text-center">
-					<img class="img-circle img-responsive img-center"
-						src="http://placehold.it/200x200" alt="">
-					<h3>
-						John Smith <small>Job Title</small>
-					</h3>
-					<p>What does this team member to? Keep it short! This is also a
-						great spot for social links!</p>
-				</div>
-				<div class="col-lg-4 col-sm-6 text-center">
-					<img class="img-circle img-responsive img-center"
-						src="http://placehold.it/200x200" alt="">
-					<h3>
-						John Smith <small>Job Title</small>
-					</h3>
-					<p>What does this team member to? Keep it short! This is also a
-						great spot for social links!</p>
-				</div>
-				<div class="col-lg-4 col-sm-6 text-center">
-					<img class="img-circle img-responsive img-center"
-						src="http://placehold.it/200x200" alt="">
-					<h3>
-						John Smith <small>Job Title</small>
-					</h3>
-					<p>What does this team member to? Keep it short! This is also a
-						great spot for social links!</p>
-				</div>
-				<div class="col-lg-4 col-sm-6 text-center">
-					<img class="img-circle img-responsive img-center"
-						src="http://placehold.it/200x200" alt="">
-					<h3>
-						John Smith <small>Job Title</small>
-					</h3>
-					<p>What does this team member to? Keep it short! This is also a
-						great spot for social links!</p>
-				</div>
+				<c:forEach var="samePlanMemeber" items="${samePlanMemeber }"
+					varStatus="status">
+					<div class="col-lg-4 col-sm-6 text-center">
+						<img class="img-circle img-responsive img-center"
+							src="${samePlanMemeber.usrProfile }"
+							alt="${samePlanMemeber.usrNick}">
+						<h3>
+							${samePlanMemeber.usrNick} <small>Job Title</small>
+						</h3>
+						<p>${samePlanMemeber.usrInfo}</p>
+						<a class="btn btn-primary" href="#">make a pool <span
+							class="glyphicon glyphicon-chevron-right"></span></a>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer">
+		<div class="subfooter">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="text-center">
+							Copyright © 2017 Created by <a target="_blank"
+								href="https://github.com/BigBengal/poorip">BigBengal</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer end -->
 </body>
 </html>

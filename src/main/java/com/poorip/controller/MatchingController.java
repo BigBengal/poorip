@@ -2,7 +2,6 @@ package com.poorip.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +35,12 @@ public class MatchingController {
 		
 		List<UserVo> matchingScore = matchingService.getMatchingScore(
 					target, matchingList, usersScrapCityInfo, city, getUsersScrapInfoByCtySeq );
+		System.out.println(matchingScore);
+		List<UserVo> samePlanMemeber = 
+				matchingService.getSamePlanMember( target, city, getUsersScrapInfoByCtySeq, usersScrapCityInfo);
+		System.out.println(samePlanMemeber);
 		model.addAttribute( "matchingScore", matchingScore );
+		model.addAttribute( "samePlanMemeber", samePlanMemeber );
 		
 		return "/matching/matchingMain";
 	}
