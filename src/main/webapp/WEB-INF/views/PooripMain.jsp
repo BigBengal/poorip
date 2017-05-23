@@ -134,6 +134,8 @@
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
+	
+	<div class="se-pre-con" ></div>
 
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->

@@ -127,7 +127,7 @@
 
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
-	
+	<div class="se-pre-con"></div>
 	
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"

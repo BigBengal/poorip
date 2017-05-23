@@ -27,7 +27,7 @@ $(function() {
 		numberOfMonths : 2
 	}).on("change", function() {
 		from.datepicker("option", "maxDate", getDate(this));
-//		dateTo = getDate(this);
+		// dateTo = getDate(this);
 	});
 
 	function getDate(element) {
@@ -43,6 +43,26 @@ $(function() {
 });
 
 //스크랩 여부
+
+// function openOptions() {
+// document.getElementById("profileDropdown").classList.toggle("show");
+// }
+
+// Close the dropdown menu if the user clicks outside of it
+// window.onclick = function(event) {
+// if (!event.target.matches('#loginpic')) {
+//
+// var dropdowns = document.getElementsByClassName("dropdown-content");
+// var i;
+// for (i = 0; i < dropdowns.length; i++) {
+// var openDropdown = dropdowns[i];
+// if (openDropdown.classList.contains('show')) {
+// openDropdown.classList.remove('show');
+// }
+// }
+// }
+// }
+
 function validate(trvSeq) {
 	var likeIcon = document.getElementById("scrapTrvInfo-" + trvSeq);
 
@@ -82,6 +102,7 @@ function setDate(ctySeq) {
 		data : param,
 
 		success : function(data) {
+<<<<<<< HEAD
 //			console.log(data);
 			if (data.result == "fail") {
 				console.log("저장 오류");
@@ -99,6 +120,48 @@ function setDate(ctySeq) {
 				$("#travel-date-info").html(htmlTravelDate);
 				
 			}
+=======
+			$.ajax({
+				url : "/poorip/scrap/showDate",
+				type : "post",
+				data : "ctySeq=" + ctySeq,
+
+				success : function(result) {
+
+					var htmlDate = "<div id='city-travel-duration-" + ctySeq
+							+ "' ><h4><strong> 여행 기간은 " + result.data.dateFrom
+							+ " ~ " + result.data.dateTo
+							+ " 입니다<strong><h4></div>";
+					console.log(htmlDate + "HEY??");
+					$("#scrap-date-info-" + ctySeq).prepend(htmlDate);
+
+					$.ajax({
+						url : "/poorip/scrap/showDuration",
+						type : "post",
+						data : "",
+
+						success : function(result) {
+
+							var htmlTravelDate = result.data.dateFrom + " ~ "
+									+ result.data.dateTo + " 총 여행일 수는   "
+									+ result.data.dateDiff + "일 입니다";
+							console.log(htmlTravelDate);
+							$("#travel-date-info").prepend(htmlTravelDate);
+
+						},
+						error : function(data) {
+							// alert("ajax 에러가 발생하였습니다.")
+						}
+
+					});
+
+				},
+				error : function(data) {
+					// alert("ajax 에러가 발생하였습니다.")
+				}
+
+			});
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
 
 		},
 		error : function(data) {
@@ -108,16 +171,29 @@ function setDate(ctySeq) {
 	});
 };
 
+<<<<<<< HEAD
 
 //날짜 초기화
+=======
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
 function clearDate(ctySeq) {
 	event.preventDefault();
+<<<<<<< HEAD
 //	$("#travel-date-info").empty();
 	$.ajax({
 	url : "/poorip/scrap/renewDate",
 	type : "post",
 	data : "ctySeq=" + ctySeq,
+=======
+	$("#travel-date-info").empty();
+	$
+			.ajax({
+				url : "/poorip/scrap/renewDate",
+				type : "post",
+				data : "ctySeq=" + ctySeq,
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
 
+<<<<<<< HEAD
 	success : function(result) {
 		
 		console.log(result);
@@ -136,11 +212,28 @@ function clearDate(ctySeq) {
 	error : function(data) {
 		// alert("ajax 에러가 발생하였습니다.")
 	}
+=======
+				success : function(result) {
 
-});
+					console.log(result);
+					document.getElementById("scrap-date-info-" + ctySeq).innerHTML = "";
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git
+
+					var htmlTravelDate = result.data.dateFrom + " ~ "
+							+ result.data.dateTo + " 총 여행일 수는   "
+							+ result.data.dateDiff + "일 입니다";
+					console.log(htmlTravelDate);
+					$("#travel-date-info").prepend(htmlTravelDate);
+				},
+				error : function(data) {
+					// alert("ajax 에러가 발생하였습니다.")
+				}
+
+			});
 }
 
 function onSignIn(googleUser) {
+<<<<<<< HEAD
 	  var profile = googleUser.getBasicProfile();
 	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 	  console.log('Name: ' + profile.getName());
@@ -154,3 +247,23 @@ function onSignIn(googleUser) {
 	      console.log('User signed out.');
 	    });
 	  };
+=======
+	var profile = googleUser.getBasicProfile();
+	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use
+											// an ID token instead.
+	console.log('Name: ' + profile.getName());
+	console.log('Image URL: ' + profile.getImageUrl());
+	console.log('Email: ' + profile.getEmail()); // This is null if the
+													// 'email' scope is not
+													// present.
+};
+
+function signOut() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function() {
+		console.log('User signed out.');
+	});
+};
+
+
+>>>>>>> branch 'master' of https://github.com/BigBengal/poorip.git

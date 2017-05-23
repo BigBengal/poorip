@@ -2,7 +2,6 @@ package com.poorip.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,25 +23,26 @@ public class MatchingController {
 	@Autowired MatchingService matchingService;
 	
 	@Auth
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String matchingMain(@AuthUser UserVo userVo,
-							   Model model) {
+							   Model model) throws Exception{
 		int usrSeq = userVo.getUsrSeq();
 		UserVo target = matchingService.getUserInfo( usrSeq );
 		List<CityVo> city = matchingService.getCity();
-//		List<ScrapCityVo> targetScrapCityInfo = matchingService.getScrapInfo( usrSeq );
 		List<ScrapCityVo> usersScrapCityInfo = matchingService.getUsersScrapInfo( userVo );
 		List<UserVo> matchingList = matchingService.getMatchingList( userVo );
-		List<ScrapCityVo> getUsersScrapInfoByCtySeq = new ArrayList<ScrapCityVo>();
+		List<ScrapCityVo> getUsersScrapInfoByCtySeq = new ArrayList<ScrapCityVo>();	
 		
-		
-		
-		Map<String, Object> surveyScore = matchingService.getMatchingScore(
+		List<UserVo> matchingScore = matchingService.getMatchingScore(
 					target, matchingList, usersScrapCityInfo, city, getUsersScrapInfoByCtySeq );
+		System.out.println(matchingScore);
+		List<UserVo> samePlanMemeber = 
+				matchingService.getSamePlanMember( target, city, getUsersScrapInfoByCtySeq, usersScrapCityInfo);
+		System.out.println(samePlanMemeber);
+		model.addAttribute( "matchingScore", matchingScore );
+		model.addAttribute( "samePlanMemeber", samePlanMemeber );
 		
-		model.addAttribute( "surveyScore", surveyScore );
-		
-		return "/matchingMain";
+		return "/matching/matchingMain";
 	}
 	
 	// 사용사 설문조사 정보 입력화면
