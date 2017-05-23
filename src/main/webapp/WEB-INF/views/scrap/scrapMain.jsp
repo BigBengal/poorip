@@ -95,8 +95,6 @@
 	<!-- banner end -->
 	<div class="section" style="padding-bottom: 400px">
 		<div class="container">
-		
-			<div id="testmap" class="googlemap"></div>
 			<c:import url="/WEB-INF/views/scrap/scrapInfo.jsp" />
 		</div>
 	</div>
@@ -185,40 +183,163 @@
 $(document).ready(function(){
 	
 	$('.modal').on('shown.bs.modal', function () {
-		console.log("ss");
+// 		console.log("ss");
 // 		showMap(tagId);
 	});
 	$( "#sortable" ).sortable({
+		 cursor: 'move',
 		update: function( event, ui ) {
 // 			console.log(event);
 // 			console.log(ui.item);
-		 	var start_pos = ui.item.data('start_pos');
-            var idx = ui.item.index();
+// 		 	var start_pos = ui.item.data('start_pos');
+//             var idx = ui.item.index();
 // 			console.log(start_pos+","+idx);
 // 			ui.item.data('start_pos',index);
 // 			console.log("done"+ui.item.data('start_pos'));
-			$( ".ui-state-default" ).each(function(index){
-				$( ".ui-state-default" ).eq(index).data('start_pos',index);
-// 				console.log("wow");
-			})
+// 			$( ".ui-state-default" ).each(function(index){
+// 				$( ".ui-state-default" ).eq(index).data('city_pos',index);
+// // 				console.log("wow");
+// 			})
 			saveCityOrder();
 // 			var ctyseq=$( ".ui-state-default a" ).eq(idx).data('city-name');
 // 			console.log("done:"+ctyseq+","+ui.item.data('start_pos'));
 		}
 	});
     $( "#sortable" ).disableSelection();
+    
+    var list = $(".sortdetail");
+    var list2 = $('.isotope-container');
+//     sort1.sortable({
+//     	handle: ".overlay-container",
+//     	items: ".isotope-item",
+//     	sort1.isotope('reloadItems')
+//     });
+//     $( "#sortdetail11" ).disableSelection();
+// 	list.isotope({
+// 	  transformsEnabled: false
+// 	  , itemSelector: '.isotopey'
+// 	  , onLayout: function() {
+// 	    list
+// 	    .css('overflow', 'visible')
+// // 	    .css('position','relative')
+// 		;
+// 	  }  
+// 	});
+    list.sortable({
+    	  cursor: 'move'
+    	  //, tolerance: 'intersection'  //'pointer' is too janky
+//     	  , start: function(event, ui) {                        
+//     	    //add grabbing and moving classes as user has begun
+//     	    //REMOVE isotopey so that isotope does not try to sort our item,
+//     	    //resulting in the item moving around and flickering on 'change'
+//     	    ui.item.addClass('grabbing moving').removeClass('isotopey');
+    	    
+//     	    ui.placeholder
+//     	      .addClass('starting') //adding the 'starting' class removes the transitions from the placeholder.
+// //     	      //remove 'moving' class because if the user clicks on a tile they just moved,
+// //     	      //the placeholder will have 'moving' class and it will mess with the transitions
+//     	      .removeClass('moving')
+// //     	      //put placeholder directly below tile. 'starting' class ensures the
+// //     	      //placeholder simply appears and does not 'fly' into place
+//     	      .css({
+//     	        top: ui.originalPosition.top
+//     	        , left: ui.originalPosition.left
+//     	      })
+    	      
+//     	      ;
+//     	    //reload the items in their current state to override any previous
+//     	    //sorting and to include placeholder, but do NOT call a re-layout
+//     	    list.isotope('reloadItems');                    
+//     	  }                
+//     	  , change: function(event, ui) {
+//     	    //change only fires when the DOM is changed. the DOM changes when 
+//     	    //the placeholder moves up or down in the document order 
+//     	    //within the sortable container
+    	    
+//     	    //remove 'starting' class so that placeholder can now move smoothly
+//     	    //with the interface
+//     	    ui.placeholder.removeClass('starting')
+//     	    .css({
+//     	        top: ui.position.top,
+//     	        left: ui.position.left
+//     	      });
+//     	    //reload items to include the placeholder's new position in the DOM. 
+//     	    //then when you sort, everything around the placeholder moves as 
+//     	    //though the item were moving it.
+//     	    list
+//     	      .isotope('reloadItems')
+// //     	      .isotope({ sortBy: 'original-order'})
+			
+//     	    ;
+//     	  }
+//     	  , beforeStop: function(event, ui) {
+// //     	    //in this event, you still have access to the placeholder. this means
+// //     	    //you know exactly where in the DOM you're going to place your element.
+// //     	    //place it right next to the placeholder. jQuery UI Sortable removes the
+// //     	    //placeholder for you after this event, and actually if you try to remove
+// //     	    //it in this step it will throw an error.
+//     	    ui.placeholder.after(ui.item);                    
+//     	  }
+    	  , stop: function(event, ui) {
+    	    //user has chosen their location! remove the 'grabbing' class, but don't
+    	    //kill the 'moving' class right away. because the 'moving' class is 
+    	    //preventing your item from having transitions, you should keep it on
+    	    //until isotope is done moving everything around. it will "snap" into place
+    	    //right where your placeholder was.
+    	    
+    	    //also, you must add the 'isotopey' class back to the box so that isotope
+    	    //will again include your item in its sorting list
+//     	    ui.item.removeClass('grabbing').addClass('isotopey');
+    	    
+    	    //reload the items again so that your item is included in the DOM order
+    	    //for isotope to do its final sort, which actually won't move anything
+    	    //but ensure that your item is in the right place
+//     	    list
+//     	      .isotope('reloadItems');
+    	    list2
+    	      .isotope('reloadItems')
+    	      .isotope({ sortBy: 'original-order', 
+    	    	  transitionDuration: '0.0s'}, function(){
+    	        //finally, after sorting is done, take the 'moving' class off.
+    	        //doing it here ensures that your item "snaps" and isn't resorted
+    	        //from its original position. since this happens on callback,
+    	        //if the user grabbed the tile again before callback is fired,
+    	        //don't remove the moving class in mid-grab
+    	        
+    	        //for some reason in this code pen, the callback isn't firing predictably
+//     	        console.log(ui.item.is('.grabbing')); 
+    	        
+    	      });
+//     	      .css({
+//     	        top: '150px'
+//     	      })
+// 			if (!ui.item.is('.grabbing')) {
+// 			ui.item.removeClass('moving');                        
+// 			};
+    	  }
+    	  ,update: function( event, ui ) {
+//     		  $( ".ui-state-default" ).each(function(index){
+//   				$( ".ui-state-default" ).eq(index).data('start_pos',index);
+// //   				console.log("wow");
+//   			})
+			var ctyseq = ui.item.data('ctyseq');
+			saveTravelOrder(ctyseq);
+    	  }
+    	});
+    
 	
 });
 
 function saveCityOrder(){
 	
 	var ctySeq = [];
-	console.log("----------");
+// 	console.log("----------");
 	var $dragItem = $( ".ui-state-default a" );
 	$dragItem.each(function(index){
-		ctySeq[index] = $dragItem.eq(index).data('city-name');
+		if(index != 0 ) 
+			ctySeq[index-1] = $dragItem.eq(index).data('city-name');
 	});
-	console.log(ctySeq);
+// 	console.log(ctySeq);
 	
 	// Ajax 통신
 	$.ajax( {
@@ -228,13 +349,13 @@ function saveCityOrder(){
 	    data: { ctySeq : ctySeq },
 	//  contentType: "application/json",
 	    success: function( response ){
-	    	console.log	( response );
+// 	    	console.log	( response );
 	       if( response.result == "fail") {
 	    	   console.log( response );
 	    	   return;
 	       }
 	    	//통신 성공 (response.result == "success" )
-	       console.log( response.data );
+// 	       console.log( response.data );
 	    	
 	    },
 	    error: function( XHR, status, error ){
@@ -245,9 +366,49 @@ function saveCityOrder(){
 	
 } 
 
+function saveTravelOrder(citySeq){
+	console.log("savePlaceOrder " + citySeq);
+	var trvSeq = [];
+	var $trvOrderItem = $( ".sortdetail div" );
+	var i=0;
+	$trvOrderItem.each(function(index){
+		if(citySeq == $trvOrderItem.eq(index).data('ctyseq')){
+			trvSeq[i] = $trvOrderItem.eq(index).data('trvseq');
+			i++;
+		}
+	});
+	console.log(trvSeq);
+	// Ajax 통신
+	$.ajax( {
+	    url : "${pageContext.request.contextPath }/scrap/saveTravelOrder",
+	    type: "post",
+	    dataType: "json",
+	    data: { trvSeq : trvSeq},
+	//  contentType: "application/json",
+	    success: function( response ){
+// 	    	console.log	( response );
+	       if( response.result == "fail") {
+	    	   console.log( response );
+	    	   return;
+	       }
+	    	//통신 성공 (response.result == "success" )
+// 	       console.log( response.data );
+	    	
+	    },
+	    error: function( XHR, status, error ){
+	       console.log("ERROR");
+	    }
+
+	   });
+}
+
 function initMap() {
+	
+};
+
+function showCityNavMap(){
 	var bounds = new google.maps.LatLngBounds();
-    var map = new google.maps.Map(document.getElementById('testmap'), {
+    var map = new google.maps.Map(document.getElementById('scrapmap'), {
          zoom: 15,
          center: {lat: 1.88934575, lng: 2.4879015},
          mapTypeId: 'terrain'
@@ -315,12 +476,10 @@ function initMap() {
         this.setZoom(14);
         google.maps.event.removeListener(boundsListener);
     });   
-    
-        
 
-//         setMarkers(map);
+    //         setMarkers(map);
     flightPath.setMap(map);
-};
+}
 
 function showMap(seq) {
     var mapId = "map-"+seq;
@@ -348,6 +507,24 @@ function showMap(seq) {
 	// To add the marker to the map, call setMap();
     marker.setMap(map);
 
+}
+
+function showCityMap(citySeq){
+	console.log("showCityMap");
+	event.preventDefault();
+	var $scrapMap = $("#scrapmap");
+	var $mapBtn = $("#scrapMapBtn-"+citySeq);
+	if ($scrapMap.is('.googlemap')) {
+		$scrapMap.css('display','none');
+		$scrapMap.removeClass("googlemap");
+		$mapBtn.val('지도보기');
+
+	} else {
+		$scrapMap.addClass("googlemap");
+		$scrapMap.css('display','');
+		$mapBtn.val('지도가리기');
+		showCityNavMap();
+	}	
 }
 </script>
 </body>

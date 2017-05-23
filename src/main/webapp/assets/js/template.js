@@ -91,31 +91,29 @@
 		// Isotope filters
 		//-----------------------------------------------
 		if ($('.isotope-container').length>0) {
-			$(window).load(function() {	
+			$(window).load(function() {
+				var containerWidth = $(".isotope-container").width();
+				var columnWidth = 0;
+				  if( containerWidth >= 970 ){
+					  columnWidth = containerWidth / 4;
+				  } else if(containerWidth >= 750){
+					  columnWidth = containerWidth / 2;
+				  } else {
+					  columnWidth = containerWidth;
+				  };
+				  
 				$(".nav-pills > li").eq(0).addClass("active");
 				var initFilter = $(".filters").find("li.active a").data('filter')
-//				if ($(".filters").find("li.active a").data('filter') == 'Y') {
 					$('.isotope-container').fadeIn();
 					var $container = $('.isotope-container').isotope({
 						itemSelector: '.isotope-item',
-//						stamp: '.setup',
 						layoutMode: 'masonry',
 						transitionDuration: '0.6s',
 						filter: initFilter,
 						masonry: {
-						    columnWidth: '.col-md-3'
-						  }
-//						filter: '.cities'
+							  columnWidth: columnWidth
+							}
 					});	
-//				} else {
-//					$('.isotope-container').fadeIn();
-//					var $container = $('.isotope-container').isotope({
-//						itemSelector: '.isotope-item',
-//						layoutMode: 'masonry',
-//						transitionDuration: '0.6s',
-//						filter: '.web-design'
-//					});	
-//				};
 
 				// filter items on button click
 				$('.filters').on( 'click', 'ul.nav li a', function() {
@@ -123,7 +121,12 @@
 					
 					$(".filters").find("li.active").removeClass("active");
 					$(this).parent().addClass("active");
-					$container.isotope({ filter: filterValue });
+					$container.isotope({ filter: filterValue,
+						 transitionDuration: '0.6s' })
+//					.css({
+//		    	        top: '0px'
+//		    	      })
+		    	      ;
 					
 					// 달력이 있으면 달력 초기화
 					if ($('.fromDatePick').length>0) {
@@ -133,6 +136,25 @@
 					}
 					return false;
 				});
+			});
+			
+			// 창크기에 따라 isotope column 변경 처리
+			$(window).resize(function(){
+				var containerWidth = $(".isotope-container").width();
+				var columnWidth = 0;
+				  if( containerWidth >= 970 ){
+					  columnWidth = containerWidth / 4;
+				  } else if(containerWidth >= 750){
+					  columnWidth = containerWidth / 2;
+				  } else {
+					  columnWidth = containerWidth;
+				  };
+				  
+				  $('.isotope-container').isotope({
+						masonry: {
+							  columnWidth: columnWidth
+							}
+					});	
 			});
 		};
 

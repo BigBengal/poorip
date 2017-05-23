@@ -12,7 +12,8 @@
 
 $(function() {
 
-	var dateFormat = "mm/dd/yy", from = $(".fromDatePick").datepicker({
+	var dateFormat = "yy-mm-dd", from = $(".fromDatePick").datepicker({
+		dateFormat: 'yy-mm-dd',
 		defaultDate : "+1w",
 		changeMonth : true,
 		numberOfMonths : 2
@@ -20,6 +21,7 @@ $(function() {
 		to.datepicker("option", "minDate", getDate(this));
 
 	}), to = $(".toDatePick").datepicker({
+		dateFormat: 'yy-mm-dd',
 		defaultDate : "+1w",
 		changeMonth : true,
 		numberOfMonths : 2
@@ -40,25 +42,7 @@ $(function() {
 	}
 });
 
-//function openOptions() {
-//	document.getElementById("profileDropdown").classList.toggle("show");
-//}
-
-// Close the dropdown menu if the user clicks outside of it
-//window.onclick = function(event) {
-//	if (!event.target.matches('#loginpic')) {
-//
-//		var dropdowns = document.getElementsByClassName("dropdown-content");
-//		var i;
-//		for (i = 0; i < dropdowns.length; i++) {
-//			var openDropdown = dropdowns[i];
-//			if (openDropdown.classList.contains('show')) {
-//				openDropdown.classList.remove('show');
-//			}
-//		}
-//	}
-//}
-
+//스크랩 여부
 function validate(trvSeq) {
 	var likeIcon = document.getElementById("scrapTrvInfo-" + trvSeq);
 
@@ -86,61 +70,35 @@ function validate(trvSeq) {
 
 };
 
+//날짜 지정
 function setDate(ctySeq) {
 	event.preventDefault();
-	$("#scrap-date-info-" + ctySeq).empty();
-	$("#travel-date-info").empty();
+//	$("#scrap-date-info-" + ctySeq).empty();
+//	$("#travel-date-info").empty();
 	var param = jQuery("#set-date-scrap-" + ctySeq).serialize();
-	console.log(param);
-	console.log(ctySeq);
 	$.ajax({
 		url : "/poorip/scrap/scrapSave/" + ctySeq,
 		type : "post",
 		data : param,
 
 		success : function(data) {
-			$.ajax({
-				url : "/poorip/scrap/showDate",
-				type : "post",
-				data : "ctySeq=" + ctySeq,
-
-				success : function(result) {
-
-					var htmlDate = "<div id='city-travel-duration-" + ctySeq + "' ><h4><strong> 여행 기간은 " + result.data.dateFrom + " ~ "
-							+ result.data.dateTo + " 입니다<strong><h4></div>";
-					console.log(htmlDate + "HEY??");
-					$("#scrap-date-info-" + ctySeq).prepend(htmlDate);
-					
-
-					$.ajax({
-						url : "/poorip/scrap/showDuration",
-						type : "post",
-						data : "",
-
-						success : function(result) {
-
-							var htmlTravelDate =  result.data.dateFrom
-									+ " ~ " + result.data.dateTo
-									+ " 총 여행일 수는   " + result.data.dateDiff + "일 입니다"
-								;
-							console.log(htmlTravelDate);
-							$("#travel-date-info").prepend(htmlTravelDate);
-							
-						
-
-						},
-						error : function(data) {
-							// alert("ajax 에러가 발생하였습니다.")
-						}
-
-					});
-
-				},
-				error : function(data) {
-					// alert("ajax 에러가 발생하였습니다.")
-				}
-
-			});
+//			console.log(data);
+			if (data.result == "fail") {
+				console.log("저장 오류");
+			} else {
+//				선택 도시 일정 선택
+				var htmlDate = data.data.cityDate.dateFrom + " ~ "
+						+ data.data.cityDate.dateTo;
+				$("#scrap-date-info-" + ctySeq).html(htmlDate);
+				
+//				전체 일정 설정
+				var htmlTravelDate =  data.data.totalDate.dateFrom
+						+ " ~ " + data.data.totalDate.dateTo
+						+ " 총 여행일 수는   " + data.data.totalDate.dateDiff + "일 입니다";
+//				console.log(htmlTravelDate);
+				$("#travel-date-info").html(htmlTravelDate);
+				
+			}
 
 		},
 		error : function(data) {
@@ -151,25 +109,29 @@ function setDate(ctySeq) {
 };
 
 
-
+//날짜 초기화
 function clearDate(ctySeq) {
 	event.preventDefault();
-	$("#travel-date-info").empty();
+//	$("#travel-date-info").empty();
 	$.ajax({
 	url : "/poorip/scrap/renewDate",
 	type : "post",
 	data : "ctySeq=" + ctySeq,
 
 	success : function(result) {
-
-		console.log(result);
-		document.getElementById("scrap-date-info-" + ctySeq).innerHTML = "";
 		
+		console.log(result);
+		document.getElementById("scrap-date-info-" + ctySeq).innerHTML = "&nbsp;";
+		
+		if (result.data == null) {
+			$("#travel-date-info").empty();
+			return;
+		}
 		var htmlTravelDate =  result.data.dateFrom
 		+ " ~ " + result.data.dateTo
 		+ " 총 여행일 수는   " + result.data.dateDiff + "일 입니다";
 		console.log(htmlTravelDate);
-		$("#travel-date-info").prepend(htmlTravelDate);
+		$("#travel-date-info").html(htmlTravelDate);
 	},
 	error : function(data) {
 		// alert("ajax 에러가 발생하였습니다.")
@@ -192,6 +154,3 @@ function onSignIn(googleUser) {
 	      console.log('User signed out.');
 	    });
 	  };
-
-	  
-

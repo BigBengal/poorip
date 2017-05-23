@@ -6,14 +6,14 @@
 	<!-- 새로운 스크랩 입력 -->
 	<insert id="insert" parameterType="scrapvo">
 		<![CDATA[
-			insert into scrap values(null, #{usrSeq}, #{trvSeq}, now(), 0)
+			insert into scrap values(null, #{usrSeq }, #{trvSeq }, now(), 0)
 		]]>
 	</insert>
 	
 	<!-- 새로운 스크랩 입력 (공 클릭시)-->
 	<insert id="insertscrap" parameterType="scrapvo">
 		<![CDATA[
-			insert into scrap values(null, #{usrSeq}, #{trvSeq}, now(), 0)
+			insert into scrap values(null, #{usrSeq }, #{trvSeq }, now(), 0)
 		]]>
 	</insert>
 	
@@ -23,8 +23,8 @@
 	<delete id="delete" parameterType="scrapvo">
 		<![CDATA[
 			delete from scrap 
-			where trv_seq = #{trvSeq} 
-			AND usr_seq = #{usrSeq}
+			where trv_seq = #{trvSeq } 
+			AND usr_seq = #{usrSeq }
 		]]>
 	</delete>
 	
@@ -33,8 +33,8 @@
 		<![CDATA[
 			SELECT IFNULL( (SELECT scp_seq as scpSeq 
 			                  FROM scrap 
-			                 WHERE trv_seq = #{trvSeq} 
-			                   and usr_seq = #{usrSeq} 
+			                 WHERE trv_seq = #{trvSeq } 
+			                   and usr_seq = #{usrSeq } 
 			                 LIMIT 1) ,0)
 		]]>
 	</select>
@@ -54,7 +54,8 @@
 		       tb1.contact,                                                                                                            
 		       tb1.ctyName,                                                                                                            
 		       tb1.ctySeq,                                                                                                             
-		       tb1.usrSeq,                                                                                                             
+		       tb1.usrSeq,
+			   tb1.mapURL,                                                                                          
 		       sc.date_from as dateFrom,                                                                                               
 		       sc.date_to as dateTo                                                                                                    
 		from (                                                                                                                         
@@ -67,11 +68,12 @@
 					b.picture as picture,                                                                                                 
 					b.price as price,                                                                                                     
 					b.cat_seq as catSeq,                                                                                                  
-					b.contact as contact,                                                                                                 
+					b.contact as contact,
+					b.MAP_URL as mapURL,
 					c.cty_name as ctyName,                                                                                                
 					c.cty_seq as ctySeq,                                                                                                  
 					a.usr_seq as usrSeq,                                                                                                  
-					c.ctr_seq,                                                                                                            
+					c.ctr_seq,
 					a.trv_ord                                                                                                             
 				from scrap a,                                                                                                            
 				     travel_info b,                                                                                                      
@@ -104,4 +106,12 @@
 	]]>
 	</select>
 
+	<update id="updatetrvelorder" parameterType="scrapvo">
+		<![CDATA[
+			UPDATE SCRAP
+			   SET TRV_ORD = #{trvOrd }
+			 WHERE USR_SEQ = #{usrSeq }
+			   AND TRV_SEQ = #{trvSeq }
+		]]>
+	</update>
 </mapper>

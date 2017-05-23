@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.poorip.repository.ScrapDao;
 import com.poorip.vo.ReviewVo;
+import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.ScrapVo;
 
 @Service
@@ -41,5 +42,17 @@ public class ScrapService {
 		return scrapDao.getLuxuryY( trvSeq1 );
 	}
 	
+	public boolean updateTravelOrder(int usrSeq, int[] trvSeq){
+		int totalCount = trvSeq.length;
+		boolean rtn = true;
+		ScrapVo scrapvo = new ScrapVo();
+		scrapvo.setUsrSeq(usrSeq);
+		for(int i=0; i < totalCount; i++){
+			scrapvo.setTrvSeq(trvSeq[i]);
+			scrapvo.setTrvOrd(i);
+			rtn = rtn && scrapDao.updateTravelOrder(scrapvo);
+		}
+		return rtn;
+	}
 
 }

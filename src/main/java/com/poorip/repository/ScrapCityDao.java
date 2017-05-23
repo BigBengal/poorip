@@ -22,7 +22,7 @@ public class ScrapCityDao {
 	}
 	
 	public boolean update(ScrapCityVo scrapCityvo){
-		return 1 == sqlSession.delete("scrapcity.update",scrapCityvo);
+		return 1 == sqlSession.update("scrapcity.update",scrapCityvo);
 	}
 	
 	public ScrapCityVo select(ScrapCityVo scrapCityvo) {

@@ -1,7 +1,9 @@
 package com.poorip.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -124,7 +126,9 @@ public class ScrapController {
 	@Auth
 	@ResponseBody
 	@RequestMapping("/scrapSave/{ctySeq}")
-	public JSONResult saveTravelDate(@ModelAttribute ScrapCityVo scrapCityVo, @PathVariable ("ctySeq") String ctySeq1, @AuthUser UserVo userVo) {
+	public JSONResult saveTravelDate(@ModelAttribute ScrapCityVo scrapCityVo,
+									@PathVariable ("ctySeq") String ctySeq1,
+									@AuthUser UserVo userVo) {
 		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
 		int ctySeq = Integer.parseInt(ctySeq1);
 		scrapCityVo.setCtySeq(ctySeq);
@@ -134,42 +138,47 @@ public class ScrapController {
 		
 		if(scrapCityService.select(scrapCityVo)==null) {
 			scrapCityService.insertDate(scrapCityVo);
-			return JSONResult.success("success");
+		} else {
+			scrapCityService.updateDate(scrapCityVo);
 		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("cityDate", scrapCityService.select(scrapCityVo));
+		map.put("totalDate", scrapCityService.showTravelDuration(userVo.getUsrSeq()));
 		
-		scrapCityService.updateDate(scrapCityVo);
-		return JSONResult.fail("exist");	
+		return JSONResult.success(map);
+
 
 	}
 	
 	// 스크랩 도시 날짜 구하기
-	@Auth
-	@ResponseBody
-	@RequestMapping("/showDate")
-	public JSONResult showDate(@RequestParam ("ctySeq") String ctySeq1, @AuthUser UserVo userVo ) {
-		ScrapCityVo scrapCityVo = new ScrapCityVo();
-		int ctySeq = Integer.parseInt(ctySeq1);
-		scrapCityVo.setCtySeq(ctySeq);
-		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
-		ScrapCityVo scrapDate = scrapCityService.select(scrapCityVo);
-		
-		if(scrapDate==null) {
-			return JSONResult.fail("no-data");
-		}
-		
-		return JSONResult.success(scrapDate);
-	}
-	
-	
-	// 전체 일정 조회
-	@Auth
-	@ResponseBody
-	@RequestMapping("/showDuration")
-	public JSONResult showDuration(@AuthUser UserVo userVo) {
-		ScrapCityVo travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
-		
-		return JSONResult.success(travelDuration);
-	}
+//	@Auth
+//	@ResponseBody
+//	@RequestMapping("/showDate")
+//	public JSONResult showDate(@RequestParam ("ctySeq") String ctySeq1,
+//								@AuthUser UserVo userVo ) {
+//		ScrapCityVo scrapCityVo = new ScrapCityVo();
+//		int ctySeq = Integer.parseInt(ctySeq1);
+//		scrapCityVo.setCtySeq(ctySeq);
+//		scrapCityVo.setUsrSeq(userVo.getUsrSeq());
+//		ScrapCityVo scrapDate = scrapCityService.select(scrapCityVo);
+//		
+//		if(scrapDate==null) {
+//			return JSONResult.fail("no-data");
+//		}
+//		
+//		return JSONResult.success(scrapDate);
+//	}
+//	
+//	
+//	// 전체 일정 조회
+//	@Auth
+//	@ResponseBody
+//	@RequestMapping("/showDuration")
+//	public JSONResult showDuration(@AuthUser UserVo userVo) {
+//		ScrapCityVo travelDuration = scrapCityService.showTravelDuration(userVo.getUsrSeq());
+//		
+//		return JSONResult.success(travelDuration);
+//	}
 	
 	@RequestMapping("/map")	
 	public String map(Model model) {
@@ -205,11 +214,26 @@ public class ScrapController {
 								@AuthUser UserVo userVo){
 		
 		int usrSeq = userVo.getUsrSeq();
-		scrapCityService.updateCityOrder(usrSeq, ctySeq);
-		
-		return JSONResult.success("OK");
+		boolean result = scrapCityService.updateCityOrder(usrSeq, ctySeq);
+		if (result)
+			return JSONResult.success("OK");
+		else 
+			return JSONResult.fail("fail");
 	}
 	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/saveTravelOrder")
+	public JSONResult saveTravelOrder(@RequestParam("trvSeq[]") int[] trvSeq,
+								@AuthUser UserVo userVo){
+		
+		int usrSeq = userVo.getUsrSeq();
+		boolean result = scrapService.updateTravelOrder(usrSeq, trvSeq);
+		if (result)
+			return JSONResult.success("OK");
+		else 
+			return JSONResult.fail("fail");
+	}
 	
 
 }

@@ -7,7 +7,14 @@ public class ScrapVo {
 	private int trvSeq;
 	private int scpCitySeq;
 	private String crtDate;
+	private int trvOrd;
 
+	public int getTrvOrd() {
+		return trvOrd;
+	}
+	public void setTrvOrd(int trvOrd) {
+		this.trvOrd = trvOrd;
+	}
 	public int getScpSeq() {
 		return scpSeq;
 	}
@@ -42,7 +49,7 @@ public class ScrapVo {
 	@Override
 	public String toString() {
 		return "ScrapVo [scpSeq=" + scpSeq + ", usrSeq=" + usrSeq + ", trvSeq=" + trvSeq + ", scpCitySeq=" + scpCitySeq
-				+ ", crtDate=" + crtDate + "]";
+				+ ", crtDate=" + crtDate + ", trvOrd=" + trvOrd + "]";
 	}
 
 }

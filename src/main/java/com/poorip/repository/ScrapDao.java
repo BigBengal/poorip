@@ -34,7 +34,7 @@ public class ScrapDao {
 	}
 	
 	public boolean deleteScrap(ScrapVo scrapVo) {
-		return 1==sqlSession.delete("scrap.delete", scrapVo);
+		return 1 == sqlSession.delete("scrap.delete", scrapVo);
 	}
 	
 	public List<ReviewVo> showScraps(int usrSeq) {
@@ -42,11 +42,13 @@ public class ScrapDao {
 	}
 	
 	public boolean updateHit(int trvSeq) {
-		return 1== sqlSession.update("travelInfo.updateHit", trvSeq);
+		return 1 == sqlSession.update("travelInfo.updateHit", trvSeq);
 	}
 
 	public String getLuxuryY(int trvSeq1) {
 		return sqlSession.selectOne( "travelInfo.getLuxuryY", trvSeq1 );
 	}	
-	
+	public boolean updateTravelOrder(ScrapVo scrapVo){
+		return 1 <= sqlSession.update("scrap.updatetrvelorder", scrapVo);
+	}
 }

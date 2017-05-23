@@ -7,7 +7,7 @@
 	<insert id="insert" parameterType="scrapcityvo">
 		<![CDATA[
 			insert into scrap_city 
-			values(null, str_to_date(#{dateFrom}, '%c/%e/%Y'), str_to_date(#{dateTo},'%c/%e/%Y') , now(), #{usrSeq}, #{ctySeq}, 0)
+			values(null, str_to_date(#{dateFrom}, '%Y-%m-%d'), str_to_date(#{dateTo},'%Y-%m-%d') , now(), #{usrSeq}, #{ctySeq}, 0)
 		]]>
 	</insert>
 	
@@ -27,12 +27,12 @@
 		]]>
 			<if test="dateFrom != null">
 			   <![CDATA[
-			   	  ,date_from = str_to_date(#{dateFrom}, '%c/%e/%Y')
+			   	  ,date_from = str_to_date(#{dateFrom}, '%Y-%m-%d')
 				]]>
 			</if>
 			<if test="dateTo != null">
 			   <![CDATA[
-			   	   ,date_to = str_to_date(#{dateTo},'%c/%e/%Y')
+			   	   ,date_to = str_to_date(#{dateTo},'%Y-%m-%d')
 				]]>
 			</if>
 		<![CDATA[

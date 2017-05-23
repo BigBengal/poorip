@@ -170,6 +170,12 @@ File Description: Place here your custom CSS styles
 .rightalign {
 	float: right;
 }
+.leftalign {
+	float: left;
+}
+.nonefloat {
+	float: none;
+}
 .gender_M {
 	border: 1px solid;
 	border-color: Royalblue;
