@@ -32,6 +32,10 @@ public class UserVo {
 	private int dateScore;
 	private int matchingScore;
 	
+	public boolean equals(UserVo uservo) {		
+		return this.usrSeq == uservo.getUsrSeq();
+	}
+
 	public int getUsrSeq() {
 		return usrSeq;
 	}

@@ -59,4 +59,8 @@ public class ScrapCityDao {
 		return 1 == sqlSession.delete("scrapcity.updateCityOrder", map);
 	}
 	
+	public List<ScrapCityVo> getMyCityList(int usrSeq){
+		return sqlSession.selectList("scrapcity.selectcitylistbyusrseq", usrSeq);
+	}
+	
 }

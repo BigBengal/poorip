@@ -5,6 +5,7 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
+<div class="se-pre-con">Loading...</div>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>soulMate</title>
@@ -157,10 +158,35 @@
 		$(".se-pre-con").fadeOut("slow");
 		;
 	});
+	
+	function makePool(){
+//	 	console.log("reqeustJoin");
+		// Ajax 통신
+		$.ajax( {
+		    url : "make",
+		    type: "post",
+		    dataType: "json",
+		    data: { "usrSeq" : $("#usrSeq").val() },
+		    success: function( response ){
+//	 	    	console.log	( response );
+			       if( response.result == "fail") {
+			    	   console.log( response );
+			    	   return;
+			       }
+		    	//통신 성공 (response.result == "success" )
+		    	if(response.result == "success" ) {
+		    		$("#makePool").text("요청중");
+		    	}
+		       return true;
+		    }
+		   });
+		
+		
+	}
 </script>
 </head>
 <body class="no-trans">
-	<div class="se-pre-con">Loading...</div>
+	
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -222,14 +248,17 @@
 						style="width: 80%">
 					</a>
 				</div>
-				<div class="col-md-6">
-					<h3>${matchingScore.usrNick}</h3>
-					<h4>Subheading</h4>
-					<p>${matchingScore.usrInfo}</p>
-					<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
-					<a class="btn btn-primary" href="#">make a pool <span
-						class="glyphicon glyphicon-chevron-right"></span></a>
-				</div>
+				<form action="">
+					<div class="col-md-6">
+					<input type="hidden" id="usrSeq" value="${matchingScore.usrSeq }">
+						<h3>${matchingScore.usrNick}</h3>
+						<h4>Subheading</h4>
+						<p>${matchingScore.usrInfo}</p>
+						<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
+						<a class="btn btn-primary" href="#" onclick="makePool()">make a pool <span
+							class="glyphicon glyphicon-chevron-right"></span></a>
+					</div>
+				</form>
 				<div class="col-md-3" style="height: 300px">
 					<div id="chartdiv" style="width: 100%; height: 100%"></div>
 				</div>

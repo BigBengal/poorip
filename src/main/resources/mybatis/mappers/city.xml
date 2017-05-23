@@ -56,7 +56,7 @@
 				   c1.crt_date as crtDate,
 				   c1.ctr_seq as ctrSeq,
 				   c.ctr_name as ctrName
-				from country c, city c1
+			 from country c, city c1
 			where #{ctyName } = c.CTR_SEQ
 		]]>
 	</select>
@@ -66,7 +66,7 @@
 			select CTY_SEQ as ctySeq,
 				   CTY_NAME as ctyName,
 				   CTR_SEQ as ctrSeq
-					from city
+			 from city
 		]]>
 	</select>
 	
@@ -74,7 +74,7 @@
 	    <![CDATA[
 			select CTY_SEQ as ctySeq,
 				   CTY_NAME as ctyName
-				from city
+			 from city
 			where CTR_SEQ = #{ctrSeq }
 		]]>
 	</select>
@@ -84,7 +84,7 @@
 	    <![CDATA[
 			select CTY_SEQ as ctySeq,
 				   CTY_NAME as ctyName
-				from city
+			  from city
 		]]>
 	</select>
 

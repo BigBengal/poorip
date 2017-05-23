@@ -27,18 +27,25 @@ public class MatchingController {
 	public String matchingMain(@AuthUser UserVo userVo,
 							   Model model) throws Exception{
 		int usrSeq = userVo.getUsrSeq();
-		UserVo target = matchingService.getUserInfo( usrSeq );
-		List<CityVo> city = matchingService.getCity();
-		List<ScrapCityVo> usersScrapCityInfo = matchingService.getUsersScrapInfo( userVo );
-		List<UserVo> matchingList = matchingService.getMatchingList( userVo );
-		List<ScrapCityVo> getUsersScrapInfoByCtySeq = new ArrayList<ScrapCityVo>();	
+
+		// 내정보
+		UserVo myInfo = matchingService.getUserInfo( usrSeq );
 		
-		List<UserVo> matchingScore = matchingService.getMatchingScore(
-					target, matchingList, usersScrapCityInfo, city, getUsersScrapInfoByCtySeq );
-		System.out.println(matchingScore);
+		if (myInfo == null)
+			return "/matching/matchingMain";
+		// 내 스크립 시티 정보
+		List<ScrapCityVo> myCityList = matchingService.getMyCityList( usrSeq );
+				
+		// 나를 뺀 전체 유저 리스트
+		List<UserVo> matchingUserList = matchingService.getMatchingList( userVo );
+//		List<ScrapCityVo> getUsersScrapInfoByCtySeq = new ArrayList<ScrapCityVo>();	
+		
 		List<UserVo> samePlanMemeber = 
-				matchingService.getSamePlanMember( target, city, getUsersScrapInfoByCtySeq, usersScrapCityInfo);
-		System.out.println(samePlanMemeber);
+				matchingService.getSamePlanMember(myInfo, myCityList);
+		
+		List<UserVo> matchingScore = 
+				matchingService.getMatchingScore(myInfo, myCityList, matchingUserList, samePlanMemeber);
+		
 		model.addAttribute( "matchingScore", matchingScore );
 		model.addAttribute( "samePlanMemeber", samePlanMemeber );
 		

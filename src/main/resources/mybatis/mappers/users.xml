@@ -81,7 +81,7 @@
 		]]>
 	</select>
 	
-	<!-- 매칭알고리즘 by usrSeq -->
+	<!-- 매칭알고리즘 by usrSeq 내꺼야 -->
 	<select id="getMatchingListByUsrSeq" resultType="uservo" parameterType="uservo">
 		<![CDATA[
 			select USR_SEQ		as usrSeq,
@@ -108,6 +108,12 @@
 			  	   LUXURY_HIT as luxuryHit
 			from users
 		   where USR_SEQ = #{usrSeq }
+		     and FOOD_HIT + SIGHT_HIT + ACTIVITY_HIT + ACTIVITY_HIT != 0
+		     and USR_PREF1 is not null
+		     and USR_PREF2 is not null
+		     and USR_PREF3 is not null
+		     and USR_PREF4 is not null
+		     and USR_PREF5 is not null
 		]]>
 	</select>
 	
@@ -137,6 +143,14 @@
 			  	   ACTIVITY_HIT as activityHit,
 			  	   LUXURY_HIT as luxuryHit
 			from users
+		   where USR_SEQ != #{usrSeq }
+		   	 and FOOD_HIT + SIGHT_HIT + ACTIVITY_HIT + ACTIVITY_HIT != 0
+		     and USR_PREF1 is not null
+		     and USR_PREF2 is not null
+		     and USR_PREF3 is not null
+		     and USR_PREF4 is not null
+		     and USR_PREF5 is not null
+		     and USR_BLACK_YN = 'N'
 		]]>
 	</select>
 

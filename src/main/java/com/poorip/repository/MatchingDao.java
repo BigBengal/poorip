@@ -32,8 +32,8 @@ public class MatchingDao {
 		return (count == 1);
 	}
 
-	public List<UserVo> getMatchingList() {
-		return sqlSession.selectList( "user.getMatchingList" );
+	public List<UserVo> getMatchingList(UserVo userVo) {
+		return sqlSession.selectList( "user.getMatchingList", userVo);
 	}
 
 	public UserVo getUserInfo(int usrSeq) {
@@ -47,14 +47,6 @@ public class MatchingDao {
 		return sqlSession.selectOne( "scrapcity.getScrapCityInfobyUsrSeqAndCtySeq", map );
 	}
 
-	public List<ScrapCityVo> getUsersScrapCityInfo() {
-		return sqlSession.selectList( "scrapcity.getUsersScrapCityInfo" );
-	}
-
-	public List<CityVo> getCity() {
-		return sqlSession.selectList( "city.getList" );
-	}
-
 	public List<ScrapCityVo> getUsersScrapInfoByCtySeq(int ctySeq, int usrSeq) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put( "usrSeq", usrSeq );
@@ -62,24 +54,8 @@ public class MatchingDao {
 		return sqlSession.selectList( "scrapcity.getUsersScrapInfoByCtySeq", map );
 	}
 
-	public List<UserVo> getTop5Info(List<UserVo> top5) {
-		
-		for(int i=0; i < top5.size(); i++){
-			int usrSeq = top5.get(i).getUsrSeq();
-			UserVo member = sqlSession.selectOne( "user.getListbyusrseq", usrSeq );
-			top5.get(i).setUsrEmail(member.getUsrEmail());
-			top5.get(i).setUsrGender(member.getUsrGender());
-			top5.get(i).setUsrProfile(member.getUsrProfile());
-			top5.get(i).setUsrNick(member.getUsrNick());
-			top5.get(i).setUsrInfo(member.getUsrInfo());
-			
-		}
-		return top5;
-	}
-
-	public List<UserVo> getSamePlanMember(List<UserVo> samePlanMember) {
+	public List<UserVo> addUsrOtherInfo(List<UserVo> samePlanMember) {
 		for(int i=0; i<samePlanMember.size(); i++) {
-			System.out.println(samePlanMember);
 			int usrSeq = samePlanMember.get(i).getUsrSeq();
 			UserVo member = sqlSession.selectOne( "user.getListbyusrseq", usrSeq );
 			samePlanMember.get(i).setUsrEmail(member.getUsrEmail());
@@ -88,7 +64,6 @@ public class MatchingDao {
 			samePlanMember.get(i).setUsrNick(member.getUsrNick());
 			samePlanMember.get(i).setUsrInfo(member.getUsrInfo());
 		}
-		System.out.println("daodaodao"+samePlanMember);
 		return samePlanMember;
 	}
 
