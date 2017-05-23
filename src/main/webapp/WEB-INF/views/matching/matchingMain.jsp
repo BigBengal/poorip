@@ -157,6 +157,52 @@
 		$(".se-pre-con").fadeOut("slow");
 		;
 	});
+	
+	window.onload = function () {
+		var stat  = [
+			[{'name':'2011', 'color' : '#03C9A9'},
+				{'type':'Java', 'value':50000},
+				{'type':'JS',   'value':55000},
+				{'type':'C',  'value':40000},
+				{'type':'Objc', 'value':60000},
+				{'type':'C#',   'value':63000},
+				{'type':'PHP',  'value':65000},
+			  	
+			], 
+			[{'name':'2012', 'color' : '#F64747'},
+				{'type':'Java', 'value':45000},
+				{'type':'JS',   'value':68000},
+				{'type':'C',  'value':43000},
+				{'type':'Objc', 'value':40000},
+				{'type':'C#',   'value':50000},
+				{'type':'PHP',  'value':37000},
+			], 
+			[{'name':'2013', 'color' : '#19B5FE'},
+				{'type':'Java', 'value':24000},
+				{'type':'JS',   'value':77000},
+				{'type':'C',  'value':29000},
+				{'type':'Objc', 'value':20000},
+				{'type':'C#',   'value':48000},
+				{'type':'PHP',  'value':21000},
+	  		],
+	  		[{'name':'2014', 'color' : '#6C7A89'},
+				{'type':'Java', 'value':65000},
+				{'type':'JS',   'value':70000},
+				{'type':'C',  'value':55000},
+				{'type':'Objc', 'value':60000},
+				{'type':'C#',   'value':37000},
+				{'type':'PHP',  'value':55000},
+	  		]
+	  	];
+		var options = {
+			strokeStyle : '#E9E9E9',
+			shadowColor : '#2ECC71',
+			offset : 0,
+			delimeterCount : 2,
+			lineWidth : 1
+		};
+		drawSpiderGraph("#mycanvas", stat, options);
+	}
 </script>
 </head>
 <body class="no-trans">
@@ -231,7 +277,9 @@
 						class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 				<div class="col-md-3" style="height: 300px">
-					<div id="chartdiv" style="width: 100%; height: 100%"></div>
+				<canvas width = "400px" height = "400px" id ="mycanvas" ></canvas>
+<!-- 					<div id="chartdiv" style="width: 100%; height: 100%"> -->
+<!-- 					</div> -->
 				</div>
 			</div>
 			<hr>
