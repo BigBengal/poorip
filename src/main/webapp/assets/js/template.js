@@ -122,15 +122,17 @@
 					$(".filters").find("li.active").removeClass("active");
 					$(this).parent().addClass("active");
 					$container.isotope({ filter: filterValue,
-						 transitionDuration: '0.6s' })
-//					.css({
-//		    	        top: '0px'
-//		    	      })
-		    	      ;
+						 transitionDuration: '0.6s' });
+					
+					var cityName = $(this).attr('data-city-name');
+					
+					// sortable 이 있으면(my스크랩) 지도 변경
+					if($('.sortable').length > 0 ) {
+						showCityNavMap(cityName);
+					}
 					
 					// 달력이 있으면 달력 초기화
 					if ($('.fromDatePick').length>0) {
-						var cityName = $(this).attr('data-city-name');
 						$('#fromDate-'+cityName).datepicker( "option", "maxDate", null );
 						$('#toDate-'+cityName).datepicker( "option", "minDate", null );
 					}
@@ -142,14 +144,14 @@
 			$(window).resize(function(){
 				var containerWidth = $(".isotope-container").width();
 				var columnWidth = 0;
-				  if( containerWidth >= 970 ){
+				  if( containerWidth >= 940 ){
 					  columnWidth = containerWidth / 4;
-				  } else if(containerWidth >= 750){
+				  } else if(containerWidth >= 720){
 					  columnWidth = containerWidth / 2;
 				  } else {
 					  columnWidth = containerWidth;
 				  };
-				  
+				  console.log("columnWidth:"+columnWidth);
 				  $('.isotope-container').isotope({
 						masonry: {
 							  columnWidth: columnWidth

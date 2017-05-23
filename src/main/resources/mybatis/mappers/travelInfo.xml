@@ -141,7 +141,8 @@
 			       #{catSeq },
 			       #{mapURL },
 			       #{contact },
-			       0)
+			       0,
+			       #{luxury })
       ]]>
     </insert>
     
