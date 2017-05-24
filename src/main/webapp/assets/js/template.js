@@ -53,7 +53,7 @@
 			});
 		}
 
-		//Smooth Scroll
+		//Smooth Scroll (현재 페이지에서만 이동)
 		//-----------------------------------------------
 		if ($(".smooth-scroll").length>0) {
 			$('.smooth-scroll a[href*=#]:not([href=#]), a[href*=#]:not([href=#]).smooth-scroll').click(function() {
@@ -69,7 +69,14 @@
 				}
 			});
 		}
-
+		// 외부 페이지에서 hash로 들어왔을 때
+		if(location.hash.length > 0){
+			var target = $('[id='+location.hash.slice(1)+']');
+			$('html,body').animate({
+				scrollTop: target.offset().top-151
+			}, 1000);
+		}
+		
 		// Animations
 		//-----------------------------------------------
 		if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {

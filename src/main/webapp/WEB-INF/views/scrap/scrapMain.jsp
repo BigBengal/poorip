@@ -78,7 +78,7 @@
 	<!-- banner start -->
 	<!-- ================ -->
 	<div id="banner" class="banner-addinfo">
-		<div class="banner-image banner-image-common">
+		<div class="banner-image1 banner-image-common">
 			<div class="backstretch mypage-backstretch" style="position:relative;">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/greece-santorini.jpg">
@@ -449,7 +449,6 @@ function showCityNavMap(citySeq){
 					if(chkUrl != "" && chkUrl != undefined){
 						var catseq = $(this).data("catseq");
 				    	var locArray = chkUrl.split(",");
-				    	console.log($(this).find("div.image-box a span").text());
 				    	mapUrlList[idx] = [ 'A', $.trim(locArray[0]), $.trim(locArray[1]), idx+1, $(this).find("div.image-box a span").text(), catseq-2 ];
 				    	tourDirection[idx] = { lat: parseFloat($.trim(locArray[0])), lng: parseFloat($.trim(locArray[1])) };
 				    	idx++;

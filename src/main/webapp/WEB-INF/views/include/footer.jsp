@@ -16,6 +16,12 @@ function toggleFooter(){
 function showHelp(){
 	console.log('showHelp');
 }
+function goTop(){
+	var target = $('#banner');
+	$('html,body').animate({
+		scrollTop: target.outerHeight()-72
+	}, 1000);
+}
 </script>
 
 <!-- .footer start -->
@@ -122,4 +128,6 @@ function showHelp(){
 </div>
 
 <!-- .subfooter end -->
-
+<div style="position: fixed; z-index: 9999; right: 0px; bottom: 0px;">
+	<a href="javascript:goTop();"><img src="/poorip/assets/images/top.png"></a>
+</div>

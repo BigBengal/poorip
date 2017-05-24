@@ -24,6 +24,7 @@ import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
+import com.poorip.service.ScrapService;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
@@ -36,13 +37,16 @@ public class SNSController {
 	
 	@Autowired PoolPartyService poolPartyService;
 	
+	@Autowired ScrapService scrapService;
+	
+	
 	@Auth
 	@RequestMapping("")
 	public String goSNS( @AuthUser UserVo userVo,
 						 Model model ) {
 		int usrSeq = userVo.getUsrSeq();
 		model.addAttribute( "poolpartyList", poolPartyService.getMyPoolList(usrSeq) );
-		model.addAttribute( "travelVo", snsService.getTravelInfo() );
+		model.addAttribute( "travelVo", scrapService.showScraps(userVo.getUsrSeq()) );
 		return "sns/snsmain";
 	}
 	
