@@ -133,6 +133,7 @@
 	<footer id="footer">
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
+	login : ${login}
 	<!-- footer end -->
 	
 	<div class="se-pre-con" ></div>
