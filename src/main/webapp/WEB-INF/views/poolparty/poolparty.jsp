@@ -42,6 +42,9 @@
 <!-- Custom css -->
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
+	
+	<!-- Google font -->	
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 

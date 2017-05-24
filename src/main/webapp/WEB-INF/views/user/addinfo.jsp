@@ -60,6 +60,7 @@
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <!-- Bootstrap toggle -->
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <script type="text/javascript">
 // 	$(function() {
