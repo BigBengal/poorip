@@ -1,6 +1,5 @@
 package com.poorip.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.MatchingService;
-import com.poorip.vo.CityVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.UserVo;
 
@@ -38,7 +36,6 @@ public class MatchingController {
 				
 		// 나를 뺀 전체 유저 리스트
 		List<UserVo> matchingUserList = matchingService.getMatchingList( userVo );
-//		List<ScrapCityVo> getUsersScrapInfoByCtySeq = new ArrayList<ScrapCityVo>();	
 		
 		List<UserVo> samePlanMemeber = 
 				matchingService.getSamePlanMember(myInfo, myCityList);

@@ -53,10 +53,9 @@
 <!-- 하단 화살표 -->
 <link href="${pageContext.request.contextPath}/assets/css/matching.css"
 	rel="stylesheet">
-<!-- Pentagon graph -->
-<link rel="stylesheet"
-	href="https://www.amcharts.com/lib/3/plugins/export/export.css"
-	type="text/css" media="all" />
+<!--graph -->
+<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
+<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.chart.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
@@ -70,8 +69,12 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
+<!--graph -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://static.zinoui.com/1.5/compiled/zino.canvas.min.js"></script>
+<script src="https://static.zinoui.com/1.5/compiled/zino.svg.min.js"></script>
+<script src="https://static.zinoui.com/1.5/compiled/zino.chart.min.js"></script>
+<script src="https://static.zinoui.com/js/front.min.js"></script>
 
 <!-- Modernizr javascript -->
 <script
@@ -98,116 +101,70 @@
 <script
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 
-<!-- Pentagon graph -->
-<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-<script src="https://www.amcharts.com/lib/3/radar.js"></script>
 
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <script>
 	$(document).ready(
 			function() {
-
 				$(".banner-image").backstretch(
 						'/poorip/assets/images/matching-background.jpg');
-
 			});
-
-	var chart = AmCharts.makeChart("chartdiv", {
-		"type" : "radar",
-		"theme" : "light",
-		"dataProvider" : [ {
-			"country" : "Czech Republic",
-			"litres" : 156.9
-		}, {
-			"country" : "Ireland",
-			"litres" : 131.1
-		}, {
-			"country" : "Germany",
-			"litres" : 115.8
-		}, {
-			"country" : "Australia",
-			"litres" : 109.9
-		}, {
-			"country" : "Austria",
-			"litres" : 108.3
-		}, {
-			"country" : "UK",
-			"litres" : 99
-		} ],
-		"valueAxes" : [ {
-			"axisTitleOffset" : 20,
-			"minimum" : 0,
-			"axisAlpha" : 0.15
-		} ],
-		"startDuration" : 2,
-		"graphs" : [ {
-			"balloonText" : "[[value]] litres of beer per year",
-			"bullet" : "round",
-			"lineThickness" : 2,
-			"valueField" : "litres"
-		} ],
-		"categoryField" : "country",
-		"export" : {
-			"enabled" : true
-		}
-	});
 
 	$(window).load(function() {
 		// Animate loader off screen
 		$(".se-pre-con").fadeOut("slow");
 		;
 	});
+	
+	$(function () {
+	    $("#chart1").zinoChart({
+	        type: "polar",
+	        variation: "line",
+	        points: true,
+	        legend: false,
+	        width: 530,
+	        height: 320,
+	        radius: 130,
+	        categories: [{
+	            "category": [
+	                {"label": 'sum'},
+	                {"label": 'food'},
+	                {"label": 'sight'},
+	                {"label": 'activity'},
+	                {"label": 'luxury'},
+	                {"label": 'survey'},
+	            ]
+	        }],
+	        series: [{
+	            "label": "NY Knicks",
+	            "color": "#3366CC",
+	            "data": [
+	                {"value": 3},
+	                {"value": 8},
+	                {"value": 6},
+	                {"value": 2},
+	                {"value": 7},
+	                {"value": 3}
+	            ]
+	        },{
+	            "label": "Miami Heat",
+	            "color": "#DC3912",
+	            "data": [
+	                {"value": 6},
+	                {"value": 9},
+	                {"value": 5},
+	                {"value": 8},
+	                {"value": 3},
+	                {"value": 5}
+	            ]
 
-	window.onload = function () {
-		var stat  = [
-			[{'name':'2011', 'color' : '#03C9A9'},
-				{'type':'Java', 'value':50000},
-				{'type':'JS',   'value':55000},
-				{'type':'C',  'value':40000},
-				{'type':'Objc', 'value':60000},
-				{'type':'C#',   'value':63000},
-				{'type':'PHP',  'value':65000},
-			  	
-			], 
-			[{'name':'2012', 'color' : '#F64747'},
-				{'type':'Java', 'value':45000},
-				{'type':'JS',   'value':68000},
-				{'type':'C',  'value':43000},
-				{'type':'Objc', 'value':40000},
-				{'type':'C#',   'value':50000},
-				{'type':'PHP',  'value':37000},
-			], 
-			[{'name':'2013', 'color' : '#19B5FE'},
-				{'type':'Java', 'value':24000},
-				{'type':'JS',   'value':77000},
-				{'type':'C',  'value':29000},
-				{'type':'Objc', 'value':20000},
-				{'type':'C#',   'value':48000},
-				{'type':'PHP',  'value':21000},
-	  		],
-	  		[{'name':'2014', 'color' : '#6C7A89'},
-				{'type':'Java', 'value':65000},
-				{'type':'JS',   'value':70000},
-				{'type':'C',  'value':55000},
-				{'type':'Objc', 'value':60000},
-				{'type':'C#',   'value':37000},
-				{'type':'PHP',  'value':55000},
-	  		]
-	  	];
-		var options = {
-			strokeStyle : '#E9E9E9',
-			shadowColor : '#2ECC71',
-			offset : 0,
-			delimeterCount : 2,
-			lineWidth : 1
-		};
-		drawSpiderGraph("#mycanvas", stat, options);
-	}
+	        }]
+	    });
+	});   
 </script>
 </head>
 <body class="no-trans">
-	
+
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -271,19 +228,18 @@
 				</div>
 				<form action="">
 					<div class="col-md-6">
-					<input type="hidden" id="usrSeq" value="${matchingScore.usrSeq }">
+						<input type="hidden" id="usrSeq" value="${matchingScore.usrSeq }">
 						<h3>${matchingScore.usrNick}</h3>
 						<h4>Subheading</h4>
 						<p>${matchingScore.usrInfo}</p>
 						<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
-						<a class="btn btn-primary" href="#" onclick="makePool()">make a pool <span
-							class="glyphicon glyphicon-chevron-right"></span></a>
+						<a class="btn btn-primary" href="#" onclick="makePool()">make
+							a pool <span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
 					</div>
 				</form>
-				<div class="col-md-3" style="height: 300px">
-				<canvas width = "400px" height = "400px" id ="mycanvas" ></canvas>
-<!-- 					<div id="chartdiv" style="width: 100%; height: 100%"> -->
-<!-- 					</div> -->
+				<div class="col-md-3">
+					<div id="chart1" style="padding: 15px; font: normal 12px Arial, sans-serif; width: 100%; height: 300px;"></div>
 				</div>
 			</div>
 			<hr>
@@ -299,7 +255,7 @@
 					<h1 class="page-header">
 						${authUser.usrNick}님과 계획이 비슷한 여행자 <small>Have a good Time!</small>
 					</h1>
-					<p>${authUser.usrNick}님께서관광할여행지가비슷한 여행자들 입니다. 즐거운 여행이 되시길...</p>
+					<p>${authUser.usrNick}님께서관광할여행지가비슷한여행자들입니다.즐거운여행이 되시길...</p>
 				</div>
 			</div>
 

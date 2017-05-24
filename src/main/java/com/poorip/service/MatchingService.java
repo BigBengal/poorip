@@ -2,11 +2,9 @@ package com.poorip.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.poorip.repository.MatchingDao;
 import com.poorip.repository.ScrapCityDao;
 import com.poorip.repository.UserDao;
-import com.poorip.vo.CityVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.UserVo;
 
@@ -26,11 +23,11 @@ public class MatchingService {
 	private MatchingDao matchingDao;
 	@Autowired
 	private UserDao userDao;
-	
+
 	// 내가 스크랩한 시티 리스트 가져오기
 	@Autowired
 	private ScrapCityDao scrapCityDao;
-	
+
 	// 내림차순
 	public class Descending implements Comparator<UserVo> {
 
@@ -72,8 +69,8 @@ public class MatchingService {
 	}
 
 	public List<UserVo> getSamePlanMember(
-						UserVo myInfo,		// 내정보 
-						List<ScrapCityVo> myCityList) throws Exception {
+			UserVo myInfo,		// 내정보 
+			List<ScrapCityVo> myCityList) throws Exception {
 
 		List<UserVo> samePlanMember = new ArrayList<UserVo>();
 
@@ -155,14 +152,14 @@ public class MatchingService {
 
 		return addUsrOtherInfo(samePlanMember);
 	}
-	
-	
+
+
 	public List<UserVo> getMatchingScore (
-							UserVo myInfo,					// 내정보 
-							List<ScrapCityVo> myCityList,	// 내 스크랩정보
-							List<UserVo> matchingList,		// 나를 뺀 전체 유저 리스트
-							List<UserVo> dateScoreList)		// 일정 매칭 스코어 리스트
-						throws Exception{
+			UserVo myInfo,					// 내정보 
+			List<ScrapCityVo> myCityList,	// 내 스크랩정보
+			List<UserVo> matchingList,		// 나를 뺀 전체 유저 리스트
+			List<UserVo> dateScoreList)		// 일정 매칭 스코어 리스트
+					throws Exception{
 
 		//-----------------카테고리별 배열을 선언------------------------------------------------
 		// 이건 내꺼
@@ -226,19 +223,19 @@ public class MatchingService {
 						&& myFoodHit != 0 && mySightHit != 0 && myActivityHit != 0  && myLuxuryHit != 0 && mySumHit != 0){
 
 					//---------------------------------음식점 점수 계산-----------------------------------------------------			
-					foodScore = (1-(Math.abs(foodHit/sumHit)-Math.abs(myFoodHit/mySumHit))) * 100;
+					foodScore = (Math.abs((Math.abs(sumHit/foodHit))-(Math.abs(mySumHit/myFoodHit)))) * 100;
 					userScore.setFoodScore(foodScore);
 
 					//---------------------------------관광지 점수 계산-----------------------------------------------------
-					sightScore = (1-(Math.abs(sightHit/sumHit))-(Math.abs(mySightHit/mySumHit))) * 100;
+					sightScore = (Math.abs((Math.abs(sumHit/sightHit))-(Math.abs(mySumHit/mySightHit)))) * 100;
 					userScore.setSightHit(sightScore);
 
 					//--------------------------------activity 점수 계산-----------------------------------------------------
-					activityScore = (1-(Math.abs(activityHit/sumHit))-(Math.abs(myActivityHit/mySumHit))) * 100;
+					activityScore = (Math.abs((Math.abs(sumHit/activityHit))-(Math.abs(mySumHit/myActivityHit/mySumHit)))) * 100;
 					userScore.setActivityScore(activityScore);
 
 					//---------------------------------럭셔리 점수 계산-----------------------------------------------------
-					luxuryScore = (1-(Math.abs(luxuryHit/foodHit))-(Math.abs(myLuxuryHit/myFoodHit))) * 100;
+					luxuryScore = (Math.abs((Math.abs(foodHit/luxuryHit))-(Math.abs(myFoodHit/myLuxuryHit)))) * 100;
 					userScore.setLuxuryScore(luxuryScore);
 
 				} else {
@@ -248,97 +245,29 @@ public class MatchingService {
 					luxuryScore = 0;
 				}
 
-				//----------------------------------다른 사용사와 겹치는 일정 계산-----------------------------------------------------
-				int overlapDaysScore = 0;
-				int usrSeq = myInfo.getUsrSeq();
-//				for(int x=1; x<city.size(); x++) {  // 모든 도시의 정보
-//					int ctySeq = city.get(x).getCtySeq();
-//					
-//					List<ScrapCityVo> scrapCityVo = getUsersScrapInfoByCtySeq( ctySeq, usrSeq );   // 모든 사용자의 해당 도시의 스크랩 정보 
-//					if( scrapCityVo != null ) {
-//						ScrapCityVo targetScrapCityInfo = getScrapInfo( usrSeq, ctySeq );	   // 나의 해당 도시의 스크랩 정보
-//						if(targetScrapCityInfo != null) {
-//							for(int y=0; y < scrapCityVo.size(); y++){
-//								if(scrapCityVo.get(y).getCtySeq() == targetScrapCityInfo.getCtySeq()){
-//									// 출발 날짜와 도착날짜를 비교할 것이다.
-//									if(scrapCityVo.get(y).getDateFrom() != null && scrapCityVo.get(y).getDateTo() != null) {
-//										String targetDateFrom = targetScrapCityInfo.getDateFrom();
-//										String usersDateFrom = scrapCityVo.get(y).getDateFrom();
-//										String targetDateTo = targetScrapCityInfo.getDateTo();
-//										String usersDateTo = scrapCityVo.get(y).getDateTo();
-//
-////										Calendar calendar = Calendar.getInstance();
-//										SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//
-//										Date targetFrom = format.parse(targetDateFrom);
-//										Date targetTo = format.parse(targetDateTo);
-//										Date usersFrom = format.parse(usersDateFrom);
-//										Date usersTo = format.parse(usersDateTo);
-//
-//										Date maxFrom = new Date();
-//										Date minTo = new Date();
-//
-//										//앞에 변수가 크면 1, 작으면 -1, 같으면 0
-//										int fromResult = targetFrom.compareTo(usersFrom);
-//										int toResult = targetTo.compareTo(usersTo);
-//
-//										if( fromResult == 1 ) {
-//											maxFrom = targetFrom;
-//										} else if ( fromResult == -1 ) {
-//											maxFrom = usersFrom;
-//										} else {
-//											maxFrom = targetFrom;
-//										}
-//
-//										if( toResult == 1 ) {
-//											minTo = usersTo;
-//										} else if ( toResult == -1 ) {
-//											minTo = targetTo;
-//										} else {
-//											minTo = targetTo;
-//										}
-//
-//										long diff = minTo.getTime() - maxFrom.getTime();
-//										long overlapDays = diff / (24 * 60 * 60 * 1000);
-//										overlapDaysScore = (int) (overlapDays^2);
-//										userScore.setDateScore(overlapDaysScore);
-//									} else
-//										userScore.setDateScore(overlapDaysScore);
-//
-//								} else
-//									userScore.setDateScore(overlapDaysScore);
-//							}
-//
-//						} else
-//							userScore.setDateScore(overlapDaysScore);
-//
-//					} else
-//						userScore.setDateScore(overlapDaysScore);
-//				}
-				
-				
 				//---------------------------------총 매칭점수 계산-----------------------------------------------------
-				int matcingScore = surveyScore + foodScore + sightScore + activityScore +luxuryScore + overlapDaysScore;
+				int matcingScore = surveyScore + foodScore + sightScore + activityScore +luxuryScore;
 				userScore.setMatchingScore(matcingScore);
 				matchingScoreList.add(userScore);
 			}
 		}
-		
+
+		//----------------------------------다른 사용사와 겹치는 일정 계산-----------------------------------------------------
 		// 일정 점수 추가
 		for(int i=0; i<matchingScoreList.size();i++){
-			
+
 			for(int j=0; j<dateScoreList.size();j++){
 				// usrSeq가 일치하면 
 				if ( matchingScoreList.get(i).equals(dateScoreList.get(j)) ){
 					// 기존 리스트에 일정 매칭 점수 추가
 					int dateScore = dateScoreList.get(j).getDateScore();
 					matchingScoreList.get(i).setDateScore(dateScore);
-					
+
 					// 기존 합계 점수에 일정 매칭 점수 추가
 					int matchingScore = matchingScoreList.get(i).getDateScore();
 					matchingScore += dateScore;
 					matchingScoreList.get(i).setMatchingScore(matchingScore);
-					
+
 				}
 			}
 		}
@@ -369,7 +298,7 @@ public class MatchingService {
 	public ScrapCityVo getScrapInfo(int usrSeq, int ctySeq) {
 		return matchingDao.getScrapInfo( usrSeq, ctySeq );
 	}
-	
+
 	// 나를 뺀거 스크랩 도시 정보
 	public List<ScrapCityVo> getUsersScrapInfoByCtySeq(int ctySeq, int usrSeq) {
 		return matchingDao.getUsersScrapInfoByCtySeq( ctySeq,usrSeq );
