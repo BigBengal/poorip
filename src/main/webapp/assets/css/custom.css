@@ -289,3 +289,7 @@ File Description: Place here your custom CSS styles
 	z-index: 9999;
 	background: url(/poorip/assets/images/Preloader_3.gif) center no-repeat #fff;
 }
+
+.footer_hide {
+	display: none;
+}

@@ -116,18 +116,17 @@
 	</div> --%>
 	<!-- finder end -->
 
-	<!-- footer start -->
-	<!-- ================ -->
-<!-- 	<footer id="footer"> -->
-<%-- 		<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
-<!-- 	</footer> -->
-	<ol id="poollist">
-	</ol>
-	<!-- footer end -->
-
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 	<div class="se-pre-con"></div>
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer">
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</footer>
+	<!-- footer end -->
+	
+	
 	
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"
