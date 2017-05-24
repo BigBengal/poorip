@@ -59,6 +59,9 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
 
+<!-- Google font -->	
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 

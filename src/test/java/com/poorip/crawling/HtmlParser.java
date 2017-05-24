@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 public class HtmlParser {
 	public static void main(String[] args) throws IOException {
 
-		for (int i = 0; i < 60000; i++) {
+		for (int i = 0; i < 300000; i++) {
 
 			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/testTexts/navercafe-" + i + ".html"), "UTF-8");
 
@@ -23,11 +23,13 @@ public class HtmlParser {
 			/* String text2 = elements2.text(); */
 			String text3 = elements3.text();
 			String text4 = elements4.text();
-
-			if (text3.equals("이탈리아")) {
+			
+			if(text.indexOf("스위스")>0) {
+			if (text3.equals("맛집멋집")) {
 				System.out.println(text);
 				System.out.println(text4);
 			}
+		}
 		}
 	}
 }
