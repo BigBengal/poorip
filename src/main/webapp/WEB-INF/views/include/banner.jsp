@@ -8,7 +8,7 @@
 	<div class="col-md-8 col-md-offset-2 object-non-visible"
 		data-animation-effect="fadeIn">
 		<h1 class="text-center">
-			We are <span>PoOrip</span>
+			We are <span style="font-family: 'Pacifico', cursive;">PoOrip</span>
 		</h1>
 		<p class="lead text-center">즐겁고 신나는 여행을 떠나볼까요?</p>
 <!-- 		<p class="text-center"> -->

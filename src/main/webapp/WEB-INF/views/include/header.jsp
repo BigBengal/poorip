@@ -13,7 +13,7 @@
 
 			<!-- logo -->
 			<div class="logo smooth-scroll">
-				<a href="${pageContext.request.contextPath}/"><img id="logo"
+				<a href="${pageContext.request.contextPath}/" ><img id="logo"
 					src="${pageContext.request.contextPath }/assets/images/poorip_logo_small.png"
 					alt="poorip"></a>
 			</div>
@@ -21,7 +21,7 @@
 			<!-- name-and-slogan -->
 			<div class="site-name-and-slogan smooth-scroll">
 				<div class="site-name">
-					<a href="${pageContext.request.contextPath}">PoOrip</a>
+					<a href="${pageContext.request.contextPath}" style="font-family: 'Pacifico', cursive;">PoOrip</a>
 				</div>
 				<!-- <div class="site-slogan">
 					<a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>
@@ -61,10 +61,10 @@
 						<div class="collapse navbar-collapse scrollspy smooth-scroll"
 							id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="/poorip/#portfolio">Travel Info</a></li>
-								<li><a href="/poorip/matching/survey">Party People</a></li>
-								<li><a href="/poorip/poolparty">PoolParty</a></li>
-								<li id="MyMenuHover"><a href="#">MyPage</a></li>
+								<li><a href="/poorip/#portfolio" style="font-family: 'Kaushan Script', cursive;">Travel Info</a></li>
+								<li><a href="/poorip/matching/survey" style="font-family: 'Kaushan Script', cursive;">Party People</a></li>
+								<li><a href="/poorip/poolparty" style="font-family: 'Kaushan Script', cursive;">PoolParty</a></li>
+								<li id="MyMenuHover"><a href="#" style="font-family: 'Kaushan Script', cursive;">MyPage</a></li>
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button></a>									
 						  		</li>

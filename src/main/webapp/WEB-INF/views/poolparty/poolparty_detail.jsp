@@ -84,6 +84,8 @@
 <!-- PoolParty Detail Js-->
 <script src="${pageContext.request.contextPath }/assets/js/poolparty_detail.js"></script>
 
+<!-- Google font -->	
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 </head>
 <body>
 <body class="no-trans">

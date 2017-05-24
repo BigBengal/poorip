@@ -394,6 +394,7 @@ function showList(){
 }
 
 function showWrite(){
+	
 	if ( writeVisible == true ) {
 		$("#post-write").hide();
 		writeVisible = false;

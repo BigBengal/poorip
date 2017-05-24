@@ -63,6 +63,8 @@
 	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.common.css" />
 <link rel="stylesheet"
 	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.light.css" />
+	<!-- Google font -->	
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
@@ -190,9 +192,9 @@
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
 						<h1 class="text-center">
-							Poorip <span style="color: #FFC6C3">과 함께 가요 </span>
+							<span style="font-family: 'Pacifico', cursive; color:white;">PoOrip</span> <span style="color: #FFC6C3">과 함께 가요 </span>
 						</h1>
-						<p class="lead text-center">함께 즐기는 여행</p>
+						<p class="lead text-center" >함께 즐기는 여행</p>
 						<div class="arrow bounce">
 							<a class="fa fa-arrow-down fa-2x" href="#contents"></a>
 						</div>

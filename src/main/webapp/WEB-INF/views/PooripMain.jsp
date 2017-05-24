@@ -60,7 +60,7 @@
 	rel="stylesheet">
 
 <!-- Google font -->	
-<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>

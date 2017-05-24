@@ -3,8 +3,8 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo ) {
-   var post_html = "<div id='sns-post-" + vo.postSeq + "'>" + 
-   					"<div class='form-group'>" + 
+   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group'>" + 
+   					"<div class='form-group'   style='margin-top: 30px;'>" + 
                      "<p class='col-sm-10 text-center' style='font-size: 20px'><strong>" + vo.title + "</strong></p>" +
                   "</div>" +
                   "<div class='form-group' style='display:block; width:70%'>" +
@@ -261,6 +261,7 @@ function postDelete(postSeq){
 }
 
 function showWrite(){
+	
 	if ( writeVisible == true ) {
 		$("#sns-write").hide();	
 		writeVisible = false;

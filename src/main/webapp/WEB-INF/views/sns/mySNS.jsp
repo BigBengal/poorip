@@ -16,7 +16,7 @@
 				<input class="ignore" id="postSeq" type="hidden" name="postSeq" value=""> 
 				<input class="ignore" id="postPicSeqArray" type="hidden" name="postPicSeqArray" value=""> 
 				<a href="javascript:;">
-				<img onclick="showWrite();" alt="글쓰기" src="${pageContext.request.contextPath}/assets/images/write-btn.png" style="width: 30px"></a>
+				<button id="sns-write-button" type="button" onclick="showWrite();" style="float:right">글쓰기</button></a>
 				<div class="write-main block" id="sns-edit" style="display: none;">
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="title">제목 : </label>
@@ -26,7 +26,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3" for="contents">contents
+						<label class="control-label col-sm-3" for="contents">내용
 							: </label>
 						<div class='col-sm-7'>
 							<textarea class="form-control" id="edit-contents" name="contents"
@@ -95,15 +95,15 @@
 				method="post" enctype="multipart/form-data">
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 
-				<div class="write-main block" id="sns-write" style="display: none;">
-					<div class="form-group">
+				<div class="write-main block" id="sns-write" style="display: none;  margin-right: 5%;">
+					<div class="form-group" style="margin-top:30px">
 						<label class="control-label col-sm-3" for="title">제목 : </label>
 						<div class='col-sm-7'>
 							<input type="text" class="form-control" id="title" name="title" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3" for="contents">contents
+						<label class="control-label col-sm-3" for="contents">내용
 							: </label>
 						<div class='col-sm-7'>
 							<textarea class="form-control" id="contents" name="contents"
@@ -162,32 +162,32 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group" id="div-share-show">
+					<div class="form-group" style="width: 70%; margin: auto; margin-left: 28%; margin-bottom: 5%;  "id="div-share-show">
 						<div class="row">
-						    <div class="col-xs-5">
+						    <div class="col-xs-5" style="width:30%">
 						        <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
 						        	<c:forEach items="${poolpartyList }" var="poolpartyList" varStatus="status">
 						        		<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
 						        	</c:forEach>
 						        </select>
 						    </div>
-						    <div class="col-xs-2">
-						        <button type="button" id="js_right_All_1" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
-						        <button type="button" id="js_right_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
-						        <button type="button" id="js_left_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-						        <button type="button" id="js_left_All_1" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+						    <div class="col-xs-2" style="width:initial">
+						        <button type="button" id="js_right_All_1" class="btn btn-block sns-share-button"><i class="glyphicon glyphicon-forward"></i></button>
+						        <button type="button" id="js_right_Selected_1" class="btn btn-block sns-share-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
+						        <button type="button" id="js_left_Selected_1" class="btn btn-block sns-share-button"><i class="glyphicon glyphicon-chevron-left"></i></button>
+						        <button type="button" id="js_left_All_1" class="btn btn-block sns-share-button"><i class="glyphicon glyphicon-backward"></i></button>
 						    </div>
-						    <div class="col-xs-5">
+						    <div class="col-xs-5" style="width:30%">
 						        <select name="to[]" id="js_multiselect_to_1" class="form-control" size="8" multiple="multiple"></select>
 						    </div>
 						</div>
 					</div>
-					<div class="form-group-button">
-						<div class="col-md-12" style="padding-left: 40%">
+					
+						<div class="form-group" style="margin: auto; padding-left: 38%; margin-bottom:30px">
 							<button type="submit"
 								class="btn btn-default col-lg-6 center-block">게시글 올리기</button>
 						</div>
-					</div>
+					
 				</div>
 				<div class="container">
 					<div id="my-sns-list" class="block" style="padding-top: 100px">
