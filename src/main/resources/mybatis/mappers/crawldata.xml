@@ -6,7 +6,7 @@
     <!-- 크롤링 데이터 입력 -->
 	<insert id="insert" parameterType="crawldatavo">
 		<![CDATA[
-			insert into scrap_data values(null, #{title}, #{content}, #{pubDate})
+			insert into scrap_data values(null, #{ctrSeq}, #{ctySeq}, #{catSeq}, #{title}, #{content}, #{pubDate})
 		]]>
 	</insert>
 	

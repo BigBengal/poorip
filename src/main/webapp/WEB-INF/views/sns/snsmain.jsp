@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +16,8 @@
 <!-- Mobile Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Web Fonts -->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext'
@@ -28,7 +29,8 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <!-- Font Awesome CSS -->
 <link
@@ -50,9 +52,15 @@
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
-	
+
 <!-- multiselect -->
-<link href="${pageContext.request.contextPath}/assets/css/multi-select.css"
+<link
+	href="${pageContext.request.contextPath}/assets/css/multi-select.css"
+	rel="stylesheet">
+
+<!-- Google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico"
 	rel="stylesheet">
 </head>
 
@@ -81,7 +89,7 @@
 					src="${pageContext.request.contextPath }/assets/images/mySNS.jpg">
 			</div>
 		</div>
-		<div class="banner-caption" >
+		<div class="banner-caption">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
@@ -99,17 +107,19 @@
 
 	<!-- mySNS start -->
 	<!-- ================ -->
-	<div id="mySNS" class="mySNS"  >
+	<div id="mySNS" class="mySNS" style="background-color: #f2f2f2;">
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 	</div>
-	
+
 	<!-- footer end -->
 
 	<!-- jquery ui -->
-		
-	<script src="${pageContext.request.contextPath }/assets/plugins/jquery-1.12.4.js"></script>
-	<script src="${pageContext.request.contextPath }/assets/plugins/jquery-ui.min.js"></script>
-	
+
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/jquery-1.12.4.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/jquery-ui.min.js"></script>
+
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 
@@ -118,8 +128,8 @@
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-		<script src="http://malsup.github.com/jquery.form.js"></script> 
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 
 	<!-- Modernizr javascript -->
 	<script type="text/javascript"
@@ -140,13 +150,14 @@
 	<!-- Initialization of Plugins -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
-	
+
 	<!-- sns post img next -->
 
-	
+
 	<!-- facebook  -->
-	<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
-	
+	<script
+		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 
@@ -154,52 +165,72 @@
 	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
 
 	<!-- multiselect -->
-	<script src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
-	<script src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
-	
-	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display:none">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>이 글을 정말로 삭제하시겠습니까?</p>
-</div>
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
 
-<!-- 공유 창 내용 -->
-<div id="share-sns-post" title="SNS 포스트 공유" style="display:none">
- <p >공유할 풀을 선택해주세요 ${postSeq }</p>
-	<form action="${pageContext.request.contextPath}/sns/post/share" id="share-form">
-		<input id="sns-share-postSeq" type="hidden"  name="postSeq" value="${postSeq }">
-		<div class="form-group">
-			<div class="row">
-			    <div class="col-xs-5">
-			        <select name="share_from[]" class="js-multiselect1 form-control" size="8" multiple="multiple">
-			        	<c:forEach items="${poolpartyList }" var="poolpartyList" varStatus="status">
-			        		<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
-			        	</c:forEach>
-			        </select>
-			    </div>
-			    <div class="col-xs-2">
-			        <button type="button" id="js_right_All_2" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
-			        <button type="button" id="js_right_Selected_2" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
-			        <button type="button" id="js_left_Selected_2" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-			        <button type="button" id="js_left_All_2" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
-			    </div>
-			    <div class="col-xs-5">
-			        <select name="share_to[]" id="js_multiselect_to_2" class="form-control" size="8" multiple="multiple"></select>
-			    </div>
+	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display: none">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin: 12px 12px 20px 0;"></span>이 글을 정말로
+			삭제하시겠습니까?
+		</p>
+	</div>
+
+	<!-- 공유 창 내용 -->
+	<div id="share-sns-post" title="SNS 포스트 공유" style="display: none">
+		<p>공유할 풀을 선택해주세요 ${postSeq }</p>
+		<form action="${pageContext.request.contextPath}/sns/post/share"
+			id="share-form">
+			<input id="sns-share-postSeq" type="hidden" name="postSeq"
+				value="${postSeq }">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-5">
+						<select name="share_from[]" class="js-multiselect1 form-control"
+							size="8" multiple="multiple">
+							<c:forEach items="${poolpartyList }" var="poolpartyList"
+								varStatus="status">
+								<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="col-xs-2">
+						<button type="button" id="js_right_All_2" class="btn btn-block">
+							<i class="glyphicon glyphicon-forward"></i>
+						</button>
+						<button type="button" id="js_right_Selected_2"
+							class="btn btn-block">
+							<i class="glyphicon glyphicon-chevron-right"></i>
+						</button>
+						<button type="button" id="js_left_Selected_2"
+							class="btn btn-block">
+							<i class="glyphicon glyphicon-chevron-left"></i>
+						</button>
+						<button type="button" id="js_left_All_2" class="btn btn-block">
+							<i class="glyphicon glyphicon-backward"></i>
+						</button>
+					</div>
+					<div class="col-xs-5">
+						<select name="share_to[]" id="js_multiselect_to_2"
+							class="form-control" size="8" multiple="multiple"></select>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="form-group-button">
-		    <div class="col-md-12" style="padding-left: 40%">
-				<button type="submit"
-					class="btn btn-default col-lg-6 center-block">공유하기</button>
+			<div class="form-group-button">
+				<div class="col-md-12" style="padding-left: 40%">
+					<button type="submit" class="btn btn-default col-lg-6 center-block">공유하기</button>
+				</div>
 			</div>
-		</div>
-	</form>
-</div>
-<div class="se-pre-con"></div>
-<!-- footer start -->
-<!-- ================ -->
-<footer id="footer">
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
-</footer>
-<!-- footer end -->
+		</form>
+	</div>
+	<div class="se-pre-con"></div>
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer">
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</footer>
+	<!-- footer end -->
 </body>
 </html>

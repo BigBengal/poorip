@@ -1,5 +1,6 @@
 package com.poorip.security;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,13 +28,16 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		UserVo userVo = new UserVo();
 		userVo.setUsrEmail(email);
 
-		logger.info("Login OK "+email);
+
 //		logger.debug("before:"+userVo.toString());
 		userVo = userService.getUser(userVo);
 //		logger.debug("after:"+userVo.toString());
 		
 		if(userVo == null || userVo.getUsrSeq() == 0 || userVo.getUsrEmail() == null) {
-			response.sendRedirect(request.getContextPath());
+//			response.sendRedirect(request.getContextPath());
+			request.setAttribute("login", "fail");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/PooripMain.jsp");
+			rd.forward(request, response);
 			return false;
 		}
 		
@@ -42,7 +46,15 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 
 		// 인증 처리
 		HttpSession session = request.getSession( true );
-		session.setAttribute("authUser", userVo);
+		
+		// 이미 세션이 있으면 저장 하지 않음
+		if(session.getAttribute("authUser") != null ){
+			response.sendRedirect(request.getContextPath()+"/user/facebookinfo");
+		} else {
+			session.setAttribute("authUser", userVo);
+		}
+		
+		logger.info("Login OK "+email);
 		
 		// 최초 가입의 경우 세션에 저장하고 addinfo로 리턴하기 위해
 		if (addinfo != null && "addinfo".equals(addinfo) ){

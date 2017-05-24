@@ -60,6 +60,7 @@
 <script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <!-- Bootstrap toggle -->
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <script type="text/javascript">
 // 	$(function() {
@@ -213,35 +214,35 @@ $(document).ready(function(){
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-3" for="option">언어(Lauguage)</label>
+<!-- 	<div class="form-group"> -->
+<!-- 		<label class="control-label col-sm-3" for="option">언어(Lauguage)</label> -->
 		
-		<div class="btn-group col-sm-7" data-toggle="buttons">
+<!-- 		<div class="btn-group col-sm-7" data-toggle="buttons"> -->
 			
-			<c:choose>
-				<c:when test="${user.usrLang=='KOR'}">
-					<label class="btn btn-primary active" id="langKor">
-				</c:when>
-				<c:otherwise>
-				 	<label class="btn btn-primary" id="langKor">
-				</c:otherwise>
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${user.usrLang=='KOR'}"> --%>
+<!-- 					<label class="btn btn-primary active" id="langKor"> -->
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<!-- 				 	<label class="btn btn-primary" id="langKor"> -->
+<%-- 				</c:otherwise> --%>
 				
-			</c:choose>
-				<input type="radio" name="usrLang" value="KOR" id="option1" autocomplete="off"> KOR
-			</label>
-			<c:choose>
-				<c:when test="${user.usrLang=='ENG'}">
-					<label class="btn btn-primary active" id="langEng">
-				</c:when>
-				<c:otherwise>
-				 	<label class="btn btn-primary" id="langEng">
-				</c:otherwise>
-			</c:choose>
-				<input type="radio" name="usrLang" value="ENG" id="option2" autocomplete="off"> ENG
-			</label>
+<%-- 			</c:choose> --%>
+<!-- 				<input type="radio" name="usrLang" value="KOR" id="option1" autocomplete="off"> KOR -->
+<!-- 			</label> -->
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${user.usrLang=='ENG'}"> --%>
+<!-- 					<label class="btn btn-primary active" id="langEng"> -->
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<!-- 				 	<label class="btn btn-primary" id="langEng"> -->
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
+<!-- 				<input type="radio" name="usrLang" value="ENG" id="option2" autocomplete="off"> ENG -->
+<!-- 			</label> -->
 			
-		</div>
-	</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 	<div class="form-group">
 		<label class="control-label col-sm-3" for="birthday">생년월일(Birthday)</label>
@@ -275,43 +276,20 @@ $(document).ready(function(){
 		</div>
 	</div>
 	
-	<div class="form-group">
-		<label class="control-label col-sm-3" for="Noti">알람(Notification)</label>
+<!-- 	<div class="form-group"> -->
+<!-- 		<label class="control-label col-sm-3" for="Noti">알람(Notification)</label> -->
 		
-		<div class="col-sm-2">
-			
+<!-- 		<div class="col-sm-2"> -->
 <%-- 			<c:choose> --%>
 <%-- 				<c:when test="${user.usrNoti=='Y'}"> --%>
-<!-- 					<label class="btn btn-default active" id="notiY"> -->
+<!-- 					<input type="checkbox" name="usrNoti" value="Y" checked data-toggle="toggle"> -->
 <%-- 				</c:when> --%>
 <%-- 				<c:otherwise> --%>
-<!-- 				 	<label class="btn btn-default" id="notiY"> -->
-<%-- 				</c:otherwise> --%>
-				
-<%-- 			</c:choose> --%>
-<!-- 				<input type="radio" name="usrNoti" value="Y" id="noti1" autocomplete="off"> On -->
-<!-- 			</label> -->
-<%-- 			<c:choose> --%>
-<%-- 				<c:when test="${user.usrNoti=='N'}"> --%>
-<!-- 					<label class="btn btn-default active" id="notiN"> -->
-<%-- 				</c:when> --%>
-<%-- 				<c:otherwise> --%>
-<!-- 				 	<label class="btn btn-default" id="notiN"> -->
+<!-- 					<input type="checkbox" name="usrNoti" value="Y" data-toggle="toggle"> -->
 <%-- 				</c:otherwise> --%>
 <%-- 			</c:choose> --%>
-<!-- 				<input type="radio" name="usrNoti" value="N" id="noti2" autocomplete="off"> Off -->
-				
-<!-- 			</label> -->
-			<c:choose>
-				<c:when test="${user.usrNoti=='Y'}">
-					<input type="checkbox" name="usrNoti" value="Y" checked data-toggle="toggle">
-				</c:when>
-				<c:otherwise>
-					<input type="checkbox" name="usrNoti" value="Y" data-toggle="toggle">
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
 	
 	<div class="form-group">
 		<div class="col-sm-3"></div>

@@ -59,6 +59,9 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
 
+<!-- Google font -->	
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
+
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
@@ -133,6 +136,7 @@
 	<footer id="footer">
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
+	login : ${login}
 	<!-- footer end -->
 	
 	<div class="se-pre-con" ></div>

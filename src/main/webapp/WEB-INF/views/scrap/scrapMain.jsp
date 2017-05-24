@@ -56,6 +56,9 @@
 
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css" rel="stylesheet">
+
+<!-- Google font -->	
+<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 </head>
 
 
@@ -491,7 +494,7 @@ function showCityNavMap(citySeq){
           strokeWeight: 2
         });
         
-	var image = ['http://localhost:9090/poorip/assets/images/mapicon1.png', 'http://localhost:9090/poorip/assets/images/mapicon2.png', 'http://localhost:9090/poorip/assets/images/mapicon3.png' ];
+	var image = ['/poorip/assets/images/mapicon1.png', '/poorip/assets/images/mapicon2.png', '/poorip/assets/images/mapicon3.png' ];
 
         
 	// Add multiple markers to map
