@@ -288,6 +288,14 @@ function searchPool(){
 <!-- 								style="width: 75; font-family: 맑은고딕; background-color: black"> -->
 <!-- 						</p> -->
 <!-- 					</form> -->
-<div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
+
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer">
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</footer>
+	<!-- footer end -->
+
 </body>
 </html>
