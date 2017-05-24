@@ -54,8 +54,16 @@
 <link href="${pageContext.request.contextPath}/assets/css/matching.css"
 	rel="stylesheet">
 <!--graph -->
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.chart.css">
+<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.common-fiori.min.css" /> -->
+<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.fiori.min.css" /> -->
+<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.fiori.mobile.min.css" /> -->
+<link rel="stylesheet"
+	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.spa.css" />
+<link rel="stylesheet"
+	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.common.css" />
+<link rel="stylesheet"
+	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.light.css" />
+
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
@@ -69,12 +77,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <!--graph -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.canvas.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.svg.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.chart.min.js"></script>
-<script src="https://static.zinoui.com/js/front.min.js"></script>
+<!-- <script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.all.min.js"></script> -->
+<script src="https://cdn3.devexpress.com/jslib/17.1.3/js/dx.all.js"></script>
 
 <!-- Modernizr javascript -->
 <script
@@ -116,51 +122,41 @@
 		;
 	});
 	
-	$(function () {
-	    $("#chart1").zinoChart({
-	        type: "polar",
-	        variation: "line",
-	        points: true,
-	        legend: false,
-	        width: 530,
-	        height: 320,
-	        radius: 130,
-	        categories: [{
-	            "category": [
-	                {"label": 'sum'},
-	                {"label": 'food'},
-	                {"label": 'sight'},
-	                {"label": 'activity'},
-	                {"label": 'luxury'},
-	                {"label": 'survey'},
-	            ]
-	        }],
-	        series: [{
-	            "label": "NY Knicks",
-	            "color": "#3366CC",
-	            "data": [
-	                {"value": 3},
-	                {"value": 8},
-	                {"value": 6},
-	                {"value": 2},
-	                {"value": 7},
-	                {"value": 3}
-	            ]
-	        },{
-	            "label": "Miami Heat",
-	            "color": "#DC3912",
-	            "data": [
-	                {"value": 6},
-	                {"value": 9},
-	                {"value": 5},
-	                {"value": 8},
-	                {"value": 3},
-	                {"value": 5}
-	            ]
-
-	        }]
+	$(function chart(){
+	    $("#chart").dxPolarChart({
+	        dataSource: dataSource,
+	        useSpiderWeb: true,
+	        series: [{ valueField: "oranges", name: "Oranges" }],
+	        commonSeriesSettings: {        
+	            type: "line"
+	        },
+	        tooltip: {
+	            enabled: true
+	        }
 	    });
-	});   
+	});
+
+	var dataSource = [{
+	    arg: "Sum",
+	    oranges: 7.47
+	}, {
+	    arg: "Food",
+	    oranges: 7.47
+	}, {
+	    arg: "Sight",
+	    oranges: 5
+	}, {
+	    arg: "Activity",
+	    oranges: 1.71
+	}, {
+	    arg: "Luxury",
+	    oranges: 2.39
+	}, {
+	    arg: "Survey",
+	    oranges: 6.26
+	}];
+	
+	$(document).ready(chart);
 </script>
 </head>
 <body class="no-trans">
@@ -238,8 +234,10 @@
 						</a>
 					</div>
 				</form>
-				<div class="col-md-3">
-					<div id="chart1" style="padding: 15px; font: normal 12px Arial, sans-serif; width: 100%; height: 300px;"></div>
+				<div class="col-md-3 ">
+					<div class="col-md-12 dx-viewport demo-container" style="height: 245px; top: -87px">
+						<div id="chart"></div>
+					</div>
 				</div>
 			</div>
 			<hr>
@@ -255,7 +253,7 @@
 					<h1 class="page-header">
 						${authUser.usrNick}님과 계획이 비슷한 여행자 <small>Have a good Time!</small>
 					</h1>
-					<p>${authUser.usrNick}님께서관광할여행지가비슷한여행자들입니다.즐거운여행이 되시길...</p>
+					<p>${authUser.usrNick}님께서관광할여행지가비슷한여행자들입니다.즐거운여행이되시길...</p>
 				</div>
 			</div>
 
