@@ -3,12 +3,13 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo ) {
-   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group'>" + 
-   					"<div class='form-group'   style='margin-top: 30px;'>" + 
-                     "<p class='col-sm-10 text-center' style='font-size: 20px'><strong>" + vo.title + "</strong></p>" +
+   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;'>" + 
+   					"<div class='form-group'   style='padding-top: 30px; background-color:#4682B4; margin-right: 0px;" +
+                    "margin-left: 0px;'>" + 
+                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
                   "</div>" +
-                  "<div class='form-group' style='display:block; width:70%'>" +
-               "<div class='col-md-offset-4'>" +
+                  "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
+               "<div class='col-md-offset-4' style='margin:auto;'>" +
                      "<p class='col-md-12'>" + 
                         "<div class='cycle-slideshow'" +
                            "data-cycle-fx='scrollHorz'" +
@@ -21,12 +22,13 @@ var post_render = function( vo ) {
 
 
 var edit_post_render = function( vo ) {
-	   var post_html = "<div id='sns-post-" + vo.postSeq + "'>" + 
-	   					"<div class='form-group'>" + 
-	                     "<p class='col-sm-10 text-center' style='font-size: 20px'><strong>" + vo.title + "</strong></p>" +
+	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;'>" + 
+	   					"<div class='form-group'  style='padding-top: 30px; background-color:#4682B4; margin-right: 0px;" +
+                        "margin-left: 0px;'>" + 
+	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
 	                  "</div>" +
-	                  "<div class='form-group' style='display:block; width:70%'>" +
-	               "<div class='col-md-offset-4'>" +
+	                  "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
+	               "<div class='col-md-offset-4' style='margin:auto;'>" +
 	                     "<p class='col-md-12'>" + 
 	                        "<div class='cycle-slideshow'" +
 	                           "data-cycle-fx='scrollHorz'" +

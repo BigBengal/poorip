@@ -107,7 +107,7 @@
 
 	<!-- mySNS start -->
 	<!-- ================ -->
-	<div id="mySNS" class="mySNS">
+	<div id="mySNS" class="mySNS" style="background-color: #f2f2f2;">
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 	</div>
 
