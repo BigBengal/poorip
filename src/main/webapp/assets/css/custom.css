@@ -124,13 +124,13 @@ File Description: Place here your custom CSS styles
 }
 
 .poollikeon {
-	background: url("/poorip/assets/images/poolparty_like_on.png") 100% 100% no-repeat;
+	background: url("/poorip/assets/images/like_on.png") 100% 100% no-repeat;
 	height : 32px;
 	padding-top: 5px;
 }
 
 .poollikeoff {
-	background: url("/poorip/assets/images/poolparty_like_off.png") 100% 100% no-repeat;
+	background: url("/poorip/assets/images/like_off.png") 100% 100% no-repeat;
 	height : 32px;
 	padding-top: 5px;
 }

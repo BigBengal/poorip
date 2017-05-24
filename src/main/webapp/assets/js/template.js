@@ -94,9 +94,9 @@
 			$(window).load(function() {
 				var containerWidth = $(".isotope-container").width();
 				var columnWidth = 0;
-				  if( containerWidth >= 970 ){
+				if( containerWidth >= 940 ){
 					  columnWidth = containerWidth / 4;
-				  } else if(containerWidth >= 750){
+				  } else if(containerWidth >= 720){
 					  columnWidth = containerWidth / 2;
 				  } else {
 					  columnWidth = containerWidth;
@@ -127,7 +127,7 @@
 					var cityName = $(this).attr('data-city-name');
 					
 					// sortable 이 있으면(my스크랩) 지도 변경
-					if($('.sortable').length > 0 ) {
+					if($('#sortable').length > 0 ) {
 						showCityNavMap(cityName);
 					}
 					

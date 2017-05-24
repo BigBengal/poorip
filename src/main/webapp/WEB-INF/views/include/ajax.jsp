@@ -51,7 +51,7 @@ var render = function( vo, reviewNum, postSeq ){
 				"<div id='reviewtitle' style='margin-bottom:20px'>" + vo.title + "<h6 style='display:inline-block; float:right'>" + vo.crtDate + "</h6></div>" +
 			   "<div id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "<c:if test='${!empty authUser }'>" +
 			   "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")> " + 
-			   "<img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/water-tube.png' style='width:100%' ></a> " + 
+			   "<img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/like_off.png' style='width:100%' ></a> " + 
 			   "</c:if><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px'> 라이크" + vo.likeCount + "</h5></div>" + 
 			   "</div>"
 			   ;			
@@ -83,10 +83,10 @@ function send(trvSeq, reviewNum){
         success : function(data) {
             if(data==="YES") {
 
-            	likeIcon.src="/poorip/assets/images/scrapicon-scraped.png";
+            	likeIcon.src="/poorip/assets/images/star_on.png";
             }else {
  
-        		likeIcon.src="/poorip/assets/images/scrapicon.png";
+        		likeIcon.src="/poorip/assets/images/star_off.png";
         	}
         },
         error : function(data) {
@@ -116,7 +116,7 @@ function send(trvSeq, reviewNum){
 			        		
 			        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
 // 			        		console.log(likePostIcon);
-			        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
+			        		likePostIcon.src = "/poorip/assets/images/like_on.png";
 			        	});
 			         
 			        },
@@ -183,13 +183,13 @@ function reviewLike(postSeq) {
         		console.log("여기??");
         		var decreased = likes.slice(0, -15);
         		$("#like-count-"+ postSeq).text("라이크" + decreased);
-        		likePostIcon.src = "/poorip/assets/images/water-tube.png";
+        		likePostIcon.src = "/poorip/assets/images/like_off.png";
         	}
         	}
         	else {
         		console.log("라이크충");
         		$("#like-count-"+ postSeq).text("라이크" + result.data);
-        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
+        		likePostIcon.src = "/poorip/assets/images/like_on.png";
         	}
          
         },
@@ -221,7 +221,7 @@ function sendTrvSeq1(trvSeq) {
 					        	$( result.data ).each( function(index, vo){
 					        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
 					        		console.log(likePostIcon);
-					        		likePostIcon.src = "/poorip/assets/images/water-tube2.png";
+					        		likePostIcon.src = "/poorip/assets/images/like_on.png";
 					        	});
 					         
 					        },

@@ -413,7 +413,15 @@ function initMap() {
 	showCityNavMap("0");
 	};
 
+	
+// 여행 경로 보여주기
 function showCityNavMap(citySeq){
+
+	// 구글맵 활성화가 안 되면 리턴
+	if (! $("#scrapmap").is('.googlemap'))
+		return;
+
+//  	console.log("구글맵 : " + citySeq);
 	var mapUrlList = [];
 	var tourDirection = [];
 	var idx=0;
@@ -423,7 +431,7 @@ function showCityNavMap(citySeq){
 	// 전체 일정 일 때는 전체 경로 표시 및 영역 크게
 	if(citySeq == '0'){
 		$("#scrapmap").css('height','600px');
-		startSearch = ".sortdetail .isotope-item"
+		startSearch = "#sortable li a"
 	} else {
 		$("#scrapmap").css('height','');
 	}
@@ -431,20 +439,36 @@ function showCityNavMap(citySeq){
 	$(startSearch).each(function(index){
 		
 		var url = $(this).data("url");
-		var catseq = $(this).data("catseq");
+		
 // 		console.log(url + catseq);
 		if (url == "" || url == undefined){
-	    	
+			// 전체 일정 일 때는 filter로 for문 다시 처리 , 특정 도시 일때는 스킵
+			if(citySeq == '0'){
+				var filter = $(this).data("filter");
+				$(filter).each(function(index){
+					var chkUrl = $(this).data("url");
+					if(chkUrl != "" && chkUrl != undefined){
+						var catseq = $(this).data("catseq");
+				    	var locArray = chkUrl.split(",");
+				    	console.log($(this).find("div.image-box a span").text());
+				    	mapUrlList[idx] = [ 'A', $.trim(locArray[0]), $.trim(locArray[1]), idx+1, $(this).find("div.image-box a span").text(), catseq-2 ];
+				    	tourDirection[idx] = { lat: parseFloat($.trim(locArray[0])), lng: parseFloat($.trim(locArray[1])) };
+				    	idx++;
+					}
+				});
+			}
 	    } else {
-	    	var locArray = url.split(",");
 	    	
-	    	mapUrlList[idx] = [ 'A', $.trim(locArray[0]), $.trim(locArray[1]), idx+1, $(this).find("div.image-box a span").text(), catseq-2 ];
-	    	tourDirection[idx] = { lat: parseFloat($.trim(locArray[0])), lng: parseFloat($.trim(locArray[1])) };
-	    	idx++;
+	    	// 특정 도시 일 때 배열 저장, 전체 일정 일 때는  위 if문에서 처리하는 것 
+		    	var catseq = $(this).data("catseq");
+		    	var locArray = url.split(",");
+		    	
+		    	mapUrlList[idx] = [ 'A', $.trim(locArray[0]), $.trim(locArray[1]), idx+1, $(this).find("div.image-box a span").text(), catseq-2 ];
+		    	tourDirection[idx] = { lat: parseFloat($.trim(locArray[0])), lng: parseFloat($.trim(locArray[1])) };
+		    	idx++;
 	    }
 	//		
 	});
-	
 	// 스크랩을 하나도 하지 않았을 경우 구글맵 생성 방지
 	if (idx == 0 ){
 		$("#scrapmap").removeClass("googlemap").addClass("text-center");
@@ -452,7 +476,7 @@ function showCityNavMap(citySeq){
 	   	return;
     }
 	
-	console.log(tourDirection);
+// 	console.log(tourDirection);
 	var bounds = new google.maps.LatLngBounds();
     var map = new google.maps.Map(document.getElementById('scrapmap'), {
          zoom: 15,
@@ -469,20 +493,6 @@ function showCityNavMap(citySeq){
           strokeWeight: 2
         });
         
-//  var tourDirection2 = [
-// 	{lat: 41.889886, lng:12.492031},
-//		{lat: 41.889778, lng:12.490612},
-//		{lat: 41.889517, lng:12.487460},
-//		{lat: 41.888202, lng:12.481503}
-//     ];
-// console.log(tourDirection2);
-// 	var beaches = [
-//         	['진실의 입',41.889886, 12.492031, 1,'aaaaa'],
-//        		['콜로세움',41.889778, 12.490612, 2,'bbbbb'],
-//    			['우쭈쭈',41.889517, 12.487460, 3,'cccccc'],
-// 			['잘 되면 대박',41.888202, 12.481503,4,'ddddddd']
-//         	];
-// var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 	var image = ['http://localhost:9090/poorip/assets/images/mapicon1.png', 'http://localhost:9090/poorip/assets/images/mapicon2.png', 'http://localhost:9090/poorip/assets/images/mapicon3.png' ];
 
         
@@ -522,7 +532,7 @@ function showCityNavMap(citySeq){
 
     // Set zoom level
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        if (idx == 1)	
+        if (idx == 1) // 여행정보가 하나이면 중간 확대	
     		this.setZoom(15);
         google.maps.event.removeListener(boundsListener);
     });   
@@ -531,6 +541,7 @@ function showCityNavMap(citySeq){
     flightPath.setMap(map);
 }
 
+// 1개의 여행정보 지도 보여주기
 function showItemMap(seq) {
     var mapId = "map-"+seq;
     var url = $('#'+mapId).data("url");
@@ -554,7 +565,6 @@ function showItemMap(seq) {
     
 	// To add the marker to the map, call setMap();
     marker.setMap(map);
-
 }
 
 function showCityMap(citySeq){
@@ -562,14 +572,11 @@ function showCityMap(citySeq){
 	var $scrapMap = $("#scrapmap");
 	var $mapBtn = $("#scrapMapBtn-"+citySeq);
 	if ($scrapMap.is('.googlemap')) {
-		$scrapMap.css('display','none');
-		$scrapMap.removeClass("googlemap");
+		$scrapMap.css('display','none').removeClass("googlemap");
 		$mapBtn.val('지도보기');
 
 	} else {
-		$scrapMap.addClass("googlemap");
-		$scrapMap.css('display','');
-		console.log("citySeq:"+citySeq );	
+		$scrapMap.css('display','').addClass("googlemap");
 		$mapBtn.val('지도 숨기기');
 		showCityNavMap(citySeq);
 	}	
