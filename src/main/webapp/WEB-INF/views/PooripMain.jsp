@@ -185,6 +185,10 @@
     async defer></script>
 	<script>
 		$(function() {
+			
+			// 첫페이지만 footer 보여주기
+			$(".footer.section").removeClass("footer_hide");
+			
 			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
 				defaultDate : "+1w",
 				changeMonth : true,

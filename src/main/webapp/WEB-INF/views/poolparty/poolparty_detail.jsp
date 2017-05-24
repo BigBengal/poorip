@@ -247,50 +247,61 @@
 <!-- </div> -->
 
 <!-- 글 보기 -->
-<div id="postList" class="col-md-12">
-	<c:forEach var="post" items="${post}" varStatus="status">
-		<div id="post-${post.postSeq}" class="col-md-6 col-md-offset-4">
-		<h3>${post.title}  </h3>
-		<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
-			<c:if test="${post.postSeq ==postpic.postSeq}">
-				<a href="/poorip${postpic.path}/${postpic.fileName}" data-lightbox="${postpic.postSeq}" data-title="${post.title}">
-					<img src="/poorip${postpic.path}/${postpic.fileName}">
-				</a>
-			</c:if>
+<div class="row">
+	<div id="postList" class="col-md-12">
+		<c:forEach var="post" items="${post}" varStatus="status">
+			<div id="post-${post.postSeq}" class="col-md-6 col-md-offset-4">
+			<h3>${post.title}  </h3>
+			<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
+				<c:if test="${post.postSeq ==postpic.postSeq}">
+					<a href="/poorip${postpic.path}/${postpic.fileName}" data-lightbox="${postpic.postSeq}" data-title="${post.title}">
+						<img src="/poorip${postpic.path}/${postpic.fileName}">
+					</a>
+				</c:if>
+			</c:forEach>
+			<p> ${post.contents}  </p>
+				<div class="row margin_up_down">
+				<div class="col-md-6 img_inline">
+					<img src="${post.picture}"> ${post.name}
+				</div>
+				<div class="col-md-6">
+					${post.crtDate}
+				</div>
+				</div>
+				<div class="row margin_up_down underline">
+				<div class="col-md-3">
+					<c:if test="${authUser.usrSeq == post.usrSeq}">
+						<img alt='수정' src='/poorip/assets/images/post_modify.png' class="menu_links modify" data-postseq="${post.postSeq}" style="max-height: 30px;">
+					</c:if>
+				</div>
+				<div class="col-md-3 col-md-offset-6">
+					<c:if test="${authUser.usrSeq == post.usrSeq}">
+						<img alt='삭제' src='/poorip/assets/images/post_delete.png' class="menu_links rightalign delete" data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}" style="max-height: 30px;">
+					</c:if>
+				</div>
+				</div>
+			
+			</div>
 		</c:forEach>
-		<p> ${post.contents}  </p>
-			<div class="row margin_up_down">
-			<div class="col-md-6 img_inline">
-				<img src="${post.picture}"> ${post.name}
-			</div>
-			<div class="col-md-6">
-				${post.crtDate}
-			</div>
-			</div>
-			<div class="row margin_up_down underline">
-			<div class="col-md-3">
-				<c:if test="${authUser.usrSeq == post.usrSeq}">
-					<img alt='수정' src='/poorip/assets/images/post_modify.png' class="menu_links modify" data-postseq="${post.postSeq}" style="max-height: 30px;">
-				</c:if>
-			</div>
-			<div class="col-md-3 col-md-offset-6">
-				<c:if test="${authUser.usrSeq == post.usrSeq}">
-					<img alt='삭제' src='/poorip/assets/images/post_delete.png' class="menu_links rightalign delete" data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}" style="max-height: 30px;">
-				</c:if>
-			</div>
-			</div>
-		
-		</div>
-	</c:forEach>
-</div>
-<div id="loading" class="col-md-10 col-md-offset-2">
+	</div>
 </div>
 
-<!-- 프로필 보기 다이얼로그 -->
-<div id="profile" title="프로필 보기">
-</div>
-<div id="dialog-confirm_delete" title="삭제 확인" style="display:none">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>삭제 하시겠습니까?</p>
-</div>
+	<div id="loading" class="col-md-10 col-md-offset-2">
+	</div>
+
+	<!-- 프로필 보기 다이얼로그 -->
+	<div id="profile" title="프로필 보기">
+	</div>
+	<div id="dialog-confirm_delete" title="삭제 확인" style="display:none">
+	  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>삭제 하시겠습니까?</p>
+	</div>
+
+	<div class="se-pre-con"></div>
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer">
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</footer>
+	<!-- footer end -->
 </body>
 </html>

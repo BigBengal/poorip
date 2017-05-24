@@ -19,7 +19,7 @@
 			<!-- 전체일정 버튼 및 날짜 표기 -->
 			<ul class="nav nav-pills" style="float: left;">
 			<li class="ui-state-default">
-					<a href="#" class="ScrapcityName" data-filter=".scrap-all">
+					<a href="#" class="ScrapcityName" data-filter=".scrap-all" data-city-name="0">
 					<strong>전체일정</strong>
 					<div id="entire-period"> &nbsp; 
 					<c:if test="${travelDuration ne null }">
@@ -51,12 +51,12 @@
 				</c:forEach>
 			</ul>
 		</div>
-		<div id="scrapmap" class="nonefloat col-md-12 col-sm-12" style="display: none;">
+		<div id="scrapmap" class="nonefloat col-md-12 col-sm-12 googlemap">
 		</div>
 		<div class="isotope-container grid-space-20">
 		<div class="isotope-item scrap-all col-sm-12 col-md-12 text-center" style="margin-top: 20px;">
-			<input class="btn btn-small btn-default" type="submit" style="margin-left:20px;"
-				value="지도보기" id="scrapMapBtn-0" onclick="showCityMap(0)">
+			<input class="btn btn-small btn-default " type="submit" style="margin-left:20px;"
+				value="지도 숨기기" id="scrapMapBtn-0" onclick="showCityMap(0)">
 		</div>
 <%-- 		${scrapList} --%>
 		<!-- 도시별 관광지 리스트 -->
@@ -77,7 +77,7 @@
 							<input class="btn btn-small btn-default" type="submit" style="margin-left:20px;"
 												value="초기화" id="scrapDateRenew-${cityList.ctySeq}" onclick="clearDate(${cityList.ctySeq })">
 							<input class="btn btn-small btn-default" type="submit" style="margin-left:20px;"
-												value="지도보기" id="scrapMapBtn-${cityList.ctySeq}" onclick="showCityMap(${cityList.ctySeq})">												
+												value="지도 숨기기" id="scrapMapBtn-${cityList.ctySeq}" onclick="showCityMap(${cityList.ctySeq})">												
 						</div>
 					</form>
 				</div>
@@ -86,7 +86,8 @@
 				<c:forEach var="scrapList" items="${scrapList }" varStatus="status">
 					<c:if test="${cityList.ctyName == scrapList.ctyName or cityList.ctyName eq scrapList.ctyName}">
 						<div class="col-sm-6 col-md-3 isotope-item scrap-${cityList.ctySeq}" 
-								data-ctyseq="${cityList.ctySeq}" data-trvseq="${scrapList.trvSeq}">
+								data-ctyseq="${cityList.ctySeq}" data-trvseq="${scrapList.trvSeq}" 
+								data-url="${scrapList.mapURL}" data-catseq="${scrapList.catSeq}">
 							
 								<div class="image-box">
 								<div class="overlay-container">
@@ -120,7 +121,7 @@
 										<div class="modal-body">
 											<a href="javascript:;"><img
 												id="scrapTrvInfo-${scrapList.trvSeq}" src=""
-												style="float: right;" data-trvSeq="${scrapList.trvSeq}"
+												style="float: right;" data-trvseq="${scrapList.trvSeq}"
 												onclick="validate(${scrapList.trvSeq})" /></a>
 
 											<h2>
@@ -139,7 +140,7 @@
 											<div class="col-md-12">
 											<h3>위치 확인</h3>
 												<div class="row">
-													<div id="map" class="googlemap" data-url="${scrapList.mapURL}"></div>
+													<div id="map-${scrapList.trvSeq}" class="googlemap" data-url="${scrapList.mapURL}"></div>
 												</div>
 											</div>
 											<c:set var="reviewNum" value="${scrapList.trvSeq}" />

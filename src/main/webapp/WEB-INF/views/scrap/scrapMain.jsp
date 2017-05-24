@@ -78,7 +78,7 @@
 	<!-- banner start -->
 	<!-- ================ -->
 	<div id="banner" class="banner-addinfo">
-		<div class="banner-image banner-image-common">
+		<div class="banner-image1 banner-image-common">
 			<div class="backstretch mypage-backstretch" style="position:relative;">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/greece-santorini.jpg">
@@ -93,7 +93,7 @@
 	
 	
 	<!-- banner end -->
-	<div class="section" style="padding-bottom: 400px">
+	<div class="section">
 		<div class="container">
 			<c:import url="/WEB-INF/views/scrap/scrapInfo.jsp" />
 		</div>
@@ -116,18 +116,17 @@
 	</div> --%>
 	<!-- finder end -->
 
-	<!-- footer start -->
-	<!-- ================ -->
-<!-- 	<footer id="footer"> -->
-<%-- 		<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
-<!-- 	</footer> -->
-	<ol id="poollist">
-	</ol>
-	<!-- footer end -->
-
 	<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 	<div class="se-pre-con"></div>
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer">
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</footer>
+	<!-- footer end -->
+	
+	
 	
 	<!-- Jquery and Bootstap core js files -->
 	<script type="text/javascript"
@@ -183,8 +182,8 @@
 $(document).ready(function(){
 	
 	$('.modal').on('shown.bs.modal', function () {
-// 		console.log("ss");
-// 		showMap(tagId);
+		var trvSeq = $(this).find('div div.modal-body a img').data('trvseq');
+		showItemMap(trvSeq);
 	});
 	$( "#sortable" ).sortable({
 		 cursor: 'move',
@@ -200,7 +199,10 @@ $(document).ready(function(){
 // 				$( ".ui-state-default" ).eq(index).data('city_pos',index);
 // // 				console.log("wow");
 // 			})
+			// 여행 도시 순서 저장
 			saveCityOrder();
+			// 도시 이동시 맵 Draw
+			showCityNavMap("0");
 // 			var ctyseq=$( ".ui-state-default a" ).eq(idx).data('city-name');
 // 			console.log("done:"+ctyseq+","+ui.item.data('start_pos'));
 		}
@@ -323,7 +325,10 @@ $(document).ready(function(){
 // //   				console.log("wow");
 //   			})
 			var ctyseq = ui.item.data('ctyseq');
+			// 여행정보 순서 저장
 			saveTravelOrder(ctyseq);
+			// 도시 이동시 맵 Draw
+			showCityNavMap(ctyseq);
     	  }
     	});
     
@@ -403,24 +408,81 @@ function saveTravelOrder(citySeq){
 }
 
 function initMap() {
-	
-};
+	console.log("Hello");
+	showCityNavMap("0");
+	};
 
-function showCityNavMap(){
+	
+// 여행 경로 보여주기
+function showCityNavMap(citySeq){
+
+	// 구글맵 활성화가 안 되면 리턴
+	if (! $("#scrapmap").is('.googlemap'))
+		return;
+
+//  	console.log("구글맵 : " + citySeq);
+	var mapUrlList = [];
+	var tourDirection = [];
+	var idx=0;
+	// 기본 스크랩 도시 경로 div 설정
+	var startSearch = ".scrap-"+citySeq;
+
+	// 전체 일정 일 때는 전체 경로 표시 및 영역 크게
+	if(citySeq == '0'){
+		$("#scrapmap").css('height','600px');
+		startSearch = "#sortable li a"
+	} else {
+		$("#scrapmap").css('height','');
+	}
+	
+	$(startSearch).each(function(index){
+		
+		var url = $(this).data("url");
+		
+// 		console.log(url + catseq);
+		if (url == "" || url == undefined){
+			// 전체 일정 일 때는 filter로 for문 다시 처리 , 특정 도시 일때는 스킵
+			if(citySeq == '0'){
+				var filter = $(this).data("filter");
+				$(filter).each(function(index){
+					var chkUrl = $(this).data("url");
+					if(chkUrl != "" && chkUrl != undefined){
+						var catseq = $(this).data("catseq");
+				    	var locArray = chkUrl.split(",");
+				    	mapUrlList[idx] = [ 'A', $.trim(locArray[0]), $.trim(locArray[1]), idx+1, $(this).find("div.image-box a span").text(), catseq-2 ];
+				    	tourDirection[idx] = { lat: parseFloat($.trim(locArray[0])), lng: parseFloat($.trim(locArray[1])) };
+				    	idx++;
+					}
+				});
+			}
+	    } else {
+	    	
+	    	// 특정 도시 일 때 배열 저장, 전체 일정 일 때는  위 if문에서 처리하는 것 
+		    	var catseq = $(this).data("catseq");
+		    	var locArray = url.split(",");
+		    	
+		    	mapUrlList[idx] = [ 'A', $.trim(locArray[0]), $.trim(locArray[1]), idx+1, $(this).find("div.image-box a span").text(), catseq-2 ];
+		    	tourDirection[idx] = { lat: parseFloat($.trim(locArray[0])), lng: parseFloat($.trim(locArray[1])) };
+		    	idx++;
+	    }
+	//		
+	});
+	// 스크랩을 하나도 하지 않았을 경우 구글맵 생성 방지
+	if (idx == 0 ){
+		$("#scrapmap").removeClass("googlemap").addClass("text-center");
+		$("#scrapmap").html("<h2>스크랩 해주세요.</h2> <a href='http://localhost:9090/poorip/#portfolio'>스크랩 하러 가기</a>");	
+	   	return;
+    }
+	
+// 	console.log(tourDirection);
 	var bounds = new google.maps.LatLngBounds();
     var map = new google.maps.Map(document.getElementById('scrapmap'), {
          zoom: 15,
          center: {lat: 1.88934575, lng: 2.4879015},
-         mapTypeId: 'terrain'
+         mapTypeId: 'roadmap'
     });
 
-    var tourDirection = [
-    	{lat: 41.889886, lng:12.492031},
-   		{lat: 41.889778, lng:12.490612},
-   		{lat: 41.889517, lng:12.487460},
-		{lat: 41.888202, lng:12.481503}
-        ];
-        
+    // 경로 정의
 	var flightPath = new google.maps.Polyline({
           path: tourDirection,
           geodesic: true,
@@ -429,22 +491,16 @@ function showCityNavMap(){
           strokeWeight: 2
         });
         
-        
-	var beaches = [
-        	['진실의 입',41.889886, 12.492031,1,'aaaaa'],
-       		['콜로세움',41.889778, 12.490612,2,'bbbbb'],
-   			['우쭈쭈',41.889517, 12.487460,3,'cccccc'],
-			['잘 되면 대박',41.888202, 12.481503,4,'ddddddd']
-        	];
-//  var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+	var image = ['/poorip/assets/images/mapicon1.png', '/poorip/assets/images/mapicon2.png', '/poorip/assets/images/mapicon3.png' ];
 
         
 	// Add multiple markers to map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
 	// Place each marker on the map  
-    for( i = 0; i < beaches.length; i++ ) {
-    	var beach = beaches[i];
-        var position = new google.maps.LatLng(beach[1], beach[2]);
+    for( i = 0; i < mapUrlList.length; i++ ) {
+    	var mapItem = mapUrlList[i];
+        var position = new google.maps.LatLng(mapItem[1], mapItem[2]);
+//         console.log(position);
         bounds.extend(position);
         marker = new google.maps.Marker({
         	position: position,
@@ -452,11 +508,11 @@ function showCityNavMap(){
 // 	        icon: image,
 // 	        shape: shape,
     		nimation: google.maps.Animation.DROP,
-//     	    icon: image,
-    		label: beach[0],
-    		title: beach[0],
-    		zIndex: beach[3],
-    		info:beach[4]
+    	    icon: image[mapItem[5]],
+//     		label: mapItem[0],
+    		title: mapItem[0],
+    		zIndex: mapItem[3],
+    		info:mapItem[4]
         });
         
         // Add info window to marker    
@@ -469,11 +525,13 @@ function showCityNavMap(){
 
         // Center the map to fit all markers on the screen
         map.fitBounds(bounds);
+	    map.panToBounds(bounds)
     }
 
     // Set zoom level
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(14);
+        if (idx == 1) // 여행정보가 하나이면 중간 확대	
+    		this.setZoom(15);
         google.maps.event.removeListener(boundsListener);
     });   
 
@@ -481,7 +539,8 @@ function showCityNavMap(){
     flightPath.setMap(map);
 }
 
-function showMap(seq) {
+// 1개의 여행정보 지도 보여주기
+function showItemMap(seq) {
     var mapId = "map-"+seq;
     var url = $('#'+mapId).data("url");
     if (url == ""){
@@ -491,8 +550,6 @@ function showMap(seq) {
     }
     var locArray = url.split(",");
     var myLatlng = new google.maps.LatLng($.trim(locArray[0]),$.trim(locArray[1]));
-//	    console.log("url:"+url);
-    
     var mapOptions = {
       zoom: 15,
       center: myLatlng
@@ -506,24 +563,20 @@ function showMap(seq) {
     
 	// To add the marker to the map, call setMap();
     marker.setMap(map);
-
 }
 
 function showCityMap(citySeq){
-	console.log("showCityMap");
 	event.preventDefault();
 	var $scrapMap = $("#scrapmap");
 	var $mapBtn = $("#scrapMapBtn-"+citySeq);
 	if ($scrapMap.is('.googlemap')) {
-		$scrapMap.css('display','none');
-		$scrapMap.removeClass("googlemap");
+		$scrapMap.css('display','none').removeClass("googlemap");
 		$mapBtn.val('지도보기');
 
 	} else {
-		$scrapMap.addClass("googlemap");
-		$scrapMap.css('display','');
-		$mapBtn.val('지도가리기');
-		showCityNavMap();
+		$scrapMap.css('display','').addClass("googlemap");
+		$mapBtn.val('지도 숨기기');
+		showCityNavMap(citySeq);
 	}	
 }
 </script>

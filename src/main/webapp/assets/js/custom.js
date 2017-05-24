@@ -75,11 +75,11 @@ function validate(trvSeq) {
 			console.log(data);
 			if (data.result == "fail") {
 				console.log("삭제함");
-				likeIcon.src = "/poorip/assets/images/scrapicon.png";
+				likeIcon.src = "/poorip/assets/images/star_off.png";
 
 			} else {
 				console.log("스크랩함");
-				likeIcon.src = "/poorip/assets/images/scrapicon-scraped.png";
+				likeIcon.src = "/poorip/assets/images/star_on.png";
 			}
 			;
 		},

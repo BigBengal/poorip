@@ -53,7 +53,7 @@
 			});
 		}
 
-		//Smooth Scroll
+		//Smooth Scroll (현재 페이지에서만 이동)
 		//-----------------------------------------------
 		if ($(".smooth-scroll").length>0) {
 			$('.smooth-scroll a[href*=#]:not([href=#]), a[href*=#]:not([href=#]).smooth-scroll').click(function() {
@@ -69,7 +69,14 @@
 				}
 			});
 		}
-
+		// 외부 페이지에서 hash로 들어왔을 때
+		if(location.hash.length > 0){
+			var target = $('[id='+location.hash.slice(1)+']');
+			$('html,body').animate({
+				scrollTop: target.offset().top-151
+			}, 1000);
+		}
+		
 		// Animations
 		//-----------------------------------------------
 		if (($("[data-animation-effect]").length>0) && !Modernizr.touch) {
@@ -94,9 +101,9 @@
 			$(window).load(function() {
 				var containerWidth = $(".isotope-container").width();
 				var columnWidth = 0;
-				  if( containerWidth >= 970 ){
+				if( containerWidth >= 940 ){
 					  columnWidth = containerWidth / 4;
-				  } else if(containerWidth >= 750){
+				  } else if(containerWidth >= 720){
 					  columnWidth = containerWidth / 2;
 				  } else {
 					  columnWidth = containerWidth;
@@ -122,15 +129,17 @@
 					$(".filters").find("li.active").removeClass("active");
 					$(this).parent().addClass("active");
 					$container.isotope({ filter: filterValue,
-						 transitionDuration: '0.6s' })
-//					.css({
-//		    	        top: '0px'
-//		    	      })
-		    	      ;
+						 transitionDuration: '0.6s' });
+					
+					var cityName = $(this).attr('data-city-name');
+					
+					// sortable 이 있으면(my스크랩) 지도 변경
+					if($('#sortable').length > 0 ) {
+						showCityNavMap(cityName);
+					}
 					
 					// 달력이 있으면 달력 초기화
 					if ($('.fromDatePick').length>0) {
-						var cityName = $(this).attr('data-city-name');
 						$('#fromDate-'+cityName).datepicker( "option", "maxDate", null );
 						$('#toDate-'+cityName).datepicker( "option", "minDate", null );
 					}
@@ -142,14 +151,14 @@
 			$(window).resize(function(){
 				var containerWidth = $(".isotope-container").width();
 				var columnWidth = 0;
-				  if( containerWidth >= 970 ){
+				  if( containerWidth >= 940 ){
 					  columnWidth = containerWidth / 4;
-				  } else if(containerWidth >= 750){
+				  } else if(containerWidth >= 720){
 					  columnWidth = containerWidth / 2;
 				  } else {
 					  columnWidth = containerWidth;
 				  };
-				  
+				  console.log("columnWidth:"+columnWidth);
 				  $('.isotope-container').isotope({
 						masonry: {
 							  columnWidth: columnWidth

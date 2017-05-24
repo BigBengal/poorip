@@ -3,11 +3,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script>
+function toggleFooter(){
+	console.log('toggleFooter');
+	var $footer = $('.footer.section'); 
+	if( $footer.is('.footer_hide') ) {
+		$footer.removeClass('footer_hide');
+	} else {
+		$footer.addClass('footer_hide');
+	}
+}
+function showHelp(){
+	console.log('showHelp');
+}
+function goTop(){
+	var target = $('#banner');
+	$('html,body').animate({
+		scrollTop: target.outerHeight()-72
+	}, 1000);
+}
+</script>
 
 <!-- .footer start -->
 <!-- ================ -->
-<div class="footer section">
+<div class="footer section footer_hide">
 	<div class="container">
 		<h1 class="title text-center" id="contact"><span style="color: #75ccff">의견</span>을 듣고 싶습니다</h1>
 		<div class="space"></div>
@@ -90,14 +109,25 @@
 <div class="subfooter">
 	<div class="container">
 		<div class="row">
+			<div class="col-md-12 text-center">
+				<span style="padding: 0px 10px;"><a href="javascript:showHelp();" target="_blank">Help</a></span>
+				<span style="padding: 0px 10px;"><a href="javascript:toggleFooter();">Request</a></span>
+				
+			</div>
+		</div>
+		<div class="space"></div>
+		<div class="row">
 			<div class="col-md-12">
 				<p class="text-center">
 					Copyright © 2017 Created by <a target="_blank"
-						href="https://github.com/BigBengal/poorip">BigBengal</a>.
+						href="https://www.facebook.com/groups/595682550640313/">BigBengal</a>.
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- .subfooter end -->
 
+<!-- .subfooter end -->
+<div style="position: fixed; z-index: 9999; right: 0px; bottom: 0px;">
+	<a href="javascript:goTop();"><img src="/poorip/assets/images/top.png"></a>
+</div>
