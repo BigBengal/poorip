@@ -221,7 +221,7 @@ public class MatchingService {
 
 				if(foodHit != 0 && sightHit != 0 && activityHit != 0 && luxuryHit != 0 && sumHit != 0 
 						&& myFoodHit != 0 && mySightHit != 0 && myActivityHit != 0  && myLuxuryHit != 0 && mySumHit != 0){
-
+					
 					//---------------------------------음식점 점수 계산-----------------------------------------------------			
 					foodScore = (Math.abs((Math.abs(sumHit/foodHit))-(Math.abs(mySumHit/myFoodHit)))) * 100;
 					userScore.setFoodScore(foodScore);
@@ -287,6 +287,45 @@ public class MatchingService {
 	}
 
 	public List<UserVo> addUsrOtherInfo(List<UserVo> samePlanMember) {
+		double memberScoreTotal = 0;
+		double memberFoodTotal = 0;
+		double memberSightTotal = 0;
+		double memberActivityTotal = 0;
+		double memberLuxuryTotal = 0;
+		
+		for(int i=0; i<samePlanMember.size(); i++) {
+			memberScoreTotal += samePlanMember.get(i).getMatchingScore();
+			memberFoodTotal += samePlanMember.get(i).getFoodScore();
+			memberSightTotal += samePlanMember.get(i).getSightScore();
+			memberActivityTotal += samePlanMember.get(i).getActivityScore();
+			memberLuxuryTotal += samePlanMember.get(i).getLuxuryScore();
+		}
+		
+		for(int j=0; j<samePlanMember.size(); j++) {
+			double matchingScore = samePlanMember.get(j).getMatchingScore();
+			double foodScore = samePlanMember.get(j).getFoodScore();
+			double sightScore = samePlanMember.get(j).getSightScore();
+			double activityScore = samePlanMember.get(j).getActivityScore();
+			double luxuryScre  = samePlanMember.get(j).getLuxuryScore();
+			
+			double divScoretoTotal = matchingScore/memberScoreTotal;
+			double divFoodtoTotal = foodScore/memberFoodTotal;
+			double divSighttoTotal = sightScore/memberSightTotal;
+			double divActivitytoTotal = activityScore/memberActivityTotal;
+			double divLuxurytoTotal = luxuryScre/memberLuxuryTotal;
+			
+			int matchingPercentage = (int) (divScoretoTotal * 100);
+			int foodPercentage = (int) (divFoodtoTotal * 100);
+			int sightPercentage = (int) (divSighttoTotal * 100);
+			int activityPercentage = (int) (divActivitytoTotal * 100);
+			int luxuryPercentage = (int) (divLuxurytoTotal * 100);
+			
+			samePlanMember.get(j).setMatchingScore(matchingPercentage);
+			samePlanMember.get(j).setFoodScore(foodPercentage);
+			samePlanMember.get(j).setSightScore(sightPercentage);
+			samePlanMember.get(j).setActivityScore(activityPercentage);
+			samePlanMember.get(j).setLuxuryScore(luxuryPercentage);
+		}
 		return matchingDao.addUsrOtherInfo( samePlanMember );
 	}
 
