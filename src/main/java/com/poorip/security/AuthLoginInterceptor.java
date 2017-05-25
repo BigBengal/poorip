@@ -50,6 +50,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		// 이미 세션이 있으면 저장 하지 않음
 		if(session.getAttribute("authUser") != null ){
 			response.sendRedirect(request.getContextPath()+"/user/facebookinfo");
+			return false;
 		} else {
 			session.setAttribute("authUser", userVo);
 		}

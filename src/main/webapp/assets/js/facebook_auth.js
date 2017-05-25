@@ -85,7 +85,7 @@ function testAPI() {
 				birthday: response.birthday
 	        },
 	        function(data,status){
-	        	$("#loginpic").attr("src",response.picture.data.url);
+	        	$("#loginpic").attr("src",data);
 //	        	console.log(data);
 	        	if (data == "addinfo"){
 	        		// 다이얼로그로 띄우기 후 페이지 이동
