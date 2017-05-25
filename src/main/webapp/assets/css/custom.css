@@ -351,3 +351,23 @@ File Description: Place here your custom CSS styles
 .sns-share-button {
 	min-width:60px;
 }
+
+.sns-post-footer {
+	width: 3%;
+    display: inline-block;
+    min-width: 20px;
+}
+
+.form-group.sns-date {
+	float:right;
+}
+
+.col-md-5.sns-date {
+	
+	float:right;
+	width:100%;
+}
+
+.edit-main.block {
+	margin-top:10%;
+}
