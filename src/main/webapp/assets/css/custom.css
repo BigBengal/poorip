@@ -150,6 +150,10 @@ File Description: Place here your custom CSS styles
     left: -1px;
     right: -1px;
     top: -1px;
+    padding-top:10px;
+    width: 30%;
+    margin-right: 10px;
+    
 }
 .poolmember span{
 	display : block;
@@ -262,7 +266,7 @@ File Description: Place here your custom CSS styles
 }
 
 #banner .mypage-backstretch img {
-	-webkit-mask-image: -webkit-gradient(linear, left 450, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -350,4 +354,29 @@ File Description: Place here your custom CSS styles
 
 .sns-share-button {
 	min-width:60px;
+}
+
+.sns-post-footer {
+	width: 3%;
+    display: inline-block;
+    min-width: 20px;
+}
+
+.form-group.sns-date {
+	float:right;
+}
+
+.col-md-5.sns-date {
+	
+	float:right;
+	width:100%;
+}
+
+.edit-main.block {
+	margin-top:10%;
+}
+
+.sns-image img {
+	width:500px;
+	margin:auto;
 }

@@ -99,7 +99,7 @@ public class UserController {
 	@ResponseBody	
 	@RequestMapping("facebookinfo")
 	public String facebookinfo(@AuthUser UserVo userVo){
-		return userVo.getUsrNick();
+		return userVo.getUsrProfile();
 	}
 	
 	// 페북 로그인 버튼으로 로그인시, 최초 가입 통신 리턴 값 전용
@@ -124,7 +124,7 @@ public class UserController {
 	@Auth
 	@RequestMapping("/addinfo")
 	public String addInfo(Model model, @AuthUser UserVo authUser){
-		logger.info("addinfo() Start");
+//		logger.info("addinfo() Start");
 		UserVo uservo = userService.getUser(authUser);
 		model.addAttribute("user", uservo);
 		return "user/addinfo";

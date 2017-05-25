@@ -6,6 +6,8 @@
 <!-- 글 수정 -->
 <div class="row object-non-visible " data-animation-effect="fadeIn">
 	<div class="container">
+	<a href="javascript:;">
+				<button id="sns-write-button" type="button" onclick="showWrite();" style="float:right">글쓰기</button></a>
 		<div class="block" style="padding-top: 30px" id="sns-edit-form">
 			<form class="form-horizontal" id="sns-edit-ajax"
 				action="${pageContext.request.contextPath}/sns/editPost"
@@ -15,9 +17,8 @@
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 				<input class="ignore" id="postSeq" type="hidden" name="postSeq" value=""> 
 				<input class="ignore" id="postPicSeqArray" type="hidden" name="postPicSeqArray" value=""> 
-				<a href="javascript:;">
-				<button id="sns-write-button" type="button" onclick="showWrite();" style="float:right">글쓰기</button></a>
-				<div class="write-main block" id="sns-edit" style="display: none;">
+				
+				<div class="edit-main block" id="sns-edit" style="display: none;">
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="title">제목 : </label>
 						<div class='col-sm-7'>
@@ -164,7 +165,7 @@
 					</div>
 					<div class="form-group" style="width: 70%; margin: auto; margin-left: 28%; margin-bottom: 5%;  "id="div-share-show">
 						<div class="row">
-						    <div class="col-xs-5" style="width:30%">
+						    <div class="col-xs-5" style="width:33%">
 						        <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
 						        	<c:forEach items="${poolpartyList }" var="poolpartyList" varStatus="status">
 						        		<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
@@ -177,7 +178,7 @@
 						        <button type="button" id="js_left_Selected_1" class="btn btn-block sns-share-button"><i class="glyphicon glyphicon-chevron-left"></i></button>
 						        <button type="button" id="js_left_All_1" class="btn btn-block sns-share-button"><i class="glyphicon glyphicon-backward"></i></button>
 						    </div>
-						    <div class="col-xs-5" style="width:30%">
+						    <div class="col-xs-5" style="width:33%">
 						        <select name="to[]" id="js_multiselect_to_1" class="form-control" size="8" multiple="multiple"></select>
 						    </div>
 						</div>

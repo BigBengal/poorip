@@ -95,7 +95,7 @@
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
 						<h1 class="text-center">
-							${authUser.usrNick}'s <span>Travel Story</span>
+							${authUser.usrNick}'s <br> <span style="font-family:'Pacifico'">Travel Story</span>
 						</h1>
 					</div>
 				</div>
@@ -228,7 +228,7 @@
 	<div class="se-pre-con"></div>
 	<!-- footer start -->
 	<!-- ================ -->
-	<footer id="footer">
+	<footer id="footer" style="background-color:#f2f2f2">
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->

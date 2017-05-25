@@ -3,8 +3,8 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo ) {
-   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;'>" + 
-   					"<div class='form-group'   style='padding-top: 30px; background-color:#4682B4; margin-right: 0px;" +
+   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ; box-shadow: 2px 2px 2px #888888 ;' >" + 
+   					"<div class='form-group'   style='padding-top: 30px; background-color:#ccd9ff; margin-right: 0px;" +
                     "margin-left: 0px;'>" + 
                      "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
                   "</div>" +
@@ -22,8 +22,8 @@ var post_render = function( vo ) {
 
 
 var edit_post_render = function( vo ) {
-	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;'>" + 
-	   					"<div class='form-group'  style='padding-top: 30px; background-color:#4682B4; margin-right: 0px;" +
+	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;' box-shadow: 2px 2px 2px #888888 ;'>" + 
+	   					"<div class='form-group'  style='padding-top: 30px; background-color:#ccd9ff; margin-right: 0px;" +
                         "margin-left: 0px;'>" + 
 	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
 	                  "</div>" +
@@ -42,7 +42,7 @@ var edit_post_render = function( vo ) {
 
 var postPic_render = function(vo2, vo) {
    if(vo2.fileName!=null) {
-   var postPic_html = "<a href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' ></a>";
+   var postPic_html = "<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + " style='width=500px; margin:auto;' ></a>";
                               
 
                   $( "#first-html-"+vo.postSeq ).append(postPic_html);
@@ -63,14 +63,13 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
                   "<div class='form-group' style='display: block;margin:auto; width:40%;'>" +
                   "<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
                "</div>" + 
-               "<div class='form-group'>" +
-                  "<p class='col-md-7'> </p>" +
-                  "<p class='col-md-5' align='left'>" + vo.crtDate + "</p>" +
+               "<div class='form-group sns-date' >" +
+                  "<p class='col-md-5 sns-date'  align='left'>" + vo.crtDate + "</p>" +
                "</div>" +
-               "<div class='form-group' style='display:block; text-align:center; width:100%; margin-bottom:20%'>" +
-                  "<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 5%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-                     "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")'></a>" +
-                     "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 5%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")' class='sns-post-edit'><a/>" + 
+               "<div class='form-group' style='display:block; text-align:center; width:100%; margin-bottom:10%; margin-left: 0px; clear:both;'>" +
+                  "<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
+                     "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' class='sns-post-footer' id='share-dialog' style='width: 3%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")'></a>" +
+                     "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")' class='sns-post-edit'><a/>" + 
                   "</div></div>";
 
                $("#middle-html-"+postPicSeq).after(last_html);
@@ -83,14 +82,13 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
 		"<div class='form-group'>" +
 				"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
 		"</div>" + 
-		"<div class='form-group'>" +
-				"<p class='col-md-7'> </p>" +
-				"<p class='col-md-5' align='left'>" + vo.crtDate + "</p>" +
+		"<div class='form-group sns-date' >" +
+				"<p class='col-md-5 sns-date'    align='left'>" + vo.crtDate + "</p>" +
 		"</div>" +
-		"<div class='form-group' style='text-align:center; display:block; width:100%; margin-bottom:20%'>" +
-				"<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' style='width: 5%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-				 "<a href=javascript:;><img alt='공유' src='/poorip/assets/images/share-btn.png' id='share-dialog' style='width: 5%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")' ></a>" +
-				 "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' style='width: 5%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'  class='sns-post-edit'></a>" + 
+		"<div class='form-group' style='text-align:center; display:block; width:100%; margin-bottom:10%; margin-left: 0px; clear:both;'>" +
+				"<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
+				 "<a href=javascript:;><img alt='공유' src='/poorip/assets/images/share-btn.png' class='sns-post-footer' id='share-dialog' style='width: 3%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")' ></a>" +
+				 "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'  class='sns-post-edit'></a>" + 
 		"</div>" ;
 
 $("#first-html-"+vo.postSeq).after(last_html);
