@@ -79,7 +79,7 @@
 <script>
 $(document).ready(function(){
 
-	$(".banner-image").backstretch('/poorip/assets/images/bg-image-4.jpg');				
+	$(".banner-image").backstretch('/poorip/assets/images/bg-image-7.jpg');				
 		
 // 	$("#navbar-collapse-1 ul li").eq(0).removeClass("active");
 // 	$("#navbar-collapse-1 ul li").eq(1).addClass("active");
@@ -213,7 +213,7 @@ function searchPool(){
 			</div>
 		</div>
 		<div class="banner-caption">
-			<div class="container">
+			<div class="container" >
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
@@ -262,8 +262,8 @@ function searchPool(){
 		</div>
 	</div>
 	<div class="container">
-		<p/>
-		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea">
+		<div style="font-family:'Pacifico'; text-align:center"><h2 style="margin:50px 0;">Member 모집 중인 Pool 파티</h2></div>
+		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea" style="margin-top:10px;">
 			<c:forEach var="list" items="${top10 }">
 				<div class="col-md-4 poolmember">
 					<div class="col-md-5 text-right">

@@ -3,8 +3,8 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo ) {
-   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:#f2f2f2 ; box-shadow: 2px 2px 2px #888888 ;' >" + 
-   					"<div class='form-group'   style='padding-top: 30px; background-color:#e6eeff; margin-right: 0px;" +
+   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ; box-shadow: 2px 2px 2px #888888 ;' >" + 
+   					"<div class='form-group'   style='padding-top: 30px; background-color:#ccd9ff; margin-right: 0px;" +
                     "margin-left: 0px;'>" + 
                      "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
                   "</div>" +
@@ -22,8 +22,8 @@ var post_render = function( vo ) {
 
 
 var edit_post_render = function( vo ) {
-	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: #f2f2f2;'>" + 
-	   					"<div class='form-group'  style='padding-top: 30px; background-color:#e6eeff; margin-right: 0px;" +
+	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;' box-shadow: 2px 2px 2px #888888 ;'>" + 
+	   					"<div class='form-group'  style='padding-top: 30px; background-color:#ccd9ff; margin-right: 0px;" +
                         "margin-left: 0px;'>" + 
 	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
 	                  "</div>" +
@@ -42,7 +42,7 @@ var edit_post_render = function( vo ) {
 
 var postPic_render = function(vo2, vo) {
    if(vo2.fileName!=null) {
-   var postPic_html = "<a href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' ></a>";
+   var postPic_html = "<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' ></a>";
                               
 
                   $( "#first-html-"+vo.postSeq ).append(postPic_html);
