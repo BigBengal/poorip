@@ -46,8 +46,6 @@ public class MatchingController {
 		
 		model.addAttribute( "matchingScore", matchingScore );
 		model.addAttribute( "samePlanMemeber", samePlanMemeber );
-		
-		System.out.println(matchingScore);
 
 		return "/matching/matchingMain";
 	}

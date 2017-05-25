@@ -82,6 +82,7 @@ public class MatchingService {
 		for (int x = 1; x < myCityList.size(); x++) {
 			String targetDateFrom = myCityList.get(x).getDateFrom();
 			String targetDateTo = myCityList.get(x).getDateTo();
+			
 			Date targetFrom = format.parse(targetDateFrom);
 			Date targetTo = format.parse(targetDateTo);
 
@@ -90,10 +91,12 @@ public class MatchingService {
 			// 내가 스크랩한 도시를 같이 스크랩 한 사용자 스크랩 정보
 			for (int y = 0; y < scrapCityVo.size(); y++) {
 				if (scrapCityVo.get(y) != null) { // NULL 경우가 있음
+					UserVo dateScore = new UserVo(); // 유저 정보 저장용
 					int matchingUsrSeq = scrapCityVo.get(y).getUsrSeq();
 
 					String usersDateFrom = scrapCityVo.get(y).getDateFrom();
 					String usersDateTo = scrapCityVo.get(y).getDateTo();
+				
 					Date usersFrom = format.parse(usersDateFrom);
 					Date usersTo = format.parse(usersDateTo);
 
@@ -124,32 +127,28 @@ public class MatchingService {
 					long overlapDays = diff / (24 * 60 * 60 * 1000);
 					overlapDaysScore = (int) (overlapDays ^ 2);
 
-					// dateScore.setUsrSeq(scrapCityVo.get(y).getUsrSeq());
-					// dateScore.setDateScore(overlapDaysScore);
-
-					boolean isExistUsr = false;
 					int listSize = samePlanMember.size();
-					// 유저가 이미 리스트에 추가되어 있으면 값을 더해주고
+
 					for (int z = 0; z < listSize; z++) {
+						// 유저가 이미 리스트에 추가되어 있으면 값을 더해주고
 						if (matchingUsrSeq == samePlanMember.get(z).getUsrSeq()) {
-							int originalScore = samePlanMember.get(z).getDateScore();
-							samePlanMember.get(z).setDateScore(originalScore + overlapDaysScore);
-							isExistUsr = true;
+							int originalMatchingScore = samePlanMember.get(z).getMatchingScore();
+							
+							samePlanMember.get(z).setDateScore(overlapDaysScore); // + originalScore
+							samePlanMember.get(z).setMatchingScore(originalMatchingScore + overlapDaysScore );
 						}
 					}
-					// 리스트에 없으면 리스트에 추가
-					if (!isExistUsr) {
-						UserVo dateScore = new UserVo(); // 유저 정보 저장용
-						dateScore.setUsrSeq(matchingUsrSeq);
+					
+					if(listSize == 0){
+						dateScore.setUsrSeq(scrapCityVo.get(y).getUsrSeq());
 						dateScore.setDateScore(overlapDaysScore);
+						samePlanMember.add(dateScore);
 					}
-
 				} // NULL 경우가 있음
 
 			} // for(int y=0; y < scrapCityVo.size(); y++){
 
 		} // for(int x=1; x < myCityList.size(); x++)
-
 		return addUsrOtherInfo(samePlanMember);
 	}
 
@@ -160,7 +159,6 @@ public class MatchingService {
 			List<UserVo> matchingList,		// 나를 뺀 전체 유저 리스트
 			List<UserVo> dateScoreList)		// 일정 매칭 스코어 리스트
 					throws Exception{
-
 		//-----------------카테고리별 배열을 선언------------------------------------------------
 		// 이건 내꺼
 		int myFoodHit = myInfo.getFoodHit();
@@ -171,7 +169,7 @@ public class MatchingService {
 
 		List<UserVo> matchingScoreList = new ArrayList<UserVo>();
 
-		for(int i=0; i<matchingList.size(); i++) {
+		for(int i=0; i<matchingList.size(); ++i) {
 			if( matchingList.get(i).getUsrSeq() != myInfo.getUsrSeq() ) {
 				// 이거 사람들꺼
 				int foodHit = matchingList.get(i).getFoodHit();
@@ -209,11 +207,13 @@ public class MatchingService {
 						surveyScore = surveyScore + 20; 
 					if(myInfo.getUsrPref5().equals(userScore.getUsrPref5()))
 						surveyScore = surveyScore + 20;
+					
 					userScore.setUseriSurveyScore(surveyScore);
 				} else {
 					userScore.setUsrSeq( usrSeq_survey );
 					userScore.setUseriSurveyScore(surveyScore);
 				}
+				
 				int foodScore = 0;
 				int sightScore = 0;
 				int activityScore = 0;
@@ -223,19 +223,25 @@ public class MatchingService {
 						&& myFoodHit != 0 && mySightHit != 0 && myActivityHit != 0  && myLuxuryHit != 0 && mySumHit != 0){
 					
 					//---------------------------------음식점 점수 계산-----------------------------------------------------			
-					foodScore = (Math.abs((Math.abs(sumHit/foodHit))-(Math.abs(mySumHit/myFoodHit)))) * 100;
+					double food = (Math.abs((Math.abs(foodHit/sumHit))-(Math.abs(myFoodHit/mySumHit))));
+					double fooood = (double) (foodHit/sumHit);
+					foodScore = (int) food*100;
+					System.out.println("aaaaaaaaaaa"+sumHit);
+					System.out.println("bbbbbbbbbbb"+foodHit);
+					
+					System.out.println(fooood);
 					userScore.setFoodScore(foodScore);
 
 					//---------------------------------관광지 점수 계산-----------------------------------------------------
-					sightScore = (Math.abs((Math.abs(sumHit/sightHit))-(Math.abs(mySumHit/mySightHit)))) * 100;
+					sightScore = (Math.abs((Math.abs(sightHit/sumHit))-(Math.abs(mySightHit/mySumHit)))) * 100;
 					userScore.setSightHit(sightScore);
 
 					//--------------------------------activity 점수 계산-----------------------------------------------------
-					activityScore = (Math.abs((Math.abs(sumHit/activityHit))-(Math.abs(mySumHit/myActivityHit/mySumHit)))) * 100;
+					activityScore = (Math.abs((Math.abs(activityHit/sumHit))-(Math.abs(myActivityHit/mySumHit)))) * 100;
 					userScore.setActivityScore(activityScore);
 
 					//---------------------------------럭셔리 점수 계산-----------------------------------------------------
-					luxuryScore = (Math.abs((Math.abs(foodHit/luxuryHit))-(Math.abs(myFoodHit/myLuxuryHit)))) * 100;
+					luxuryScore = (Math.abs((Math.abs(luxuryHit/foodHit))-(Math.abs(myLuxuryHit/myFoodHit)))) * 100;
 					userScore.setLuxuryScore(luxuryScore);
 
 				} else {
@@ -255,7 +261,6 @@ public class MatchingService {
 		//----------------------------------다른 사용사와 겹치는 일정 계산-----------------------------------------------------
 		// 일정 점수 추가
 		for(int i=0; i<matchingScoreList.size();i++){
-
 			for(int j=0; j<dateScoreList.size();j++){
 				// usrSeq가 일치하면 
 				if ( matchingScoreList.get(i).equals(dateScoreList.get(j)) ){
@@ -271,7 +276,7 @@ public class MatchingService {
 				}
 			}
 		}
-
+		
 		return getTopMatchingMember( matchingScoreList );
 	}
 
@@ -292,6 +297,7 @@ public class MatchingService {
 		double memberSightTotal = 0;
 		double memberActivityTotal = 0;
 		double memberLuxuryTotal = 0;
+		double memberDateScoreTotal = 0;
 		
 		for(int i=0; i<samePlanMember.size(); i++) {
 			memberScoreTotal += samePlanMember.get(i).getMatchingScore();
@@ -299,6 +305,7 @@ public class MatchingService {
 			memberSightTotal += samePlanMember.get(i).getSightScore();
 			memberActivityTotal += samePlanMember.get(i).getActivityScore();
 			memberLuxuryTotal += samePlanMember.get(i).getLuxuryScore();
+			memberDateScoreTotal += samePlanMember.get(i).getDateScore();
 		}
 		
 		for(int j=0; j<samePlanMember.size(); j++) {
@@ -306,25 +313,29 @@ public class MatchingService {
 			double foodScore = samePlanMember.get(j).getFoodScore();
 			double sightScore = samePlanMember.get(j).getSightScore();
 			double activityScore = samePlanMember.get(j).getActivityScore();
-			double luxuryScre  = samePlanMember.get(j).getLuxuryScore();
+			double luxuryScore  = samePlanMember.get(j).getLuxuryScore();
+			double dateScore = samePlanMember.get(j).getDateScore();
 			
 			double divScoretoTotal = matchingScore/memberScoreTotal;
 			double divFoodtoTotal = foodScore/memberFoodTotal;
 			double divSighttoTotal = sightScore/memberSightTotal;
 			double divActivitytoTotal = activityScore/memberActivityTotal;
-			double divLuxurytoTotal = luxuryScre/memberLuxuryTotal;
+			double divLuxurytoTotal = luxuryScore/memberLuxuryTotal;
+			double divDatetoTotal = dateScore/memberDateScoreTotal;
 			
 			int matchingPercentage = (int) (divScoretoTotal * 100);
 			int foodPercentage = (int) (divFoodtoTotal * 100);
 			int sightPercentage = (int) (divSighttoTotal * 100);
 			int activityPercentage = (int) (divActivitytoTotal * 100);
 			int luxuryPercentage = (int) (divLuxurytoTotal * 100);
+			int datePercentage = (int) (divDatetoTotal * 100);
 			
 			samePlanMember.get(j).setMatchingScore(matchingPercentage);
 			samePlanMember.get(j).setFoodScore(foodPercentage);
 			samePlanMember.get(j).setSightScore(sightPercentage);
 			samePlanMember.get(j).setActivityScore(activityPercentage);
 			samePlanMember.get(j).setLuxuryScore(luxuryPercentage);
+			samePlanMember.get(j).setDateScore(datePercentage);
 		}
 		return matchingDao.addUsrOtherInfo( samePlanMember );
 	}
