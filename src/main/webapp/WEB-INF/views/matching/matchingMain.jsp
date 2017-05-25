@@ -108,109 +108,10 @@
 <!-- Vaildation-->
 <script
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
+<!-- chart -->
+<script
+	src="${pageContext.request.contextPath }/assets/js/matching.js"></script>
 
-
-
-<script>
-	$(document).ready(function() {
-		$(".banner-image").backstretch('/poorip/assets/images/matching-background.jpg');
-		showChart();
-	});
-				
-	
-	$(window).load(function() {
-		// Animate loader off screen
-		$(".se-pre-con").fadeOut("slow");
-		;
-	});
-	
-
-function showChart() {
-	console.log("uauauaua");
-	var dataSource = [];
-	var showChart = "div div #chart";
-	
-	$(showChart).each(function (index){
-		
-		var usrSeq = $(this).data("usrSeq");
-		var foodScore = $(this).data("foodScore");
-		var sightScore = $(this).data("sightScore");
-		var activityScore = $(this).data("activityScore");
-		var luxuryScore = $(this).data("luxuryScore");
-		var dateScore = $(this).data("dateScore");
-		var useriSurveyScore = $(this).data("useriSurveyScore");
-		
-		dataSource[index] = [{
-			arg: "일정",
-			value: dateScore
-		}, {
-			arg: "음식취향",
-			value: foodScore
-		}, {
-			arg: "관광취향",
-			value: sightScore
-		}, {
-			arg: "활동적 지수",
-			value: activityScore
-		}, {
-			arg: "럭셔리",
-			value: luxuryScore
-		}, {
-			arg: "성향",
-			value: useriSurveyScore
-		}];
-		
-	    $("#chart").dxPolarChart({
-	        dataSource: dataSource,
-	        useSpiderWeb: true,
-	        series: [{ valueField: "value"}],
-	        commonSeriesSettings: {        
-	            type: "line"
-	        },
-	        tooltip: {
-	            enabled: true
-	        }
-	    });
-	    
-	});
-
-}
-	
-// 	$(function chart(){
-// 	    $("#chart").dxPolarChart({
-// 	        dataSource: dataSource,
-// 	        useSpiderWeb: true,
-// 	        series: [{ valueField: "oranges", name: "Oranges" }],
-// 	        commonSeriesSettings: {        
-// 	            type: "line"
-// 	        },
-// 	        tooltip: {
-// 	            enabled: true
-// 	        }
-// 	    });
-// 	});
-
-// 	var dataSource = [{
-// 	    arg: "일정",
-// 	    oranges: 63
-// 	}, {
-// 	    arg: "음식 취향",
-// 	    oranges: 82
-// 	}, {
-// 	    arg: "관광  취향",
-// 	    oranges: 5
-// 	}, {
-// 	    arg: "활동적 지수",
-// 	    oranges: 90
-// 	}, {
-// 	    arg: "럭셔리",
-// 	    oranges: 24
-// 	}, {
-// 	    arg: "성향",
-// 	    oranges: 40
-// 	}];
-
-</script>
 </head>
 <body class="no-trans">
 
@@ -269,28 +170,28 @@ function showChart() {
 		<c:forEach var="matchingScore" items="${matchingScore }"
 			varStatus="status">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3" >
 					<a href="#"> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
 						style="width: 80%">
 					</a>
 				</div>
-					<div class="col-md-6">
-						<input type="hidden" id="usrSeq" value="${matchingScore.usrSeq }">
-						<h3>${matchingScore.usrNick}</h3>
-						<h4>Subheading</h4>
-						<p>${matchingScore.usrInfo}</p>
-						<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
-						<a class="btn btn-primary" href="#" onclick="makePool()">make
-							a pool <span class="glyphicon glyphicon-chevron-right"></span>
+				<div class="col-md-5">
+					<input type="hidden" id="usrSeq" value="${matchingScore.usrSeq }">
+					<h3>${matchingScore.usrNick}</h3>
+					<h4>Subheading</h4>
+					<p>${matchingScore.usrInfo}</p>
+					<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
+					<a class="btn btn-primary" href="#" onclick="makePool()">make
+						a pool <span class="glyphicon glyphicon-chevron-right"></span>
 						</a>
-					</div>
-				<div class="col-md-3" data-usrSeq="${matchingScore.usrSeq }" data-foodScore="${matchingScore.usrSeq }"
-					data-sightScore="${matchingScore.sightScore }" data-activityScore="${matchingScore.activityScore }"
-					data-luxuryScore="${matchingScore.luxuryScore }" data-dateScore="${matchingScore.dateScore }"
-					data-useriSurveyScore="${matchingScore.useriSurveyScore }">
+				</div>
+				<div class="col-md-4 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
+							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
+							data-luxuryscore="${matchingScore.luxuryScore }" data-datescore="${matchingScore.dateScore }"
+							data-userisurveyscore="${matchingScore.useriSurveyScore }">
 					<div class="col-md-12 dx-viewport demo-container" style="height: 245px; top: -87px">
-						<div id="chart"></div>
+						<div id="chart-${matchingScore.usrSeq }" style="width: 100%"></div>
 					</div>
 				</div>
 			</div>
