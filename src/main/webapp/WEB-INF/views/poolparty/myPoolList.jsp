@@ -249,7 +249,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			</div>
 			<div class="row">
 				<c:forEach var="requestList" items="${requestList}">
-					<div class="col-md-6 poolmember" id="request-${requestList.poolMemSeq}">
+					<div class="col-md-6 poolmember"  id="request-${requestList.poolMemSeq}">
 						
 						<div class="col-md-4">
 							<img src="/poorip${requestList.poolPic}">

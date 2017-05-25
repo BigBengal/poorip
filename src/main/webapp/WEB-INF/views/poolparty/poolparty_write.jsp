@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="container col-md-12">
+<div class="container col-md-9">
 <!-- 글 작성 -->
 	<form class="form-horizontal"
 		action="${pageContext.request.contextPath}/poolparty/post" method="post" enctype="multipart/form-data">
