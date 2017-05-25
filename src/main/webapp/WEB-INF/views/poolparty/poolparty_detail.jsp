@@ -106,7 +106,7 @@
 <div style="height: 200px;">
 </div>
 
-
+<div class="container">
 <!-- 풀파티 설정 -->
 <div id="dialog-form" title="풀파티 설정 변경">
 <form class="form-horizontal" id="poolsetting" action="saveSetting" method="post" enctype="multipart/form-data">
@@ -118,7 +118,7 @@
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="comment">풀파티 코멘트</label>
-		<input type="text" name="poolComment" id="comment" value="${pool.poolComment}" class="text ui-widget-content ui-corner-all">
+		<input type="text" name="poolComment" id="comment" value="${pool.poolComment}" maxlength="150" class="text ui-widget-content ui-corner-all">
 	</div>
 	<div class="form-group">
 		<label class="control-label" for="pic">풀파티 이미지</label>
@@ -165,17 +165,18 @@
 </fieldset>
 </form>
 </div>
-
-
+<div class="pool-detail-name">
+<h1>${pool.poolName} 
+		</h1>
+		</div>
 <!-- 풀파티 상단 내용 -->
-<div class="col-md-10">
+<div class="col-md-9 pool-partydetail-header">
 	<div class="col-md-5">
 		<img src="/poorip${pool.poolPic}">
 	</div>
 	<div class="col-md-7">
 		<div class="col-md-10">
-		<h1>${pool.poolName} 
-		</h1>
+		
 		</div>
 		<div class="col-md-2">
 			<c:choose>
@@ -224,7 +225,7 @@
 
 </div>
 <!-- 풀파티 맴버 -->
-<div class="col-md-2 hidden-xs">
+<div class="col-md-2 hidden-xs" style="width:20%;">
 풀파티 맴버
 <c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 	<div class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links" data-usrseq="${memberlist.usrSeq}">
@@ -305,5 +306,6 @@
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
+</div>
 </body>
 </html>

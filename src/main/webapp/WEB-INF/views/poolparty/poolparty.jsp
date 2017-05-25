@@ -22,19 +22,25 @@
 <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300'
 	rel='stylesheet' type='text/css'>
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">	
-<link rel="stylesheet" href="/poorip/assets/bootstrap/css/bootstrap-datepicker.min.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/poorip/assets/bootstrap/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Web Fonts -->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext'
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext'
 	rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300'
 	rel='stylesheet' type='text/css'>
 <!-- Font Awesome CSS -->
-<link href="${pageContext.request.contextPath}/assets/fonts/font-awesome/css/font-awesome.css"
+<link
+	href="${pageContext.request.contextPath}/assets/fonts/font-awesome/css/font-awesome.css"
 	rel="stylesheet">
 <!-- Plugins -->
-<link href="${pageContext.request.contextPath}/assets/css/animations.css"
+<link
+	href="${pageContext.request.contextPath}/assets/css/animations.css"
 	rel="stylesheet">
 <!-- Worthy core CSS file -->
 <link href="${pageContext.request.contextPath}/assets/css/style.css"
@@ -42,9 +48,13 @@
 <!-- Custom css -->
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
-	
-	<!-- Google font -->	
-<link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
+
+<!-- Google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico"
+	rel="stylesheet">
+<!--  Masonry layout -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
@@ -53,19 +63,29 @@
 <!-- <script src="/poorip/assets/bootstrap/js/transition.js"></script> -->
 <!-- <script src="/poorip/assets/bootstrap/js/collapse.js"></script> -->
 
-<script src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<!-- jquery ellipsis -->
+<script
+	src="${pageContext.request.contextPath }/assets/js/jquery.ellipsis.js"></script>
+
 <!-- Modernizr javascript -->
-<script src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
 <!-- Isotope javascript -->
-<script src="${pageContext.request.contextPath }/assets/plugins/isotope/isotope.pkgd.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/plugins/isotope/isotope.pkgd.min.js"></script>
 <!-- Backstretch javascript -->
-<script src="${pageContext.request.contextPath }/assets/plugins/jquery.backstretch.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/plugins/jquery.backstretch.min.js"></script>
 <!-- Appear javascript -->
-<script src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 <!-- Initialization of Plugins -->
 <%-- <script src="${pageContext.request.contextPath }/assets/js/template.js"></script>  --%>
 <!-- Custom Scripts -->
@@ -73,9 +93,11 @@
 <!-- 상단 메뉴 및 기본 -->
 <script src="${pageContext.request.contextPath }/assets/js/header.js"></script>
 <!-- facebook  -->
-<script src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 <!-- Vaildation-->
-<script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <script>
 $(document).ready(function(){
 
@@ -160,14 +182,17 @@ function searchPool(){
 	    	}
 	    	console.log("ok");
 			$( response.data ).each( function(index, vo){
-				var html =  "<div class='col-md-6 poolmember'>" +
+				var html =  "<div class='col-md-4 poolmember'>" +
 							"<div class='col-md-5 text-right'>" +
 								"<a href='poolparty/"+vo.poolSeq+"'>"+
 									"<img src='/poorip"+vo.poolPic+"'>"+
 							"</div>" +
 								"<p>" + vo.poolName + "</p>" +
-								"<p>" +vo.poolComment +  "</p>" +
-							"/<a>"+
+								
+							"</a>"+
+							"<div class='pool-comment'>" +
+							"<p>" +vo.poolComment +  "</p>" +
+							"</div>" +
 							"</div>";
 				$("#searchArea").append(html);
 			})
@@ -188,7 +213,7 @@ function searchPool(){
 </script>
 </head>
 <body class="no-trans">
-<!-- scrollToTop -->
+	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
 		<i class="icon-up-open-big"></i>
@@ -207,90 +232,103 @@ function searchPool(){
 	<!-- ================ -->
 	<div id="banner" class="banner">
 		<div class="banner-image">
-			<div class="backstretch" style="z-index: -999998; position: absolute; width: 100%; height: 100%; ">
-<!-- 				<img -->
-<%-- 					src="${pageContext.request.contextPath }/assets/images/bg-image-4.jpg"> --%>
+			<div class="backstretch"
+				style="z-index: -999998; position: absolute; width: 100%; height: 100%;">
+				<!-- 				<img -->
+				<%-- 					src="${pageContext.request.contextPath }/assets/images/bg-image-4.jpg"> --%>
 			</div>
 		</div>
 		<div class="banner-caption">
-			<div class="container" >
+			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
-					<h1 class="text-center">
-						Poorip <span>과 함께 가요 </span>
-					</h1>
-					<p class="lead text-center">함께 즐기는 여행</p>
+						<h1 class="text-center">
+							<span style="font-family: 'Pacifico', cursive; color: white;">PoOrip</span>
+							<span>과 함께 가요 </span>
+						</h1>
+						<p class="lead text-center">함께 즐기는 여행</p>
 						<form class="navbar-form lead text-center" role="search">
-							<div class="form-group" style="width:52.5%">
-								<input style="width:100%;" type="text" class="form-control" id="ctyName" placeholder="도시를 입력해주세요">
+							<div class="form-group" style="width: 52.5%">
+								<input style="width: 100%;" type="text" class="form-control"
+									id="ctyName" placeholder="도시를 입력해주세요">
 							</div>
-							<button type="submit" class="btn btn-default" style="border-radius:5px;">FIND</button>
-							<p class="lead"> <p>
-							
-							<input style="border-radius:5px;" type="text" id="from" name="fromDate" class="datepick blackcolor">
-							~
-							<input style="border-radius:5px;" type="text" id="to" name="toDate" class="datepick blackcolor" >
+							<button type="submit" class="btn btn-default"
+								style="border-radius: 5px;">FIND</button>
+							<p class="lead">
+							<p>
+
+								<input style="border-radius: 5px;" type="text" id="from"
+									name="fromDate" class="datepick blackcolor"> ~ <input
+									style="border-radius: 5px;" type="text" id="to" name="toDate"
+									class="datepick blackcolor">
 						</form>
-					
+
 					</div>
 				</div>
-				
-<!-- 					<div class="row col-lg-4 col-md-4 col-sm-4"></div> -->
-<!-- 					<form class="navbar-form navbar-left" role="search"> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<input type="text" class="form-control" id="ctyName" placeholder="Search"> -->
-<!-- 					</div> -->
-<!-- 					<button type="submit" class="btn btn-default">Submit</button> -->
-			
-<!-- 					</form> -->
-				
-<!-- 				<div class="row col-lg-12 col-md-12 col-sm-12"> -->
-				
-<!-- 					<div class="form-group"> -->
-						
-<!-- 					<div class="navbar-form"> -->
-<!-- 					<label for="from">출발</label>  -->
-<!-- 					<input type="text" id="from" name="fromDate" class="datepick"> -->
-<!-- 					<label for="to">도착</label> -->
-<!-- 					<input type="text" id="to" name="toDate" class="datepick" > -->
-					
-<!-- 					</div> -->
-<!-- 					</div> -->
-				
+
+				<!-- 					<div class="row col-lg-4 col-md-4 col-sm-4"></div> -->
+				<!-- 					<form class="navbar-form navbar-left" role="search"> -->
+				<!-- 					<div class="form-group"> -->
+				<!-- 						<input type="text" class="form-control" id="ctyName" placeholder="Search"> -->
+				<!-- 					</div> -->
+				<!-- 					<button type="submit" class="btn btn-default">Submit</button> -->
+
+				<!-- 					</form> -->
+
+				<!-- 				<div class="row col-lg-12 col-md-12 col-sm-12"> -->
+
+				<!-- 					<div class="form-group"> -->
+
+				<!-- 					<div class="navbar-form"> -->
+				<!-- 					<label for="from">출발</label>  -->
+				<!-- 					<input type="text" id="from" name="fromDate" class="datepick"> -->
+				<!-- 					<label for="to">도착</label> -->
+				<!-- 					<input type="text" id="to" name="toDate" class="datepick" > -->
+
+				<!-- 					</div> -->
+				<!-- 					</div> -->
+
 			</div>
 		</div>
 	</div>
 	<div class="container">
-		<div style="font-family:'Pacifico'; text-align:center"><h2 style="margin:50px 0;">Member 모집 중인 Pool 파티</h2></div>
-		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea" style="margin-top:10px;">
+		<div style="font-family: 'Pacifico'; text-align: center">
+			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 55%;" src="/poorip/assets/images/firework.jpg" style="width:50px; height:50px;"/>Member 모집 중인 Pool 파티</h2>
+		</div>
+		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea"
+			style="margin-top: 10px;">
 			<c:forEach var="list" items="${top10 }">
-				<div class="col-md-4 poolmember">
+				<div class="col-md-4 poolmember" >
 					<div class="col-md-5 text-right">
-						<a href="poolparty/${list.poolSeq}">
-							<img src="/poorip${list.poolPic}">
+						<a href="poolparty/${list.poolSeq}"> <img
+							src="/poorip${list.poolPic}">
 					</div>
-					
-						<p>${list.poolName}</p>
+
+					<p>${list.poolName}</p>
+
+					</a>
+					<div class="pool-comment">
 						<p>${list.poolComment }</p>
-						</a>
-					
+						<p class="pool-date">${list.fromDate } - ${list.toDate } ${list.ctyName }</p>
+					</div>
 				</div>
-				
+
+
 			</c:forEach>
 		</div>
 	</div>
 	<!-- banner end -->
-	
-<!-- 							<p class="text-center" style="text-align: center;"> -->
-<!-- 							<label for="from">출발</label>  -->
-<!-- 							<input type="text" id="fromDate" name="fromDate" style="color: #000000; border-radius: 10px"> -->
-<!-- 							<label for="to" style="margin-left: 5px">도착</label> -->
-<!-- 							<input type="text" id="toDate" name="toDate" style="color: #000000; border-radius: 10px; margin-top: 10px"> -->
-<!-- 							<input type="submit" id="serch" value="검색하기" onclick="searchformSubmit()" -->
-<!-- 								style="width: 75; font-family: 맑은고딕; background-color: black"> -->
-<!-- 						</p> -->
-<!-- 					</form> -->
+
+	<!-- 							<p class="text-center" style="text-align: center;"> -->
+	<!-- 							<label for="from">출발</label>  -->
+	<!-- 							<input type="text" id="fromDate" name="fromDate" style="color: #000000; border-radius: 10px"> -->
+	<!-- 							<label for="to" style="margin-left: 5px">도착</label> -->
+	<!-- 							<input type="text" id="toDate" name="toDate" style="color: #000000; border-radius: 10px; margin-top: 10px"> -->
+	<!-- 							<input type="submit" id="serch" value="검색하기" onclick="searchformSubmit()" -->
+	<!-- 								style="width: 75; font-family: 맑은고딕; background-color: black"> -->
+	<!-- 						</p> -->
+	<!-- 					</form> -->
 	<div class="se-pre-con"></div>
 
 	<!-- footer start -->
