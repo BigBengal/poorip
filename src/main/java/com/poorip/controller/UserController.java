@@ -51,9 +51,10 @@ public class UserController {
 //		facebook = ff.getInstance();
 //	}
 	
-	@RequestMapping("/fb")
-	public String jsp(Model model) {
-		return "/user/filetest";
+	@RequestMapping("")
+	public String tempLogin(Model model) {
+		model.addAttribute("loginList", userService.SearchPersonList());
+		return "/user/loginform";
 	}
 	
 	

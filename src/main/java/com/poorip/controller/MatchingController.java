@@ -43,9 +43,12 @@ public class MatchingController {
 		List<UserVo> matchingScore = 
 				matchingService.getMatchingScore(myInfo, myCityList, matchingUserList, samePlanMemeber);
 		
+		
 		model.addAttribute( "matchingScore", matchingScore );
 		model.addAttribute( "samePlanMemeber", samePlanMemeber );
+		
 		System.out.println(matchingScore);
+
 		return "/matching/matchingMain";
 	}
 	
