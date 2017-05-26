@@ -42,9 +42,7 @@ function showChart() {
 			arg: "성향",
 			value: useriSurveyScore
 		}];
-		console.log(dataSource);
-//		dataSource[index] = { "일정":dateScore, "음식취향":foodScore, "관광취향":sightScore, "활동적 지수":activityScore, "럭셔리":luxuryScore, "성향":useriSurveyScore };
-
+		
 		$("#chart-"+usrSeq).dxPolarChart({
 			dataSource: dataSource,
 			useSpiderWeb: true,
@@ -56,8 +54,6 @@ function showChart() {
 				enabled: true
 			}
 		});
-		console.log(usrSeq);
-
 	});
 
 }

@@ -167,7 +167,7 @@ public class MatchingService {
 			int dateSocre = (int)(memberCompareToDate * 100);
 			samePlanMember.get(j).setDateScore(dateSocre);
 		}
-		System.out.println(samePlanMember);
+		
 		return addUsrOtherInfo(samePlanMember);
 	}
 
