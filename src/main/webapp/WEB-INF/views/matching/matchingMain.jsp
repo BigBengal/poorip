@@ -190,7 +190,7 @@
 							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
 							data-luxuryscore="${matchingScore.luxuryScore }" data-datescore="${matchingScore.dateScore }"
 							data-userisurveyscore="${matchingScore.useriSurveyScore }">
-					<div class="col-md-12 dx-viewport demo-container" style="height: 245px; top: -87px">
+					<div class="col-md-12 dx-viewport demo-container" style="margin-top:-70px;">
 						<div id="chart-${matchingScore.usrSeq }" style="width: 100%"></div>
 					</div>
 				</div>
