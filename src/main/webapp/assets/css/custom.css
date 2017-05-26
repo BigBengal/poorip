@@ -141,7 +141,7 @@ File Description: Place here your custom CSS styles
 
 .poolmember {
 	min-height: 180px;
-	margin: 0 0 10px;
+	margin: 0 0 30px 15px;
 	 border: 1px solid;
     border-color: #e5e6e9 #dfe0e4 #d0d1d5;
     bottom: -1px;
@@ -303,28 +303,25 @@ File Description: Place here your custom CSS styles
 }
 
 #sns-write-button {
-	float: right;
-    background-color: white;
-    border: none;
-    color: white;
-    padding: 8px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 2px 2px;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    cursor: pointer;
+	margin-top:30px;
+	    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 4px;
+    bottom: -1px;
+    content: '';
+    left: -1px;
+    right: -1px;
+    top: -1px;
+    cursor: auto;
     background-color: white;
     color: black;
-    border: 2px solid #008CBA;
+    width:100%;
+    height: 100px;
+    text-align: left;
+    box-shadow: 1px 1px 1px #888888;
 }
 
-#sns-write-button:hover {
-    background-color: #008CBA;
-    color: white;
-}
+
 
 .write-main.block {
 	 border: 1px solid;
@@ -382,9 +379,17 @@ File Description: Place here your custom CSS styles
 }
 
 .col-md-5.text-right img {
-	border-radius:10px;
-	width:20%;
 	min-width:100px;
+	width:100%;
+	height:100%;
+	border-radius: 2% 2% 0 0;
+	object-fit: cover;
+}
+
+.col-md-5.text-right {
+	width:100%;
+	padding:0;
+	height:40%;
 }
 
 .col-md-4.poolmember .pool-comment {
@@ -395,6 +400,7 @@ File Description: Place here your custom CSS styles
     width: 100%;
     text-overflow: ellipsis;
     display: block;
+
 }
 
 .poolmember div p {
@@ -402,11 +408,24 @@ File Description: Place here your custom CSS styles
     float: left;
     padding-left: 15px;
     margin-top: 15px;
+     overflow-wrap: break-word;
+	  word-wrap: break-word;
+  	word-break: break-all;
+  	word-break: break-word;
+  	hyphens: auto;
+  	padding-right: 15px;
+
 }
 
 .col-md-4.poolmember {
-	background-color: #e6ecff;
-	height:300px;
+	background-color: #e9ebec;
+	height:400px;
+	padding:0px;
+	border-radius:2%;
+}
+
+.col-md-4.poolmember a p {
+	text-align:center;
 }
 
 .pool-comment .pool-date {
@@ -430,4 +449,66 @@ File Description: Place here your custom CSS styles
 
 .pool-detail-name {
 	text-align:center;
+}
+
+.form-horizontal .form-group.sns-write-group {
+	margin-left:0px;
+}
+
+.form-group .sns-profile-pic {
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display:inline-block;
+}
+
+.form-group.sns-buttons button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	width:20%;
+	margin:auto;
+	margin-top: 10%;
+}
+
+.form-group.sns-buttons button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
+}
+.form-group.sns-buttons button:active {
+	position:relative;
+	top:1px;
+}
+
+.pool-cityndate {
+	position: absolute;
+    bottom: 0;
+    width: 100%
 }

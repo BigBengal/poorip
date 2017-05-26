@@ -129,5 +129,5 @@ function goTop(){
 
 <!-- .subfooter end -->
 <div style="position: fixed; z-index: 9999; right: 0px; bottom: 0px;">
-	<a href="javascript:goTop();"><img src="/poorip/assets/images/top.png"></a>
+	<a href="javascript:goTop();"><img src="/poorip/assets/images/scrollupicon.png" style="width:30px; margin-right:10px; margin-bottom:10px;"></a>
 </div>

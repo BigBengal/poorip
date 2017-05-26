@@ -75,5 +75,11 @@ $(document).ready(function(){
 $(window).load(function() {
 	// Animate loader off screen
 	$(".se-pre-con").fadeOut("slow");
-	;
+	
+	
+	$(".col-md-4.poolmember a p").each(function() {
+	    $(this).html($(this).html().replace(/PoolParty/g, "<span style='font-family:Pacifico';>PoolParty</span>"));
+	});
+	
 });
+

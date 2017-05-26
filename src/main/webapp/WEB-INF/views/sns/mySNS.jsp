@@ -4,11 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 글 수정 -->
-<div class="row object-non-visible " data-animation-effect="fadeIn">
-	<div class="container">
-	<a href="javascript:;">
-				<button id="sns-write-button" type="button" onclick="showWrite();" style="float:right">글쓰기</button></a>
-		<div class="block" style="padding-top: 30px" id="sns-edit-form">
+
+	<div class="container" style="text-align:center;">
+	
+				<button type=button id="sns-write-button" contentEditable=true data-text="Enter text here" style="width:50%;"><img alt="수정" src="/poorip/assets/images/write-btn.png" class="sns-post-footer" style="width: 2%; display:inline-block; margin-right:10px; margin-left:10px;">  <span style="color:#bfbfbf;">Begin Writing Your Story ...</span></button>
+		<div class="modal fade" style="padding-top: 30px" id="sns-edit-form" role="dialog">
+		<div class="modal-dialog" style="background-color:#f2f2f2;">
 			<form class="form-horizontal" id="sns-edit-ajax"
 				action="${pageContext.request.contextPath}/sns/editPost"
 				method="post" enctype="multipart/form-data">
@@ -18,7 +19,8 @@
 				<input class="ignore" id="postSeq" type="hidden" name="postSeq" value=""> 
 				<input class="ignore" id="postPicSeqArray" type="hidden" name="postPicSeqArray" value=""> 
 				
-				<div class="edit-main block" id="sns-edit" style="display: none;">
+				
+				<div class="edit-main block" id="sns-edit" style="padding: 5% 5% 2% 5%;">
 					<div class="form-group">
 						<label class="control-label col-sm-3" for="title">제목 : </label>
 						<div class='col-sm-7'>
@@ -75,43 +77,49 @@
 					</div>
 					
 			
-					<div class="form-group-button">
-						<div class="col-md-12" style="padding-left: 40%">
+					<div class="form-group sns-write-group sns-buttons" style="margin-left:0px; text-align:center; margin-top:50px;">
+						
 							<button type="submit"
-								class="btn btn-default col-lg-6 center-block"
-								id="sns-edit-button">수정하기</button>
-						</div>
+								class="sns-post-footer"
+								id="sns-edit-button" style="width:30%">수정하기</button>
+								<button type="button" class="sns-post-footer" data-dismiss="modal" style="width:30%">닫기</button>
+						
+						
 					</div>
 				</div>
+				
 			</form>
 		</div>
-	</div>
-</div>
+		</div>
+		</div>
+
+
 <!-- 글쓰기 -->
-<div class="row object-non-visible " data-animation-effect="fadeIn">
+
 	<div class="container">
-		<div class="block" style="padding-top: 30px">
+		<div class="modal fade" style="padding-top: 30px" id="sns-write-form" role="dialog">
+		<div class="modal-dialog" style="background-color:#f2f2f2;">
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/sns/post/upload"
 				method="post" enctype="multipart/form-data">
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 
-				<div class="write-main block" id="sns-write" style="display: none;  margin-right: 5%;">
-					<div class="form-group" style="margin-top:30px">
-						<label class="control-label col-sm-3" for="title">제목 : </label>
+				<div class="write-main block" id="sns-write" style="margin-right: 5%;">
+					<div class="form-group sns-write-group" style="margin-top:30px">
+						<label class="control-label col-sm-3" for="title">제목  </label>
 						<div class='col-sm-7'>
 							<input type="text" class="form-control" id="title" name="title" />
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group sns-write-group">
 						<label class="control-label col-sm-3" for="contents">내용
-							: </label>
+							 </label>
 						<div class='col-sm-7'>
 							<textarea class="form-control" id="contents" name="contents"
 								rows="5"></textarea>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group sns-write-group">
 						<div class="selectbox">
 							<label class="control-label col-sm-3" for="trvSeq">관련 여행지
 								선택</label>
@@ -126,7 +134,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group sns-write-group">
 						<div>
 							<label class="control-label col-sm-3" for="file">사진 올리기</label>
 							<div class='col-sm-7'>
@@ -135,10 +143,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group sns-write-group">
 						<div class="checks">
 							<label class="control-label col-sm-3" for="reviewPubYn">후기
-								공개 여부 : </label>
+								공개 여부  </label>
 							<div class='col-sm-7 text-center'>
 								<label for="reviewPubYn">공개</label> <input type="radio"
 									id="reviewPubYn" name="reviewPubYn" value="Y" checked
@@ -150,10 +158,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group sns-write-group">
 						<div class="checks">
 							<label class="control-label col-sm-3" for="reviewPubYn">그룹
-								풀 공유 여부 : </label>
+								풀 공유 여부  </label>
 							<div class='col-sm-7 text-center'>
 								<label for="share">공유</label> <input type="radio" id="share"
 									name="share" value="Y" checked data-toggle="toggle" onclick="div_share_show(this.value,'div-share-show');">
@@ -163,7 +171,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group" style="width: 70%; margin: auto; margin-left: 28%; margin-bottom: 5%;  "id="div-share-show">
+					<div class="form-group sns-write-group" style="width: 100%; margin: auto; margin-left: 10%; margin-bottom: 5%;  "id="div-share-show">
 						<div class="row">
 						    <div class="col-xs-5" style="width:33%">
 						        <select name="from[]" class="js-multiselect form-control" size="8" multiple="multiple">
@@ -184,20 +192,21 @@
 						</div>
 					</div>
 					
-						<div class="form-group" style="margin: auto; padding-left: 38%; margin-bottom:30px">
+						<div class="form-group sns-write-group sns-buttons" style="margin-left:0px; text-align:center;">
 							<button type="submit"
-								class="btn btn-default col-lg-6 center-block">게시글 올리기</button>
+								class="sns-post-footer" style="width:30%;">게시글 올리기</button>
+							<button type="button" class="sns-post-footer" data-dismiss="modal" style="width:30%;">닫기</button>
 						</div>
 					
 				</div>
 				<div class="container">
-					<div id="my-sns-list" class="block" style="padding-top: 100px">
-					</div>
+					
 				</div>
 			</form>
+			</div>
 		</div>
 	</div>
-</div>
+
 
 
 <!-- <div class="fromDatePick"></div> -->

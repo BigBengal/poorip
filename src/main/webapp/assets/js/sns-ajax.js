@@ -3,10 +3,14 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo ) {
-   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ; box-shadow: 2px 2px 2px #888888 ;' >" + 
-   					"<div class='form-group'   style='padding-top: 30px; background-color:#ccd9ff; margin-right: 0px;" +
+   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ; box-shadow: 1px 1px 1px #888888 ;' >" + 
+   					"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
                     "margin-left: 0px;'>" + 
-                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
+                    "<img class='sns-profile-pic' src='https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/1526928_902905706408494_5842182526123163162_n.jpg?oh=ed1fc207d86007a95b1594d85ebda234&amp;oe=59C2A389'>" +
+                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong></div>" +
+                     "<div class='form-group sns-date' >" +
+                     "<p class='col-md-5 sns-date'  style='font-size:13px'>" + vo.crtDate + "</p>" +
+                  "</div>" +
                   "</div>" +
                   "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
                "<div class='col-md-offset-4' style='margin:auto;'>" +
@@ -22,10 +26,11 @@ var post_render = function( vo ) {
 
 
 var edit_post_render = function( vo ) {
-	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;' box-shadow: 2px 2px 2px #888888 ;'>" + 
-	   					"<div class='form-group'  style='padding-top: 30px; background-color:#ccd9ff; margin-right: 0px;" +
+	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;' box-shadow: 1px 1px 1px #888888 ;'>" + 
+	   					"<div class='form-group'  style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
                         "margin-left: 0px;'>" + 
-	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px;'><strong>" + vo.title + "</strong></div>" +
+                        "<img class='sns-profile-pic' src='https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/1526928_902905706408494_5842182526123163162_n.jpg?oh=ed1fc207d86007a95b1594d85ebda234&amp;oe=59C2A389'>" +
+	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong></div>" +
 	                  "</div>" +
 	                  "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
 	               "<div class='col-md-offset-4' style='margin:auto;'>" +
@@ -42,7 +47,7 @@ var edit_post_render = function( vo ) {
 
 var postPic_render = function(vo2, vo) {
    if(vo2.fileName!=null) {
-   var postPic_html = "<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + " style='width=500px; margin:auto;' ></a>";
+   var postPic_html = "<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + "' style='width=500px; margin:auto; border-radius: 8px; margin-bottom: 10px;' ></a>";
                               
 
                   $( "#first-html-"+vo.postSeq ).append(postPic_html);
@@ -63,13 +68,11 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
                   "<div class='form-group' style='display: block;margin:auto; width:40%;'>" +
                   "<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
                "</div>" + 
-               "<div class='form-group sns-date' >" +
-                  "<p class='col-md-5 sns-date'  align='left'>" + vo.crtDate + "</p>" +
-               "</div>" +
-               "<div class='form-group' style='display:block; text-align:center; width:100%; margin-bottom:10%; margin-left: 0px; clear:both;'>" +
-                  "<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-                     "<a href='javascript:;'><img alt='공유' src='/poorip/assets/images/share-btn.png' class='sns-post-footer' id='share-dialog' style='width: 3%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")'></a>" +
-                     "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")' class='sns-post-edit'><a/>" + 
+               
+               "<div class='form-group sns-buttons' style='display:block; text-align:center; width:100%; margin-left: 0px; clear:both;'>" +
+               "<a href='javascript:;'><button class='sns-post-footer' onclick='postDelete(" + vo.postSeq + ")' style='float:left;'>삭제</button>" +
+				 "<a href=javascript:;><button class='sns-post-footer' id='share-dialog'  onclick='postShare(" + vo.postSeq + ")' >공유</button>" +
+				 "<a href='#sns-edit-form' id='edit-form-tag'><button class='sns-post-footer' style='float:right;' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")'  class='sns-post-edit'>수정</button>" +  
                   "</div></div>";
 
                $("#middle-html-"+postPicSeq).after(last_html);
@@ -85,10 +88,10 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
 		"<div class='form-group sns-date' >" +
 				"<p class='col-md-5 sns-date'    align='left'>" + vo.crtDate + "</p>" +
 		"</div>" +
-		"<div class='form-group' style='text-align:center; display:block; width:100%; margin-bottom:10%; margin-left: 0px; clear:both;'>" +
-				"<a href='javascript:;'><img alt='삭제' src='/poorip/assets/images/delete-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:left' onclick='postDelete(" + vo.postSeq + ")'></a>" +
-				 "<a href=javascript:;><img alt='공유' src='/poorip/assets/images/share-btn.png' class='sns-post-footer' id='share-dialog' style='width: 3%; display:inline-block;' onclick='postShare(" + vo.postSeq + ")' ></a>" +
-				 "<a href='#sns-edit-form' id='edit-form-tag'><img alt='수정' src='/poorip/assets/images/write-btn.png' class='sns-post-footer' style='width: 3%; display:inline-block; float:right' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'  class='sns-post-edit'></a>" + 
+		"<div class='form-group sns-buttons' style='text-align:center; display:block; width:100%; margin-left: 0px; clear:both;'>" +
+				"<a href='javascript:;'><button class='sns-post-footer' onclick='postDelete(" + vo.postSeq + ")' style='float:left;'>삭제</button>" +
+				 "<a href=javascript:;><button class='sns-post-footer' id='share-dialog'  onclick='postShare(" + vo.postSeq + ")' >공유</button>" +
+				 "<a href='#sns-edit-form' id='edit-form-tag'><button class='sns-post-footer' style='float:right;' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'  class='sns-post-edit'>수정</button>" + 
 		"</div>" ;
 
 $("#first-html-"+vo.postSeq).after(last_html);
@@ -284,18 +287,16 @@ function showShare() {
 }
 
 function showPostEdit(contents, title, trvSeq, postSeq, postPicSeqArray) {
-
-	$("#sns-write").hide();	
-	$("#sns-edit").show();
+	
 	writeVisible = true;
 	$(".form-group #edit-title").val(title);
 	$(".form-group #edit-contents").val(contents);
 	$("#sns-trv-seq").val(trvSeq).change();
 	$("#postSeq").val(postSeq);
 	$("#postPicSeqArray").val(postPicSeqArray);
-	$('html, body').animate({
-        scrollTop: $( $('#edit-form-tag').attr('href') ).offset().top
-    }, 500);
+	$("#sns-edit-form").modal("show");
+	
+	console.log(postPicSeqArray);
 	return;
 }
 $("#sns-edit-button").click(function() {
@@ -304,7 +305,7 @@ $("#sns-edit-button").click(function() {
 	var trvSeq = $("#sns-trv-seq").val();
 	var postSeq = $("#postSeq").val();
 	var postPicSeqArray = $("#postPicSeqArray").val();
-	console.log(title, contents, trvSeq, postSeq, postPicSeqArray);
+	console.log(title, contents, trvSeq, postSeq, "POST SEQ " + postPicSeqArray);
 	
 	$("#sns-edit-ajax").ajaxForm({
 			url : "sns/editPost/" + postSeq + "/",
@@ -314,7 +315,8 @@ $("#sns-edit-button").click(function() {
 	        	 var postPicSeq = null;
 	        	 var postPicSeqArray = [];
 	        	console.log(response);
-	        	document.getElementById('sns-post-'+postSeq).innerHTML = "";
+	/*document.getElementById('sns-post-'+postSeq).HTML = "";*/
+	        
 	        	$( response.data.post ).each( function( index, vo) {
                     //console.log(index + "  ++++"+ vo.title);    
                     console.log(1);
@@ -339,12 +341,15 @@ $("#sns-edit-button").click(function() {
 	        	
 	        },
 	        error : function(data) {
-				    alert("ajax 에러가 발생하였습니다.")
+				    console.log("ajax 에러가 발생하였습니다.")
 	        }
 	       
 	    });
-	$("#sns-edit").hide();
-
+	$('#sns-post-'+postSeq).replaceWith("");
+	$('#sns-edit-form').modal('toggle');
+	$('html,body').animate({
+        scrollTop: $("#sns-write-button").offset().top},
+        'slow');
 });
 
 //function openOptions() {
@@ -422,3 +427,8 @@ function postShare(postSeq){
 
 
 
+
+
+$("#sns-write-button").click(function(){
+    $("#sns-write-form").modal("show");
+});

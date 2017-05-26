@@ -50,7 +50,7 @@
 	</select>
 	
 	<!-- TOP 10 풀 파티 조회-->
-	<select id="selecttop10" resultType="poolpartyvo">
+<!-- 	<select id="selecttop10" resultType="poolpartyvo">
 		<![CDATA[
 			SELECT POOL_SEQ as poolSeq,
 			       POOL_NAME as poolName,
@@ -67,7 +67,32 @@
 			 WHERE POOL_PUBLIC_YN = 'Y'
 			 ORDER BY HIT desc
 			 LIMIT 0,10
-		]]>
+		]]> 
+	</select> -->
+	
+	
+	<!-- TOP 10 풀 파티 조회-->
+	<select id="selecttop10" resultType="poolpartyvo">
+		<![CDATA[
+	
+	SELECT PP.POOL_SEQ as poolSeq,
+			       PP.POOL_NAME as poolName,
+			       PP.POOL_COMMENT as poolComment,
+			       PP.POOL_PIC as poolPic,
+			       PP.cty_Seq as ctySeq,
+			       PP.MANAGER_USR_SEQ as managerUsrSeq,
+			       PP.POOL_PUBLIC_YN as poolPublicYn,
+			       PP.CRT_DATE as crtDate,
+			       PP.FROM_DATE as fromDate,
+			       PP.TO_DATE as toDate,
+			       PP.HIT,
+				   CT.cty_name as ctyName
+			  FROM POOL_PARTY as PP Left Join CITY as CT
+			 ON POOL_PUBLIC_YN = 'Y'
+			 AND PP.cty_Seq = CT.cty_seq
+			 ORDER BY HIT desc
+			 LIMIT 0,12;
+			 ]]> 
 	</select>
 	
 	<!-- 내가 가입한 풀 파티 조회-->

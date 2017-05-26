@@ -109,12 +109,17 @@
 	<!-- ================ -->
 	<div id="mySNS" class="mySNS" style="background-color: #f2f2f2;">
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
+		<div class="container">
+	<div id="my-sns-list" class="block" style="padding-top: 100px">
 	</div>
+	</div>
+	</div>
+	
 
 	<!-- footer end -->
-
-	<!-- jquery ui -->
-
+	
+	
+	
 	<script
 		src="${pageContext.request.contextPath }/assets/plugins/jquery-1.12.4.js"></script>
 	<script
@@ -130,6 +135,8 @@
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
+	
+	
 
 	<!-- Modernizr javascript -->
 	<script type="text/javascript"
@@ -218,9 +225,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group-button">
+			<div class="form-group sns-write-group sns-buttons">
 				<div class="col-md-12" style="padding-left: 40%">
-					<button type="submit" class="btn btn-default col-lg-6 center-block">공유하기</button>
+					<button type="submit" class="sns-post-footer" style="width:30%">공유하기</button>
 				</div>
 			</div>
 		</form>
