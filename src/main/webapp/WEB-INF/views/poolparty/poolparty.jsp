@@ -249,7 +249,7 @@ function searchPool(){
 						</h1>
 						<p class="lead text-center">함께 즐기는 여행</p>
 						<form class="navbar-form lead text-center" role="search">
-							<div class="form-group" style="width: 52.5%">
+							<div class="form-group" style="width: 52.5%; margin: auto">
 								<input style="width: 100%;" type="text" class="form-control"
 									id="ctyName" placeholder="도시를 입력해주세요">
 							</div>
@@ -292,31 +292,41 @@ function searchPool(){
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="pool-party-content" style="background-color:#f2f2f2;">
+	<div class="container" >
 		<div style="font-family: 'Pacifico'; text-align: center">
-			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 55%;" src="/poorip/assets/images/firework.jpg" style="width:50px; height:50px;"/>Member 모집 중인 Pool 파티</h2>
+			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 55%;" src="/poorip/assets/images/firework.png" style="width:50px; height:50px;"/>Member 모집 중인 Pool 파티</h2>
 		</div>
 		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea"
-			style="margin-top: 10px;">
+			style="margin-top: 10px;margin: auto;">
 			<c:forEach var="list" items="${top10 }">
 				<div class="col-md-4 poolmember" >
 					<div class="col-md-5 text-right">
 						<a href="poolparty/${list.poolSeq}"> <img
 							src="/poorip${list.poolPic}">
+						</a>
+						
 					</div>
-
+					<a href="poolparty/${list.poolSeq}">
 					<p>${list.poolName}</p>
-
 					</a>
+
+				
 					<div class="pool-comment">
 						<p>${list.poolComment }</p>
-						<p class="pool-date">${list.fromDate } - ${list.toDate } ${list.ctyName }</p>
+						
+					</div>
+					<div class="pool-cityndate">
+					<c:if test="${null ne list.ctyName|| list.ctyName!=null}">
+						<p class="pool-date">[${list.ctyName}] ${list.fromDate } - ${list.toDate }</p>
+						</c:if>
 					</div>
 				</div>
 
 
 			</c:forEach>
 		</div>
+	</div>
 	</div>
 	<!-- banner end -->
 
@@ -333,7 +343,7 @@ function searchPool(){
 
 	<!-- footer start -->
 	<!-- ================ -->
-	<footer id="footer">
+	<footer id="footer" style="background-color: #f2f2f2;">
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
