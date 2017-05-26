@@ -40,6 +40,11 @@ $(function() {
 		}
 		return date;
 	}
+	
+	
+	
+	
+	
 });
 
 //스크랩 여부
@@ -87,6 +92,8 @@ function validate(trvSeq) {
 			// alert("ajax 에러가 발생하였습니다.")
 		}
 	});
+	
+	
 
 };
 
@@ -173,3 +180,6 @@ function onSignIn(googleUser) {
 	      console.log('User signed out.');
 	    });
 	  };
+	  
+	  
+	 
