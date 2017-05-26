@@ -12,10 +12,8 @@ $(window).load(function() {
 
 
 function showChart() {
-	console.log("uauauaua");
 //	var dataSource = [];
 	var showChart = ".chart-div";
-	console.log("sssssssss");
 	$(showChart).each(function (index){
 		var usrSeq = $(this).data("usrseq");
 		var foodScore = $(this).data("foodscore");
