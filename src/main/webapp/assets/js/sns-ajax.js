@@ -3,10 +3,12 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo, trvInfoName, ctyName ) {
+	var auth = "${authUser.usrProfile}";
+	
    var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ; box-shadow: 1px 1px 1px #888888 ;' >" + 
    					"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
                     "margin-left: 0px;'>" + 
-                    "<img class='sns-profile-pic' src='https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/1526928_902905706408494_5842182526123163162_n.jpg?oh=ed1fc207d86007a95b1594d85ebda234&amp;oe=59C2A389'>" +
+                    "<img class='sns-profile-pic' src=''>" +
                      "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong><h6 style='display:inline-block;'>&nbsp&nbspat " + trvInfoName + "&nbsp[&nbsp" + ctyName + "&nbsp]</h6></div>" +
                      "<div class='form-group sns-date' >" +
                      "<p class='col-md-5 sns-date'  style='font-size:13px'>" + vo.crtDate + "</p>" +
@@ -29,7 +31,7 @@ var edit_post_render = function( vo ) {
 	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;' box-shadow: 1px 1px 1px #888888 ;'>" + 
 	   					"<div class='form-group'  style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
                         "margin-left: 0px;'>" + 
-                        "<img class='sns-profile-pic' src='https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/1526928_902905706408494_5842182526123163162_n.jpg?oh=ed1fc207d86007a95b1594d85ebda234&amp;oe=59C2A389'>" +
+                        "<img class='sns-profile-pic' src=''>" +
 	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong></div>" +
 	                  "</div>" +
 	                  "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
@@ -101,6 +103,7 @@ var showPoolList = function(vo) {
 				    "<a href=/poorip/poolparty/" + vo.poolSeq + ">" + 
 				    "<div>" +
 				   "<h6>" + vo.poolName + "</h6>" +
+				   "<img src='/poorip" + vo.poolPic + "' class='img100'>" + 
 				   "<br><span style='font-size:0.5em; color:black;'>" + vo.ctyName + "</span>" +
 				   "</div></a>";
 	
