@@ -278,18 +278,7 @@
 	<!-- footer start -->
 	<!-- ================ -->
 	<footer id="footer">
-		<div class="subfooter">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<p class="text-center">
-							Copyright © 2017 Created by <a target="_blank"
-								href="https://github.com/BigBengal/poorip">BigBengal</a>.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
 	

@@ -52,6 +52,7 @@ function showChart() {
 			commonSeriesSettings: {
 				type: "line"
 			},
+			legend: { visible: false },
 			tooltip: {
 				enabled: true
 			}
