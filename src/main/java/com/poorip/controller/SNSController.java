@@ -25,6 +25,7 @@ import com.poorip.security.AuthUser;
 import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
 import com.poorip.service.ScrapService;
+import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
@@ -65,10 +66,13 @@ public class SNSController {
 			 
 		}
 		
+		List<PoolPartyVo> poolList = snsService.getPoolListByUsrSeq(usrSeq);
+		System.out.println(poolList);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put( "postPic", picMap);
 		map.put( "post", post);
+		map.put("poolList", poolList);
 		
 		return JSONResult.success( map );
 	}

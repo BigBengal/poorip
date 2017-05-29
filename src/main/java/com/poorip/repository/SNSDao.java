@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
@@ -126,6 +127,10 @@ public class SNSDao {
 
 	public String getHidden(int usrSeq, int postSeq) {
 		return sqlSession.selectOne("post.getHiddenValue");
+	}
+	
+	public List<PoolPartyVo> getPoolListByUsrSeq(int usrSeq) {
+		return sqlSession.selectList("poolparty.selectpoollistforusr", usrSeq);
 	}
 
 }

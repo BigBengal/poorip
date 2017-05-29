@@ -62,7 +62,10 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico"
 	rel="stylesheet">
+	<!-- toggle checkbox css -->
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">	
 </head>
+
 
 <body class="no-trans scroll-spy">
 	<!-- scrollToTop -->
@@ -107,9 +110,10 @@
 
 	<!-- mySNS start -->
 	<!-- ================ -->
-	<div id="mySNS" class="mySNS" style="background-color: #f2f2f2;">
+	<div id="mySNS" class="mySNS" style="background-color: #f2f2f2;" scrolling="auto">
+		
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
-		<div class="container">
+		<div class="container" style="width:50%; min-width:400px;">
 	<div id="my-sns-list" class="block" style="padding-top: 100px">
 	</div>
 	</div>
@@ -158,8 +162,6 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
 
-	<!-- sns post img next -->
-
 
 	<!-- facebook  -->
 	<script
@@ -176,6 +178,13 @@
 		src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/js/portBox.js"></script>
+		<script
+		src="${pageContext.request.contextPath }/assets/js/portBox.slimscroll.min.js"></script>
+	
+	<!--  toggle-checkbox -->
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>	
 
 	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display: none">
 		<p>

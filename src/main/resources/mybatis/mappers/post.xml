@@ -75,9 +75,12 @@
 				   p.title,
 				   p.contents,
 				   p.usr_seq as usrSeq,
-				   p.crt_date as crtDate
-				from post p, users u, travel_info t
+				   p.crt_date as crtDate,
+				   t.NAME as name,
+				   c.cty_name as ctyName				 
+				from post p, users u, travel_info t, city c
 			  where p.USR_SEQ = u.USR_SEQ
+			  	and c.cty_seq = t.cty_seq
 				and p.trv_Seq = t.trv_Seq
 				and p.HIDDEN = 'N'
 			  	and p.usr_seq = #{usrSeq }

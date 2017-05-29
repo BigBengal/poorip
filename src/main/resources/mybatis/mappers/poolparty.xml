@@ -3,7 +3,7 @@
 
 <mapper namespace="poolparty">
 
-
+	
 	<!-- 풀 파티 추가 -->
 	<insert id="insert"  parameterType="poolpartyvo">
 	<selectKey keyProperty="poolSeq" resultType="integer" order="BEFORE">
@@ -241,5 +241,30 @@
 			 WHERE POOL_SEQ = #{poolSeq }
 		]]>
 	</update>
+	
+	<!-- User가 속한 풀파티 가져오기 -->
+	<select id="selectpoollistforusr" parameterType="integer" resultType="poolpartyvo">
+	<![CDATA[
+		SELECT *, c.cty_name as ctyName from (
+		select p.POOL_SEQ as poolSeq,
+			       p.POOL_NAME as poolName,
+			       p.POOL_COMMENT as poolComment,
+			       p.POOL_PIC as poolPic,
+			       p.CTY_SEQ as ctySeq,
+			       p.MANAGER_USR_SEQ as managerUsrSeq,
+			       p.POOL_PUBLIC_YN as poolPublicYn,
+			       p.CRT_DATE as crtDate,
+			       p.FROM_DATE as fromDate,
+			       p.TO_DATE as toDate,
+			       p.HIT
+		from pool_member pm, 
+			 pool_party p 
+		where  pm.`POOL_SEQ` = p.`POOL_SEQ` 
+		and usr_seq =#{usrSeq} and approve="Y") a 
+		left join city c 
+		on c.cty_seq = a.ctySeq
+	
+	]]>
+	</select>
 	
 </mapper>
