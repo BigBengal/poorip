@@ -44,13 +44,15 @@
 	<!-- 도시별 날짜 표시 -->
 	<select id="selectbyseq" resultType="scrapcityvo" parameterType="scrapcityvo">
 		<![CDATA[
-			select IF(DATE_FORMAT(date_from, '%m%d')='0000', null, DATE_FORMAT(date_from, '%m.%d') ) as dateFrom, 
-				   IF(DATE_FORMAT(date_to, '%m%d')='0000', null, DATE_FORMAT(date_to, '%m.%d') ) as dateTo,      
-			       cty_seq as ctySeq,
-			       trv_ord as trvOrd
-			  from scrap_city 
-			 where usr_seq=#{usrSeq} 
-			   and cty_seq=#{ctySeq}
+			select IF(DATE_FORMAT(sc.date_from, '%m%d')='0000', null, DATE_FORMAT(sc.date_from, '%m.%d') ) as dateFrom, 
+				   IF(DATE_FORMAT(sc.date_to, '%m%d')='0000', null, DATE_FORMAT(sc.date_to, '%m.%d') ) as dateTo,      
+			       sc.cty_seq as ctySeq,
+			       sc.trv_ord as trvOrd,
+			       c.cty_name as ctyName
+			  from scrap_city sc, city c
+			 where sc.usr_seq=#{usrSeq}
+			   and sc.cty_seq=#{ctySeq}
+			   and sc.cty_seq = c.cty_seq
 		]]>
 	</select>
 

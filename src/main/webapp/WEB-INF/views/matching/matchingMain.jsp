@@ -160,7 +160,7 @@
 		<!-- Page Heading -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">
+				<h1 class="page-header"style="font-size: 30px">
 					추천 결과 <small>Bless You</small>
 				</h1>
 			</div>
@@ -170,27 +170,52 @@
 		<c:forEach var="matchingScore" items="${matchingScore }"
 			varStatus="status">
 			<div class="row">
-				<div class="col-md-3" >
+				<div class="col-md-3 col-xs-12" >
 					<a href="#"> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
 						style="width: 80%">
 					</a>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-5 col-xs-12">
 					<input type="hidden" id="usrSeq" value="${matchingScore.usrSeq }">
-					<h3>${matchingScore.usrNick}</h3>
-					<h4>Subheading</h4>
-					<p>${matchingScore.usrInfo}</p>
-					<%-- 					<p>${matchingScore.usrHashtag}</p> --%>
-					<a class="btn btn-primary" href="#" onclick="makePool()">make
+					<h1 style="font-size: 25px"><span>${matchingScore.usrNick}</span></h1>
+					<br>
+					
+					<c:if test="${matchingScore.usrInfo != '' or matchingScore.usrInfo != null} ">
+						<p>${matchingScore.usrInfo}</p>
+					</c:if>
+					<c:if test="${matchingScore.usrInfo == '' or matchingScore.usrInfo == null}">
+						<p>${matchingScore.usrNick}님의 소개가 없습니다.</p>
+					</c:if>
+					<br>
+					
+					<c:if test="${matchingScore.usrHashtag != '' or matchingScore.usrHashtag != null} ">
+						<p>${matchingScore.usrInfo}</p>
+					</c:if>
+					<c:if test="${matchingScore.usrHashtag == '' or matchingScore.usrHashtag == null}">
+						<p>${matchingScore.usrNick}님의 HashTag가 없습니다.</p>
+					</c:if>
+					<br>
+					
+					<h2><span>${matchingScore.usrNick}님의 여행 일정</span></h2>
+						<c:forEach var="dateList" items="${dateList }"	>
+							<p>${dateList.ctyName } : ${dateList.dateFrom } ~ ${dateList.dateTo }</p>
+						</c:forEach>
+					<br>
+					${matchingScore.usrNick}님과 ${userVo.usrNick }의 일정은 
+					<br><h3><span>${matchingScore.overlapDays }일</span></h3> 동안 같습니다.
+					<br>
+					<div class="col-md-12">
+					<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">make
 						a pool <span class="glyphicon glyphicon-chevron-right"></span>
-						</a>
+					</button>
+					</div>
 				</div>
-				<div class="col-md-4 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
+				<div class="col-md-4 col-xs-12 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
 							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
 							data-luxuryscore="${matchingScore.luxuryScore }" data-datescore="${matchingScore.dateScore }"
-							data-userisurveyscore="${matchingScore.useriSurveyScore }">
-					<div class="col-md-12 dx-viewport demo-container" style="margin-top:-70px;">
+							data-userisurveyscore="${matchingScore.useriSurveyScore }" data-usrnick="${matchingScore.usrNick }">
+					<div class="col-md-12 dx-viewport demo-container">
 						<div id="chart-${matchingScore.usrSeq }" style="width: 100%"></div>
 					</div>
 				</div>
@@ -220,12 +245,31 @@
 						<img class="img-circle img-responsive img-center"
 							src="${samePlanMemeber.usrProfile }"
 							alt="${samePlanMemeber.usrNick}">
-						<h3>
-							${samePlanMemeber.usrNick} <small>Job Title</small>
+						<h3 style="font-style: oblique;">
+							<span>" ${samePlanMemeber.usrNick}  "</span>
 						</h3>
-						<p>${samePlanMemeber.usrInfo}</p>
-						<a class="btn btn-primary" href="#">make a pool <span
-							class="glyphicon glyphicon-chevron-right"></span></a>
+						<br>
+						<c:if test="${samePlanMemeber.usrInfo != '' or samePlanMemeber.usrInfo != null} ">
+							<p>${samePlanMemeber.usrInfo}</p>
+						</c:if>
+						<c:if test="${samePlanMemeber.usrInfo == '' or samePlanMemeber.usrInfo == null}">
+							<p>${samePlanMemeber.usrNick}님의 소개가 없습니다.</p>
+						</c:if>
+						<br>
+						<p>${samePlanMemeber.usrHashtag }</p>
+						<h2><span>${samePlanMemeber.usrNick}님의 여행 일정</span></h2>
+						<c:forEach var="dateList" items="${dateList }"	>
+							<p>${dateList.ctyName } : ${dateList.dateFrom } ~ ${dateList.dateTo }</p>
+						</c:forEach>
+						<br>
+						${samePlanMemeber.usrNick}님과 ${userVo.usrNick }의 일정은 
+						<br><h3><span>${samePlanMemeber.overlapDays }일</span></h3> 동안 같습니다.
+						<br>
+						<div class="col-md-12">
+							<button class="btn btn-primary make-a-pool-${samePlanMemeber.usrSeq }" onclick="makingPool(${samePlanMemeber.usrSeq })" data-usrseq="${samePlanMemeber.usrSeq }">make
+								a pool <span class="glyphicon glyphicon-chevron-right"></span>
+							</button>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -248,5 +292,16 @@
 		</div>
 	</footer>
 	<!-- footer end -->
+	
+	<!-- 풀 만들기 다이얼로그 -->
+	<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
+		<form id="making-pool-form-${matchingScore.usrSeq }" action="${pageContext.request.contextPath}/poolparty/make" data-usrseq="${matchingScore.usrSeq }">
+		<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
+			<div id="making-pool-${matchingScore.usrSeq }" title="MAKE A POOL" style="display:none">
+			  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀을 생성하시겠습니까?</p>
+			</div>
+		</form>
+	</c:forEach>
+	
 </body>
 </html>

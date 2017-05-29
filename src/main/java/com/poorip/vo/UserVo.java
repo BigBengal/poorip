@@ -29,8 +29,12 @@ public class UserVo {
 	private int sightScore;
 	private int activityScore;
 	private int luxuryScore;
+	// 그래프용 dateScore (백분률O)
 	private int dateScore;
 	private int matchingScore;
+	private int overlapDays;
+	// 점수합산 계산용 dateScore (백분률X)
+	private int originDateScore;
 	
 	public boolean equals(UserVo uservo) {		
 		return this.usrSeq == uservo.getUsrSeq();
@@ -307,21 +311,33 @@ public class UserVo {
 		return dateScore;
 	}
 
-
 	public void setDateScore(int dateScore) {
 		this.dateScore = dateScore;
 	}
-
 
 	public int getMatchingScore() {
 		return matchingScore;
 	}
 
-
 	public void setMatchingScore(int matchingScore) {
 		this.matchingScore = matchingScore;
 	}
 
+	public int getOverlapDays() {
+		return overlapDays;
+	}
+
+	public void setOverlapDays(int overlapDays) {
+		this.overlapDays = overlapDays;
+	}
+
+	public int getOriginDateScore() {
+		return originDateScore;
+	}
+
+	public void setOriginDateScore(int originDateScore) {
+		this.originDateScore = originDateScore;
+	}
 
 	@Override
 	public String toString() {
@@ -333,7 +349,8 @@ public class UserVo {
 				+ usrBlackYN + ", foodHit=" + foodHit + ", sightHit=" + sightHit + ", activityHit=" + activityHit
 				+ ", luxuryHit=" + luxuryHit + ", useriSurveyScore=" + useriSurveyScore + ", foodScore=" + foodScore
 				+ ", sightScore=" + sightScore + ", activityScore=" + activityScore + ", luxuryScore=" + luxuryScore
-				+ ", dateScore=" + dateScore + ", matchingScore=" + matchingScore + "]";
+				+ ", dateScore=" + dateScore + ", matchingScore=" + matchingScore + ", overlapDays=" + overlapDays
+				+ ", originDateScore=" + originDateScore + "]";
 	}
 
 }

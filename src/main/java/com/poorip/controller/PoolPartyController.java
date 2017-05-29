@@ -213,7 +213,16 @@ public class PoolPartyController {
 		
 		return "redirect:/poolparty/"+poolPartyVo.getPoolSeq();
 	}
-	
+
+	// 풀파티 생성 URL
+	@Auth
+	@RequestMapping("/make")
+	public String MakePoolParty(@RequestParam(value="usrSeq",required=true) int userSeq,
+								@AuthUser UserVo authUser
+								){
+		int poolpartyNum = poolPartyService.createPoolparty(authUser, userSeq);
+		return "redirect:/poolparty/"+poolpartyNum;
+	}
 	
 	///////////////////////////////////////
 	
@@ -242,18 +251,7 @@ public class PoolPartyController {
 		List<PoolPartyVo> poolList = poolPartyService.getPoolList(poolPartyVo);
 		return JSONResult.success(poolList);
 	}
-	
-	// 풀파티 생성 URL
-	@Auth
-	@ResponseBody
-	@RequestMapping("/make")
-	public String MakePoolParty(@RequestParam(value="usrSeq",required=true) int userSeq,
-								@AuthUser UserVo authUser
-								){
-		int poolpartyNum = poolPartyService.createPoolparty(authUser, userSeq);
-		return "OK "+ poolpartyNum;
-	}
-	
+		
 	// 풀파티 좋아요/좋아요 취소 URL
 	@Auth
 	@ResponseBody

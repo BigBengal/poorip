@@ -12,10 +12,10 @@ $(window).load(function() {
 
 
 function showChart() {
-//	var dataSource = [];
 	var showChart = ".chart-div";
 	$(showChart).each(function (index){
 		var usrSeq = $(this).data("usrseq");
+		var usrNick = $(this).data("usrnick")
 		var foodScore = $(this).data("foodscore");
 		var sightScore = $(this).data("sightscore");
 		var activityScore = $(this).data("activityscore");
@@ -43,10 +43,12 @@ function showChart() {
 			value: useriSurveyScore
 		}];
 		
+//		dataSource[index] = { "일정":dateScore, "음식취향":foodScore, "관광취향":sightScore, "활동적 지수":activityScore, "럭셔리":luxuryScore, "성향":useriSurveyScore };
+
 		$("#chart-"+usrSeq).dxPolarChart({
 			dataSource: dataSource,
 			useSpiderWeb: true,
-			series: [{ valueField: "value", name: usrSeq}],
+			series: [{ valueField: "value", name: usrNick}],
 			commonSeriesSettings: {
 				type: "line"
 			},
@@ -54,6 +56,39 @@ function showChart() {
 				enabled: true
 			}
 		});
+	});
+
+}
+
+function makingPool(usrSeq){
+	dialog = $("#making-pool-"+usrSeq).dialog({
+		resizable: false,
+	      height: "auto",
+	      width: 400,
+	      modal: true,
+	      buttons: {
+	        "MAKE": function() {
+//	          $( this ).dialog( "close" );
+//	          $.ajax( {
+//	      		url : "/poorip/poolparty/make",
+//	      		type: "post",
+//	      	    dataType: "json",
+//	      	    data: "usrSeq="+usrSeq,
+//	      	    success: function( response ){
+//	      	    	if( response.result != "success" ) {
+//	      	    		return;
+//	      	    	}
+//	      	    },
+//	      	    error: function( XHR, status, error ){
+//	      	       console.error("Error" );
+//	      	   	}
+//	          });
+	        	$('#making-pool-form-'+usrSeq).submit();
+	        },
+	        "CENCLE": function() {
+	          $( this ).dialog( "close" );
+	        }
+	      }
 	});
 
 }

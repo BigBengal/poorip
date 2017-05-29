@@ -77,7 +77,8 @@ public class MatchingService {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		int overlapDaysScore = 0;
 		int myusrSeq = myInfo.getUsrSeq();
-
+		
+		System.out.println(myCityList);
 		// 내 스크랩 도시 정보
 		for (int x = 0; x < myCityList.size(); x++) {
 			String targetDateFrom = myCityList.get(x).getDateFrom();
@@ -128,25 +129,31 @@ public class MatchingService {
 						long diff = Math.abs(minTo.getTime() - maxFrom.getTime());
 						int overlapDays = (int)(diff / (24 * 60 * 60 * 1000));
 						overlapDaysScore = (int) Math.pow(overlapDays, 2);
-						//					System.out.println(scrapCityVo.get(y).getUsrSeq()+"  :  "+overlapDaysScore);
 
 						boolean isExistUsr = false;
 						int listSize = samePlanMember.size();
+						
 						// 유저가 이미 리스트에 추가되어 있으면 값을 더해주고
 						for (int z = 0; z < listSize; z++) {
 							if (matchingUsrSeq == samePlanMember.get(z).getUsrSeq()) {
 								int originalScore = samePlanMember.get(z).getDateScore();
+								int originalOverlapDays = samePlanMember.get(z).getOverlapDays();
+								samePlanMember.get(z).setOverlapDays(originalOverlapDays + overlapDays);
 								samePlanMember.get(z).setDateScore(originalScore + overlapDaysScore);
+								
+								int originMatchingScore = samePlanMember.get(z).getMatchingScore();
+								int newDateSocre = samePlanMember.get(z).getDateScore();
+								samePlanMember.get(z).setMatchingScore(originMatchingScore + newDateSocre);
 								isExistUsr = true;
 							}
 						}
 						// 리스트에 없으면 리스트에 추가
 						if (!isExistUsr) {
 							dateScore.setUsrSeq(matchingUsrSeq);
+							dateScore.setOverlapDays(overlapDays);
 							dateScore.setDateScore(overlapDaysScore);
 							samePlanMember.add(dateScore);
 						}
-
 					} // NULL 경우가 있음
 
 				}
@@ -160,14 +167,16 @@ public class MatchingService {
 			int dateSocre = samePlanMember.get(i).getDateScore();
 			AllmemberSumDate += dateSocre;
 		}
-
+		
 		for(int j=0; j<samePlanMember.size(); j++) {
 			int dateScore = samePlanMember.get(j).getDateScore();
 			memberCompareToDate = (float)((float)dateScore/(float)AllmemberSumDate);
-			int dateSocre = (int)(memberCompareToDate * 100);
+			int dateSocre = (int)(memberCompareToDate * 120);
 			samePlanMember.get(j).setDateScore(dateSocre);
+			samePlanMember.get(j).setOriginDateScore(dateScore);
 		}
 		
+		System.out.println("일정같은사람 점수 "+samePlanMember);
 		return addUsrOtherInfo(samePlanMember);
 	}
 
@@ -176,7 +185,7 @@ public class MatchingService {
 			UserVo myInfo,					// 내정보 
 			List<ScrapCityVo> myCityList,	// 내 스크랩정보
 			List<UserVo> matchingList,		// 나를 뺀 전체 유저 리스트
-			List<UserVo> dateScoreList)		// 일정 매칭 스코어 리스트
+			List<UserVo> samePlanMemeber)		// 일정 매칭 스코어 리스트
 					throws Exception{
 		//-----------------카테고리별 배열을 선언------------------------------------------------
 		// 이건 내꺼
@@ -278,17 +287,25 @@ public class MatchingService {
 		//----------------------------------다른 사용사와 겹치는 일정 계산-----------------------------------------------------
 		// 일정 점수 추가
 		for(int i=0; i<matchingScoreList.size();i++){
-			for(int j=0; j<dateScoreList.size();j++){
+			for(int j=0; j<samePlanMemeber.size();j++){
 				// usrSeq가 일치하면 
-				if ( matchingScoreList.get(i).getUsrSeq() == dateScoreList.get(j).getUsrSeq()){
+				if ( matchingScoreList.get(i).getUsrSeq() == samePlanMemeber.get(j).getUsrSeq()){
 					// 기존 리스트에 일정 매칭 점수 추가
-					int dateScore = dateScoreList.get(j).getDateScore();
+					int dateScore = samePlanMemeber.get(j).getDateScore();
+					int overlapDays = samePlanMemeber.get(j).getOverlapDays();
+					matchingScoreList.get(i).setOverlapDays(overlapDays);
 					matchingScoreList.get(i).setDateScore(dateScore);
 
 					// 기존 합계 점수에 일정 매칭 점수 추가
-					int matchingScore = matchingScoreList.get(i).getDateScore();
-					matchingScore += dateScore;
-					matchingScoreList.get(i).setMatchingScore(matchingScore);
+					int originMatchingScore = matchingScoreList.get(i).getMatchingScore();
+//					int originDateScore = matchingScoreList.get(i).getDateScore();
+//					originDateScore = originDateScore + dateScore;
+
+					// 점수 계산용 dateScore
+					int pureDateScore = samePlanMemeber.get(j).getOriginDateScore();
+					
+					matchingScoreList.get(i).setMatchingScore( originMatchingScore + pureDateScore );
+					System.out.println(matchingScoreList);
 
 				}
 			}
@@ -302,16 +319,13 @@ public class MatchingService {
 
 		Descending descending = new Descending();
 		Collections.sort(matchingScoreList, descending);
-
+		System.out.println("정리된 리스트"+matchingScoreList);
 		int mininum = matchingScoreList.size();
 		mininum = Math.min(mininum, 5);
 		List<UserVo> top5 = matchingScoreList.subList(0, mininum);
 
 		return addUsrOtherInfo( top5 );
 	}
-
-
-
 
 	public List<UserVo> addUsrOtherInfo(List<UserVo> samePlanMember) {
 		return matchingDao.addUsrOtherInfo( samePlanMember );
