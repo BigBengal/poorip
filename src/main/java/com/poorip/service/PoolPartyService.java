@@ -267,4 +267,29 @@ public class PoolPartyService {
 		return true;
 	}
 	
+	public String changeMainPic (int usrSeq, MultipartFile file, int poolSeq) {
+		String pathName = POOLPARTY_SAVE_PATH;
+		String fileName = null;
+		PoolPartyVo poolPartyVo = new PoolPartyVo();
+		try {
+			String saveFile = WebUtil.saveFile(file, pathName);
+			if ( ! "".equals(saveFile) ) {
+				logger.info("파일없음");
+				poolPartyVo.setPoolMainPic(pathName + saveFile);
+				fileName = pathName+ saveFile;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		poolPartyVo.setPoolSeq(poolSeq);
+		
+		if(poolPartyDao.changeMainPic(poolPartyVo)==true){
+			return fileName;
+		};
+		
+		return "No Changed";
+		
+	}
+	
 }

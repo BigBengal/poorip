@@ -1,6 +1,7 @@
 package com.poorip.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,10 @@ public class PoolPartyDao {
 	
 	public List<CityVo> getCityNames(String ctyName) {
 		return sqlSession.selectList("travelInfo.getKwdData", ctyName);
+	}
+	
+	public boolean changeMainPic(PoolPartyVo poolPartyVo) {
+		return 1 == sqlSession.update("poolparty.alterMainPic", poolPartyVo);
 	}
 
 
