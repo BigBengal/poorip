@@ -122,7 +122,9 @@ function aprvConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			    }
 
 			   });
+	        location.reload();
 	        $( this ).dialog( "close" );
+	        
 	      },
 	      Cancel: function() {
 	        $( this ).dialog( "close" );
@@ -205,7 +207,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 				<div class="col-md-8 col-md-offset-2 object-non-visible"
 					data-animation-effect="fadeIn">
 					<h1 class="text-center">
-						Poorip <span>와 인연</span>
+						<span style="font-family:'Pacifico'; color: white;">Poorip<span></span> <span>와 인연</span>
 					</h1>
 				</div>
 			</div>
@@ -234,7 +236,13 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 								<img src="/poorip${myPoolList.poolPic }" class="img100">
 							</div>
 							<div class="col-md-6">
+							<c:if test="${myPoolList.managerUsrSeq == authUser.usrSeq }">
+							<img class="admin-img" src="${pageContext.request.contextPath }/assets/images/crown.png">
+							</c:if>
 								${myPoolList.poolName}<br>
+								<c:if test="${null ne myPoolList.ctyName }">
+								[${myPoolList.ctyName }]
+								</c:if>
 							</div>
 						</a>
 						<div class="mysns-list-comment">

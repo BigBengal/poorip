@@ -674,3 +674,9 @@ width: 100%;
     
 }
 
+.col-md-5.poolparty .col-md-6 .admin-img {
+width: 5%;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
