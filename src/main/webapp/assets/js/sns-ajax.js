@@ -3,12 +3,11 @@ var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
 var post_render = function( vo, trvInfoName, ctyName ) {
-	var auth = "${authUser.usrProfile}";
-	
+	var auth = $("#usr-profile-pic").val();
    var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ; box-shadow: 1px 1px 1px #888888 ;' >" + 
    					"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
                     "margin-left: 0px;'>" + 
-                    "<img class='sns-profile-pic' src=''>" +
+                    "<img class='sns-profile-pic' src='"+auth+"'>" +
                      "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong><h6 style='display:inline-block;'>&nbsp&nbspat " + trvInfoName + "&nbsp[&nbsp" + ctyName + "&nbsp]</h6></div>" +
                      "<div class='form-group sns-date' >" +
                      "<p class='col-md-5 sns-date'  style='font-size:13px'>" + vo.crtDate + "</p>" +

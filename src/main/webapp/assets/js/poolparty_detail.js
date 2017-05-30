@@ -318,7 +318,7 @@ $(document).ready(function(){
 function showList(){
 	
 	var poolseq = $("#poolSeq").val();
-	var authUsrSeq = $("#authuser").val();
+	var authUsrSeq = $("#authuser-pool").val();
 	var html = "";
 	if ( isEnd == true ){
 		$("#loading").removeClass("loading")
@@ -345,7 +345,15 @@ function showList(){
 //	 	    	console.log( response );
 			$( response.data.post ).each( function(index, vo){
 //	 				console.log( index + ":" + vo.post + vo.postPic );
-				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4'>" +
+				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4 pool-detail-post' style='margin-left: 15%; text-align:center;'>" +
+				"<div class='row margin_up_down'>"+
+				"<div class='col-md-6 img_inline'>"+
+				"	<img src='"+vo.picture+"'> "+vo.name+
+				"</div>"+
+				"<div class='col-md-6'>"+
+				vo.crtDate+
+				"</div>"+
+				"</div>"+
 				"<h3>"+vo.title+"</h3>";
 
 				 if(response.data.postPic.length> 0) {
@@ -359,22 +367,15 @@ function showList(){
 					 
 				 }
 				 html = html + "<p>"+vo.contents+"</p>"+
-					"<div class='row margin_up_down'>"+
-					"<div class='col-md-6 img_inline'>"+
-					"	<img src='"+vo.picture+"'> "+vo.name+
-					"</div>"+
-					"<div class='col-md-6'>"+
-					vo.crtDate+
-					"</div>"+
-					"</div>"+
+					
 					"<div class='row margin_up_down underline'>";
 				 if(vo.usrSeq == authUsrSeq){
 					 html = html +
 						"<div class='col-md-3'>"+
-						"	<img alt='수정' src='/poorip/assets/images/post_modify.png' class='menu_links modify' data-postseq='"+vo.postSeq +"' style='max-height: 30px;'>"+
+						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='float: right; width: 50%;'>수정</button>" + 
 						"</div>"+
 						"<div class='col-md-3 col-md-offset-6'>"+
-						"	<img alt='삭제' src='/poorip/assets/images/post_delete.png' class='menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"' style='max-height: 30px;'>"+
+						"<button class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"' style='float: left; width: 50%;'>삭제</button>" +
 						"</div>";
 				 }
 				 html = html +
