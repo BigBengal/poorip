@@ -34,15 +34,15 @@
 			</ul> 
 			<ul id="sortable" class="nav nav-pills">
 			<!-- 도시 리스트 -->
-				<c:forEach var="cityList" items="${cityList }" varStatus="status">
+				<c:forEach var="cityList" items="${cityList}" varStatus="status">
 					<li class="ui-state-default" data-city_pos="${status.index}">
-						<a class="ScrapcityName" href="#" data-filter=".scrap-${cityList.ctySeq }" data-city-name="${cityList.ctySeq }">
-							${cityList.ctySeq } <strong>${cityList.ctyName }</strong>
+						<a class="ScrapcityName" href="#" data-filter=".scrap-${cityList.ctySeq}" data-city-name="${cityList.ctySeq}">
+							<strong>${cityList.ctyName} | ${cityList.ctrName}</strong>
 							<!-- 도시의 여행일자 -->
 							<div id="scrap-date-info-${cityList.ctySeq }"> &nbsp;
 								<c:forEach var="dateList" items="${dateList }">
 									<c:if test="${dateList.ctySeq ==cityList.ctySeq}">
-										${dateList.dateFrom } ~ ${dateList.dateTo }
+										${dateList.dateFrom} ~ ${dateList.dateTo}
 									</c:if>
 								</c:forEach>
 								&nbsp;
@@ -102,7 +102,7 @@
 
 								<a href="#" class="btn btn-default btn-block"
 									data-toggle="modal" data-target="#project-2${status.index }"
-									onclick="send(${scrapList.trvSeq}, ${scrapList.trvSeq})">${scrapList.trvSeq} ${scrapList.name }</a>
+									onclick="send(${scrapList.trvSeq}, ${scrapList.trvSeq})">${scrapList.name }</a>
 
 							</div>
 							<!-- Modal -->

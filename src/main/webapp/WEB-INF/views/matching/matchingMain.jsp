@@ -169,7 +169,7 @@
 		<!-- Project One -->
 		<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
 			<div class="row">
-				<div class="col-md-3 col-xs-12" >
+				<div class="col-md-2 col-xs-12" >
 					<a href="#"> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
 						style="width: 80%">
@@ -217,7 +217,7 @@
 						</div>
 <%-- 					</c:if> --%>
 				</div>
-				<div class="col-md-4 col-xs-12 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
+				<div class="col-md-5 col-xs-12 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
 							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
 							data-luxuryscore="${matchingScore.luxuryScore }" data-datescore="${matchingScore.dateScore }"
 							data-userisurveyscore="${matchingScore.useriSurveyScore }" data-usrnick="${matchingScore.usrNick }">
@@ -285,18 +285,7 @@
 	<!-- footer start -->
 	<!-- ================ -->
 	<footer id="footer">
-		<div class="subfooter">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<p class="text-center">
-							Copyright © 2017 Created by <a target="_blank"
-								href="https://github.com/BigBengal/poorip">BigBengal</a>.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
 	

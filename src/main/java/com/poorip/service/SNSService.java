@@ -16,6 +16,7 @@ import com.poorip.repository.PoolLikeDao;
 import com.poorip.repository.PoolPostDao;
 import com.poorip.repository.PostPicDao;
 import com.poorip.repository.SNSDao;
+import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PoolPostVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
@@ -38,6 +39,7 @@ public class SNSService {
 	
 	@Autowired
 	private PoolLikeDao poolLikeDao;
+	
 
 	
 	public List<TravelInfoVo> getTravelInfo() {
@@ -245,6 +247,9 @@ public class SNSService {
 		return snsDao.getHidden( usrSeq, postSeq);
 	}
 	
+	public List<PoolPartyVo> getPoolListByUsrSeq(int usrSeq) {
+		return snsDao.getPoolListByUsrSeq(usrSeq);
+	}
 	
 
 }
