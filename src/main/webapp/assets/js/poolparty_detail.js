@@ -30,7 +30,7 @@ $(document).ready(function(){
 	        }
 	  } );
 	
-	$( "#setting" ).on( "click", function() {
+	$("#pool-setting").click(function() {
 	      dialog.dialog( "open" );
 	    });
 	

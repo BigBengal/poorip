@@ -25,7 +25,16 @@ public class PoolPartyVo {
 	private String managerProfile;
 	private String managerGender;
 	private int likeCnt;
+	private String poolMainPic;
 	
+	
+	
+	public String getPoolMainPic() {
+		return poolMainPic;
+	}
+	public void setPoolMainPic(String poolMainPic) {
+		this.poolMainPic = poolMainPic;
+	}
 	public int getLikeCnt() {
 		return likeCnt;
 	}
@@ -130,7 +139,8 @@ public class PoolPartyVo {
 				+ ", poolPic=" + poolPic + ", ctySeq=" + ctySeq + ", managerUsrSeq=" + managerUsrSeq + ", poolPublicYn="
 				+ poolPublicYn + ", crtDate=" + crtDate + ", fromDate=" + fromDate + ", toDate=" + toDate + ", hit="
 				+ hit + ", ctyName=" + ctyName + ", managerUsrNick=" + managerUsrNick + ", managerProfile="
-				+ managerProfile + ", managerGender=" + managerGender + ", likeCnt=" + likeCnt + "]";
+				+ managerProfile + ", managerGender=" + managerGender + ", likeCnt=" + likeCnt + ", poolMainPic="
+				+ poolMainPic + "]";
 	}
 	
 	

@@ -187,6 +187,26 @@ public class PoolPartyController {
 		return "redirect:/poolparty/"+pool;
 	}
 	
+	//배경 이미지 변경
+	@Auth
+	@RequestMapping("/changePic")
+	@ResponseBody
+	public JSONResult PoolMainImg(@AuthUser UserVo userVo, 
+			@RequestParam("poolSeq") int poolSeq,
+			@RequestParam("managerSeq") int managerSeq,
+			MultipartHttpServletRequest request) {
+		if(managerSeq==userVo.getUsrSeq()) {
+			System.out.println("yay?");
+		MultipartFile poolMainPic = request.getFile("file");
+		String picPath = poolPartyService.changeMainPic(userVo.getUsrSeq(), poolMainPic, poolSeq);
+		System.out.println("succeeded");
+		return JSONResult.success(picPath);
+		}
+		System.out.println("why??");
+		System.out.println(poolSeq + "   " + managerSeq +  "  " + request);
+		return JSONResult.fail("FAILED");
+	}
+	
 	// 포스트 수정 
 	@Auth
 	@RequestMapping("/update")

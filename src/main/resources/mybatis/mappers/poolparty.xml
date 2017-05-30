@@ -19,7 +19,7 @@
 			insert into pool_party
 			(POOL_SEQ, POOL_NAME,  POOL_COMMENT,  POOL_PIC,  cty_Seq,  MANAGER_USR_SEQ,  POOL_PUBLIC_YN)
 			values
-			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{ctySeq }, #{managerUsrSeq }, #{poolPublicYn } )
+			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{poolMainPic}, #{ctySeq }, #{managerUsrSeq }, #{poolPublicYn } )
 		]]>
 	</insert>
 	
@@ -37,6 +37,7 @@
 			       FROM_DATE as fromDate,
 			       TO_DATE as toDate,
 			       HIT,
+			       POOL_PARTY.POOL_MAIN_PIC as poolMainpic,
 			       CITY.CTY_NAME as ctyName,
 			       USERS.USR_NICK as managerUsrNick,
 			       USERS.USR_PROFILE as managerProfile,
@@ -234,6 +235,7 @@
 	
 	</delete>
 	
+	<!-- 조회수 업데이트 -->
 	<update id="updatehit" parameterType="integer">
 		<![CDATA[
 			UPDATE POOL_PARTY
@@ -241,6 +243,16 @@
 			 WHERE POOL_SEQ = #{poolSeq }
 		]]>
 	</update>
+	
+	<!-- 메인 이미지 업데이트 -->
+	<update id="alterMainPic" parameterType="poolpartyvo">
+		<![CDATA[
+			UPDATE Pool_Party
+			   SET Pool_MAIN_PIC = #{poolMainPic}
+			 WHERE POOL_SEQ = #{poolSeq}
+		]]>
+	</update>
+	
 	
 	<!-- User가 속한 풀파티 가져오기 -->
 	<select id="selectpoollistforusr" parameterType="integer" resultType="poolpartyvo">
