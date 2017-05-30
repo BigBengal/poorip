@@ -133,6 +133,7 @@
 	</header>
 	<!-- header end -->
 	<div style="height: 200px;"></div>
+	<c:if test="${authUser.usrSeq == pool.managerUsrSeq }">
 	<div class="pool-detail-backgroundimg">
 		<a href="javascript:;"> <img src="/poorip${pool.poolMainPic}"
 			style="width: 100%; object-fit: cover; height: 100%;"
@@ -141,7 +142,7 @@
 			data-toggle="modal" data-target="#poolparty-Img-Modal"
 			id="pool-image-change">
 		</a>
-
+	
 		<div id="poolparty-Img-Modal" class="modal fade" role="dialog">
 			<div class="poolpartyimg-dialog">
 				<div class="modal-dialog">
@@ -150,6 +151,7 @@
 							<form class="form-horizontal" id="pool-image-form" method="post"
 								enctype="multipart/form-data">
 								<input type="hidden" name="poolSeq" value="${pool.poolSeq}">
+								<input type="hidden" name="usrSeq" value="${authUser.usrSeq}" id="authuser-pool">
 								<input type="hidden" name="managerSeq"
 									value="${pool.managerUsrSeq}">
 								<div class="sns-modal-title">
@@ -190,6 +192,7 @@
 		</div>
 
 	</div>
+	</c:if>
 	<div class="container" style="position: relative">
 		<!-- 풀파티 설정 -->
 		<div id="dialog-form" title="풀파티 설정 변경">
@@ -263,7 +266,7 @@
 			</form>
 		</div>
 		<div class="pool-detail-name">
-			<h1 style="color: white; background: rgba(0, 0, 0, 0.2);">${pool.poolName}</h1>
+			<h1 style="color: white; text-shadow: 0 0 40px #000000;">${pool.poolName}</h1>
 		</div>
 		<!-- 풀파티 상단 내용 -->
 		<div class="col-md-9 pool-partydetail-header">
@@ -274,7 +277,8 @@
 				<div class="col-md-10"></div>
 				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 					<div id="pool-setting">
-						<button type="button"  class="menu_links">Settings</button>
+						<button type="button" class="btn btn-primary"
+							style="min-width: 100px;">Settings</button>
 					</div>
 				</c:if>
 				<div class="col-md-2">
@@ -320,7 +324,7 @@
 		</div>
 		<!-- 풀파티 맴버 -->
 		<div class="col-md-2 hidden-xs"
-			style="width: 20%; background-color: #f3f2f2; border-radius: 5px;">
+			style="width: 20%; background-color: #f3f2f2; border-radius: 5px; padding-top: 5px; padding-bottom: 5px; box-shadow: 1px 1px 1px #888888;">
 			풀파티 맴버
 			<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 				<div
@@ -349,67 +353,89 @@
 		<!-- </div> -->
 
 		<!-- 글 보기 -->
-		<div class="row">
-			<div id="postList" class="col-md-12">
-				<c:forEach var="post" items="${post}" varStatus="status">
-					<div id="post-${post.postSeq}" class="col-md-6 col-md-offset-4">
-						<h3>${post.title}</h3>
-						<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
-							<c:if test="${post.postSeq ==postpic.postSeq}">
-								<a href="/poorip${postpic.path}/${postpic.fileName}"
-									data-lightbox="${postpic.postSeq}" data-title="${post.title}">
-									<img src="/poorip${postpic.path}/${postpic.fileName}">
-								</a>
-							</c:if>
-						</c:forEach>
-						<p>${post.contents}</p>
-						<div class="row margin_up_down">
-							<div class="col-md-6 img_inline">
-								<img src="${post.picture}"> ${post.name}
-							</div>
-							<div class="col-md-6">${post.crtDate}</div>
-						</div>
-						<div class="row margin_up_down underline">
-							<div class="col-md-3">
-								<c:if test="${authUser.usrSeq == post.usrSeq}">
-									<img alt='수정' src='/poorip/assets/images/post_modify.png'
-										class="menu_links modify" data-postseq="${post.postSeq}"
-										style="max-height: 30px;">
-								</c:if>
-							</div>
-							<div class="col-md-3 col-md-offset-6">
-								<c:if test="${authUser.usrSeq == post.usrSeq}">
-									<img alt='삭제' src='/poorip/assets/images/post_delete.png'
-										class="menu_links rightalign delete"
-										data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
-										style="max-height: 30px;">
-								</c:if>
-							</div>
-						</div>
 
+
+
+
+
+		<div style="text-align: center; margin-right: 20%;">
+			<button type=button class="sns-write-button"
+				data-text="Enter text here" style="width: 60%; cursor: text; min-width: 300px;"
+				data-toggle="modal" data-target="#sns-write-form2">
+				<img alt="수정" src="/poorip/assets/images/write-btn.png"
+					class="sns-post-footer"
+					style="width: 2%; display: inline-block; margin-right: 10px; margin-left: 10px;">
+				<span style="color: #bfbfbf;">Share Your Story With Others
+					...</span>
+			</button>
+		</div>
+		<div id="postList" class="col-md-12">
+			<c:forEach var="post" items="${post}" varStatus="status">
+				<div id="post-${post.postSeq}"
+					class="col-md-6 col-md-offset-4 pool-detail-post"
+					style="margin-left: 15%;">
+					<div class="row margin_up_down">
+						<div class="col-md-6 img_inline">
+							<img src="${post.picture}"> ${post.name}
+						</div>
+						<div class="col-md-6">${post.crtDate}</div>
 					</div>
-				</c:forEach>
-			</div>
+					<h3>${post.title}</h3>
+					<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
+						<c:if test="${post.postSeq ==postpic.postSeq}">
+							<a href="/poorip${postpic.path}/${postpic.fileName}"
+								data-lightbox="${postpic.postSeq}" data-title="${post.title}">
+								<img src="/poorip${postpic.path}/${postpic.fileName}">
+							</a>
+						</c:if>
+					</c:forEach>
+					<p>${post.contents}</p>
+					
+					<div class="row margin_up_down underline">
+						<div class="col-md-3">
+							<c:if test="${authUser.usrSeq == post.usrSeq}">
+								<%-- <img alt='수정' src='/poorip/assets/images/post_modify.png'
+										class="menu_links modify" data-postseq="${post.postSeq}"
+										style="max-height: 30px;"> --%>
+								<button class='sns-post-footer menu_links modify'
+									data-postseq="${post.postSeq}"
+									style='float: right; width: 50%;'>수정</button>
+
+							</c:if>
+						</div>
+						<div class="col-md-3 col-md-offset-6">
+							<c:if test="${authUser.usrSeq == post.usrSeq}">
+
+								<button class='sns-post-footer menu_links rightalign delete'
+									data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
+									style='float: left; width: 50%;'>삭제</button>
+							</c:if>
+						</div>
+					</div>
+
+				</div>
+			</c:forEach>
 		</div>
-
-		<div id="loading" class="col-md-10 col-md-offset-2"></div>
-
-		<!-- 프로필 보기 다이얼로그 -->
-		<div id="profile" title="프로필 보기"></div>
-		<div id="dialog-confirm_delete" title="삭제 확인" style="display: none">
-			<p>
-				<span class="ui-icon ui-icon-alert"
-					style="float: left; margin: 12px 12px 20px 0;"></span>삭제 하시겠습니까?
-			</p>
-		</div>
-
-		<div class="se-pre-con"></div>
-		<!-- footer start -->
-		<!-- ================ -->
-		<footer id="footer">
-			<c:import url="/WEB-INF/views/include/footer.jsp" />
-		</footer>
-		<!-- footer end -->
 	</div>
+	</div>
+	<div id="loading" class="col-md-10 col-md-offset-2"></div>
+
+	<!-- 프로필 보기 다이얼로그 -->
+	<div id="profile" title="프로필 보기"></div>
+	<div id="dialog-confirm_delete" title="삭제 확인" style="display: none">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin: 12px 12px 20px 0;"></span>삭제 하시겠습니까?
+		</p>
+	</div>
+
+	<div class="se-pre-con"></div>
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer">
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</footer>
+	<!-- footer end -->
+
 </body>
 </html>

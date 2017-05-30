@@ -7,7 +7,7 @@
 
 <div class="container" style="text-align: center;">
 
-	<button type=button id="sns-write-button" contentEditable=true
+	<button type=button class="sns-write-button" contentEditable=true
 		data-text="Enter text here" style="width: 600px;">
 		<img alt="수정" src="/poorip/assets/images/write-btn.png"
 			class="sns-post-footer"
@@ -119,6 +119,7 @@
 				action="${pageContext.request.contextPath}/sns/post/upload"
 				method="post" enctype="multipart/form-data">
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
+				<input class="ignore" type="hidden" name="usrPic" value="${authUser.usrProfile}" id="usr-profile-pic">
 				<div class="sns-modal-title">
 				<h3>Post Write Form</h3>
 				</div>
