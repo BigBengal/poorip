@@ -92,8 +92,8 @@
 	</div>
 </div>
 <div id="myMenu" class="container dropdown-content myMenushow">
-	<a href="${pageContext.request.contextPath }/sns">Story</a>
-	<a href="${pageContext.request.contextPath }/scrap/main">Scrap</a>
-	<a href="${pageContext.request.contextPath }/poolparty/mypool">Pool</a>
-	<a href="${pageContext.request.contextPath }/user/addinfo">Profile</a>
+	<a href="${pageContext.request.contextPath }/sns" style="font-family: 'Kaushan Script', cursive;">Story</a>
+	<a href="${pageContext.request.contextPath }/scrap/main" style="font-family: 'Kaushan Script', cursive;">Scrap</a>
+	<a href="${pageContext.request.contextPath }/poolparty/mypool" style="font-family: 'Kaushan Script', cursive;">Pool</a>
+	<a href="${pageContext.request.contextPath }/user/addinfo" style="font-family: 'Kaushan Script', cursive;">Profile</a>
 </div>

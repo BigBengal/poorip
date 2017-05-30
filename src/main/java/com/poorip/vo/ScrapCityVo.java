@@ -11,9 +11,15 @@ public class ScrapCityVo {
 	private int trvOrd;
 	private String ctyName;
 	private int dateDiff;
+	private String ctrName;
 	
 	
-	
+	public String getCtrName() {
+		return ctrName;
+	}
+	public void setCtrName(String ctrName) {
+		this.ctrName = ctrName;
+	}
 	public int getTrvOrd() {
 		return trvOrd;
 	}
@@ -73,9 +79,7 @@ public class ScrapCityVo {
 	public String toString() {
 		return "ScrapCityVo [scpCitySeq=" + scpCitySeq + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", crtDate="
 				+ crtDate + ", ctySeq=" + ctySeq + ", usrSeq=" + usrSeq + ", trvOrd=" + trvOrd + ", ctyName=" + ctyName
-				+ ", dateDiff=" + dateDiff + "]";
+				+ ", dateDiff=" + dateDiff + ", ctrName=" + ctrName + "]";
 	}
-
-	
-	
+		
 }

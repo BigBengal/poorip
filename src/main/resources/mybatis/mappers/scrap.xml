@@ -91,15 +91,19 @@
 		<![CDATA[
 		select tb1.ctyName,
 			   tb1.ctySeq,
+			   tb1.ctrName,
 		       sc.date_from as dateFrom,
 		       sc.date_to   as dateTo
 		from (
 			select c.CTY_NAME as ctyName,
 			       c.CTY_SEQ as ctySeq,
-			       a.usr_seq as usrSeq
-				from scrap a, travel_info b, city c
+			       a.usr_seq as usrSeq,
+			       d.CTR_NAME as ctrName
+				from scrap a, travel_info b, city c, country d
 				where usr_seq = #{usrSeq }
-				  and a.trv_seq = b.trv_seq and b.CTY_SEQ = c.cty_seq 
+				  and a.trv_seq = b.trv_seq 
+				  and b.CTY_SEQ = c.cty_seq 
+				  and c.CTR_SEQ = d.CTR_SEQ
 				group by c.cty_name) tb1
 		left outer join scrap_city sc on (tb1.ctySeq = sc.cty_seq and tb1.usrSeq = sc.usr_seq)
 		order by ifnull(sc.trv_ord, 0)
