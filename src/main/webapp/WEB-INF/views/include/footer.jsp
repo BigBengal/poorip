@@ -7,10 +7,10 @@
 function toggleFooter(){
 	console.log('toggleFooter');
 	var $footer = $('.footer.section'); 
-	if( $footer.is('.footer_hide') ) {
-		$footer.removeClass('footer_hide');
+	if( $footer.is('.object_hide') ) {
+		$footer.removeClass('object_hide');
 	} else {
-		$footer.addClass('footer_hide');
+		$footer.addClass('object_hide');
 	}
 }
 function showHelp(){
@@ -26,7 +26,7 @@ function goTop(){
 
 <!-- .footer start -->
 <!-- ================ -->
-<div class="footer section footer_hide">
+<div class="footer section object_hide">
 	<div class="container">
 		<h1 class="title text-center" id="contact"><span style="color: #75ccff">의견</span>을 듣고 싶습니다</h1>
 		<div class="space"></div>

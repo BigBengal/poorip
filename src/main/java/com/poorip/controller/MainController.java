@@ -25,6 +25,7 @@ import com.poorip.service.MainService;
 import com.poorip.service.SNSService;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
+import com.poorip.vo.TravelInfoPicVo;
 import com.poorip.vo.TravelInfoVo;
 import com.poorip.vo.UserVo;
 import com.poorip.web.util.WebUtil;
@@ -81,9 +82,7 @@ public class MainController {
 					continue;
 				activitylistMain.add(travelInfoVo.get(i));
 			}
-
 		}
-		
 		
 		model.addAttribute("travelInfoFoodMain", foodlistMain);
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
@@ -99,7 +98,7 @@ public class MainController {
 		ArrayList<TravelInfoVo> foodlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> attractionlist = new ArrayList<TravelInfoVo>();
 		ArrayList<TravelInfoVo> activitylist = new ArrayList<TravelInfoVo>();
-		List<ReviewVo> foodReview = new ArrayList<ReviewVo>();
+//		List<ReviewVo> foodReview = new ArrayList<ReviewVo>();
 		int citySeq1 = WebUtil.checkNullParam(citySeq, 0);
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfoByCity(citySeq1);
 
@@ -116,17 +115,31 @@ public class MainController {
 			}
 
 		}
+		model.addAttribute("travelInfoCityMain", mainService.selectTop12CityInfo());
 		model.addAttribute("travelInfoActivity", activitylist);
 		model.addAttribute("travelInfoAttraction", attractionlist);
 		model.addAttribute("travelInfoFood", foodlist);
-		model.addAttribute("foodReview", foodReview);
+		model.addAttribute("cityName", mainService.getCityName(citySeq1));
+//		model.addAttribute("foodReview", foodReview);
 
 		return "/PooripMain";
 	}
 
 	@ResponseBody
+	@RequestMapping("/travelpic/{trvSeq}")
+	public JSONResult getTravleInfoPic(@PathVariable("trvSeq") String trvSeq){
+		int trvSeq1 = Integer.parseInt(trvSeq);
+		List<TravelInfoPicVo> travelPic = mainService.selectTravelInfoPics(trvSeq1);
+		System.out.println(travelPic);
+		if(travelPic.isEmpty() || travelPic==null) {
+			return JSONResult.fail("사진이 없습니다");
+		}
+		return JSONResult.success(travelPic);
+	}
+	
+	@ResponseBody
 	@RequestMapping("/reviews/{trvSeq}")
-	public JSONResult getReviews(Model model, @PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum, @RequestParam(value="like", required=false) String like) {
+	public JSONResult getReviews(@PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum, @RequestParam(value="like", required=false) String like) {
 		/*if (trvSeq == null || trvSeq.equals("")) {
 			return JSONResult.fail("실패");
 		}*/
@@ -190,8 +203,7 @@ public class MainController {
 
 	@ResponseBody
 	@RequestMapping(value = { "/search", "/city/search" })
-	public JSONResult getKwdData(Model model,
-			@RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, HttpServletRequest request,
+	public JSONResult getKwdData(@RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		logger.debug("텍스트창에 입력된 단어 : " + keyword);
 		// DB문 실행

@@ -3,8 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<c:choose>
+	<c:when test="${!empty cityName }">
+		<h1 class="text-center title" id="portfolio">${cityName.ctyName} 여행 정보</h1>
+	</c:when>
+	<c:otherwise>
+		<h1 class="text-center title" id="portfolio">유럽 여행 정보</h1>	
+	</c:otherwise>
+</c:choose>
 
-<h1 class="text-center title" id="portfolio">유럽 여행 정보</h1>
 <div class="separator"></div>
 <p class="lead text-center">
 	유익한 여행정보를 한 공간에 모아놨습니다.<br> 당신의 여행에 도움이 되길 바랍니다.
@@ -17,62 +24,29 @@
 	<input type="text"
 		style="margin-bottom: 20px; display: inline-block; width: 90%"
 		placeholder="Search..." class="form-control" id="city-kwd"
-		name="ctySeq"> <input type="submit" value="find"
+		name="ctySeq"> <input type="submit" value="Find"
 		style="display: inline-block; float: right;">
 </form>
 
-<div class="row object-non-visible" data-animation-effect="fadeIn">
+<div class="row">
 	<div class="col-md-12">
-
-		<!-- isotope filters start -->
-		<div class="filters text-center">
-			<ul class="nav nav-pills">
-				<c:if test="${!empty travelInfoCityMain }">
-					<li class="active"><a href="#" data-filter=".cities"">Hot한 도시</a></li>
-					<li><a href="#" data-filter=".web-design">Delicious한 맛집</a></li>
-					<li><a href="#" data-filter=".app-development">Attractive한 관광지</a></li>
-					<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
-				</c:if>
-<%-- 				<c:if test="${empty travelInfoCityMain }"> --%>
-<!-- 					<li class="active"><a href="#" data-filter=".cities" -->
-<!-- 						style="display: none" data-show="N">Hot한 도시</a></li> -->
-<%-- 				</c:if> --%>
-
-				<c:if test="${!empty travelInfoFood }">
-					<li class="active"><a href="#" data-filter=".web-design">Delicious한
-							맛집</a></li>
-				</c:if>
-
-				<c:if test="${!empty travelInfoAttraction }">
-					<li><a href="#" data-filter=".app-development">Attractive한
-							관광지</a></li>
-				</c:if>
-				<c:if test="${!empty travelInfoActivity }">
-					<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
-				</c:if>
-			</ul>
-		</div>
-		<!-- isotope filters end -->
-
-
-		<!-- portfolio items start -->
-
-		<!-- cities 가 맛집임 -->
-
-		<div class="isotope-container row grid-space-20">
-			<c:if test="${!empty travelInfoCityMain }">
+		<span> Hot한 도시 </span> <span id="citymore" class="menu_links" style="font-size: x-small"> ... more </span>
+	</div>
+	<div id="citylist" class="col-md-12" style="padding-bottom: 25px;">
+	<c:if test="${!empty travelInfoCityMain }">
 				<c:forEach var="travelInfoCityMain" items="${travelInfoCityMain }"
 					varStatus="status">
-					<div class="col-sm-6 col-md-3 isotope-item cities">
+					
+					<div class="col-sm-3 col-md-2 margin_up_down<c:if test="${status.index > 5 }"> object_hide </c:if>">
 						<div class="image-box">
-							<div class="overlay-container">
-								<img src="/poorip/${travelInfoCityMain.picture}" alt=""> <a
-									class="overlay" data-toggle="modal"
-									data-target="#project-1${status.index }"> <i
-									class="fa fa-search-plus"></i>
-								</a>
+							<div class="city-overlay-container">
+								<img src="/poorip/${travelInfoCityMain.picture}" alt=""> 
+									<a class="overlay" data-toggle="modal"
+									data-target="#project-1${status.index }"> 
+										<i class="fa fa-search-plus"></i> <span>${travelInfoCityMain.name}</span>
+									</a>
 							</div>
-							<a class="btn btn-default btn-block" data-toggle="modal"
+							<a class="btn btn-default btn-block btn-small<c:if test="${travelInfoCityMain.name == cityName.ctyName}"> selected </c:if>" data-toggle="modal"
 								data-target="#project-1${status.index }">
 								${travelInfoCityMain.name} </a>
 						</div>
@@ -113,7 +87,47 @@
 					</div>
 				</c:forEach>
 			</c:if>
+	</div>
+</div>
+<div class="row object-non-visible" data-animation-effect="fadeIn">
+	<div class="col-md-12">
+		<!-- isotope filters start -->
+		<div class="filters text-center">
+			<ul class="nav nav-pills">
+				<c:if test="${!empty travelInfoActivityMain }">
+<!-- 					<li class="active"><a href="#" data-filter=".cities"">Hot한 도시</a></li> -->
+					<li><a href="#" data-filter=".web-design">Delicious한 맛집</a></li>
+					<li><a href="#" data-filter=".app-development">Attractive한 관광지</a></li>
+					<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
+				</c:if>
+<%-- 				<c:if test="${empty travelInfoCityMain }"> --%>
+<!-- 					<li class="active"><a href="#" data-filter=".cities" -->
+<!-- 						style="display: none" data-show="N">Hot한 도시</a></li> -->
+<%-- 				</c:if> --%>
 
+				<c:if test="${!empty travelInfoFood }">
+					<li class="active"><a href="#" data-filter=".web-design">Delicious한
+							맛집</a></li>
+				</c:if>
+
+				<c:if test="${!empty travelInfoAttraction }">
+					<li><a href="#" data-filter=".app-development">Attractive한
+							관광지</a></li>
+				</c:if>
+				<c:if test="${!empty travelInfoActivity }">
+					<li><a href="#" data-filter=".site-building">Fun한 엑티비티</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<!-- isotope filters end -->
+
+
+		<!-- portfolio items start -->
+
+		<!-- cities 가 맛집임 -->
+
+		<div class="isotope-container row grid-space-20">
+			
 			<c:if test="${!empty travelInfoFood }">
 				<c:forEach var="travelInfoFood" items="${travelInfoFood }"
 					varStatus="status">
@@ -160,7 +174,7 @@
 											<div class="col-md-6">
 												<p>${travelInfoFood.contents}</p>
 											</div>
-											<div class="col-sm-12 col-md-6">
+											<div class="col-sm-12 col-md-6" id="travelPic-${travelInfoFood.trvSeq}">
 												<img src="/poorip/${travelInfoFood.picture}" alt="" />
 											</div>
 											<div class="col-sm-12 col-md-6 detail">
@@ -274,7 +288,7 @@
 										<div class="col-md-6">
 											<p>${travelInfoFoodMain.contents}</p>
 										</div>
-										<div class="col-sm-12 col-md-6">
+										<div class="col-sm-12 col-md-6" id="travelPic-${travelInfoFoodMain.trvSeq}">
 											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
 										</div>
 										<div class="col-sm-12 col-md-6 detail">
@@ -390,7 +404,7 @@
 											<div class="col-md-6">
 												<p>${travelInfoAttraction.contents}</p>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" id="travelPic-${travelInfoAttraction.trvSeq}">
 												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
@@ -504,7 +518,7 @@
 											<div class="col-md-6">
 												<p>${travelInfoAttractionMain.contents}</p>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" id="travelPic-${travelInfoAttractionMain.trvSeq}">
 												<img src="/poorip/${travelInfoAttractionMain.picture}"
 													alt="">
 											</div>
@@ -623,7 +637,7 @@
 											<div class="col-md-6">
 												<p>${travelInfoActivity.contents}</p>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" id="travelPic-${travelInfoActivity.trvSeq}">
 												<img src="/poorip/${travelInfoActivity.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
@@ -739,7 +753,7 @@
 											<div class="col-md-6">
 												<p>${travelInfoActivityMain.contents}</p>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" id="travelPic-${travelInfoActivityMain.trvSeq}">
 												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">

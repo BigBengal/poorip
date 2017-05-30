@@ -74,6 +74,33 @@ function hasNull(target) {
 }
 function send(trvSeq, reviewNum){
 	var likeIcon = document.getElementById("scrapTrvInfo-"+trvSeq);
+	var $travelPic = $("#travelPic-"+trvSeq)
+	
+	if (! $travelPic.is(".loaded")){
+		$.ajax({
+	        url : "/poorip/travelpic/" + trvSeq,
+	        type : "post",
+//	         data: "trvSeq="+ trvSeq,
+	        dataType: "json",
+	        success : function(response) {
+	        	if (response.result == "fail") {
+	        		console.log(data.data);
+	        		return;
+	        	}
+	        	
+	        	$( response.data ).each( function(index, vo){
+	        		console.log(vo);
+	        		$travelPic.append("<img src=/poorip"+vo.path + "/" + vo.fileName + "/>");
+	        	});
+	        	
+	        	$travelPic.addClass("loaded");
+	        		
+	        },
+	        error : function(data) {
+				    alert("travelpic ajax 에러가 발생하였습니다.")
+	        }
+	    });
+	}
 	
 	$.ajax({
         url : "/poorip/scrap/scrapValidate",
@@ -90,7 +117,7 @@ function send(trvSeq, reviewNum){
         	}
         },
         error : function(data) {
-			    alert("ajax 에러가 발생하였습니다.")
+			    alert("scrapValidate ajax 에러가 발생하였습니다.")
         }
     });
 	
@@ -194,7 +221,7 @@ function reviewLike(postSeq) {
          
         },
         error : function(data) {
-			    alert("ajax 에러가 발생하였습니다.")
+			    alert("reviewLike ajax 에러가 발생하였습니다.")
         }
     });
 };

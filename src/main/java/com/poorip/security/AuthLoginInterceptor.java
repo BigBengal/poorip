@@ -56,6 +56,9 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		}
 		
 		logger.info("Login OK "+email);
+		// 닉네임 지정 안하면 추가정보 페이지로
+		if (userVo.getUsrNick() == null)
+			addinfo = "addinfo";
 		
 		// 최초 가입의 경우 세션에 저장하고 addinfo로 리턴하기 위해
 		if (addinfo != null && "addinfo".equals(addinfo) ){

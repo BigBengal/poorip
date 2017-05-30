@@ -358,6 +358,11 @@ blockquote {
 	background-color: #339BEB;
 	border-color: #339BEB;
 }
+.btn-default.selected {
+	color: #ffffff;
+	background-color: #339BEB;
+	border-color: #339BEB;
+}
 .btn-small {
 	min-width: 100px;
 	padding: 6px 7px;
@@ -799,6 +804,12 @@ textarea {
 	filter: alpha(opacity=100);
 	-webkit-transform: scale(1);
 	transform: scale(1);
+}
+.city-overlay-container:hover .overlay {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-webkit-transform: scale(0.9);
+	transform: scale(0.9);
 }
 
 /* google map AIP */

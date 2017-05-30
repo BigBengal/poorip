@@ -8,8 +8,8 @@
       <![CDATA[
          select tip.path as path,
          		tip.file_Name as fileName
-					from travel_info_pic tip,
-					 	 travel_info ti
+		  from travel_info_pic tip,
+		 	   travel_info ti
 		 where ti.TRV_SEQ = tip.TRV_SEQ
 		   and ti.TRV_SEQ = #{trvSeq }
       ]]>

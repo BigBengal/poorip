@@ -59,6 +59,15 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
 
+<!-- Image BXSlider  -->
+<!-- jQuery library (served from Google) -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="/js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/lib/jquery.bxslider.css" rel="stylesheet" />
+
+
 <!-- Google font -->	
 <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 
@@ -188,7 +197,7 @@
 		$(function() {
 			
 			// 첫페이지만 footer 보여주기
-			$(".footer.section").removeClass("footer_hide");
+			$(".footer.section").removeClass("object_hide");
 			
 			var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
 				defaultDate : "+1w",
@@ -226,6 +235,17 @@
 				var ctyseq = $(this).data("ctyseq");
 				console.log(ctyseq);
 				location.href="/poorip/city/"+ctyseq+"#portfolio";
+			});
+			
+			
+			//도시 이름 더 보기
+			$("#citymore").on('click', function(){
+				$(this).remove();
+				$("#citylist div").each(function(index){
+					if($(this).is(".object_hide"))	{
+						$(this).removeClass("object_hide")
+					}
+				});
 			});
 		});
 		function initMap() {

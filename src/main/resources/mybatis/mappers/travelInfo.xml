@@ -19,12 +19,11 @@
          		a.price,
          		a.map_url as mapURL,
          		a.contact,
-				b.FILE_NAME as fileName,
-				b.PATH as path,
 				a.picture as picture,
 				a.hit as hit
-		 from travel_info a left join travel_info_pic b on a.TRV_SEQ = b.TRV_SEQ
-		 where a.cty_seq = #{ctySeq} and a.trv_seq > 0 
+		 from travel_info a 
+		 where a.cty_seq = #{ctySeq} 
+		   and a.trv_seq > 0 
 		 order by hit desc 
       ]]>
 	</select>
@@ -84,12 +83,42 @@
          		a.map_url as mapURL,
          		a.contact as contact,
          		a.hit as hit
-		 from travel_info a left join travel_info_pic b on a.TRV_SEQ = b.TRV_SEQ
+		 from travel_info a
 		 where a.CAT_SEQ <> 1
 		 
 		 union all
 		 
 		 select a.trv_seq as trvSeq,
+         		a.cty_seq as ctySeq,
+         		a.cat_seq as catSeq,
+         		a.crt_date as crtDate,
+         		a.name as name,
+         		a.contents as contents,
+         		a.hours as hours,
+         		a.location as location,
+         		a.picture as picture,
+         		a.price as price,
+         		a.map_url as mapURL,
+         		a.contact as contact,
+				cty_rank.hit
+		 from travel_info a,
+		 		 (select cty_seq, sum(hit) as hit
+				 from travel_info
+				 where CAT_SEQ != 1
+				 group by cty_seq
+				 order by sum(hit)
+				 limit 0,12 ) cty_rank
+		where a.CAT_SEQ = 1
+		  and a.CTY_SEQ = cty_rank.cty_seq
+		order by hit desc
+      ]]>
+	</select>
+	
+	
+	<!-- TOP 12 도시 정보만 가져오기 -->
+	<select id="getCityInfomain" resultType="travelinfovo">
+      <![CDATA[
+         select a.trv_seq as trvSeq,
          		a.cty_seq as ctySeq,
          		a.cat_seq as catSeq,
          		a.crt_date as crtDate,
@@ -114,7 +143,7 @@
 		order by hit desc
       ]]>
 	</select>
-	
+
     <!-- 여행정보 Seq, name 가져오기 -->
     <select id="getALLTravelInfo" resultType="travelinfovo">
       <![CDATA[
