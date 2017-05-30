@@ -69,21 +69,6 @@ function makingPool(usrSeq){
 	      modal: true,
 	      buttons: {
 	        "MAKE": function() {
-//	          $( this ).dialog( "close" );
-//	          $.ajax( {
-//	      		url : "/poorip/poolparty/make",
-//	      		type: "post",
-//	      	    dataType: "json",
-//	      	    data: "usrSeq="+usrSeq,
-//	      	    success: function( response ){
-//	      	    	if( response.result != "success" ) {
-//	      	    		return;
-//	      	    	}
-//	      	    },
-//	      	    error: function( XHR, status, error ){
-//	      	       console.error("Error" );
-//	      	   	}
-//	          });
 	        	$('#making-pool-form-'+usrSeq).submit();
 	        },
 	        "CENCLE": function() {
@@ -92,4 +77,17 @@ function makingPool(usrSeq){
 	      }
 	});
 
+}
+
+var showVisible = true;
+
+function showDateList(usrSeq){
+	if ( showVisible == true ) {
+		$("#dateList-"+usrSeq).show();	
+		showVisible = false;
+	} else {
+		$("#dateList-"+usrSeq).hide();
+		showVisible = true;
+	}
+	
 }

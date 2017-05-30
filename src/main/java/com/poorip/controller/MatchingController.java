@@ -60,18 +60,18 @@ public class MatchingController {
 		List<ScrapCityVo> dateList = matchingService.getUsersDateList( matchingScore );		
 		
 		// 나의 풀리스트
-//		List<PoolMemberVo> myPoolList = 
-//				matchingService.getMyPoolList( usrSeq );
-//		
-//		// 유저의 풀리스트
-//		List<PoolMemberVo> usersPoolList =
-//				matchingService.getUsersPoolList( samePlanMemeber, matchingScore );
-//		
-		// 나와 사용자 사이의 풀이 개설되있는지 여부 확인
-//		String poolMemeberYN = matchingService.getWhetherToOpen( myPoolList, usersPoolList );
-//		System.out.println(poolMemeberYN);
+		List<PoolMemberVo> myPoolList = 
+				matchingService.getMyPoolList( usrSeq );
 		
-//		model.addAttribute( "poolMemeberYN", poolMemeberYN );
+		// 유저의 풀리스트
+		List<PoolMemberVo> usersPoolList =
+				matchingService.getUsersPoolList( samePlanMemeber, matchingScore );
+		
+		// 나와 사용자 사이의 풀이 개설되있는지 여부 확인
+		String poolMemeberYN = matchingService.getWhetherToOpen( myPoolList, usersPoolList );
+		System.out.println(poolMemeberYN);
+		
+		model.addAttribute( "poolMemeberYN", poolMemeberYN );
 		model.addAttribute( "dateList", dateList);
 		model.addAttribute( "userVo", myInfo );
 		model.addAttribute( "matchingScore", matchingScore );
