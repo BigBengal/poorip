@@ -95,6 +95,7 @@ public class PoolPartyService {
 		vo.setPoolName(myUser.getUsrNick() + defaultPoolpartName);
 		vo.setPoolPublicYn(defaultPublicYn);
 		vo.setPoolPic(defaultPoolpartImage);
+		vo.setPoolMainPic(defaultPoolpartImage);
 		vo.setManagerUsrSeq(myUser.getUsrSeq());
 		poolPartyDao.join(vo);
 		

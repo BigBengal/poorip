@@ -148,4 +148,19 @@
 			  AND DATE_TO IS NOT NULL
 		]]>
 	</select>
+	
+	<!-- 모든 사용자의 스크랩시티 정보 By CtySeq-->
+	<select id="getScrapCityInfobyUsrSeq" resultType="scrapcityvo" parameterType="integer">
+	    <![CDATA[
+			select sc.date_from as dateFrom,
+				   sc.date_to as dateTo,
+				   sc.usr_seq as usrSeq,
+				   sc.cty_seq as ctySeq,
+				   c.cty_name as ctyName
+				from scrap_city sc, city c 
+			where sc.CTY_SEQ = c.CTY_SEQ
+			and sc.USR_SEQ = #{usrSeq }
+		]]>
+	</select>
+	
 </mapper>

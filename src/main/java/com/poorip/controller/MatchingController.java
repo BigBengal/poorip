@@ -1,6 +1,5 @@
 package com.poorip.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
@@ -42,9 +40,6 @@ public class MatchingController {
 		// 내 스크립 시티 정보
 		List<ScrapCityVo> myCityList = matchingService.getMyCityList( usrSeq );
 
-		// 사용자 여행 계획 보여주기 위한 리스트
-		List<ScrapCityVo> cityList = scrapCityService.showCity(userVo.getUsrSeq());
-
 		// 나를 뺀 전체 유저 리스트
 		List<UserVo> matchingUserList = matchingService.getMatchingList( userVo );
 		
@@ -57,22 +52,16 @@ public class MatchingController {
 				matchingService.getMatchingScore(myInfo, myCityList, matchingUserList, samePlanMemeber);
 		
 		//유저 스크랩 정보 중 도시의 출발,종료 일자 가져오기
-		List<ScrapCityVo> dateList = matchingService.getUsersDateList( matchingScore );		
+		List<ScrapCityVo> matchingDateList = matchingService.getUsersDateList( matchingScore );		
+		List<ScrapCityVo> samePlanDateList = matchingService.getUsersDateList( samePlanMemeber );
 		
-		// 나의 풀리스트
-//		List<PoolMemberVo> myPoolList = 
-//				matchingService.getMyPoolList( usrSeq );
-//		
-//		// 유저의 풀리스트
-//		List<PoolMemberVo> usersPoolList =
-//				matchingService.getUsersPoolList( samePlanMemeber, matchingScore );
-//		
-		// 나와 사용자 사이의 풀이 개설되있는지 여부 확인
-//		String poolMemeberYN = matchingService.getWhetherToOpen( myPoolList, usersPoolList );
-//		System.out.println(poolMemeberYN);
-		
-//		model.addAttribute( "poolMemeberYN", poolMemeberYN );
-		model.addAttribute( "dateList", dateList);
+		System.out.println(usrSeq);
+		List<PoolMemberVo> isPoolMember = matchingService.getMyPoolListMember( usrSeq );
+		System.out.println(isPoolMember);
+
+		model.addAttribute( "isPoolMember", isPoolMember );
+		model.addAttribute( "matchingDateList", matchingDateList);
+		model.addAttribute( "samePlanDateList", samePlanDateList);
 		model.addAttribute( "userVo", myInfo );
 		model.addAttribute( "matchingScore", matchingScore );
 		model.addAttribute( "samePlanMemeber", samePlanMemeber );

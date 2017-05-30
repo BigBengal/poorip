@@ -178,7 +178,6 @@ File Description: Place here your custom CSS styles
 }
 
 .underline {
-	border-bottom: 1px dashed;
 	margin-bottom: 10px;
 }
 
@@ -329,7 +328,7 @@ File Description: Place here your custom CSS styles
 	display: none;
 }
 
-#sns-write-button {
+.sns-write-button {
 
 	margin-top:30px;
 	border: 1px solid;
@@ -470,6 +469,7 @@ File Description: Place here your custom CSS styles
 	padding-bottom: 20px;
 	background-color: #f3f2f2;
 	border-radius: 5px;
+	box-shadow: 1px 1px 1px #888888;
 }
 
 .pool-detail-name {
@@ -728,15 +728,69 @@ body .sns-pool-list.icon {
 }
 
 #pool-setting {
+	position:absolute;
+	right:0;
+	bottom:0;
+	    z-index: 1;
 	display: inline-block;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 5px;
+    padding: 2px;
+    float:right;
+   
     
 }
 
 .galleria {
 	min-height: 500px;
-	
+
+.pool-detail-post {
+	min-height: 180px;
+    /* margin: 0 0 10px; */
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 4px;
+    bottom: -1px;
+    content: '';
+    left: -1px;
+    right: -1px;
+    top: -1px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    background-color: white;
+    box-shadow: 1px 1px 1px #888888;
+}
+
+.sns-post-footer.menu_links {
+box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9
+ ), color-stop(1, #e9e9e9));
+    background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9',
+ endColorstr='#e9e9e9', GradientType=0);
+    background-color: #f9f9f9;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
+    width: 20%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.col-md-6.img_inline {
+	float: left;
+    padding-left: 0;
+    
 }

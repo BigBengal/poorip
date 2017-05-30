@@ -177,45 +177,71 @@
 				</div>
 				<div class="col-md-5 col-xs-12">
 					<input type="hidden" id="usrSeq" name="usersSeq" value="${matchingScore.usrSeq }">
+					<div class="col-md-12">
 					<c:if test="${matchingScore.usrNick != '' or matchingScore.usrNick != null}">
 						<h1 style="font-size: 25px"><span>${matchingScore.usrNick}</span></h1>
 					</c:if>
 					<c:if test="${matchingScore.usrNick == '' or matchingScore.usrNick == null}">
 						<h1 style="font-size: 18px; font-style: inherit;"><span>사용자의 닉네임이 없습니다.</span></h1>
 					</c:if>
+					</div>
 					<br>
-					
-					<c:if test="${matchingScore.usrInfo != '' or matchingScore.usrInfo != null} ">
-						<p>${matchingScore.usrInfo}</p>
-					</c:if>
-					<c:if test="${matchingScore.usrInfo == '' or matchingScore.usrInfo == null}">
-						<p>${matchingScore.usrNick}님의 소개가 없습니다.</p>
-					</c:if>
 					<br>
-					
-					<c:if test="${matchingScore.usrHashtag != '' or matchingScore.usrHashtag != null} ">
-						<p>${matchingScore.usrInfo}</p>
-					</c:if>
-					<c:if test="${matchingScore.usrHashtag == '' or matchingScore.usrHashtag == null}">
-						<p>${matchingScore.usrNick}님의 HashTag가 없습니다.</p>
-					</c:if>
+					<div class="col-md-12">
+						<c:if test="${matchingScore.usrInfo != '' or matchingScore.usrInfo != null} ">
+							<p>${matchingScore.usrInfo}</p>
+						</c:if>
+						<c:if test="${matchingScore.usrInfo == '' or matchingScore.usrInfo == null}">
+							<p>${matchingScore.usrNick}님의 소개가 없습니다.</p>
+						</c:if>
+					</div>
 					<br>
-					
-					<h2><span>${matchingScore.usrNick}님의 여행 일정</span></h2>
-						<c:forEach var="dateList" items="${dateList }"	>
-							<p>${dateList.ctyName } : ${dateList.dateFrom } ~ ${dateList.dateTo }</p>
+					<br>
+					<div class="col-md-12">
+						<c:if test="${matchingScore.usrHashtag != '' or matchingScore.usrHashtag != null} ">
+							<p>${matchingScore.usrInfo}</p>
+						</c:if>
+						<c:if test="${matchingScore.usrHashtag == '' or matchingScore.usrHashtag == null}">
+							<p>${matchingScore.usrNick}님의 HashTag가 없습니다.</p>
+						</c:if>
+					</div>
+					<br>
+					<br>
+					<div class="col-md-12" onclick="showDateList(${matchingScore.usrSeq });">
+						<h2><span>${matchingScore.usrNick}님의 여행 일정 보기</span></h2>
+					</div>
+					<div class="col-md-12" id="dateList-${matchingScore.usrSeq }" style="display: none;">
+						<c:forEach var="matchingDateList" items="${matchingDateList }"	>
+							<c:if test="${matchingScore.usrSeq == matchingDateList.usrSeq }">
+								<p>${matchingDateList.ctyName } : ${matchingDateList.dateFrom } ~ ${matchingDateList.dateTo }</p>
+							</c:if>
 						</c:forEach>
+						<br>
+					</div>
 					<br>
-					${matchingScore.usrNick}님과 ${userVo.usrNick }의 일정은 
-					<br><h3><span>${matchingScore.overlapDays }일</span></h3> 동안 같습니다.
 					<br>
-<%-- 					<c:if test="${poolMemeberYN != 'Y' }"> --%>
-						<div class="col-md-12">
+					<div class="col-md-12">
+						${matchingScore.usrNick}님과 ${userVo.usrNick }의 일정은 
+						<br><h3><span>${matchingScore.overlapDays }일</span></h3> 동안 같습니다.
+					</div>
+					<c:set var="isPoolMemberYN" value="N" />
+						<c:forEach var="isPoolMember" items="${isPoolMember }">
+							<c:set var="isPoolMemberYN" value="N" />
+							
+								<c:if test="${isPoolMember.usrSeq == matchingScore.usrSeq}">
+									<div class="col-md-12">
+										<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">
+										   <span class="glyphicon glyphicon-chevron-right"></span>
+										</button>
+									</div>
+								</c:if>
+						</c:forEach>
+						<c:if test="isPoolMemberYN = N"></c:if>
+					<div class="col-md-12">
 						<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">make
 							a pool <span class="glyphicon glyphicon-chevron-right"></span>
 						</button>
-						</div>
-<%-- 					</c:if> --%>
+					</div>
 				</div>
 				<div class="col-md-5 col-xs-12 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
 							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
@@ -264,10 +290,17 @@
 						</c:if>
 						<br>
 						<p>${samePlanMemeber.usrHashtag }</p>
-						<h2><span>${samePlanMemeber.usrNick}님의 여행 일정</span></h2>
-						<c:forEach var="dateList" items="${dateList }"	>
-							<p>${dateList.ctyName } : ${dateList.dateFrom } ~ ${dateList.dateTo }</p>
-						</c:forEach>
+						<div class="col-md-12" onclick="showSameDateList(${samePlanMemeber.usrSeq });">
+							<h2><span>${samePlanMemeber.usrNick}님의 여행 일정</span></h2>
+						</div>
+						<div class="col-md-12" id="showDateList-${samePlanMemeber.usrSeq }" style="display: none;">
+							<c:forEach var="samePlanDateList" items="${samePlanDateList }"	>
+								<c:if test="${samePlanMemeber.usrSeq == samePlanDateList.usrSeq }">
+									<p>${samePlanDateList.ctyName } : ${samePlanDateList.dateFrom } ~ ${samePlanDateList.dateTo }</p>
+								</c:if>
+							</c:forEach>
+							<br>
+						</div>
 						<br>
 						${samePlanMemeber.usrNick}님과 ${userVo.usrNick }의 일정은 
 						<br><h3><span>${samePlanMemeber.overlapDays }일</span></h3> 동안 같습니다.

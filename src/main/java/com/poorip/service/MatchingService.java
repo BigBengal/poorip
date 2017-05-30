@@ -1,5 +1,7 @@
 package com.poorip.service;
 
+import static org.mockito.Matchers.intThat;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -338,6 +340,17 @@ public class MatchingService {
 		return matchingDao.getScrapInfo( usrSeq, ctySeq );
 	}
 
+
+	public List<ScrapCityVo> getUsersDateList(List<UserVo> matchingScore) {
+		List<ScrapCityVo> dateList = new ArrayList<ScrapCityVo>();
+		for(int i=0; i<matchingScore.size(); i++){
+			int usersSeq = matchingScore.get(i).getUsrSeq();
+			List<ScrapCityVo> userDateList = matchingDao.getUsersScrapInfoByUserSeq( usersSeq );
+			dateList.addAll(userDateList);
+		}
+		return dateList;
+	}
+
 	// 나를 뺀거 스크랩 도시 정보
 	public List<ScrapCityVo> getUsersScrapInfoByCtySeq(int ctySeq, int usrSeq) {
 		return matchingDao.getUsersScrapInfoByCtySeq( ctySeq,usrSeq );
@@ -348,14 +361,9 @@ public class MatchingService {
 		return scrapCityDao.getMyCityList(usrSeq);
 	}
 
-	public List<PoolMemberVo> getMyPoolList(int usrSeq) {
-		return matchingDao.getMyPoolList( usrSeq );
-	}
-
-	public List<PoolMemberVo> getUsersPoolList( List<UserVo> samePlanMemeber, List<UserVo> matchingScore ) {
-		
-		
-		return null;
+	public List<PoolMemberVo> getMyPoolListMember(int usrSeq) {
+		System.out.println(usrSeq);
+		return matchingDao.getMyPoolListMember( usrSeq );
 	}
 
 	public String getWhetherToOpen(List<PoolMemberVo> myPoolList, List<PoolMemberVo> usersPoolList) {
@@ -370,31 +378,6 @@ public class MatchingService {
 			}
 		}
 		return null;
-	}
-
-	public List<ScrapCityVo> getUsersDateList(List<UserVo> matchingScore) {
-		List<ScrapCityVo> dateList = new ArrayList<ScrapCityVo>();
-		for(int i=0; i<matchingScore.size(); i++) {
-			List<ScrapCityVo> usersCityList = 
-					scrapCityDao.showCity( matchingScore.get(i).getUsrSeq() );
-			System.out.println(usersCityList);
-			
-			dateList.addAll(usersCityList);
-			System.out.println(dateList);
-		}
-		for(int i=0; i<dateList.size(); i++) {
-			ScrapCityVo scrapCityVo = new ScrapCityVo();
-			scrapCityVo.setUsrSeq( dateList.get(i).getUsrSeq() );
-			scrapCityVo.setCtySeq( dateList.get(i).getCtySeq() );
-			ScrapCityVo scrapCitydateList = scrapCityDao.select( scrapCityVo );
-			
-			if( scrapCitydateList != null && 
-					(scrapCitydateList.getDateFrom() != null || 
-						scrapCitydateList.getDateTo() != null)) {
-				dateList.add(scrapCitydateList);
-			}
-		}
-		return dateList;
 	}
 
 }
