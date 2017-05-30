@@ -119,10 +119,19 @@
 	
 	<select id="isPoolMemeber" resultType="poolmembervo" parameterType="integer">
 		<![CDATA[
-			select POOL_SEQ as poolSeq,
-				   USR_SEQ as usrSeq
-				from pool_member
-			where usr_seq = #{usrSeq }                                         
+			select pm.usr_seq as usrSeq,
+				   pm.pool_seq as poolSeq
+				from pool_member pm,
+					 pool_party pp,
+					 (select pm.pool_seq
+							from pool_party pp, pool_member pm
+						where pp.POOL_SEQ = pm.POOL_SEQ
+					 group by pm.pool_seq
+					 HAVING count(pm.POOL_SEQ) = 2) ppp
+		where pm.POOL_SEQ = pp.POOL_SEQ
+		and ppp.pool_seq = pm.POOL_SEQ
+		and pp.MANAGER_USR_SEQ = #{usrSeq } 
+		and pm.USR_SEQ != #{usrSeq } 
 		]]>
 	</select>
 		

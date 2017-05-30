@@ -80,6 +80,7 @@ function makingPool(usrSeq){
 }
 
 var showVisible = true;
+var showDateListVisible = true;
 
 function showDateList(usrSeq){
 	if ( showVisible == true ) {
@@ -89,5 +90,14 @@ function showDateList(usrSeq){
 		$("#dateList-"+usrSeq).hide();
 		showVisible = true;
 	}
-	
+}
+
+function showSameDateList(usrSeq){
+	if ( showDateListVisible == true ) {
+		$("#showDateList-"+usrSeq).show();	
+		showDateListVisible = false;
+	} else {
+		$("#showDateList-"+usrSeq).hide();
+		showDateListVisible = true;
+	}
 }

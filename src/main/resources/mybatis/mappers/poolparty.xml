@@ -17,7 +17,8 @@
 		
 		<![CDATA[
 			insert into pool_party
-			(POOL_SEQ, POOL_NAME,  POOL_COMMENT,  POOL_PIC,  cty_Seq,  MANAGER_USR_SEQ,  POOL_PUBLIC_YN)
+			(POOL_SEQ, POOL_NAME, POOL_COMMENT, POOL_PIC, POOL_MAIN_PIC, cty_Seq,  
+			MANAGER_USR_SEQ,  POOL_PUBLIC_YN)
 			values
 			(#{poolSeq }, #{poolName }, #{poolComment }, #{poolPic }, #{poolMainPic}, #{ctySeq }, #{managerUsrSeq }, #{poolPublicYn } )
 		]]>
