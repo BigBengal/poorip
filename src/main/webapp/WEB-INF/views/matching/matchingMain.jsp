@@ -167,8 +167,7 @@
 		</div>
 		<!-- /.row -->
 		<!-- Project One -->
-		<c:forEach var="matchingScore" items="${matchingScore }"
-			varStatus="status">
+		<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
 			<div class="row">
 				<div class="col-md-3 col-xs-12" >
 					<a href="#"> <img class="img-responsive"
@@ -177,8 +176,13 @@
 					</a>
 				</div>
 				<div class="col-md-5 col-xs-12">
-					<input type="hidden" id="usrSeq" value="${matchingScore.usrSeq }">
-					<h1 style="font-size: 25px"><span>${matchingScore.usrNick}</span></h1>
+					<input type="hidden" id="usrSeq" name="usersSeq" value="${matchingScore.usrSeq }">
+					<c:if test="${matchingScore.usrNick != '' or matchingScore.usrNick != null}">
+						<h1 style="font-size: 25px"><span>${matchingScore.usrNick}</span></h1>
+					</c:if>
+					<c:if test="${matchingScore.usrNick == '' or matchingScore.usrNick == null}">
+						<h1 style="font-size: 18px; font-style: inherit;"><span>사용자의 닉네임이 없습니다.</span></h1>
+					</c:if>
 					<br>
 					
 					<c:if test="${matchingScore.usrInfo != '' or matchingScore.usrInfo != null} ">
@@ -205,11 +209,13 @@
 					${matchingScore.usrNick}님과 ${userVo.usrNick }의 일정은 
 					<br><h3><span>${matchingScore.overlapDays }일</span></h3> 동안 같습니다.
 					<br>
-					<div class="col-md-12">
-					<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">make
-						a pool <span class="glyphicon glyphicon-chevron-right"></span>
-					</button>
-					</div>
+<%-- 					<c:if test="${poolMemeberYN != 'Y' }"> --%>
+						<div class="col-md-12">
+						<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">make
+							a pool <span class="glyphicon glyphicon-chevron-right"></span>
+						</button>
+						</div>
+<%-- 					</c:if> --%>
 				</div>
 				<div class="col-md-4 col-xs-12 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
 							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
@@ -233,7 +239,8 @@
 					<h1 class="page-header">
 						${authUser.usrNick}님과 계획이 비슷한 여행자 <small>Have a good Time!</small>
 					</h1>
-					<p>${authUser.usrNick}님께서관광할여행지가비슷한여행자들입니다.즐거운여행이되시길...</p>
+					<p>${authUser.usrNick}님과 여행 계획이 비슷한 여행자들입니다. 즐거운여행이되시길...</p>
+					<br>
 				</div>
 			</div>
 

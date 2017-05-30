@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.poorip.vo.PoolMemberVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.UserVo;
 
@@ -63,6 +64,10 @@ public class MatchingDao {
 			samePlanMember.get(i).setUsrInfo(member.getUsrInfo());
 		}
 		return samePlanMember;
+	}
+
+	public List<PoolMemberVo> getMyPoolList(int usrSeq) {
+		return sqlSession.selectList( "poolmember.isPoolMemeber", usrSeq);
 	}
 
 }
