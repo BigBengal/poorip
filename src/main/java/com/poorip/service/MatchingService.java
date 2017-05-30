@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.poorip.repository.MatchingDao;
 import com.poorip.repository.ScrapCityDao;
 import com.poorip.repository.UserDao;
+import com.poorip.vo.PoolMemberVo;
 import com.poorip.vo.ScrapCityVo;
 import com.poorip.vo.UserVo;
 
@@ -21,9 +22,10 @@ public class MatchingService {
 
 	@Autowired
 	private MatchingDao matchingDao;
+	
 	@Autowired
 	private UserDao userDao;
-
+	
 	// 내가 스크랩한 시티 리스트 가져오기
 	@Autowired
 	private ScrapCityDao scrapCityDao;
@@ -298,14 +300,11 @@ public class MatchingService {
 
 					// 기존 합계 점수에 일정 매칭 점수 추가
 					int originMatchingScore = matchingScoreList.get(i).getMatchingScore();
-//					int originDateScore = matchingScoreList.get(i).getDateScore();
-//					originDateScore = originDateScore + dateScore;
 
 					// 점수 계산용 dateScore
 					int pureDateScore = samePlanMemeber.get(j).getOriginDateScore();
 					
 					matchingScoreList.get(i).setMatchingScore( originMatchingScore + pureDateScore );
-					System.out.println(matchingScoreList);
 
 				}
 			}
@@ -319,7 +318,6 @@ public class MatchingService {
 
 		Descending descending = new Descending();
 		Collections.sort(matchingScoreList, descending);
-		System.out.println("정리된 리스트"+matchingScoreList);
 		int mininum = matchingScoreList.size();
 		mininum = Math.min(mininum, 5);
 		List<UserVo> top5 = matchingScoreList.subList(0, mininum);
@@ -350,6 +348,53 @@ public class MatchingService {
 		return scrapCityDao.getMyCityList(usrSeq);
 	}
 
+	public List<PoolMemberVo> getMyPoolList(int usrSeq) {
+		return matchingDao.getMyPoolList( usrSeq );
+	}
 
+	public List<PoolMemberVo> getUsersPoolList( List<UserVo> samePlanMemeber, List<UserVo> matchingScore ) {
+		
+		
+		return null;
+	}
+
+	public String getWhetherToOpen(List<PoolMemberVo> myPoolList, List<PoolMemberVo> usersPoolList) {
+		int poolSeq = 0;
+		int usersPoolSeq = 0;
+		for( int i=0; i<myPoolList.size(); i++){
+			for( int j=0; j<usersPoolList.size(); j++){
+				poolSeq = myPoolList.get(i).getPoolSeq();
+				usersPoolSeq = usersPoolList.get(j).getPoolSeq();
+				if( poolSeq == usersPoolSeq )
+					return "Y";
+			}
+		}
+		return null;
+	}
+
+	public List<ScrapCityVo> getUsersDateList(List<UserVo> matchingScore) {
+		List<ScrapCityVo> dateList = new ArrayList<ScrapCityVo>();
+		for(int i=0; i<matchingScore.size(); i++) {
+			List<ScrapCityVo> usersCityList = 
+					scrapCityDao.showCity( matchingScore.get(i).getUsrSeq() );
+			System.out.println(usersCityList);
+			
+			dateList.addAll(usersCityList);
+			System.out.println(dateList);
+		}
+		for(int i=0; i<dateList.size(); i++) {
+			ScrapCityVo scrapCityVo = new ScrapCityVo();
+			scrapCityVo.setUsrSeq( dateList.get(i).getUsrSeq() );
+			scrapCityVo.setCtySeq( dateList.get(i).getCtySeq() );
+			ScrapCityVo scrapCitydateList = scrapCityDao.select( scrapCityVo );
+			
+			if( scrapCitydateList != null && 
+					(scrapCitydateList.getDateFrom() != null || 
+						scrapCitydateList.getDateTo() != null)) {
+				dateList.add(scrapCitydateList);
+			}
+		}
+		return dateList;
+	}
 
 }

@@ -116,5 +116,14 @@
 			  and POOL_SEQ = #{poolSeq }                                            
 		]]>
 	</select>
+	
+	<select id="isPoolMemeber" resultType="poolmembervo" parameterType="integer">
+		<![CDATA[
+			select POOL_SEQ as poolSeq,
+				   USR_SEQ as usrSeq
+				from pool_member
+			where usr_seq = #{usrSeq }                                         
+		]]>
+	</select>
 		
 </mapper>
