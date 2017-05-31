@@ -211,6 +211,7 @@ public class MainController {
 		if (autoList.isEmpty()){
 			return JSONResult.fail("No-DATA");
 		}
+		System.out.println(autoList);
 		return JSONResult.success(autoList);
 	}
 
@@ -222,7 +223,7 @@ public class MainController {
 		int seq = mainService.getCitySeq(cityName);
 		if (seq == 0)
 			return "redirect:/";
-		return "redirect:/city/" + seq;
+		return "redirect:/city/" + seq +"#portfolio";
 	}
 
 }

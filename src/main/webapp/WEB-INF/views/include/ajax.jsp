@@ -8,7 +8,67 @@
 
 <script type="text/javascript">
 $(function(){
-	$("#city-kwd").autocomplete({
+
+	$.widget( "custom.catcomplete", $.ui.autocomplete, {
+	      _create: function() {
+	        this._super();
+// 	        this.wrapper = $( "<span>" )
+// 	          .addClass( "custom-combobox" )
+// 	          .insertAfter( this.element );
+	        this._createShowAllButton();
+	        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+	      },
+	      _renderMenu: function( ul, items ) {
+	        var that = this,
+	          currentCategory = "";
+	        $.each( items, function( index, item ) {
+	          var li;
+	          if ( item.category != currentCategory ) {
+	            ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+	            currentCategory = item.category;
+	          }
+	          li = that._renderItemData( ul, item );
+	          if ( item.category ) {
+	            li.attr( "aria-label", item.category + " : " + item.label );
+	          }
+	        });
+	      },
+	      _createShowAllButton: function() {
+	          var input = this,
+	            wasOpen = false;
+	   
+	          $( "#searchshowall" )
+	            .attr( "tabIndex", -1 )
+	            .attr( "title", "Show All Items" )
+	            .tooltip()
+	            .appendTo( this.wrapper )
+// 	            .button({
+// 	              icons: {
+// 	                primary: "ui-icon-triangle-1-s"
+// 	              },
+// 	              text: false
+// 	            })
+	            .removeClass( "ui-corner-all" )
+	            .addClass( "custom-combobox-toggle ui-corner-right" )
+	            .on( "mousedown", function() {
+	              wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+	            })
+	            .on( "click", function() {
+	              input.trigger( "focus" );
+	   
+	              // Close if already visible
+	              if ( wasOpen ) {
+	                return;
+	              }
+	   
+	              // Pass empty string as value to search for, displaying all results
+	              input.autocomplete( "search", "" );
+	            });
+	        }
+	    });
+	
+	$("#city-kwd").catcomplete({
+		delay: 1000,
         source : function(request, response) {
             $.ajax({
                 url : "search",
@@ -16,19 +76,18 @@ $(function(){
                 dataType : "json",
                 data: "kwd="+$("#city-kwd").val(),
                 success : function(data) {
-                	
-                	if( response.result == "fail") {
+                	if( data.result == "fail") {
      		    	   return;
      		    	}
                     var result = data;
 					//console.log(JSON.stringify(result.data));
-					//console.log("YO"+ result);
                     response(
                             $.map($.parseJSON(JSON.stringify(result.data)), function(item) {
-                            	console.log(result);
+//                             	console.log(result);
                                 return {
                                     label: item.name,
-                                    value: item.ctySeq
+//                                     value: item.ctySeq,
+                                    category: '< ' + item.contents + ' >',
                                 }
                             })
                         );
@@ -37,10 +96,10 @@ $(function(){
 //                     alert("ajax 에러가 발생하였습니다.")
                 }
             });
-        },
-		select : function( event, ui ) {
-			console.log("UI + ITEM + VALUE " + ui.item.value);
-			$(location).attr('href','/poorip/city/'+ui.item.value);
+        }
+		,select : function( event, ui ) {
+			$(this).val(ui.item.value);
+			$("#travel_search").submit();
 		}
     });
 	

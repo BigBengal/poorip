@@ -18,14 +18,18 @@
 </p>
 <br>
 
-<form id="travel_search"
-	action="${pageContext.request.contextPath}/searchResult" method="get"
+<form id="travel_search" action="${pageContext.request.contextPath}/searchResult" method="get"
 	style="text-align: center">
 	<input type="text"
-		style="margin-bottom: 20px; display: inline-block; width: 90%"
+		style="margin-bottom: 20px; display: inline-block; width: 80%"
 		placeholder="Search..." class="form-control" id="city-kwd"
-		name="ctySeq"> <input type="submit" value="Find"
-		style="display: inline-block; float: right;">
+		name="ctySeq" value="${cityName.ctyName}">
+
+	<a id="searchshowall" class="form-control ui-button ui-widget ui-corner-all ui-button-icon-only">
+<!-- 	   " title="Button with icon only"> -->
+    	<span class="ui-icon ui-icon-triangle-1-s"></span> Button with icon only
+ 	</a>
+	<input type="submit" value="Find" style="display: inline-block; width: 10%; float: right; margin-right: 5%">
 </form>
 
 <div class="row">

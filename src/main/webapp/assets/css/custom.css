@@ -11,6 +11,17 @@ File Description: Place here your custom CSS styles
 	position: absolute;
 	cursor: default;
 	z-index: 30 !important;
+	max-height: 500px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em 1.4em;
+    margin: .8em 0 .2em;
+    line-height: 1.5;
 }
 
 /* Dropdown Button */
