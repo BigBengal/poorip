@@ -16,6 +16,9 @@ var post_render = function( vo, trvInfoName, ctyName ) {
                   "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
                "<div class='col-md-offset-4' style='margin:auto;'>" +
                      "<p class='col-md-12'>" + 
+                     "<div class='form-group sns-post-content' style='width:100%;'>" +
+                     "<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
+                  "</div>" + 
                         "<div class='cycle-slideshow'" +
                            "data-cycle-fx='scrollHorz'" +
                            "data-cycle-timeout='0'" +
@@ -33,7 +36,7 @@ var edit_post_render = function( vo ) {
                         "<img class='sns-profile-pic' src=''>" +
 	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong></div>" +
 	                  "</div>" +
-	                  "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
+	                  "<div class='form-group sns-post-content'>" +
 	               "<div class='col-md-offset-4' style='margin:auto;'>" +
 	                     "<p class='col-md-12'>" + 
 	                        "<div class='cycle-slideshow'" +
@@ -66,9 +69,7 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
                         "</p>" +
                      "</div>" +
                      "</div>" + 
-                  "<div class='form-group' style='display: block;margin:auto; width:40%;'>" +
-                  "<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
-               "</div>" + 
+                  
                
                "<div class='form-group sns-buttons' style='display:block; text-align:center; width:100%; margin-left: 0px; clear:both;'>" +
                "<a href='javascript:;'><button class='sns-post-footer' onclick='postDelete(" + vo.postSeq + ")' style='float:left;'>삭제</button>" +
@@ -83,9 +84,7 @@ var last_render = function(vo, postPicSeq, postPicSeqArray) {
 		    "</p>" +
 		 "</div>" +
 		 "</div>" + 
-		"<div class='form-group'>" +
-				"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
-		"</div>" + 
+		
 		"<div class='form-group sns-buttons' style='text-align:center; display:block; width:100%; margin-left: 0px; clear:both;'>" +
 				"<a href='javascript:;'><button class='sns-post-footer' onclick='postDelete(" + vo.postSeq + ")' style='float:left;'>삭제</button>" +
 				 "<a href=javascript:;><button class='sns-post-footer' id='share-dialog'  onclick='postShare(" + vo.postSeq + ")' >공유</button>" +

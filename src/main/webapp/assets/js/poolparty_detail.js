@@ -346,15 +346,15 @@ function showList(){
 			$( response.data.post ).each( function(index, vo){
 //	 				console.log( index + ":" + vo.post + vo.postPic );
 				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4 pool-detail-post' style='margin-left: 15%; text-align:center;'>" +
-				"<div class='row margin_up_down'>"+
+				"<div class='row margin_up_down post-header'>"+
 				"<div class='col-md-6 img_inline'>"+
 				"	<img src='"+vo.picture+"'> "+vo.name+
 				"</div>"+
 				"<div class='col-md-6'>"+
 				vo.crtDate+
 				"</div>"+
-				"</div>"+
-				"<h3>"+vo.title+"</h3>";
+				"<h3>"+vo.title+"</h3>"+
+				"</div>";
 
 				 if(response.data.postPic.length> 0) {
 //					 console.log("exist postPic");
@@ -368,14 +368,14 @@ function showList(){
 				 }
 				 html = html + "<p>"+vo.contents+"</p>"+
 					
-					"<div class='row margin_up_down underline'>";
+					"<div class='row margin_up_down underline' style='margin:auto;'>";
 				 if(vo.usrSeq == authUsrSeq){
 					 html = html +
-						"<div class='col-md-3'>"+
-						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='float: right; width: 50%;'>수정</button>" + 
+						"<div class='col-md-3' style='width: 50%; margin:auto;'>"+
+						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='float: right; width: 50%; margin:auto;'>수정</button>" + 
 						"</div>"+
-						"<div class='col-md-3 col-md-offset-6'>"+
-						"<button class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"' style='float: left; width: 50%;'>삭제</button>" +
+						"<div class='col-md-3 col-md-offset-6' style='width: 50%; margin:auto;'>"+
+						"<button class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"' style='float: left; width: 50%; '>삭제</button>" +
 						"</div>";
 				 }
 				 html = html +
@@ -432,12 +432,14 @@ function likeToggle(poolike){
 	        	if (poolike == false){
 	        		$("#poollike").removeClass("poollikeon");
 		  			$("#poollike").addClass("poollikeoff");
+		  			
 		  			poolikeyn = true;
 // 		  			console.log(data.data);
 		  			$("#poollike").text(data.data);
 	        	} else {
 	        		$("#poollike").removeClass("poollikeoff");
 	        		$("#poollike").addClass("poollikeon");
+	        		
 	        		poolikeyn = false;
 // 	        		console.log(data.data);
 	        		$("#poollike").text(data.data);

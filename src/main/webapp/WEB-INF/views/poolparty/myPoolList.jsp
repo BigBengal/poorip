@@ -207,7 +207,8 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 				<div class="col-md-8 col-md-offset-2 object-non-visible"
 					data-animation-effect="fadeIn">
 					<h1 class="text-center">
-						<span style="font-family:'Pacifico'; color: white;">Poorip<span></span> <span>와 인연</span>
+						<span style="font-family: 'Pacifico'; color: white;">Poorip<span></span>
+							<span>와 인연</span>
 					</h1>
 				</div>
 			</div>
@@ -218,13 +219,13 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	<div class="container">
 		<div class="row col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
 			<div class="text-center">
-			<img
-						src="${pageContext.request.contextPath }/assets/images/volleyball.png"
-						style="display: inline-block; margin-top: -10px;">
+				<img
+					src="${pageContext.request.contextPath }/assets/images/volleyball.png"
+					style="display: inline-block; margin-top: -10px; position: absolute; top: -0.5%; left: 45.5%;">
 				<h2
 					style="margin-bottom: 10%; border-bottom: solid 1px lightgrey; padding-bottom: 15px;">
 					<span style="font-family: 'Pacifico'; color: black;">My
-						PoolParty List </span> 
+						PoolParty List </span>
 				</h2>
 			</div>
 
@@ -236,9 +237,10 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 								<img src="/poorip${myPoolList.poolPic }" class="img100">
 							</div>
 							<div class="col-md-6">
-							<c:if test="${myPoolList.managerUsrSeq == authUser.usrSeq }">
-							<img class="admin-img" src="${pageContext.request.contextPath }/assets/images/crown.png">
-							</c:if>
+								<c:if test="${myPoolList.managerUsrSeq == authUser.usrSeq }">
+									<img class="admin-img"
+										src="${pageContext.request.contextPath }/assets/images/crown.png">
+								</c:if>
 								${myPoolList.poolName}<br>
 								<c:if test="${null ne myPoolList.ctyName }">
 								[${myPoolList.ctyName }]
