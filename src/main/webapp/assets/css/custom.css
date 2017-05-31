@@ -118,6 +118,7 @@ File Description: Place here your custom CSS styles
 
 .menu_links {
 	cursor: pointer;
+	
 }
 
 .poolparty {
@@ -206,6 +207,7 @@ File Description: Place here your custom CSS styles
 	border-radius: 3px;
 	margin-bottom: 4px;
 	background-color: Skyblue;
+	margin:7px;
 }
 
 .gender_F {
@@ -214,6 +216,7 @@ File Description: Place here your custom CSS styles
 	border-radius: 3px;
 	margin-bottom: 4px;
 	background-color: pink;
+	margin:7px;
 }
 
 .gender_M {
@@ -484,7 +487,6 @@ File Description: Place here your custom CSS styles
 	display: inline-block;
 	width: 100%;
 	float: left;
-
 }
 
 .form-horizontal .form-group.sns-write-group {
@@ -603,6 +605,7 @@ File Description: Place here your custom CSS styles
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	border-radius: 4px;
 	width: 15%;
+	bottom: -35%;
 }
 
 .sns-poollist-title {
@@ -631,34 +634,50 @@ File Description: Place here your custom CSS styles
 @media screen and (max-width: 700px) {
 	body
 	
+	
 	 
+	
 	
 	.sns-pool-lists
 	
+	
 	 
+	
 	
 	a
 	
 	
+	
+	
 	:not
 	
+	
 	 
+	
 	
 	(
 	:first-child
 	
+	
 	 
+	
 	
 	)
 	{
 	display
 	
 	
+	
+	
 	:
+	
 	
 	 
 	
+	
 	none
+	
+	
 	
 	
 	;
@@ -831,6 +850,7 @@ body .sns-pool-list.icon {
 .col-md-6.img_inline {
 	float: left;
 	padding-left: 0;
+	width:100%;
 }
 
 button:focus {
@@ -856,11 +876,12 @@ button:focus {
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	box-shadow: 1px 1px 1px #888888;
+	box-shadow: 0px 1px 0px 1px #888888;
 	margin-left: 10px;
 	position: absolute;
 	right: 0;
-	top: 3%;
+	top: 80px;
+	padding:0;
 }
 
 .modal-open {
@@ -889,10 +910,11 @@ button:focus {
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	background-color: #fff7f7;
 }
+
 #postList .row.margin_up_down h3 {
 	clear: both;
 	border-top: solid 3px;
-	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	border-color: #a3a3a5 #dfe0e4 #d0d1d5;
 	padding-top: 10px;
 }
 
@@ -906,4 +928,13 @@ button:focus {
 	float: left;
 	margin-left: 5px;
 	margin-bottom: 5px;
+}
+
+#pool-member-listTitle {
+    text-align: center;
+    border-bottom: solid #a3a3a5;
+    padding:10px 0;
+    border-radius: 5px 5px 0 0;
+    background-color: #dedddd;
+    
 }

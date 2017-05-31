@@ -319,8 +319,8 @@
 				</div>
 				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 					<div id="pool-setting">
-						<button type="button" class="btn btn-primary"
-							style="min-width: 100px;">Settings</button>
+						<button type="button" class="sns-post-footer menu_links modify"
+							style="min-width: 100px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eaeaea ), color-stop(1, #c7c7c7));">Settings</button>
 					</div>
 				</c:if>
 			</div>
@@ -328,7 +328,7 @@
 		</div>
 		<!-- 풀파티 맴버 -->
 		<div class="col-md-2 hidden-xs pool-member-window">
-			풀파티 맴버
+			<div id="pool-member-listTitle"><strong>풀파티 맴버</strong></div>
 			<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 				<div
 					class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links"
@@ -338,7 +338,7 @@
 				</div>
 			</c:forEach>
 			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
-				<div class="input-group">
+				<div class="input-group" style="margin:5px;">
 					<input type="text" id="inviteNick" class="form-control"
 						placeholder="Nickname"> <span class="input-group-btn">
 						<button class="btn btn-default btn-xsmall" type="button"
@@ -396,8 +396,11 @@
 							<img src="${post.picture}"
 								style="float: left; margin-left: 5px; margin-bottom: 5px;">
 							<h6>${post.name}</h6>
+							<c:if test="${post.trvName ne '관련 여행정보 없음' }">
+							<h6>in <span style="color:rgba(22, 39, 125, 0.55);">${post.trvName }</span></h6>
+							</c:if>
 						</div>
-						<div class="col-md-6" style="text-align: right; margin-top: 5%; font-size:0.9em;">${post.crtDate}</div>
+						<div class="col-md-6" style="text-align: right; margin-top: 5%; font-size:0.9em; float:right; margin-top:0px;">${post.crtDate}</div>
 						<h3><strong>${post.title}</strong></h3>
 					</div>
 

@@ -487,7 +487,7 @@ $(function() {
         if (b > d) {
             c.css({position:"fixed",top:"200px"})
         } else {
-            c.css({position:"absolute",right:"5%", top:"", bottom: "-250px", height:"500px", overflow:"auto"})
+            c.css({position:"absolute",right:"5%", top:"", bottom: "-35%", height:"500px", overflow:"auto"})
         }
     };
     $(window).scroll(a);a()

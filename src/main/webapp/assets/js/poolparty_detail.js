@@ -361,9 +361,13 @@ function showList(){
 				});
 				
 				html = html + "<div class='col-md-6 img_inline'>"+
-				"	<img src='"+vo.picture+"'> <h6>"+vo.name+"</h6>" +
-				"</div>"+
-				"<div class='col-md-6' style='text-align: right; margin-top: 5%; font-size:0.9em;'>"+ vo.crtDate+
+				"	<img src='"+vo.picture+"'> <h6>"+vo.name+"</h6>";
+				if(vo.trvName!='관련 여행정보 없음'){
+				html = html + "<h6> in <span style='color:rgba(22, 39, 125, 0.55);'> " + vo.trvName + "</span></h6>"; 
+				}
+				
+				html = html + "</div>"+
+				"<div class='col-md-6' style='text-align: right; margin-top: 5%; font-size:0.9em; float:right; margin-top:0px;'>"+ vo.crtDate+
 				"</div>"+
 				"<h3><strong>"+vo.title+"</strong></h3>"+
 				"</div>";

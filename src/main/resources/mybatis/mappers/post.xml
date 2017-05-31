@@ -197,15 +197,17 @@
 	<select id="getPostListbyPoolSeq" resultType="reviewvo"
 		parameterType="map">
 		<![CDATA[
-			select p.post_seq as postSeq,
-				   title,
-				   contents,
+			 select p.post_seq as postSeq,
+				   p.title,
+				   p.contents,
 				   p.usr_seq as usrSeq,
 				   p.crt_date as crtDate,
 				   u.USR_NICK as name,
-				   u.USR_PROFILE as picture
-			 from post p, pool_post pp, users u
+				   u.USR_PROFILE as picture,
+				   ti.NAME as trvName
+			 from post p, pool_post pp, users u, travel_info ti
 			where p.POST_SEQ = pp.POST_SEQ
+			  and p.TRV_SEQ = ti.TRV_SEQ
 			  and pp.POOL_SEQ = #{poolSeq }
 			  and p.usr_seq = u.usr_seq
 			order by pp.crt_date desc
