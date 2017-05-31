@@ -366,6 +366,11 @@ public class PoolPartyController {
 		map.put("post", postList);
 		map.put("postPic", postPicList);
 		
+		//풀멤버 정보
+		List<PoolMemberVo> poolmemList = poolPartyService.getPoolMembers(poolSeq);
+		
+		map.put("poolmemList", poolmemList);
+		
 		return JSONResult.success(map);
 	}
 

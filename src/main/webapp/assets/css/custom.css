@@ -482,9 +482,9 @@ File Description: Place here your custom CSS styles
 .pool-detail-name {
 	text-align: center;
 	display: inline-block;
-	width: 50%;
+	width: 100%;
 	float: left;
-	margin-left: 25%;
+
 }
 
 .form-horizontal .form-group.sns-write-group {
@@ -629,16 +629,47 @@ File Description: Place here your custom CSS styles
 }
 
 @media screen and (max-width: 700px) {
-	body .sns-pool-lists a:not (:first-child ) {
-		display: none;
-	}
-	body .sns-pool-lists a.icon {
-		float: right;
-		display: block;
-	}
+	body
+	
+	 
+	
+	.sns-pool-lists
+	
+	 
+	
+	a
+	
+	
+	:not
+	
+	 
+	
+	(
+	:first-child
+	
+	 
+	
+	)
+	{
+	display
+	
+	
+	:
+	
+	 
+	
+	none
+	
+	
+	;
 }
 
+body .sns-pool-lists a.icon {
+	float: right;
+	display: block;
+}
 
+}
 body .sns-pool-lists a.icon {
 	float: right;
 	display: block;
@@ -751,9 +782,6 @@ body .sns-pool-list.icon {
 	float: right;
 }
 
-
-
-
 .pool-detail-post {
 	min-height: 180px;
 	/* margin: 0 0 10px; */
@@ -832,7 +860,7 @@ button:focus {
 	margin-left: 10px;
 	position: absolute;
 	right: 0;
-	top: 3.5%;
+	top: 3%;
 }
 
 .modal-open {
@@ -846,17 +874,36 @@ button:focus {
 	margin-top: 10%;
 }
 
-#postList .row.margin_up_down.post-header {
+#postList .row.margin_up_down.post-header.male {
 	margin-bottom: 10%;
 	margin-right: -16px;
 	box-shadow: 1px 1px 1px #888888;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-	background-color: #bed3e2;
+	background-color: #e8eff5;
 }
 
+#postList .row.margin_up_down.post-header.female {
+	margin-bottom: 10%;
+	margin-right: -16px;
+	box-shadow: 1px 1px 1px #888888;
+	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	background-color: #fff7f7;
+}
 #postList .row.margin_up_down h3 {
 	clear: both;
-	border-top: solid 2px;
+	border-top: solid 3px;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	padding-top: 10px;
+}
+
+.col-md-6.img_inline h6 {
+	display: inline-block;
+	float: left;
+	margin-left: 5px;
+}
+
+.col-md-6.img_inline img {
+	float: left;
+	margin-left: 5px;
+	margin-bottom: 5px;
 }

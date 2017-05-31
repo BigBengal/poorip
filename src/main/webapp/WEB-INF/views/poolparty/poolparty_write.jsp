@@ -83,9 +83,9 @@
 									SNS 등록 여부 : </label>
 								<div class='col-sm-7 text-center'>
 									<label for="hidden">등록</label> <input type="radio" id="hidden2"
-										name="hidden" value="N" checked data-toggle="toggle">
+										name="hidden2" value="N" checked data-toggle="toggle">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-										for="hidden">미등록</label> <input type="radio" id="hidden2"
+										for="hidden2">미등록</label> <input type="radio" id="hidden2"
 										name="hidden" value="Y" data-toggle="toggle">
 								</div>
 							</div>
