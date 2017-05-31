@@ -75,45 +75,35 @@ function hasNull(target) {
 function send(trvSeq, reviewNum){
 	var likeIcon = document.getElementById("scrapTrvInfo-"+trvSeq);
 	var $travelPic = $("#travelPic-"+trvSeq)
-	var galleria = true
 	
 	if (! $travelPic.is(".loaded")){
-		if($travelPic.is(".galleria")){
-			galleria = true
-		} else {
-			galleria = false
-		}
 		$.ajax({
 	        url : "/poorip/travelpic/" + trvSeq,
 	        type : "post",
-//	         data: "trvSeq="+ trvSeq,
 	        dataType: "json",
 	        success : function(response) {
+	        	$travelPic.addClass("loaded");
+	        	
 	        	if (response.result == "fail") {
-	        		console.log(response.data);
+	        		console.log('#travelPic-'+trvSeq + ";" + response.message);
+	        		Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+	        		Galleria.run('#travelPic-'+trvSeq , { lightbox: true });
 	        		return;
 	        	}
 	        	
 	        	$( response.data ).each( function(index, vo){
 // 	        		console.log(vo);
-					if(galleria == true)
-	        			$travelPic.append("<img src='/poorip"+vo.path + "/" + vo.fileName + "' />");
-					else 
-						$travelPic.append("<div class='swiper-slide'> <img src='/poorip"+vo.path + "/" + vo.fileName + "' /> </div>");
+	       			$travelPic.append("<img src='/poorip"+vo.path + "/" + vo.fileName + "' />");
 	        	});
 	        	
-	        	$travelPic.addClass("loaded");
-// 				Galleria.loadTheme('https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/themes/classic/galleria.classic.min.js');      
-
+				Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+	        	Galleria.run('#travelPic-'+trvSeq , { lightbox: true });
 	        },
 	        error : function(data) {
 				    alert("travelpic ajax 에러가 발생하였습니다.")
 	        }
 	    });
-// 		if(galleria == true){
-// 			Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-// 			Galleria.run('.galleria' , { wait : true});			
-// 		}
+
         
 	}
 	
@@ -127,8 +117,8 @@ function send(trvSeq, reviewNum){
 
             	likeIcon.src="/poorip/assets/images/star_on.png";
             }else {
- 
-        		likeIcon.src="/poorip/assets/images/star_off.png";
+ 				if(likeIcon != null)
+        			likeIcon.src="/poorip/assets/images/star_off.png";
         	}
         },
         error : function(data) {

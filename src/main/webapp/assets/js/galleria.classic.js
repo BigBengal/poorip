@@ -25,7 +25,6 @@ Galleria.addTheme({
         _toggleInfo: true
     },
     init: function(options) {
-
         Galleria.requires(1.4, 'This version of Classic theme requires Galleria 1.4 or later');
 
         // add some elements

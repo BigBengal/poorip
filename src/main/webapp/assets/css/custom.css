@@ -629,56 +629,15 @@ File Description: Place here your custom CSS styles
 }
 
 @media screen and (max-width: 700px) {
-	body
-	
-	
-	 
-	
-	
-	.sns-pool-lists
-	
-	
-	 
-	
-	
-	a
-	
-	
-	
-	
-	:not
-	
-	
-	 
-	
-	
-	(
-	:first-child
-	
-	
-	 
-	
-	
-	)
-	{
-	display
-	
-	
-	
-	
-	:
-	
-	
-	 
-	
-	
-	none
-	
-	
-	
-	
-	;
+	body .sns-pool-lists a:not (:first-child ) {
+		display: none;
+	}
+	body .sns-pool-lists a.icon {
+		float: right;
+		display: block;
+	}
 }
+
 
 body .sns-pool-lists a.icon {
 	float: right;
@@ -792,9 +751,8 @@ body .sns-pool-list.icon {
 	float: right;
 }
 
-.galleria {
-	min-height: 500px;
-}
+
+
 
 .pool-detail-post {
 	min-height: 180px;

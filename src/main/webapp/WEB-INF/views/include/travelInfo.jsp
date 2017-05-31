@@ -171,10 +171,10 @@
 											<b>${travelInfoFood.name}</b>
 										</h2>
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-5">
 												<p>${travelInfoFood.contents}</p>
 											</div>
-											<div class="col-sm-12 col-md-6" id="travelPic-${travelInfoFood.trvSeq}">
+											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFood.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoFood.picture}" alt="" />
 											</div>
 											<div class="col-sm-12 col-md-6 detail">
@@ -285,10 +285,10 @@
 										</c:if>
 										<h2>${travelInfoFoodMain.name}</h2>
 
-										<div class="col-md-6">
+										<div class="col-md-5">
 											<p>${travelInfoFoodMain.contents}</p>
 										</div>
-										<div class="col-sm-12 col-md-6" id="travelPic-${travelInfoFoodMain.trvSeq}">
+										<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFoodMain.trvSeq}" style="min-height:400px; padding: 0px;">
 											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
 										</div>
 										<div class="col-sm-12 col-md-6 detail">
@@ -401,30 +401,11 @@
 
 										<h2>${travelInfoAttraction.name}</h2>
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-5">
 												<p>${travelInfoAttraction.contents}</p>
 											</div>
-											<div class="col-md-6" >
-											<!-- Slider main container -->
-<div class="swiper-container" id="travelSlide-${travelInfoAttraction.trvSeq}">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper" id="travelPic-${travelInfoAttraction.trvSeq}">
-        <!-- Slides -->
-        <div class="swiper-slide"><img src="/poorip/${travelInfoAttraction.picture}" alt=""></div>
-        
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-    
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
-</div>
-
-												
+											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoAttraction.trvSeq}" style="min-height:400px; padding: 0px;">
+												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
 												<h3>영업시간</h3>
@@ -537,7 +518,7 @@
 											<div class="col-md-5">
 												<p>${travelInfoAttractionMain.contents}</p>
 											</div>
-											<div class="col-md-7 galleria" id="travelPic-${travelInfoAttractionMain.trvSeq}">
+											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoAttractionMain.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoAttractionMain.picture}"
 													alt="">
 											</div>
@@ -653,10 +634,10 @@
 										</c:if>
 										<h2>${travelInfoActivity.name}</h2>
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-5">
 												<p>${travelInfoActivity.contents}</p>
 											</div>
-											<div class="col-md-6" id="travelPic-${travelInfoActivity.trvSeq}">
+											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoActivity.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoActivity.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
@@ -769,10 +750,10 @@
 										</c:if>
 										<h2>${travelInfoActivityMain.name}</h2>
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-5">
 												<p>${travelInfoActivityMain.contents}</p>
 											</div>
-											<div class="col-md-6 galleria" id="travelPic-${travelInfoActivityMain.trvSeq}">
+											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoActivityMain.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
