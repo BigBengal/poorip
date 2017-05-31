@@ -202,29 +202,20 @@ File Description: Place here your custom CSS styles
 }
 
 .gender_M {
-	border: 1px solid;
-	border-color: Royalblue;
 	border-radius: 3px;
-	margin-bottom: 4px;
-	background-color: Skyblue;
-	margin:7px;
+    margin-bottom: 4px;
+    background-color: rgba(100, 173, 204, 0.36);
+    margin: 7px;
 }
 
 .gender_F {
-	border: 1px double;
-	border-color: Hotpink;
 	border-radius: 3px;
 	margin-bottom: 4px;
-	background-color: pink;
+	background-color: rgba(247, 175, 188, 0.46);;
 	margin:7px;
 }
 
-.gender_M {
-	border: 1px solid;
-	border-color: Royalblue;
-	border-radius: 3px;
-	margin-bottom: 4px;
-}
+
 
 .aproveN {
 	background-color: LightGray;
@@ -884,6 +875,10 @@ button:focus {
 	padding:0;
 }
 
+.pool-member-window img {
+border-radius: 5px 0 0 5px;
+
+}
 .modal-open {
 	overflow: auto;
 }

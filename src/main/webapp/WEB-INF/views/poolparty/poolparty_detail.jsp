@@ -117,7 +117,7 @@
 	rel="stylesheet">
 </head>
 <body>
-<body class="no-trans">
+<body class="no-trans" style="background-color:#f2f2f2;">
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -320,7 +320,7 @@
 				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 					<div id="pool-setting">
 						<button type="button" class="sns-post-footer menu_links modify"
-							style="min-width: 100px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eaeaea ), color-stop(1, #c7c7c7));">Settings</button>
+							style="min-width: 100px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eaeaea ), color-stop(1, #e8e5e5));">Settings</button>
 					</div>
 				</c:if>
 			</div>
