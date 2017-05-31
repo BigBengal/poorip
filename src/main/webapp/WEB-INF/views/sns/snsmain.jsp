@@ -182,6 +182,9 @@
 		src="${pageContext.request.contextPath }/assets/js/portBox.js"></script>
 		<script
 		src="${pageContext.request.contextPath }/assets/js/portBox.slimscroll.min.js"></script>
+
+	<!-- Gallera image slider -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
 	
 	<!--  toggle-checkbox -->
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>	

@@ -51,7 +51,10 @@ var edit_post_render = function( vo ) {
 
 var postPic_render = function(vo2, vo) {
    if(vo2.fileName!=null) {
-   var postPic_html = "<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq + "' data-lightbox='sns-images-"+ vo.postSeq+ "' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path + "/" + vo2.fileName + "' style='width=500px; margin:auto; border-radius: 8px; margin-bottom: 10px;' ></a>";
+   var postPic_html = "<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='500px' id='middle-html-" + vo2.postPicSeq +
+   						"' data-lightbox='sns-images-"+ vo.postSeq+ 
+   						"' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path +
+   						"/" + vo2.fileName + "' style='width=500px; margin:auto; border-radius: 8px; margin-bottom: 10px;' ></a>";
                               
 
                   $( "#first-html-"+vo.postSeq ).append(postPic_html);
@@ -204,7 +207,7 @@ $(function() {
 
    });
 $(document).ready(function(){
-	console.log("ss");
+
 	$.ajax( {
 		url : "sns/main/" + page,
 		type : "get",
@@ -223,7 +226,7 @@ $(document).ready(function(){
 			var postPicSeq = null;
 			var postPicSeqArray = [];
 			++page;
-			console.log(response.data.poolList);
+//			console.log(response.data.poolList);
 			$(response.data.poolList).each(function(index, vo) {
 				if(vo.ctyName == null) {
 					vo.ctyName = "도시 미정";
