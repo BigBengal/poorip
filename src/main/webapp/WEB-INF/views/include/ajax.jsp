@@ -73,7 +73,7 @@ $(function(){
 	    });
 	
 	$("#city-kwd").catcomplete({
-		delay: 300,
+		delay: 0,
         source : function(request, response) {
             $.ajax({
                 url : "search",
