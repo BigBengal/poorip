@@ -309,7 +309,8 @@ $(document).ready(function(){
 		}
 	} );
 	
-	
+	Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+	Galleria.run('.galleria' , { lightbox: true });
 	
 	
 });

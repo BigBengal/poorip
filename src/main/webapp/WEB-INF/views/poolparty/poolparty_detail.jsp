@@ -108,7 +108,8 @@
 <!-- Custom Scripts -->
 <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
-
+<!-- Gallera image slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
 
 <!-- facebook  -->
 <!-- Google font -->
@@ -376,9 +377,6 @@
 
 		<!-- 글 보기 -->
 
-
-
-
 		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 			<c:if test="${memberlist.usrSeq ==authUser.usrSeq }">
 				<div style="text-align: center; margin-right: 20%;">
@@ -428,15 +426,18 @@
 						<strong>${post.title}</strong>
 					</h3>
 				</div>
-
+				<!-- 갤러리아 라이브러리 붙일 자리 -->
+				<div class="galleria" style="min-height:600px; padding: 0px;">
 				<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
 					<c:if test="${post.postSeq ==postpic.postSeq}">
-						<a href="/poorip${postpic.path}/${postpic.fileName}"
-							data-lightbox="${postpic.postSeq}" data-title="${post.title}">
+<%-- 						<a href="/poorip${postpic.path}/${postpic.fileName}" --%>
+<%-- 							data-lightbox="${postpic.postSeq}" data-title="${post.title}"> --%>
+							
 							<img src="/poorip${postpic.path}/${postpic.fileName}">
-						</a>
+<!-- 						</a> -->
 					</c:if>
 				</c:forEach>
+				</div>
 				<p>${post.contents}</p>
 
 				<div class="row margin_up_down underline">

@@ -181,6 +181,7 @@
 	<!-- facebook  -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+		
 	<!-- Gallera image slider -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
     

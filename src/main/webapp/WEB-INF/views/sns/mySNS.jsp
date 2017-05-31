@@ -101,8 +101,6 @@
 								class="sns-post-footer"
 								id="sns-edit-button" style="width:30%">수정하기</button>
 								<button type="button" class="sns-post-footer" data-dismiss="modal" style="width:30%">닫기</button>
-						
-						
 					</div>
 				</div>
 				
@@ -110,8 +108,6 @@
 		</div>
 		</div>
 		</div>
-
-
 <!-- 글쓰기 -->
 
 	<div class="container">
