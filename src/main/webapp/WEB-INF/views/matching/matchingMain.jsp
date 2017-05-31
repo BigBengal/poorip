@@ -162,7 +162,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header"style="font-size: 30px">
-					추천 결과 <small>Bless You</small>
+					추천 결과 <small>Just For You</small>
 				</h1>
 			</div>
 		</div>

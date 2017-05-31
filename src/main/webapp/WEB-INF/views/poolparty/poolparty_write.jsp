@@ -130,7 +130,7 @@
 			</div>
 			<div class="form-group">
 				<div class="selectbox">
-					<label class="control-label col-sm-3" for="trvSeq">관련 여행지 선택</label>
+					<label class="control-label col-sm-3" for="trvSeq">관련 여행지</label>
 					<div class='col-sm-7'>
 						<select class="form-control" id="update-trv-seq" name="trvSeq">
 							<option value="-1" selected>관련 여행지 선택</option>
