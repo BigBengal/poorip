@@ -173,7 +173,9 @@
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
-	
+	<!-- Gallera image slider -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
+    
 	
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>
