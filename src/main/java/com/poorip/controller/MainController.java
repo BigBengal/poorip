@@ -222,7 +222,7 @@ public class MainController {
 		int seq = mainService.getCitySeq(cityName);
 		if (seq == 0)
 			return "redirect:/";
-		return "redirect:/city/" + seq;
+		return "redirect:/city/" + seq +"#portfolio";
 	}
 
 }
