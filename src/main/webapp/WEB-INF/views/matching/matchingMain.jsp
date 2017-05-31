@@ -224,25 +224,27 @@
 						${matchingScore.usrNick}님과 ${userVo.usrNick }의 일정은 
 						<br><h3><span>${matchingScore.overlapDays }일</span></h3> 동안 같습니다.
 					</div>
+					
 					<c:set var="isPoolMemberYN" value="N" />
-						<c:forEach var="isPoolMember" items="${isPoolMember }">
-							<c:set var="isPoolMemberYN" value="N" />
-							
-								<c:if test="${isPoolMember.usrSeq == matchingScore.usrSeq}">
-									<div class="col-md-12">
-										<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">
-										   <span class="glyphicon glyphicon-chevron-right"></span>
-										</button>
-									</div>
-								</c:if>
-						</c:forEach>
-						<c:if test="isPoolMemberYN = N"></c:if>
-					<div class="col-md-12">
-						<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">make
-							a pool <span class="glyphicon glyphicon-chevron-right"></span>
-						</button>
-					</div>
+					<c:forEach var="isPoolMember" items="${isPoolMember }">							
+						<c:if test="${isPoolMember.usrSeq == matchingScore.usrSeq}">
+							<div class="col-md-12">
+								<button class="btn made-a-pool-${matchingScore.usrSeq }" onclick="madePool(${matchingScore.usrSeq })">
+									Already made a pool
+								</button>
+							</div>
+							<c:set var="isPoolMemberYN" value="Y" />
+						</c:if>
+					</c:forEach>
+					<c:if test="${isPoolMemberYN == 'N'}">
+						<div class="col-md-12">
+							<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">make
+								a pool <span class="glyphicon glyphicon-chevron-right"></span>
+							</button>
+						</div>
+					</c:if>
 				</div>
+				
 				<div class="col-md-5 col-xs-12 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
 							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
 							data-luxuryscore="${matchingScore.luxuryScore }" data-datescore="${matchingScore.dateScore }"
@@ -330,6 +332,14 @@
 			  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀을 생성하시겠습니까?</p>
 			</div>
 		</form>
+	</c:forEach>
+	
+	<!-- 존재 하는 풀 다이얼로그 -->
+	<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
+		<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
+		<div id="made-pool-${matchingScore.usrSeq }" title="ALREADY MADE A POOL" style="display:none">
+		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀이 이미 생성되어 있습니다.</p>
+		</div>
 	</c:forEach>
 	
 </body>

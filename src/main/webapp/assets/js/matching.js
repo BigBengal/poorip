@@ -76,7 +76,20 @@ function makingPool(usrSeq){
 	        }
 	      }
 	});
+}
 
+function madePool(usrSeq){
+	dialog = $("#made-pool-"+usrSeq).dialog({
+		resizable: false,
+	      height: "auto",
+	      width: 400,
+	      modal: true,
+	      buttons: {
+	        "CANCEL": function() {
+	          $( this ).dialog( "close" );
+	        }
+	      }
+	});
 }
 
 var showVisible = true;
