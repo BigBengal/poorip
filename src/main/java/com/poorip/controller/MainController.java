@@ -211,7 +211,6 @@ public class MainController {
 		if (autoList.isEmpty()){
 			return JSONResult.fail("No-DATA");
 		}
-		System.out.println(autoList);
 		return JSONResult.success(autoList);
 	}
 

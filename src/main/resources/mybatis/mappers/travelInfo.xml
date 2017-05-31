@@ -210,6 +210,7 @@
 		  where (cty.CTY_NAME like '%${_parameter}%'
 		     or ctr.CTR_NAME like '%${_parameter}%')
 		    and cty.CTR_SEQ = ctr.CTR_SEQ
+		    and cty_seq	!= -1
     	]]>
 	</select>
 	

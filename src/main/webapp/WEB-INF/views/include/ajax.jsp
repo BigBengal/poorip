@@ -34,24 +34,28 @@ $(function(){
 	        });
 	      },
 	      _createShowAllButton: function() {
-	          var input = this,
+	          var input = $("#city-kwd"),
 	            wasOpen = false;
 	   
 	          $( "#searchshowall" )
-	            .attr( "tabIndex", -1 )
-	            .attr( "title", "Show All Items" )
+// 	            .attr( "tabIndex", -1 )
+	            .attr( "title", "전체 도시 보기" )
 	            .tooltip()
-	            .appendTo( this.wrapper )
+// 	            .appendTo( this.wrapper )
 // 	            .button({
 // 	              icons: {
 // 	                primary: "ui-icon-triangle-1-s"
 // 	              },
 // 	              text: false
 // 	            })
-	            .removeClass( "ui-corner-all" )
-	            .addClass( "custom-combobox-toggle ui-corner-right" )
+// 	            .removeClass( "ui-corner-all" )
+// 	            .addClass( "ui-corner-right" )
 	            .on( "mousedown", function() {
-	              wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+	            	
+	            	console.log(wasOpen + "," + input.val());
+	            	if (input.val() == ""){
+	              		wasOpen = input.catcomplete("widget").is( ":visible" );
+	            	}
 	            })
 	            .on( "click", function() {
 	              input.trigger( "focus" );
@@ -62,13 +66,14 @@ $(function(){
 	              }
 	   
 	              // Pass empty string as value to search for, displaying all results
-	              input.autocomplete( "search", "" );
+	              input.val("");
+	              input.catcomplete( "search", " " );
 	            });
 	        }
 	    });
 	
 	$("#city-kwd").catcomplete({
-		delay: 1000,
+		delay: 300,
         source : function(request, response) {
             $.ajax({
                 url : "search",
@@ -102,7 +107,7 @@ $(function(){
 			$("#travel_search").submit();
 		}
     });
-	
+
 });
 var render = function( vo, reviewNum, postSeq ){
 	
