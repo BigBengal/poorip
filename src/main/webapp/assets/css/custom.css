@@ -930,6 +930,26 @@ border-radius: 5px 0 0 5px;
     border-bottom: solid #a3a3a5;
     padding:10px 0;
     border-radius: 5px 5px 0 0;
-    background-color: #dedddd;
+    background-color: #e4e4e4;
     
 }
+
+.pooldetails {
+	border-left: solid 5px #6f96a2;;
+    padding-left: 10px;
+    min-height:30px;
+}
+
+.pool-partydetail-header .pooltraveldate {
+	border-left: solid 5px #6f96a2;;
+    padding-left: 10px;
+    min-height:30px;
+}
+
+.poolindivcomment {
+	word-wrap: break-word;
+	border-left: solid 5px #6f96a2;;
+    padding-left: 10px;
+    min-height:30px;
+}
+
