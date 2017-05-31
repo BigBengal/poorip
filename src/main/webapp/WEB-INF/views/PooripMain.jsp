@@ -64,9 +64,6 @@
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
-<!-- Swiper 이미지 슬라이드 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
@@ -189,9 +186,6 @@
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 	<!-- Gallera image slider -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
-	<!-- Swiper image slider -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
-
     
 	<!--  Google Map -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdfn7ld2w_RvKQbflObkV6r5ClLuqqUp4&callback=initMap"
@@ -232,18 +226,6 @@
 
 				if(tagId.substring(8,9)!=1)
 					showMap(tagId);
-		      	//initialize swiper when document ready
-				var swiper = new Swiper('.swiper-container', {
-		        	nextButton: '.swiper-button-next',
-			        prevButton: '.swiper-button-prev',
-		        	pagination: '.swiper-pagination',
-			        paginationClickable: true,
-			        spaceBetween: 30,
-			        slidesPerView: 1,
-			        loop: true
-			    });
-				Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-				Galleria.run('.galleria' , { wait : true});			
 			});
 				
 			$(document).on("click","#citygo",function(){
@@ -253,7 +235,7 @@
 			});
 			
 			
-			//도시 이름 더 보기
+			//인기 TOP 12 도시 이름 더 보기 버튼
 			$("#citymore").on('click', function(){
 				$(this).remove();
 				$("#citylist div").each(function(index){
