@@ -21,7 +21,7 @@
 <form id="travel_search" action="${pageContext.request.contextPath}/searchResult" method="get"
 	style="text-align: center">
 	<input type="text"
-		style="margin-bottom: 20px; display: inline-block; width: 80%"
+		style="margin-bottom: 20px; display: inline-block; width: 75%"
 		placeholder="Search any countries or cities" class="form-control" id="city-kwd"
 		name="ctySeq" value="${cityName.ctyName}">
 	<a id="searchshowall" class="ui-button ui-widget ui-corner-right ui-button-icon-only" 
