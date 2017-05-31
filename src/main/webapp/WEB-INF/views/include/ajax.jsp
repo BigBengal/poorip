@@ -38,21 +38,10 @@ $(function(){
 	            wasOpen = false;
 	   
 	          $( "#searchshowall" )
-// 	            .attr( "tabIndex", -1 )
 	            .attr( "title", "전체 도시 보기" )
 	            .tooltip()
-// 	            .appendTo( this.wrapper )
-// 	            .button({
-// 	              icons: {
-// 	                primary: "ui-icon-triangle-1-s"
-// 	              },
-// 	              text: false
-// 	            })
-// 	            .removeClass( "ui-corner-all" )
-// 	            .addClass( "ui-corner-right" )
 	            .on( "mousedown", function() {
-	            	
-	            	console.log(wasOpen + "," + input.val());
+// 	            	console.log(wasOpen + "," + input.val());
 	            	if (input.val() == ""){
 	              		wasOpen = input.catcomplete("widget").is( ":visible" );
 	            	}
