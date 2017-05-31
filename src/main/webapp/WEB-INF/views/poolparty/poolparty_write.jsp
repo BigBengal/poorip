@@ -82,10 +82,10 @@
 								<label class="control-label col-sm-3" for="reviewPubYn">개인
 									SNS 등록 여부 : </label>
 								<div class='col-sm-7 text-center'>
-									<label for="hidden">등록</label> <input type="radio" id="hidden2"
+									<label for="hidden">등록</label> <input type="radio" id="hidden"
 										name="hidden" value="N" checked data-toggle="toggle">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-										for="hidden">미등록</label> <input type="radio" id="hidden2"
+										for="hidden">미등록</label> <input type="radio" id="hidden"
 										name="hidden" value="Y" data-toggle="toggle">
 								</div>
 							</div>

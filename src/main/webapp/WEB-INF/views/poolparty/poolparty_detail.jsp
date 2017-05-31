@@ -134,64 +134,65 @@
 	<!-- header end -->
 	<div style="height: 200px;"></div>
 	<c:if test="${authUser.usrSeq == pool.managerUsrSeq }">
-	<div class="pool-detail-backgroundimg">
-		<a href="javascript:;"> <img src="/poorip${pool.poolMainPic}"
-			style="width: 100%; object-fit: cover; height: 100%;"
-			id="pool-main-pic"> <img
-			src="${pageContext.request.contextPath }/assets/images/camera1.png"
-			data-toggle="modal" data-target="#poolparty-Img-Modal"
-			id="pool-image-change">
-		</a>
-	
-		<div id="poolparty-Img-Modal" class="modal fade" role="dialog">
-			<div class="poolpartyimg-dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="poolparty-Img-title">
-							<form class="form-horizontal" id="pool-image-form" method="post"
-								enctype="multipart/form-data">
-								<input type="hidden" name="poolSeq" value="${pool.poolSeq}">
-								<input type="hidden" name="usrSeq" value="${authUser.usrSeq}" id="authuser-pool">
-								<input type="hidden" name="managerSeq"
-									value="${pool.managerUsrSeq}">
-								<div class="sns-modal-title">
-									<h3>이미지 변경</h3>
-								</div>
-								<div class="write-main block" id="sns-write"
-									style="margin-right: 5%;">
+		<div class="pool-detail-backgroundimg">
+			<a href="javascript:;"> <img src="/poorip${pool.poolMainPic}"
+				style="width: 100%; object-fit: cover; height: 100%; border-radius: 10px;"
+				id="pool-main-pic" data-toggle="modal"
+				data-target="#poolparty-Img-Modal"> <img
+				src="${pageContext.request.contextPath }/assets/images/camera1.png"
+				data-toggle="modal" data-target="#poolparty-Img-Modal"
+				id="pool-image-change" style="border-radius: 10px;">
+			</a>
 
-									<div class="form-group sns-write-group">
-										<div style="margin-top: 30px;">
-											<label class="control-label col-sm-3" for="file">사진
-												올리기</label>
-											<div class="col-sm-7">
-												<input type="file" name="file" accept='images/*'
-													id="pool-img-upload" style="vertical-align: bottom;">
+			<div id="poolparty-Img-Modal" class="modal fade" role="dialog">
+				<div class="poolpartyimg-dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="poolparty-Img-title">
+								<form class="form-horizontal" id="pool-image-form" method="post"
+									enctype="multipart/form-data">
+									<input type="hidden" name="poolSeq" value="${pool.poolSeq}">
+									<input type="hidden" name="usrSeq" value="${authUser.usrSeq}"
+										id="authuser-pool"> <input type="hidden"
+										name="managerSeq" value="${pool.managerUsrSeq}">
+									<div class="sns-modal-title">
+										<h3>이미지 변경</h3>
+									</div>
+									<div class="write-main block" id="sns-write"
+										style="margin-right: 5%;">
+
+										<div class="form-group sns-write-group">
+											<div style="margin-top: 30px;">
+												<label class="control-label col-sm-3" for="file">사진
+													올리기</label>
+												<div class="col-sm-7">
+													<input type="file" name="file" accept='images/*'
+														id="pool-img-upload" style="vertical-align: bottom;">
+												</div>
 											</div>
 										</div>
+
+
+										<div class="form-group sns-write-group sns-buttons"
+											style="margin-left: 0px; text-align: center; margin: 5%;">
+
+											<button type="submit" class="sns-post-footer"
+												id="pool-img-changebtn" style="width: 30%;">이미지 변경</button>
+											<button type="button" class="sns-post-footer"
+												data-dismiss="modal" style="width: 30%;">닫기</button>
+										</div>
+
 									</div>
-
-
-									<div class="form-group sns-write-group sns-buttons"
-										style="margin-left: 0px; text-align: center; margin: 5%;">
-
-										<button type="submit" class="sns-post-footer"
-											id="pool-img-changebtn" style="width: 30%;">이미지 변경</button>
-										<button type="button" class="sns-post-footer"
-											data-dismiss="modal" style="width: 30%;">닫기</button>
-									</div>
-
-								</div>
-								<div class="container"></div>
-							</form>
+									<div class="container"></div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 
 		</div>
-
-	</div>
 	</c:if>
 	<div class="container" style="position: relative">
 		<!-- 풀파티 설정 -->
@@ -273,23 +274,20 @@
 			<div class="col-md-5">
 				<img src="/poorip${pool.poolPic}">
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-7 pool-setting-header">
 				<div class="col-md-10"></div>
-				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
-					<div id="pool-setting">
-						<button type="button" class="btn btn-primary"
-							style="min-width: 100px;">Settings</button>
-					</div>
-				</c:if>
-				<div class="col-md-2">
+
+				<div class="col-md-2 pool-like">
 					<c:choose>
 						<c:when test="${like == true}">
 							<div id="poollike" class="poollikeon menu_links" data-onoff="off">
 								${pool.likeCnt}</div>
+
 						</c:when>
 						<c:otherwise>
 							<div id="poollike" class="poollikeoff menu_links" data-onoff="on">
 								${pool.likeCnt}</div>
+
 						</c:otherwise>
 					</c:choose>
 
@@ -319,13 +317,18 @@
 	</c:if>
 					</h5>
 				</div>
+				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
+					<div id="pool-setting">
+						<button type="button" class="sns-post-footer menu_links modify"
+							style="min-width: 100px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eaeaea ), color-stop(1, #c7c7c7));">Settings</button>
+					</div>
+				</c:if>
 			</div>
 
 		</div>
 		<!-- 풀파티 맴버 -->
-		<div class="col-md-2 hidden-xs"
-			style="width: 20%; background-color: #f3f2f2; border-radius: 5px; padding-top: 5px; padding-bottom: 5px; box-shadow: 1px 1px 1px #888888;">
-			풀파티 맴버
+		<div class="col-md-2 hidden-xs pool-member-window">
+			<div id="pool-member-listTitle"><strong>풀파티 맴버</strong></div>
 			<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 				<div
 					class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links"
@@ -335,7 +338,7 @@
 				</div>
 			</c:forEach>
 			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
-				<div class="input-group">
+				<div class="input-group" style="margin:5px;">
 					<input type="text" id="inviteNick" class="form-control"
 						placeholder="Nickname"> <span class="input-group-btn">
 						<button class="btn btn-default btn-xsmall" type="button"
@@ -356,11 +359,13 @@
 
 
 
-
-
+		
+		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
+		<c:if test="${memberlist.usrSeq ==authUser.usrSeq }">
 		<div style="text-align: center; margin-right: 20%;">
 			<button type=button class="sns-write-button"
-				data-text="Enter text here" style="width: 60%; cursor: text; min-width: 300px;"
+				data-text="Enter text here"
+				style="width: 61%; cursor: text; min-width: 300px; margin-top: 100px; margin-bottom: 30px;"
 				data-toggle="modal" data-target="#sns-write-form2">
 				<img alt="수정" src="/poorip/assets/images/write-btn.png"
 					class="sns-post-footer"
@@ -369,18 +374,36 @@
 					...</span>
 			</button>
 		</div>
+		</c:if>
+		</c:forEach>
 		<div id="postList" class="col-md-12">
 			<c:forEach var="post" items="${post}" varStatus="status">
 				<div id="post-${post.postSeq}"
 					class="col-md-6 col-md-offset-4 pool-detail-post"
 					style="margin-left: 15%;">
-					<div class="row margin_up_down">
+					<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
+					<c:if test="${post.usrSeq == memberlist.usrSeq }">
+					<c:if test="${memberlist.gender eq 'F' }">
+					<div class="row margin_up_down post-header female">
+					</c:if>
+					<c:if test="${memberlist.gender eq 'M' }">
+					<div class="row margin_up_down post-header male">
+					</c:if>
+					
+					</c:if>
+					</c:forEach>
 						<div class="col-md-6 img_inline">
-							<img src="${post.picture}"> ${post.name}
+							<img src="${post.picture}"
+								style="float: left; margin-left: 5px; margin-bottom: 5px;">
+							<h6>${post.name}</h6>
+							<c:if test="${post.trvName ne '관련 여행정보 없음' }">
+							<h6>in <span style="color:rgba(22, 39, 125, 0.55);">${post.trvName }</span></h6>
+							</c:if>
 						</div>
-						<div class="col-md-6">${post.crtDate}</div>
+						<div class="col-md-6" style="text-align: right; margin-top: 5%; font-size:0.9em; float:right; margin-top:0px;">${post.crtDate}</div>
+						<h3><strong>${post.title}</strong></h3>
 					</div>
-					<h3>${post.title}</h3>
+
 					<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
 						<c:if test="${post.postSeq ==postpic.postSeq}">
 							<a href="/poorip${postpic.path}/${postpic.fileName}"
@@ -390,20 +413,21 @@
 						</c:if>
 					</c:forEach>
 					<p>${post.contents}</p>
-					
+
 					<div class="row margin_up_down underline">
-						<div class="col-md-3">
+						<div class="col-md-3" style="width: 50%; margin: auto;">
 							<c:if test="${authUser.usrSeq == post.usrSeq}">
 								<%-- <img alt='수정' src='/poorip/assets/images/post_modify.png'
 										class="menu_links modify" data-postseq="${post.postSeq}"
 										style="max-height: 30px;"> --%>
 								<button class='sns-post-footer menu_links modify'
 									data-postseq="${post.postSeq}"
-									style='float: right; width: 50%;'>수정</button>
+									style='float: right; width: 50%; margin: auto;'>수정</button>
 
 							</c:if>
 						</div>
-						<div class="col-md-3 col-md-offset-6">
+						<div class="col-md-3 col-md-offset-6"
+							style="width: 50%; margin: auto;">
 							<c:if test="${authUser.usrSeq == post.usrSeq}">
 
 								<button class='sns-post-footer menu_links rightalign delete'
@@ -418,7 +442,7 @@
 		</div>
 	</div>
 	</div>
-	<div id="loading" class="col-md-10 col-md-offset-2"></div>
+	<div id="loading" class="col-md-10 col-md-offset-2" style="margin:auto;"></div>
 
 	<!-- 프로필 보기 다이얼로그 -->
 	<div id="profile" title="프로필 보기"></div>

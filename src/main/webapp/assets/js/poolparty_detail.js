@@ -333,6 +333,7 @@ function showList(){
 	    data: "",
 	//  contentType: "application/json",
 	    success: function( response ){
+	  
 	    	if( response.result != "success" ) {
 	    		console.log( response.message );
 	    		return;
@@ -344,17 +345,32 @@ function showList(){
 	    	}
 //	 	    	console.log( response );
 			$( response.data.post ).each( function(index, vo){
+				
 //	 				console.log( index + ":" + vo.post + vo.postPic );
-				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4 pool-detail-post' style='margin-left: 15%; text-align:center;'>" +
-				"<div class='row margin_up_down'>"+
-				"<div class='col-md-6 img_inline'>"+
-				"	<img src='"+vo.picture+"'> "+vo.name+
+				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4 pool-detail-post' style='margin-left: 15%; text-align:center;'>";
+				$(response.data.poolmemList).each(function(index,vo2) {
+					
+				if(vo2.usrSeq == vo.usrSeq) { 
+					if(vo2.gender=='F'){
+					html = html +"<div class='row margin_up_down post-header female'>";
+					}
+					if(vo2.gender=='M') {
+					html = html +"<div class='row margin_up_down post-header male'>";	
+					}
+				}
+				});
+				
+				html = html + "<div class='col-md-6 img_inline'>"+
+				"	<img src='"+vo.picture+"'> <h6>"+vo.name+"</h6>";
+				if(vo.trvName!='관련 여행정보 없음'){
+				html = html + "<h6> in <span style='color:rgba(22, 39, 125, 0.55);'> " + vo.trvName + "</span></h6>"; 
+				}
+				
+				html = html + "</div>"+
+				"<div class='col-md-6' style='text-align: right; margin-top: 5%; font-size:0.9em; float:right; margin-top:0px;'>"+ vo.crtDate+
 				"</div>"+
-				"<div class='col-md-6'>"+
-				vo.crtDate+
-				"</div>"+
-				"</div>"+
-				"<h3>"+vo.title+"</h3>";
+				"<h3><strong>"+vo.title+"</strong></h3>"+
+				"</div>";
 
 				 if(response.data.postPic.length> 0) {
 //					 console.log("exist postPic");
@@ -368,14 +384,14 @@ function showList(){
 				 }
 				 html = html + "<p>"+vo.contents+"</p>"+
 					
-					"<div class='row margin_up_down underline'>";
+					"<div class='row margin_up_down underline' style='margin:auto;'>";
 				 if(vo.usrSeq == authUsrSeq){
 					 html = html +
-						"<div class='col-md-3'>"+
-						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='float: right; width: 50%;'>수정</button>" + 
+						"<div class='col-md-3' style='width: 50%; margin:auto;'>"+
+						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='float: right; width: 50%; margin:auto;'>수정</button>" + 
 						"</div>"+
-						"<div class='col-md-3 col-md-offset-6'>"+
-						"<button class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"' style='float: left; width: 50%;'>삭제</button>" +
+						"<div class='col-md-3 col-md-offset-6' style='width: 50%; margin:auto;'>"+
+						"<button class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"' style='float: left; width: 50%; '>삭제</button>" +
 						"</div>";
 				 }
 				 html = html +
@@ -432,12 +448,14 @@ function likeToggle(poolike){
 	        	if (poolike == false){
 	        		$("#poollike").removeClass("poollikeon");
 		  			$("#poollike").addClass("poollikeoff");
+		  			
 		  			poolikeyn = true;
 // 		  			console.log(data.data);
 		  			$("#poollike").text(data.data);
 	        	} else {
 	        		$("#poollike").removeClass("poollikeoff");
 	        		$("#poollike").addClass("poollikeon");
+	        		
 	        		poolikeyn = false;
 // 	        		console.log(data.data);
 	        		$("#poollike").text(data.data);
