@@ -739,6 +739,9 @@ body .sns-pool-list.icon {
     
 }
 
+.galleria {
+	min-height: 500px;
+
 .pool-detail-post {
 	min-height: 180px;
     /* margin: 0 0 10px; */
@@ -789,4 +792,5 @@ box-shadow: inset 0px 1px 0px 0px #ffffff;
 .col-md-6.img_inline {
 	float: left;
     padding-left: 0;
+    
 }

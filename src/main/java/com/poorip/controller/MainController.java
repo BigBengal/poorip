@@ -130,7 +130,7 @@ public class MainController {
 	public JSONResult getTravleInfoPic(@PathVariable("trvSeq") String trvSeq){
 		int trvSeq1 = Integer.parseInt(trvSeq);
 		List<TravelInfoPicVo> travelPic = mainService.selectTravelInfoPics(trvSeq1);
-		System.out.println(travelPic);
+		
 		if(travelPic.isEmpty() || travelPic==null) {
 			return JSONResult.fail("사진이 없습니다");
 		}

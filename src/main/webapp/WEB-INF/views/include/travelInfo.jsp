@@ -404,8 +404,27 @@
 											<div class="col-md-6">
 												<p>${travelInfoAttraction.contents}</p>
 											</div>
-											<div class="col-md-6" id="travelPic-${travelInfoAttraction.trvSeq}">
-												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
+											<div class="col-md-6" >
+											<!-- Slider main container -->
+<div class="swiper-container" id="travelSlide-${travelInfoAttraction.trvSeq}">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper" id="travelPic-${travelInfoAttraction.trvSeq}">
+        <!-- Slides -->
+        <div class="swiper-slide"><img src="/poorip/${travelInfoAttraction.picture}" alt=""></div>
+        
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+</div>
+
+												
 											</div>
 											<div class="col-md-6 detail">
 												<h3>영업시간</h3>
@@ -515,10 +534,10 @@
 										</c:if>
 										<h2>${travelInfoAttractionMain.name}</h2>
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-5">
 												<p>${travelInfoAttractionMain.contents}</p>
 											</div>
-											<div class="col-md-6" id="travelPic-${travelInfoAttractionMain.trvSeq}">
+											<div class="col-md-7 galleria" id="travelPic-${travelInfoAttractionMain.trvSeq}">
 												<img src="/poorip/${travelInfoAttractionMain.picture}"
 													alt="">
 											</div>
@@ -753,7 +772,7 @@
 											<div class="col-md-6">
 												<p>${travelInfoActivityMain.contents}</p>
 											</div>
-											<div class="col-md-6" id="travelPic-${travelInfoActivityMain.trvSeq}">
+											<div class="col-md-6 galleria" id="travelPic-${travelInfoActivityMain.trvSeq}">
 												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
