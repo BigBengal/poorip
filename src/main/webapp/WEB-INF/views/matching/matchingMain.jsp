@@ -5,7 +5,6 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<div class="se-pre-con">Loading...</div>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>soulMate</title>
@@ -111,7 +110,9 @@
 <!-- chart -->
 <script
 	src="${pageContext.request.contextPath }/assets/js/matching.js"></script>
-
+<style>
+	@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+</style>
 </head>
 <body class="no-trans">
 
@@ -168,10 +169,11 @@
 		<!-- /.row -->
 		<!-- Project One -->
 		<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
-		<div class="form-group">
-			<div class="row">
-			
-				<div class="col-md-2 col-xs-12" >
+		
+<!-- 		<div class="sns-post-group" style="background-color: white; box-shadow: 1px 1px 1px #888888; min-height: 420px;"> -->
+		<div style="margin-bottom:20px; border-radius:4px; border:1px solid; border-color:#d2d2d2; min-height: 420px;">
+<!-- 			<div class="form-group" style="padding-top: 10px; background-color: #e6e6e6; margin-right: 0px; margin-left: 0px"> -->
+				<div class="col-md-2 col-xs-12" style="padding-top: 10%">
 					<a href="#"> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
 						style="width: 80%">
@@ -179,22 +181,22 @@
 				</div>
 				<div class="col-md-5 col-xs-12">
 					<input type="hidden" id="usrSeq" name="usersSeq" value="${matchingScore.usrSeq }">
-					<div class="col-md-12">
-					<c:if test="${matchingScore.usrNick != '' or matchingScore.usrNick != null}">
-						<h1 style="font-size: 25px"><span>${matchingScore.usrNick}</span></h1>
-					</c:if>
-					<c:if test="${matchingScore.usrNick == '' or matchingScore.usrNick == null}">
-						<h1 style="font-size: 18px; font-style: inherit;"><span>사용자의 닉네임이 없습니다.</span></h1>
-					</c:if>
+					<div class="col-md-12" style="padding-top: 20px">
+						<c:if test="${matchingScore.usrNick != '' or matchingScore.usrNick != null}">
+							<h3 style="font-size: 25px;"><span style="font-family: 'Jeju Gothic', serif; color: #2f90a7;">'${matchingScore.usrNick}'</span></h3>
+						</c:if>
+						<c:if test="${matchingScore.usrNick == '' or matchingScore.usrNick == null}">
+							<h1 style="font-size: 18px; font-family: 'Jeju Gothic', serif;"><span>사용자의 닉네임이 없습니다.</span></h1>
+						</c:if>
 					</div>
 					<br>
 					<br>
 					<div class="col-md-12">
-						<c:if test="${matchingScore.usrInfo != '' or matchingScore.usrInfo != null} ">
-							<p>${matchingScore.usrInfo}</p>
-						</c:if>
 						<c:if test="${matchingScore.usrInfo == '' or matchingScore.usrInfo == null}">
 							<p>${matchingScore.usrNick}님의 소개가 없습니다.</p>
+						</c:if>
+						<c:if test="${matchingScore.usrInfo != '' and matchingScore.usrInfo != null}">
+							<p style="font-family: 'Jeju Gothic', serif;">"${matchingScore.usrInfo}"</p>
 						</c:if>
 					</div>
 					<br>
@@ -210,7 +212,7 @@
 					<br>
 					<br>
 					<div class="col-md-12" onclick="showDateList(${matchingScore.usrSeq });">
-						<h2><span>${matchingScore.usrNick}님의 여행 일정 보기</span></h2>
+						<h2><span class="menu_links">${matchingScore.usrNick}님의 여행 일정 보기</span></h2>
 					</div>
 					<div class="col-md-12" id="dateList-${matchingScore.usrSeq }" style="display: none;">
 						<c:forEach var="matchingDateList" items="${matchingDateList }"	>
@@ -256,8 +258,8 @@
 					</div>
 				</div>
 			</div>
-			<hr>
-			</div>
+<!-- 			<hr> -->
+<!-- 			</div> -->
 		</c:forEach>
 		<!-- /.row -->
 
@@ -281,8 +283,10 @@
 					varStatus="status">
 					<div class="col-lg-4 col-sm-6 text-center">
 						<img class="img-circle img-responsive img-center"
+							style="display: block; margin-left: auto; margin-right: auto;"
 							src="${samePlanMemeber.usrProfile }"
 							alt="${samePlanMemeber.usrNick}">
+						<br>
 						<h3 style="font-style: oblique;">
 							<span>" ${samePlanMemeber.usrNick}  "</span>
 						</h3>

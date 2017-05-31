@@ -117,7 +117,7 @@
 	rel="stylesheet">
 </head>
 <body>
-<body class="no-trans">
+<body class="no-trans" style="background-color:#f2f2f2;">
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -319,8 +319,8 @@
 				</div>
 				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 					<div id="pool-setting">
-						<button type="button" class="btn btn-primary"
-							style="min-width: 100px;">Settings</button>
+						<button type="button" class="sns-post-footer menu_links modify"
+							style="min-width: 100px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eaeaea ), color-stop(1, #e8e5e5));">Settings</button>
 					</div>
 				</c:if>
 			</div>
@@ -328,7 +328,7 @@
 		</div>
 		<!-- 풀파티 맴버 -->
 		<div class="col-md-2 hidden-xs pool-member-window">
-			풀파티 맴버
+			<div id="pool-member-listTitle"><strong>풀파티 맴버</strong></div>
 			<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 				<div
 					class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links"
@@ -338,7 +338,7 @@
 				</div>
 			</c:forEach>
 			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
-				<div class="input-group">
+				<div class="input-group" style="margin:5px;">
 					<input type="text" id="inviteNick" class="form-control"
 						placeholder="Nickname"> <span class="input-group-btn">
 						<button class="btn btn-default btn-xsmall" type="button"
@@ -359,8 +359,9 @@
 
 
 
-
-
+		
+		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
+		<c:if test="${memberlist.usrSeq ==authUser.usrSeq }">
 		<div style="text-align: center; margin-right: 20%;">
 			<button type=button class="sns-write-button"
 				data-text="Enter text here"
@@ -373,19 +374,34 @@
 					...</span>
 			</button>
 		</div>
+		</c:if>
+		</c:forEach>
 		<div id="postList" class="col-md-12">
 			<c:forEach var="post" items="${post}" varStatus="status">
 				<div id="post-${post.postSeq}"
 					class="col-md-6 col-md-offset-4 pool-detail-post"
 					style="margin-left: 15%;">
-					<div class="row margin_up_down post-header">
+					<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
+					<c:if test="${post.usrSeq == memberlist.usrSeq }">
+					<c:if test="${memberlist.gender eq 'F' }">
+					<div class="row margin_up_down post-header female">
+					</c:if>
+					<c:if test="${memberlist.gender eq 'M' }">
+					<div class="row margin_up_down post-header male">
+					</c:if>
+					
+					</c:if>
+					</c:forEach>
 						<div class="col-md-6 img_inline">
 							<img src="${post.picture}"
 								style="float: left; margin-left: 5px; margin-bottom: 5px;">
-							<h6 style="display: inline-block; float:left; margin-left:5px;">${post.name}</h6>
+							<h6>${post.name}</h6>
+							<c:if test="${post.trvName ne '관련 여행정보 없음' }">
+							<h6>in <span style="color:rgba(22, 39, 125, 0.55);">${post.trvName }</span></h6>
+							</c:if>
 						</div>
-						<div class="col-md-6">${post.crtDate}</div>
-						<h3>${post.title}</h3>
+						<div class="col-md-6" style="text-align: right; margin-top: 5%; font-size:0.9em; float:right; margin-top:0px;">${post.crtDate}</div>
+						<h3><strong>${post.title}</strong></h3>
 					</div>
 
 					<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
@@ -426,7 +442,7 @@
 		</div>
 	</div>
 	</div>
-	<div id="loading" class="col-md-10 col-md-offset-2"></div>
+	<div id="loading" class="col-md-10 col-md-offset-2" style="margin:auto;"></div>
 
 	<!-- 프로필 보기 다이얼로그 -->
 	<div id="profile" title="프로필 보기"></div>

@@ -129,6 +129,7 @@ File Description: Place here your custom CSS styles
 
 .menu_links {
 	cursor: pointer;
+	
 }
 
 .poolparty {
@@ -212,27 +213,20 @@ File Description: Place here your custom CSS styles
 }
 
 .gender_M {
-	border: 1px solid;
-	border-color: Royalblue;
 	border-radius: 3px;
-	margin-bottom: 4px;
-	background-color: Skyblue;
+    margin-bottom: 4px;
+    background-color: rgba(100, 173, 204, 0.36);
+    margin: 7px;
 }
 
 .gender_F {
-	border: 1px double;
-	border-color: Hotpink;
 	border-radius: 3px;
 	margin-bottom: 4px;
-	background-color: pink;
+	background-color: rgba(247, 175, 188, 0.46);;
+	margin:7px;
 }
 
-.gender_M {
-	border: 1px solid;
-	border-color: Royalblue;
-	border-radius: 3px;
-	margin-bottom: 4px;
-}
+
 
 .aproveN {
 	background-color: LightGray;
@@ -493,9 +487,8 @@ File Description: Place here your custom CSS styles
 .pool-detail-name {
 	text-align: center;
 	display: inline-block;
-	width: 50%;
+	width: 100%;
 	float: left;
-	margin-left: 25%;
 }
 
 .form-horizontal .form-group.sns-write-group {
@@ -614,6 +607,7 @@ File Description: Place here your custom CSS styles
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	border-radius: 4px;
 	width: 15%;
+	bottom: -35%;
 }
 
 .sns-poollist-title {
@@ -640,16 +634,63 @@ File Description: Place here your custom CSS styles
 }
 
 @media screen and (max-width: 700px) {
-	body .sns-pool-lists a:not (:first-child ) {
-		display: none;
-	}
-	body .sns-pool-lists a.icon {
-		float: right;
-		display: block;
-	}
+	body
+	
+	
+	 
+	
+	
+	.sns-pool-lists
+	
+	
+	 
+	
+	
+	a
+	
+	
+	
+	
+	:not
+	
+	
+	 
+	
+	
+	(
+	:first-child
+	
+	
+	 
+	
+	
+	)
+	{
+	display
+	
+	
+	
+	
+	:
+	
+	
+	 
+	
+	
+	none
+	
+	
+	
+	
+	;
 }
 
+body .sns-pool-lists a.icon {
+	float: right;
+	display: block;
+}
 
+}
 body .sns-pool-lists a.icon {
 	float: right;
 	display: block;
@@ -762,9 +803,6 @@ body .sns-pool-list.icon {
 	float: right;
 }
 
-
-
-
 .pool-detail-post {
 	min-height: 180px;
 	/* margin: 0 0 10px; */
@@ -814,6 +852,7 @@ body .sns-pool-list.icon {
 .col-md-6.img_inline {
 	float: left;
 	padding-left: 0;
+	width:100%;
 }
 
 button:focus {
@@ -839,13 +878,18 @@ button:focus {
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	box-shadow: 1px 1px 1px #888888;
+	box-shadow: 0px 1px 0px 1px #888888;
 	margin-left: 10px;
 	position: absolute;
 	right: 0;
-	top: 3.5%;
+	top: 80px;
+	padding:0;
 }
 
+.pool-member-window img {
+border-radius: 5px 0 0 5px;
+
+}
 .modal-open {
 	overflow: auto;
 }
@@ -857,17 +901,46 @@ button:focus {
 	margin-top: 10%;
 }
 
-#postList .row.margin_up_down.post-header {
+#postList .row.margin_up_down.post-header.male {
 	margin-bottom: 10%;
 	margin-right: -16px;
 	box-shadow: 1px 1px 1px #888888;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-	background-color: #bed3e2;
+	background-color: #e8eff5;
+}
+
+#postList .row.margin_up_down.post-header.female {
+	margin-bottom: 10%;
+	margin-right: -16px;
+	box-shadow: 1px 1px 1px #888888;
+	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	background-color: #fff7f7;
 }
 
 #postList .row.margin_up_down h3 {
 	clear: both;
-	border-top: solid 2px;
-	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	border-top: solid 3px;
+	border-color: #a3a3a5 #dfe0e4 #d0d1d5;
 	padding-top: 10px;
+}
+
+.col-md-6.img_inline h6 {
+	display: inline-block;
+	float: left;
+	margin-left: 5px;
+}
+
+.col-md-6.img_inline img {
+	float: left;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+#pool-member-listTitle {
+    text-align: center;
+    border-bottom: solid #a3a3a5;
+    padding:10px 0;
+    border-radius: 5px 5px 0 0;
+    background-color: #dedddd;
+    
 }
