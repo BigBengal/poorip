@@ -1,7 +1,5 @@
 package com.poorip.service;
 
-import static org.mockito.Matchers.intThat;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;

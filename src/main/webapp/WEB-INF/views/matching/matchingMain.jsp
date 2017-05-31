@@ -168,7 +168,9 @@
 		<!-- /.row -->
 		<!-- Project One -->
 		<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
+		<div class="form-group">
 			<div class="row">
+			
 				<div class="col-md-2 col-xs-12" >
 					<a href="#"> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
@@ -255,6 +257,7 @@
 				</div>
 			</div>
 			<hr>
+			</div>
 		</c:forEach>
 		<!-- /.row -->
 
@@ -307,11 +310,25 @@
 						${samePlanMemeber.usrNick}님과 ${userVo.usrNick }의 일정은 
 						<br><h3><span>${samePlanMemeber.overlapDays }일</span></h3> 동안 같습니다.
 						<br>
-						<div class="col-md-12">
-							<button class="btn btn-primary make-a-pool-${samePlanMemeber.usrSeq }" onclick="makingPool(${samePlanMemeber.usrSeq })" data-usrseq="${samePlanMemeber.usrSeq }">make
-								a pool <span class="glyphicon glyphicon-chevron-right"></span>
-							</button>
-						</div>
+						
+						<c:set var="isPoolMemberYN" value="N" />
+						<c:forEach var="isPoolMember" items="${isPoolMember }">							
+							<c:if test="${isPoolMember.usrSeq == samePlanMemeber.usrSeq}">
+								<div class="col-md-12">
+									<button class="btn made-a-pool-${samePlanMemeber.usrSeq }" onclick="madePool(${samePlanMemeber.usrSeq })">
+										Already made a pool
+									</button>
+								</div>
+								<c:set var="isPoolMemberYN" value="Y" />
+							</c:if>
+						</c:forEach>
+						<c:if test="${isPoolMemberYN == 'N'}">
+							<div class="col-md-12">
+								<button class="btn btn-primary make-a-pool-${samePlanMemeber.usrSeq }" onclick="makingPool(${samePlanMemeber.usrSeq })" data-usrseq="${samePlanMemeber.usrSeq }">make
+									a pool <span class="glyphicon glyphicon-chevron-right"></span>
+								</button>
+							</div>
+						</c:if>						
 					</div>
 				</c:forEach>
 			</div>
