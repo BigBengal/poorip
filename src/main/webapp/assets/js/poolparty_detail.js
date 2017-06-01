@@ -61,13 +61,14 @@ $(document).ready(function(){
 			    		usrInfo += "<p> 닉네임 : " + response.data.profile.usrNick + "</p>";
 			    		usrInfo += "<p> <img src=" + response.data.profile.usrProfile + "></p>";
 			    		usrInfo += "<p> 자기소개 : ";
+			    		
 			    		if (response.data.profile.usrInfo != null )
-					    	usrInfo += response.data.profile.usrInfo + "</p>";
+					    	usrInfo += response.data.profile.usrInfo.replace(/</gi,"&lt;") + "</p>";
 				    	else
 				    		usrInfo += "없음 </p>";
 					    usrInfo += "<p> 해쉬태그 : ";
 			    		if (response.data.profile.usrHashtag != null )
-			    			usrInfo += response.data.profile.usrHashtag + "</p>";
+			    			usrInfo += response.data.profile.usrHashtag.replace(/</gi,"&lt;") + "</p>";
 			    		else 
 			    			usrInfo += "없음 </p>";
 			    		
@@ -157,6 +158,24 @@ $(document).ready(function(){
 			poolikeyn = false;
 		}
 			
+		// 갤러리아 이미지 슬라이드
+		$(".galleria").each(function(index){
+			$(this).find("img").each(function(index){
+				if(index == 0){
+//					console.log(index+"번째 이미지");
+//					console.log($(this).attr('src'));
+					var heightV = $(this).height();
+					var postSeq = $(this).data('seq')
+//					console.log(heightV);
+//					console.log($(this).data('seq'));
+					Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+					Galleria.run('#postPic-'+postSeq , { lightbox: true , height: heightV});
+				}
+			})
+		});
+		
+		
+		
 	});
 	
 	var fromdt = $( "#fromdate" ).datepicker({
@@ -353,10 +372,7 @@ $(document).ready(function(){
 		}
 	} );
 	
-	Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-	Galleria.run('.galleria' , { lightbox: true });
-	
-	
+
 });
 
 
@@ -389,6 +405,7 @@ function showList(){
 	    		return;
 	    	}
 //	 	    	console.log( response );
+	    	var postPic = [] , i=0;
 			$( response.data.post ).each( function(index, vo){
 				var Nonmember = true;
 //	 				console.log( index + ":" + vo.post + vo.postPic );
@@ -430,15 +447,26 @@ function showList(){
 				"<h3><strong>"+vo.title+"</strong></h3>"+
 				"</div>";
 
+				
+				//포스트 사진
 				 if(response.data.postPic.length> 0) {
 //					 console.log("exist postPic");
+					 var isExistPic = 'N';
 					 $( response.data.postPic).each( function( index2, picvo) {
 						 if(vo.postSeq == picvo.postSeq){
-							 html = html+"<a href='/poorip"+picvo.path+"/"+picvo.fileName+"' data-lightbox='"+picvo.postSeq+"' data-title='"+vo.title+"'>" +
-							        "<img src='/poorip"+picvo.path+"/"+picvo.fileName+"'> </a>" ;
+							 if(isExistPic == 'N'){
+								 html = html+"<div class='galleria' id='postPic-"+picvo.postSeq+"'>"
+								 postPic[i] = picvo.postSeq;
+							 }
+//							 html = html+"<div href='/poorip"+picvo.path+"/"+picvo.fileName+"' data-lightbox='"+picvo.postSeq+"' data-title='"+vo.title+"'>" +
+							 html = html+"<img src='/poorip"+picvo.path+"/"+picvo.fileName+"' data-seq='"+picvo.postSeq+"'>" ;
+							 isExistPic = 'Y';
 						 }
 					 });
-					 
+					 if(isExistPic == 'Y'){
+						 html = html + "</div>"
+						 i++;
+					 }
 				 }
 				 html = html + "<p>"+vo.contents+"</p>"+
 					
@@ -474,6 +502,38 @@ function showList(){
 			})
 			page++;
 			console.log("page:"+page);
+			
+			//galleria 슬라이드 실행
+			console.log(postPic);
+			$(".galleria > img").load(function(){
+				for (var i = 0; i < postPic.length; i++) {
+					$pic = $('#postPic-'+postPic[i]+'> img');
+					console.log(i+"번째 이미지");
+					console.log($pic.attr('src'));
+					var heightV = $pic.height();
+					console.log("postPic[i]:"+postPic[i]+", heightV:"+heightV);
+					if ( heightV > 0)
+						Galleria.run('#postPic-'+postPic[i] , { lightbox: true , height: heightV});
+				}
+				postPic =[];
+			})
+			
+//			$(".galleria").each(function(index){
+//				$(this).find("img").each(function(index){
+//					if(index == 0){
+////						console.log(index+"번째 이미지");
+////						console.log($(this).attr('src'));
+//						var heightV = $(this).height();
+//						var postSeq = $(this).data('seq')
+////						console.log(heightV);
+////						console.log($(this).data('seq'));
+//						Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+//						Galleria.run('#postPic-'+postSeq , { lightbox: true , height: heightV});
+//					}
+//				})
+//			});
+			
+			
 	    },
 	    error: function( XHR, status, error ){
 	       console.error("ERROR");

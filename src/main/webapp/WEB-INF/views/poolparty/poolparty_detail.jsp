@@ -450,17 +450,22 @@
 					</h3>
 				</div>
 				<!-- 갤러리아 라이브러리 붙일 자리 -->
-				<div class="galleria" style="min-height: 600px; padding: 0px;">
-					<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
-						<c:if test="${post.postSeq ==postpic.postSeq}">
-							<%-- 						<a href="/poorip${postpic.path}/${postpic.fileName}" --%>
-							<%-- 							data-lightbox="${postpic.postSeq}" data-title="${post.title}"> --%>
-
-							<img src="/poorip${postpic.path}/${postpic.fileName}">
-							<!-- 						</a> -->
-						</c:if>
-					</c:forEach>
-				</div>
+				<c:set var="galleriaPosition" value="N"/>
+				<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
+					<c:if test="${post.postSeq == postpic.postSeq}">
+						<c:if test="${galleriaPosition == 'N'}">
+							<div class="galleria" id="postPic-${postpic.postSeq}">		
+						</c:if>	
+						
+							<img src="/poorip${postpic.path}/${postpic.fileName}" data-seq="${postpic.postSeq}">
+							
+						<c:set var="galleriaPosition" value="Y"/>
+					</c:if>
+				</c:forEach>
+				
+				<c:if test="${galleriaPosition == 'Y'}">
+					</div>
+				</c:if>
 				<p>${post.contents}</p>
 
 				<div class="row margin_up_down underline" style="margin:auto; width:100%; display:inline-block;">
