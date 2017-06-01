@@ -10,7 +10,6 @@ $(window).load(function() {
 	;
 });
 
-
 function showChart() {
 	var showChart = ".chart-div";
 	$(showChart).each(function (index){
@@ -97,9 +96,15 @@ var showDateListVisible = true;
 
 function showDateList(usrSeq){
 	if ( showVisible == true ) {
+		var addHeight = $("#dateList-"+usrSeq).height();
+		var oriHeight = $("#personContainer-"+usrSeq).height();
+		$("#personContainer-"+usrSeq).height(oriHeight+addHeight);
 		$("#dateList-"+usrSeq).show();	
 		showVisible = false;
 	} else {
+		var oriHeight = $("#personContainer-"+usrSeq).height();
+		var hideHeight = $("#dateList-"+usrSeq).height();
+		$("#personContainer-"+usrSeq).height(oriHeight-hideHeight);
 		$("#dateList-"+usrSeq).hide();
 		showVisible = true;
 	}

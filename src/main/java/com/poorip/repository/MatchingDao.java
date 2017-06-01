@@ -62,6 +62,7 @@ public class MatchingDao {
 			samePlanMember.get(i).setUsrProfile(member.getUsrProfile());
 			samePlanMember.get(i).setUsrNick(member.getUsrNick());
 			samePlanMember.get(i).setUsrInfo(member.getUsrInfo());
+			samePlanMember.get(i).setUsrHashtag(member.getUsrHashtag());
 		}
 		return samePlanMember;
 	}
