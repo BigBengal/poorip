@@ -15,7 +15,7 @@
 		<![CDATA[
 			INSERT 
 			  INTO POST (POST_SEQ,  title, contents,  REVIEW_PUB_YN,  USR_SEQ,  TRV_SEQ)
-			values ( #{postSeq }, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq} )
+			values ( #{postSeq }, #{title}, #{contents}, #{reviewPubYn}, #{usrSeq}, #{trvSeq})
 		]]>
 	</insert>
 
@@ -29,16 +29,16 @@
 			]]>
 		</selectKey>
 		<![CDATA[
-			insert into
-				post 
+			insert into 
+				post (POST_SEQ,  title, contents,  REVIEW_PUB_YN,  USR_SEQ,  TRV_SEQ, HIDDEN, SHARED_POST)
 				values(#{postSeq },
 						#{title }, 
 						#{contents }, 
 						#{reviewPubYn },
 						#{usrSeq }, 
 						#{trvSeq },
-						now(),
-						#{hidden })
+						#{hidden },
+						0)
 		]]>
 	</insert>
 	
