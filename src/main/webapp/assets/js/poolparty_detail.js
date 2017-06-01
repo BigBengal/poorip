@@ -453,7 +453,8 @@ function showList(){
 					console.log($pic.attr('src'));
 					var heightV = $pic.height();
 					console.log("postPic[i]:"+postPic[i]+", heightV:"+heightV);
-					Galleria.run('#postPic-'+postPic[i] , { lightbox: true , height: heightV});
+					if ( heightV > 0)
+						Galleria.run('#postPic-'+postPic[i] , { lightbox: true , height: heightV});
 				}
 				postPic =[];
 			})
