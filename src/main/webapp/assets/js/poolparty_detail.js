@@ -363,20 +363,33 @@ function showList(){
 //	 	    	console.log( response );
 	    	var postPic = [] , i=0;
 			$( response.data.post ).each( function(index, vo){
-				
+				var Nonmember = true;
 //	 				console.log( index + ":" + vo.post + vo.postPic );
 				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4 pool-detail-post' style='margin-left: 15%; text-align:center;'>";
 				$(response.data.poolmemList).each(function(index,vo2) {
 					
-				if(vo2.usrSeq == vo.usrSeq) { 
+				if(vo2.usrSeq==vo.usrSeq) { 
 					if(vo2.gender=='F'){
 					html = html +"<div class='row margin_up_down post-header female'>";
+					Nonmember=true;
+					return false;
 					}
 					if(vo2.gender=='M') {
-					html = html +"<div class='row margin_up_down post-header male'>";	
+					html = html +"<div class='row margin_up_down post-header male'>";
+					Nonmember=true;
+					return false;
 					}
+				
+				} else {
+					Nonmember = false;
 				}
+				
 				});
+				console.log(Nonmember)
+				
+				if(Nonmember==false) {
+					html = html +"<div class='row margin_up_down post-header nonmember'>";
+				}
 				
 				html = html + "<div class='col-md-6 img_inline'>"+
 				"	<img src='"+vo.picture+"'> <h6>"+vo.name+"</h6>";

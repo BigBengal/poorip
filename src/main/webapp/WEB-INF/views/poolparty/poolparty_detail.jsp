@@ -109,7 +109,8 @@
 <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <!-- Gallera image slider -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
 
 <!-- facebook  -->
 <!-- Google font -->
@@ -305,16 +306,14 @@
 				<div class="col-md-12">
 
 					<div class="pooldetails" data-usrseq="${pool.managerUsrSeq}">
-						<div style="position: relative; display:inline-block;">
-							<img
-								style="width: 30px; position: absolute; left: 50px;"
-								src="${pageContext.request.contextPath }/assets/images/crown.png">
+						<div style="position: relative; display: inline-block;">
+
 							<img src="${pool.managerProfile}">
 						</div>
-						<div style="display: inline-block;">
-						<h4 >
-							<strong>${pool.managerUsrNick }</strong>
-						</h4>
+						<div style="display: inline-block; position: absolute;">
+							<h4>
+								<strong>${pool.managerUsrNick }</strong>
+							</h4>
 						</div>
 					</div>
 
@@ -343,6 +342,11 @@
 				<strong>풀파티 맴버</strong>
 			</div>
 			<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
+
+				<c:if test="${memberlist.usrSeq == pool.managerUsrSeq }">
+					<img style="width: 25px; position: absolute; right: 10%; top: 60px;"
+						src="${pageContext.request.contextPath }/assets/images/crown.png">
+				</c:if>
 				<div
 					class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links"
 					data-usrseq="${memberlist.usrSeq}">
@@ -378,7 +382,8 @@
 		<!-- 글 보기 -->
 
 		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
-			<c:if test="${memberlist.usrSeq ==authUser.usrSeq }">
+			<c:if
+				test="${memberlist.usrSeq ==authUser.usrSeq && memberlist.approve == 'Y'}">
 				<div style="text-align: center; margin-right: 20%;">
 					<button type=button class="sns-write-button"
 						data-text="Enter text here"
@@ -398,25 +403,43 @@
 				<div id="post-${post.postSeq}"
 					class="col-md-6 col-md-offset-4 pool-detail-post"
 					style="margin-left: 15%;">
+					<c:set var="doneLoop" value="false"/>
 					<c:forEach var="memberlist" items="${poolmember }"
 						varStatus="status">
-						<c:if test="${post.usrSeq == memberlist.usrSeq }">
+						<c:if test="${not doneLoop}">
+						
+						<c:choose>
+						<c:when test="${post.usrSeq == memberlist.usrSeq }">
+						
 							<c:if test="${memberlist.gender eq 'F' }">
 								<div class="row margin_up_down post-header female">
+								<c:set value="true" var="member"/>
+								 <c:set var="doneLoop" value="true"/>
 							</c:if>
 							<c:if test="${memberlist.gender eq 'M' }">
 								<div class="row margin_up_down post-header male">
+								<c:set value="true" var="member"/>
+								 <c:set var="doneLoop" value="true"/>
 							</c:if>
-
+							
+						</c:when>
+						<c:otherwise>
+						  <c:set value="false" var="member"/>
+						</c:otherwise>
+						</c:choose>
 						</c:if>
 					</c:forEach>
+					<c:if test="${member==false }">
+					<div class="row margin_up_down post-header nonmember">
+					</c:if>
+					
 					<div class="col-md-6 img_inline">
 						<img src="${post.picture}"
 							style="float: left; margin-left: 5px; margin-bottom: 5px;">
 						<h6>${post.name}</h6>
 						<c:if test="${post.trvName ne '관련 여행정보 없음' }">
 							<h6>
-								in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName }</span>
+								in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName } ${member }</span>
 							</h6>
 						</c:if>
 					</div>
@@ -427,7 +450,6 @@
 					</h3>
 				</div>
 				<!-- 갤러리아 라이브러리 붙일 자리 -->
-				
 				<c:set var="galleriaPosition" value="N"/>
 				<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
 					<c:if test="${post.postSeq == postpic.postSeq}">
