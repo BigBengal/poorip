@@ -450,7 +450,7 @@ function showList(){
 				for (var i = 0; i < postPic.length; i++) {
 					$pic = $('#postPic-'+postPic[i]+'> img');
 					console.log(i+"번째 이미지");
-//					console.log($pic.attr('src'));
+					console.log($pic.attr('src'));
 					var heightV = $pic.height();
 					console.log("postPic[i]:"+postPic[i]+", heightV:"+heightV);
 					Galleria.run('#postPic-'+postPic[i] , { lightbox: true , height: heightV});
