@@ -140,7 +140,7 @@ function send(trvSeq, reviewNum){
 	        	if (response.result == "fail") {
 	        		console.log('#travelPic-'+trvSeq + ";" + response.message);
 	        		Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-	        		Galleria.run('#travelPic-'+trvSeq , { lightbox: true, height:imgHeight });
+	        		Galleria.run('#travelPic-'+trvSeq , { debug: false, lightbox: true, height:imgHeight });
 	        		return;
 	        	}
 	        	
@@ -174,8 +174,8 @@ function send(trvSeq, reviewNum){
 // 		        	console.log("clientHeight:"+$travelPic.find("img").eq(0).get())
 	        	});
 	        	
-// 				Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-// 	        	Galleria.run('#travelPic-'+trvSeq , { lightbox: true, height:imgHeight});
+				Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+	        	Galleria.run('#travelPic-'+trvSeq , { lightbox: true});
 	        },
 	        error : function(data) {
 				    alert("travelpic ajax 에러가 발생하였습니다.")
