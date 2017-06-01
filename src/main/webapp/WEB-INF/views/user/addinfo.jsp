@@ -294,7 +294,7 @@ $(document).ready(function(){
 	<div class="form-group">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7">
-			<button type="submit" class="btn btn-default col-lg-6 center-block">Save</button>
+			<button type="submit" class="btn btn-default col-lg-6 center-block" style="margin-left: 25%;">Save</button>
 		</div>
 	</div>
 </form>

@@ -917,6 +917,14 @@ border-radius: 5px 0 0 5px;
 	background-color: #fff7f7;
 }
 
+#postList .row.margin_up_down.post-header.nonmember {
+	margin-bottom: 10%;
+	margin-right: -16px;
+	box-shadow: 1px 1px 1px #888888;
+	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	background-color: #e2e4e6;
+}
+
 #postList .row.margin_up_down h3 {
 	clear: both;
 	border-top: solid 3px;
