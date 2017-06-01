@@ -55,10 +55,21 @@ public class MatchingController {
 		List<ScrapCityVo> matchingDateList = matchingService.getUsersDateList( matchingScore );		
 		List<ScrapCityVo> samePlanDateList = matchingService.getUsersDateList( samePlanMemeber );
 		
-		System.out.println(usrSeq);
 		List<PoolMemberVo> isPoolMember = matchingService.getMyPoolListMember( usrSeq );
-		System.out.println(isPoolMember);
-
+		
+		for(int i=0; i<matchingScore.size(); i++) {
+			if(matchingScore.get(i).getUsrInfo() != null )
+				matchingScore.get(i).setUsrInfo(matchingScore.get(i).getUsrInfo().replace("<", "&lt;"));
+			if(matchingScore.get(i).getUsrHashtag() != null)
+				matchingScore.get(i).setUsrHashtag(matchingScore.get(i).getUsrHashtag().replace("<", "&lt;"));
+		}
+		for(int i=0; i<samePlanMemeber.size(); i++) {
+			if(samePlanMemeber.get(i).getUsrInfo() != null )
+				samePlanMemeber.get(i).setUsrInfo(samePlanMemeber.get(i).getUsrInfo().replace("<", "&lt;"));
+			if(samePlanMemeber.get(i).getUsrHashtag() != null)
+				samePlanMemeber.get(i).setUsrHashtag(samePlanMemeber.get(i).getUsrHashtag().replace("<", "&lt;"));
+		}
+		
 		model.addAttribute( "isPoolMember", isPoolMember );
 		model.addAttribute( "matchingDateList", matchingDateList);
 		model.addAttribute( "samePlanDateList", samePlanDateList);

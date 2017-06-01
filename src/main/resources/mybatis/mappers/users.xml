@@ -91,6 +91,7 @@
 			  	   USR_LANG 	as usrLang,
 			  	   USR_BD 		as usrBd,  
 			  	   USR_NICK 	as usrNick,  
+			  	   USR_HASHTAG	as usrHashtag,
 			  	   USR_INFO 	as usrInfo,  
 			  	   USR_HASHTAG 	as usrHashtag,  
 			  	   USR_PREF1 	as usrPref1,  
