@@ -140,7 +140,7 @@ function send(trvSeq, reviewNum){
 	        	if (response.result == "fail") {
 	        		console.log('#travelPic-'+trvSeq + ";" + response.message);
 	        		Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-	        		Galleria.run('#travelPic-'+trvSeq , { lightbox: true });
+	        		Galleria.run('#travelPic-'+trvSeq , { lightbox: true, height:imgHeight });
 	        		return;
 	        	}
 	        	
@@ -149,8 +149,33 @@ function send(trvSeq, reviewNum){
 	       			$travelPic.append("<img src='/poorip"+vo.path + "/" + vo.fileName + "' />");
 	        	});
 	        	
-				Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-	        	Galleria.run('#travelPic-'+trvSeq , { lightbox: true });
+	        	
+	        	$travelPic.find("img").load(function(){
+	        		console.log($(this));
+	        		console.log(this);
+	        		var imgWidth0 = this.height; //이미지 크키가 정해져 있지 않을때
+	        		var imgWidth = this.naturalHeight; //이미지 크키가 정해져 있지 않을때
+	        		var imgWidth2 = $(this).height(); //이미지 크키가 정해져 있을때
+	        		var imgWidth3 = this.clientHeight;
+	        		
+	        		console.log("imgWidth0:"+imgWidth0);
+	        		console.log("imgWidth:"+imgWidth);
+	        		console.log("imgWidth2:"+imgWidth2);
+	        		console.log("imgWidth3:"+imgWidth3);
+// 		        	console.log($travelPic.find("img").eq(0))
+// 		        	console.log("clientHeight:"+$travelPic.find("img").get())
+		        	
+// 		        	imgHeight = $travelPic.find("img").eq(0)[0].clientHeight;
+// 		        	console.log("imgHeight:"+imgHeight);
+// 		        	console.log("imgwidth:"+$travelPic.find("img").eq(0).width());
+		        		        	
+// 		        	console.log("clientHeight:"+$travelPic.find("img").get()[0].clientHeight)
+// 		        	console.log("clientHeight:"+$travelPic.find("img").eq(0).clientHeight)
+// 		        	console.log("clientHeight:"+$travelPic.find("img").eq(0).get())
+	        	});
+	        	
+// 				Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+// 	        	Galleria.run('#travelPic-'+trvSeq , { lightbox: true, height:imgHeight});
 	        },
 	        error : function(data) {
 				    alert("travelpic ajax 에러가 발생하였습니다.")
