@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.TravelInfoVo;
 
 @Repository
@@ -68,6 +69,12 @@ public class PoolPartyDao {
 	public boolean changeMainPic(PoolPartyVo poolPartyVo) {
 		return 1 == sqlSession.update("poolparty.alterMainPic", poolPartyVo);
 	}
-
+	
+	public boolean sharePost(PostVo postVo) {
+		sqlSession.insert("post.sharepost", postVo);
+		System.out.println(postVo);
+		sqlSession.insert("post.sharepostpic", postVo);
+		return 1 == 1;
+	}
 
 }

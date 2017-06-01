@@ -16,6 +16,7 @@ import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolLikeVo;
 import com.poorip.vo.PoolMemberVo;
 import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.PostVo;
 import com.poorip.vo.TravelInfoVo;
 import com.poorip.vo.UserVo;
 import com.poorip.web.util.WebUtil;
@@ -291,6 +292,11 @@ public class PoolPartyService {
 		
 		return "No Changed";
 		
+	}
+	
+	public boolean sharePostToMySNS(PostVo postVo) {
+		
+		return  poolPartyDao.sharePost(postVo);
 	}
 	
 }

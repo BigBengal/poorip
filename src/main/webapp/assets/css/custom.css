@@ -1013,6 +1013,14 @@ border-radius: 5px 0 0 5px;
     #postList .pool-detail-post {
     margin-left:0 !important;
     }
+    
+    .sns-button-center {
+    width:initial;
+    }
+    
+    .row.margin_up_down.underline {
+    width:initial !important;
+    }
 }
 
 
@@ -1020,4 +1028,39 @@ border-radius: 5px 0 0 5px;
 	display:inline-block;
 	float:right;
 	
+}
+
+.sns-button-right {
+	width:32%;
+	margin:auto;
+	display:inline-block;
+}
+
+.sns-button-right button{
+	    width: 50px;
+	margin:auto;
+	float:none;
+}
+
+
+.sns-button-left{
+	width:32%;
+	display:inline-block;
+}
+
+body .sns-button-left button {
+	 width: 50px;
+	margin:auto;
+
+	}
+
+.sns-button-center{
+	width:32%;
+	margin:0 auto;
+	display:inline-block;
+	
+}
+
+.sns-button-center button {
+	    width: 50px;
 }

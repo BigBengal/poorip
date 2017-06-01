@@ -41,6 +41,44 @@
 						#{hidden })
 		]]>
 	</insert>
+	
+	<insert id="sharepost" parameterType="postvo">
+	<selectKey keyProperty="trvSeq" resultType="integer" order="BEFORE">
+			<![CDATA[
+			select auto_increment
+			  from information_schema.tables
+			 where table_schema='bengal'
+			   and table_name='post'
+			]]>
+		</selectKey>
+		<![CDATA[
+			insert into post 
+			(post_seq, title, contents, review_pub_yn, usr_seq, trv_seq, shared_post)
+			(select 
+					#{trvSeq},
+					title, 
+					contents, 
+					'N', 
+					 #{usrSeq}, 
+					 trv_seq, 
+					 #{postSeq} 
+			from    post 
+			where   post_seq = #{postSeq})
+		]]>
+	</insert>
+	
+	<insert id="sharepostpic" parameterType="postvo">
+		<![CDATA[
+			insert into post_pic
+			(path, file_name, post_seq)
+			(select 
+					path, 
+					file_name, 
+					#{trvSeq} 
+			 from  post_pic 
+			 where post_seq=#{postSeq})
+		]]>
+	</insert>
 
 	<update id="updatePost" parameterType="reviewvo">
 		

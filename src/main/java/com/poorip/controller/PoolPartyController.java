@@ -222,7 +222,8 @@ public class PoolPartyController {
 		
 		return "redirect:/poolparty/"+poolSeq;
 	}
-
+	
+	
 	
 	// 풀파티 설정 변경
 	@Auth
@@ -388,6 +389,26 @@ public class PoolPartyController {
 		
 		return JSONResult.success(poolPostDao.deleteByPostSeq(postSeq));
 	}
+	
+	//포스트 공유
+	@Auth
+	@ResponseBody
+	@RequestMapping("/share/{postSeq}")
+	public JSONResult sharePostToMySNS (@PathVariable("postSeq") int postSeq,
+										
+										@AuthUser UserVo userVo) {
+		System.out.println("SNS로 가져와라~");
+		PostVo postVo = new PostVo();
+		postVo.setPostSeq(postSeq);
+		postVo.setUsrSeq(userVo.getUsrSeq());
+		System.out.println(postVo);
+
+		poolPartyService.sharePostToMySNS(postVo);
+		
+		return JSONResult.success("YAY");
+		
+	}
+
 
 	// 포스트 가져오기 
 	@Auth

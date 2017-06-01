@@ -463,25 +463,40 @@
 				</div>
 				<p>${post.contents}</p>
 
-				<div class="row margin_up_down underline">
-					<div class="col-md-3" style="width: 50%; margin: auto;">
+				<div class="row margin_up_down underline" style="margin:auto; width:100%; display:inline-block;">
+					<div class="col-md-3 sns-button-left">
 						<c:if test="${authUser.usrSeq == post.usrSeq}">
 							<%-- <img alt='수정' src='/poorip/assets/images/post_modify.png'
 										class="menu_links modify" data-postseq="${post.postSeq}"
 										style="max-height: 30px;"> --%>
 							<button class='sns-post-footer menu_links modify'
 								data-postseq="${post.postSeq}"
-								style='float: right; width: 50%; margin: auto;'>수정</button>
+								style=' width: 50px; margin: auto;'>수정</button>
 
 						</c:if>
 					</div>
-					<div class="col-md-3 col-md-offset-6"
-						style="width: 50%; margin: auto;">
+					
+					<c:if test="${not empty authUser.usrSeq}">
+					<div class="col-md-3 sns-button-center">
+						
+							<%-- <img alt='수정' src='/poorip/assets/images/post_modify.png'
+										class="menu_links modify" data-postseq="${post.postSeq}"
+										style="max-height: 30px;"> --%>
+							<button class='sns-post-footer menu_links sharepost'
+								data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
+								style=' width: 50px; margin: auto;'>공유</button>
+
+						
+					</div>
+					</c:if>
+					
+					<div class="col-md-3 col-md-offset-6 sns-button-right"
+						>
 						<c:if test="${authUser.usrSeq == post.usrSeq}">
 
 							<button class='sns-post-footer menu_links rightalign delete'
 								data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
-								style='float: left; width: 50%;'>삭제</button>
+								style=' width: 50px;'>삭제</button>
 						</c:if>
 					</div>
 				</div>
@@ -499,6 +514,14 @@
 		<p>
 			<span class="ui-icon ui-icon-alert"
 				style="float: left; margin: 12px 12px 20px 0;"></span>삭제 하시겠습니까?
+		</p>
+	</div>
+	
+	
+	<div id="dialog-confirm_share" title="공유 확인" style="display: none">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin: 12px 12px 20px 0;"></span>내 SNS로 가져가시겠습니까?
 		</p>
 	</div>
 

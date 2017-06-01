@@ -245,7 +245,51 @@ $(document).ready(function(){
 		    }
 		});    
 	});
+	
+	
+	// 글 공유 버튼
+	$(document).on("click",".sharepost",function() {
+		var postSeq = $(this).data("postseq");
+		console.log(postSeq);
+		$( "#dialog-confirm_share" ).dialog({
+		    resizable: false,
+		    height: "auto",
+		    width: 400,
+		    modal: true,
+		    buttons: {
+		      "Confirm": function() {
+		        // Ajax 통신
+				$.ajax( {
+				    url : "/poorip/poolparty/share/"+postSeq,
+				    type: "post",
+				    dataType: "json",
+				 /*   data:"",*/
+				//  contentType: "application/json",
+				    success: function( response ){
+				    	console.log	( response );
+				       if( response.result == "fail") {
+				    	   console.log( response.message );
+				    	   return;
+				       }
+				    	//통신 성공 (response.result == "success" )
+						console.log( "APPROVE" + response.data );
+				    	
+				    	
+				    },
+				    error: function( XHR, status, error ){
+				       console.log(error);
+				    }
 
+				   });
+		        $( this ).dialog( "close" );
+		      },
+		      Cancel: function() {
+		        $( this ).dialog( "close" );
+		      }
+		    }
+		  });
+	});
+		
 	// 글 삭제 버튼
 	$(document).on("click",".delete",function() {
 		var postSeq = $(this).data("postseq");
@@ -398,14 +442,29 @@ function showList(){
 				 }
 				 html = html + "<p>"+vo.contents+"</p>"+
 					
-					"<div class='row margin_up_down underline' style='margin:auto;'>";
+					"<div class='row margin_up_down underline' style='margin:auto; display:inline-block; width:100%;'>";
+				
 				 if(vo.usrSeq == authUsrSeq){
 					 html = html +
-						"<div class='col-md-3' style='width: 50%; margin:auto;'>"+
-						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='float: right; width: 50%; margin:auto;'>수정</button>" + 
-						"</div>"+
-						"<div class='col-md-3 col-md-offset-6' style='width: 50%; margin:auto;'>"+
-						"<button class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"' style='float: left; width: 50%; '>삭제</button>" +
+						"<div class='col-md-3 sns-button-left' >"+
+						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='width:50px;' >수정</button>" + 
+						"</div>";
+				 }
+			
+				 if(vo.usrSeq >0) {
+					html= html+  
+						"<div class='col-md-3 sns-button-center ' >" +
+						"<button class='sns-post-footer menu_links modify sharepost' style='width:50px;'" +
+							"data-postseq='0'"+
+								">공유</button>"+
+							"</div>";
+				
+				 }
+				 
+				 if(vo.usrSeq == authUsrSeq){
+						html = html + 
+						"<div class='col-md-3 col-md-offset-6 sns-button-right'>"+
+						"<button style='width:50px;' class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"'>삭제</button>" +
 						"</div>";
 				 }
 				 html = html +
