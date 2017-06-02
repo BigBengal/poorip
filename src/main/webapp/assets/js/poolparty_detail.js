@@ -169,7 +169,7 @@ $(document).ready(function(){
 //					console.log(heightV);
 //					console.log($(this).data('seq'));
 					Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-					Galleria.run('#postPic-'+postSeq , { lightbox: true , height: heightV});
+					Galleria.run('#postPic-'+postSeq , { debug: false, lightbox: true , height: heightV});
 				}
 			})
 		});
@@ -513,7 +513,7 @@ function showList(){
 					var heightV = $pic.height();
 					console.log("postPic[i]:"+postPic[i]+", heightV:"+heightV);
 					if ( heightV > 0)
-						Galleria.run('#postPic-'+postPic[i] , { lightbox: true , height: heightV});
+						Galleria.run('#postPic-'+postPic[i] , { debug: false, lightbox: true , height: heightV});
 				}
 				postPic =[];
 			})
