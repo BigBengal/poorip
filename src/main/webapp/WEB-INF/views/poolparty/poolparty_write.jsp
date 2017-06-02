@@ -90,12 +90,12 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group sns-write-group sns-buttons"
+						<div class="form-group sns-write-group"
 							style="margin-left: 0px; text-align: center; margin: 5%;">
 
-							<button type="submit" class="sns-post-footer" style="width: 30%;">게시글
+							<button type="submit" class="sns-post-footer gray_button" style="width: 30%;">게시글
 								올리기</button>
-							<button type="button" class="sns-post-footer"
+							<button type="button" class="sns-post-footer gray_button"
 								data-dismiss="modal" style="width: 30%;">닫기</button>
 						</div>
 

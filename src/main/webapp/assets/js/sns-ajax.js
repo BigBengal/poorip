@@ -4,7 +4,7 @@ var isEnd = false;
 var page = 0;
 var post_render = function( vo, trvInfoName, ctyName ) {
 	var auth = $("#usr-profile-pic").val();
-   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ; box-shadow: 1px 1px 1px #888888 ;' >" + 
+   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ;' >" + 
    					"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
                     "margin-left: 0px;'>" + 
                     "<img class='sns-profile-pic' src='"+auth+"'>" +
@@ -30,7 +30,7 @@ var post_render = function( vo, trvInfoName, ctyName ) {
 
 
 var edit_post_render = function( vo ) {
-	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;' box-shadow: 1px 1px 1px #888888 ;'>" + 
+	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;'>" + 
 	   					"<div class='form-group'  style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
                         "margin-left: 0px;'>" + 
                         "<img class='sns-profile-pic' src=''>" +
