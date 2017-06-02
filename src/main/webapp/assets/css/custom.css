@@ -776,10 +776,11 @@ body .sns-pool-list.icon {
 
 .pool-detail-backgroundimg {
 	position: absolute;
-	width: 100%;
+	width: 80%;
 	height: 40%;
 	top: 0;
 	/* right: 0; */
+	left:10%;
 	object-fit: cover;
 	border: solid 1px lightgrey;
 	border-radius: 10px;
@@ -1063,4 +1064,13 @@ body .sns-button-left button {
 
 .sns-button-center button {
 	    width: 50px;
+}
+
+.pool-party-chatting {
+	    position: absolute;
+    right: 0;
+    top: 20%;
+    z-index: 1;
+    border: solid 1px;
+    padding: 10px;
 }

@@ -600,7 +600,7 @@ textarea {
 /* Fixed Header
 ----------------------------------------------------------------------------- */
 .fixed-header-on .header {
-	background-color: rgba(0, 0, 0, 0.95);
+	background-color: rgba(0, 0, 0, 0.95) !important;
 	padding: 5px 0;
 }
 .fixed-header-on .site-name {

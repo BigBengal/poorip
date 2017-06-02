@@ -65,6 +65,7 @@
 
 <script
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/sockjs.min.js"></script>	
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
