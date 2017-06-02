@@ -467,7 +467,7 @@
 							<strong>${fn:substring(post.title,0,32)}<c:if test="${fn:length(post.title) > 32}">...</c:if></strong>
 						</div>
 					</div>
-				<p style="text-align: left; margin-left: 10px;">${fn:replace(post.contents, newLine, "<br>")}</p>
+				<p style="text-align: left; margin-left: 30px;">${fn:replace(post.contents, newLine, "<br>")}</p>
 				
 				<!-- 갤러리아 라이브러리 붙일 자리 -->
 				<c:set var="galleriaPosition" value="N" />
@@ -504,12 +504,9 @@
 					
 					<c:if test="${not empty authUser.usrSeq}">
 					<div class="col-md-3 sns-button-center">
-						<c:if test="${authUser.usrSeq != post.usrSeq}">
-							<button class='sharepost gray_button'
-								data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
-								style=' width: 70px; margin: auto;'>공유</button>
-						</c:if>
-						
+						<button class='sharepost gray_button'
+							data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
+							style=' width: 70px; margin: auto;'>공유</button>
 					</div>
 					</c:if>
 					

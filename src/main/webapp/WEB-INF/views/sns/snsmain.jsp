@@ -114,7 +114,7 @@
 		
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 		<div class="container" style="width:50%; min-width:400px;">
-			<div id="my-sns-list" class="block" style="padding-top: 100px">
+			<div id="my-sns-list" class="block" style="padding-top: 40px">
 			</div>
 		</div>
 	</div>
@@ -237,10 +237,6 @@
 		src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/assets/js/portBox.js"></script>
-		<script
-		src="${pageContext.request.contextPath }/assets/js/portBox.slimscroll.min.js"></script>
 
 	<!-- Gallera image slider -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>

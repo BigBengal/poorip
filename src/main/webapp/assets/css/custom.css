@@ -477,7 +477,7 @@ File Description: Place here your custom CSS styles
 	right: -1px;
 	top: -1px;
 	padding-top: 15px;
-	margin-left: 15px;
+	margin-left: 30px;
 	padding-bottom: 20px;
 	background-color: #f3f2f2;
 	border-radius: 5px;
@@ -788,7 +788,7 @@ body .sns-pool-list.icon {
 	color: #666666;
 	font-family: Arial;
 	font-size: 12px;
-	font-weight: bold;
+/* 	font-weight: bold; */
 	padding: 6px 12px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #ffffff;
@@ -855,7 +855,7 @@ border-radius: 5px 0 0 5px;
 	width: 100%;
 	margin: auto;
 	display: inline-block;
-	margin-top: 10%;
+	margin-top: 5%;
 }
 
 #postList .row.margin_up_down.post-header.male {
