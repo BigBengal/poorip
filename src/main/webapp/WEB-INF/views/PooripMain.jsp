@@ -176,6 +176,11 @@
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+	
+	<!-- Ajax 파일 -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/js/ajax.js"></script>
+		
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 	<!-- facebook  -->
@@ -283,7 +288,5 @@
 	<%-- <c:forEach items="${sessionScope}" var="attr">
     ${attr.key}=${attr.value}<br>
 	</c:forEach> --%>
-	<c:import url="/WEB-INF/views/include/ajax.jsp" />
-	
 </body>
 </html>

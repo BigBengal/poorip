@@ -238,7 +238,7 @@
 				</div>
 			</div>
 			<div class="form-group sns-write-group sns-buttons">
-				<div class="col-md-12" style="padding-left: 40%">
+				<div class="col-md-12" style="padding-left: 10%">
 					<button type="submit" class="sns-post-footer" style="width:30%">공유하기</button>
 				</div>
 			</div>

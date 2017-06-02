@@ -1,12 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%-- <link href="<c:url value='/resources/css/jquery-ui.css' />" rel="stylesheet" type="text/css"/> --%>
-
-<script type="text/javascript">
 $(function(){
 
 	$.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -138,9 +129,9 @@ function send(trvSeq, reviewNum){
 	        	$travelPic.addClass("loaded");
 	        	
 	        	if (response.result == "fail") {
-	        		console.log('#travelPic-'+trvSeq + ";" + response.message);
+// 	        		console.log('#travelPic-'+trvSeq + ";" + response.message);
 	        		Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-	        		Galleria.run('#travelPic-'+trvSeq , { debug: false, lightbox: true, height:imgHeight });
+	        		Galleria.run('#travelPic-'+trvSeq , { debug: false, lightbox: true});
 	        		return;
 	        	}
 	        	
@@ -149,33 +140,8 @@ function send(trvSeq, reviewNum){
 	       			$travelPic.append("<img src='/poorip"+vo.path + "/" + vo.fileName + "' />");
 	        	});
 	        	
-	        	
-	        	$travelPic.find("img").load(function(){
-	        		console.log($(this));
-	        		console.log(this);
-	        		var imgWidth0 = this.height; //이미지 크키가 정해져 있지 않을때
-	        		var imgWidth = this.naturalHeight; //이미지 크키가 정해져 있지 않을때
-	        		var imgWidth2 = $(this).height(); //이미지 크키가 정해져 있을때
-	        		var imgWidth3 = this.clientHeight;
-	        		
-	        		console.log("imgWidth0:"+imgWidth0);
-	        		console.log("imgWidth:"+imgWidth);
-	        		console.log("imgWidth2:"+imgWidth2);
-	        		console.log("imgWidth3:"+imgWidth3);
-// 		        	console.log($travelPic.find("img").eq(0))
-// 		        	console.log("clientHeight:"+$travelPic.find("img").get())
-		        	
-// 		        	imgHeight = $travelPic.find("img").eq(0)[0].clientHeight;
-// 		        	console.log("imgHeight:"+imgHeight);
-// 		        	console.log("imgwidth:"+$travelPic.find("img").eq(0).width());
-		        		        	
-// 		        	console.log("clientHeight:"+$travelPic.find("img").get()[0].clientHeight)
-// 		        	console.log("clientHeight:"+$travelPic.find("img").eq(0).clientHeight)
-// 		        	console.log("clientHeight:"+$travelPic.find("img").eq(0).get())
-	        	});
-	        	
 				Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-	        	Galleria.run('#travelPic-'+trvSeq , { lightbox: true});
+	        	Galleria.run('#travelPic-'+trvSeq , {  debug: false, lightbox: true});
 	        },
 	        error : function(data) {
 				    alert("travelpic ajax 에러가 발생하였습니다.")
@@ -212,7 +178,7 @@ function send(trvSeq, reviewNum){
         success : function(response) {
         	
         		$( response.data ).each( function(index, vo){
-        			console.log(vo);
+//         			console.log(vo);
 				var postSeq = vo.postSeq;
         		render( vo, reviewNum, postSeq );
         		
@@ -242,7 +208,7 @@ function send(trvSeq, reviewNum){
         			type: "post",
         			dataType: "json",
         			success : function(review) {
-        					console.log(review);
+//         					console.log(review);
         					if( review.result != "success" ) {
   							
         		    		return;
@@ -252,7 +218,7 @@ function send(trvSeq, reviewNum){
         					}
         			 							
         					$(review.data).each(function (index,vo){
-        						console.log(vo);
+//         						console.log(vo);
         					renderpic(vo, reviewNum, postSeq);
         				});
         					
@@ -290,14 +256,14 @@ function reviewLike(postSeq) {
         	var lastIndex = likes.lastIndexOf('-');
         	var decreasedLike = likes.substring(lastIndex+1, likes.length );
         	if(decreasedLike=="decreased_like") {
-        		console.log("여기??");
+//         		console.log("여기??");
         		var decreased = likes.slice(0, -15);
         		$("#like-count-"+ postSeq).text("라이크" + decreased);
         		likePostIcon.src = "/poorip/assets/images/like_off.png";
         	}
         	}
         	else {
-        		console.log("라이크충");
+//         		console.log("라이크충");
         		$("#like-count-"+ postSeq).text("라이크" + result.data);
         		likePostIcon.src = "/poorip/assets/images/like_on.png";
         	}
@@ -330,7 +296,7 @@ function sendTrvSeq1(trvSeq) {
 					        success : function(result) {
 					        	$( result.data ).each( function(index, vo){
 					        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
-					        		console.log(likePostIcon);
+// 					        		console.log(likePostIcon);
 					        		likePostIcon.src = "/poorip/assets/images/like_on.png";
 					        	});
 					         
@@ -388,5 +354,3 @@ $(document).ready(function(){
 			{
 			  $("#delete_message").slideUp();
 			}
-
-</script>

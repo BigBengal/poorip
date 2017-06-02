@@ -162,10 +162,12 @@ $(document).ready(function(){
 		$(".galleria").each(function(index){
 			$(this).find("img").each(function(index){
 				if(index == 0){
-//					console.log(index+"번째 이미지");
-//					console.log($(this).attr('src'));
 					var heightV = $(this).height();
-					var postSeq = $(this).data('seq')
+					var postSeq = $(this).data('seq');
+					if(heightV == 0 || typeof heightV == "undefined"){
+						console.log("can NOT measure : "+heightV);
+						heightV = 400;
+					}
 //					console.log(heightV);
 //					console.log($(this).data('seq'));
 					Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
@@ -329,7 +331,7 @@ $(document).ready(function(){
 				    data: { usrSeq : usrSeq },
 				//  contentType: "application/json",
 				    success: function( response ){
-				    	console.log	( response );
+//				    	console.log	( response );
 				       if( response.result == "fail") {
 				    	   console.log( response.message );
 				    	   return;
@@ -504,16 +506,17 @@ function showList(){
 			console.log("page:"+page);
 			
 			//galleria 슬라이드 실행
-			console.log(postPic);
 			$(".galleria > img").load(function(){
 				for (var i = 0; i < postPic.length; i++) {
 					$pic = $('#postPic-'+postPic[i]+'> img');
-					console.log(i+"번째 이미지");
-					console.log($pic.attr('src'));
+//					console.log(i+"번째 이미지");
+//					console.log($pic.attr('src'));
 					var heightV = $pic.height();
-					console.log("postPic[i]:"+postPic[i]+", heightV:"+heightV);
-					if ( heightV > 0)
-						Galleria.run('#postPic-'+postPic[i] , { debug: false, lightbox: true , height: heightV});
+//					console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
+					if ( heightV == 0){
+						heightV = 350;
+					}
+					Galleria.run('#postPic-'+postPic[i] , { debug: false, lightbox: true , height: heightV});
 				}
 				postPic =[];
 			})
