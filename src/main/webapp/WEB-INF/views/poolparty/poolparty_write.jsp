@@ -174,7 +174,7 @@
 				</div>
 			</div>
 			<div class="form-group-button">
-				<div class="col-md-12" style="padding-left: 40%">
+				<div class="col-md-12" style="padding-left: 10%">
 					<button type="submit" class="btn btn-default col-lg-6 center-block">게시글 수정</button>
 				</div>
 			</div>

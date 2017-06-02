@@ -174,7 +174,7 @@ public class UserController {
 	
 	@RequestMapping("facebooklogout")
 	public String logout(){
-		logger.info("Logou11t");
+//		logger.info("Logout");
 		return "redirect:/user/logout";
 		
 	}

@@ -20,7 +20,7 @@ public class AuthLogoutInterceptor extends HandlerInterceptorAdapter {
 			session.removeAttribute("authUser");
 			session.invalidate();
 		}
-		logger.info("Logout");
+//		logger.info("Logout");
 		response.sendRedirect(request.getContextPath());
 		return false;
 	}

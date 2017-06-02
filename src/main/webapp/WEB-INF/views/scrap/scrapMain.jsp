@@ -167,8 +167,8 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
 	
-	
-	<c:import url="/WEB-INF/views/include/ajax.jsp" />
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/js/ajax.js"></script>
 	
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
@@ -413,7 +413,6 @@ function saveTravelOrder(citySeq){
 }
 
 function initMap() {
-	console.log("Hello");
 	showCityNavMap("0");
 	};
 

@@ -131,7 +131,7 @@
 												<div class="col-md-5">
 													<p>${scrapList.contents}</p>
 												</div>
-												<div class="col-md-7" id="travelPic-${scrapList.trvSeq}" style="min-height:400px; padding: 0px;">>
+												<div class="col-md-7" id="travelPic-${scrapList.trvSeq}" style="min-height:400px; padding: 0px;">
 													<img
 														src="/poorip${scrapList.picture }"
 														alt="" />
