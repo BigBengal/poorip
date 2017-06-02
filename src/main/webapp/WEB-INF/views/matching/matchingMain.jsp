@@ -390,8 +390,7 @@
 
 			<!-- Team Members Row -->
 			<div class="row">
-				<c:forEach var="samePlanMemeber" items="${samePlanMemeber }"
-					varStatus="status">
+				<c:forEach var="samePlanMemeber" items="${samePlanMemeber }" varStatus="status">
 					<div class="col-md-4 sameplanmember" style="min-height: 560px; margin-right: 20px; margin-bottom: 30px">
 						<img class="img-circle img-responsive img-center"
 							style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px; padding-top: 10px;"
