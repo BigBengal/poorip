@@ -130,32 +130,44 @@
     margin-bottom:5px;
     }
     
-	#matching-footer {
+	.matching-footer {
     overflow: hidden;
-    position: absolute;
     bottom: 0;
     height: 50px;
     width: 100%;
     text-align: center;
-    margin-left: -135px;
-    margin-bottom: -105px;
+    margin-bottom: -50px;
 	}
 	
 	.date-list {
     display: none;
-    height: 80px;
     overflow: auto;
     font-size: 12px;
 	}
 	
-	.no-date-list {
-    height: 80px;
+	.block-date-list {
+    display: block;
+    height: 100px;
     overflow: auto;
     font-size: 12px;
-    padding-top: 5px;
+    font-family: 'sans-serif';
+	}
+	
+	.info {
+    height: 100px;
+    font-size: 12px;
 	}
 	
 	.matchingList {
+	margin-bottom:20px; 
+	border-radius:10px; 
+	border:2px solid; 
+	border-color:#e4e1e1;
+	min-height: 475px;
+	overflow: hidden;
+	}
+	
+	.no-info-matchingList {
 	margin-bottom:20px; 
 	border-radius:4px; 
 	border:1px solid; 
@@ -170,9 +182,44 @@
 	font-weight: 500;
 	font-size: 15px;
 	}
+	
+	.matching div p {
+	clear: both;
+    float: left;
+    padding-left: 7px;
+    margin-top: 5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    word-break: break-all;
+    padding-right: 7px;
+    /* margin-bottom: 5px; */
+	}
+	
+	.sameplanmember {
+	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	bottom: -1px;
+	content: '';
+	left: -1px;
+	right: -1px;
+	top: -1px;
+	width: 30%;
+	margin-right: 10px;
+	min-width: 300px;
+	box-shadow: 0px 1.5px 1px #888888;
+	}
+	
+	.col-md-4.sameplanmember {
+    background-color: #e9edef;
+    height: 400px;
+    padding: 0px;
+    border-radius: 2%;
+    }
+}
+	
 </style>
 </head>
-<body class="no-trans">
+<body class="no-trans scroll-spy fix-header-on" style= "background-color: #e8e6e6;">
 
 	<!-- scrollToTop -->
 	<!-- ================ -->
@@ -227,48 +274,58 @@
 		<!-- /.row -->
 		<!-- Project One -->
 		<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
-		
-		<div class="col-md-12 matchingList" id="personContainer-${matchingScore.usrSeq }">
-				<div class="col-md-2 col-xs-2" style="padding-top: 10%; padding-bottom: 10px">
+			<div class="col-md-12 matchingList" id="personContainer-${matchingScore.usrSeq }" style="height: 475px; background-color: white;">
+			
+				<div class="col-md-2 col-xs-2" style="padding-top: 2%; padding-bottom: 10px; border-radius: 50%">
 					<a href="#"> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
-						style="width: 80%">
+						style="width: 70%; border-radius: 50%">
 					</a>
+					<div class="col-md-12 text-center" style="height: 30px; padding-bottom: 5px; margin-bottom: 15px; margin-top: 10%; padding-left: 0;">
+						<c:choose>
+							<c:when test="${matchingScore.usrNick == '' or matchingScore.usrNick == null}">
+								<h1 style="font-size: 18px; font-family: 'Jeju Gothic', serif;"><span>사용자의 닉네임이 없습니다.</span></h1>
+							</c:when>
+							<c:otherwise>
+								<h3 style="font-size: 25px; height: 10px"><span style="font-family: 'Jeju Gothic', serif; color: #2f90a7;">'${matchingScore.usrNick}'</span></h3>
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
-				<div class="col-md-5 col-xs-10">
+				<div class="col-md-5 col-xs-10" style="padding-top: 20px;">
 					<input type="hidden" id="usrSeq" name="usersSeq" value="${matchingScore.usrSeq }">
-					<div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
-						<c:if test="${matchingScore.usrNick != '' or matchingScore.usrNick != null}">
-							<h3 style="font-size: 25px;"><span style="font-family: 'Jeju Gothic', serif; color: #2f90a7;">'${matchingScore.usrNick}'</span></h3>
-						</c:if>
-						<c:if test="${matchingScore.usrNick == '' or matchingScore.usrNick == null}">
-							<h1 style="font-size: 18px; font-family: 'Jeju Gothic', serif;"><span>사용자의 닉네임이 없습니다.</span></h1>
-						</c:if>
+					<div>
+						<h4>자기소개</h4>
 					</div>
-					<hr>
-					<div class="col-md-12 no-date-list">
-						<c:if test="${matchingScore.usrInfo == '' or matchingScore.usrInfo == null}">
-							<label style="font-size: 15px; font-family: 'Nanum Gothic Coding'">${matchingScore.usrNick}님의 소개가 없습니다.</label>
-						</c:if>
-						<c:if test="${matchingScore.usrInfo != '' and matchingScore.usrInfo != null}">
-							<label class="span-font-family">${matchingScore.usrInfo}</label>
-						</c:if>
+					<div class="col-md-12 info" style="margin-bottom: 30px; border: solid 1px lightgrey; border-radius: 10px; padding: 7px;">
+						<c:choose>
+							<c:when test="${matchingScore.usrInfo == '' or matchingScore.usrInfo == null}">
+								<p style="font-size: 15px; font-family: 'Nanum Gothic Coding'">${matchingScore.usrNick}님의 소개가 없습니다.</p>
+							</c:when>
+							<c:otherwise>
+								<p class="span-font-family" style="word-break:break-all;">${matchingScore.usrInfo}</p>
+							</c:otherwise>
+						</c:choose>
 					</div>
-					<br>
-					<div class="col-md-12" style="padding-bottom: 5px">
-						<c:if test="${matchingScore.usrHashtag != '' or matchingScore.usrHashtag != null} ">
-							<label class="span-font-family">${matchingScore.usrHashtag}</label>
-						</c:if>
-						<c:if test="${matchingScore.usrHashtag == '' or matchingScore.usrHashtag == null}">
-							<label class="span-font-family">${matchingScore.usrNick}님의 HashTag가 없습니다.</label>
-						</c:if>
+					<div>
+						<h4>HashTag</h4>
 					</div>
-					<hr>
-					<div class="col-md-12" onclick="showDateList(${matchingScore.usrSeq });" style="padding-top: 20px; padding-bottom: 5px">
+					<div class="col-md-12 info" style="margin-bottom: 15px; margin-bottom: 30px; border: solid 1px lightgrey; border-radius: 10px; padding: 7px;">
+						<c:choose>
+							<c:when test="${matchingScore.usrHashtag == '' or matchingScore.usrHashtag == null}">
+								<p style="font-size: 15px; font-family: 'Nanum Gothic Coding'">${matchingScore.usrNick}님의 HashTag가 없습니다.</p>
+							</c:when>
+							<c:otherwise>
+								<p class="span-font-family">${matchingScore.usrHashtag}</p>
+							</c:otherwise>
+						</c:choose>
+					</div>
+<!-- 					<hr> -->
+					<div class="col-md-12 text-center" onclick="showDateList(${matchingScore.usrSeq });" style="height: 20px; margin-bottom: 15px;">
 						<h2><span class="menu_links span-font-family">${matchingScore.usrNick}님의 여행 일정 보기</span></h2>
 						<br>
 					</div>
-					<div class="col-md-12 date-list span-font-family" id="dateList-${matchingScore.usrSeq }">
+					<div class="col-md-12 date-list span-font-family" id="dateList-${matchingScore.usrSeq }" style="margin-bottom: 15px;">
 						<c:set var="dateListYN" value="N" />
 						<c:forEach var="matchingDateList" items="${matchingDateList }"	>
 							<c:if test="${matchingScore.usrSeq == matchingDateList.usrSeq }">
@@ -281,16 +338,14 @@
 							<c:set var="dateListYN" value="Y" />
 						</c:if>
 					</div>
-					<br>
-					<br>
-					<div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
-						<label>${matchingScore.usrNick}님과 ${userVo.usrNick }의 일정은 </label>
-						<br><h3><span class="span-font-family">${matchingScore.overlapDays }일</span></h3> 동안 같습니다.
+					<div class="col-md-12 text-center" style="margin-bottom: 15px;">
+						<label>${matchingScore.usrNick}님과 ${userVo.usrNick }의 일정은 </label> <br/>
+						<label style="color: #339BEB;">${matchingScore.overlapDays }일</label> <label>동안 같습니다.</label>
 					</div>
 					<c:set var="isPoolMemberYN" value="N" />
 					<c:forEach var="isPoolMember" items="${isPoolMember }">							
 						<c:if test="${isPoolMember.usrSeq == matchingScore.usrSeq}">
-							<div class="col-md-12" id="matching-footer">
+							<div class="col-md-12 matching-footer">
 								<button class="btn made-a-pool-${matchingScore.usrSeq }" onclick="madePool(${matchingScore.usrSeq })">
 									Already made a pool
 								</button>
@@ -299,7 +354,7 @@
 						</c:if>
 					</c:forEach>
 					<c:if test="${isPoolMemberYN == 'N'}">
-						<div class="col-md-12" id="matching-footer">
+						<div class="col-md-12 matching-footer">
 							<button class="btn btn-primary make-a-pool-${matchingScore.usrSeq }" onclick="makingPool(${matchingScore.usrSeq })" data-usrseq="${matchingScore.usrSeq }">make
 								a pool <span class="glyphicon glyphicon-chevron-right"></span>
 							</button>
@@ -310,7 +365,7 @@
 				<div class="col-md-5 col-xs-12 chart-div" data-usrseq="${matchingScore.usrSeq }" data-foodscore="${matchingScore.foodScore }"
 							data-sightscore="${matchingScore.sightScore }" data-activityscore="${matchingScore.activityScore }"
 							data-luxuryscore="${matchingScore.luxuryScore }" data-datescore="${matchingScore.dateScore }"
-							data-userisurveyscore="${matchingScore.useriSurveyScore }" data-usrnick="${matchingScore.usrNick }">
+							data-userisurveyscore="${matchingScore.useriSurveyScore }" data-usrnick="${matchingScore.usrNick }" style="border-left: solid 1px lightgrey; margin-top: 30px">
 					<div class="col-md-12 dx-viewport demo-container">
 						<div id="chart-${matchingScore.usrSeq }" style="width: 100%"></div>
 					</div>
@@ -337,29 +392,40 @@
 			<div class="row">
 				<c:forEach var="samePlanMemeber" items="${samePlanMemeber }"
 					varStatus="status">
-					<div class="col-md-4 poolmember text-center">
+					<div class="col-md-4 sameplanmember" style="min-height: 560px; margin-right: 20px; margin-bottom: 30px">
 						<img class="img-circle img-responsive img-center"
-							style="display: block; margin-left: auto; margin-right: auto; padding-top: 10px"
+							style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px; padding-top: 10px;"
 							src="${samePlanMemeber.usrProfile }"
 							alt="${samePlanMemeber.usrNick}">
-						<br>
-						<h3 style="font-style: oblique;">
-							<span>" ${samePlanMemeber.usrNick}  "</span>
-						</h3>
-						<br>
-						<c:if test="${samePlanMemeber.usrInfo != '' or samePlanMemeber.usrInfo != null} ">
-							<p>${samePlanMemeber.usrInfo}</p>
-						</c:if>
-						<c:if test="${samePlanMemeber.usrInfo == '' or samePlanMemeber.usrInfo == null}">
-							<p>${samePlanMemeber.usrNick}님의 소개가 없습니다.</p>
-						</c:if>
-						<br>
-						<p>${samePlanMemeber.usrHashtag }</p>
-						<div class="col-md-12" onclick="showSameDateList(${samePlanMemeber.usrSeq });">
-							<h2><span>${samePlanMemeber.usrNick}님의 여행 일정</span></h2>
+						<div class="col-md-12 text-center" style="margin: 5px">
+							<h3 style="font-style: oblique;">
+								<span>" ${samePlanMemeber.usrNick}"</span>
+							</h3>
 						</div>
-						
-						<div class="col-md-12 date-list span-font-family" id="showDateList-${samePlanMemeber.usrSeq }">
+						<div class="col-md-12 info" style="margin-bottom: 10px; margin-left: 2.5%; width: 95%; border-radius: 8px; padding: 2%; border: solid 1px lightgrey; word-break:break-all;">
+							<c:choose>
+								<c:when test="${samePlanMemeber.usrInfo == '' or samePlanMemeber.usrInfo == null}">
+									<p>${samePlanMemeber.usrNick}님의 소개가 없습니다.</p>
+								</c:when>
+								<c:otherwise>
+									<p>${samePlanMemeber.usrInfo}</p>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="col-md-12 info" style="margin-bottom: 10px; margin-left: 2.5%; width: 95%; border-radius: 8px; padding: 2%; border: solid 1px lightgrey; word-break:break-all;">
+							<c:choose>
+								<c:when test="${samePlanMemeber.usrHashtag == '' or samePlanMemeber.usrHashtag == null}">
+									<p>${samePlanMemeber.usrNick}님의 해시태그가 없습니다.</p>
+								</c:when>
+								<c:otherwise>
+									<p>${samePlanMemeber.usrHashtag }</p>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="col-md-12 text-center" onclick="showSameDateList(${samePlanMemeber.usrSeq });" style="margin-bottom: 10px;">
+							<h2><span class="menu_links span-font-family text-center">${samePlanMemeber.usrNick}님의 여행 일정 보기</span></h2>
+						</div>
+						<div class="col-md-12 block-date-list" id="showDateList-${samePlanMemeber.usrSeq }" style="margin-bottom: 10px;">
 							<c:forEach var="samePlanDateList" items="${samePlanDateList }"	>
 								<c:if test="${samePlanMemeber.usrSeq == samePlanDateList.usrSeq }">
 									<label>${samePlanDateList.ctyName } : ${samePlanDateList.dateFrom } ~ ${samePlanDateList.dateTo }</label> <br/>
@@ -367,11 +433,10 @@
 							</c:forEach>
 							<br>
 						</div>
-						<br>
-						${samePlanMemeber.usrNick}님과 ${userVo.usrNick }의 일정은 
-						<br><h3><span>${samePlanMemeber.overlapDays }일</span></h3> 동안 같습니다.
-						<br>
-						
+						<div class="col-md-12 span-font-family text-center">
+							${samePlanMemeber.usrNick}님과 ${userVo.usrNick }의 일정은 <br/>
+							<label style="color: #339BEB;">${samePlanMemeber.overlapDays }일</label> 동안 같습니다.
+						</div>
 						<c:set var="isPoolMemberYN" value="N" />
 						<c:forEach var="isPoolMember" items="${isPoolMember }">							
 							<c:if test="${isPoolMember.usrSeq == samePlanMemeber.usrSeq}">
