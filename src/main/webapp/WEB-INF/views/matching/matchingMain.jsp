@@ -117,6 +117,8 @@
 	
 	@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 	
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+	
 	#same-plan-footer { 
     overflow: hidden;
     position: absolute;
@@ -164,7 +166,7 @@
 	}
 	
 	.span-font-family {
-	font-family: ‘Nanum Myeongjo’;
+	font-family: 'Nanum Gothic Coding';
 	font-weight: 500;
 	font-size: 15px;
 	}
@@ -227,13 +229,13 @@
 		<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
 		
 		<div class="col-md-12 matchingList" id="personContainer-${matchingScore.usrSeq }">
-				<div class="col-md-2 col-xs-12" style="padding-top: 10%; padding-bottom: 10px">
+				<div class="col-md-2 col-xs-2" style="padding-top: 10%; padding-bottom: 10px">
 					<a href="#"> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
 						style="width: 80%">
 					</a>
 				</div>
-				<div class="col-md-5 col-xs-12">
+				<div class="col-md-5 col-xs-10">
 					<input type="hidden" id="usrSeq" name="usersSeq" value="${matchingScore.usrSeq }">
 					<div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
 						<c:if test="${matchingScore.usrNick != '' or matchingScore.usrNick != null}">
@@ -246,16 +248,16 @@
 					<hr>
 					<div class="col-md-12 no-date-list">
 						<c:if test="${matchingScore.usrInfo == '' or matchingScore.usrInfo == null}">
-							<label class="span-font-family">${matchingScore.usrNick}님의 소개가 없습니다.</label>
+							<label style="font-size: 15px; font-family: 'Nanum Gothic Coding'">${matchingScore.usrNick}님의 소개가 없습니다.</label>
 						</c:if>
 						<c:if test="${matchingScore.usrInfo != '' and matchingScore.usrInfo != null}">
 							<label class="span-font-family">${matchingScore.usrInfo}</label>
 						</c:if>
 					</div>
 					<br>
-					<div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+					<div class="col-md-12" style="padding-bottom: 5px">
 						<c:if test="${matchingScore.usrHashtag != '' or matchingScore.usrHashtag != null} ">
-							<label class="span-font-family">${matchingScore.usrInfo}</label>
+							<label class="span-font-family">${matchingScore.usrHashtag}</label>
 						</c:if>
 						<c:if test="${matchingScore.usrHashtag == '' or matchingScore.usrHashtag == null}">
 							<label class="span-font-family">${matchingScore.usrNick}님의 HashTag가 없습니다.</label>
