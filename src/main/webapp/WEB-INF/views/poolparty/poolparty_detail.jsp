@@ -3,11 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% pageContext.setAttribute("newLine", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>풀 파티</title>
+<title>PoOrip에 오신것을 환영합니다! - 풀 파티</title>
 
 <!-- Date Picker -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -178,12 +179,12 @@
 										</div>
 
 
-										<div class="form-group sns-write-group sns-buttons"
+										<div class="form-group sns-write-group"
 											style="margin-left: 0px; text-align: center; margin: 5%;">
 
-											<button type="submit" class="sns-post-footer"
+											<button type="submit" class="sns-post-footer gray_button"
 												id="pool-img-changebtn" style="width: 30%;">이미지 변경</button>
-											<button type="button" class="sns-post-footer"
+											<button type="button" class="sns-post-footer gray_button"
 												data-dismiss="modal" style="width: 30%;">닫기</button>
 										</div>
 
@@ -246,11 +247,11 @@
 						<c:choose>
 							<c:when test="${pool.poolPublicYn =='Y'}">
 								<input type="checkbox" name="poolPublicYn" value="Y" checked
-									data-toggle="toggle" class="btn btn-default btn-xs">
+									data-toggle="toggle" class="btn btn-default btn-xs" style="width:100px;height:20px;">
 							</c:when>
 							<c:otherwise>
 								<input type="checkbox" name="poolPublicYn" value="Y"
-									data-toggle="toggle" class="btn btn-default btn-xs">
+									data-toggle="toggle" class="btn btn-default btn-xs" style="width:100px;height:20px;">
 							</c:otherwise>
 						</c:choose>
 
@@ -335,18 +336,18 @@
 
 					<h5 class="pooltraveldate">
 						<c:if test="${pool.fromDate != null or pool.toDate != null}">
-	 여행 기간  [ ${pool.fromDate} ~ ${pool.toDate} ] 
-	</c:if>
+						 여행 기간  [ ${pool.fromDate} ~ ${pool.toDate} ] 
+						</c:if>
 						<c:if test="${pool.ctyName != null}">
-		( ${pool.ctyName} )
-	</c:if>
+							( ${pool.ctyName} )
+						</c:if>
 					</h5>
 					<h6 class="poolindivcomment">${pool.poolComment}</h6>
 				</div>
 				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 					<div id="pool-setting">
-						<button type="button" class="sns-post-footer menu_links modify"
-							style="min-width: 100px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #eaeaea), color-stop(1, #e8e5e5));">Settings</button>
+						<button type="button" class="sns-post-footer menu_links modify gray_button"
+							style="min-width: 100px;">Settings</button>
 					</div>
 				</c:if>
 			</div>
@@ -390,23 +391,20 @@
 			</c:if>
 		</div>
 
-		<!-- 글쓰기 -->
-
 		<!-- <div id="write" class="col-md-12"> -->
 		<c:import url="/WEB-INF/views/poolparty/poolparty_write.jsp" />
 		<!-- </div> -->
 
-		<!-- 글 보기 -->
-
+		<!-- 글 쓰기 버튼-->
 		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 			<c:if
 				test="${memberlist.usrSeq ==authUser.usrSeq && memberlist.approve == 'Y'}">
-				<div style="text-align: center; margin-right: 20%;">
+				<div style="text-align: center; margin-right: 12%;">
 					<button type=button class="sns-write-button"
 						data-text="Enter text here"
-						style="width: 61%; cursor: text; min-width: 300px; margin-top: 100px; margin-bottom: 30px;"
+						style="width: 64%; cursor: text; min-width: 300px;/*margin-top: 100px; margin-bottom: 30px*/;"
 						data-toggle="modal" data-target="#sns-write-form2">
-						<img alt="수정" src="/poorip/assets/images/write-btn.png"
+						<img alt="글쓰기" src="/poorip/assets/images/write-btn.png"
 							class="sns-post-footer"
 							style="width: 2%; display: inline-block; margin-right: 10px; margin-left: 10px;">
 						<span style="color: #bfbfbf;">Share Your Story With Others
@@ -415,10 +413,12 @@
 				</div>
 			</c:if>
 		</c:forEach>
+		
+		<!-- 글보기 -->
 		<div id="postList" class="col-md-12">
 			<c:forEach var="post" items="${post}" varStatus="status">
 				<div id="post-${post.postSeq}"
-					class="col-md-6 col-md-offset-4 pool-detail-post"
+					class="col-md-7 col-md-offset-4 pool-detail-post"
 					style="margin-left: 15%;">
 					<c:set var="doneLoop" value="false" />
 					<c:forEach var="memberlist" items="${poolmember }"
@@ -429,12 +429,12 @@
 								<c:when test="${post.usrSeq == memberlist.usrSeq }">
 
 									<c:if test="${memberlist.gender eq 'F' }">
-										<div class="row margin_up_down post-header female">
+					<div class="row margin_up_down post-header female">
 											<c:set value="true" var="member" />
 											<c:set var="doneLoop" value="true" />
 									</c:if>
 									<c:if test="${memberlist.gender eq 'M' }">
-										<div class="row margin_up_down post-header male">
+					<div class="row margin_up_down post-header male">
 											<c:set value="true" var="member" />
 											<c:set var="doneLoop" value="true" />
 									</c:if>
@@ -447,26 +447,28 @@
 						</c:if>
 					</c:forEach>
 					<c:if test="${member==false }">
-						<div class="row margin_up_down post-header nonmember">
+					<div class="row margin_up_down post-header nonmember">
 					</c:if>
 
-					<div class="col-md-6 img_inline">
-						<img src="${post.picture}"
-							style="float: left; margin-left: 5px; margin-bottom: 5px;">
-						<h6>${post.name}</h6>
-						<c:if test="${post.trvName ne '관련 여행정보 없음' }">
-							<h6>
-								in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName }
-									${member }</span>
-							</h6>
-						</c:if>
+						<div class="col-md-6 img_inline">
+							<img src="${post.picture}"
+								style="float: left; margin-left: 5px; margin-bottom: 5px;">
+							<h6>${post.name}</h6>
+							<c:if test="${post.trvName ne '관련 여행정보 없음' }">
+								<h6>
+									in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName }
+										${member }</span>
+								</h6>
+							</c:if>
+						</div>
+						<div class="col-md-6"
+							style="text-align: right; margin-top: 5%; font-size: 0.9em; float: right; margin-top: 0px;">${post.crtDate}</div>
+						<div style="font-size: 20px; position: absolute; margin-top: 28px;margin-left: 62px;">
+							<strong>${fn:substring(post.title,0,32)}<c:if test="${fn:length(post.title) > 32}">...</c:if></strong>
+						</div>
 					</div>
-					<div class="col-md-6"
-						style="text-align: right; margin-top: 5%; font-size: 0.9em; float: right; margin-top: 0px;">${post.crtDate}</div>
-					<h3>
-						<strong>${post.title}</strong>
-					</h3>
-				</div>
+				<p style="text-align: left; margin-left: 10px;">${fn:replace(post.contents, newLine, "<br>")}</p>
+				
 				<!-- 갤러리아 라이브러리 붙일 자리 -->
 				<c:set var="galleriaPosition" value="N" />
 				<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
@@ -483,51 +485,47 @@
 				</c:forEach>
 
 				<c:if test="${galleriaPosition == 'Y'}">
-		</div>
-		</c:if>
-		<p>${post.contents}</p>
-
-		<div class="row margin_up_down underline"
-			style="margin: auto; width: 100%; display: inline-block;">
-			<div class="col-md-3 sns-button-left">
-				<c:if test="${authUser.usrSeq == post.usrSeq}">
-					<%-- <img alt='수정' src='/poorip/assets/images/post_modify.png'
-										class="menu_links modify" data-postseq="${post.postSeq}"
-										style="max-height: 30px;"> --%>
-					<button class='sns-post-footer menu_links modify'
-						data-postseq="${post.postSeq}" style='width: 50px; margin: auto;'>수정</button>
-
+							</div>
 				</c:if>
-			</div>
+				
 
-			<c:if test="${not empty authUser.usrSeq}">
-				<div class="col-md-3 sns-button-center">
-
-					<%-- <img alt='수정' src='/poorip/assets/images/post_modify.png'
+				<div class="row margin_up_down underline" style="margin:auto; width:100%; display:inline-block;">
+					<div class="col-md-3 sns-button-left">
+						<c:if test="${authUser.usrSeq == post.usrSeq}">
+							<%-- <img alt='수정' src='/poorip/assets/images/post_modify.png'
 										class="menu_links modify" data-postseq="${post.postSeq}"
 										style="max-height: 30px;"> --%>
-					<button class='sns-post-footer menu_links sharepost'
-						data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
-						style='width: 50px; margin: auto;'>공유</button>
+							<button class='modify gray_button'
+								data-postseq="${post.postSeq}"
+								style=' width: 70px; margin: auto;'>수정</button>
 
-
+						</c:if>
+					</div>
+					
+					<c:if test="${not empty authUser.usrSeq}">
+					<div class="col-md-3 sns-button-center">
+						<c:if test="${authUser.usrSeq != post.usrSeq}">
+							<button class='sharepost gray_button'
+								data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
+								style=' width: 70px; margin: auto;'>공유</button>
+						</c:if>
+						
+					</div>
+					</c:if>
+					
+					<div class="col-md-3 col-md-offset-6 sns-button-right">
+						<c:if test="${authUser.usrSeq == post.usrSeq}">
+							<button class='rightalign delete gray_button'
+								data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
+								style=' width: 70px;'>삭제</button>
+						</c:if>
+					</div>
 				</div>
-			</c:if>
-
-			<div class="col-md-3 col-md-offset-6 sns-button-right">
-				<c:if test="${authUser.usrSeq == post.usrSeq}">
-
-					<button class='sns-post-footer menu_links rightalign delete'
-						data-postseq="${post.postSeq}" data-usrseq="${post.usrSeq}"
-						style='width: 50px;'>삭제</button>
-				</c:if>
 			</div>
+			</c:forEach>
 		</div>
 	</div>
-	</c:forEach>
-	</div>
-	</div>
-	</div>
+
 	<div id="loading" class="col-md-10 col-md-offset-2"
 		style="margin: auto;"></div>
 

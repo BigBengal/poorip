@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>PoOrip에 오신것을 환영합니다!</title>
+<title>PoOrip에 오신것을 환영합니다! - Story</title>
 <meta name="description"
 	content="Worthy a Bootstrap-based, Responsive HTML5 Template">
 <meta name="author" content="htmlcoder.me">
@@ -114,16 +114,75 @@
 		
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 		<div class="container" style="width:50%; min-width:400px;">
-	<div id="my-sns-list" class="block" style="padding-top: 100px">
+			<div id="my-sns-list" class="block" style="padding-top: 100px">
+			</div>
+		</div>
 	</div>
-	</div>
-	</div>
-	
 
+	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display: none">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin: 12px 12px 20px 0;"></span>이 글을 정말로
+			삭제하시겠습니까?
+		</p>
+	</div>
+
+	<!-- 공유 창 내용 -->
+	<div id="share-sns-post" title="SNS 포스트 공유" style="display: none">
+		<p>공유할 풀을 선택해주세요 ${postSeq }</p>
+		<form action="${pageContext.request.contextPath}/sns/post/share"
+			id="share-form">
+			<input id="sns-share-postSeq" type="hidden" name="postSeq"
+				value="${postSeq }">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-5">
+						<select name="share_from[]" class="js-multiselect1 form-control"
+							size="8" multiple="multiple">
+							<c:forEach items="${poolpartyList }" var="poolpartyList"
+								varStatus="status">
+								<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="col-xs-2">
+						<button type="button" id="js_right_All_2" class="btn btn-block">
+							<i class="glyphicon glyphicon-forward"></i>
+						</button>
+						<button type="button" id="js_right_Selected_2"
+							class="btn btn-block">
+							<i class="glyphicon glyphicon-chevron-right"></i>
+						</button>
+						<button type="button" id="js_left_Selected_2"
+							class="btn btn-block">
+							<i class="glyphicon glyphicon-chevron-left"></i>
+						</button>
+						<button type="button" id="js_left_All_2" class="btn btn-block">
+							<i class="glyphicon glyphicon-backward"></i>
+						</button>
+					</div>
+					<div class="col-xs-5">
+						<select name="share_to[]" id="js_multiselect_to_2"
+							class="form-control" size="8" multiple="multiple"></select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group sns-write-group sns-buttons">
+				<div class="col-md-12" style="padding-left: 10%">
+					<button type="submit" class="sns-post-footer" style="width:30%">공유하기</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<div class="se-pre-con"></div>
+	<!-- footer start -->
+	<!-- ================ -->
+	<footer id="footer" style="background-color:#f2f2f2">
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+	</footer>
 	<!-- footer end -->
-	
-	
-	
+
 	<script
 		src="${pageContext.request.contextPath }/assets/plugins/jquery-1.12.4.js"></script>
 	<script
@@ -187,69 +246,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
 	
 	<!--  toggle-checkbox -->
-	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>	
-
-	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display: none">
-		<p>
-			<span class="ui-icon ui-icon-alert"
-				style="float: left; margin: 12px 12px 20px 0;"></span>이 글을 정말로
-			삭제하시겠습니까?
-		</p>
-	</div>
-
-	<!-- 공유 창 내용 -->
-	<div id="share-sns-post" title="SNS 포스트 공유" style="display: none">
-		<p>공유할 풀을 선택해주세요 ${postSeq }</p>
-		<form action="${pageContext.request.contextPath}/sns/post/share"
-			id="share-form">
-			<input id="sns-share-postSeq" type="hidden" name="postSeq"
-				value="${postSeq }">
-			<div class="form-group">
-				<div class="row">
-					<div class="col-xs-5">
-						<select name="share_from[]" class="js-multiselect1 form-control"
-							size="8" multiple="multiple">
-							<c:forEach items="${poolpartyList }" var="poolpartyList"
-								varStatus="status">
-								<option value="${poolpartyList.poolSeq }">${poolpartyList.poolName }</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="col-xs-2">
-						<button type="button" id="js_right_All_2" class="btn btn-block">
-							<i class="glyphicon glyphicon-forward"></i>
-						</button>
-						<button type="button" id="js_right_Selected_2"
-							class="btn btn-block">
-							<i class="glyphicon glyphicon-chevron-right"></i>
-						</button>
-						<button type="button" id="js_left_Selected_2"
-							class="btn btn-block">
-							<i class="glyphicon glyphicon-chevron-left"></i>
-						</button>
-						<button type="button" id="js_left_All_2" class="btn btn-block">
-							<i class="glyphicon glyphicon-backward"></i>
-						</button>
-					</div>
-					<div class="col-xs-5">
-						<select name="share_to[]" id="js_multiselect_to_2"
-							class="form-control" size="8" multiple="multiple"></select>
-					</div>
-				</div>
-			</div>
-			<div class="form-group sns-write-group sns-buttons">
-				<div class="col-md-12" style="padding-left: 10%">
-					<button type="submit" class="sns-post-footer" style="width:30%">공유하기</button>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="se-pre-con"></div>
-	<!-- footer start -->
-	<!-- ================ -->
-	<footer id="footer" style="background-color:#f2f2f2">
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
-	</footer>
-	<!-- footer end -->
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </body>
 </html>

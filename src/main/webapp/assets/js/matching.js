@@ -47,7 +47,8 @@ function showChart() {
 		$("#chart-"+usrSeq).dxPolarChart({
 			dataSource: dataSource,
 			useSpiderWeb: true,
-			series: [{ valueField: "value", name: usrNick}],
+			series: [{ valueField: "value", name: usrNick, color: '#5f8b95', type: "area" },
+					 { valueField: "value", name: usrNick, color: '#5f8b95', type: "line" }],
 			commonSeriesSettings: {
 				type: "line"
 			},

@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>풀 파티</title>
+<title>PoOrip에 오신것을 환영합니다! - Pool</title>
 
 <!-- Date Picker -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
