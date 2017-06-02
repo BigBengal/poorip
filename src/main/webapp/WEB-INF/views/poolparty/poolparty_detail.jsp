@@ -68,6 +68,8 @@
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
 <!-- <script src="/poorip/assets/plugins/jquery-1.12.4.js"></script> -->
 <script
+	src="${pageContext.request.contextPath }/assets/js/sockjs.min.js"></script>
+<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/poorip/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
 
@@ -129,7 +131,8 @@
 
 	<!-- header start -->
 	<!-- ================ -->
-	<header class="header fixed clearfix navbar navbar-fixed-top">
+	<header class="header fixed clearfix navbar navbar-fixed-top"
+		style="background-color: initial;">
 		<div class="container">
 			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
@@ -272,6 +275,19 @@
 		<div class="pool-detail-name">
 			<h1 style="color: white; text-shadow: 0 0 40px #000000;">${pool.poolName}</h1>
 		</div>
+		
+		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
+
+				<c:if test="${memberlist.usrSeq == authUser.usrSeq }">
+		<div class="pool-party-chatting">
+			<input type="hidden" name="memName" value="${memberlist.usrNick}" id="chatusrNick">
+			<input type="text" id="message" /> <input type="button"
+				id="sendMessage" value="보내기" />
+
+			<div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
+		</div>
+		</c:if>
+		</c:forEach>
 		<!-- 풀파티 상단 내용 -->
 		<div class="col-md-9 pool-partydetail-header">
 			<div class="col-md-5">
@@ -345,7 +361,8 @@
 			<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 
 				<c:if test="${memberlist.usrSeq == pool.managerUsrSeq }">
-					<img style="width: 25px; position: absolute; right: 10%; top: 60px;"
+					<img
+						style="width: 25px; position: absolute; right: 10%; top: 60px;"
 						src="${pageContext.request.contextPath }/assets/images/crown.png">
 				</c:if>
 				<div
@@ -374,20 +391,18 @@
 			</c:if>
 		</div>
 
-		<!-- 글쓰기 -->
-
 		<!-- <div id="write" class="col-md-12"> -->
 		<c:import url="/WEB-INF/views/poolparty/poolparty_write.jsp" />
 		<!-- </div> -->
 
-		<!-- 글 보기 -->
+		<!-- 글 쓰기 버튼-->
 		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 			<c:if
 				test="${memberlist.usrSeq ==authUser.usrSeq && memberlist.approve == 'Y'}">
-				<div style="text-align: center; margin-right: 20%;">
+				<div style="text-align: center; margin-right: 12%;">
 					<button type=button class="sns-write-button"
 						data-text="Enter text here"
-						style="width: 61%; cursor: text; min-width: 300px;/*margin-top: 100px; margin-bottom: 30px*/;"
+						style="width: 64%; cursor: text; min-width: 300px;/*margin-top: 100px; margin-bottom: 30px*/;"
 						data-toggle="modal" data-target="#sns-write-form2">
 						<img alt="글쓰기" src="/poorip/assets/images/write-btn.png"
 							class="sns-post-footer"
@@ -398,75 +413,79 @@
 				</div>
 			</c:if>
 		</c:forEach>
+		
+		<!-- 글보기 -->
 		<div id="postList" class="col-md-12">
 			<c:forEach var="post" items="${post}" varStatus="status">
 				<div id="post-${post.postSeq}"
 					class="col-md-7 col-md-offset-4 pool-detail-post"
 					style="margin-left: 15%;">
-					<c:set var="doneLoop" value="false"/>
+					<c:set var="doneLoop" value="false" />
 					<c:forEach var="memberlist" items="${poolmember }"
 						varStatus="status">
 						<c:if test="${not doneLoop}">
-						
-						<c:choose>
-						<c:when test="${post.usrSeq == memberlist.usrSeq }">
-						
-							<c:if test="${memberlist.gender eq 'F' }">
-								<div class="row margin_up_down post-header female">
-								<c:set value="true" var="member"/>
-								 <c:set var="doneLoop" value="true"/>
-							</c:if>
-							<c:if test="${memberlist.gender eq 'M' }">
-								<div class="row margin_up_down post-header male">
-								<c:set value="true" var="member"/>
-								 <c:set var="doneLoop" value="true"/>
-							</c:if>
-							
-						</c:when>
-						<c:otherwise>
-						  <c:set value="false" var="member"/>
-						</c:otherwise>
-						</c:choose>
+
+							<c:choose>
+								<c:when test="${post.usrSeq == memberlist.usrSeq }">
+
+									<c:if test="${memberlist.gender eq 'F' }">
+					<div class="row margin_up_down post-header female">
+											<c:set value="true" var="member" />
+											<c:set var="doneLoop" value="true" />
+									</c:if>
+									<c:if test="${memberlist.gender eq 'M' }">
+					<div class="row margin_up_down post-header male">
+											<c:set value="true" var="member" />
+											<c:set var="doneLoop" value="true" />
+									</c:if>
+
+								</c:when>
+								<c:otherwise>
+									<c:set value="false" var="member" />
+								</c:otherwise>
+							</c:choose>
 						</c:if>
 					</c:forEach>
 					<c:if test="${member==false }">
 					<div class="row margin_up_down post-header nonmember">
 					</c:if>
-					
-					<div class="col-md-6 img_inline">
-						<img src="${post.picture}"
-							style="float: left; margin-left: 5px; margin-bottom: 5px;">
-						<h6>${post.name}</h6>
-						<c:if test="${post.trvName ne '관련 여행정보 없음' }">
-							<h6>
-								in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName } ${member }</span>
-							</h6>
-						</c:if>
+
+						<div class="col-md-6 img_inline">
+							<img src="${post.picture}"
+								style="float: left; margin-left: 5px; margin-bottom: 5px;">
+							<h6>${post.name}</h6>
+							<c:if test="${post.trvName ne '관련 여행정보 없음' }">
+								<h6>
+									in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName }
+										${member }</span>
+								</h6>
+							</c:if>
+						</div>
+						<div class="col-md-6"
+							style="text-align: right; margin-top: 5%; font-size: 0.9em; float: right; margin-top: 0px;">${post.crtDate}</div>
+						<div style="font-size: 20px; position: absolute; margin-top: 28px;margin-left: 62px;">
+							<strong>${fn:substring(post.title,0,32)}<c:if test="${fn:length(post.title) > 32}">...</c:if></strong>
+						</div>
 					</div>
-					<div class="col-md-6"
-						style="text-align: right; margin-top: 5%; font-size: 0.9em; float: right; margin-top: 0px;">${post.crtDate}</div>
-					<div style="font-size: 20px; position: absolute; margin-top: 28px;margin-left: 62px;">
-						<strong>${fn:substring(post.title,0,32)}<c:if test="${fn:length(post.title) > 32}">...</c:if></strong>
-					</div>
-				</div>
 				<p style="text-align: left; margin-left: 10px;">${fn:replace(post.contents, newLine, "<br>")}</p>
 				
 				<!-- 갤러리아 라이브러리 붙일 자리 -->
-				<c:set var="galleriaPosition" value="N"/>
+				<c:set var="galleriaPosition" value="N" />
 				<c:forEach var="postpic" items="${postPic}" varStatus="picStatus">
 					<c:if test="${post.postSeq == postpic.postSeq}">
 						<c:if test="${galleriaPosition == 'N'}">
-							<div class="galleria" id="postPic-${postpic.postSeq}">		
-						</c:if>	
-						
-							<img src="/poorip${postpic.path}/${postpic.fileName}" data-seq="${postpic.postSeq}">
-							
-						<c:set var="galleriaPosition" value="Y"/>
+							<div class="galleria" id="postPic-${postpic.postSeq}">
+						</c:if>
+
+						<img src="/poorip${postpic.path}/${postpic.fileName}"
+							data-seq="${postpic.postSeq}">
+
+						<c:set var="galleriaPosition" value="Y" />
 					</c:if>
 				</c:forEach>
-				
+
 				<c:if test="${galleriaPosition == 'Y'}">
-					</div>
+							</div>
 				</c:if>
 				
 
@@ -502,11 +521,11 @@
 						</c:if>
 					</div>
 				</div>
+			</div>
+			</c:forEach>
 		</div>
-		</c:forEach>
 	</div>
-	</div>
-	</div>
+
 	<div id="loading" class="col-md-10 col-md-offset-2"
 		style="margin: auto;"></div>
 
@@ -518,12 +537,13 @@
 				style="float: left; margin: 12px 12px 20px 0;"></span>삭제 하시겠습니까?
 		</p>
 	</div>
-	
-	
+
+
 	<div id="dialog-confirm_share" title="공유 확인" style="display: none">
 		<p>
 			<span class="ui-icon ui-icon-alert"
-				style="float: left; margin: 12px 12px 20px 0;"></span>내 SNS로 가져가시겠습니까?
+				style="float: left; margin: 12px 12px 20px 0;"></span>내 SNS로
+			가져가시겠습니까?
 		</p>
 	</div>
 
@@ -534,6 +554,7 @@
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
+
 
 </body>
 </html>

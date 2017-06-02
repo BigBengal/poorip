@@ -622,3 +622,37 @@ function invite() {
 	    }
 	   });
 }
+
+
+
+$(document).ready(function() {
+	var sock = null;
+	$(document).ready(function() {
+		var usrNick = $("#chatusrNick").val();
+		
+		sock = new SockJS("/poorip/echo-ws");
+		sock.onopen = function() {
+			sock.send(usrNick  + "님 반갑습니다");
+		}
+		
+		sock.onmessage = function(evt) {
+			$("#chatMessage").append(evt.data + "<br/>");
+		}
+		
+		sock.onclose = function() {
+			sock.send("퇴장");
+		}
+		
+		$("#sendMessage").click(function() {
+			
+			
+			if($("#message").val() != "") {
+				
+				sock.send(usrNick + " : " + $("#message").val());
+				
+				$("message").val("");
+			}
+			
+		})
+	});
+});
