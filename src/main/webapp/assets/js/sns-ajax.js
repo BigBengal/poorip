@@ -2,6 +2,10 @@
 var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
+
+var writeVisible = false;
+var shareVisible = false;
+
 var post_render = function(vo) {
 	var auth = $("#usr-profile-pic").val();
 	var trvInfoName, ctyName;
@@ -181,7 +185,8 @@ var fetchList = function() {
 //							console.log($pic.attr('src'));
 							var heightV = $pic.height();
 //							console.log("postPic["+i+"]:"+postPic[i].postSeq+", heightV:"+heightV);
-							if ( heightV != null){
+							if ( heightV != null ){
+								if( heightV == 0) heightV = 400;
 								Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
 								Galleria.run('#postPic-'+postPic[i].postSeq , { debug: false, lightbox: true , height: heightV});
 							}
@@ -298,10 +303,11 @@ $(document).ready(function(){
 				for (var i = 0; i < postPic.length; i++) {
 					$pic = $('#postPic-'+postPic[i].postSeq+'> img');
 //					console.log(i+"번째 이미지");
-//					console.log($pic.attr('src'));
+//					console.log($pic.attr('src'));	
 					var heightV = $pic.height();
 //					console.log("postPic["+i+"]:"+postPic[i].postSeq+", heightV:"+heightV);
-					if ( heightV != null){
+					if ( heightV != null ){
+						if( heightV == 0) heightV = 400;
 						Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
 						Galleria.run('#postPic-'+postPic[i].postSeq , { debug: false, lightbox: true , height: heightV});
 					}
@@ -314,9 +320,6 @@ $(document).ready(function(){
 		}
 	});
 });
-
-var writeVisible = false;
-var shareVisible = false;
 
 function postDelete(postSeq){
 	
@@ -374,12 +377,12 @@ function showShare() {
 		shareVisible = false;
 	} else {
 		$("#sns-share").show();
-		writeVisible = true;
+		shareVisible = true;
 	}
 }
 
+
 function showPostEdit(contents, title, trvSeq, postSeq, postPicSeqArray) {
-	
 	writeVisible = true;
 	$(".form-group #edit-title").val(title);
 	$(".form-group #edit-contents").val(contents);
@@ -388,7 +391,6 @@ function showPostEdit(contents, title, trvSeq, postSeq, postPicSeqArray) {
 	$("#postPicSeqArray").val(postPicSeqArray);
 	$("#sns-edit-form").modal("show");
 	
-	console.log(postPicSeqArray);
 	return;
 }
 $("#sns-edit-button").click(function() {
@@ -397,7 +399,7 @@ $("#sns-edit-button").click(function() {
 	var trvSeq = $("#sns-trv-seq").val();
 	var postSeq = $("#postSeq").val();
 	var postPicSeqArray = $("#postPicSeqArray").val();
-	console.log(title, contents, trvSeq, postSeq, "POST SEQ " + postPicSeqArray);
+//	console.log(title, contents, trvSeq, postSeq, "POST SEQ " + postPicSeqArray);
 	
 	$("#sns-edit-ajax").ajaxForm({
 			url : "sns/editPost/" + postSeq + "/",
@@ -408,28 +410,31 @@ $("#sns-edit-button").click(function() {
 	        	 var postPicSeqArray = [];
 	        	console.log(response);
 	/*document.getElementById('sns-post-'+postSeq).HTML = "";*/
-	        
-	        	$( response.data.post ).each( function( index, vo) {
-                    //console.log(index + "  ++++"+ vo.title);    
-                    console.log(1);
-                    edit_post_render( vo );
-                   
-                    $( response.data.postPic).each( function( index, vo2) {
-                   	 postPicSeqArray.push(vo2.postPicSeq); 
-                   	 postPic_render( vo2, vo );
-                       console.log("yyy"+ response.data.postPic.postPicSeq);
-                       	if(index == $( response.data.postPic).length-1) {
-                       		postPicSeq= vo2.postPicSeq;
-                       		console.log(postPicSeq);
-                       	};
-                       
-                    });
-                   
-//                    console.log(postPicSeqArray);
-                    last_render( vo, postPicSeq, postPicSeqArray );
-                    postPicSeqArray = [];
-                 postPicSeq= null;
-                 });
+	        	if(response.result == 'success'){
+	        		location.reload();
+	        		return;	
+	        	}
+//	        	$( response.data.post ).each( function( index, vo) {
+//                    //console.log(index + "  ++++"+ vo.title);    
+//                    console.log(1);
+//                    edit_post_render( vo );
+//                   
+//                    $( response.data.postPic).each( function( index, vo2) {
+//                   	 postPicSeqArray.push(vo2.postPicSeq); 
+//                   	 postPic_render( vo2, vo );
+//                       console.log("yyy"+ response.data.postPic.postPicSeq);
+//                       	if(index == $( response.data.postPic).length-1) {
+//                       		postPicSeq= vo2.postPicSeq;
+//                       		console.log(postPicSeq);
+//                       	};
+//                       
+//                    });
+//                   
+////                    console.log(postPicSeqArray);
+//                    last_render( vo, postPicSeq, postPicSeqArray );
+//                    postPicSeqArray = [];
+//                 postPicSeq= null;
+//                 });
 	        	
 	        },
 	        error : function(data) {
@@ -437,11 +442,11 @@ $("#sns-edit-button").click(function() {
 	        }
 	       
 	    });
-	$('#sns-post-'+postSeq).replaceWith("");
-	$('#sns-edit-form').modal('toggle');
-	$('html,body').animate({
-        scrollTop: $("#sns-write-button").offset().top},
-        'slow');
+//	$('#sns-post-'+postSeq).replaceWith("");
+//	$('#sns-edit-form').modal('toggle');
+//	$('html,body').animate({
+//        scrollTop: $("#sns-write-button").offset().top},
+//        'slow');
 });
 
 //function openOptions() {
@@ -477,14 +482,37 @@ $(function(){
 	});
 })
 
+function share_dialog_close(){
+	$('#share-sns-post').dialog('close');
+}
+
 function postShare(postSeq){
 	
+	var win_width = window.innerWidth;
+	if (win_width == 0){
+		win_width = document.body.clientWidth;
+	}
+	
+	$("#share-form").validate({
+		rules: {
+			"share_to[]": {
+				required: true
+			}
+		},
+		 messages: {
+			"share_to[]":{ 	
+				required : "공유할 풀파티를 선택하세요"		    }
+		},
+		submitHandler: function(form) {
+			
+	    	form.submit();
+	    }
+	});
 	$("#share-sns-post").dialog({
-		
 
 		resizable: false,
 	      height: "auto",
-	      width: 1000,
+	      width: (win_width * 0.5),
 	      modal: true
 //	      buttons: {
 //	        "공유": function() {
