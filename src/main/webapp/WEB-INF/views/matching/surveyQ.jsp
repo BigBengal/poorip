@@ -90,4 +90,33 @@
 			$('#survey-form').submit();
 		});
 	});
+
 </script>
+
+<head>
+	<style>
+		.nextButton {
+		    position: relative;
+		    top: 1px;
+		    display: inline-block;
+		    font-family: 'Glyphicons Halflings';
+		    font-style: normal;
+		    font-weight: 400;
+		    font-size: 60px;
+		    line-height: 1;
+		    -webkit-font-smoothing: antialiased;
+		    -moz-osx-font-smoothing: grayscale;
+	        width: 100px;
+		    display: inline-block;
+		    float: left;
+		    background: transparent;
+		    border: 0;
+		}
+		.survey-contents {
+		    position: absolute;
+		    top: 25%;
+		    width: 100%;
+		    z-index: 2;
+		}
+	</style>
+</head>

@@ -19,7 +19,7 @@
 	<form id="survey-form" action="${pageContext.request.contextPath }/matching/updatePrefer">
 	<!-- banner end -->
 	<div class="targetDiv" id="div1">
-		<div class="banner-caption">
+		<div class="survey-contents">
 			<div class="container">
 				<div class="row">
 					<div class="form-group">
@@ -88,7 +88,7 @@
 	</div>
 	<!-- banner end -->
 	<div class="targetDiv" id="div2" style="display: none">
-		<div class="banner-caption">
+		<div class="survey-contents">
 			<div class="container">
 				<div class="row">
 					<div class="form-group">
@@ -156,7 +156,7 @@
 	</div>
 	<!-- banner end -->
 	<div class="targetDiv" id="div3" style="display: none">
-		<div class="banner-caption">
+		<div class="survey-contents">
 			<div class="container">
 				<div class="row">
 					<div class="form-group">
@@ -223,7 +223,7 @@
 		</div>
 	</div>
 	<div class="targetDiv" id="div4" style="display: none">
-		<div class="banner-caption">
+		<div class="survey-contents">
 			<div class="container">
 				<div class="row">
 					<div class="form-group">
@@ -290,7 +290,7 @@
 		</div>
 	</div>
 	<div class="targetDiv" id="div5" style="display: none">
-		<div class="banner-caption">
+		<div class="survey-contents">
 			<div class="container">
 				<div class="row">
 					<div class="form-group">
