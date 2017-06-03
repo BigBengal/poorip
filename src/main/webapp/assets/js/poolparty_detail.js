@@ -413,7 +413,7 @@ function showList(){
 //	 				console.log( index + ":" + vo.post + vo.postPic );
 				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4 pool-detail-post' style='margin-left: 15%; text-align:center;'>";
 				$(response.data.poolmemList).each(function(index,vo2) {
-					
+				
 				if(vo2.usrSeq==vo.usrSeq) { 
 					if(vo2.gender=='F'){
 					html = html +"<div class='row margin_up_down post-header female'>";
@@ -658,6 +658,8 @@ $(document).ready(function() {
 	var sock = null;
 	$(document).ready(function() {
 		var usrNick = $("#chatusrNick").val();
+		var poolSeq = $("#chatPoolSeq").val();
+		
 		
 		sock = new SockJS("/poorip/echo-ws");
 		sock.onopen = function() {
@@ -665,21 +667,21 @@ $(document).ready(function() {
 		}
 		
 		sock.onmessage = function(evt) {
-			$("#chatMessage").append(evt.data + "<br/>");
+			$("#chatMessage-" + poolSeq).append(evt.data + "<br/>");
 		}
 		
 		sock.onclose = function() {
 			sock.send("퇴장");
 		}
 		
-		$("#sendMessage").click(function() {
+		$("#sendMessage-" + poolSeq).click(function() {
 			
-			
-			if($("#message").val() != "") {
+			console.log(poolSeq);
+			if($("#message-" + poolSeq).val() != "") {
 				
-				sock.send(usrNick + " : " + $("#message").val());
+				sock.send(usrNick + " : " + $("#message-" + poolSeq).val());
 				
-				$("message").val("");
+				$("message-" + poolSeq).val("");
 			}
 			
 		})

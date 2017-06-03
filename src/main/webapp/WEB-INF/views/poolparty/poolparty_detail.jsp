@@ -277,13 +277,14 @@
 		
 		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 
-				<c:if test="${memberlist.usrSeq == authUser.usrSeq }">
-		<div class="pool-party-chatting">
+		<c:if test="${memberlist.usrSeq == authUser.usrSeq }">
+		<div class="pool-party-chatting-${pool.poolSeq } pool-party-chat">
 			<input type="hidden" name="memName" value="${memberlist.usrNick}" id="chatusrNick">
-			<input type="text" id="message" /> <input type="button"
-				id="sendMessage" value="보내기" />
+			<input type="hidden" name="poolSeq" value="${pool.poolSeq }" id="chatPoolSeq">
+			<input type="text" id="message-${pool.poolSeq }" /> <input type="button"
+				id="sendMessage-${pool.poolSeq }" value="보내기" />
 
-			<div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
+			<div id="chatMessage-${pool.poolSeq }" style="overflow: auto; max-height: 500px;"></div>
 		</div>
 		</c:if>
 		</c:forEach>
