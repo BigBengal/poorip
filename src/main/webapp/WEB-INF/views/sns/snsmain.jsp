@@ -74,7 +74,7 @@
 		<i class="icon-up-open-big"></i>
 	</div>
 
-	<!-- header start -->
+		<!-- header start -->
 	<!-- ================ -->
 	<header class="header fixed clearfix navbar navbar-fixed-top">
 		<div class="container">
@@ -110,7 +110,7 @@
 
 	<!-- mySNS start -->
 	<!-- ================ -->
-	<div id="mySNS" class="mySNS" style="background-color: #f2f2f2;" scrolling="auto">
+	<div id="mySNS" class="mySNS" style="background-color: #f2f2f2; scrolling=auto">
 		
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 		<div class="container" style="width:50%; min-width:400px;">
@@ -145,19 +145,17 @@
 							</c:forEach>
 						</select>
 					</div>
-					<div class="col-xs-2">
-						<button type="button" id="js_right_All_2" class="btn btn-block">
+					<div class="col-xs-2" style="padding: 0px;">
+						<button type="button" id="js_right_All_2" class="btn btn-block btn-xsmall" style="border-radius: 4px;">
 							<i class="glyphicon glyphicon-forward"></i>
 						</button>
-						<button type="button" id="js_right_Selected_2"
-							class="btn btn-block">
+						<button type="button" id="js_right_Selected_2" class="btn btn-block btn-xsmall" style="border-radius: 4px;">
 							<i class="glyphicon glyphicon-chevron-right"></i>
 						</button>
-						<button type="button" id="js_left_Selected_2"
-							class="btn btn-block">
+						<button type="button" id="js_left_Selected_2" class="btn btn-block btn-xsmall" style="border-radius: 4px;">
 							<i class="glyphicon glyphicon-chevron-left"></i>
 						</button>
-						<button type="button" id="js_left_All_2" class="btn btn-block">
+						<button type="button" id="js_left_All_2" class="btn btn-block btn-xsmall" style="border-radius: 4px;">
 							<i class="glyphicon glyphicon-backward"></i>
 						</button>
 					</div>
@@ -167,9 +165,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group sns-write-group sns-buttons">
-				<div class="col-md-12" style="padding-left: 10%">
-					<button type="submit" class="sns-post-footer" style="width:30%">공유하기</button>
+			<div class="form-group sns-write-group">
+				<div class="col-md-12" style="padding: 0px 10%">
+					<button type="submit" class="sns-post-footer gray_button" style="font-size: 12px;">공유하기</button>
+					<button type="reset" class="sns-post-footer gray_button" style="font-size: 12px; float: right;" onclick="share_dialog_close();">닫기</button>
 				</div>
 			</div>
 		</form>
@@ -192,15 +191,13 @@
 		================================================== -->
 
 	<!-- Jquery and Bootstap core js files -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+<!-- 	<script type="text/javascript" -->
+<%-- 		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script> --%>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<!-- 	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script> -->
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	
-	
-
 	<!-- Modernizr javascript -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
@@ -216,11 +213,22 @@
 	<!-- Appear javascript -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
-
+	<!-- Gallera image slider -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
+	
+	<!-- multiselect -->
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
+	<!-- Vaildation-->
+	<script src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
+	<!--  toggle-checkbox -->
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	
 	<!-- Initialization of Plugins -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
-
 
 	<!-- facebook  -->
 	<script
@@ -232,16 +240,6 @@
 	<!-- sns ajax -->
 	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
 
-	<!-- multiselect -->
-	<script
-		src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
-
-	<!-- Gallera image slider -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
 	
-	<!--  toggle-checkbox -->
-	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </body>
 </html>
