@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>PoOrip에 오신것을 환영합니다!</title>
+<title>PoOrip에 오신것을 환영합니다! - Story</title>
 <meta name="description"
 	content="Worthy a Bootstrap-based, Responsive HTML5 Template">
 <meta name="author" content="htmlcoder.me">
@@ -114,80 +114,10 @@
 		
 		<c:import url="/WEB-INF/views/sns/mySNS.jsp" />
 		<div class="container" style="width:50%; min-width:400px;">
-	<div id="my-sns-list" class="block" style="padding-top: 100px">
+			<div id="my-sns-list" class="block" style="padding-top: 40px">
+			</div>
+		</div>
 	</div>
-	</div>
-	</div>
-	
-
-	<!-- footer end -->
-	
-	
-	
-	<script
-		src="${pageContext.request.contextPath }/assets/plugins/jquery-1.12.4.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/assets/plugins/jquery-ui.min.js"></script>
-
-	<!-- JavaScript files placed at the end of the document so the pages load faster
-		================================================== -->
-
-	<!-- Jquery and Bootstap core js files -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script>
-	
-	
-
-	<!-- Modernizr javascript -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
-
-	<!-- Isotope javascript -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/isotope/isotope.pkgd.min.js"></script>
-
-	<!-- Backstretch javascript -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/jquery.backstretch.min.js"></script>
-
-	<!-- Appear javascript -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
-
-	<!-- Initialization of Plugins -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
-
-
-	<!-- facebook  -->
-	<script
-		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
-
-	<!-- Light Box -->
-	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
-
-	<!-- sns ajax -->
-	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
-
-	<!-- multiselect -->
-	<script
-		src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/assets/js/portBox.js"></script>
-		<script
-		src="${pageContext.request.contextPath }/assets/js/portBox.slimscroll.min.js"></script>
-
-	<!-- Gallera image slider -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
-	
-	<!--  toggle-checkbox -->
-	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>	
 
 	<div id="delete-sns-post" title="SNS 포스트 삭제" style="display: none">
 		<p>
@@ -244,6 +174,7 @@
 			</div>
 		</form>
 	</div>
+	
 	<div class="se-pre-con"></div>
 	<!-- footer start -->
 	<!-- ================ -->
@@ -251,5 +182,66 @@
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
+
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/jquery-1.12.4.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/jquery-ui.min.js"></script>
+
+	<!-- JavaScript files placed at the end of the document so the pages load faster
+		================================================== -->
+
+	<!-- Jquery and Bootstap core js files -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	
+	
+
+	<!-- Modernizr javascript -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/modernizr.js"></script>
+
+	<!-- Isotope javascript -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/isotope/isotope.pkgd.min.js"></script>
+
+	<!-- Backstretch javascript -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/jquery.backstretch.min.js"></script>
+
+	<!-- Appear javascript -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
+
+	<!-- Initialization of Plugins -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
+
+
+	<!-- facebook  -->
+	<script
+		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+
+	<!-- Light Box -->
+	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
+
+	<!-- sns ajax -->
+	<script src="${pageContext.request.contextPath }/assets/js/sns-ajax.js"></script>
+
+	<!-- multiselect -->
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/multiselect.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/plugins/multiselect.min.js"></script>
+
+	<!-- Gallera image slider -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
+	
+	<!--  toggle-checkbox -->
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </body>
 </html>

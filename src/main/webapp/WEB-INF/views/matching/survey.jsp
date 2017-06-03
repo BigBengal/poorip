@@ -118,6 +118,27 @@
 		$.backstretch("/poorip/assets/images/bg-image-6.jpg");
 	});
 </script>
+<head>
+	<style>
+		.nextButton {
+		    position: relative;
+		    top: 1px;
+		    display: inline-block;
+		    font-family: 'Glyphicons Halflings';
+		    font-style: normal;
+		    font-weight: 400;
+		    font-size: 60px;
+		    line-height: 1;
+		    -webkit-font-smoothing: antialiased;
+		    -moz-osx-font-smoothing: grayscale;
+	        width: 100px;
+		    display: inline-block;
+		    float: left;
+		    background: transparent;
+		    border: 0;
+		}
+	</style>
+</head>
 <body class="no-trans">
 	<!-- scrollToTop -->
 	<!-- ================ -->
@@ -155,16 +176,14 @@
 						data-animation-effect="fadeIn">
 						<div class="form-group">
 							<p class="col-md-4">
-								<a href="${pageContext.request.contextPath }/"> <img alt=""
-									src="${pageContext.request.contextPath }/assets/images/refresh.png"
-									style="width: 80px; display: inline-block; float: left;"></a>
+								<a href="${pageContext.request.contextPath }/">
+									<button class="nextButton glyphicon-repeat menu_links" style="width: 80px; display: inline-block; float: left;"></button>
+								</a>
 							</p>
 							<p class="col-md-4"></p>
 							<p class="col-md-4">
 								<a href="${pageContext.request.contextPath }/matching/surveyQ">
-									<img alt=""
-									src="${pageContext.request.contextPath }/assets/images/Right.png"
-									style="width: 80px; display: inline-block; float: right;">
+									<button class="nextButton glyphicon-menu-right menu_links" style="width: 80px; display: inline-block; float: right;"></button>
 								</a>
 							</p>
 						</div>
