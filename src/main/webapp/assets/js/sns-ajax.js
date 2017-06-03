@@ -2,32 +2,43 @@
 var dialogDeleteForm = null;
 var isEnd = false;
 var page = 0;
-var post_render = function( vo, trvInfoName, ctyName ) {
+var post_render = function(vo) {
 	var auth = $("#usr-profile-pic").val();
-   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ;' >" + 
-   					"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
-                    "margin-left: 0px;'>" + 
-                    "<img class='sns-profile-pic' src='"+auth+"'>" +
-                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong><h6 style='display:inline-block;'>&nbsp&nbspat " + trvInfoName + "&nbsp[&nbsp" + ctyName + "&nbsp]</h6></div>" +
-                     "<div class='form-group sns-date' >" +
-                     "<p class='col-md-5 sns-date'  style='font-size:13px'>" + vo.crtDate + "</p>" +
-                  "</div>" +
-                  "</div>" +
-                  "<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
-               "<div class='col-md-offset-4' style='margin:auto;'>" +
-                     "<p class='col-md-12'>" + 
-                     "<div class='form-group sns-post-content' style='width:100%;'>" +
-                     "<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
-                  "</div>" + 
-                        "<div class='cycle-slideshow'" +
-                           "data-cycle-fx='scrollHorz'" +
-                           "data-cycle-timeout='0'" +
-                           "data-cycle-prev='prev'" +
-                           "data-cycle-next='#next' id='first-html-" + vo.postSeq + "'>" ;
-
-                 $( "#my-sns-list" ).append(post_html);
+	var trvInfoName, ctyName;
+	if(vo.name == "관련 여행정보 없음") {
+		trvInfoName = "Somewhere In Europe";
+	} else {
+		trvInfoName = vo.name;
+	}
+	
+	if(vo.ctyName =="뱅갈") {
+		ctyName = "Mysterious City"; 
+	} else {
+		ctyName = vo.ctyName
+	}
+	var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ;' >" + 
+				   		"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" + "margin-left: 0px;'>" + 
+					   		"<img class='sns-profile-pic' src='"+auth+"'>" +
+					   		"<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong>" +
+					   			"<h6 style='display:inline-block;'>&nbsp&nbspat " + trvInfoName + "&nbsp[&nbsp" + ctyName + "&nbsp]</h6></div>" +
+						   		"<div class='form-group sns-date' >" +
+						   			"<p class='col-md-5 sns-date'  style='font-size:13px'>" + vo.crtDate + "</p>" +
+						   		"</div>" +
+						   	"</div>" +
+						   	"<div class='form-group' style='display:block; width:70%; margin:auto;'>" +
+						   		"<div class='col-md-offset-4' style='margin:auto;'>" +
+//						   			"<p class='col-md-12'>" + 
+						   				"<div class='form-group sns-post-content' style='width:100%;'>" +
+						   					"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
+						   				"</div>";
+	return post_html;
+//						   				"<div class='cycle-slideshow'" +
+//									   	"data-cycle-fx='scrollHorz'" +
+//									   	"data-cycle-timeout='0'" +
+//									   	"data-cycle-prev='prev'" +
+//									   	"data-cycle-next='#next' id='first-html-" + vo.postSeq + "'>" ;
+//                 $( "#my-sns-list" ).append(post_html);
 }
-
 
 var edit_post_render = function( vo ) {
 	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;'>" + 
@@ -49,54 +60,44 @@ var edit_post_render = function( vo ) {
 	}
 
 
-var postPic_render = function(vo2, vo) {
+var postPic_render = function(vo2) {
    if(vo2.fileName!=null) {
-   var postPic_html = "<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='40%' id='middle-html-" + vo2.postPicSeq +
-   						"' data-lightbox='sns-images-"+ vo.postSeq+ 
-   						"' id='middle-html-" + vo.postSeq + "'><img src='/poorip" + vo2.path +
-   						"/" + vo2.fileName + "' style='width=500px; margin:auto; border-radius: 8px; margin-bottom: 10px;' ></a>";
-                              
-
-                  $( "#first-html-"+vo.postSeq ).append(postPic_html);
+	   var postPic_html = 
+//		   					"<a class='sns-image' href='/poorip" + vo2.path + "/" + vo2.fileName + " 'width='40%' id='middle-html-" + vo2.postPicSeq +
+//		   					"' data-lightbox='sns-images-"+ vo2.postSeq+"' id='middle-html-" + vo2.postSeq + "'>" +
+   							"<img src='/poorip" + vo2.path + "/" + vo2.fileName + "'>";
    }
-   else {
-	   var postPic_html =  "<div id='middle-html-" + vo2.postPicSeq + "></div>"
-	   $( "#first-html-"+vo.postSeq ).append(postPic_html);
-   };
+   return postPic_html;
+   
+//   		$( "#first-html-"+vo2.postSeq ).append(postPic_html);
+//   } else {
+//	   var postPic_html =  "<div id='middle-html-" + vo2.postPicSeq + "></div>"
+//	   $( "#first-html-"+vo2.postSeq ).append(postPic_html);
+//   };
 }
 
-var last_render = function(vo, postPicSeq, postPicSeqArray) {
-	var postPicSeqArray = postPicSeqArray;
-  if(postPicSeq!=null) {
-   var last_html =               "</div>" +
-                        "</p>" +
-                     "</div>" +
-                     "</div>" + 
-                  
-               
-               "<div class='form-group sns-buttons' style='display:block; text-align:center; width:100%; margin-left: 0px; clear:both;'>" +
-               "<a href='javascript:;'><button class='sns-post-footer' onclick='postDelete(" + vo.postSeq + ")' style='float:left;'>삭제</button>" +
-				 "<a href=javascript:;><button class='sns-post-footer' id='share-dialog'  onclick='postShare(" + vo.postSeq + ")' >공유</button>" +
-				 "<a href='#sns-edit-form' id='edit-form-tag'><button class='sns-post-footer' style='float:right;' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")'  class='sns-post-edit'>수정</button>" +  
-                  "</div></div>";
-
-               $("#middle-html-"+postPicSeq).after(last_html);
-  }  
-  else {
-	  var last_html =	   "</div>" +
-		    "</p>" +
-		 "</div>" +
-		 "</div>" + 
-		
-		"<div class='form-group sns-buttons' style='text-align:center; display:block; width:100%; margin-left: 0px; clear:both;'>" +
-				"<a href='javascript:;'><button class='sns-post-footer' onclick='postDelete(" + vo.postSeq + ")' style='float:left;'>삭제</button>" +
-				 "<a href=javascript:;><button class='sns-post-footer' id='share-dialog'  onclick='postShare(" + vo.postSeq + ")' >공유</button>" +
-				 "<a href='#sns-edit-form' id='edit-form-tag'><button class='sns-post-footer' style='float:right;' onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'  class='sns-post-edit'>수정</button>" + 
-		"</div>" ;
-
-$("#first-html-"+vo.postSeq).after(last_html);
-	  
-  };
+var last_render = function(vo, picExist, postPicSeqArray) {
+//	var postPicSeqArray = postPicSeqArray;
+	var last_html = 
+//				   "		</p>" +
+//				   "	</div>" +
+				   "</div>" + 
+				   "<div class='row margin_up_down underline' style='display:block; text-align:center; width:100%; margin-left: 0px; margin-top:10px; clear:both;'>" +
+					   "<button class='sns-post-footer gray_button' style='width:70px;' id='share-dialog' onclick='postShare(" + vo.postSeq + ")' >공유</button>" +
+					   "<button class='sns-post-footer gray_button' style='width:70px; float:right;' onclick='postDelete(" + vo.postSeq + ")' >삭제</button>" +
+					   "<button class='sns-post-footer gray_button' style='width:70px; float:left;' ";	
+	if(picExist == 'Y') {
+	  last_html = last_html +
+				  "	onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")'>수정</button>" +
+				  "</div>" ;
+//	  $("#middle-html-"+postPicSeq).after(last_html);
+	} else {
+		last_html = last_html +
+				 " onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'>수정</button>" +
+				 "</div>" ;
+//		$("#first-html-"+vo.postSeq).after(last_html);
+	};
+	return last_html;
 } 
 
 var showPoolList = function(vo) {
@@ -128,7 +129,7 @@ var fetchList = function() {
 				dataType: "json",
 				data : "",
 				success: function( response ) {
-					//console.log(response);
+//					console.log(response);
 					if( response.result != "success" ) {
 						return 
 					}
@@ -137,47 +138,56 @@ var fetchList = function() {
 						isEnd = true;
 						return;
 					}
-					var postPicSeq = null;
+					var picExist = 'N';
+					var postHtml;
 					var postPicSeqArray = [];
-					console.log(response.data);
+//					console.log(response.data);
 					++page;
 					$( response.data.post ).each( function( index, vo) {
-						var ctyName;
-						//console.log(index + "  ++++"+ vo.title); 
-						if(vo.name == "관련 여행정보 없음") {
-							trvInfoName = "Somewhere In Europe";
-						}else {
-							trvInfoName = vo.name;
-						}
-						
-						if(vo.ctyName =="뱅갈") {
-							ctyName = "Mysterious City"; 
-						}else {
-							ctyName = vo.ctyName
-						}
-						console.log(vo.name);
-						post_render( vo, trvInfoName, ctyName );
+//						console.log(vo.name);
+						// 글 처음
+						postHtml = post_render( vo);
 						
 //						console.log("datalength" + response.data.postPic[vo.postSeq].length);
+						// 사진 추가
 						if(response.data.postPic[vo.postSeq].length> 0) {
+							//갤러리아 슬라이드 LIB 전용 div 입력
+							postHtml = postHtml + "<div class='galleria' id='postPic-"+vo.postSeq+"'>";
 							$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
 								postPicSeqArray.push(vo2.postPicSeq); 
-								postPic_render( vo2, vo );
-
-								if(index == $( response.data.postPic[vo.postSeq]).length-1) {
-									postPicSeq= vo2.postPicSeq;
-//									console.log(postPicSeq);
-								};
-
+								postHtml = postHtml + postPic_render( vo2 );
+//								if(index == $( response.data.postPic[vo.postSeq]).length-1) {
+//									postPicSeq= vo2.postPicSeq;
+//									console.log("postPicSeq:"+postPicSeq);
+//								};
 							});
+							postHtml = postHtml + "</div>";
+							picExist = 'Y'
 						};
 //						console.log(postPicSeqArray);
-						last_render( vo, postPicSeq, postPicSeqArray );
+						// 글 마무리
+						postHtml = postHtml + last_render( vo, picExist, postPicSeqArray );
 						postPicSeqArray = [];
-						postPicSeq= null;
+						picExist = 'N';
+						$( "#my-sns-list" ).append(postHtml);	
 					});
-
-
+					
+					var postPic = response.data.post
+					//galleria 슬라이드 실행
+					$(".galleria > img").load(function(){
+						for (var i = 0; i < postPic.length; i++) {
+							$pic = $('#postPic-'+postPic[i].postSeq+'> img');
+//							console.log(i+"번째 이미지");
+//							console.log($pic.attr('src'));
+							var heightV = $pic.height();
+//							console.log("postPic["+i+"]:"+postPic[i].postSeq+", heightV:"+heightV);
+							if ( heightV != null){
+								Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+								Galleria.run('#postPic-'+postPic[i].postSeq , { debug: false, lightbox: true , height: heightV});
+							}
+						}
+						postPic =[];
+					})
 					$(window).data('ajaxready', true);
 
 				},
@@ -214,7 +224,7 @@ $(document).ready(function(){
 		dataType: "json",
 		data : "",
 		success: function( response ) {
-			//console.log(response);
+//			console.log(response);
 			if( response.result != "success" ) {
 				return 
 			}
@@ -223,47 +233,81 @@ $(document).ready(function(){
 				isEnd = true;
 				return;
 			}
-			var postPicSeq = null;
+			var picExist = 'N';
+			var postHtml;
 			var postPicSeqArray = [];
 			++page;
-//			console.log(response.data.poolList);
+//			console.log(response.data);
 			$(response.data.poolList).each(function(index, vo) {
 				if(vo.ctyName == null) {
 					vo.ctyName = "도시 미정";
 				}
 				showPoolList(vo);
 			});
-			$( response.data.post ).each( function( index, vo) {
-				var trvInfoName;
-				var ctyName;
-				if(vo.name == "관련 여행정보 없음") {
-					trvInfoName = "Somewhere In Europe";
-				}else {
-					trvInfoName = vo.name;
-				}
+//			$( response.data.post ).each( function( index, vo) {
+//				var trvInfoName;
+//				var ctyName;
+//				
+//				post_render( vo, trvInfoName, ctyName );
+//				if(response.data.postPic[vo.postSeq].length> 0) {
+//					$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
+//						postPicSeqArray.push(vo2.postPicSeq); 
+//						postPic_render( vo2, vo );
+//
+//						if(index == $( response.data.postPic[vo.postSeq]).length-1) {
+//							postPicSeq= vo2.postPicSeq;
+//						};
+//
+//					});
+//				};
+//				last_render( vo, postPicSeq, postPicSeqArray );
+//				postPicSeqArray = [];
+//				postPicSeq= null;
+//			});
+			$( response.data.post ).each( function( index, vo ) {
+//				console.log(vo.name);
+				// 글 처음
+				postHtml = post_render( vo);
 				
-				if(vo.ctyName =="뱅갈") {
-					ctyName = "Mysterious City"; 
-				}else {
-					ctyName = vo.ctyName
-				}
-				
-				post_render( vo, trvInfoName, ctyName );
+//				console.log("datalength" + response.data.postPic[vo.postSeq].length);
+				// 사진 추가
 				if(response.data.postPic[vo.postSeq].length> 0) {
+					//갤러리아 슬라이드 LIB 전용 div 입력
+					postHtml = postHtml + "<div class='galleria' id='postPic-"+vo.postSeq+"'>";
 					$( response.data.postPic[vo.postSeq]).each( function( index, vo2) {
 						postPicSeqArray.push(vo2.postPicSeq); 
-						postPic_render( vo2, vo );
-
-						if(index == $( response.data.postPic[vo.postSeq]).length-1) {
-							postPicSeq= vo2.postPicSeq;
-						};
-
+						postHtml = postHtml + postPic_render( vo2 );
+//						if(index == $( response.data.postPic[vo.postSeq]).length-1) {
+//							postPicSeq= vo2.postPicSeq;
+//							console.log("postPicSeq:"+postPicSeq);
+//						};
 					});
+					postHtml = postHtml + "</div>";
+					picExist = 'Y'
 				};
-				last_render( vo, postPicSeq, postPicSeqArray );
+//				console.log(postPicSeqArray);
+				// 글 마무리
+				postHtml = postHtml + last_render( vo, picExist, postPicSeqArray );
 				postPicSeqArray = [];
-				postPicSeq= null;
+				picExist = 'N';
+				$( "#my-sns-list" ).append(postHtml);
 			});
+			var postPic = response.data.post
+			//galleria 슬라이드 실행
+			$(".galleria > img").load(function(){
+				for (var i = 0; i < postPic.length; i++) {
+					$pic = $('#postPic-'+postPic[i].postSeq+'> img');
+//					console.log(i+"번째 이미지");
+//					console.log($pic.attr('src'));
+					var heightV = $pic.height();
+//					console.log("postPic["+i+"]:"+postPic[i].postSeq+", heightV:"+heightV);
+					if ( heightV != null){
+						Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+						Galleria.run('#postPic-'+postPic[i].postSeq , { debug: false, lightbox: true , height: heightV});
+					}
+				}
+				postPic =[];
+			})
 		},
 		error: function( XHR, status, error ) {
 			console.log('ERROR');
@@ -472,10 +516,6 @@ function postShare(postSeq){
 	
 	document.getElementById("sns-share-postSeq").value = postSeq;
 }
-
-
-
-
 
 $("#sns-write-button").click(function(){
     $("#sns-write-form").modal("show");

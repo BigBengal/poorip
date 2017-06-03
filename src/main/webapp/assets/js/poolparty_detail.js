@@ -382,7 +382,7 @@ function showList(){
 			$( response.data.post ).each( function(index, vo){
 				var Nonmember = true;
 //	 				console.log( index + ":" + vo.post + vo.postPic );
-				html = "<div id='post-"+vo.postSeq+"' class='col-md-6 col-md-offset-4 pool-detail-post' style='margin-left: 15%; text-align:center;'>";
+				html = "<div id='post-"+vo.postSeq+"' class='col-md-7 col-md-offset-4 pool-detail-post' style='margin-left: 15%;'>";
 				$(response.data.poolmemList).each(function(index,vo2) {
 					
 				if(vo2.usrSeq==vo.usrSeq) { 
@@ -413,13 +413,19 @@ function showList(){
 				if(vo.trvName!='관련 여행정보 없음'){
 				html = html + "<h6> in <span style='color:rgba(22, 39, 125, 0.55);'> " + vo.trvName + "</span></h6>"; 
 				}
-				
-				html = html + "</div>"+
-				"<div class='col-md-6' style='text-align: right; margin-top: 5%; font-size:0.9em; float:right; margin-top:0px;'>"+ vo.crtDate+
-				"</div>"+
-				"<h3><strong>"+vo.title+"</strong></h3>"+
-				"</div>";
+				if (vo.title.length >= 32){
+					postTitle = vo.title.substring(0,32) + '...';
+				} else {
+					postTitle = vo.title;
+				}
 
+				html = html + "</div>"+
+							"<div class='col-md-6' style='text-align: right; margin-top: 5%; font-size:0.9em; float:right; margin-top:0px;'>"+ vo.crtDate+
+							"</div>"+
+								"<div style='font-size: 20px; position: absolute; margin-top: 28px;margin-left: 62px;'><strong>"+postTitle+"</strong></div>"+
+							"</div>";
+
+				html = html + "<p style='text-align: left; margin-left: 30px;'>"+vo.contents.replace('\n','<br>')+"</p>";
 				
 				//포스트 사진
 				 if(response.data.postPic.length> 0) {
@@ -441,21 +447,20 @@ function showList(){
 						 i++;
 					 }
 				 }
-				 html = html + "<p>"+vo.contents+"</p>"+
-					
-					"<div class='row margin_up_down underline' style='margin:auto; display:inline-block; width:100%;'>";
+				 	
+				 html = html + "<div class='row margin_up_down underline' style='margin:auto; display:inline-block; width:100%;'>";
 				
 				 if(vo.usrSeq == authUsrSeq){
 					 html = html +
 						"<div class='col-md-3 sns-button-left' >"+
-						"<button class='sns-post-footer menu_links modify' data-postseq='"+vo.postSeq +"' style='width:50px;' >수정</button>" + 
+						"<button class='modify gray_button' data-postseq='"+vo.postSeq +"' style='width:70px;' >수정</button>" + 
 						"</div>";
 				 }
 			
 				 if(vo.usrSeq >0) {
 					html= html+  
 						"<div class='col-md-3 sns-button-center ' >" +
-						"<button class='sns-post-footer menu_links modify sharepost' style='width:50px;'" +
+						"<button class='sharepost gray_button' style='width:70px;'" +
 							"data-postseq='0'"+
 								">공유</button>"+
 							"</div>";
@@ -465,7 +470,7 @@ function showList(){
 				 if(vo.usrSeq == authUsrSeq){
 						html = html + 
 						"<div class='col-md-3 col-md-offset-6 sns-button-right'>"+
-						"<button style='width:50px;' class='sns-post-footer menu_links rightalign delete' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"'>삭제</button>" +
+						"<button style='width:70px;' class='rightalign delete gray_button' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"'>삭제</button>" +
 						"</div>";
 				 }
 				 html = html +

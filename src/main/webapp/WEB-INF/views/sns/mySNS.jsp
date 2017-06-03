@@ -9,8 +9,7 @@
 
 	<button type=button class="sns-write-button" 
 		data-text="Enter text here" style="width: 600px; cursor:text;"
-		data-toggle="modal" data-target="#sns-write-form"
-		>
+		data-toggle="modal" data-target="#sns-write-form">
 		<img alt="수정" src="/poorip/assets/images/write-btn.png"
 			class="sns-post-footer"
 			style="width: 2%; display: inline-block; margin-right: 10px; margin-left: 10px;"
