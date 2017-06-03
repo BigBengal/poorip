@@ -141,7 +141,10 @@
 	<div style="height: 200px;"></div>
 	
 		<div class="pool-detail-backgroundimg">
-			<a href="javascript:;"> <img src="/poorip${pool.poolMainPic}"
+		<c:if test="${authUser.usrSeq == pool.managerUsrSeq }">
+			<a href="javascript:;">
+			</c:if> 
+			<img src="/poorip${pool.poolMainPic}"
 				style="width: 100%; object-fit: cover; height: 100%; border-radius: 10px;"
 				id="pool-main-pic" data-toggle="modal"
 				data-target="#poolparty-Img-Modal"> 
@@ -543,7 +546,7 @@
 		style="margin: auto;"></div>
 
 	<!-- 프로필 보기 다이얼로그 -->
-	<div id="profile" title="프로필 보기"></div>
+	<div id="profile" title="프로필 보기" ></div>
 	<div id="dialog-confirm_delete" title="삭제 확인" style="display: none">
 		<p>
 			<span class="ui-icon ui-icon-alert"
