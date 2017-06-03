@@ -51,5 +51,9 @@ public class PoolMemberDao {
 		// 가입이 되어 있는지 확인
 		return 1 == (Integer)sqlSession.selectOne("poolmember.ismember",poolmembervo);
 	}
+	
+	public boolean leaveParty(PoolMemberVo poolMemberVo) {
+		return 1 == sqlSession.delete("poolmember.leaveparty",poolMemberVo);
+	}
 		
 }

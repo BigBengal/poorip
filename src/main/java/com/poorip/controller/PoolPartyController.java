@@ -417,5 +417,16 @@ public class PoolPartyController {
 	public JSONResult getPost(@PathVariable("postSeq") int postSeq){
 		return JSONResult.success(postDao.select(postSeq));
 	}
+	
+	@Auth
+	@RequestMapping("/leaveparty")
+	public String leaveParty(@RequestParam("poolSeq") int poolSeq,  @AuthUser UserVo authUser){
+		PoolMemberVo poolMemberVo = new PoolMemberVo();
+		poolMemberVo.setUsrSeq(authUser.getUsrSeq());
+		poolMemberVo.setPoolSeq(poolSeq);
+		
+		poolPartyService.leaveParty(poolMemberVo);
+		return "redirect:/poolparty/mypool";
+	}
 		
 }

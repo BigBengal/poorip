@@ -1,9 +1,9 @@
 /**
  * 
  */
-var writeVisible = false;	//글쓰기 화면
-var modifyVisible = false;	//글수정 화면
-var poolikeyn = false; 		//풀파티 좋아요 버튼 flag
+var writeVisible = false;	// 글쓰기 화면
+var modifyVisible = false;	// 글수정 화면
+var poolikeyn = false; 		// 풀파티 좋아요 버튼 flag
 var delta = 500;			// 리스트 부르기 시간 텀
 var timer = null;			// 타이머 변수
 var page = 1;
@@ -11,7 +11,7 @@ var isEnd = false;
 
 $(document).ready(function(){
 	
-	// 풀파티 설정 다이얼로그 
+	// 풀파티 설정 다이얼로그
 	dialog = $( "#dialog-form" ).dialog({
 	    	autoOpen: false,
 	        height: 480,
@@ -38,8 +38,9 @@ $(document).ready(function(){
 	// 풀파티 맴버 프로필 보기
 	$(".poolmemberlist").on("click", function() {
 		var usrSeq = $(this).data("usrseq");
-
-		
+		var poolSeq = $("#chatPoolSeq").val();
+		var memUsrSeq = $("#memUsrSeq").val();
+		var showbtn = false;
 		// Ajax 통신
 		$.ajax( {
 		    url : "/poorip/user/getProfile",
@@ -50,13 +51,13 @@ $(document).ready(function(){
 		    	var usrInfo = "";
 				var scrapCityInfo = "";
 		    	
-//	 		    	console.log	( response );
+// console.log ( response );
 			       if( response.result == "fail") {
 			    	   console.log( response );
 			    	   return;
 			       }
 
-			    	//통신 성공 (response.result == "success" )
+			    	// 통신 성공 (response.result == "success" )
 			    	if(response.result == "success" ) {
 			    		usrInfo += "<p> 닉네임 : " + response.data.profile.usrNick + "</p>";
 			    		usrInfo += "<p> <img src=" + response.data.profile.usrProfile + "></p>";
@@ -73,7 +74,7 @@ $(document).ready(function(){
 			    			usrInfo += "없음 </p>";
 			    		
 			    		$( response.data.scrapcity ).each( function(index, vo){
-			    			//스크랩 도시 정보
+			    			// 스크랩 도시 정보
 			    			scrapCityInfo += "<p> 방문 예정 나라 : " + vo.ctyName + " ( ";
 			    			if (vo.dateFrom != null )
 			    				scrapCityInfo += vo.dateFrom;
@@ -84,32 +85,54 @@ $(document).ready(function(){
 							scrapCityInfo += " )</p>";
 			    			
 			    		});	
-//	 			    		$( response.data.scrap ).each( function(index, vo){
-//	 			    			//스크랩 정보
-//	 		 				});
+// $( response.data.scrap ).each( function(index, vo){
+// //스크랩 정보
+// });
 
 			    		$("#profile").html(usrInfo + scrapCityInfo);	
 			    	}
 			    	
 			    	
-//	 			    	$( response.data.scrap ).each( function(index, vo){
-//	 					})
+// $( response.data.scrap ).each( function(index, vo){
+// })
 					
 			       return true;
 		    }
 		   });
 		
+		var buttons = {
+			    닫기: function() {
+			    $("#profile").dialog("close");
+			    }
+			};
+		
+		if(usrSeq == memUsrSeq) {
+			buttons['탈퇴'] = function() {
+				$("#leave-party").dialog({
+					height: 200,
+			        width: 250,
+			        modal: true,
+			        buttons:{
+			        	확인 :  function() {
+			        	var leavepartyconfirm = $(".leavepartyconfirm").val();
+			        	if(leavepartyconfirm==="탈퇴"){
+			        	$("#leave-party-yes").submit();
+			        	}
+			        	else {
+			        		swal("정확히 탈퇴 를 입력해주세요!");
+			        	}
+			    }
+			     }
+				});
+			};
+		}
 		
 		$( "#profile" ).dialog({
-//	 	    	autoOpen: false,
+// autoOpen: false,
 	        height: 400,
 	        width: 450,
 	        modal: true,
-	        buttons: {
-	          Close: function() {
-	        	$(this).dialog( "close" );
-	          }
-	        }
+	        buttons: buttons,
 	  } );
 	});
 	
@@ -139,8 +162,8 @@ $(document).ready(function(){
 						console.log("can NOT measure : "+heightV);
 						heightV = 400;
 					}
-//					console.log(heightV);
-//					console.log($(this).data('seq'));
+// console.log(heightV);
+// console.log($(this).data('seq'));
 					Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
 					Galleria.run('#postPic-'+postSeq , { debug: false, lightbox: true , height: heightV});
 				}
@@ -197,12 +220,12 @@ $(document).ready(function(){
 			return;
 		}
 			
-//		console.log(postSeq);
+// console.log(postSeq);
 		$.ajax( {
 		    url : "/poorip/poolparty/get/"+postSeq,
 		    type: "post",
 		    dataType: "json",
-	//				    data: ,
+	// data: ,
 		    success: function( response ){
 		    	
 		    	console.log	( response );
@@ -225,7 +248,8 @@ $(document).ready(function(){
 			    } else {
 			    	$("#modifyeachform #update-reviewPubYn-n").prop("checked", true);
 			    }
-//			    $("#modifyeachform #update-reviewPubYn").val(response.data.reviewPubYn).change();
+// $("#modifyeachform
+// #update-reviewPubYn").val(response.data.reviewPubYn).change();
 			    if (response.data.hidden == 'Y'){
 			    	$("#modifyeachform #update-hidden-y").prop("checked", true);
 			    } else {
@@ -255,15 +279,15 @@ $(document).ready(function(){
 				    url : "/poorip/poolparty/share/"+postSeq,
 				    type: "post",
 				    dataType: "json",
-				 /*   data:"",*/
-				//  contentType: "application/json",
+				 /* data:"", */
+				// contentType: "application/json",
 				    success: function( response ){
 				    	console.log	( response );
 				       if( response.result == "fail") {
 				    	   console.log( response.message );
 				    	   return;
 				       }
-				    	//통신 성공 (response.result == "success" )
+				    	// 통신 성공 (response.result == "success" )
 						console.log( "APPROVE" + response.data );
 				    	
 				    	
@@ -286,7 +310,7 @@ $(document).ready(function(){
 	$(document).on("click",".delete",function() {
 		var postSeq = $(this).data("postseq");
 		var usrSeq = $(this).data("usrseq");
-//		console.log(postSeq);
+// console.log(postSeq);
 		$( "#dialog-confirm_delete" ).dialog({
 		    resizable: false,
 		    height: "auto",
@@ -300,14 +324,14 @@ $(document).ready(function(){
 				    type: "post",
 				    dataType: "json",
 				    data: { usrSeq : usrSeq },
-				//  contentType: "application/json",
+				// contentType: "application/json",
 				    success: function( response ){
-//				    	console.log	( response );
+// console.log ( response );
 				       if( response.result == "fail") {
 				    	   console.log( response.message );
 				    	   return;
 				       }
-				    	//통신 성공 (response.result == "success" )
+				    	// 통신 성공 (response.result == "success" )
 						console.log( "APPROVE" + response.data );
 				    	$( "#post-"+postSeq ).remove();
 				    	
@@ -339,7 +363,7 @@ $(document).ready(function(){
 		var documentHeight = $(document).height();
 		
 		clearTimeout( timer );
-		// 스크롤이 바닥이 되었을 때 
+		// 스크롤이 바닥이 되었을 때
 		if( scrollTop + windowHeight + 10 >= documentHeight ) {
 			timer = setTimeout( showList, delta );
 		}
@@ -365,7 +389,7 @@ function showList(){
 	    type: "get",
 	    dataType: "json",
 	    data: "",
-	//  contentType: "application/json",
+	// contentType: "application/json",
 	    success: function( response ){
 	  
 	    	if( response.result != "success" ) {
@@ -373,15 +397,15 @@ function showList(){
 	    		return;
 	    	}
 	    	if( response.data.post.length== 0 ) {
-//	 	    		console.log("FINISH");
+// console.log("FINISH");
 	    		isEnd = true;
 	    		return;
 	    	}
-//	 	    	console.log( response );
+// console.log( response );
 	    	var postPic = [] , i=0;
 			$( response.data.post ).each( function(index, vo){
 				var Nonmember = true;
-//	 				console.log( index + ":" + vo.post + vo.postPic );
+// console.log( index + ":" + vo.post + vo.postPic );
 				html = "<div id='post-"+vo.postSeq+"' class='col-md-7 col-md-offset-4 pool-detail-post' style='margin-left: 15%;'>";
 				$(response.data.poolmemList).each(function(index,vo2) {
 				
@@ -427,9 +451,9 @@ function showList(){
 
 				html = html + "<p style='text-align: left; margin-left: 30px;'>"+vo.contents.replace('\n','<br>')+"</p>";
 				
-				//포스트 사진
+				// 포스트 사진
 				 if(response.data.postPic.length> 0) {
-//					 console.log("exist postPic");
+// console.log("exist postPic");
 					 var isExistPic = 'N';
 					 $( response.data.postPic).each( function( index2, picvo) {
 						 if(vo.postSeq == picvo.postSeq){
@@ -437,7 +461,8 @@ function showList(){
 								 html = html+"<div class='galleria' id='postPic-"+picvo.postSeq+"'>"
 								 postPic[i] = picvo.postSeq;
 							 }
-//							 html = html+"<div href='/poorip"+picvo.path+"/"+picvo.fileName+"' data-lightbox='"+picvo.postSeq+"' data-title='"+vo.title+"'>" +
+// html = html+"<div href='/poorip"+picvo.path+"/"+picvo.fileName+"'
+// data-lightbox='"+picvo.postSeq+"' data-title='"+vo.title+"'>" +
 							 html = html+"<img src='/poorip"+picvo.path+"/"+picvo.fileName+"' data-seq='"+picvo.postSeq+"'>" ;
 							 isExistPic = 'Y';
 						 }
@@ -481,14 +506,14 @@ function showList(){
 			page++;
 			console.log("page:"+page);
 			
-			//galleria 슬라이드 실행
+			// galleria 슬라이드 실행
 			$(".galleria > img").load(function(){
 				for (var i = 0; i < postPic.length; i++) {
 					$pic = $('#postPic-'+postPic[i]+'> img');
-//					console.log(i+"번째 이미지");
-//					console.log($pic.attr('src'));
+// console.log(i+"번째 이미지");
+// console.log($pic.attr('src'));
 					var heightV = $pic.height();
-//					console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
+// console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
 					if ( heightV == 0){
 						heightV = 350;
 					}
@@ -497,20 +522,20 @@ function showList(){
 				postPic =[];
 			})
 			
-//			$(".galleria").each(function(index){
-//				$(this).find("img").each(function(index){
-//					if(index == 0){
-////						console.log(index+"번째 이미지");
-////						console.log($(this).attr('src'));
-//						var heightV = $(this).height();
-//						var postSeq = $(this).data('seq')
-////						console.log(heightV);
-////						console.log($(this).data('seq'));
-//						Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-//						Galleria.run('#postPic-'+postSeq , { lightbox: true , height: heightV});
-//					}
-//				})
-//			});
+// $(".galleria").each(function(index){
+// $(this).find("img").each(function(index){
+// if(index == 0){
+// // console.log(index+"번째 이미지");
+// // console.log($(this).attr('src'));
+// var heightV = $(this).height();
+// var postSeq = $(this).data('seq')
+// // console.log(heightV);
+// // console.log($(this).data('seq'));
+// Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
+// Galleria.run('#postPic-'+postSeq , { lightbox: true , height: heightV});
+// }
+// })
+// });
 			
 			
 	    },
@@ -562,14 +587,14 @@ function likeToggle(poolike){
 		  			$("#poollike").addClass("poollikeoff");
 		  			
 		  			poolikeyn = true;
-// 		  			console.log(data.data);
+// console.log(data.data);
 		  			$("#poollike").text(data.data);
 	        	} else {
 	        		$("#poollike").removeClass("poollikeoff");
 	        		$("#poollike").addClass("poollikeon");
 	        		
 	        		poolikeyn = false;
-// 	        		console.log(data.data);
+// console.log(data.data);
 	        		$("#poollike").text(data.data);
 	        	} 
 	          }
@@ -577,7 +602,7 @@ function likeToggle(poolike){
 	      });
 }
 function reqeustJoin(){
-// 	console.log("reqeustJoin");
+// console.log("reqeustJoin");
 	// Ajax 통신
 	$.ajax( {
 	    url : "invite",
@@ -585,12 +610,12 @@ function reqeustJoin(){
 	    dataType: "json",
 	    data: { "poolpartySeq" : $("#poolSeq").val() },
 	    success: function( response ){
-// 	    	console.log	( response );
+// console.log ( response );
 		       if( response.result == "fail") {
 		    	   console.log( response );
 		    	   return;
 		       }
-	    	//통신 성공 (response.result == "success" )
+	    	// 통신 성공 (response.result == "success" )
 	    	if(response.result == "success" ) {
 	    		$("#reqeustjoin").text("요청중");
 	    	}
@@ -601,7 +626,7 @@ function reqeustJoin(){
 	
 }
 function invite() {
-// 	console.log("invite");
+// console.log("invite");
 	
 	if ($("#inviteNick").val() == ""){
 		$("#inviteMsg").text("닉네임입력하세요");
@@ -614,12 +639,12 @@ function invite() {
 	    data: { "poolpartySeq" : $("#poolSeq").val() ,
 	    	    "usrNm" : $("#inviteNick").val() },
 	    success: function( response ){
-// 	    	console.log	( response );
+// console.log ( response );
 		       if( response.result == "fail") {
 		    	   $("#inviteMsg").text("요청실패");
 		    	   return;
 		       }
-	    	//통신 성공 (response.result == "success" )
+	    	// 통신 성공 (response.result == "success" )
 	    	if(response.result == "success" ) {
 	    		$("#inviteMsg").text("요청완료");
 	    	}

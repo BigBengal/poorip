@@ -299,4 +299,8 @@ public class PoolPartyService {
 		return  poolPartyDao.sharePost(postVo);
 	}
 	
+	public boolean leaveParty(PoolMemberVo poolMemberVo) {
+		return poolMemberDao.leaveParty(poolMemberVo);
+	}
+	
 }

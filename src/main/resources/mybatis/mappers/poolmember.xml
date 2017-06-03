@@ -134,5 +134,16 @@
 		and pm.USR_SEQ != #{usrSeq } 
 		]]>
 	</select>
+	
+	
+	<delete id="leaveparty" parameterType="poolmembervo">
+		<![CDATA[
+			delete 
+			from 	pool_member 
+			where	 usr_seq =#{usrSeq}
+			 and 	pool_seq =#{poolSeq}
+		]]>
+	</delete>
+	
 		
 </mapper>

@@ -279,8 +279,16 @@
 		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 
 		<c:if test="${memberlist.usrSeq == authUser.usrSeq }">
+		<div id="leave-party" style="display: none;">
+			<form action="${pageContext.request.contextPath }/poolparty/leaveparty" method="post" id="leave-party-yes">
+			<h6>'탈퇴' 를 입력하세요</h6>
+			<input type="text" class="leavepartyconfirm">
+			<input type="hidden" name="poolSeq" value="${pool.poolSeq }" id="poolSeq">
+			</form>
+		</div>
 		<div class="pool-party-chatting-${pool.poolSeq } pool-party-chat">
 			<input type="hidden" name="memName" value="${memberlist.usrNick}" id="chatusrNick">
+			<input type="hidden"	name="memUsrSeq" value="${memberlist.usrSeq }" id="memUsrSeq">
 			<input type="hidden" name="poolSeq" value="${pool.poolSeq }" id="chatPoolSeq">
 			<input type="text" id="message-${pool.poolSeq }" /> <input type="button"
 				id="sendMessage-${pool.poolSeq }" value="보내기" />
@@ -360,7 +368,7 @@
 				<strong>풀파티 맴버</strong>
 			</div>
 			<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
-
+						
 				<c:if test="${memberlist.usrSeq == pool.managerUsrSeq }">
 					<img
 						style="width: 25px; position: absolute; right: 10%; top: 60px;"
@@ -552,7 +560,8 @@
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->
-
+	
+	
 
 </body>
 </html>
