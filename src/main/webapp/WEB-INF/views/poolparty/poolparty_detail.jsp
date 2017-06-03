@@ -139,16 +139,20 @@
 	</header>
 	<!-- header end -->
 	<div style="height: 200px;"></div>
-	<c:if test="${authUser.usrSeq == pool.managerUsrSeq }">
+	
 		<div class="pool-detail-backgroundimg">
 			<a href="javascript:;"> <img src="/poorip${pool.poolMainPic}"
 				style="width: 100%; object-fit: cover; height: 100%; border-radius: 10px;"
 				id="pool-main-pic" data-toggle="modal"
-				data-target="#poolparty-Img-Modal"> <img
+				data-target="#poolparty-Img-Modal"> 
+			</a>				
+				<c:if test="${authUser.usrSeq == pool.managerUsrSeq }">
+				<a href="javascript:;">
+				<img
 				src="${pageContext.request.contextPath }/assets/images/camera1.png"
 				data-toggle="modal" data-target="#poolparty-Img-Modal"
 				id="pool-image-change" style="border-radius: 10px;">
-			</a>
+				</a>
 
 			<div id="poolparty-Img-Modal" class="modal fade" role="dialog">
 				<div class="poolpartyimg-dialog">
@@ -197,9 +201,9 @@
 				</div>
 
 			</div>
-
+	</c:if>	
 		</div>
-	</c:if>
+	
 	<div class="container" style="position: relative">
 		<!-- 풀파티 설정 -->
 		<div id="dialog-form" title="풀파티 설정 변경">
@@ -343,16 +347,18 @@
 							</h4>
 						</div>
 					</div>
-
+					<c:if test="${pool.fromDate != null or pool.toDate != null}">
 					<h5 class="pooltraveldate">
-						<c:if test="${pool.fromDate != null or pool.toDate != null}">
+						
 						 여행 기간  [ ${pool.fromDate} ~ ${pool.toDate} ] 
-						</c:if>
-						<c:if test="${pool.ctyName != null}">
+					</c:if>
+					<c:if test="${pool.ctyName != null}">
 							( ${pool.ctyName} )
-						</c:if>
-					</h5>
+					</h5>		
+					</c:if>
+					<c:if test="${pool.poolComment ne null }">
 					<h6 class="poolindivcomment">${pool.poolComment}</h6>
+					</c:if>
 				</div>
 				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 					<div id="pool-setting">
@@ -548,7 +554,7 @@
 
 	<div id="dialog-confirm_share" title="공유 확인" style="display: none">
 		<p>
-			<span class="ui-icon ui-icon-alert"
+			<span
 				style="float: left; margin: 12px 12px 20px 0;"></span>내 SNS로
 			가져가시겠습니까?
 		</p>
