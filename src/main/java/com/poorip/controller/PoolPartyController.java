@@ -424,7 +424,7 @@ public class PoolPartyController {
 		PoolMemberVo poolMemberVo = new PoolMemberVo();
 		poolMemberVo.setUsrSeq(authUser.getUsrSeq());
 		poolMemberVo.setPoolSeq(poolSeq);
-		
+		System.out.println(poolSeq + "     " + poolMemberVo.getUsrSeq());
 		poolPartyService.leaveParty(poolMemberVo);
 		return "redirect:/poolparty/mypool";
 	}

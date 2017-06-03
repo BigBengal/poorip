@@ -35,7 +35,8 @@
 				</div>
 				<div class="row">
 					<div class="form-group" id="q1">
-						<div class="col-md-12" data-animation-effect="fadeIn">
+<!-- 						<input type="radio" name="usrPref1" value="" checked> -->
+						<div class="col-md-12" id="surveyQ1" data-animation-effect="fadeIn">
 							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-1"
 								type="radio" name="usrPref1" value="A" /> <img
 								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
@@ -49,6 +50,9 @@
 								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
 								style="width: 250px">
 							</label>
+						</div>
+						<div class="col-md-12">
+							<label for="usrPref1" class="error">Please select survey</label><br/>
 						</div>
 						<div class="col-md-12" data-animation-effect="fadeIn">
 							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-4"
@@ -357,12 +361,12 @@
 		</div>
 	</div>
 	</form>
-	<div class="buttons" style="display: none">
-		<!-- <a  id="showall">All</a> -->
-		<a  class="showSingle" target="1" >Div 1</a>
-		<a  class="showSingle" target="2">Div 2</a>
-		<a  class="showSingle" target="3">Div 3</a>
-		<a  class="showSingle" target="4">Div 4</a>
-	</div>
+<!-- 	<div class="buttons" > -->
+<!-- 		<a  id="showall">All</a> -->
+<!-- 		<a  class="showSingle" target="1" >Div 1</a> -->
+<!-- 		<a  class="showSingle" target="2">Div 2</a> -->
+<!-- 		<a  class="showSingle" target="3">Div 3</a> -->
+<!-- 		<a  class="showSingle" target="4">Div 4</a> -->
+<!-- 	</div> -->
 </body>
 </html>

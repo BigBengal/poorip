@@ -72,6 +72,9 @@
 <!-- Bootstrap toggle -->
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -81,16 +84,91 @@
 			jQuery('.targetDiv').show();
 		});
 		jQuery('.showSingle').click(function() {
+			var target = $(this).attr('target');
+			var checkTarget = target - 1;
+			console.log(target);
+			console.log($("#survey-form").find("input[name='usrPref" +checkTarget+"']"));
+			var $check = $("#survey-form").find("input[name='usrPref" +checkTarget+"']");
+			var checkYn = false
+			$check.each(function(index){
+				console.log($(this).prop("checked"));
+// 				console.log($(this).attr("checked").val());;
+				if ($(this).prop("checked") == true){
+					checkYn = true;	
+				}
+			})
+			if(checkYn == false){
+				// 여기다가 메시지를 띄워
+				console.log("저리가");
+				return
+			}
 			jQuery('.targetDiv').hide();
-			jQuery('#div' + $(this).attr('target')).show();
+			jQuery('#div' + target).show();
 		});
 
 		$('#survey-submit').click(function() {
-			console.log("Dddd");
 			$('#survey-form').submit();
 		});
+		
+// 		$("#survey-form").validate({
+// //	 		onfocusout: true,
+// // 			onclick: true,
+// 			rules : {
+// 				usrPref1 : {
+// 					other : { depends : function()
+// 		            		{
+// 						console.log("까꾸");
+// 			              var sel = $('input[name=usrPref1]:checked','#survey-form').val();
+// 			              console.log("ss:"+sel);
+// 			              if(sel != 'undefined')
+// 			                {
+// 			                return true;
+// 			                }
+// 			              else
+// 			                {
+// 			                return false;
+// 			                }
+// 			            }
+// 				}},
+// 				usrPref2 : {
+// 					required : true
+// 				},
+// 				usrPref3 : {
+// 					required : true
+// 				},
+// 				usrPref4 : {
+// 					required : true
+// 				},
+// 				usrPref5 : {
+// 					required : true
+// 				}},
+// 				messages : {
+// 					usrPref1 : {
+// 						required : "1번 문제를 선택 해 주세요."
+// 					},
+// 					usrPref2 : {
+// 						required : "2번 문제를 선택 해 주세요."
+// 					},
+// 					usrPref3 : {
+// 						required : "3번 문제를 선택 해 주세요."
+// 					},
+// 					usrPref4 : {
+// 						required : "4번 문제를 선택 해 주세요."
+// 					},
+// 					usrPref5 : {
+// 						required : "5번 문제를 선택 해 주세요."
+// 					}
+// 				}
+// 		});
 	});
 
+// 	console.log("skdskdjjdj");
+// 	jQuery.validator.setDefaults({
+// 		debug : true,
+// 		success : "valid"
+// 	});
+// 	console.log($("form[name='survey-form']"));
+	
 </script>
 
 <head>
