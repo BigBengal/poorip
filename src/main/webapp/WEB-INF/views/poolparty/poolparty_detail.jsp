@@ -283,10 +283,11 @@
 			<form action="${pageContext.request.contextPath }/poolparty/leaveparty" method="post" id="leave-party-yes">
 			<h6>'탈퇴' 를 입력하세요</h6>
 			<input type="text" class="leavepartyconfirm">
+			<input type="hidden" name="managerSeq" value="${pool.managerUsrSeq}">
 			<input type="hidden" name="poolSeq" value="${pool.poolSeq }" id="poolSeq">
 			</form>
 		</div>
-		<div class="pool-party-chatting-${pool.poolSeq } pool-party-chat">
+		<div class="pool-party-chatting-${pool.poolSeq } pool-party-chat" style="display:none;">
 			<input type="hidden" name="memName" value="${memberlist.usrNick}" id="chatusrNick">
 			<input type="hidden"	name="memUsrSeq" value="${memberlist.usrSeq }" id="memUsrSeq">
 			<input type="hidden" name="poolSeq" value="${pool.poolSeq }" id="chatPoolSeq">

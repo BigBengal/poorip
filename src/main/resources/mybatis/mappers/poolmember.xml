@@ -145,5 +145,19 @@
 		]]>
 	</delete>
 	
+	<update id="abdication" parameterType="poolmembervo">
+		<![CDATA[
+	update pool_party pp set manager_usr_seq = 
+	(select pm.usr_seq 
+		from pool_member pm 
+		where pm.pool_seq = pp.pool_seq 
+		and crt_date = 
+			(select min(crt_date) 
+			from pool_member pm2 
+			where pm2.pool_seq = pp.pool_seq)
+			limit 1	 )
+	where pool_seq =#{poolSeq}
+	]]>
+	</update>
 		
 </mapper>

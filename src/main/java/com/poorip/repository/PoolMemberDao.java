@@ -55,5 +55,9 @@ public class PoolMemberDao {
 	public boolean leaveParty(PoolMemberVo poolMemberVo) {
 		return 1 == sqlSession.delete("poolmember.leaveparty",poolMemberVo);
 	}
+	
+	public boolean abdication(PoolMemberVo poolMemberVo) {
+		return 1 == sqlSession.delete("poolmember.abdication",poolMemberVo);
+	}
 		
 }
