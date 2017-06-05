@@ -59,6 +59,10 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
 
+<!-- 스위트 알람 -->
+<link href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
+	rel="stylesheet">
+	
 <!-- Google font -->	
 <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 
@@ -136,7 +140,7 @@
 	<footer id="footer">
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
-	login : ${login}
+	<div id="loginfail">${login}</div>
 	<!-- footer end -->
 	
 	<div class="se-pre-con" ></div>
@@ -186,6 +190,9 @@
 	<!-- facebook  -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
+	<!-- sweet alert -->
+	<script
+		src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script>
 		
 	<!-- Gallera image slider -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
@@ -247,6 +254,21 @@
 					}
 				});
 			});
+			
+			var login = $("#loginfail").text().substring(0,4);
+// 			console.log("login:"+login);
+			if ( login == "fail"){
+				swal({
+				  title: '',
+				  type: 'info',
+				  text: 'Facebook 로그인 해주세요',
+// 				  html: '<p>상단 Facebook 버튼으로 <br>로그인해 주세요<p>',
+				  width: '150px',
+				  padding: 100,
+				  background: '#fff',
+				  timer: 2000
+				});
+			}
 
 		});
 		
