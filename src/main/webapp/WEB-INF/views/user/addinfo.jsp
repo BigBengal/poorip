@@ -127,6 +127,7 @@ $(document).ready(function(){
 		    
 		  } );
 	$.backstretch("/poorip/assets/images/bg-image-3.jpg");
+	
 });
 
 </script>
@@ -164,7 +165,8 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<!-- banner end -->
-<form class="form-horizontal" action="addinfosave" name="addinfo" style="text-align:center; padding-right:5%;">	
+<form class="form-horizontal" action="addinfosave" name="addinfo" style="text-align:center; padding-right:5%;margin-top: -50px;
+ ">	
 	<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 	<div class="form-group" id="checknick">
 		<label class="control-label col-sm-3" for="nickname">이름(NickName)</label>
@@ -176,7 +178,7 @@ $(document).ready(function(){
 				</div>
 			</c:when>
 			<c:otherwise>
-				<p class="form-control-static col-sm-7">${user.usrNick}</p>
+				<p class="form-control-static col-sm-7"><span style="color:black;">${user.usrNick}</span></p>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -223,7 +225,7 @@ $(document).ready(function(){
                 </div>
 			</c:when>
 			<c:otherwise>
-				<p class="form-control-static col-sm-7">${user.usrBd}</p>
+				<p class="form-control-static col-sm-7"><span style="color:black;">${user.usrBd}</span></p>
 			</c:otherwise>
 		</c:choose>        
 	</div>

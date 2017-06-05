@@ -1076,3 +1076,52 @@ border-radius: 5px 0 0 5px;
     overflow: auto;
     padding: 5px;
 }
+
+.surveyQ {
+	margin: auto 10px;
+    text-align: center;
+	 margin-bottom: 30px;
+}
+
+.surveyQ label {
+	float:none;
+	width:30%;
+}
+
+.surveyQ label img{
+	margin:auto;
+	border-radius:10px;
+}
+.row .showSingle {
+display: inline-block;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    cursor: pointer;
+}
+
+.row .showLeft {
+display: inline-block;
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    cursor: pointer;
+}
+.surveyqtitle {
+	margin-bottom:5%;
+}
+
+.my-badge {
+  background: #BA070F;
+  color: #fff;
+  padding: 1px 7px;
+  position: absolute;
+  right: 4px;
+  top: 15px;
+  z-index: 999;
+  border-radius: .8em;
+  border: 2px solid #fff;
+}
+.my-badge:empty {
+    display: none;	
+}

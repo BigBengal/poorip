@@ -175,7 +175,26 @@
 			});
 		}
 		
-		
+		// 알림 뱃지
+		$.ajax( {
+		    url : "/poorip/poolparty/notifyCount" ,
+		    type: "post",
+		    dataType: "json",
+		    success: function( response ){
+		    	
+		    	if( response.result == "fail") {
+//		    	   console.log( response );
+		    	   return;
+		    	}
+		    	
+		    	if ( $(".my-badge").length > 0 ){
+		    		$(".my-badge").text(response.data);
+		    	}
+		    },
+		    error: function( XHR, status, error ){
+		       console.log("에러");
+		    }
+		}); 
 
 	}); // End document ready
 })(this.jQuery);
