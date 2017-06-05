@@ -51,6 +51,7 @@ function statusChangeCallback(response) {
     // The person is not logged into your app or we are unable to tell.
 //    document.getElementById('loginstatus').innerHTML = '';
 	  $("#loginpic").attr("src","");
+	  $(".my-badge").text("");
 	  Logout();
   }
 }
@@ -86,6 +87,7 @@ function testAPI() {
 	        },
 	        function(data,status){
 	        	$("#loginpic").attr("src",data);
+	        	getNotify();
 //	        	console.log(data);
 	        	if (data == "addinfo"){
 	        		// 다이얼로그로 띄우기 후 페이지 이동
@@ -95,4 +97,26 @@ function testAPI() {
 	        	return;
 	        });
   });
+}
+
+function getNotify(){
+	$.ajax( {
+	    url : "/poorip/poolparty/notifyCount" ,
+	    type: "post",
+	    dataType: "json",
+	    success: function( response ){
+	    	
+	    	if( response.result == "fail") {
+//	    	   console.log( response );
+	    	   return;
+	    	}
+	    	
+	    	if ( $(".my-badge").length > 0 ){
+	    		$(".my-badge").text(response.data);
+	    	}
+	    },
+	    error: function( XHR, status, error ){
+	       console.log("에러");
+	    }
+	}); 
 }

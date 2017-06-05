@@ -88,7 +88,18 @@
 <script
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
 <script>
-		
+
+$(document).ready(function(){
+
+	// 외부 페이지에서 hash로 들어왔을 때
+	if(location.hash.length > 0){
+		var target = $('[id='+location.hash.slice(1)+']');
+		$('html,body').animate({
+			scrollTop: target.offset().top-151
+		}, 1000);
+	}
+});
+
 function aprvConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	
 	 $( "#dialog-confirm_aprv" ).dialog({
@@ -288,7 +299,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	<div class="row col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
 		<div class="text-center">
 			<h2
-				style="margin-bottom: 5%; border-bottom: solid 1px lightgrey; padding-bottom: 15px;">
+				style="margin-bottom: 5%; border-bottom: solid 1px lightgrey; padding-bottom: 15px;" id="notify">
 				<span style="font-family: 'Pacifico'; color: black;">Request
 					List </span>
 			</h2>

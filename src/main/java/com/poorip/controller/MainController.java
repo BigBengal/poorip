@@ -22,6 +22,7 @@ import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.MainService;
+import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
@@ -33,9 +34,6 @@ import com.poorip.web.util.WebUtil;
 @Controller
 public class MainController {
 	
-	
-	
-
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	private static final int MAX_COUNT = 12;
 	
@@ -44,6 +42,9 @@ public class MainController {
 	
 	@Autowired
 	private SNSService snsService;
+	
+	@Autowired
+	private PoolPartyService poolPartyService;
 	
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
@@ -88,6 +89,13 @@ public class MainController {
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
 		model.addAttribute("travelInfoCityMain", citylistMain);
+
+		// 뱃지
+//		if(userVo != null){
+//			int countOfNotify = poolPartyService.getRequestList(userVo.getUsrSeq()).size();
+//			if (countOfNotify > 0)
+//				model.addAttribute("notify", countOfNotify );
+//		}
 		return "/PooripMain";
 
 	}
