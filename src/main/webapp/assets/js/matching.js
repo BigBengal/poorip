@@ -71,7 +71,7 @@ function makingPool(usrSeq){
 	        "MAKE": function() {
 	        	$('#making-pool-form-'+usrSeq).submit();
 	        },
-	        "CENCLE": function() {
+	        "CANCLE": function() {
 	          $( this ).dialog( "close" );
 	        }
 	      }
