@@ -69,6 +69,9 @@
 									   </fb:login-button></a>									
 						  		</li>
 						  		<li><a><img id="loginpic" src="${authUser.usrProfile}"></a></li>
+						  		<c:if test="${!empty authUser}">
+						  			<a href="http://localhost:9090/poorip/poolparty/mypool#notify"><span class="my-badge">${notify}</span></a>
+						  		</c:if>
 <%-- 								<li><a href=#><img onclick="openOptions()" id="loginpic" src="${authUser.usrProfile}"></a></li> --%>
 							</ul>
 <!-- 							<div id="profileDropdown" class="dropdown-content" style="margin-left: 25px; margin-top:3px;"> -->

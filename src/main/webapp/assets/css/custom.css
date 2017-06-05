@@ -1076,3 +1076,18 @@ border-radius: 5px 0 0 5px;
     overflow: auto;
     padding: 5px;
 }
+
+.my-badge {
+  background: #BA070F;
+  color: #fff;
+  padding: 1px 7px;
+  position: absolute;
+  right: 4px;
+  top: 15px;
+  z-index: 999;
+  border-radius: .8em;
+  border: 2px solid #fff;
+}
+.my-badge:empty {
+    display: none;	
+}

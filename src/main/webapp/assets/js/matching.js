@@ -1,8 +1,12 @@
 $(document).ready(function() {
 	$(".banner-image").backstretch('/poorip/assets/images/matching-background.jpg');
 	showChart();
-});
 
+		var target = $("#contents");
+		$('html,body').animate({
+			scrollTop: target.offset().top-90
+		}, 2000);
+});
 
 $(window).load(function() {
 	// Animate loader off screen
@@ -55,7 +59,11 @@ function showChart() {
 			legend: { visible: false },
 			tooltip: {
 				enabled: true
-			}
+			},
+			 animation: {
+		            easing: 'linear',
+		            duration: 2500
+		        }
 		});
 	});
 

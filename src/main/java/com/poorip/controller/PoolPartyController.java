@@ -430,5 +430,17 @@ public class PoolPartyController {
 		poolPartyService.leaveParty(poolMemberVo, managerSeq);
 		return "redirect:/poolparty/mypool";
 	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/notifyCount")
+	public JSONResult getCountOfNotify(@AuthUser UserVo authUser){
+		int countOfNotify = poolPartyService.getRequestList(authUser.getUsrSeq()).size();
+		if (countOfNotify > 0){
+			System.out.println(authUser);
+			return JSONResult.success(countOfNotify);
+		} else
+			return JSONResult.fail("알림이 없거나 로그인되지 않았습니다.");
+	}
 		
 }
