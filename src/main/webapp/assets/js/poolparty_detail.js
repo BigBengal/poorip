@@ -119,7 +119,7 @@ $(document).ready(function(){
 			        	$("#leave-party-yes").submit();
 			        	}
 			        	else {
-			        		swal("정확히 탈퇴 를 입력해주세요!");
+			        		swal("정확히 '탈퇴' 를 입력해주세요!");
 			        	}
 			    }
 			     }
@@ -629,7 +629,11 @@ function invite() {
 // console.log("invite");
 	
 	if ($("#inviteNick").val() == ""){
-		$("#inviteMsg").text("닉네임입력하세요");
+		swal({
+ 		   title: "닉네임을 입력해주세요",
+ 		   text: "",
+ 		   imageUrl: "/poorip/assets/images/exclamation-mark.png"
+ 		 });
 		return;
 	}
 	$.ajax( {
@@ -641,12 +645,17 @@ function invite() {
 	    success: function( response ){
 // console.log ( response );
 		       if( response.result == "fail") {
-		    	   $("#inviteMsg").text("요청실패");
+		    	   swal({
+		    		   title: "요청에 실패하였습니다.",
+		    		   text: "상대방의 닉네임을 다시 한번 확인하세요!",
+		    		   imageUrl: "/poorip/assets/images/exclamation-mark.png"
+		    		 });
 		    	   return;
 		       }
 	    	// 통신 성공 (response.result == "success" )
 	    	if(response.result == "success" ) {
-	    		$("#inviteMsg").text("요청완료");
+	    		swal("요청이 완료되었습니다!", "Have A Fun!", "success")
+	    		
 	    	}
 	       return true;
 	    }

@@ -179,7 +179,7 @@ public class SNSService {
 					return snsDao.showEditedPost(reviewVo);
 				}
 				
-				snsDao.deletePicture(postPicSeqArray);
+//				snsDao.deletePicture(postPicSeqArray);
 				postPicReturn = postPicReturn && snsDao.addPostPic( postPicVo );
 				
 			}

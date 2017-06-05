@@ -420,12 +420,14 @@ public class PoolPartyController {
 	
 	@Auth
 	@RequestMapping("/leaveparty")
-	public String leaveParty(@RequestParam("poolSeq") int poolSeq,  @AuthUser UserVo authUser){
+	public String leaveParty(@RequestParam("poolSeq") int poolSeq, 
+							 @RequestParam("managerSeq") int managerSeq,
+							 @AuthUser UserVo authUser){
 		PoolMemberVo poolMemberVo = new PoolMemberVo();
 		poolMemberVo.setUsrSeq(authUser.getUsrSeq());
 		poolMemberVo.setPoolSeq(poolSeq);
-		System.out.println(poolSeq + "     " + poolMemberVo.getUsrSeq());
-		poolPartyService.leaveParty(poolMemberVo);
+		
+		poolPartyService.leaveParty(poolMemberVo, managerSeq);
 		return "redirect:/poolparty/mypool";
 	}
 		

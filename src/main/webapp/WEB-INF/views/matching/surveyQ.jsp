@@ -98,7 +98,7 @@
 				}
 			})
 			if(checkYn == false){
-				// 여기다가 메시지를 띄워
+				alert("설문에 답 해주세요.");
 				console.log("저리가");
 				return
 			}

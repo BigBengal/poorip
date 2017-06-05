@@ -299,8 +299,24 @@ public class PoolPartyService {
 		return  poolPartyDao.sharePost(postVo);
 	}
 	
-	public boolean leaveParty(PoolMemberVo poolMemberVo) {
-		return poolMemberDao.leaveParty(poolMemberVo);
+	public boolean leaveParty(PoolMemberVo poolMemberVo, int managerSeq) {
+		boolean deleteMember = false;
+		boolean deleteParty = false;
+		poolMemberDao.leaveParty(poolMemberVo);
+		if (poolMemberDao.isDestoryPoolParty(poolMemberVo) ){
+			// 풀맴버 전체 삭제
+			deleteMember = poolMemberDao.delete(poolMemberVo);
+
+			// 풀파티 삭제
+			PoolPartyVo poolPartyVo = new PoolPartyVo();
+			poolPartyVo.setPoolSeq(poolMemberVo.getPoolSeq());
+			deleteParty = poolPartyDao.delete(poolPartyVo);
+		}else {
+			if(poolMemberVo.getUsrSeq()==managerSeq) {
+			poolMemberDao.abdication(poolMemberVo);
+			}
+		}
+		return deleteMember ;
 	}
 	
 }

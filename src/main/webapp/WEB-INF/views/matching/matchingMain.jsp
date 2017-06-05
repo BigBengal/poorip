@@ -471,7 +471,7 @@
 		<form id="making-pool-form-${matchingScore.usrSeq }" action="${pageContext.request.contextPath}/poolparty/make" data-usrseq="${matchingScore.usrSeq }">
 		<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
 			<div id="making-pool-${matchingScore.usrSeq }" title="MAKE A POOL" style="display:none">
-			  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀을 생성하시겠습니까?</p>
+			  <p><span class="ui-icon" style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀을 생성하시겠습니까?</p>
 			</div>
 		</form>
 	</c:forEach>
@@ -480,7 +480,7 @@
 	<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
 		<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
 		<div id="made-pool-${matchingScore.usrSeq }" title="ALREADY MADE A POOL" style="display:none">
-		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀이 이미 생성되어 있습니다.</p>
+		  <p><span class="ui-icon" style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀이 이미 생성되어 있습니다.</p>
 		</div>
 	</c:forEach>
 	

@@ -167,6 +167,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 
 			   });
 	        $( this ).dialog( "close" );
+	        location.reload();
 	      },
 	      Cancel: function() {
 	        $( this ).dialog( "close" );

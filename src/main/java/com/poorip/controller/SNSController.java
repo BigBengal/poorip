@@ -67,7 +67,7 @@ public class SNSController {
 		}
 		
 		List<PoolPartyVo> poolList = snsService.getPoolListByUsrSeq(usrSeq);
-		System.out.println(poolList);
+//		System.out.println(poolList);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put( "postPic", picMap);
