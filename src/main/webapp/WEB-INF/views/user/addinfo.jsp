@@ -82,18 +82,31 @@ $(document).ready(function(){
 		        required: true,
 		        minlength: 2,
 		        remote : "/poorip/user/isExistNick"
-		      }
+		      },
+		     usrInfo: {
+		    	 maxlength: 100
+		     },
+		     usrHashtag: {
+		    	 maxlength: 100,
+		     }
 		    },
 		    // Specify validation error messages
 		    messages: {
 		    	usrNick:{ 	required :"Please enter your Nickname(Mininum:2)",
 		    				minlength : "mininum is 2",
 		    				remote : "check nickname"
+		    	},
+		    	
+		    	usrInfo:{	
+		    		maxlength : "100자 이내로 입력해 주세요."
+		    	},
+		    	
+		    	usrHashtag:{	
+		    		maxlength : "100자 이내로 입력해 주세요."
 		    	}
 		    },
 		    // Make sure the form is submitted to the destination defined
 		    // in the "action" attribute of the form when valid
-		   
 		    submitHandler: function(form) {
 		    	form.submit();
 		      
