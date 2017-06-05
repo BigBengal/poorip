@@ -13,349 +13,322 @@
 
 	<!-- banner start -->
 	<!-- ================ -->
-	<div id="banner" class="banner" style="background: #E0FFFF">
+	<div id="banner" class="banner" style="opacity: 0.5;">
+		<img
+			src="${pageContext.request.contextPath}/assets/images/wallpaper5.jpg"
+			style="width: 100%; object-fit: cover; height: 100%;">
 		<div class="backstretch"></div>
 	</div>
-	<form id="survey-form" action="${pageContext.request.contextPath }/matching/updatePrefer">
-	<!-- banner end -->
-	<div class="targetDiv" id="div1">
-		<div class="survey-contents">
-			<div class="container">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-8 col-md-offset-2 text-center"
-							data-animation-effect="fadeIn">
-							<h1 class="text-center" style="font-size: 50px">
-								<span style="font-size: 50px; color: teal;">Q1</span> 1장의 사진을
-								골라주세요.
-							</h1>
-							<p class="lead text-center"></p>
+	<form id="survey-form"
+		action="${pageContext.request.contextPath }/matching/updatePrefer">
+		<!-- banner end -->
+		<div class="targetDiv" id="div1">
+			<div class="survey-contents">
+				<div class="container">
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
+								data-animation-effect="fadeIn">
+								<h1 class="text-center" style="font-size: 50px">
+									<span style="font-size: 50px; color: teal;">Q1</span> 1장의 사진을
+									골라주세요.
+								</h1>
+								<p class="lead text-center"></p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="form-group" id="q1">
-						<div class="col-md-12" id="surveyQ1" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q1-1"> <input id="q1-1"
-								type="radio" name="usrPref1" value="A" /> <img
-								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q1-2"> <input id="q1-2"
-								type="radio" name="usrPref1" value="B" /> <img
-								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q1-3"> <input id="q1-3"
-								type="radio" name="usrPref1" value="C" /> <img
-								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
-								style="width: 250px">
-							</label>
+					<div class="row">
+						<a href="${pageContext.request.contextPath }/matching/survey" class="showLeft" > <img alt="next" alt="prev"
+							src="${pageContext.request.contextPath }/assets/images/backpage.png"
+							style="width: 80px; display: inline-block; float: right;">
+						</a>
+						<a class="showSingle" target="2"> <img alt="next"
+							src="${pageContext.request.contextPath }/assets/images/nextpage.png"
+							style="width: 80px; display: inline-block; float: right;">
+						</a>
+
+						<div class="form-group" id="q1">
+							<div class="col-md-12 surveyQ" id="surveyQ1"
+								data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q1-1"> <input
+									id="q1-1" type="radio" name="usrPref1" value="A" /> <img
+									src="${pageContext.request.contextPath }/assets/images/swim.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q1-2"> <input id="q1-2" type="radio"
+									name="usrPref1" value="B" /> <img
+									src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q1-3"> <input id="q1-3" type="radio"
+									name="usrPref1" value="C" /> <img
+									src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
+									style="width: 250px">
+								</label>
+							</div>
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q1-4"> <input
+									id="q1-4" type="radio" name="usrPref1" value="D" /> <img
+									src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q1-5"> <input id="q1-5" type="radio"
+									name="usrPref1" value="E" /> <img
+									src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
+									style="width: 250px">
+								</label>
+							</div>
 						</div>
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q1-4"> <input id="q1-4"
-								type="radio" name="usrPref1" value="D" /> <img
-								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q1-5"> <input id="q1-5"
-								type="radio" name="usrPref1" value="E" /> <img
-								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
-								style="width: 250px">
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<p class="col-md-4">
-								<a
-									href="${pageContext.request.contextPath }/matching/survey">
-									<img id="prev" alt="prev"
-									src="${pageContext.request.contextPath }/assets/images/Left.png"
-									style="width: 80px; display: inline-block; float: left;">
-								</a>
-							</p>
-							<p class="col-md-4"></p>
-							<p class="col-md-4">
-								<a class="showSingle" target="2">
-									<img alt="next"
-									src="${pageContext.request.contextPath }/assets/images/Right.png"
-									style="width: 80px; display: inline-block; float: right;">
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- banner end -->
-	<div class="targetDiv" id="div2" style="display: none">
-		<div class="survey-contents">
-			<div class="container">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-8 col-md-offset-2 text-center"
-							data-animation-effect="fadeIn">
-							<h1 class="text-center" style="font-size: 50px">
-								<span style="font-size: 50px; color: teal;">Q2</span> 1장의 사진을
-								골라주세요.
-							</h1>
-							<p class="lead text-center"></p>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group" id="q2">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q2-1"> <input id="q2-1"
-								type="radio" name="usrPref2" value="A" /> <img
-								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q2-2"> <input id="q2-2"
-								type="radio" name="usrPref2" value="B" /> <img
-								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q2-3"> <input id="q2-3"
-								type="radio" name="usrPref2" value="C" /> <img
-								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
-								style="width: 250px">
-							</label>
-						</div>
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q2-4"> <input id="q2-4"
-								type="radio" name="usrPref2" value="D" /> <img
-								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q2-5"> <input id="q2-5"
-								type="radio" name="usrPref2" value="E" /> <img
-								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
-								style="width: 250px">
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<p class="col-md-4">
-								<a class="showSingle" target="1">
-									<img alt="pre"
-									src="${pageContext.request.contextPath }/assets/images/Left.png"
-									style="width: 80px; display: inline-block; float: left;">
-								</a>
-							</p>
-							<p class="col-md-4"></p>
-							<p class="col-md-4">
-								<a class="showSingle" target="3">
-									<img alt="next"
-									src="${pageContext.request.contextPath }/assets/images/Right.png"
-									style="width: 80px; display: inline-block; float: right;">
-								</a>
-							</p>
-						</div>
+
+
+
+
+
+
+
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- banner end -->
-	<div class="targetDiv" id="div3" style="display: none">
-		<div class="survey-contents">
-			<div class="container">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-8 col-md-offset-2 text-center"
-							data-animation-effect="fadeIn">
-							<h1 class="text-center" style="font-size: 50px">
-								<span style="font-size: 50px; color: teal;">Q3</span> 1장의 사진을
-								골라주세요.
-							</h1>
-							<p class="lead text-center"></p>
+		<!-- banner end -->
+		<div class="targetDiv" id="div2" style="display: none">
+			<div class="survey-contents">
+				<div class="container">
+					<div class="row">
+
+						<div class="form-group">
+							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
+								data-animation-effect="fadeIn">
+								<h1 class="text-center" style="font-size: 50px">
+									<span style="font-size: 50px; color: teal;">Q2</span> 1장의 사진을
+									골라주세요.
+								</h1>
+								<p class="lead text-center"></p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="form-group" id="q3">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q3-1"> <input id="q3-1"
-								type="radio" name="usrPref3" value="A" /> <img
-								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q3-2"> <input id="q3-2"
-								type="radio" name="usrPref3" value="B" /> <img
-								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q3-3"> <input id="q3-3"
-								type="radio" name="usrPref3" value="C" /> <img
-								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
-								style="width: 250px">
-							</label>
+					<div class="row">
+						<a class="showLeft" target="1"> <img alt="pre"
+							src="${pageContext.request.contextPath }/assets/images/backpage.png"
+							style="width: 80px; display: inline-block; float: left;">
+						</a> <a class="showSingle" target="3"> <img alt="next"
+							src="${pageContext.request.contextPath }/assets/images/nextpage.png"
+							style="width: 80px; display: inline-block; float: right;">
+						</a>
+						<div class="form-group " id="q2">
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q2-1"> <input
+									id="q2-1" type="radio" name="usrPref2" value="A" /> <img
+									src="${pageContext.request.contextPath }/assets/images/swim.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q2-2"> <input id="q2-2" type="radio"
+									name="usrPref2" value="B" /> <img
+									src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q2-3"> <input id="q2-3" type="radio"
+									name="usrPref2" value="C" /> <img
+									src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
+									style="width: 250px">
+								</label>
+							</div>
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q2-4"> <input
+									id="q2-4" type="radio" name="usrPref2" value="D" /> <img
+									src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q2-5"> <input id="q2-5" type="radio"
+									name="usrPref2" value="E" /> <img
+									src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
+									style="width: 250px">
+								</label>
+							</div>
 						</div>
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q3-4"> <input id="q3-4"
-								type="radio" name="usrPref3" value="D" /> <img
-								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q3-5"> <input id="q3-5"
-								type="radio" name="usrPref3" value="E" /> <img
-								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
-								style="width: 250px">
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<p class="col-md-4">
-								<a class="showSingle" target="2">
-									<img alt="pre"
-									src="${pageContext.request.contextPath }/assets/images/Left.png"
-									style="width: 80px; display: inline-block; float: left;">
-								</a>
-							</p>
-							<p class="col-md-4"></p>
-							<p class="col-md-4">
-								<a class="showSingle" target="4">
-									<img alt="next"
-									src="${pageContext.request.contextPath }/assets/images/Right.png"
-									style="width: 80px; display: inline-block; float: right;">
-								</a>
-							</p>
-						</div>
+
+
+
+
+
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="targetDiv" id="div4" style="display: none">
-		<div class="survey-contents">
-			<div class="container">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-8 col-md-offset-2 text-center"
-							data-animation-effect="fadeIn">
-							<h1 class="text-center" style="font-size: 50px">
-								<span style="font-size: 50px; color: teal;">Q4</span> 1장의 사진을
-								골라주세요.
-							</h1>
-							<p class="lead text-center"></p>
+		<!-- banner end -->
+		<div class="targetDiv" id="div3" style="display: none">
+			<div class="survey-contents">
+				<div class="container">
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
+								data-animation-effect="fadeIn">
+								<h1 class="text-center" style="font-size: 50px">
+									<span style="font-size: 50px; color: teal;">Q3</span> 1장의 사진을
+									골라주세요.
+								</h1>
+								<p class="lead text-center"></p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="form-group" id="q4">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q4-1"> <input id="q4-1"
-								type="radio" name="usrPref4" value="A" /> <img
-								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q4-2"> <input id="q4-2"
-								type="radio" name="usrPref4" value="B" /> <img
-								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q4-3"> <input id="q4-3"
-								type="radio" name="usrPref4" value="C" /> <img
-								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
-								style="width: 250px">
-							</label>
+					<div class="row">
+						<a class="showLeft" target="2"> <img alt="pre"
+							src="${pageContext.request.contextPath }/assets/images/backpage.png"
+							style="width: 80px; display: inline-block; float: left;">
+						</a> <a class="showSingle" target="4"> <img alt="next"
+							src="${pageContext.request.contextPath }/assets/images/nextpage.png"
+							style="width: 80px; display: inline-block; float: right;">
+						</a>
+						<div class="form-group" id="q3">
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q3-1"> <input
+									id="q3-1" type="radio" name="usrPref3" value="A" /> <img
+									src="${pageContext.request.contextPath }/assets/images/swim.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q3-2"> <input id="q3-2" type="radio"
+									name="usrPref3" value="B" /> <img
+									src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q3-3"> <input id="q3-3" type="radio"
+									name="usrPref3" value="C" /> <img
+									src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
+									style="width: 250px">
+								</label>
+							</div>
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q3-4"> <input
+									id="q3-4" type="radio" name="usrPref3" value="D" /> <img
+									src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q3-5"> <input id="q3-5" type="radio"
+									name="usrPref3" value="E" /> <img
+									src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
+									style="width: 250px">
+								</label>
+							</div>
 						</div>
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q4-4"> <input id="q4-4"
-								type="radio" name="usrPref4" value="D" /> <img
-								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q4-5"> <input id="q4-5"
-								type="radio" name="usrPref4" value="E" /> <img
-								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
-								style="width: 250px">
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<p class="col-md-4">
-								<a class="showSingle" target="3">
-									<img alt="pre"
-									src="${pageContext.request.contextPath }/assets/images/Left.png"
-									style="width: 80px; display: inline-block; float: left;">
-								</a>
-							</p>
-							<p class="col-md-4"></p>
-							<p class="col-md-4">
-								<a class="showSingle" target="5">
-									<img alt="next"
-									src="${pageContext.request.contextPath }/assets/images/Right.png"
-									style="width: 80px; display: inline-block; float: right;">
-								</a>
-							</p>
-						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="targetDiv" id="div5" style="display: none">
-		<div class="survey-contents">
-			<div class="container">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-8 col-md-offset-2 text-center"
-							data-animation-effect="fadeIn">
-							<h1 class="text-center" style="font-size: 50px">
-								<span style="font-size: 50px; color: teal;">Q5</span> 1장의 사진을
-								골라주세요.
-							</h1>
-							<p class="lead text-center"></p>
+		<div class="targetDiv" id="div4" style="display: none">
+			<div class="survey-contents">
+				<div class="container">
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
+								data-animation-effect="fadeIn">
+								<h1 class="text-center" style="font-size: 50px">
+									<span style="font-size: 50px; color: teal;">Q4</span> 1장의 사진을
+									골라주세요.
+								</h1>
+								<p class="lead text-center"></p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="form-group" id="q5">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q5-1"> <input id="q5-1"
-								type="radio" name="usrPref5" value="A" /> <img
-								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q5-2"> <input id="q5-2"
-								type="radio" name="usrPref5" value="B" /> <img
-								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q5-3"> <input id="q5-3"
-								type="radio" name="usrPref5" value="C" /> <img
-								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
-								style="width: 250px">
-							</label>
+					<div class="row">
+						<a class="showLeft" target="3"> <img alt="pre"
+							src="${pageContext.request.contextPath }/assets/images/backpage.png"
+							style="width: 80px; display: inline-block; float: left;">
+						</a> <a class="showSingle" target="5"> <img alt="next"
+							src="${pageContext.request.contextPath }/assets/images/nextpage.png"
+							style="width: 80px; display: inline-block; float: right;">
+						</a>
+						<div class="form-group" id="q4">
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q4-1"> <input
+									id="q4-1" type="radio" name="usrPref4" value="A" /> <img
+									src="${pageContext.request.contextPath }/assets/images/swim.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q4-2"> <input id="q4-2" type="radio"
+									name="usrPref4" value="B" /> <img
+									src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q4-3"> <input id="q4-3" type="radio"
+									name="usrPref4" value="C" /> <img
+									src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
+									style="width: 250px">
+								</label>
+							</div>
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q4-4"> <input
+									id="q4-4" type="radio" name="usrPref4" value="D" /> <img
+									src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q4-5"> <input id="q4-5" type="radio"
+									name="usrPref4" value="E" /> <img
+									src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
+									style="width: 250px">
+								</label>
+							</div>
 						</div>
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="q5-4"> <input id="q5-4"
-								type="radio" name="usrPref5" value="D" /> <img
-								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
-								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="q5-5"> <input id="q5-5"
-								type="radio" name="usrPref5" value="E" /> <img
-								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
-								style="width: 250px">
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-12" data-animation-effect="fadeIn">
-							<p class="col-md-4">
-								<a class="showSingle" target="4">
-									<img alt="pre"
-									src="${pageContext.request.contextPath }/assets/images/Left.png"
-									style="width: 80px; display: inline-block; float: left;">
-								</a>
-							</p>
-							<p class="col-md-4"></p>
-							<p class="col-md-4">
-								
-									<img alt="next" class="menu_links"
-									src="${pageContext.request.contextPath }/assets/images/Right.png"
-									style="width: 80px; display: inline-block; float: right;" id="survey-submit" >
-						
-							</p>
-						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="targetDiv" id="div5" style="display: none">
+			<div class="survey-contents">
+				<div class="container">
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
+								data-animation-effect="fadeIn">
+								<h1 class="text-center" style="font-size: 50px">
+									<span style="font-size: 50px; color: teal;">Q5</span> 1장의 사진을
+									골라주세요.
+								</h1>
+								<p class="lead text-center"></p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<a class="showLeft" target="4"> <img alt="pre"
+							src="${pageContext.request.contextPath }/assets/images/backpage.png"
+							style="width: 80px; display: inline-block; float: left;">
+						</a>
+						<a class="showSingle" target="6"><img class="menu_links" alt="next" id="survey-submit"
+							src="${pageContext.request.contextPath }/assets/images/nextpage.png"
+							style="width: 80px; display: inline-block; float: left;">
+						</a>
+						<div class="form-group" id="q5">
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q5-1"> <input
+									id="q5-1" type="radio" name="usrPref5" value="A" /> <img
+									src="${pageContext.request.contextPath }/assets/images/swim.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q5-2"> <input id="q5-2" type="radio"
+									name="usrPref5" value="B" /> <img
+									src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q5-3"> <input id="q5-3" type="radio"
+									name="usrPref5" value="C" /> <img
+									src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
+									style="width: 250px">
+								</label>
+							</div>
+							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
+								<label class="col-sm-6 col-md-4" for="q5-4"> <input
+									id="q5-4" type="radio" name="usrPref5" value="D" /> <img
+									src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									for="q5-5"> <input id="q5-5" type="radio"
+									name="usrPref5" value="E" /> <img
+									src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
+									style="width: 250px">
+								</label>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	</form>
+	<div class="targetDiv" id="div6" style="display: none;">
+<div class="progress">
+<div class="survey-contents">
+				<div class="container loadingcontents">
+  <img src="${pageContext.request.contextPath }/assets/images/loading3.gif" style="z-index:100; width:90%; heigh:100%; margin-left:5%;">
+  </div>
+  </div>
+</div>
+		</div>
 </body>
 </html>

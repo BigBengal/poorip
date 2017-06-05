@@ -102,9 +102,23 @@
 			jQuery('.targetDiv').hide();
 			jQuery('#div' + target).show();
 		});
-
+		
 		$('#survey-submit').click(function() {
-			$('#survey-form').submit();
+			$(".loadingcontents").append("<div class='loadingcontentstxt' style='text-align:center;'><h2><strong>파뤼~~~피플을 찾는 중입니다!</strong></h2></div>");
+			setTimeout(function() {
+				$(".loadingcontents div").replaceWith("<div class='loadingcontentstxt' style='text-align:center;'><h2><strong>성향 파악중입니다.</strong></h2></div>");
+			}, 2000);
+			
+			setTimeout(function() {
+				$(".loadingcontents div").replaceWith("<div class='loadingcontentstxt' style='text-align:center;'><h2><strong>일정에 맞는 인원을 검색중입니다.</strong></h2></div>");
+			}, 5000);
+			
+			console.log($(".loadingcontentstxt").val());
+			setTimeout( function () { 
+				$('#survey-form').submit();
+		    }, 8000);
+			
+			
 		});
 	});
 
@@ -148,7 +162,7 @@ label>input+img { /* IMAGE STYLES */
 }
 
 label>input:checked+img { /* (RADIO CHECKED) IMAGE STYLES */
-	border: 3px solid #fffab5;
+	border: 5px solid #ef7a7a;
 	border-radius: 8px;
 }
 </style>
