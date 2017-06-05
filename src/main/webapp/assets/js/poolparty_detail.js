@@ -632,7 +632,11 @@ function reqeustJoin(){
 		       }
 	    	// 통신 성공 (response.result == "success" )
 	    	if(response.result == "success" ) {
-	    		swal("유후~ 풀 가입을 요청했습니다!");
+	    		swal({
+	    			  title: "",
+	    			  text: "<span style='color:#75a6ca;'>풀</span> 가입을 요청했습니다!",
+	    			  html: true
+	    			});
 	    		$("#reqeustjoin").text("승인 대기중");
 	    	}
 	       return true;
