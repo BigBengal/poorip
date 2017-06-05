@@ -285,10 +285,10 @@
 		
 		<c:forEach var="memberlist" items="${poolmember }" varStatus="status">
 
-		<c:if test="${memberlist.usrSeq == authUser.usrSeq }">
+		<c:if test="${memberlist.usrSeq == authUser.usrSeq && memberlist.approve == 'Y' }">
 		<div id="leave-party" style="display: none;">
 			<form action="${pageContext.request.contextPath }/poolparty/leaveparty" method="post" id="leave-party-yes">
-			<h6>'탈퇴' 를 입력하세요</h6>
+			<h6 style="text-align:center;">'탈퇴' 를 입력하세요</h6>
 			<input type="text" class="leavepartyconfirm">
 			<input type="hidden" name="managerSeq" value="${pool.managerUsrSeq}">
 			<input type="hidden" name="poolSeq" value="${pool.poolSeq }" id="poolSeq">
@@ -311,7 +311,6 @@
 				<img style="border-radius: 2px;" src="/poorip${pool.poolPic}">
 			</div>
 			<div class="col-md-7 pool-setting-header">
-				<div class="col-md-10"></div>
 
 				<div class="col-md-2 pool-like">
 					<c:choose>
@@ -327,24 +326,17 @@
 						</c:otherwise>
 					</c:choose>
 
-					<c:if test="${authUser != null and memberYn == 'NO'}">
-						<div id="reqeustjoin">
-							<a onclick="reqeustJoin()" class="menu_links">가입요청</a>
-						</div>
-					</c:if>
-					<c:if test="${authUser != null and memberYn == 'ING'}">
-						<div id="reqeustjoin">요청중</div>
-					</c:if>
+					
 
 				</div>
-				<div class="col-md-12">
+				<div class="col-md-10">
 
 					<div class="pooldetails" data-usrseq="${pool.managerUsrSeq}">
 						<div style="position: relative; display: inline-block;">
 
 							<img src="${pool.managerProfile}">
 						</div>
-						<div style="display: inline-block; position: absolute;">
+						<div style="display: inline-block; position: absolute; margin-left:5%;">
 							<h4>
 								<strong>${pool.managerUsrNick }</strong>
 							</h4>
@@ -363,13 +355,22 @@
 					<h6 class="poolindivcomment">${pool.poolComment}</h6>
 					</c:if>
 				</div>
-				<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
+				
+			</div>
+			<c:if test="${authUser != null and memberYn == 'NO'}">
+						<div id="reqeustjoin">
+							<a onclick="reqeustJoin()" class="menu_links" style="text-decoration: none;">가입요청</a>
+						</div>
+					</c:if>
+					<c:if test="${authUser != null and memberYn == 'ING'}">
+						<div id="reqeustjoin">승인 대기중</div>
+					</c:if>
+			<c:if test="${authUser.usrSeq == pool.managerUsrSeq}">
 					<div id="pool-setting">
 						<button type="button" class="sns-post-footer menu_links modify gray_button"
 							style="min-width: 100px;">Settings</button>
 					</div>
 				</c:if>
-			</div>
 
 		</div>
 		<!-- 풀파티 맴버 -->

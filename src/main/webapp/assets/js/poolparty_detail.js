@@ -59,32 +59,40 @@ $(document).ready(function(){
 
 			    	// 통신 성공 (response.result == "success" )
 			    	if(response.result == "success" ) {
-			    		usrInfo += "<p> 닉네임 : " + response.data.profile.usrNick + "</p>";
-			    		usrInfo += "<p> <img src=" + response.data.profile.usrProfile + "></p>";
-			    		usrInfo += "<p> 자기소개 : ";
+			    		usrInfo += "<div id='profilenick'><h4>" + response.data.profile.usrNick + "</h4></div>";
+			    		usrInfo += "<p id='profilepic'> <img src=" + response.data.profile.usrProfile + "></p>";
+			    		usrInfo += " <h5>자기소개 </h5> <div id='profileinfo'> ";
 			    		
 			    		if (response.data.profile.usrInfo != null )
-					    	usrInfo += response.data.profile.usrInfo.replace(/</gi,"&lt;") + "</p>";
+					    	usrInfo += response.data.profile.usrInfo.replace(/</gi,"&lt;") + "</div>";
 				    	else
-				    		usrInfo += "없음 </p>";
-					    usrInfo += "<p> 해쉬태그 : ";
+				    		usrInfo += "아직 자기소개가 없습니다! </div>";
+					    	usrInfo += "<h5> 해쉬태그 </h5><div id='profilehash'> ";
 			    		if (response.data.profile.usrHashtag != null )
-			    			usrInfo += response.data.profile.usrHashtag.replace(/</gi,"&lt;") + "</p>";
+			    			usrInfo += response.data.profile.usrHashtag.replace(/</gi,"&lt;") + "</div>";
 			    		else 
-			    			usrInfo += "없음 </p>";
+			    			usrInfo += "#없음 </div>";
+			    		scrapCityInfo += "<h5>방문 예정 나라 </h5><div id='profilescrapinfo'>";
 			    		
+			    		if(response.data.scrapCity == null) {
+			    			scrapCityInfo += "아직 없습니다! </div>"
+			    		}
+			    		else {
 			    		$( response.data.scrapcity ).each( function(index, vo){
 			    			// 스크랩 도시 정보
-			    			scrapCityInfo += "<p> 방문 예정 나라 : " + vo.ctyName + " ( ";
+			    			
+			    			scrapCityInfo +=  "<div style='margin:3px;'>" + vo.ctyName + " ( ";
 			    			if (vo.dateFrom != null )
 			    				scrapCityInfo += vo.dateFrom;
 			    			if (vo.dateTo != null )	
 			    				scrapCityInfo += " ~ " + vo.dateTo; 
 							if (vo.dateFrom == null && vo.dateTo == null)	
 								scrapCityInfo += "미정";
-							scrapCityInfo += " )</p>";
+							scrapCityInfo += " )</div>";
 			    			
 			    		});	
+			    		}
+			    		scrapCityInfo += "</div>"
 // $( response.data.scrap ).each( function(index, vo){
 // //스크랩 정보
 // });
@@ -107,7 +115,7 @@ $(document).ready(function(){
 			};
 		
 		if(usrSeq == memUsrSeq) {
-			buttons['탈퇴'] = function() {
+			buttons["탈퇴"] = function() {
 				$("#leave-party").dialog({
 					height: 200,
 			        width: 250,
@@ -282,7 +290,12 @@ $(document).ready(function(){
 				 /* data:"", */
 				// contentType: "application/json",
 				    success: function( response ){
-				    	console.log	( response );
+				    	swal({
+				    		  title: "공유되었습니다!",
+				    		  text: "",
+				    		  timer: 700,
+				    		  showConfirmButton: false
+				    		});
 				       if( response.result == "fail") {
 				    	   console.log( response.message );
 				    	   return;
@@ -473,33 +486,35 @@ function showList(){
 					 }
 				 }
 				 	
-				 html = html + "<div class='row margin_up_down underline' style='margin:auto; display:inline-block; width:100%;'>";
-				
+				 html = html + "<div class='row margin_up_down underline' style='margin:auto; display:inline-block; width:100%;'>" +
+				 				"<div class='col-md-3 sns-button-left' >";
 				 if(vo.usrSeq == authUsrSeq){
-					 html = html +
-						"<div class='col-md-3 sns-button-left' >"+
-						"<button class='modify gray_button' data-postseq='"+vo.postSeq +"' style='width:70px;' >수정</button>" + 
-						"</div>";
+					 html = html + "<button class='modify gray_button' data-postseq='"+vo.postSeq +"' style='width:70px;' >수정</button>" ; 
+						
 				 }
+				 
+				 html = html + "</div>";
 			
 				 if(vo.usrSeq >0) {
 					html= html+  
 						"<div class='col-md-3 sns-button-center ' >" +
-						"<button class='sharepost gray_button' style='width:70px;'" +
+						"<button class='sharepost gray_button' style='width:70px; margin:auto;'" +
 							"data-postseq='0'"+
 								">공유</button>"+
 							"</div>";
 				
 				 }
 				 
+				 html = html + "<div class='col-md-3 col-md-offset-6 sns-button-right'>";
+				 
 				 if(vo.usrSeq == authUsrSeq){
-						html = html + 
-						"<div class='col-md-3 col-md-offset-6 sns-button-right'>"+
-						"<button style='width:70px;' class='rightalign delete gray_button' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"'>삭제</button>" +
-						"</div>";
+						html = html + "<button style='width:70px;' class='rightalign delete gray_button' data-postseq='"+vo.postSeq +"' data-usrseq='"+vo.usrSeq +"'>삭제</button>";
+						
 				 }
 				 html = html +
+				 	"</div>" + 
 					"</div>"+
+					
 					"</div>";
 				 	$("#postList").append(html);
 			})
@@ -617,7 +632,8 @@ function reqeustJoin(){
 		       }
 	    	// 통신 성공 (response.result == "success" )
 	    	if(response.result == "success" ) {
-	    		$("#reqeustjoin").text("요청중");
+	    		swal("유후~ 풀 가입을 요청했습니다!");
+	    		$("#reqeustjoin").text("승인 대기중");
 	    	}
 	       return true;
 	    }
