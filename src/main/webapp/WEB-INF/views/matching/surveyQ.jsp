@@ -38,7 +38,9 @@
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
-
+<link
+	href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
+	rel="stylesheet">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="/poorip/assets/bootstrap/js/moment.js"></script>
@@ -75,6 +77,10 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
+<!-- sweet alert -->
+<script
+	src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script>
+	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -96,7 +102,11 @@
 				}
 			})
 			if(checkYn == false){
-				alert("설문에 답 해주세요.");
+				 swal({
+		    		   title: "요청에 실패하였습니다.",
+		    		   text: "설문에 답 해주세요.",
+		    		   imageUrl: "/poorip/assets/images/exclamation-mark.png"
+		    		 });
 				return
 			}
 			jQuery('.targetDiv').hide();
