@@ -75,7 +75,7 @@ $(document).ready(function(){
 			    		scrapCityInfo += "<h5>방문 예정 나라 </h5><div id='profilescrapinfo'>";
 			    		
 			    		if(response.data.scrapCity == null) {
-			    			scrapCityInfo += "아직 없습니다! </div>"
+			    			scrapCityInfo += "Coming Soon! </div>"
 			    		}
 			    		else {
 			    		$( response.data.scrapcity ).each( function(index, vo){

@@ -58,6 +58,9 @@
 <!-- Reviews -->
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
+	<!--  Sweet Alert -->
+<link href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
+	rel="stylesheet">
 
 <!-- 스위트 알람 -->
 <link href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
@@ -176,7 +179,8 @@
 	<!-- Initialization of Plugins -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
-
+	 <!--  Sweet Alert -->
+<script src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script>
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>

@@ -59,6 +59,9 @@
 
 <!-- Google font -->	
 <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
+<!--  Sweet Alert -->
+<link href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
+	rel="stylesheet">
 </head>
 
 
@@ -154,7 +157,8 @@
 		src="${pageContext.request.contextPath }/assets/plugins/jquery.appear.js"></script>
 	
 	<!-- Initialization of Plugins -->
-	
+	 <!--  Sweet Alert -->
+<script src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script>
 	
 	<!-- Light Box -->
 	<script src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
@@ -176,6 +180,7 @@
 	<!-- Gallera image slider -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
     
+   
 	
 <%-- <c:forEach items="${sessionScope}" var="attr"> --%>
 <%--     ${attr.key}=${attr.value}<br> --%>

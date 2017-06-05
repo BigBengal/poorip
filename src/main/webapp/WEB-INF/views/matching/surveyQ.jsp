@@ -38,6 +38,9 @@
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
+	<link
+	href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
+	rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -69,6 +72,9 @@
 <!-- Vaildation-->
 <script
 	src="${pageContext.request.contextPath }/assets/plugins/jquery.validate.min.js"></script>
+<!--  Sweet Alert -->
+<script
+	src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script>
 <!-- Bootstrap toggle -->
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -83,6 +89,18 @@
 		jQuery('#showall').click(function() {
 			jQuery('.targetDiv').show();
 		});
+		jQuery('.showLeft').click(function() {
+			var target = $(this).attr('target');
+			var checkTarget = target - 1;
+			console.log(target);
+			console.log($("#survey-form").find("input[name='usrPref" +checkTarget+"']"));
+			var $check = $("#survey-form").find("input[name='usrPref" +checkTarget+"']");
+			
+			jQuery('.targetDiv').hide();
+			jQuery('#div' + target).show();
+		});
+		
+		
 		jQuery('.showSingle').click(function() {
 			var target = $(this).attr('target');
 			var checkTarget = target - 1;
@@ -96,7 +114,11 @@
 				}
 			})
 			if(checkYn == false){
-				alert("설문에 답 해주세요.");
+				swal({
+	    			  title: "",
+	    			  text: "<span style='color:#75a6ca; font-size:1.1em;'><strong>선택</span>을 해주셔야 합니다!</strong>",
+	    			  html: true
+	    			});
 				return
 			}
 			jQuery('.targetDiv').hide();

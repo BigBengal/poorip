@@ -278,7 +278,7 @@
 			<div class="col-md-12 matchingList" id="personContainer-${matchingScore.usrSeq }" style="height: 475px; background-color: white;">
 			
 				<div class="col-md-2 col-xs-2" style="padding-top: 2%; padding-bottom: 10px; border-radius: 50%">
-					<a href="#"> <img class="img-responsive"
+					<a> <img class="img-responsive"
 						src="${matchingScore.usrProfile }" alt="${matchingScore.usrNick}"
 						style="width: 70%; border-radius: 50%">
 					</a>
