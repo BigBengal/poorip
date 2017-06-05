@@ -76,13 +76,6 @@
 								</label>
 							</div>
 						</div>
-
-
-
-
-
-
-
 					</div>
 				</div>
 			</div>
@@ -140,11 +133,6 @@
 								</label>
 							</div>
 						</div>
-
-
-
-
-
 					</div>
 				</div>
 			</div>
