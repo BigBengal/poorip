@@ -72,6 +72,9 @@
 <!-- Bootstrap toggle -->
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -81,12 +84,26 @@
 			jQuery('.targetDiv').show();
 		});
 		jQuery('.showSingle').click(function() {
+			var target = $(this).attr('target');
+			var checkTarget = target - 1;
+			console.log(target);
+			console.log($("#survey-form").find("input[name='usrPref" +checkTarget+"']"));
+			var $check = $("#survey-form").find("input[name='usrPref" +checkTarget+"']");
+			var checkYn = false
+			$check.each(function(index){
+				if ($(this).prop("checked") == true){
+					checkYn = true;	
+				}
+			})
+			if(checkYn == false){
+				alert("설문에 답 해주세요.");
+				return
+			}
 			jQuery('.targetDiv').hide();
-			jQuery('#div' + $(this).attr('target')).show();
+			jQuery('#div' + target).show();
 		});
 
 		$('#survey-submit').click(function() {
-			console.log("Dddd");
 			$('#survey-form').submit();
 		});
 	});
@@ -94,29 +111,45 @@
 </script>
 
 <head>
-	<style>
-		.nextButton {
-		    position: relative;
-		    top: 1px;
-		    display: inline-block;
-		    font-family: 'Glyphicons Halflings';
-		    font-style: normal;
-		    font-weight: 400;
-		    font-size: 60px;
-		    line-height: 1;
-		    -webkit-font-smoothing: antialiased;
-		    -moz-osx-font-smoothing: grayscale;
-	        width: 100px;
-		    display: inline-block;
-		    float: left;
-		    background: transparent;
-		    border: 0;
-		}
-		.survey-contents {
-		    position: absolute;
-		    top: 25%;
-		    width: 100%;
-		    z-index: 2;
-		}
-	</style>
+<style>
+.nextButton {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 60px;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: 100px;
+	display: inline-block;
+	float: left;
+	background: transparent;
+	border: 0;
+}
+
+.survey-contents {
+	position: absolute;
+	top: 25%;
+	width: 100%;
+	z-index: 2;
+}
+
+label>input { /* HIDE RADIO */
+ 	visibility: hidden;  /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
+}
+
+label>input+img { /* IMAGE STYLES */
+	cursor: pointer;
+	border: 2px solid transparent;
+}
+
+label>input:checked+img { /* (RADIO CHECKED) IMAGE STYLES */
+	border: 3px solid #fffab5;
+	border-radius: 8px;
+}
+</style>
 </head>

@@ -70,13 +70,6 @@
 <script>
 $(document).ready(function(){
 
-
-// 	var $alink = $("#navbar-collapse-1 ul li a");
-// 	for(var i=0;i<2;i++){
-// 		var $ori = $alink.eq(i);
-// 		var oriLink = $ori.attr("href")
-// 		$ori.attr("href",oriLink);	 
-// 	}
 	 var validator = $("form[name='addinfo']").validate({
 		 	ignore: ".ignore",
 		 	onkeyup: false, //turn off auto validate whilst typing
@@ -89,46 +82,6 @@ $(document).ready(function(){
 		        required: true,
 		        minlength: 2,
 		        remote : "/poorip/user/isExistNick"
-		        // Specify that email should be validated
-		        // by the built-in "email" rule
-// 		        remote : {
-// 	                url : "/poorip/user/isExistNick",
-// 	                type : "get",
-// 	    		    dataType: "json",
-// 	    		    data: {
-// 	    		    	nick: function()
-//                         {
-//                             return $('#nickname').val();
-//                         }
-//                     },
-	 				
-// 	    		//  contentType: "application/json",
-// 	    		    success: function( response ){
-// 	    		    	console.log	( response );
-// 	    		       if( response.result == "fail") {
-// 	    		    	   console.log( response );
-// 	    		       }
-// 	    		    	//통신 성공 (response.result == "success" )
-	    		    	
-// 	    		    	if( response.data == "exists" ) {
-// 	    		    		$("#checknick").addClass("has-warning");
-// 	    		    		$("#checknick").removeClass("has-success")
-// 	    		    		alert("존재하는 아이디 입니다. 다른 이메일을 사용해 주세요");
-// // 	    		    		$("#checknick label").removeClass("ignore");
-// 	    		    		$("#nickname").focus();
-// 	    		    		return "invalid";
-	    		    			    		    		
-// 	    		    	} else if (response.data == "not exists"){
-// 	    		    		$("#checknick").addClass("has-success");
-// 	    		    		$("#checknick").removeClass(" has-warning")
-// //  	    		    		$("#checknick label").addClass("ignore");
-// // 	    		    		$("#nickname").removeClass("pending");
-// 	    		    		 return "valid";
-	    		    		 
-// 	    		    	}
-// // 	    		       return '"true"';
-// 	    		    }
-// 	            }
 		      }
 		    },
 		    // Specify validation error messages
