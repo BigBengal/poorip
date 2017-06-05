@@ -35,31 +35,27 @@
 				</div>
 				<div class="row">
 					<div class="form-group" id="q1">
-<!-- 						<input type="radio" name="usrPref1" value="" checked> -->
 						<div class="col-md-12" id="surveyQ1" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-1"
+							<label class="col-sm-6 col-md-4" for="q1-1"> <input id="q1-1"
 								type="radio" name="usrPref1" value="A" /> <img
 								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-2"
+							<label class="col-sm-6 col-md-4" for="q1-2"> <input id="q1-2"
 								type="radio" name="usrPref1" value="B" /> <img
 								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-3"
+							<label class="col-sm-6 col-md-4" for="q1-3"> <input id="q1-3"
 								type="radio" name="usrPref1" value="C" /> <img
 								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
 								style="width: 250px">
 							</label>
 						</div>
-						<div class="col-md-12">
-							<label for="usrPref1" class="error">Please select survey</label><br/>
-						</div>
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-4"
+							<label class="col-sm-6 col-md-4" for="q1-4"> <input id="q1-4"
 								type="radio" name="usrPref1" value="D" /> <img
 								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref1"> <input id="q1-5"
+							<label class="col-sm-6 col-md-4" for="q1-5"> <input id="q1-5"
 								type="radio" name="usrPref1" value="E" /> <img
 								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
 								style="width: 250px">
@@ -109,26 +105,26 @@
 				<div class="row">
 					<div class="form-group" id="q2">
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref2"> <input id="q2-1"
+							<label class="col-sm-6 col-md-4" for="q2-1"> <input id="q2-1"
 								type="radio" name="usrPref2" value="A" /> <img
 								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref2"> <input id="q2-2"
+							<label class="col-sm-6 col-md-4" for="q2-2"> <input id="q2-2"
 								type="radio" name="usrPref2" value="B" /> <img
 								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref2"> <input id="q2-3"
+							<label class="col-sm-6 col-md-4" for="q2-3"> <input id="q2-3"
 								type="radio" name="usrPref2" value="C" /> <img
 								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
 								style="width: 250px">
 							</label>
 						</div>
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref2"> <input id="q2-4"
+							<label class="col-sm-6 col-md-4" for="q2-4"> <input id="q2-4"
 								type="radio" name="usrPref2" value="D" /> <img
 								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref2"> <input id="q2-5"
+							<label class="col-sm-6 col-md-4" for="q2-5"> <input id="q2-5"
 								type="radio" name="usrPref2" value="E" /> <img
 								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
 								style="width: 250px">
@@ -177,26 +173,26 @@
 				<div class="row">
 					<div class="form-group" id="q3">
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref3"> <input id="q3-1"
+							<label class="col-sm-6 col-md-4" for="q3-1"> <input id="q3-1"
 								type="radio" name="usrPref3" value="A" /> <img
 								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref3"> <input id="q3-2"
+							<label class="col-sm-6 col-md-4" for="q3-2"> <input id="q3-2"
 								type="radio" name="usrPref3" value="B" /> <img
 								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref3"> <input id="q3-3"
+							<label class="col-sm-6 col-md-4" for="q3-3"> <input id="q3-3"
 								type="radio" name="usrPref3" value="C" /> <img
 								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
 								style="width: 250px">
 							</label>
 						</div>
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref3"> <input id="q3-4"
+							<label class="col-sm-6 col-md-4" for="q3-4"> <input id="q3-4"
 								type="radio" name="usrPref3" value="D" /> <img
 								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref3"> <input id="q3-5"
+							<label class="col-sm-6 col-md-4" for="q3-5"> <input id="q3-5"
 								type="radio" name="usrPref3" value="E" /> <img
 								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
 								style="width: 250px">
@@ -244,26 +240,26 @@
 				<div class="row">
 					<div class="form-group" id="q4">
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref4"> <input id="q4-1"
+							<label class="col-sm-6 col-md-4" for="q4-1"> <input id="q4-1"
 								type="radio" name="usrPref4" value="A" /> <img
 								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref4"> <input id="q4-2"
+							<label class="col-sm-6 col-md-4" for="q4-2"> <input id="q4-2"
 								type="radio" name="usrPref4" value="B" /> <img
 								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref4"> <input id="q4-3"
+							<label class="col-sm-6 col-md-4" for="q4-3"> <input id="q4-3"
 								type="radio" name="usrPref4" value="C" /> <img
 								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
 								style="width: 250px">
 							</label>
 						</div>
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref4"> <input id="q4-4"
+							<label class="col-sm-6 col-md-4" for="q4-4"> <input id="q4-4"
 								type="radio" name="usrPref4" value="D" /> <img
 								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref4"> <input id="q4-5"
+							<label class="col-sm-6 col-md-4" for="q4-5"> <input id="q4-5"
 								type="radio" name="usrPref4" value="E" /> <img
 								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
 								style="width: 250px">
@@ -311,26 +307,26 @@
 				<div class="row">
 					<div class="form-group" id="q5">
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref5"> <input id="q5-1"
+							<label class="col-sm-6 col-md-4" for="q5-1"> <input id="q5-1"
 								type="radio" name="usrPref5" value="A" /> <img
 								src="${pageContext.request.contextPath }/assets/images/swim.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref5"> <input id="q5-2"
+							<label class="col-sm-6 col-md-4" for="q5-2"> <input id="q5-2"
 								type="radio" name="usrPref5" value="B" /> <img
 								src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref5"> <input id="q5-3"
+							<label class="col-sm-6 col-md-4" for="q5-3"> <input id="q5-3"
 								type="radio" name="usrPref5" value="C" /> <img
 								src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
 								style="width: 250px">
 							</label>
 						</div>
 						<div class="col-md-12" data-animation-effect="fadeIn">
-							<label class="col-sm-6 col-md-4" for="usrPref5"> <input id="q5-4"
+							<label class="col-sm-6 col-md-4" for="q5-4"> <input id="q5-4"
 								type="radio" name="usrPref5" value="D" /> <img
 								src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
 								style="width: 250px"></label>
-							<label class="col-sm-6 col-md-4" for="usrPref5"> <input id="q5-5"
+							<label class="col-sm-6 col-md-4" for="q5-5"> <input id="q5-5"
 								type="radio" name="usrPref5" value="E" /> <img
 								src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
 								style="width: 250px">
@@ -361,12 +357,5 @@
 		</div>
 	</div>
 	</form>
-<!-- 	<div class="buttons" > -->
-<!-- 		<a  id="showall">All</a> -->
-<!-- 		<a  class="showSingle" target="1" >Div 1</a> -->
-<!-- 		<a  class="showSingle" target="2">Div 2</a> -->
-<!-- 		<a  class="showSingle" target="3">Div 3</a> -->
-<!-- 		<a  class="showSingle" target="4">Div 4</a> -->
-<!-- 	</div> -->
 </body>
 </html>

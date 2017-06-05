@@ -143,6 +143,7 @@
     display: none;
     overflow: auto;
     font-size: 12px;
+    font-family: 'sans-serif';
 	}
 	
 	.block-date-list {
@@ -330,7 +331,7 @@
 						<c:forEach var="matchingDateList" items="${matchingDateList }"	>
 							<c:if test="${matchingScore.usrSeq == matchingDateList.usrSeq }">
 								<c:set var="dateListYN" value="Y" />
-								<label class="span-font-family">${matchingDateList.ctyName } : ${matchingDateList.dateFrom } ~ ${matchingDateList.dateTo }</label><br/>
+								<label style="font-family: 'sans-serif';">${matchingDateList.ctyName } : ${matchingDateList.dateFrom } ~ ${matchingDateList.dateTo }</label><br/>
 							</c:if>
 						</c:forEach>
 						<c:if test="${dateListYN == 'N'}">

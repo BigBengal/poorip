@@ -91,15 +91,12 @@
 			var $check = $("#survey-form").find("input[name='usrPref" +checkTarget+"']");
 			var checkYn = false
 			$check.each(function(index){
-				console.log($(this).prop("checked"));
-// 				console.log($(this).attr("checked").val());;
 				if ($(this).prop("checked") == true){
 					checkYn = true;	
 				}
 			})
 			if(checkYn == false){
 				alert("설문에 답 해주세요.");
-				console.log("저리가");
 				return
 			}
 			jQuery('.targetDiv').hide();
@@ -109,92 +106,50 @@
 		$('#survey-submit').click(function() {
 			$('#survey-form').submit();
 		});
-		
-// 		$("#survey-form").validate({
-// //	 		onfocusout: true,
-// // 			onclick: true,
-// 			rules : {
-// 				usrPref1 : {
-// 					other : { depends : function()
-// 		            		{
-// 						console.log("까꾸");
-// 			              var sel = $('input[name=usrPref1]:checked','#survey-form').val();
-// 			              console.log("ss:"+sel);
-// 			              if(sel != 'undefined')
-// 			                {
-// 			                return true;
-// 			                }
-// 			              else
-// 			                {
-// 			                return false;
-// 			                }
-// 			            }
-// 				}},
-// 				usrPref2 : {
-// 					required : true
-// 				},
-// 				usrPref3 : {
-// 					required : true
-// 				},
-// 				usrPref4 : {
-// 					required : true
-// 				},
-// 				usrPref5 : {
-// 					required : true
-// 				}},
-// 				messages : {
-// 					usrPref1 : {
-// 						required : "1번 문제를 선택 해 주세요."
-// 					},
-// 					usrPref2 : {
-// 						required : "2번 문제를 선택 해 주세요."
-// 					},
-// 					usrPref3 : {
-// 						required : "3번 문제를 선택 해 주세요."
-// 					},
-// 					usrPref4 : {
-// 						required : "4번 문제를 선택 해 주세요."
-// 					},
-// 					usrPref5 : {
-// 						required : "5번 문제를 선택 해 주세요."
-// 					}
-// 				}
-// 		});
 	});
 
-// 	console.log("skdskdjjdj");
-// 	jQuery.validator.setDefaults({
-// 		debug : true,
-// 		success : "valid"
-// 	});
-// 	console.log($("form[name='survey-form']"));
-	
 </script>
 
 <head>
-	<style>
-		.nextButton {
-		    position: relative;
-		    top: 1px;
-		    display: inline-block;
-		    font-family: 'Glyphicons Halflings';
-		    font-style: normal;
-		    font-weight: 400;
-		    font-size: 60px;
-		    line-height: 1;
-		    -webkit-font-smoothing: antialiased;
-		    -moz-osx-font-smoothing: grayscale;
-	        width: 100px;
-		    display: inline-block;
-		    float: left;
-		    background: transparent;
-		    border: 0;
-		}
-		.survey-contents {
-		    position: absolute;
-		    top: 25%;
-		    width: 100%;
-		    z-index: 2;
-		}
-	</style>
+<style>
+.nextButton {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 60px;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: 100px;
+	display: inline-block;
+	float: left;
+	background: transparent;
+	border: 0;
+}
+
+.survey-contents {
+	position: absolute;
+	top: 25%;
+	width: 100%;
+	z-index: 2;
+}
+
+label>input { /* HIDE RADIO */
+ 	visibility: hidden;  /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
+}
+
+label>input+img { /* IMAGE STYLES */
+	cursor: pointer;
+	border: 2px solid transparent;
+}
+
+label>input:checked+img { /* (RADIO CHECKED) IMAGE STYLES */
+	border: 3px solid #fffab5;
+	border-radius: 8px;
+}
+</style>
 </head>
