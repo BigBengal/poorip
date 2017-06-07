@@ -88,7 +88,7 @@
 		<div class="banner-image1 banner-image-common">
 			<div class="backstretch mypage-backstretch" style="position:relative;">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/save_earth_from_global.jpg">
+					src="${pageContext.request.contextPath }/assets/images/question_marks.jpg">
 			</div>
 		</div>
 		<div class="banner-caption">
@@ -96,12 +96,17 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 object-non-visible"
 						data-animation-effect="fadeIn">
-						<h1 class="text-center">
+						<h1 class="text-center" style="color: black;">
 							홈페이지 이용안내
 						</h1>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<c:import url="/WEB-INF/views/include/tutorial.jsp"></c:import>
 		</div>
 	</div>
 
