@@ -49,20 +49,19 @@
 <!-- Custom css -->
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
-<!-- 하단 화살표 -->
+<!-- matching css-->
 <link href="${pageContext.request.contextPath}/assets/css/matching.css"
 	rel="stylesheet">
+	
 <!--graph -->
-<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.common-fiori.min.css" /> -->
-<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.fiori.min.css" /> -->
-<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.fiori.mobile.min.css" /> -->
 <link rel="stylesheet"
 	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.spa.css" />
 <link rel="stylesheet"
 	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.common.css" />
 <link rel="stylesheet"
 	href="https://cdn3.devexpress.com/jslib/17.1.3/css/dx.light.css" />
-	<!-- Google font -->	
+	
+<!-- Google font -->	
 <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Kaushan+Script|Pacifico" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
@@ -110,115 +109,7 @@
 <!-- chart -->
 <script
 	src="${pageContext.request.contextPath }/assets/js/matching.js"></script>
-<style>
-	@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
-		
-	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-	
-	@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
-	
-	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-	
-	#same-plan-footer { 
-    overflow: hidden;
-    position: absolute;
-    bottom: 0; 
-    height: 50px;
-    width:100%;
-    text-align: center;
-    margin-left:0px;
-    margin-bottom:5px;
-    }
-    
-	.matching-footer {
-    overflow: hidden;
-    bottom: 0;
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    margin-bottom: -50px;
-	}
-	
-	.date-list {
-    display: none;
-    overflow: auto;
-    font-size: 12px;
-    font-family: 'sans-serif';
-	}
-	
-	.block-date-list {
-    display: block;
-    height: 100px;
-    overflow: auto;
-    font-size: 12px;
-    font-family: 'sans-serif';
-	}
-	
-	.info {
-    height: 100px;
-    font-size: 12px;
-	}
-	
-	.matchingList {
-	margin-bottom:20px; 
-	border-radius:10px; 
-	border:2px solid; 
-	border-color:#e4e1e1;
-	min-height: 475px;
-	overflow: hidden;
-	}
-	
-	.no-info-matchingList {
-	margin-bottom:20px; 
-	border-radius:4px; 
-	border:1px solid; 
-	border-color:#d2d2d2; 
-	min-height: 420px;
-	overflow: hidden;
-	height: auto;
-	}
-	
-	.span-font-family {
-	font-family: 'Nanum Gothic Coding';
-	font-weight: 500;
-	font-size: 15px;
-	}
-	
-	.matching div p {
-	clear: both;
-    float: left;
-    padding-left: 7px;
-    margin-top: 5px;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    word-break: break-all;
-    padding-right: 7px;
-    /* margin-bottom: 5px; */
-	}
-	
-	.sameplanmember {
-	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-	bottom: -1px;
-	content: '';
-	left: -1px;
-	right: -1px;
-	top: -1px;
-	width: 30%;
-	margin-right: 10px;
-	min-width: 300px;
-	box-shadow: 0px 1.5px 1px #888888;
-	}
-	
-	.col-md-4.sameplanmember {
-    background-color: #e9edef;
-    height: 400px;
-    padding: 0px;
-    border-radius: 2%;
-    }
-}
-	
-</style>
+
 </head>
 <body class="no-trans scroll-spy fix-header-on" style= "background-color: #e8e6e6;">
 
