@@ -22,7 +22,6 @@ import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.MainService;
-import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
@@ -42,10 +41,7 @@ public class MainController {
 	
 	@Autowired
 	private SNSService snsService;
-	
-	@Autowired
-	private PoolPartyService poolPartyService;
-	
+
 	// 사용자가 아무 도시도 선택을 하지 않았을 경우
 	@RequestMapping("/")
 	public String getTravelInfo(Model model) throws FileNotFoundException, IOException {
@@ -98,6 +94,22 @@ public class MainController {
 //		}
 		return "/PooripMain";
 
+	}
+	
+	@RequestMapping("/searchResult")
+	public String getSearchResult(@RequestParam(value = "ctySeq", required = true, defaultValue = "") String cityName) {
+		
+		if ("".equals(cityName))
+			return "redirect:/";
+		int seq = mainService.getCitySeq(cityName);
+		if (seq == 0)
+			return "redirect:/";
+		return "redirect:/city/" + seq +"#portfolio";
+	}
+	
+	@RequestMapping("/help")
+	public String help() {
+		return "/help";
 	}
 
 	// 사용자가 도시를 선택 하였을 경우
@@ -220,17 +232,6 @@ public class MainController {
 			return JSONResult.fail("No-DATA");
 		}
 		return JSONResult.success(autoList);
-	}
-
-	@RequestMapping("/searchResult")
-	public String getSearchResult(@RequestParam(value = "ctySeq", required = true, defaultValue = "") String cityName) {
-		
-		if ("".equals(cityName))
-			return "redirect:/";
-		int seq = mainService.getCitySeq(cityName);
-		if (seq == 0)
-			return "redirect:/";
-		return "redirect:/city/" + seq +"#portfolio";
 	}
 
 }

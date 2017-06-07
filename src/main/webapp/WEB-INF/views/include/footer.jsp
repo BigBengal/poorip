@@ -110,7 +110,7 @@ function goTop(){
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<span style="padding: 0px 10px;"><a href="javascript:showHelp();" target="_blank">Help</a></span>
+				<span style="padding: 0px 10px;"><a href="${pageContext.request.contextPath }/help">Help</a></span>
 				<span style="padding: 0px 10px;"><a href="javascript:toggleFooter();">Request</a></span>
 				
 			</div>
