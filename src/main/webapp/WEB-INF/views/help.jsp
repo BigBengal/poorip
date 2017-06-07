@@ -84,7 +84,7 @@
 
 	<!-- banner start -->
 	<!-- ================ -->
-	<div id="banner" class="banner-addinfo">
+	<div id="banner" class="banner-addinfo banner">
 		<div class="banner-image1 banner-image-common">
 			<div class="backstretch mypage-backstretch" style="position:relative;">
 				<img
