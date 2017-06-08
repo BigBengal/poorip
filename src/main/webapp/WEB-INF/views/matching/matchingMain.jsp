@@ -146,7 +146,7 @@
 						</h1>
 						<p class="lead text-center" >함께 즐기는 여행</p>
 						<div class="arrow bounce">
-							<a class="fa fa-arrow-down fa-2x" href="#contents"></a>
+							<a class="fa fa-arrow-down fa-2x" href="#contents" style="text-decoration:none;"></a>
 						</div>
 					</div>
 				</div>

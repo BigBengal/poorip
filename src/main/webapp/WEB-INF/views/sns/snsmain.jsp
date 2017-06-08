@@ -89,7 +89,7 @@
 		<div class="banner-image-sns banner-image-common">
 			<div class="backstretch mypage-backstretch">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/mySNS.jpg">
+					src="${pageContext.request.contextPath }/assets/images/mySNS.jpg" style="object-position:50% 20%;">
 			</div>
 		</div>
 		<div class="banner-caption">
