@@ -59,11 +59,11 @@
 <link href="${pageContext.request.contextPath}/assets/css/lightbox.css"
 	rel="stylesheet">
 	<!--  Sweet Alert -->
-<link href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
-	rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath }/assets/css/sweetalert.css" --%>
+<!-- 	rel="stylesheet"> -->
 
 <!-- 스위트 알람 -->
-<link href="${pageContext.request.contextPath }/assets/css/sweetalert.css"
+<link href="${pageContext.request.contextPath }/assets/css/sweetalert2.min.css"
 	rel="stylesheet">
 	
 <!-- Google font -->	
@@ -180,7 +180,7 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/template.js"></script>
 	 <!--  Sweet Alert -->
-<script src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/sweetalert2.min.js"></script>
 	<!-- Custom Scripts -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
@@ -195,8 +195,8 @@
 	<script
 		src="${pageContext.request.contextPath }/assets/js/facebook_auth.js"></script>
 	<!-- sweet alert -->
-	<script
-		src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script>
+<!-- 	<script -->
+<%-- 		src="${pageContext.request.contextPath }/assets/js/sweetalert.min.js"></script> --%>
 		
 	<!-- Gallera image slider -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
@@ -265,12 +265,10 @@
 				swal({
 				  title: '',
 				  type: 'info',
-				  text: 'Facebook 로그인 해주세요',
-// 				  html: '<p>상단 Facebook 버튼으로 <br>로그인해 주세요<p>',
-				  width: '150px',
-				  padding: 100,
-				  background: '#fff',
-				  timer: 2000
+				  html: '<p>우측 상단의 <img src="/poorip/assets/images/login_btn.png" style="display: inline;"> 으로  <br> 로그인해 주세요<p>',
+				  width: 350,
+				  background: '#fff'
+				  ,timer: 2500
 				});
 			}
 
