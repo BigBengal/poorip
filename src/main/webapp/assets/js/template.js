@@ -10,7 +10,11 @@
 (function($){
 	$(document).ready(function(){
 	
-		$(".banner-image").backstretch('assets/images/pool-party2.jpg');
+		var imgOrder = Math.floor(Math.random() * 2);
+		if (imgOrder == 1)
+			$(".banner-image").backstretch('assets/images/pool-party2.jpg');
+		else 
+			$(".banner-image").backstretch('assets/images/pool-party2_1.jpg');
 		
 		var $myMenu = $("#myMenu");	
 		// myMenu 보기
