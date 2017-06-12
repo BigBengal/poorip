@@ -70,7 +70,7 @@
 										<h2>${travelInfoCityMain.name}</h2>
 										<div class="row">
 											<div class="col-md-6">
-												<p>${travelInfoCityMain.contents}</p>
+												<p class="trvinfocontent">${travelInfoCityMain.contents}</p>
 											</div>
 
 											<div class="col-md-6">
@@ -176,7 +176,7 @@
 										</h2>
 										<div class="row">
 											<div class="col-md-5">
-												<p>${travelInfoFood.contents}</p>
+												<p class="trvinfocontent">${travelInfoFood.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFood.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoFood.picture}" alt="" />
@@ -290,7 +290,7 @@
 										<h2 class="trvinfo">${travelInfoFoodMain.name}</h2>
 
 										<div class="col-md-5">
-											<p>${travelInfoFoodMain.contents}</p>
+											<p class="trvinfocontent">${travelInfoFoodMain.contents}</p>
 										</div>
 										<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFoodMain.trvSeq}" style="min-height:400px; padding: 0px;">
 											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
@@ -404,9 +404,9 @@
 										</c:if>
 
 										<h2 class="trvinfo">${travelInfoAttraction.name}</h2>
-										<div class="row">
+									
 											<div class="col-md-5">
-												<p>${travelInfoAttraction.contents}</p>
+												<p class="trvinfocontent">${travelInfoAttraction.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoAttraction.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
@@ -467,7 +467,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
 											data-dismiss="modal">Close</button>
@@ -518,9 +518,9 @@
 												onclick="validate(${travelInfoAttractionMain.trvSeq})" /></a>
 										</c:if>
 										<h2 class="trvinfo">${travelInfoAttractionMain.name}</h2>
-										<div class="row">
+										
 											<div class="col-md-5">
-												<p>${travelInfoAttractionMain.contents}</p>
+												<p class="trvinfocontent">${travelInfoAttractionMain.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoAttractionMain.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoAttractionMain.picture}"
@@ -584,7 +584,7 @@
 													<div id="reviewpic-${travelInfoAttractionMain.trvSeq}"></div>
 												</div>
 											</div>
-										</div>
+										
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
@@ -637,9 +637,9 @@
 												onclick="validate(${travelInfoActivity.trvSeq})" /></a>
 										</c:if>
 										<h2 class="trvinfo">${travelInfoActivity.name}</h2>
-										<div class="row">
+										
 											<div class="col-md-5">
-												<p>${travelInfoActivity.contents}</p>
+												<p class="trvinfocontent">${travelInfoActivity.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoActivity.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoActivity.picture}" alt="">
@@ -701,7 +701,7 @@
 													<div id="reviewpic-${travelInfoActivity.trvSeq}"></div>
 												</div>
 											</div>
-										</div>
+									
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
@@ -753,9 +753,9 @@
 												onclick="validate(${travelInfoActivityMain.trvSeq})" /></a>
 										</c:if>
 										<h2 class="trvinfo">${travelInfoActivityMain.name}</h2>
-										<div class="row">
+										
 											<div class="col-md-5">
-												<p>${travelInfoActivityMain.contents}</p>
+												<p class="trvinfocontent">${travelInfoActivityMain.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoActivityMain.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
@@ -818,7 +818,7 @@
 													<div id="reviewpic-${travelInfoActivityMain.trvSeq}"></div>
 												</div>
 											</div>
-										</div>
+										
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"

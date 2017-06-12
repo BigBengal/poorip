@@ -1140,11 +1140,11 @@ display: inline-block;
 }
 
 .modal-body .col-md-5 {
-	height: 320px;
     width: 41%;
     border: solid 2px lightgrey;
     margin-top: 15px;
     border-radius: 5px;
+    line-height: 2em;
 }
 
 .trvinfo {
@@ -1153,4 +1153,9 @@ display: inline-block;
 
 .modalmap {
 	margin:30px;
+}
+
+.trvinfocontent {
+	margin-top:15px;
+	margin-bottom:15px;
 }
