@@ -82,16 +82,16 @@ function validate(trvSeq) {
 				console.log("삭제함");
 				swal({
 	    			  title: "",
-	    			  text: "<span style='color:#75a6ca; font-size:1.1em;'><strong>스크랩</span>을 삭제하였습니다!</strong>",
-	    			  html: true
+	    			  html: "<span style='color:#75a6ca; font-size:1.1em;'><strong>스크랩</span>을 삭제하였습니다!</strong>"
+//	    			  html: true
 	    			});
 				likeIcon.src = "/poorip/assets/images/star_off.png";
 
 			} else {
 				swal({
 	    			  title: "",
-	    			  text: "<span style='color:#75a6ca; font-size:1.1em;'><strong>스크랩</span>이 완료되었습니다!</strong>",
-	    			  html: true
+	    			  html: "<span style='color:#75a6ca; font-size:1.1em;'><strong>스크랩</span>이 완료되었습니다!</strong>"
+//	    			  html: true
 	    		});
 				console.log("스크랩함");
 				likeIcon.src = "/poorip/assets/images/star_on.png";
