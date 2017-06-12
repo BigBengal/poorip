@@ -87,7 +87,7 @@
 		<div class="banner-image1 banner-image-common">
 			<div class="backstretch mypage-backstretch" style="position:relative;">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/greece-santorini.jpg">
+					src="${pageContext.request.contextPath }/assets/images/greece.jpg">
 			</div>
 		</div>
 		<div class="banner-caption">
@@ -99,7 +99,7 @@
 	
 	
 	<!-- banner end -->
-	<div class="section">
+	<div class="section" style="background-color:#f2f8fb;">
 		<div class="container">
 			<c:import url="/WEB-INF/views/scrap/scrapInfo.jsp" />
 		</div>

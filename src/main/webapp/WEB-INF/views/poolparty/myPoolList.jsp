@@ -211,7 +211,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			style="top: -80px">
 			<div class="backstretch mypage-backstretch">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/bg-image-5.jpg">
+					src="${pageContext.request.contextPath }/assets/images/bg-image-5.jpg" style="object-position:50% 10%;">
 			</div>
 		</div>
 		<div class="banner-caption">

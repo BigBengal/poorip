@@ -8,7 +8,7 @@
 	<div class="col-md-8 col-md-offset-2 object-non-visible"
 		data-animation-effect="fadeIn">
 		<h1 class="text-center">
-			스크랩 정보입니다
+			<span style="color:#f35d8c">스크랩</span> 정보입니다
 		</h1>
 	</div>
 </div>
