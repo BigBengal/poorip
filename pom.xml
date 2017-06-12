@@ -234,13 +234,21 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.8.3</version>
 		</dependency>
-		
+
 		<!-- 소켓 -->
 		<dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-websocket</artifactId>
-          <version>4.2.5.RELEASE</version>
-      </dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>4.2.5.RELEASE</version>
+		</dependency>
+
+		<!-- 구글번역 -->
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-translate</artifactId>
+			<version>0.19.0-beta</version>
+		</dependency>
+
 
 
 	</dependencies>
