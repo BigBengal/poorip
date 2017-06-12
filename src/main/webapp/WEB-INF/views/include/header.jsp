@@ -68,7 +68,7 @@
 								<li><a><fb:login-button scope="public_profile,email,user_birthday" auto_logout_link="true" onlogin="checkLoginState();">
 									   </fb:login-button></a>									
 						  		</li>
-						  		<li><a><img id="loginpic" src="${authUser.usrProfile}"></a></li>
+						  		<li><a><img id="loginpic" src="${authUser.usrProfile}" width="50" height="50"></a></li>
 						  		<c:if test="${!empty authUser}">
 						  			<a href="http://localhost:9090/poorip/poolparty/mypool#notify"><span class="my-badge">${notify}</span></a>
 						  		</c:if>
