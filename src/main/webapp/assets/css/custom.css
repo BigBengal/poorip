@@ -983,6 +983,19 @@ border-radius: 5px 0 0 5px;
     .row.margin_up_down.underline {
     width:initial !important;
     }
+    
+    .modal-body .col-md-5 {
+    width:100% !important;
+    }
+    
+    .col-md-12.mapinmodal {
+    clear:both;
+    }
+    
+    .googlemapdiv {
+    clear:both;
+    }
+    
 }
 
 
@@ -1124,4 +1137,25 @@ display: inline-block;
 }
 .my-badge:empty {
     display: none;	
+}
+
+.modal-body .col-md-5 {
+    width: 41%;
+    border: solid 2px lightgrey;
+    margin-top: 15px;
+    border-radius: 5px;
+    line-height: 2em;
+}
+
+.trvinfo {
+	font-weight: bold;
+}
+
+.modalmap {
+	margin:30px;
+}
+
+.trvinfocontent {
+	margin-top:15px;
+	margin-bottom:15px;
 }

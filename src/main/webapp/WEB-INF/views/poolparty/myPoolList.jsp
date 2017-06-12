@@ -235,7 +235,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 					src="${pageContext.request.contextPath }/assets/images/volleyball.png"
 					style="display: inline-block; margin-top: -10px; position: absolute; top: -0.5%; left: 45.5%;">
 				<h2
-					style="margin-bottom: 10%; border-bottom: solid 1px lightgrey; padding-bottom: 15px;">
+					style="margin-bottom: 10%; border-bottom: solid 7px lightgrey; padding-bottom: 15px;">
 					<span style="font-family: 'Pacifico'; color: black;">My
 						PoolParty List </span>
 				</h2>
@@ -272,7 +272,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 		<div class="row col-lg-12 col-md-12 col-sm-12">
 			<div class="text-center">
 				<h2
-					style="margin-bottom: 5%; border-bottom: solid 1px lightgrey; padding-bottom: 15px;">
+					style="margin-bottom: 5%; border-bottom: solid 7px lightgrey; padding-bottom: 15px;">
 					<span style="font-family: 'Pacifico'; color: black;">
 						Waiting List </span>
 				</h2>
@@ -299,7 +299,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	<div class="row col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
 		<div class="text-center">
 			<h2
-				style="margin-bottom: 5%; border-bottom: solid 1px lightgrey; padding-bottom: 15px;" id="notify">
+				style="margin-bottom: 5%; border-bottom: solid 7px lightgrey; padding-bottom: 15px;" id="notify">
 				<span style="font-family: 'Pacifico'; color: black;">Request
 					List </span>
 			</h2>

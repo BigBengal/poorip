@@ -66,11 +66,11 @@
 										</button>
 										<h4 class="modal-title" id="project-1-label${status.index }">${travelInfoCityMain.name}</h4>
 									</div>
-									<div class="modal-body">
+									<div class="modal-body trvinfoname">
 										<h2>${travelInfoCityMain.name}</h2>
 										<div class="row">
 											<div class="col-md-6">
-												<p>${travelInfoCityMain.contents}</p>
+												<p class="trvinfocontent">${travelInfoCityMain.contents}</p>
 											</div>
 
 											<div class="col-md-6">
@@ -171,33 +171,33 @@
 												style="float: right;" data-trvSeq="${travelInfoFood.trvSeq}"
 												onclick="validate(${travelInfoFood.trvSeq})" /></a>
 										</c:if>
-										<h2>
+										<h2 class="trvinfo">
 											<b>${travelInfoFood.name}</b>
 										</h2>
 										<div class="row">
 											<div class="col-md-5">
-												<p>${travelInfoFood.contents}</p>
+												<p class="trvinfocontent">${travelInfoFood.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFood.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoFood.picture}" alt="" />
 											</div>
 											<div class="col-sm-12 col-md-6 detail">
-												<h3>영업시간</h3>
+												<h3 class="trvinfo">영업시간</h3>
 												<p>${travelInfoFood.hours}</p>
 											</div>
 											<div class="col-sm-12 col-md-6 detail">
-												<h3>가격</h3>
+												<h3 class="trvinfo">가격</h3>
 												<p>${travelInfoFood.price}</p>
 											</div>
 											<div class="col-sm-12 col-md-6 detail">
-												<h3>연락 정보</h3>
+												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoFood.contact}</p>
 											</div>
 											
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-												<h5>위치 확인</h5>
+												<h5 class="trvinfo modalmap">위치 확인</h5>
 												<!--  구글 맵 넣기   -->
 												<div id="map-project-2${status.index}"
 													class="col-sm-12 col-md-12 googlemap"
@@ -287,33 +287,33 @@
 												data-trvSeq="${travelInfoFoodMain.trvSeq}"
 												onclick="validate(${travelInfoFoodMain.trvSeq})" /></a>
 										</c:if>
-										<h2>${travelInfoFoodMain.name}</h2>
+										<h2 class="trvinfo">${travelInfoFoodMain.name}</h2>
 
 										<div class="col-md-5">
-											<p>${travelInfoFoodMain.contents}</p>
+											<p class="trvinfocontent">${travelInfoFoodMain.contents}</p>
 										</div>
 										<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFoodMain.trvSeq}" style="min-height:400px; padding: 0px;">
 											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
 										</div>
 										<div class="col-sm-12 col-md-6 detail">
-											<h3>영업시간</h3>
+											<h3 class="trvinfo">영업시간</h3>
 											<p>${travelInfoFoodMain.hours}</p>
 										</div>
 										<div class="col-sm-12 col-md-6 detail">
-											<h3>가격</h3>
+											<h3 class="trvinfo">가격</h3>
 											<p>${travelInfoFoodMain.price}</p>
 										</div>
 										<div class="col-sm-12 col-md-6 detail">
-											<h3>연락 정보</h3>
+											<h3 class="trvinfo">연락 정보</h3>
 											<p>${travelInfoFoodMain.contact}</p>
 										</div>
 										
 										<div class="row">
-											<div class="col-md-12">
-												<h5>위치 확인</h5>
+											<div class="col-md-12 googlemapdiv">
+												<h5 class="trvinfo modalmap">위치 확인</h5>
 												<!--  구글 맵 넣기   -->
 												<div id="map-project-3${status.index}"
-													class="col-md-12 googlemap"
+													class="col-md-12 googlemap mapinmodal"
 													data-url="${travelInfoFoodMain.mapURL}"></div>
 											</div>
 										</div>
@@ -403,30 +403,30 @@
 												onclick="validate(${travelInfoAttraction.trvSeq})"></a>
 										</c:if>
 
-										<h2>${travelInfoAttraction.name}</h2>
-										<div class="row">
+										<h2 class="trvinfo">${travelInfoAttraction.name}</h2>
+									
 											<div class="col-md-5">
-												<p>${travelInfoAttraction.contents}</p>
+												<p class="trvinfocontent">${travelInfoAttraction.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoAttraction.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoAttraction.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
-												<h3>영업시간</h3>
+												<h3 class="trvinfo">영업시간</h3>
 												<p>${travelInfoAttraction.hours}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>가격</h3>
+												<h3 class="trvinfo">가격</h3>
 												<p>${travelInfoAttraction.price}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>연락 정보</h3>
+												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoAttraction.contact}</p>
 											</div>
 											
 											<div class="row">
 												<div class="col-md-12">
-													<h5>위치 확인</h5>
+													<h5 class="trvinfo modalmap">위치 확인</h5>
 													<!--  구글 맵 넣기   -->
 													<div id="map-project-4${status.index}"
 														class="col-md-12 googlemap"
@@ -467,7 +467,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
 											data-dismiss="modal">Close</button>
@@ -517,32 +517,32 @@
 												data-trvSeq="${travelInfoAttractionMain.trvSeq}"
 												onclick="validate(${travelInfoAttractionMain.trvSeq})" /></a>
 										</c:if>
-										<h2>${travelInfoAttractionMain.name}</h2>
-										<div class="row">
+										<h2 class="trvinfo">${travelInfoAttractionMain.name}</h2>
+										
 											<div class="col-md-5">
-												<p>${travelInfoAttractionMain.contents}</p>
+												<p class="trvinfocontent">${travelInfoAttractionMain.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoAttractionMain.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoAttractionMain.picture}"
 													alt="">
 											</div>
 											<div class="col-md-6 detail">
-												<h3>영업시간</h3>
+												<h3 class="trvinfo">영업시간</h3>
 												<p>${travelInfoAttractionMain.hours}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>가격</h3>
+												<h3 class="trvinfo">가격</h3>
 												<p>${travelInfoAttractionMain.price}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>연락 정보</h3>
+												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoAttractionMain.contact}</p>
 											</div>
 											
 
 											<div class="row">
 												<div class="col-md-12">
-													<h5>위치 확인</h5>
+													<h5 class="trvinfo modalmap">위치 확인</h5>
 													<!--  구글 맵 넣기   -->
 													<div id="map-project-5${status.index}"
 														class="col-md-12 googlemap"
@@ -584,7 +584,7 @@
 													<div id="reviewpic-${travelInfoAttractionMain.trvSeq}"></div>
 												</div>
 											</div>
-										</div>
+										
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
@@ -636,31 +636,31 @@
 												data-trvSeq="${travelInfoActivity.trvSeq}"
 												onclick="validate(${travelInfoActivity.trvSeq})" /></a>
 										</c:if>
-										<h2>${travelInfoActivity.name}</h2>
-										<div class="row">
+										<h2 class="trvinfo">${travelInfoActivity.name}</h2>
+										
 											<div class="col-md-5">
-												<p>${travelInfoActivity.contents}</p>
+												<p class="trvinfocontent">${travelInfoActivity.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoActivity.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoActivity.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
-												<h3>영업시간</h3>
+												<h3 class="trvinfo">영업시간</h3>
 												<p>${travelInfoActivity.hours}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>가격</h3>
+												<h3 class="trvinfo">가격</h3>
 												<p>${travelInfoActivity.price}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>연락 정보</h3>
+												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoActivity.contact}</p>
 											</div>
 											
 
 											<div class="row">
 												<div class="col-md-12">
-													<h5>위치 확인</h5>
+													<h5 class="trvinfo modalmap">위치 확인</h5>
 													<!--  구글 맵 넣기   -->
 													<div id="map-project-6${status.index}"
 														class="col-md-12 googlemap"
@@ -701,7 +701,7 @@
 													<div id="reviewpic-${travelInfoActivity.trvSeq}"></div>
 												</div>
 											</div>
-										</div>
+									
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
@@ -752,31 +752,31 @@
 												data-trvSeq="${travelInfoActivityMain.trvSeq}"
 												onclick="validate(${travelInfoActivityMain.trvSeq})" /></a>
 										</c:if>
-										<h2>${travelInfoActivityMain.name}</h2>
-										<div class="row">
+										<h2 class="trvinfo">${travelInfoActivityMain.name}</h2>
+										
 											<div class="col-md-5">
-												<p>${travelInfoActivityMain.contents}</p>
+												<p class="trvinfocontent">${travelInfoActivityMain.contents}</p>
 											</div>
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoActivityMain.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
 											</div>
 											<div class="col-md-6 detail">
-												<h3>영업시간</h3>
+												<h3 class="trvinfo">영업시간</h3>
 												<p>${travelInfoActivityMain.hours}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>가격</h3>
+												<h3 class="trvinfo">가격</h3>
 												<p>${travelInfoActivityMain.price}</p>
 											</div>
 											<div class="col-md-6 detail">
-												<h3>연락 정보</h3>
+												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoActivityMain.contact}</p>
 											</div>
 											
 
 											<div class="row">
 												<div class="col-md-12">
-													<h5>위치 확인</h5>
+													<h5 class="trvinfo modalmap">위치 확인</h5>
 													<!--  구글 맵 넣기   -->
 													<div id="map-project-7${status.index}"
 														class="col-md-12 googlemap"
@@ -818,7 +818,7 @@
 													<div id="reviewpic-${travelInfoActivityMain.trvSeq}"></div>
 												</div>
 											</div>
-										</div>
+										
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-sm btn-default"
