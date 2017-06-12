@@ -147,10 +147,16 @@
     <!-- 여행정보 Seq, name 가져오기 -->
     <select id="getALLTravelInfo" resultType="travelinfovo">
       <![CDATA[
-         select 
-         		trv_seq as trvSeq,
-         		name as name
-		 from travel_info where trv_seq >0
+         select trv_seq as trvSeq,
+         		concat(name,
+					(select CONCAT(" (",cty_name,", ",ctr_name,")")
+						from city ci, country co
+						where ci.CTR_SEQ = co.CTR_SEQ
+						and ci.cty_seq = travel_info.cty_seq)) as name
+		 from travel_info
+	 	where trv_seq >0
+	 	  and cat_seq != 1
+	 	order by name
       ]]>
 	</select>
 	

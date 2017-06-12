@@ -44,6 +44,7 @@
 			select ctr_seq as ctrSeq,
 				   ctr_name as ctrName
 			from country
+			order by ctr_name
 		]]>
 	</select>
 	
@@ -53,6 +54,7 @@
 			select ctr_seq as ctrSeq,
 				   ctr_name as ctrName
 			from country
+		   order by ctr_name
 		]]>
 	</select>
 	

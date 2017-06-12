@@ -86,6 +86,7 @@
 			select CTY_SEQ as ctySeq,
 				   CTY_NAME as ctyName
 			  from city
+			 order by CTY_NAME
 		]]>
 	</select>
 

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.poorip.exception.GalleryUploadException;
 import com.poorip.repository.AdminDao;
+import com.poorip.repository.CountryDao;
 import com.poorip.vo.CategoryVo;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.CountryVo;
@@ -27,6 +28,9 @@ public class AdminService {
 	
 	@Autowired
 	private AdminDao adminDao;
+	
+	@Autowired
+	private CountryDao countryDao;
 	private CommonsMultipartFile[] files;
 
 	public void addtarvelInfo(TravelInfoVo travelInfoVo, MultipartFile multipartFile, int ctrSeq) {
@@ -103,6 +107,10 @@ public class AdminService {
 		return adminDao.addCity(cityVo);
 	}
 	
+	public boolean addCountry(CountryVo countryVo) {
+		return countryDao.insert(countryVo);
+	}
+		
 	public CommonsMultipartFile[] getFiles() {
 		return files;
 	}

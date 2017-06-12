@@ -95,8 +95,8 @@ var render = function( vo, reviewNum, postSeq ){
 				"<div id='reviewtitle' style='margin-bottom:20px'>" + vo.title + "<h6 style='display:inline-block; float:right'>" + vo.crtDate + "</h6></div>" +
 			   "<div id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "<c:if test='${!empty authUser }'>" +
 			   "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")> " + 
-			   "<img id='like-button-img-"+postSeq+"' src='${pageContext.request.contextPath}/assets/images/like_off.png' style='width:100%' ></a> " + 
-			   "</c:if><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px'> 라이크" + vo.likeCount + "</h5></div>" + 
+			   "<img id='like-button-img-"+postSeq+"' src='/poorip/assets/images/like_off.png' style='width:100%' ></a> " + 
+			   "</c:if><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px'>" + vo.likeCount + "</h5></div>" + 
 			   "</div>"
 			   ;			
 		
@@ -258,13 +258,13 @@ function reviewLike(postSeq) {
         	if(decreasedLike=="decreased_like") {
 //         		console.log("여기??");
         		var decreased = likes.slice(0, -15);
-        		$("#like-count-"+ postSeq).text("라이크" + decreased);
+        		$("#like-count-"+ postSeq).text(decreased);
         		likePostIcon.src = "/poorip/assets/images/like_off.png";
         	}
         	}
         	else {
 //         		console.log("라이크충");
-        		$("#like-count-"+ postSeq).text("라이크" + result.data);
+        		$("#like-count-"+ postSeq).text(result.data);
         		likePostIcon.src = "/poorip/assets/images/like_on.png";
         	}
          

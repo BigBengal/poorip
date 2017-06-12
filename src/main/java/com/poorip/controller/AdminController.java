@@ -24,6 +24,7 @@ import com.poorip.dto.JSONResult;
 import com.poorip.security.Auth;
 import com.poorip.security.AuthUser;
 import com.poorip.service.AdminService;
+import com.poorip.service.MainService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.CountryVo;
 import com.poorip.vo.PostPicVo;
@@ -42,6 +43,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private MainService mainService;
 	
 	@Auth
 	@RequestMapping("/basic")
@@ -62,6 +66,7 @@ public class AdminController {
 		model.addAttribute( "cityVo", adminService.getCityName()) ;
 		model.addAttribute( "travelVo", adminService.getTravelName() );
 		model.addAttribute( "baseURL", AdminService.BASE_URL );
+		model.addAttribute( "countryVo", adminService.getCountry() );
 		return "/admin/admin-add";
 	}
 	
@@ -144,6 +149,13 @@ public class AdminController {
 			return JSONResult.fail("DB error");
 	}
 	
+	@RequestMapping("/upload/country")
+	public String addCountry( @ModelAttribute CountryVo countryVo
+						   ) {
+		adminService.addCountry( countryVo );
+		return "redirect:/admin/basic";
+	}
+	
 	@ResponseBody
 	@RequestMapping( "/deleteCountry" )
 	public JSONResult deleteCountry( @ModelAttribute CountryVo countryVo ){
@@ -174,6 +186,12 @@ public class AdminController {
 			return JSONResult.success( cityVo.getCtySeq() );
 		else
 			return JSONResult.fail("DB error");
+	}
+	
+	@ResponseBody
+	@RequestMapping( "/getCountySeq" )
+	public JSONResult getCountySeq(@RequestParam("ctySeq") int ctySeq) {
+		return JSONResult.success( mainService.getCityName(ctySeq));
 	}
 
 }

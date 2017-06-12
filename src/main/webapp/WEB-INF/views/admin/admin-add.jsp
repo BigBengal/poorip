@@ -35,7 +35,40 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
+<script type="text/javascript"
+		src="${pageContext.request.contextPath }/assets/plugins/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+$(function()	{
+	console.log("STARY");
+	
+	$("#travelCat").val(2);
+	$("#travleCty").on("change", function(){
+		// value 값으로 선택
+		var ctySeq = $(this).val();
+		
+		$.ajax( {
+		    url : "/poorip/admin/getCountySeq",
+		    type: "post",
+		    dataType: "json",
+			data: "ctySeq="+ ctySeq,
+		    success: function( response ){
+		    	
+		    	console.log	( response );
+		    	if( response.result == "fail") {
+		    	   console.log( response );
+		    	   return;
+		    	}
+		    	$("#travelCtr").val(response.data.ctrSeq);
+		    },
+		    error: function( XHR, status, error ){
+		       console.error("ERROR");
+		    }
+		});
+		
+	});
+});
 
+</script>
 </head>
 <body>
 	<div id="container">
@@ -71,7 +104,7 @@
 			      		</tr>
 						<tr>
 							<td class="t">여행지 테마(카테고리)</td>
-							<td><select name="catSeq">
+							<td><select name="catSeq" id="travelCat">
 									<c:forEach items="${cateVo }" var="cateVo" varStatus="status">
 										<option value="${cateVo.catSeq }">${cateVo.catName }</option>
 									</c:forEach>
@@ -80,7 +113,7 @@
 						</tr>
 						<tr>
 			      			<td class="t">여행지 위치(도시)</td>
-			      			<td><select name="ctySeq">
+			      			<td><select name="ctySeq" id="travleCty">
 									<c:forEach items="${cityVo }" var="cityVo" varStatus="status">
 										<option value="${cityVo.ctySeq }">${cityVo.ctyName }</option>
 									</c:forEach>
@@ -100,8 +133,21 @@
 			      			<td><input type="text" size="40" name="contact"></td>
 			      		</tr>
 			      		<tr>
+			      			<td class="t">력서리 여부</td>
+			      			<td>
+			      			<input type="radio" name="luxury" value="Y"> 력셔리 OK &nbsp;&nbsp;&nbsp;
+							<input type="radio" name="luxury" value="N" checked> 가난 
+  		      				</td>
+			      		</tr>
+			      		<tr>
 			      			<td class="t">나라 SEQ</td>
-			      			<td><input type="text" size="40" name="ctrSeq"></td>
+			      			<td>
+			      			<select name="ctrSeq" id="travelCtr">
+									<c:forEach items="${countryVo }" var="countryVo" varStatus="status">
+										<option value="${countryVo.ctrSeq }">${countryVo.ctrName }</option>
+									</c:forEach>
+							</select>
+			      			</td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
@@ -193,7 +239,13 @@
 			      		</tr>
 			      		<tr>
 			      			<td class="t">나라 seq</td>
-			      			<td><input type="text" name="ctrSeq2"></td>
+			      			<td>
+			      			<select name="ctrSeq2">
+									<c:forEach items="${countryVo }" var="countryVo" varStatus="status">
+										<option value="${countryVo.ctrSeq }">${countryVo.ctrName }</option>
+									</c:forEach>
+							</select>
+			      			</td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
@@ -201,7 +253,25 @@
 			      		</tr>           		
 			      	</table>
 				</form>
-			</div>				
+			</div>
+			<!-------------------------------------------------- 나라 추가 ---------------------------------------------------------->
+			<div id="content" class="full-screen">
+					<form action="${pageContext.request.contextPath}/admin/upload/country" method="post" enctype="multipart/form-data">
+	 		      	<table class="admin-config">
+	 		      		<tr>
+	 		      			<th><h3>나라 추가</h3></th>
+	 		      		</tr>
+			      		<tr>
+			      			<td class="t">나라 이름</td>
+			      			<td><input type="text" size="40" name="ctrName"></td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">&nbsp;</td>
+			      			<td class="s"><input type="submit" value="나라 추가"></td>      			
+			      		</tr>           		
+			      	</table>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>
