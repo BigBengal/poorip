@@ -137,7 +137,12 @@
 					varStatus="status">
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
-							<div class="overlay-container blog1">
+							<div class="overlay-container">
+								<div style="position: absolute;top: 10px;left: 10px;">
+								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								</div>
 								<img src="/poorip/${travelInfoFood.picture}" alt=""> <a
 									class="overlay" data-toggle="modal"
 									data-target="#project-2${status.index }"
@@ -255,6 +260,11 @@
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
+								<div style="position: absolute;top: 10px;left: 10px;">
+								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								</div>
 								<img src="/poorip/${travelInfoFoodMain.picture}" alt=""> <a
 									class="overlay" data-toggle="modal"
 									data-target="#project-3${status.index }"
@@ -371,6 +381,11 @@
 					<div class="col-sm-6 col-md-3 isotope-item app-development">
 						<div class="image-box">
 							<div class="overlay-container">
+								<div style="position: absolute;top: 10px;left: 10px;">
+								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								</div>
 								<img src="/poorip/${travelInfoAttraction.picture}" alt="">
 								<a class="overlay" data-toggle="modal"
 									data-target="#project-4${status.index }"
@@ -486,6 +501,11 @@
 					<div class="col-sm-6 col-md-3 isotope-item app-development">
 						<div class="image-box">
 							<div class="overlay-container">
+								<div style="position: absolute;top: 10px;left: 10px;">
+								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								</div>
 								<img src="/poorip/${travelInfoAttractionMain.picture}" alt="">
 								<a class="overlay" data-toggle="modal"
 									data-target="#project-5${status.index }"
@@ -605,6 +625,11 @@
 					<div class="col-sm-6 col-md-3 isotope-item site-building">
 						<div class="image-box">
 							<div class="overlay-container">
+								<div style="position: absolute;top: 10px;left: 10px;">
+								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								</div>
 								<img src="/poorip/${travelInfoActivity.picture}" alt=""> <a
 									class="overlay" data-toggle="modal"
 									data-target="#project-6${status.index }"
@@ -721,6 +746,11 @@
 					<div class="col-sm-6 col-md-3 isotope-item site-building">
 						<div class="image-box">
 							<div class="overlay-container">
+								<div style="position: absolute;top: 10px;left: 10px;">
+								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								</div>
 								<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
 								<a class="overlay" data-toggle="modal"
 									data-target="#project-7${status.index }"

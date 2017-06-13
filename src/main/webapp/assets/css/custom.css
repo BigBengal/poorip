@@ -1164,12 +1164,27 @@ display: inline-block;
 	margin:0;
 }
 
-.blog1{
-	padding: 1px 7px;
-	position: absolute;
-	right: 4px;
-	top: 15px;
+.recmd_blog1{
+	height : 24px;
+	width: 24px;
+	float: left;
+	margin-right:2px;
 	z-index: 999;
-	border-radius: .8em;
-	border: 2px solid #fff;
+	background: url("/poorip/assets/images/recom_b_1.png") 100% 100%
+}
+.recmd_emoj1{
+	height : 24px;
+	width: 24px;
+	float: left;
+	margin-right:2px;
+	z-index: 999;
+	background: url("/poorip/assets/images/recom_e_1.png") 100% 100%
+}
+.recmd_trip1{
+	height : 24px;
+	width: 24px;
+	float: left;
+	margin-right:2px;
+	z-index: 999;
+	background: url("/poorip/assets/images/recom_t_1.png") 100% 100%
 }
