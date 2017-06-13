@@ -138,7 +138,7 @@
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
-								<div style="position: absolute;top: 10px;left: 10px;">
+								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
 								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
@@ -260,7 +260,7 @@
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
 							<div class="overlay-container">
-								<div style="position: absolute;top: 10px;left: 10px;">
+								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
 								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
@@ -381,7 +381,7 @@
 					<div class="col-sm-6 col-md-3 isotope-item app-development">
 						<div class="image-box">
 							<div class="overlay-container">
-								<div style="position: absolute;top: 10px;left: 10px;">
+								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
 								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
@@ -501,7 +501,7 @@
 					<div class="col-sm-6 col-md-3 isotope-item app-development">
 						<div class="image-box">
 							<div class="overlay-container">
-								<div style="position: absolute;top: 10px;left: 10px;">
+								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
 								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
@@ -625,7 +625,7 @@
 					<div class="col-sm-6 col-md-3 isotope-item site-building">
 						<div class="image-box">
 							<div class="overlay-container">
-								<div style="position: absolute;top: 10px;left: 10px;">
+								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
 								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
@@ -746,7 +746,7 @@
 					<div class="col-sm-6 col-md-3 isotope-item site-building">
 						<div class="image-box">
 							<div class="overlay-container">
-								<div style="position: absolute;top: 10px;left: 10px;">
+								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
 								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
 								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
