@@ -174,7 +174,7 @@
 										<h2 class="trvinfo">
 											<b>${travelInfoFood.name}</b>
 										</h2>
-										<div class="row">
+										
 											<div class="col-md-5">
 												<p class="trvinfocontent">${travelInfoFood.contents}</p>
 											</div>
@@ -194,7 +194,7 @@
 												<p>${travelInfoFood.contact}</p>
 											</div>
 											
-										</div>
+									
 										<div class="row">
 											<div class="col-md-12">
 												<h5 class="trvinfo modalmap">위치 확인</h5>

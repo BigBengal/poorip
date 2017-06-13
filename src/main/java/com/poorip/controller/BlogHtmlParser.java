@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.Translate.TranslateOption;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
-import com.google.cloud.translate.Translate.TranslateOption;
 import com.poorip.repository.CrawlDataDao;
 import com.poorip.vo.CrawlDataVo;
 
@@ -60,19 +60,27 @@ public class BlogHtmlParser {
 			/* String text2 = elements2.text(); */
 			CrawlDataVo crawlDataVo = new CrawlDataVo();
 			
-			Translate translate = TranslateOptions.getDefaultInstance().getService();
+			String key = "AIzaSyCgGy9WeQ5FQCK8v3b8v_x5XTSL1YhtGKs";
+	
+			
+			Translate translate = TranslateOptions.newBuilder().setApiKey(key).build().getService();
+			System.out.println(TranslateOptions.newBuilder().setApiKey(key).build().getApiKey());
+			
 			Translation translation =
 			        translate.translate(
 			            content.replaceAll("ㅋ",""),
 			            TranslateOption.sourceLanguage("ko"),
 			            TranslateOption.targetLanguage("en"));
 			content = translation.getTranslatedText().replaceAll("[^\\w\\s-']"," ");
+			
+			
 			crawlDataVo.setTitle(title);
 			crawlDataVo.setCtrSeq(2);
 			crawlDataVo.setCtySeq(45);
 			crawlDataVo.setCatSeq(2);
 			crawlDataVo.setContent(content.replaceAll("39", "'"));
 			crawlDataVo.setPubDate(pubDate2);
+			
 			
 			System.out.println(content.replaceAll("39", "'"));
 			crawlDataDao.insert(crawlDataVo);
