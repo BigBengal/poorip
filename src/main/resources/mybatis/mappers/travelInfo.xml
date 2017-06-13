@@ -20,7 +20,10 @@
          		a.map_url as mapURL,
          		a.contact,
 				a.picture as picture,
-				a.hit as hit
+				a.hit as hit,
+				a.RECMD_BLOG as recmdBlog,
+				a.RECMD_EMOJ as recmdEmoj,
+				a.RECMD_TRIPAD as recmdTripAd
 		 from travel_info a 
 		 where a.cty_seq = #{ctySeq} 
 		   and a.trv_seq > 0 
@@ -82,7 +85,10 @@
          		a.price as price,
          		a.map_url as mapURL,
          		a.contact as contact,
-         		a.hit as hit
+         		a.hit as hit,
+				a.RECMD_BLOG as recmdBlog,
+				a.RECMD_EMOJ as recmdEmoj,
+				a.RECMD_TRIPAD as recmdTripAd
 		 from travel_info a
 		 where a.CAT_SEQ <> 1
 		 
@@ -100,7 +106,10 @@
          		a.price as price,
          		a.map_url as mapURL,
          		a.contact as contact,
-				cty_rank.hit
+				cty_rank.hit,
+				a.RECMD_BLOG as recmdBlog,
+				a.RECMD_EMOJ as recmdEmoj,
+				a.RECMD_TRIPAD as recmdTripAd
 		 from travel_info a,
 		 		 (select cty_seq, sum(hit) as hit
 				 from travel_info
@@ -177,7 +186,8 @@
 			       #{mapURL },
 			       #{contact },
 			       0,
-			       #{luxury })
+			       #{luxury },
+			       0,0,0)
       ]]>
     </insert>
     
@@ -193,7 +203,7 @@
          		price,
          		map_url as mapURL,
          		contact 
-					from scrap, travel_info 
+		 from scrap, travel_info 
 		where scrap.TRV_SEQ=travel_info.TRV_SEQ
 		AND scrap.usr_seq = #{usrSeq }
       ]]>

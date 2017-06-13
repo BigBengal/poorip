@@ -19,6 +19,9 @@ public class TravelInfoVo {
 	private String path;
 	private String fileName;
 	private String luxury;
+	private int recmdBlog;
+	private int recmdEmoj;
+	private int recmdTripAd;
 	
 	public int getTrvPicSeq() {
 		return trvPicSeq;
@@ -125,14 +128,32 @@ public class TravelInfoVo {
 		this.luxury = luxury;
 	}
 	
+	public int getRecmdBlog() {
+		return recmdBlog;
+	}
+	public int getRecmdEmoj() {
+		return recmdEmoj;
+	}
+	public int getRecmdTripAd() {
+		return recmdTripAd;
+	}
+	public void setRecmdBlog(int recmdBlog) {
+		this.recmdBlog = recmdBlog;
+	}
+	public void setRecmdEmoj(int recmdEmoj) {
+		this.recmdEmoj = recmdEmoj;
+	}
+	public void setRecmdTripAd(int recmdTripAd) {
+		this.recmdTripAd = recmdTripAd;
+	}
 	@Override
 	public String toString() {
 		return "TravelInfoVo [trvSeq=" + trvSeq + ", name=" + name + ", contents=" + contents + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", price=" + price + ", crtDate=" + crtDate
 				+ ", ctySeq=" + ctySeq + ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", hit="
 				+ hit + ", trvPicSeq=" + trvPicSeq + ", path=" + path + ", fileName=" + fileName + ", luxury=" + luxury
-				+ "]";
+				+ ", recmdBlog=" + recmdBlog + ", recmdEmoj=" + recmdEmoj + ", recmdTripAd=" + recmdTripAd + "]";
 	}
-	
+
 	
 }

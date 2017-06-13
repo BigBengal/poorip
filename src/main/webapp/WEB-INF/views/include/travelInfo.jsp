@@ -137,7 +137,7 @@
 					varStatus="status">
 					<div class="col-sm-6 col-md-3 isotope-item web-design">
 						<div class="image-box">
-							<div class="overlay-container">
+							<div class="overlay-container blog1">
 								<img src="/poorip/${travelInfoFood.picture}" alt=""> <a
 									class="overlay" data-toggle="modal"
 									data-target="#project-2${status.index }"
