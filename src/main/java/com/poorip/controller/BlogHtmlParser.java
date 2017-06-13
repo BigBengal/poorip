@@ -60,11 +60,14 @@ public class BlogHtmlParser {
 			/* String text2 = elements2.text(); */
 			CrawlDataVo crawlDataVo = new CrawlDataVo();
 			
-			String key = "AIzaSyCgGy9WeQ5FQCK8v3b8v_x5XTSL1YhtGKs";
+			/*String key = "AIzaSyCgGy9WeQ5FQCK8v3b8v_x5XTSL1YhtGKs";
 	
 			
-			Translate translate = TranslateOptions.newBuilder().setApiKey(key).build().getService();
-			System.out.println(TranslateOptions.newBuilder().setApiKey(key).build().getApiKey());
+			Translate translate = TranslateOptions.newBuilder().setApiKey(key).build().getService();*/
+		/*	System.out.println(TranslateOptions.newBuilder().setApiKey(key).build().getApiKey());*/
+			
+			Translate translate = TranslateOptions.getDefaultInstance().getService();
+			
 			
 			Translation translation =
 			        translate.translate(
@@ -89,4 +92,6 @@ public class BlogHtmlParser {
 		}
 		return "Data Inserting ......";
 	}
+	
+
 }
