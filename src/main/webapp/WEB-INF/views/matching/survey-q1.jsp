@@ -28,10 +28,9 @@
 					<div class="row">
 						<div class="form-group">
 							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
-								data-animation-effect="fadeIn">
+								data-animation-effect="fadeIn" style="width: 80%; margin-left: 10%;">
 								<h1 class="text-center" style="font-size: 50px">
-									<span style="font-size: 50px; color: teal;">Q1</span> 1장의 사진을
-									골라주세요.
+									<span style="font-size: 50px; color: teal;">Q1</span> 당신은 어떤 타입의 여행자인가요?
 								</h1>
 								<p class="lead text-center"></p>
 							</div>
@@ -50,30 +49,27 @@
 						<div class="form-group" id="q1">
 							<div class="col-md-12 surveyQ" id="surveyQ1"
 								data-animation-effect="fadeIn">
-								<label class="col-sm-6 col-md-4" for="q1-1"> <input
+								<label class="col-sm-6 col-md-3" for="q1-1"> <input
 									id="q1-1" type="radio" name="usrPref1" value="A" /> <img
-									src="${pageContext.request.contextPath }/assets/images/swim.jpg"
-									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									src="${pageContext.request.contextPath }/assets/images/group.png"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-3"
 									for="q1-2"> <input id="q1-2" type="radio"
 									name="usrPref1" value="B" /> <img
-									src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
-									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									src="${pageContext.request.contextPath }/assets/images/indiv.png"
+									style="width: 250px"></label> <label class="col-sm-6 col-md-3"
 									for="q1-3"> <input id="q1-3" type="radio"
 									name="usrPref1" value="C" /> <img
-									src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
+									src="${pageContext.request.contextPath }/assets/images/advent.png"
 									style="width: 250px">
 								</label>
+								<label class="col-sm-6 col-md-3" for="q1-4" style="padding-right: 40px;"> <input
+									id="q1-4" type="radio" name="usrPref1" value="D" /> <img
+									src="${pageContext.request.contextPath }/assets/images/alone.png"
+									style="width: 250px; height:480px; object-fit:contain;"></label>
+								
 							</div>
 							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
-								<label class="col-sm-6 col-md-4" for="q1-4"> <input
-									id="q1-4" type="radio" name="usrPref1" value="D" /> <img
-									src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
-									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
-									for="q1-5"> <input id="q1-5" type="radio"
-									name="usrPref1" value="E" /> <img
-									src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
-									style="width: 250px">
-								</label>
+								
 							</div>
 						</div>
 					</div>
