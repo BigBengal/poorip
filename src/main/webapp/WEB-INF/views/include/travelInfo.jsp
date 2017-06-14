@@ -261,9 +261,9 @@
 						<div class="image-box">
 							<div class="overlay-container">
 								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
-								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								<c:if test="${travelInfoFoodMain.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoFoodMain.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoFoodMain.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
 								</div>
 								<img src="/poorip/${travelInfoFoodMain.picture}" alt=""> <a
 									class="overlay" data-toggle="modal"
@@ -382,9 +382,9 @@
 						<div class="image-box">
 							<div class="overlay-container">
 								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
-								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								<c:if test="${travelInfoAttraction.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoAttraction.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoAttraction.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
 								</div>
 								<img src="/poorip/${travelInfoAttraction.picture}" alt="">
 								<a class="overlay" data-toggle="modal"
@@ -502,9 +502,9 @@
 						<div class="image-box">
 							<div class="overlay-container">
 								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
-								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								<c:if test="${travelInfoAttractionMain.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoAttractionMain.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoAttractionMain.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
 								</div>
 								<img src="/poorip/${travelInfoAttractionMain.picture}" alt="">
 								<a class="overlay" data-toggle="modal"
@@ -626,9 +626,9 @@
 						<div class="image-box">
 							<div class="overlay-container">
 								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
-								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								<c:if test="${travelInfoActivity.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoActivity.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoActivity.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
 								</div>
 								<img src="/poorip/${travelInfoActivity.picture}" alt=""> <a
 									class="overlay" data-toggle="modal"
@@ -747,9 +747,9 @@
 						<div class="image-box">
 							<div class="overlay-container">
 								<div style="position: absolute;top: 10px;left: 10px; z-index:1;">
-								<c:if test="${travelInfoFood.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
-								<c:if test="${travelInfoFood.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
+								<c:if test="${travelInfoActivityMain.recmdBlog >= 1}"><div class="recmd_blog1"></div></c:if>
+								<c:if test="${travelInfoActivityMain.recmdEmoj >= 1}"><div class="recmd_emoj1"></div></c:if>
+								<c:if test="${travelInfoActivityMain.recmdTripAd >= 1}"><div class="recmd_trip1"></div></c:if>
 								</div>
 								<img src="/poorip/${travelInfoActivityMain.picture}" alt="">
 								<a class="overlay" data-toggle="modal"
