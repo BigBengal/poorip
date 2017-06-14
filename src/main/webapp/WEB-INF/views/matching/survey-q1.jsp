@@ -264,8 +264,7 @@
 							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
 								data-animation-effect="fadeIn">
 								<h1 class="text-center" style="font-size: 50px">
-									<span style="font-size: 50px; color: teal;">Q5</span> 1장의 사진을
-									골라주세요.
+									<span style="font-size: 50px; color: teal;">Q5</span> 내가 제~일 좋아하는 핸드폰 브랜드는?
 								</h1>
 								<p class="lead text-center"></p>
 							</div>
@@ -284,27 +283,27 @@
 							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
 								<label class="col-sm-6 col-md-4" for="q5-1"> <input
 									id="q5-1" type="radio" name="usrPref5" value="A" /> <img
-									src="${pageContext.request.contextPath }/assets/images/swim.jpg"
-									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									src="${pageContext.request.contextPath }/assets/images/iphone7_2.png"
+									style="width: 250px; height:200px; object-fit:contain;"></label> <label class="col-sm-6 col-md-4"
 									for="q5-2"> <input id="q5-2" type="radio"
 									name="usrPref5" value="B" /> <img
-									src="${pageContext.request.contextPath }/assets/images/skydiving.jpg"
-									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									src="${pageContext.request.contextPath }/assets/images/galaxys8_2.png"
+									style="width: 250px; height:200px; padding:15px; object-fit:contain;"></label> <label class="col-sm-6 col-md-4"
 									for="q5-3"> <input id="q5-3" type="radio"
-									name="usrPref5" value="C" /> <img
-									src="${pageContext.request.contextPath }/assets/images/Paragliding.jpg"
-									style="width: 250px">
+									name="usrPref5" value="C" /> <img 
+									src="${pageContext.request.contextPath }/assets/images/huawei_2.png"
+									style="width: 250px; height:200px; object-fit:contain;">
 								</label>
 							</div>
 							<div class="col-md-12 surveyQ" data-animation-effect="fadeIn">
 								<label class="col-sm-6 col-md-4" for="q5-4"> <input
 									id="q5-4" type="radio" name="usrPref5" value="D" /> <img
-									src="${pageContext.request.contextPath }/assets/images/mountain_bike.jpg"
-									style="width: 250px"></label> <label class="col-sm-6 col-md-4"
+									src="${pageContext.request.contextPath }/assets/images/pixelxl_2.png"
+									style="width: 250px; height:200px; object-fit:contain;"></label> <label class="col-sm-6 col-md-4"
 									for="q5-5"> <input id="q5-5" type="radio"
-									name="usrPref5" value="E" /> <img
-									src="${pageContext.request.contextPath }/assets/images/biking_racing.jpg"
-									style="width: 250px">
+									name="usrPref5" value="E" /> <img 
+									src="${pageContext.request.contextPath }/assets/images/lumia_2.png"
+									style="width: 250px; height:200px; object-fit:contain;">
 								</label>
 							</div>
 						</div>

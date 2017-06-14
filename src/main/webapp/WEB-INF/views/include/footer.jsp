@@ -106,7 +106,7 @@ function goTop(){
 
 <!-- .subfooter start -->
 <!-- ================ -->
-<div class="subfooter">
+<div class="subfooter" style="margin-top:10%;">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
