@@ -23,7 +23,8 @@
 				a.hit as hit,
 				a.RECMD_BLOG as recmdBlog,
 				a.RECMD_EMOJ as recmdEmoj,
-				a.RECMD_TRIPAD as recmdTripAd
+				a.RECMD_TRIPAD as recmdTripAd,
+				a.WORDCLOUD as wordCloud
 		 from travel_info a 
 		 where a.cty_seq = #{ctySeq} 
 		   and a.trv_seq > 0 
@@ -88,7 +89,8 @@
          		a.hit as hit,
 				a.RECMD_BLOG as recmdBlog,
 				a.RECMD_EMOJ as recmdEmoj,
-				a.RECMD_TRIPAD as recmdTripAd
+				a.RECMD_TRIPAD as recmdTripAd,
+				a.WORDCLOUD as wordCloud
 		 from travel_info a
 		 where a.CAT_SEQ <> 1
 		 
@@ -109,7 +111,8 @@
 				cty_rank.hit,
 				a.RECMD_BLOG as recmdBlog,
 				a.RECMD_EMOJ as recmdEmoj,
-				a.RECMD_TRIPAD as recmdTripAd
+				a.RECMD_TRIPAD as recmdTripAd,
+				a.WORDCLOUD as wordCloud
 		 from travel_info a,
 		 		 (select cty_seq, sum(hit) as hit
 				 from travel_info
@@ -189,7 +192,8 @@
 			       #{luxury },
 			       #{recmdBlog },
 			       #{recmdEmoj },
-			       #{recmdTripAd })
+			       #{recmdTripAd },
+			       #{wordCloud } )
       ]]>
     </insert>
     

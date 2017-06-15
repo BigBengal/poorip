@@ -22,6 +22,7 @@ public class TravelInfoVo {
 	private int recmdBlog;
 	private int recmdEmoj;
 	private int recmdTripAd;
+	private String wordCloud;
 	
 	public int getTrvPicSeq() {
 		return trvPicSeq;
@@ -146,14 +147,22 @@ public class TravelInfoVo {
 	public void setRecmdTripAd(int recmdTripAd) {
 		this.recmdTripAd = recmdTripAd;
 	}
+	public String getWordCloud() {
+		return wordCloud;
+	}
+	public void setWordCloud(String wordCloud) {
+		this.wordCloud = wordCloud;
+	}
 	@Override
 	public String toString() {
 		return "TravelInfoVo [trvSeq=" + trvSeq + ", name=" + name + ", contents=" + contents + ", hours=" + hours
 				+ ", location=" + location + ", picture=" + picture + ", price=" + price + ", crtDate=" + crtDate
 				+ ", ctySeq=" + ctySeq + ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", hit="
 				+ hit + ", trvPicSeq=" + trvPicSeq + ", path=" + path + ", fileName=" + fileName + ", luxury=" + luxury
-				+ ", recmdBlog=" + recmdBlog + ", recmdEmoj=" + recmdEmoj + ", recmdTripAd=" + recmdTripAd + "]";
+				+ ", recmdBlog=" + recmdBlog + ", recmdEmoj=" + recmdEmoj + ", recmdTripAd=" + recmdTripAd
+				+ ", wordCloud=" + wordCloud + "]";
 	}
+
 
 	
 }
