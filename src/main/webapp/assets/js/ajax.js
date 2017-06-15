@@ -90,15 +90,16 @@ $(function(){
 
 });
 var render = function( vo, reviewNum, postSeq ){
-	
-	var html = "<div class='col-md-12' style='border-style:solid; border-width:1px; margin:2px; padding:2px'>" +
-				"<div id='reviewtitle' style='margin-bottom:20px'>" + vo.title + "<h6 style='display:inline-block; float:right'>" + vo.crtDate + "</h6></div>" +
-			   "<div id='reviewbody-"	+	postSeq	+ "'>" + vo.contents + "<c:if test='${!empty authUser }'>" +
-			   "<a href='javascript:;' style='display:inline; float:right; margin-top:5px; margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")> " + 
-			   "<img id='like-button-img-"+postSeq+"' src='/poorip/assets/images/like_off.png' style='width:100%' ></a> " + 
-			   "</c:if><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px'>" + vo.likeCount + "</h5></div>" + 
-			   "</div>"
-			   ;			
+	console.log(vo);
+	var html = "<div class='col-md-12 review-row'>" +
+				"<div id='reviewtitle' style='margin-bottom:20px'>" + vo.title + "<h6 style='margin-left:10px; display:inline-block;'> written by &nbsp&nbsp<strong>" + vo.usrNick + "</strong></h6><h6 style='display:inline-block; float:right'>" + vo.crtDate + "</h6></div>" +
+			   "<div id='reviewbody-"	+	postSeq	+ "' class='review-body-contents'>" +
+			   "<a href='javascript:;' style='display:inline; float:right;  margin-right:5px;' id='like-review-button-"+postSeq+"' data-post-seq='"+ vo.postSeq+ "' onclick=reviewLike("+ vo.postSeq+ ")> " + 
+				"<img id='like-button-img-"+postSeq+"' src='/poorip/assets/images/like_off2.png' style='width:100%;' ></a> " + 
+			   "</c:if><h5 id='like-count-" + postSeq + "' style='float:right; margin-right:10px; margin-top:5px; margin-left: 4%;'>" + vo.likeCount + "</h5>" +
+			   	"<div>" + vo.contents + "</div>" +
+				"</div>" + 
+			   "</div>";			
 		
 	$("#review-"+reviewNum ).append(html);
 }
@@ -192,7 +193,7 @@ function send(trvSeq, reviewNum){
 			        		
 			        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
 // 			        		console.log(likePostIcon);
-			        		likePostIcon.src = "/poorip/assets/images/like_on.png";
+			        		likePostIcon.src = "/poorip/assets/images/like_on2.png";
 			        	});
 			         
 			        },
@@ -259,18 +260,25 @@ function reviewLike(postSeq) {
 //         		console.log("여기??");
         		var decreased = likes.slice(0, -15);
         		$("#like-count-"+ postSeq).text(decreased);
-        		likePostIcon.src = "/poorip/assets/images/like_off.png";
+        		likePostIcon.src = "/poorip/assets/images/like_off2.png";
         	}
         	}
         	else {
 //         		console.log("라이크충");
         		$("#like-count-"+ postSeq).text(result.data);
-        		likePostIcon.src = "/poorip/assets/images/like_on.png";
+        		likePostIcon.src = "/poorip/assets/images/like_on2.png";
         	}
          
         },
         error : function(data) {
-			    alert("reviewLike ajax 에러가 발생하였습니다.")
+        	swal({
+				  title: '',
+				  type: 'info',
+				  html: "<p>로그인 후에 '좋아요' 를 눌러주세요<p>",
+				  width: 350,
+				  background: '#fff'
+				  ,timer: 2500
+				});
         }
     });
 };
@@ -297,7 +305,7 @@ function sendTrvSeq1(trvSeq) {
 					        	$( result.data ).each( function(index, vo){
 					        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
 // 					        		console.log(likePostIcon);
-					        		likePostIcon.src = "/poorip/assets/images/like_on.png";
+					        		likePostIcon.src = "/poorip/assets/images/like_on2.png";
 					        	});
 					         
 					        },
