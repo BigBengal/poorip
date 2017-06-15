@@ -109,7 +109,7 @@
 <script
 	src="${pageContext.request.contextPath }/assets/js/poolparty_detail.js"></script>
 <!-- Custom Scripts -->
-<script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <!-- Gallera image slider -->
 <script

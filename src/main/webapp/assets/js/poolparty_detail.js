@@ -394,7 +394,68 @@ $(document).ready(function(){
 			timer = setTimeout( showList, delta );
 		}
 	} );
+	$("#pool-img-changebtn").click(function() {
+				var imgVal = $('#pool-img-upload')
+				.val();
+				if (imgVal == '') {
+					swal("이미지 파일이 없습니다!")
+					return false;
+				}
+
+				console.log("YO!?");
+				$("#pool-image-form")
+				.ajaxForm(
+						{
+							url : "/poorip/poolparty/changePic",
+							enctype : "multipart/form-data",
+							dataType : "json",
+							success : function(
+									response) {
+								$(
+								'#poolparty-Img-Modal')
+								.modal(
+								'toggle');
+								console
+								.log(response);
+								document
+								.getElementById("pool-main-pic").src = "/poorip"
+									+ response.data;
+								console
+								.log(response.data);
+							},
+							error : function(
+									data) {
+								console
+								.log("ajax 에러가 발생하였습니다.")
+							}
+
+						});
+			});
 	
+	$('.pool-post-contents .img-upload-pool').change(function() {
+		 $("#poolimgnames").html('');
+		  var i = $(this).prev('label').clone();
+		  var file = this.files;
+		  
+		  for (var i = 0; i < file.length; i++) {
+		        $("#poolimgnames").append(file.length + "개의 사진이 업로드 되었습니다. ");
+		        return;
+		    }
+		 
+		});
+	
+	$(document).on("change","#modifyeachform .pool-post-contents .img-edit-pool",function() {
+		 $("#modifyeachform .pool-editimgnames").html('');
+		  var i = $(this).prev('label').clone();
+		  var file = this.files;
+		  console.log(file.length);
+		  for (var i = 0; i < file.length; i++) {
+			  
+		        $("#modifyeachform .pool-editimgnames").append(file.length + "개의 사진이 업로드 되었습니다. ");
+		        return;
+		    }
+		 
+		});
 
 });
 

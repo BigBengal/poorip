@@ -115,7 +115,7 @@
 				 from travel_info
 				 where CAT_SEQ != 1
 				 group by cty_seq
-				 order by sum(hit)
+				 order by sum(hit) desc
 				 limit 0,12 ) cty_rank
 		where a.CAT_SEQ = 1
 		  and a.CTY_SEQ = cty_rank.cty_seq
@@ -145,7 +145,7 @@
 				 from travel_info
 				 where CAT_SEQ != 1
 				 group by cty_seq
-				 order by sum(hit)
+				 order by sum(hit) desc
 				 limit 0,12 ) cty_rank
 		where a.CAT_SEQ = 1
 		  and a.CTY_SEQ = cty_rank.cty_seq
