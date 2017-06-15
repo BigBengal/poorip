@@ -261,10 +261,13 @@ File Description: Place here your custom CSS styles
 .modal-body .col-md-12 .review-pics-anchor {
 	display: inline-block;
 	width: 20%;
+	padding:8px;
 }
+
 
 .modal-body .col-md-12 a .review-pics {
 	width: 100%;
+	border-radius:5px;
 }
 
 .modal-body .review-header .btn.btn-default {
@@ -1232,4 +1235,31 @@ display: inline-block;
 
 .sns-post-footer.gray_button {
 	padding:12px;
+}
+
+.review-row {
+	    border: solid 2px lightgrey;
+    border-radius: 7px;
+    padding:0;
+    margin-bottom:2%;
+}
+
+#reviewtitle {
+	
+	    margin-bottom: 15px;
+    padding: 12px;
+    border-bottom: solid 2px lightgrey;
+    background: #fffcef;
+    
+}
+.review-body-contents {
+	border-bottom: solid 2px lightgrey;
+    display: inline-block;
+    width: 100%;
+    padding:5px;
+}
+
+.text-center h2 span {
+	border-bottom: solid 3px #9bd4d1;
+	padding: 10px 30px 10px 30px;
 }

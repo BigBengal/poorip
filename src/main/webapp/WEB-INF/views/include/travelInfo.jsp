@@ -198,6 +198,10 @@
 												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoFood.contact}</p>
 											</div>
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoFood.location}</p>
+											</div>
 											
 									
 										<div class="row">

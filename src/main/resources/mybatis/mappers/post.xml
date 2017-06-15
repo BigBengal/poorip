@@ -197,12 +197,17 @@
 				 count(c.post_seq) as likeCount, 
 				 z.crt_date as crtDate, 
 				 z.review_pub_yn as reviewPubYn,
-				 z.trv_seq as trvSeq
-			from (select a.contents, a.post_seq, a.crt_date, a.review_pub_yn, a.trv_seq, a.title from post a, travel_info b where a.trv_seq = b.trv_seq and a.REVIEW_PUB_YN='Y'
+				 z.trv_seq as trvSeq,
+				 z.usr_seq as usrSeq,
+				 z.usr_nick as usrNick
+			from (select a.contents, a.post_seq, a.crt_date, a.review_pub_yn, a.trv_seq, a.title, a.usr_seq, c.usr_nick from post a, travel_info b, users c 
+					where a.trv_seq = b.trv_seq and 
+					a.usr_seq = c.usr_seq
+					and a.REVIEW_PUB_YN='Y'
 				  and b.trv_seq=#{trvSeq}) z 
 		   left join post_like c on z.POST_SEQ = c.post_seq 
-		    and z.REVIEW_PUB_YN='Y' and z.trv_seq=#{trvSeq}		
-			group by ifnull(c.post_seq, UUID()) order by z.crt_date desc
+		    and z.REVIEW_PUB_YN='Y' and z.trv_seq=#{trvSeq}	
+			group by ifnull(c.post_seq, UUID()) order by z.crt_date desc;
 		]]>
 	</select>
 

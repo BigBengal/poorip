@@ -213,7 +213,7 @@ function searchPool(){
 
 </script>
 </head>
-<body class="no-trans">
+<body class="no-trans" style="background:#f2f2f2;">
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">

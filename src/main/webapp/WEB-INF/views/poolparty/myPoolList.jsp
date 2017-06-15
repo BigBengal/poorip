@@ -188,7 +188,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 }
 </script>
 </head>
-<body class="no-trans" style="background-color: #f2f2f2;">
+<body class="no-trans" style="background-color: #edf5ff;">
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -211,7 +211,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			style="top: -80px">
 			<div class="backstretch mypage-backstretch">
 				<img
-					src="${pageContext.request.contextPath }/assets/images/bg-image-5.jpg" style="object-position:50% 10%;">
+					src="${pageContext.request.contextPath }/assets/images/bg-image-5.jpg" style="object-position:50% 80%;">
 			</div>
 		</div>
 		<div class="banner-caption">
@@ -233,11 +233,10 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 			<div class="text-center">
 				<img
 					src="${pageContext.request.contextPath }/assets/images/volleyball.png"
-					style="display: inline-block; margin-top: -10px; position: absolute; top: -0.5%; left: 45.5%;">
+					style="display: inline-block; margin-top: -10px; position: absolute; top: -0.5%; left: 48.5%;">
 				<h2
-					style="margin-bottom: 10%; border-bottom: solid 7px lightgrey; padding-bottom: 15px;">
-					<span style="font-family: 'Pacifico'; color: black;">My
-						PoolParty List </span>
+					style="margin-bottom: 10%; padding-bottom: 15px;">
+					<span style="font-family: 'Nanum Pen Script', serif;; color: black;">나의 풀 파티 목록 </span>
 				</h2>
 			</div>
 
@@ -272,9 +271,9 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 		<div class="row col-lg-12 col-md-12 col-sm-12">
 			<div class="text-center">
 				<h2
-					style="margin-bottom: 5%; border-bottom: solid 7px lightgrey; padding-bottom: 15px;">
-					<span style="font-family: 'Pacifico'; color: black;">
-						Waiting List </span>
+					style="margin-bottom: 5%;  padding-bottom: 15px;">
+					<span style="font-family: 'Nanum Pen Script', serif; color: black; border-bottom:dashed #9bd4d1;">
+						풀 대기 목록 </span>
 				</h2>
 			</div>
 			<div class="row col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
@@ -299,9 +298,8 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 	<div class="row col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
 		<div class="text-center">
 			<h2
-				style="margin-bottom: 5%; border-bottom: solid 7px lightgrey; padding-bottom: 15px;" id="notify">
-				<span style="font-family: 'Pacifico'; color: black;">Request
-					List </span>
+				style="margin-bottom: 5%;  padding-bottom: 15px; margin-right:25px;" id="notify">
+				<span style="font-family: 'Nanum Pen Script', serif; color: black; border-bottom:groove #9bd4d1;">풀 요청 목록</span>
 			</h2>
 		</div>
 		<div class="row" style="margin: auto; margin-left: 3%;">
