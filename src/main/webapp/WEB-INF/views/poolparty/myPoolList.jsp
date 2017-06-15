@@ -299,7 +299,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 		<div class="text-center">
 			<h2
 				style="margin-bottom: 5%;  padding-bottom: 15px; margin-right:25px;" id="notify">
-				<span style="font-family: 'Nanum Pen Script', serif; color: black; border-bottom:groove #9bd4d1;">풀 요청 목록</span>
+				<span style="font-family: 'Nanum Pen Script', serif; color: black; border-bottom:groove #9bd4d1;">받은 풀 요청 목록</span>
 			</h2>
 		</div>
 		<div class="row" style="margin: auto; margin-left: 3%;">
