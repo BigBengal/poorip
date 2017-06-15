@@ -150,15 +150,13 @@ $(function()	{
 			      		<tr>
 			      			<td class="t">추천 여부</td>
 			      			<td>
-			      			<label for="Recommand_blog">블로그 추천</label>
 			      			<input type="checkbox" id="Recommand_blog" name="recmdBlog" value="1"> &nbsp;&nbsp;&nbsp;
-							<label for="Recommand_emo">감정 추천</label>
-			      			<input type="checkbox" id="Recommand_emo" name="recmdEmoj" value="1"> &nbsp;&nbsp;&nbsp;
-							<label for="Recommand_tripad">트립 추천</label>
-			      			<input type="checkbox" id="Recommand_tripad" name="recmdTripAd" value="1"> &nbsp;&nbsp;&nbsp;
-							
-							 
-  		      				</td>
+			      			<label for="Recommand_blog">블로그 추천</label>
+							<input type="checkbox" id="Recommand_emo" name="recmdEmoj" value="1"> &nbsp;&nbsp;&nbsp;
+			      			<label for="Recommand_emo">감정 추천</label>
+							<input type="checkbox" id="Recommand_tripad" name="recmdTripAd" value="1"> &nbsp;&nbsp;&nbsp;
+			      			<label for="Recommand_tripad">트립 추천</label>
+							</td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
