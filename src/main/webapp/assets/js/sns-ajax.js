@@ -222,6 +222,29 @@ $(function() {
 
    });
 $(document).ready(function(){
+	$('.pool-post-contents #sns-postimg').change(function() {
+		 $(".sns-editimgnames").html('');
+		  var i = $(this).prev('label').clone();
+		  var file = this.files;
+		  
+		  for (var i = 0; i < file.length; i++) {
+		        $(".sns-editimgnames").append(file.length + "개의 사진이 업로드 되었습니다. ");
+		        return;
+		    }
+		 
+		});
+	
+	$('.pool-post-contents #sns-editimg').change(function() {
+		 $(".sns-editimgnames").html('');
+		  var i = $(this).prev('label').clone();
+		  var file = this.files;
+		  
+		  for (var i = 0; i < file.length; i++) {
+		        $(".sns-editimgnames").append(file.length + "개의 사진이 업로드 되었습니다. ");
+		        return;
+		    }
+		 
+		});
 
 	$.ajax( {
 		url : "sns/main/" + page,

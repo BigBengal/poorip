@@ -329,6 +329,11 @@
 											<p>${travelInfoFoodMain.contact}</p>
 										</div>
 										
+										<div class="col-sm-12 col-md-6 detail">
+											<h3 class="trvinfo">주소</h3>
+											<p>${travelInfoFoodMain.location}</p>
+										</div>
+										
 										<div class="row">
 											<div class="col-md-12 googlemapdiv">
 												<h5 class="trvinfo modalmap">위치 확인</h5>
@@ -450,6 +455,10 @@
 												<p>${travelInfoAttraction.contact}</p>
 											</div>
 											
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoAttraction.location}</p>
+											</div>
 											<div class="row">
 												<div class="col-md-12">
 													<h5 class="trvinfo modalmap">위치 확인</h5>
@@ -569,7 +578,10 @@
 												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoAttractionMain.contact}</p>
 											</div>
-											
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoAttractionMain.location}</p>
+											</div>
 
 											<div class="row">
 												<div class="col-md-12">
@@ -692,6 +704,10 @@
 												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoActivity.contact}</p>
 											</div>
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoActivity.location}</p>
+											</div>
 											
 
 											<div class="row">
@@ -812,6 +828,10 @@
 											<div class="col-md-6 detail">
 												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoActivityMain.contact}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoActivityMain.location}</p>
 											</div>
 											
 
