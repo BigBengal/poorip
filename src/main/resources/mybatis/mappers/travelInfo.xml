@@ -187,7 +187,9 @@
 			       #{contact },
 			       0,
 			       #{luxury },
-			       0,0,0)
+			       #{recmdBlog },
+			       #{recmdEmoj },
+			       #{recmdTripAd })
       ]]>
     </insert>
     
