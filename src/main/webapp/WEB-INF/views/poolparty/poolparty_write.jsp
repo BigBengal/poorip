@@ -155,10 +155,10 @@
 					<div class="checks">
 				
 						<div class='col-sm-7 text-center pool-post-contents'>
-						<input type="radio"	id="update-reviewPubYn-y" name="reviewPubYn-edit" value="Y" checked  >
+						<input type="radio"	id="update-reviewPubYn-y" name="reviewPubYn" value="Y" checked  >
 							<label for="update-reviewPubYn-y" class="review-public-yn" id="review-public-y">후기 공개</label> 
 							
-						<input type="radio"	id="update-reviewPubYn-n" name="reviewPubYn-edit" value="N" >
+						<input type="radio"	id="update-reviewPubYn-n" name="reviewPubYn" value="N" >
 						<label for="update-reviewPubYn-n" class="review-public-yn" id="review-public-n">후기 비공개&nbsp;&nbsp;</label> 
 						
 					</div>
@@ -167,10 +167,10 @@
 			<div class="form-group">
 				<div class="checks">
 					<div class='col-sm-7 text-center pool-post-contents'>
-					<input type="radio" id="update-hidden-n" name="hidden-edit" value="N" checked data-toggle="toggle">
+					<input type="radio" id="update-hidden-n" name="hidden" value="N" checked data-toggle="toggle">
 						<label for="update-hidden-n" class="review-public-yn">SNS 등록</label> 
 						
-						<input type="radio" id="update-hidden-y" name="hidden-edit" value="Y" data-toggle="toggle">
+						<input type="radio" id="update-hidden-y" name="hidden" value="Y" data-toggle="toggle">
 						<label	for="update-hidden-y" class="review-public-yn">SNS 미등록</label> 
 						
 					</div>

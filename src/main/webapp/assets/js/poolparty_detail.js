@@ -170,6 +170,9 @@ $(document).ready(function(){
 						console.log("can NOT measure : "+heightV);
 						heightV = 400;
 					}
+					if(heightV < 200){
+						heightV = 200;
+					}
 // console.log(heightV);
 // console.log($(this).data('seq'));
 					Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
@@ -246,7 +249,7 @@ $(document).ready(function(){
 		       	var html = "<div id='modifyeachform'>" + $("#modifyform").html();
 				$( "#post-"+postSeq ).append(html);
 				showModify();
-				console.log(postSeq);
+//				console.log(postSeq);
 				$("#modifyeachform #update-postSeq").val(postSeq);
 			    $("#modifyeachform #update-title").val(response.data.title);
 			    $("#modifyeachform #update-contents").val(response.data.contents);
@@ -264,16 +267,16 @@ $(document).ready(function(){
 			    $("#modifyeachform #pooleditimg").attr("id","pooleditimg-" + postSeq );
 			    $("#modifyeachform label[for='pooleditimg']").attr("for","pooleditimg-" + postSeq );
 			    if (response.data.reviewPubYn == 'Y'){
-			    	$("#modifyeachform #update-reviewPubYn-y").prop("checked", true);
+			    	$("#modifyeachform #update-reviewPubYn-y-"+ postSeq ).prop("checked", true);
 			    } else {
-			    	$("#modifyeachform #update-reviewPubYn-n").prop("checked", true);
+			    	$("#modifyeachform #update-reviewPubYn-n-"+ postSeq ).prop("checked", true);
 			    }
 // $("#modifyeachform
 // #update-reviewPubYn").val(response.data.reviewPubYn).change();
 			    if (response.data.hidden == 'Y'){
-			    	$("#modifyeachform #update-hidden-y").prop("checked", true);
+			    	$("#modifyeachform #update-hidden-y-"+ postSeq ).prop("checked", true);
 			    } else {
-			    	$("#modifyeachform #update-hidden-n").prop("checked", true);
+			    	$("#modifyeachform #update-hidden-n-"+ postSeq ).prop("checked", true);
 			    }
 			    
 		    },
@@ -287,7 +290,7 @@ $(document).ready(function(){
 	// 글 공유 버튼
 	$(document).on("click",".sharepost",function() {
 		var postSeq = $(this).data("postseq");
-		console.log(postSeq);
+//		console.log(postSeq);
 		$( "#dialog-confirm_share" ).dialog({
 		    resizable: false,
 		    height: "auto",
@@ -314,7 +317,7 @@ $(document).ready(function(){
 				    	   return;
 				       }
 				    	// 통신 성공 (response.result == "success" )
-						console.log( "APPROVE" + response.data );
+//						console.log( "APPROVE" + response.data );
 				    	
 				    	
 				    },
@@ -395,42 +398,40 @@ $(document).ready(function(){
 		}
 	} );
 	$("#pool-img-changebtn").click(function() {
-				var imgVal = $('#pool-img-upload')
-				.val();
-				if (imgVal == '') {
-					swal("이미지 파일이 없습니다!")
-					return false;
-				}
+		var imgVal = $('#pool-img-upload')
+		.val();
+		if (imgVal == '') {
+			swal("이미지 파일이 없습니다!")
+			return false;
+		}
 
-				console.log("YO!?");
-				$("#pool-image-form")
-				.ajaxForm(
-						{
-							url : "/poorip/poolparty/changePic",
-							enctype : "multipart/form-data",
-							dataType : "json",
-							success : function(
-									response) {
-								$(
-								'#poolparty-Img-Modal')
-								.modal(
-								'toggle');
-								console
-								.log(response);
-								document
-								.getElementById("pool-main-pic").src = "/poorip"
-									+ response.data;
-								console
-								.log(response.data);
-							},
-							error : function(
-									data) {
-								console
-								.log("ajax 에러가 발생하였습니다.")
-							}
+		$("#pool-image-form")
+		.ajaxForm({
+					url : "/poorip/poolparty/changePic",
+					enctype : "multipart/form-data",
+					dataType : "json",
+					success : function(
+							response) {
+						$(
+						'#poolparty-Img-Modal')
+						.modal(
+						'toggle');
+						console
+						.log(response);
+						document
+						.getElementById("pool-main-pic").src = "/poorip"
+							+ response.data;
+						console
+						.log(response.data);
+					},
+					error : function(
+							data) {
+						console
+						.log("ajax 에러가 발생하였습니다.")
+					}
 
-						});
-			});
+				});
+	});
 	
 	$('.pool-post-contents .img-upload-pool').change(function() {
 		 $("#poolimgnames").html('');
@@ -513,7 +514,7 @@ function showList(){
 				}
 				
 				});
-				console.log(Nonmember)
+//				console.log(Nonmember)
 				
 				if(Nonmember==false) {
 					html = html +"<div class='row margin_up_down post-header nonmember'>";
@@ -593,7 +594,7 @@ function showList(){
 				 	$("#postList").append(html);
 			})
 			page++;
-			console.log("page:"+page);
+//			console.log("page:"+page);
 			
 			// galleria 슬라이드 실행
 			$(".galleria > img").load(function(){

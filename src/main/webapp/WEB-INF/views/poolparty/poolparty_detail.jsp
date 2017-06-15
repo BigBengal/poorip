@@ -334,7 +334,7 @@
 					<div class="pooldetails" data-usrseq="${pool.managerUsrSeq}">
 						<div style="position: relative; display: inline-block;">
 
-							<img src="${pool.managerProfile}">
+							<img src="${pool.managerProfile}" width="50px">
 						</div>
 						<div style="display: inline-block; position: absolute; margin-left:5%;">
 							<h4>
@@ -388,7 +388,7 @@
 				<div
 					class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links"
 					data-usrseq="${memberlist.usrSeq}">
-					<img src="${memberlist.profile}">
+					<img src="${memberlist.profile}" width="50px">
 					<h6 style="display: inline-block;">
 						<strong>${memberlist.usrNick}</strong>
 					</h6>
