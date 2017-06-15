@@ -246,11 +246,23 @@ $(document).ready(function(){
 		       	var html = "<div id='modifyeachform'>" + $("#modifyform").html();
 				$( "#post-"+postSeq ).append(html);
 				showModify();
-
+				console.log(postSeq);
 				$("#modifyeachform #update-postSeq").val(postSeq);
 			    $("#modifyeachform #update-title").val(response.data.title);
 			    $("#modifyeachform #update-contents").val(response.data.contents);
 			    $("#modifyeachform #update-trv-seq").val(response.data.trvSeq).change();
+			    $("#modifyeachform #update-reviewPubYn-y").attr("id","update-reviewPubYn-y-" + postSeq );
+			    $("#modifyeachform label[for='update-reviewPubYn-y']").attr("for","update-reviewPubYn-y-" + postSeq );
+			    $("#modifyeachform #update-reviewPubYn-n").attr("id","update-reviewPubYn-n-" + postSeq );
+			    $("#modifyeachform label[for='update-reviewPubYn-n']").attr("for","update-reviewPubYn-n-" + postSeq );
+			    
+			    $("#modifyeachform #update-hidden-n").attr("id","update-hidden-n-" + postSeq );
+			    $("#modifyeachform label[for='update-hidden-n']").attr("for","update-hidden-n-" + postSeq );
+			    $("#modifyeachform #update-hidden-y").attr("id","update-hidden-y-" + postSeq );
+			    $("#modifyeachform label[for='update-hidden-y']").attr("for","update-hidden-y-" + postSeq );
+			    
+			    $("#modifyeachform #pooleditimg").attr("id","pooleditimg-" + postSeq );
+			    $("#modifyeachform label[for='pooleditimg']").attr("for","pooleditimg-" + postSeq );
 			    if (response.data.reviewPubYn == 'Y'){
 			    	$("#modifyeachform #update-reviewPubYn-y").prop("checked", true);
 			    } else {
@@ -263,6 +275,7 @@ $(document).ready(function(){
 			    } else {
 			    	$("#modifyeachform #update-hidden-n").prop("checked", true);
 			    }
+			    
 		    },
 		    error: function( XHR, status, error ){
 		       console.error("ERROR");

@@ -217,7 +217,7 @@ public class PoolPartyController {
 		if (userVo.getUsrSeq() != reviewVo.getUsrSeq())
 			return "redirect:/poolparty/"+poolSeq;
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
-
+		System.out.println(postUploadFiles);
 		SNSService.updatePost( reviewVo, postUploadFiles);
 		
 		return "redirect:/poolparty/"+poolSeq;

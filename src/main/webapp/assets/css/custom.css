@@ -7,6 +7,9 @@ Created:November 2014
 License: Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/)
 File Description: Place here your custom CSS styles
 */
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
 .ui-autocomplete {
 	position: absolute;
 	cursor: default;
@@ -562,18 +565,18 @@ File Description: Place here your custom CSS styles
 	overflow-y: scroll;
 } */
 .sns-modal-title {
-	height: 40px;
 	text-align: center;
-	padding-top: 5px;
-	margin: 3px;
+	font-family: 'Nanum Pen Script', serif;
+	
 }
 
 .sns-modal-title h3 {
 	padding: 10px;
 	margin-top: 0px;
-	background-color: #fdfdfd;
-	border: solid #d3d6d8;
-	border-radius: 5px;
+	margin-bottom: 0px;
+	background-color: #e8e8e8;;
+	font-size: 35px;
+	font-weight: bold;
 }
 
 .form-group.sns-write-group.sns-buttons {
@@ -1193,4 +1196,40 @@ display: inline-block;
 #surveyQ1 label {
 	float:left;
 	width:24%;
+}
+
+.pool-post-contents {
+	margin:auto;
+	float:none;
+}
+
+.poolpostimglabel {
+	    padding: 10px;
+    border: solid 3px lightblue;
+    width: 100%;
+        border-radius: 5px;
+}
+
+.poolpostimglabel:hover {
+	background-color:lightblue;
+}
+
+.review-public-yn {
+	width:43%;
+	padding:7px;
+	border: solid 2px lightgrey;
+	    border-radius: 5px;
+	    cursor:pointer;
+}
+
+.pool-post-contents input[type="radio"] {
+	display:none;
+}
+
+.pool-post-contents input[type="radio"]:checked + label.review-public-yn {
+  background-color: #f7e4e4;
+}
+
+.sns-post-footer.gray_button {
+	padding:12px;
 }

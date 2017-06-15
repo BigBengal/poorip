@@ -21,28 +21,27 @@
 						value="${authUser.usrSeq}">
 						<input class="ignore" type="hidden" name="poolSeq" value="${pool.poolSeq}">
 					<div class="sns-modal-title">
-						<h3>Pool Post Write Form</h3>
+						<h3><strong>풀 파티 글 </strong></h3>
 					</div>
 					<div class="write-main block" id="sns-write2"
-						style="margin-right: 5%;">
+						style="margin-right: 5%; background:#f3f3f3  ">
 						<div class="form-group sns-write-group" style="margin-top: 30px">
-							<label class="control-label col-sm-3" for="title">제목 </label>
-							<div class='col-sm-7'>
-								<input type="text" class="form-control"  name="title" />
+							
+							<div class='col-sm-7 pool-post-contents'>
+								<input type="text" class="form-control"  name="title" placeholder="제목.." />
 							</div>
 						</div>
 						<div class="form-group sns-write-group">
-							<label class="control-label col-sm-3" for="contents">내용 </label>
-							<div class='col-sm-7'>
+							
+							<div class='col-sm-7 pool-post-contents'>
 								<textarea class="form-control" name="contents"
-									rows="5"></textarea>
+									rows="5" placeholder="내용.."></textarea>
 							</div>
 						</div>
 						<div class="form-group sns-write-group">
 							<div class="selectbox">
-								<label class="control-label col-sm-3" for="trvSeq">관련
-									여행지 선택</label>
-								<div class='col-sm-7'>
+							
+								<div class='col-sm-7 pool-post-contents'>
 									<select class="form-control" name="trvSeq">
 										<option value="-1" selected>관련 여행지 없음</option>
 										<c:forEach items="${travelVo }" var="travelVo"
@@ -55,43 +54,46 @@
 						</div>
 						<div class="form-group sns-write-group">
 							<div>
-								<label class="control-label col-sm-3" for="file">사진 올리기</label>
-								<div class='col-sm-7'>
+								
+								<div class='col-sm-7 pool-post-contents'>
 									<input type="file" name="file" multiple="multiple"
-										style="vertical-align: bottom;">
+										style="vertical-align: bottom; display:none;" id="poolpostimg" class="img-upload-pool">
+									<label for="poolpostimg" style="cursor:pointer;" class="poolpostimglabel">사진 추가</label>
+									<div id="poolimgnames"></div>
 								</div>
 							</div>
 						</div>
 						<div class="form-group sns-write-group">
-							<div class="checks">
-								<label class="control-label col-sm-3" for="reviewPubYn">후기
-									공개 여부 </label>
-								<div class='col-sm-7 text-center'>
-									<label for="reviewPubYn">공개</label> <input type="radio"
-										id="reviewPubYn2" name="reviewPubYn" value="Y" checked
-										data-toggle="toggle">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-										for="reviewPubYn">비공개&nbsp;&nbsp;</label> <input type="radio"
-										id="reviewPubYn2" name="reviewPubYn" value="N"
-										data-toggle="toggle">
+								<h5><strong>후기 공개 여부</strong></h5>
+								
+								<div class='col-sm-7 text-center pool-post-contents'>
+									<input type="radio"
+										id="reviewPubYn1" name="reviewPubYn" value="Y" checked
+										>
+									<label for="reviewPubYn1" class="review-public-yn">공개</label>   <input type="radio"
+										id="reviewPubYn2" name="reviewPubYn" value="N">
+										 <label
+										for="reviewPubYn2" class="review-public-yn">비공개</label>
 								</div>
-							</div>
+						
 						</div>
-						<div class="form-group">
+						<div class="form-group sns-write-group">
 							<div class="checks">
-								<label class="control-label col-sm-3" for="reviewPubYn">개인
-									SNS 등록 여부 : </label>
-								<div class='col-sm-7 text-center'>
-									<label for="hidden">등록</label> <input type="radio" id="hidden"
+								<h5><strong>개인 SNS 등록 여부</strong></h5>
+								<div class='col-sm-7 text-center pool-post-contents'>
+									<input type="radio" id="hidden1"
 										name="hidden" value="N" checked data-toggle="toggle">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-										for="hidden">미등록</label> <input type="radio" id="hidden"
+									<label for="hidden1" class="review-public-yn">등록</label> 
+									
+									<input type="radio" id="hidden2"
 										name="hidden" value="Y" data-toggle="toggle">
+										<label class="review-public-yn"
+										for="hidden2">미등록</label> 
 								</div>
 							</div>
 						</div>
 						<div class="form-group sns-write-group"
-							style="margin-left: 0px; text-align: center; margin: 5%;">
+							style="margin-left: 0px; text-align: center; margin: 5%; margin-top:10%;">
 
 							<button type="submit" class="sns-post-footer gray_button" style="width: 30%;">게시글
 								올리기</button>
@@ -115,23 +117,23 @@
 		<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 		<input class="ignore" type="hidden" name="poolSeq" value="${pool.poolSeq}">
 		<input class="ignore" type="hidden" id="update-postSeq" name="postSeq" value="">
-		<div class="write-main block" id="post-modify">
+		<div class="write-main block" id="post-modify" style="margin-top: 30px; background: #f7f8f9; padding: 30px; border-radius: 12px;">
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="title">제목  </label>
-				<div class='col-sm-7'>
-					<input type="text" class="form-control" id="update-title" name="title" value=""/>
+				
+				<div class='col-sm-7 pool-post-contents'>
+					<input type="text" class="form-control " id="update-title" name="title" value="" placeholder="제목 .."/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="contents">내용  </label>
-				<div class='col-sm-7'>
-					<textarea class="form-control" id="update-contents" name="contents" rows="5"></textarea>
+				
+				<div class='col-sm-7 pool-post-contents'>
+					<textarea class="form-control" id="update-contents" name="contents" rows="5" placeholder="내용 .."></textarea>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="selectbox">
-					<label class="control-label col-sm-3" for="trvSeq">관련 여행지</label>
-					<div class='col-sm-7'>
+					
+					<div class='col-sm-7 pool-post-contents'>
 						<select class="form-control" id="update-trv-seq" name="trvSeq">
 							<option value="-1" selected>관련 여행지 선택</option>
 							<c:forEach items="${travelVo }" var="travelVo" varStatus="status">
@@ -142,40 +144,41 @@
 				</div>
 			</div>
 			<div class="form-group">
-					<div>
-						<label class="control-label col-sm-3" for="file">사진 올리기</label>
-						<div class='col-sm-7'>
-							<input type="file" name="file" multiple="multiple" style="vertical-align: bottom;">
-						</div>
+					<div class='col-sm-7 pool-post-contents'>
+									<input type="file" name="file" multiple="multiple"
+										style="vertical-align: bottom; display:none;" id="pooleditimg" class="img-edit-pool">
+									<label for="pooleditimg" style="cursor:pointer;" class="poolpostimglabel">사진 추가</label>
+									<div class="pool-editimgnames"></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="checks">
-						<label class="control-label col-sm-3" for="reviewPubYn">후기 공개 여부  </label>
-						<div class='col-sm-7 text-center'>
-							<label for="reviewPubYn">공개</label> 
-							<input type="radio"	id="update-reviewPubYn-y" name="reviewPubYn" value="Y" checked data-toggle="toggle">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<label for="reviewPubYn">비공개&nbsp;&nbsp;</label> 
-						<input type="radio"	id="update-reviewPubYn-n" name="reviewPubYn" value="N" data-toggle="toggle">
+				
+						<div class='col-sm-7 text-center pool-post-contents'>
+						<input type="radio"	id="update-reviewPubYn-y" name="reviewPubYn-edit" value="Y" checked  >
+							<label for="update-reviewPubYn-y" class="review-public-yn" id="review-public-y">후기 공개</label> 
+							
+						<input type="radio"	id="update-reviewPubYn-n" name="reviewPubYn-edit" value="N" >
+						<label for="update-reviewPubYn-n" class="review-public-yn" id="review-public-n">후기 비공개&nbsp;&nbsp;</label> 
+						
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="checks">
-					<label class="control-label col-sm-3" for="reviewPubYn">개인 SNS 등록 여부  </label>
-					<div class='col-sm-7 text-center'>
-						<label for="hidden">등록</label> 
-						<input type="radio" id="update-hidden-n" name="hidden" value="N" checked data-toggle="toggle">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<label	for="hidden">미등록</label> 
-						<input type="radio" id="update-hidden-y" name="hidden" value="Y" data-toggle="toggle">
+					<div class='col-sm-7 text-center pool-post-contents'>
+					<input type="radio" id="update-hidden-n" name="hidden-edit" value="N" checked data-toggle="toggle">
+						<label for="update-hidden-n" class="review-public-yn">SNS 등록</label> 
+						
+						<input type="radio" id="update-hidden-y" name="hidden-edit" value="Y" data-toggle="toggle">
+						<label	for="update-hidden-y" class="review-public-yn">SNS 미등록</label> 
+						
 					</div>
 				</div>
 			</div>
 			<div class="form-group-button">
-				<div class="col-md-12" style="padding-left: 35%">
-					<button type="submit" class="btn btn-default col-lg-6 center-block">게시글 수정</button>
+				<div class="col-md-12" style="padding-left: 35%; margin-top: 30px;">
+					<button type="submit" class="btn btn-default col-lg-6 center-block" style="margin-bottom: 30px; margin-top: 30px;">게시글 수정</button>
 				</div>
 			</div>
 		</div>

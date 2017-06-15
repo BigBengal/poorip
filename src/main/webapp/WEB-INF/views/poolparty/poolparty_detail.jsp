@@ -477,7 +477,7 @@
 							<c:if test="${post.trvName ne '관련 여행정보 없음' }">
 								<h6>
 									in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName }
-										${member }</span>
+										</span>
 								</h6>
 							</c:if>
 						</div>

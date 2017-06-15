@@ -118,7 +118,7 @@
 				<input class="ignore" type="hidden" name="usrSeq" value="${authUser.usrSeq}">
 				<input class="ignore" type="hidden" name="usrPic" value="${authUser.usrProfile}" id="usr-profile-pic">
 				<div class="sns-modal-title">
-				<h3>Post Write Form</h3>
+				<h3>SNS 글 작성</h3>
 				</div>
 				<div class="write-main block" id="sns-write" style="margin-right: 5%;">
 					<div class="form-group sns-write-group" style="margin-top:30px">
