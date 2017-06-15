@@ -8,12 +8,15 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+	<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+	rel="stylesheet">
 	<style>
-	body {
-		background-color: #f7f7f7;
-		font-family: 'Roboto';
-	}
+/* 	body { */
+/* 		background-color: #f7f7f7; */
+/* 		font-family: 'Roboto'; */
+/* 	} */
 	
 	.container {
 		margin: 150px auto;
@@ -21,7 +24,7 @@
 	}
 	
 	th, td {
-		padding: 5px;
+		padding-bottom: 5px;
 	}
 	
 	table {
@@ -30,11 +33,6 @@
 		border: 1px solid #bcbcbc;
 	}
 	</style>
-
-<!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet">
 <script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery-3.2.1.js"></script>
 <script type="text/javascript">
