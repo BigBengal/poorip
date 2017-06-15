@@ -207,7 +207,7 @@
 											<div class="col-sm-12 col-md-6" style="vertical-align: top;">
 												<c:if test="${! empty travelInfoFood.wordCloud}">
 													<h3 class="trvinfo">WordCloud</h3>
-													<img src="/poorip/upload/wc/Seta.jpg">
+													<img src="/poorip/upload/wc/${travelInfoFood.wordCloud}">
 												</c:if>
 											</div>
 									
@@ -316,22 +316,30 @@
 										<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFoodMain.trvSeq}" style="min-height:400px; padding: 0px;">
 											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
 										</div>
-										<div class="col-sm-12 col-md-6 detail">
-											<h3 class="trvinfo">영업시간</h3>
-											<p>${travelInfoFoodMain.hours}</p>
+										<div class="col-sm-12 col-md-6">
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">영업시간</h3>
+												<p>${travelInfoFoodMain.hours}</p>
+											</div>
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">가격</h3>
+												<p>${travelInfoFoodMain.price}</p>
+											</div>
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">연락 정보</h3>
+												<p>${travelInfoFoodMain.contact}</p>
+											</div>
+											
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoFoodMain.location}</p>
+											</div>
 										</div>
-										<div class="col-sm-12 col-md-6 detail">
-											<h3 class="trvinfo">가격</h3>
-											<p>${travelInfoFoodMain.price}</p>
-										</div>
-										<div class="col-sm-12 col-md-6 detail">
-											<h3 class="trvinfo">연락 정보</h3>
-											<p>${travelInfoFoodMain.contact}</p>
-										</div>
-										
-										<div class="col-sm-12 col-md-6 detail">
-											<h3 class="trvinfo">주소</h3>
-											<p>${travelInfoFoodMain.location}</p>
+										<div class="col-sm-12 col-md-6" style="vertical-align: top;">
+											<c:if test="${! empty travelInfoFoodMain.wordCloud}">
+												<h3 class="trvinfo">WordCloud</h3>
+												<img src="/poorip/upload/wc/${travelInfoFoodMain.wordCloud}">
+											</c:if>
 										</div>
 										
 										<div class="row">
