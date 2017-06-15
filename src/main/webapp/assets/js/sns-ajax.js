@@ -186,7 +186,7 @@ var fetchList = function() {
 							var heightV = $pic.height();
 //							console.log("postPic["+i+"]:"+postPic[i].postSeq+", heightV:"+heightV);
 							if ( heightV != null ){
-								if( heightV == 0) heightV = 400;
+								if( heightV == 0 || heightV <= 200) heightV = 400;
 								Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
 								Galleria.run('#postPic-'+postPic[i].postSeq , { debug: false, lightbox: true , height: heightV});
 							}

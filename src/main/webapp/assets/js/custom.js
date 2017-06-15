@@ -11,10 +11,7 @@
  toggle between hiding and showing the dropdown content */
 
 $(function() {
-	
-	
 
-	
 	var dateFormat = "yy-mm-dd", from = $(".fromDatePick").datepicker({
 		dateFormat : 'yy-mm-dd',
 		defaultDate : "+1w",
@@ -192,49 +189,5 @@ function signOut() {
 		console.log('User signed out.');
 	});
 };
-
-$(document)
-		.ready(
-				function() {
-					$("#pool-img-changebtn")
-							.click(
-									function() {
-										var imgVal = $('#pool-img-upload')
-												.val();
-										if (imgVal == '') {
-											swal("이미지 파일이 없습니다!")
-											return false;
-										}
-
-										console.log("YO!?");
-										$("#pool-image-form")
-												.ajaxForm(
-														{
-															url : "/poorip/poolparty/changePic",
-															enctype : "multipart/form-data",
-															dataType : "json",
-															success : function(
-																	response) {
-																$(
-																		'#poolparty-Img-Modal')
-																		.modal(
-																				'toggle');
-																console
-																		.log(response);
-																document
-																		.getElementById("pool-main-pic").src = "/poorip"
-																		+ response.data;
-																console
-																		.log(response.data);
-															},
-															error : function(
-																	data) {
-																console
-																		.log("ajax 에러가 발생하였습니다.")
-															}
-
-														});
-									});
-				});
 
 

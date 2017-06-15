@@ -33,18 +33,24 @@ public class MatchingController {
 		// 내정보
 		UserVo myInfo = matchingService.getUserInfo( usrSeq );
 		
-		// 내정보가 없을때 로그인안했을때 메인 화면으로
-		if (myInfo == null)
-			return "redirect:/";
-		
-		if( myInfo.getUsrPref1() == null || myInfo.getUsrPref2() == null || myInfo.getUsrPref3() == null || myInfo.getUsrPref4() == null || myInfo.getUsrPref5() == null ) {
-			return "redirect:/matching/survey";
+		// 클릭수가 없고 설문지를 안 했을 떄
+		if (myInfo == null){
+			model.addAttribute("scrapfail","nohit");
+			return "/PooripMain";	
 		}
+		
+		//where에서 걸러짐(안 탐)
+//		if( myInfo.getUsrPref1() == null || myInfo.getUsrPref2() == null || myInfo.getUsrPref3() == null || myInfo.getUsrPref4() == null || myInfo.getUsrPref5() == null ) {
+//			return "redirect:/matching/survey";
+//		}
+		
 		// 내 스크립 시티 정보
 		List<ScrapCityVo> myCityList = matchingService.getMyCityList( usrSeq );
 		
-		if (myCityList == null)
-			return "redirect:/";
+		if (myCityList == null || myCityList.size() == 0){
+			model.addAttribute("scrapfail","noscrap");
+			return "/PooripMain";	
+		}
 
 		// 나를 뺀 전체 유저 리스트
 		List<UserVo> matchingUserList = matchingService.getMatchingList( userVo );
