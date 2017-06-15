@@ -1189,3 +1189,8 @@ display: inline-block;
 	background: url("/poorip/assets/images/recom_t_1.png") 100% 100%;
 	background-size: contain;
 }
+
+#surveyQ1 label {
+	float:left;
+	width:24%;
+}
