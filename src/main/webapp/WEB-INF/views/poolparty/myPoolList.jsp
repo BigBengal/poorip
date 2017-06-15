@@ -220,7 +220,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 					data-animation-effect="fadeIn">
 					<h1 class="text-center">
 						<span style="font-family: 'Pacifico'; color: white;">Poorip<span></span>
-							<span>와 인연</span>
+							<span>과 인연</span>
 					</h1>
 				</div>
 			</div>
@@ -236,7 +236,7 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 					style="display: inline-block; margin-top: -10px; position: absolute; top: -0.5%; left: 48.5%;">
 				<h2
 					style="margin-bottom: 10%; padding-bottom: 15px;">
-					<span style="font-family: 'Nanum Pen Script', serif;; color: black;">나의 풀 파티 목록 </span>
+					<span style="font-family: 'Nanum Pen Script', serif; color: black;">나의 풀 파티 목록 </span>
 				</h2>
 			</div>
 

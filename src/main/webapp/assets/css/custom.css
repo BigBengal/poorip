@@ -1263,3 +1263,7 @@ display: inline-block;
 	border-bottom: solid 3px #9bd4d1;
 	padding: 10px 30px 10px 30px;
 }
+
+.poolmember a {
+	text-decoration:none;
+}
