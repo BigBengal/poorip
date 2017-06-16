@@ -360,7 +360,7 @@
 	
 	<!-- 풀 만들기 다이얼로그 -->
 	<c:forEach var="matchingScore" items="${matchingScore }" varStatus="status">
-		<form id="making-pool-form-${matchingScore.usrSeq }" action="${pageContext.request.contextPath}/poolparty/make" data-usrseq="${matchingScore.usrSeq }">
+		<form id="making-pool-form-${matchingScore.usrSeq }" action="${pageContext.request.contextPath}/poolparty/make" data-usrseq="${matchingScore.usrSeq }" method="post">
 		<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
 			<div id="making-pool-${matchingScore.usrSeq }" title="MAKE A POOL" style="display:none">
 			  <p><span  style="float:left; margin:12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의 풀을 생성하시겠습니까?</p>

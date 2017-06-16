@@ -159,6 +159,13 @@ $(document).ready(function(){
 function searchPool(){
    	$("#searchArea").empty();
 	// Ajax 통신
+	$('html, body').animate({
+        scrollTop: $("#poolsearchtop").offset().top -100
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = "#poolsearchtop";
+      });
 	$.ajax( {
 	    url : "poolparty/poolsearchList",
 	    type: "post",
@@ -177,7 +184,7 @@ function searchPool(){
 	    	}
 	    	if( response.data.length == 0 ) {
 	    		console.log("end");
-	    		$("#searchArea").append("<div class='col-md-6'>검색결과가 없습니다.</div>");
+	    		$("#searchArea").append("<div class='col-md-12 pool-not-found' >아쉽지만 찾으시는 여행지의 풀파티가.. 아직은 없습니다! 하나 만들어보는건 어떠신가요?</div>");
 	    		isEnd = true;
 	    		return;
 	    	}
@@ -188,11 +195,12 @@ function searchPool(){
 								"<a href='poolparty/"+vo.poolSeq+"'>"+
 									"<img src='/poorip"+vo.poolPic+"'>"+
 							"</div>" +
-								"<p>" + vo.poolName + "</p>" +
-								
+								"<p style='text-align:center;'>" + vo.poolName + "</p>" +
 							"</a>"+
-							"<div class='pool-comment'>" +
-							"<p>" +vo.poolComment +  "</p>" +
+							"<div>"+
+							"<p>" + vo.poolComment + "</p>" +
+							"<div class='pool-cityndate'>" +
+							"<p style='text-align:center;'>[" +vo.ctyName +  "]&nbsp" + vo.fromDate + "&nbsp - &nbsp" + vo.toDate + "</p>" +														
 							"</div>" +
 							"</div>";
 				$("#searchArea").append(html);
@@ -293,7 +301,7 @@ function searchPool(){
 			</div>
 		</div>
 	</div>
-	<div class="pool-party-content" style="background-color:#ececec;;">
+	<div class="pool-party-content" style="background-color:#ececec;" id="poolsearchtop">
 	<div class="container" >
 		<div style="font-family: 'Nanum Pen Script', serif;  text-align: center">
 			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 48%;" src="/poorip/assets/images/firework.png" style="width:50px; height:50px;"/>Member 모집 중인 Pool 파티</h2>

@@ -717,7 +717,7 @@ function reqeustJoin(){
 	    	if(response.result == "success" ) {
 	    		swal({
 	    			  title: "",
-	    			  text: "<span style='color:#75a6ca;'>풀</span> 가입을 요청했습니다!",
+	    			  text: "<span style='color:#75a6ca;'><strong>풀</span> 가입을 요청했습니다!</strong>",
 	    			  html: true
 	    			});
 	    		$("#reqeustjoin").text("승인 대기중");
