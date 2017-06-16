@@ -627,30 +627,14 @@ function showList(){
 // console.log(i+"번째 이미지");
 // console.log($pic.attr('src'));
 					var heightV = $pic.height();
-// console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
+ console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
 					if ( heightV == 0 || heightV <= 200){
 						heightV = 350;
 					}
-					Galleria.run('#postPic-'+postPic[i] , { debug: false, lightbox: true , height: heightV});
+					Galleria.run('#postPic-'+postPic[i] , { debug: true, lightbox: true , height: heightV});
 				}
 				postPic =[];
 			})
-			
-// $(".galleria").each(function(index){
-// $(this).find("img").each(function(index){
-// if(index == 0){
-// // console.log(index+"번째 이미지");
-// // console.log($(this).attr('src'));
-// var heightV = $(this).height();
-// var postSeq = $(this).data('seq')
-// // console.log(heightV);
-// // console.log($(this).data('seq'));
-// Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
-// Galleria.run('#postPic-'+postSeq , { lightbox: true , height: heightV});
-// }
-// })
-// });
-			
 			
 	    },
 	    error: function( XHR, status, error ){
