@@ -316,12 +316,12 @@
 					<c:choose>
 						<c:when test="${like == true}">
 							<div id="poollike" class="poollikeon menu_links" data-onoff="off">
-								${pool.likeCnt}</div>
+								<strong>${pool.likeCnt}</strong></div>
 
 						</c:when>
 						<c:otherwise>
 							<div id="poollike" class="poollikeoff menu_links" data-onoff="on">
-								${pool.likeCnt}</div>
+								<strong>${pool.likeCnt}</strong></div>
 
 						</c:otherwise>
 					</c:choose>
@@ -343,9 +343,9 @@
 						</div>
 					</div>
 					<c:if test="${pool.fromDate != null or pool.toDate != null}">
-					<h5 class="pooltraveldate">
+					<h5 class="pooltraveldate" style="text-align:center;">
 						
-						 여행 기간  [ ${pool.fromDate} ~ ${pool.toDate} ] 
+						 여행 기간  [ ${pool.fromDate} ~ ${pool.toDate} ]<br> 
 					</c:if>
 					<c:if test="${pool.ctyName != null}">
 							( ${pool.ctyName} )

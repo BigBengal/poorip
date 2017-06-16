@@ -1022,6 +1022,9 @@ border-radius: 5px 0 0 5px;
     -ms-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 	
 }
 
@@ -1208,7 +1211,7 @@ display: inline-block;
 
 .poolpostimglabel {
 	    padding: 10px;
-    border: solid 3px lightblue;
+    border: dotted 3px lightblue;
     width: 100%;
         border-radius: 5px;
 }
@@ -1267,3 +1270,9 @@ display: inline-block;
 .poolmember a {
 	text-decoration:none;
 }
+
+.pool-not-found {
+	text-align:center;
+	font-family:'Nanum Pen Script', serif;
+	font-size:2em;
+	}

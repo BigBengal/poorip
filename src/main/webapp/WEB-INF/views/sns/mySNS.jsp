@@ -150,7 +150,7 @@
 
 							<div class='col-sm-7 pool-post-contents'>
 								<select class="form-control" name="trvSeq">
-									<option value="-1" selected>관련 여행지 없음</option>
+									<option value="-1" selected>관련 여행지 없음 (스크랩된 여행지 중)</option>
 									<c:forEach items="${travelVo }" var="travelVo"
 										varStatus="status">
 										<option value="${travelVo.trvSeq }">${travelVo.name }</option>

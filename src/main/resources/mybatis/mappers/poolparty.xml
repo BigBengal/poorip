@@ -162,6 +162,7 @@
  		    pool_public_yn as poolPublicYn, 
  		    from_date as fromDate, 
  		    to_date as toDate,
+ 		    city.CTY_NAME as ctyName,
 	        HIT
  		FROM pool_party, city
  		WHERE 1=1

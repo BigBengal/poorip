@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -237,13 +238,22 @@ public class PoolPartyController {
 
 	// 풀파티 생성 URL
 	@Auth
-	@RequestMapping("/make")
+	@RequestMapping(value ="/make", method = RequestMethod.POST )
 	public String MakePoolParty(@RequestParam(value="usrSeq",required=true) int userSeq,
 								@AuthUser UserVo authUser
 								){
 		int poolpartyNum = poolPartyService.createPoolparty(authUser, userSeq);
 		return "redirect:/poolparty/"+poolpartyNum;
 	}
+	
+	@Auth
+	@RequestMapping(value ="/make", method = RequestMethod.GET )
+	public String RedirectPoolParty(@AuthUser UserVo authUser
+								){
+		return "redirect:/";
+	}
+	
+
 	
 	///////////////////////////////////////
 	
@@ -270,6 +280,7 @@ public class PoolPartyController {
 	public JSONResult searchPool(@ModelAttribute PoolPartyVo poolPartyVo) {
 	
 		List<PoolPartyVo> poolList = poolPartyService.getPoolList(poolPartyVo);
+		System.out.println(poolList);
 		return JSONResult.success(poolList);
 	}
 		
