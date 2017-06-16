@@ -255,7 +255,7 @@ File Description: Place here your custom CSS styles
 }
 
 .modal-body .col-md-6 img {
-	margin-top: 7%;
+/* 	margin-top: 7%; */
 }
 
 .modal-body .col-md-12 .review-pics-anchor {
@@ -292,8 +292,8 @@ File Description: Place here your custom CSS styles
 
 .modal-body .col-md-6.detail {
 	float: left;
-	clear: both;
-	margin-top: 30px;
+	clear: both;	
+/* 	margin-top: 30px; */
 }
 
 .my-info-banner {
