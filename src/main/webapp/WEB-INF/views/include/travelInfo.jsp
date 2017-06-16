@@ -22,7 +22,7 @@
 	style="text-align: center">
 	<input type="text"
 		style="margin-bottom: 20px; display: inline-block; width: 75%"
-		placeholder="Search any countries or cities" class="form-control" id="city-kwd"
+		placeholder="도시나 나라를 검색해주세요" class="form-control" id="city-kwd"
 		name="ctySeq" value="${cityName.ctyName}">
 	<a id="searchshowall" class="ui-button ui-widget ui-corner-right ui-button-icon-only" 
 		style="height: 34px; left: -6px; position: relative; top: -1px;">

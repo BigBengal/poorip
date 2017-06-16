@@ -83,6 +83,7 @@
 						<div class="checks">
 							
 							<div class='col-sm-7 text-center pool-post-contents'>
+						
 							<input type="radio"
 									id="reviewPubYn-sns-post-y" name="reviewPubYn" value="Y" checked
 									data-toggle="toggle">
@@ -175,6 +176,7 @@
 						<div class="checks">
 
 							<div class='col-sm-7 text-center pool-post-contents'>
+								<h5><strong>후기 공개 여부</strong></h5>
 								<input type="radio" id="reviewPubYn-sns-y" name="reviewPubYn"
 									value="Y" checked data-toggle="toggle"> <label
 									for="reviewPubYn-sns-y" class="review-public-yn">공개</label> <input
@@ -188,6 +190,7 @@
 						<div class="checks">
 
 							<div class='col-sm-7 text-center pool-post-contents'>
+							<h5><strong>풀 공개 여부</strong></h5>
 								<input type="radio" id="share-sns-y" name="share" value="Y" checked
 									data-toggle="toggle"
 									onclick="div_share_show(this.value,'div-share-show');">
