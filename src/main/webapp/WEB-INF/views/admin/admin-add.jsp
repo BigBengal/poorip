@@ -39,7 +39,7 @@
 $(function()	{
 	console.log("STARY");
 	
-	$("#travelCat").val(2);
+	$("#travelCat").val(3);
 	$("#travleCty").on("change", function(){
 		// value 값으로 선택
 		var ctySeq = $(this).val();
