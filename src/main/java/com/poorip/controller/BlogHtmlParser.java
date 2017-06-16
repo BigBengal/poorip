@@ -30,9 +30,9 @@ public class BlogHtmlParser {
 	@RequestMapping("/insertCrawlData")
 	public String insertCrawlData() throws IOException, ParseException, InterruptedException {
 
-		for (int i = 562; i < 750; i++) {
+		for (int i = 631; i < 750; i++) {
 			TimeUnit.SECONDS.sleep(1);
-			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/France/Paris-restaurant/Paris-restaurant-" + i + ".html"), "UTF-8");
+			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/Austria/Vienna-restaurant/Vienna-restaurant-" + i + ".html"), "UTF-8");
 			
 			System.out.println(i);
 			Elements elements = doc.select(".se_editView.se_title");
@@ -78,8 +78,8 @@ public class BlogHtmlParser {
 			
 			
 			crawlDataVo.setTitle(title);
-			crawlDataVo.setCtrSeq(2);
-			crawlDataVo.setCtySeq(45);
+			crawlDataVo.setCtrSeq(5);
+			crawlDataVo.setCtySeq(47);
 			crawlDataVo.setCatSeq(2);
 			crawlDataVo.setContent(content.replaceAll("39", "'"));
 			crawlDataVo.setPubDate(pubDate2);
