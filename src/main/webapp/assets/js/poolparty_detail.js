@@ -627,7 +627,7 @@ function showList(){
 // console.log(i+"번째 이미지");
 // console.log($pic.attr('src'));
 					var heightV = $pic.height();
- console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
+// console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
 					if ( heightV == 0 || heightV <= 200){
 						heightV = 350;
 					}
