@@ -310,10 +310,8 @@ function rejectConfirmDialog(poolMemSeq, poolPartySeq, usrSeq){
 					<div class="col-md-4">
 						<img src="/poorip${requestList.poolPic}">
 					</div>
-					${requestList.poolInfo} <span class="poolmemberlist"> <img
-						src="${requestList.profile}"> ${requestList.usrNick}
-						<div
-							style="text-align: center; position: relative; bottom: 0; margin-top: 10%;">
+					${requestList.poolInfo} <span class="poolmemberlist"> <img src="${requestList.profile}" width="50px"> ${requestList.usrNick}
+						<div style="text-align: center; position: relative; bottom: 0; margin-top: 10%;">
 							<button class="btn btn-small"
 								onclick="aprvConfirmDialog(${requestList.poolMemSeq},${requestList.poolSeq},${requestList.usrSeq});">수락
 							</button>
