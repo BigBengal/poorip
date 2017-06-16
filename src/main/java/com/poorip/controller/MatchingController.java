@@ -70,13 +70,14 @@ public class MatchingController {
 			if(matchingScore.get(i).getUsrHashtag() != null)
 				matchingScore.get(i).setUsrHashtag(matchingScore.get(i).getUsrHashtag().replace("<", "&lt;"));
 		}
+		
 		for(int i=0; i<samePlanMemeber.size(); i++) {
 			if(samePlanMemeber.get(i).getUsrInfo() != null )
 				samePlanMemeber.get(i).setUsrInfo(samePlanMemeber.get(i).getUsrInfo().replace("<", "&lt;"));
 			if(samePlanMemeber.get(i).getUsrHashtag() != null)
 				samePlanMemeber.get(i).setUsrHashtag(samePlanMemeber.get(i).getUsrHashtag().replace("<", "&lt;"));
 		}
-		
+		System.out.println(matchingScore);
 		model.addAttribute( "isPoolMember", isPoolMember );
 		model.addAttribute( "matchingDateList", matchingDateList);
 		model.addAttribute( "samePlanDateList", samePlanDateList);
