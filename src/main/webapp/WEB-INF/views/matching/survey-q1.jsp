@@ -48,7 +48,7 @@
 
 						<div class="form-group" id="q1">
 							<div class="col-md-12 surveyQ" id="surveyQ1"
-								data-animation-effect="fadeIn">
+								data-animation-effect="fadeIn" style="margin-left:40px;">
 								<label class="col-sm-6 col-md-3" for="q1-1"> <input
 									id="q1-1" type="radio" name="usrPref1" value="A" /> <img
 									src="${pageContext.request.contextPath }/assets/images/group.png"
@@ -86,8 +86,7 @@
 							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
 								data-animation-effect="fadeIn">
 								<h1 class="text-center" style="font-size: 50px">
-									<span style="font-size: 50px; color: teal;">Q2</span> 1장의 사진을
-									골라주세요.
+									<span style="font-size: 50px; color: teal;">Q2</span> 어떤 손모양과 맞으시나요?
 								</h1>
 								<p class="lead text-center"></p>
 							</div>
@@ -205,7 +204,7 @@
 							<div class="col-md-8 col-md-offset-2 text-center surveyqtitle"
 								data-animation-effect="fadeIn">
 								<h1 class="text-center" style="font-size: 50px">
-									<span style="font-size: 50px; color: teal;">Q4</span> 눈앞에 여러가지 물건이 있다 <br>제일먼저 잡고 싶은 물건은?
+									<span style="font-size: 50px; color: teal;">Q4</span> 눈앞에 여러가지 물건이 있습니다. <br>제일먼저 잡고 싶은 물건은?
 								</h1>
 								<p class="lead text-center"></p>
 							</div>
