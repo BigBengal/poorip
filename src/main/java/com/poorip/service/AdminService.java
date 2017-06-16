@@ -39,14 +39,14 @@ public class AdminService {
 			if (multipartFile.isEmpty() == true) {
 				throw new GalleryUploadException( "MultipartFile is Empty" );
 			}
-			// 폴더가 없으면 폴더 생성
-			String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoVo.getTrvSeq();
-			System.out.println(travelInfoVo.getTrvSeq());
-			String saveFile = WebUtil.saveFile(multipartFile, pathName);
 			
-			// DB에 저장
-			travelInfoVo.setPicture(pathName+"/"+saveFile);
-			
+				// 폴더가 없으면 폴더 생성
+				String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoVo.getTrvSeq();
+				System.out.println(travelInfoVo.getTrvSeq());
+				String saveFile = WebUtil.saveFile(multipartFile, pathName);
+				
+				// DB에 저장
+				travelInfoVo.setPicture(pathName+"/"+saveFile);
 			
 		} catch (IOException ex) {
 			//1.log 남기기

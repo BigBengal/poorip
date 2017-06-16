@@ -31,7 +31,9 @@ public class BlogHtmlParser {
 	public String insertCrawlData() throws IOException, ParseException, InterruptedException {
 
 		for (int i = 631; i < 750; i++) {
+
 			TimeUnit.SECONDS.sleep(1);
+
 			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/Austria/Vienna-restaurant/Vienna-restaurant-" + i + ".html"), "UTF-8");
 			
 			System.out.println(i);
@@ -60,14 +62,12 @@ public class BlogHtmlParser {
 			/* String text2 = elements2.text(); */
 			CrawlDataVo crawlDataVo = new CrawlDataVo();
 			
-			/*String key = "AIzaSyCgGy9WeQ5FQCK8v3b8v_x5XTSL1YhtGKs";
+			String key = "AIzaSyBt-xzhDPM3uWf7-Lgh3Ob5vN570QYKH4s";
 	
+		
 			
-			Translate translate = TranslateOptions.newBuilder().setApiKey(key).build().getService();*/
-		/*	System.out.println(TranslateOptions.newBuilder().setApiKey(key).build().getApiKey());*/
-			
-			Translate translate = TranslateOptions.getDefaultInstance().getService();
-			
+		Translate translate = TranslateOptions.getDefaultInstance().getService();
+			System.out.println(TranslateOptions.getDefaultInstance().getProjectId());
 			
 			Translation translation =
 			        translate.translate(

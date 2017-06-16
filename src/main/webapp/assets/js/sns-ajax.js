@@ -186,7 +186,7 @@ var fetchList = function() {
 							var heightV = $pic.height();
 //							console.log("postPic["+i+"]:"+postPic[i].postSeq+", heightV:"+heightV);
 							if ( heightV != null ){
-								if( heightV == 0) heightV = 400;
+								if( heightV == 0 || heightV <= 200) heightV = 400;
 								Galleria.loadTheme('/poorip/assets/js/galleria.classic.js');
 								Galleria.run('#postPic-'+postPic[i].postSeq , { debug: false, lightbox: true , height: heightV});
 							}
@@ -222,6 +222,29 @@ $(function() {
 
    });
 $(document).ready(function(){
+	$('.pool-post-contents #sns-postimg').change(function() {
+		 $(".sns-editimgnames").html('');
+		  var i = $(this).prev('label').clone();
+		  var file = this.files;
+		  
+		  for (var i = 0; i < file.length; i++) {
+		        $(".sns-editimgnames").append(file.length + "개의 사진이 업로드 되었습니다. ");
+		        return;
+		    }
+		 
+		});
+	
+	$('.pool-post-contents #sns-editimg').change(function() {
+		 $(".sns-editimgnames").html('');
+		  var i = $(this).prev('label').clone();
+		  var file = this.files;
+		  
+		  for (var i = 0; i < file.length; i++) {
+		        $(".sns-editimgnames").append(file.length + "개의 사진이 업로드 되었습니다. ");
+		        return;
+		    }
+		 
+		});
 
 	$.ajax( {
 		url : "sns/main/" + page,

@@ -23,7 +23,8 @@
 				a.hit as hit,
 				a.RECMD_BLOG as recmdBlog,
 				a.RECMD_EMOJ as recmdEmoj,
-				a.RECMD_TRIPAD as recmdTripAd
+				a.RECMD_TRIPAD as recmdTripAd,
+				a.WORDCLOUD as wordCloud
 		 from travel_info a 
 		 where a.cty_seq = #{ctySeq} 
 		   and a.trv_seq > 0 
@@ -88,7 +89,8 @@
          		a.hit as hit,
 				a.RECMD_BLOG as recmdBlog,
 				a.RECMD_EMOJ as recmdEmoj,
-				a.RECMD_TRIPAD as recmdTripAd
+				a.RECMD_TRIPAD as recmdTripAd,
+				a.WORDCLOUD as wordCloud
 		 from travel_info a
 		 where a.CAT_SEQ <> 1
 		 
@@ -109,13 +111,14 @@
 				cty_rank.hit,
 				a.RECMD_BLOG as recmdBlog,
 				a.RECMD_EMOJ as recmdEmoj,
-				a.RECMD_TRIPAD as recmdTripAd
+				a.RECMD_TRIPAD as recmdTripAd,
+				a.WORDCLOUD as wordCloud
 		 from travel_info a,
 		 		 (select cty_seq, sum(hit) as hit
 				 from travel_info
 				 where CAT_SEQ != 1
 				 group by cty_seq
-				 order by sum(hit)
+				 order by sum(hit) desc
 				 limit 0,12 ) cty_rank
 		where a.CAT_SEQ = 1
 		  and a.CTY_SEQ = cty_rank.cty_seq
@@ -145,7 +148,7 @@
 				 from travel_info
 				 where CAT_SEQ != 1
 				 group by cty_seq
-				 order by sum(hit)
+				 order by sum(hit) desc
 				 limit 0,12 ) cty_rank
 		where a.CAT_SEQ = 1
 		  and a.CTY_SEQ = cty_rank.cty_seq
@@ -187,7 +190,10 @@
 			       #{contact },
 			       0,
 			       #{luxury },
-			       0,0,0)
+			       #{recmdBlog },
+			       #{recmdEmoj },
+			       #{recmdTripAd },
+			       #{wordCloud } )
       ]]>
     </insert>
     

@@ -56,31 +56,31 @@ public class MainController {
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
 		
 		for (int i = 0; i < travelInfoVo.size(); i++) {
-			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= MAX_COUNT*4)
+			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= MAX_COUNT*4){
 				break;
+			}
 			if (travelInfoVo.get(i).getCatSeq() == 1) {
-		
-				if (++citylistMainCnt > MAX_COUNT)
+				if (citylistMainCnt >= MAX_COUNT)
 					continue;
 				citylistMain.add(travelInfoVo.get(i));
-			}
-			if (travelInfoVo.get(i).getCatSeq() == 2) {
-				if (++foodlistMainCnt > MAX_COUNT)
+				citylistMainCnt++;
+			} else if (travelInfoVo.get(i).getCatSeq() == 2) {
+				if (foodlistMainCnt >= MAX_COUNT)
 					continue;
 				foodlistMain.add(travelInfoVo.get(i));
-			}
-			if (travelInfoVo.get(i).getCatSeq() == 3) {
-				if (++attractionlistMainCnt > MAX_COUNT)
+				foodlistMainCnt++; 
+			} else if (travelInfoVo.get(i).getCatSeq() == 3) {
+				if (attractionlistMainCnt >= MAX_COUNT)
 					continue;
 				attractionlistMain.add(travelInfoVo.get(i));
-			}
-			if (travelInfoVo.get(i).getCatSeq() == 4) {
-				if (++activitylistMainCnt > MAX_COUNT)
+				attractionlistMainCnt++;
+			} else if (travelInfoVo.get(i).getCatSeq() == 4) {
+				if (activitylistMainCnt >= MAX_COUNT)
 					continue;
 				activitylistMain.add(travelInfoVo.get(i));
+				activitylistMainCnt++; 
 			}
 		}
-		
 		model.addAttribute("travelInfoFoodMain", foodlistMain);
 		model.addAttribute("travelInfoActivityMain", activitylistMain);
 		model.addAttribute("travelInfoAttractionMain", attractionlistMain);
@@ -159,7 +159,9 @@ public class MainController {
 	
 	@ResponseBody
 	@RequestMapping("/reviews/{trvSeq}")
-	public JSONResult getReviews(@PathVariable("trvSeq") String trvSeq, @RequestParam(value="reviewNum", required=false) String reviewNum, @RequestParam(value="like", required=false) String like) {
+	public JSONResult getReviews(@PathVariable("trvSeq") String trvSeq, 
+								@RequestParam(value="reviewNum", required=false) String reviewNum, 
+								@RequestParam(value="like", required=false) String like) {
 		/*if (trvSeq == null || trvSeq.equals("")) {
 			return JSONResult.fail("실패");
 		}*/
@@ -173,7 +175,7 @@ public class MainController {
 		}
 
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
-	
+//		System.out.println(reviews);
 
 		return JSONResult.success(reviews);
 	}

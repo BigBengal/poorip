@@ -109,7 +109,7 @@
 <script
 	src="${pageContext.request.contextPath }/assets/js/poolparty_detail.js"></script>
 <!-- Custom Scripts -->
-<script src="${pageContext.request.contextPath }/assets/js/custom.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/assets/js/custom.js"></script> --%>
 <script src="http://malsup.github.com/jquery.form.js"></script>
 <!-- Gallera image slider -->
 <script
@@ -334,7 +334,7 @@
 					<div class="pooldetails" data-usrseq="${pool.managerUsrSeq}">
 						<div style="position: relative; display: inline-block;">
 
-							<img src="${pool.managerProfile}">
+							<img src="${pool.managerProfile}" width="50px">
 						</div>
 						<div style="display: inline-block; position: absolute; margin-left:5%;">
 							<h4>
@@ -388,7 +388,7 @@
 				<div
 					class="gender_${memberlist.gender} aprove${memberlist.approve} poolmemberlist menu_links"
 					data-usrseq="${memberlist.usrSeq}">
-					<img src="${memberlist.profile}">
+					<img src="${memberlist.profile}" width="50px">
 					<h6 style="display: inline-block;">
 						<strong>${memberlist.usrNick}</strong>
 					</h6>
@@ -477,7 +477,7 @@
 							<c:if test="${post.trvName ne '관련 여행정보 없음' }">
 								<h6>
 									in <span style="color: rgba(22, 39, 125, 0.55);">${post.trvName }
-										${member }</span>
+										</span>
 								</h6>
 							</c:if>
 						</div>

@@ -67,7 +67,7 @@
 </head>
 
 
-<body class="no-trans scroll-spy">
+<body class="no-trans scroll-spy" style="background-color:#f2f2f2;">
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">

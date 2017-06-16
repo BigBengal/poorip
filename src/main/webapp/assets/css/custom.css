@@ -7,6 +7,9 @@ Created:November 2014
 License: Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/)
 File Description: Place here your custom CSS styles
 */
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
 .ui-autocomplete {
 	position: absolute;
 	cursor: default;
@@ -252,16 +255,19 @@ File Description: Place here your custom CSS styles
 }
 
 .modal-body .col-md-6 img {
-	margin-top: 7%;
+/* 	margin-top: 7%; */
 }
 
 .modal-body .col-md-12 .review-pics-anchor {
 	display: inline-block;
 	width: 20%;
+	padding:8px;
 }
+
 
 .modal-body .col-md-12 a .review-pics {
 	width: 100%;
+	border-radius:5px;
 }
 
 .modal-body .review-header .btn.btn-default {
@@ -286,8 +292,8 @@ File Description: Place here your custom CSS styles
 
 .modal-body .col-md-6.detail {
 	float: left;
-	clear: both;
-	margin-top: 30px;
+	clear: both;	
+/* 	margin-top: 30px; */
 }
 
 .my-info-banner {
@@ -562,18 +568,18 @@ File Description: Place here your custom CSS styles
 	overflow-y: scroll;
 } */
 .sns-modal-title {
-	height: 40px;
 	text-align: center;
-	padding-top: 5px;
-	margin: 3px;
+	font-family: 'Nanum Pen Script', serif;
+	
 }
 
 .sns-modal-title h3 {
 	padding: 10px;
 	margin-top: 0px;
-	background-color: #fdfdfd;
-	border: solid #d3d6d8;
-	border-radius: 5px;
+	margin-bottom: 0px;
+	background-color: #e8e8e8;;
+	font-size: 35px;
+	font-weight: bold;
 }
 
 .form-group.sns-write-group.sns-buttons {
@@ -1188,4 +1194,76 @@ display: inline-block;
 	z-index: 999;
 	background: url("/poorip/assets/images/recom_t_1.png") 100% 100%;
 	background-size: contain;
+}
+
+#surveyQ1 label {
+	float:left;
+	width:24%;
+}
+
+.pool-post-contents {
+	margin:auto;
+	float:none;
+}
+
+.poolpostimglabel {
+	    padding: 10px;
+    border: solid 3px lightblue;
+    width: 100%;
+        border-radius: 5px;
+}
+
+.poolpostimglabel:hover {
+	background-color:lightblue;
+}
+
+.review-public-yn {
+	width:43%;
+	padding:7px;
+	border: solid 2px lightgrey;
+	    border-radius: 5px;
+	    cursor:pointer;
+}
+
+.pool-post-contents input[type="radio"] {
+	display:none;
+}
+
+.pool-post-contents input[type="radio"]:checked + label.review-public-yn {
+  background-color: #f7e4e4;
+}
+
+.sns-post-footer.gray_button {
+	padding:12px;
+}
+
+.review-row {
+	    border: solid 2px lightgrey;
+    border-radius: 7px;
+    padding:0;
+    margin-bottom:2%;
+}
+
+#reviewtitle {
+	
+	    margin-bottom: 15px;
+    padding: 12px;
+    border-bottom: solid 2px lightgrey;
+    background: #fffcef;
+    
+}
+.review-body-contents {
+	border-bottom: solid 2px lightgrey;
+    display: inline-block;
+    width: 100%;
+    padding:5px;
+}
+
+.text-center h2 span {
+	border-bottom: solid 3px #9bd4d1;
+	padding: 10px 30px 10px 30px;
+}
+
+.poolmember a {
+	text-decoration:none;
 }

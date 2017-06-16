@@ -213,7 +213,7 @@ function searchPool(){
 
 </script>
 </head>
-<body class="no-trans">
+<body class="no-trans" style="background:#ececec;">
 	<!-- scrollToTop -->
 	<!-- ================ -->
 	<div class="scrollToTop">
@@ -293,10 +293,10 @@ function searchPool(){
 			</div>
 		</div>
 	</div>
-	<div class="pool-party-content" style="background-color:#f2f2f2;">
+	<div class="pool-party-content" style="background-color:#ececec;;">
 	<div class="container" >
-		<div style="font-family: 'Pacifico'; text-align: center">
-			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 55%;" src="/poorip/assets/images/firework.png" style="width:50px; height:50px;"/>Member 모집 중인 Pool 파티</h2>
+		<div style="font-family: 'Nanum Pen Script', serif;  text-align: center">
+			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 48%;" src="/poorip/assets/images/firework.png" style="width:50px; height:50px;"/>Member 모집 중인 Pool 파티</h2>
 		</div>
 		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea"
 			style="margin-top: 10px;margin: auto;">
@@ -344,7 +344,7 @@ function searchPool(){
 
 	<!-- footer start -->
 	<!-- ================ -->
-	<footer id="footer" style="background-color: #f2f2f2;">
+	<footer id="footer" style="background-color: #ececec;">
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</footer>
 	<!-- footer end -->

@@ -8,12 +8,15 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+	<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+	rel="stylesheet">
 	<style>
-	body {
-		background-color: #f7f7f7;
-		font-family: 'Roboto';
-	}
+/* 	body { */
+/* 		background-color: #f7f7f7; */
+/* 		font-family: 'Roboto'; */
+/* 	} */
 	
 	.container {
 		margin: 150px auto;
@@ -21,7 +24,7 @@
 	}
 	
 	th, td {
-		padding: 5px;
+		padding-bottom: 5px;
 	}
 	
 	table {
@@ -30,11 +33,6 @@
 		border: 1px solid #bcbcbc;
 	}
 	</style>
-
-<!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet">
 <script type="text/javascript"
 		src="${pageContext.request.contextPath }/assets/plugins/jquery-3.2.1.js"></script>
 <script type="text/javascript">
@@ -139,7 +137,7 @@ $(function()	{
 							<input type="radio" name="luxury" value="N" checked> 가난 
   		      				</td>
 			      		</tr>
-			      		<tr>
+			      		<tr style="display:none">
 			      			<td class="t">나라 SEQ</td>
 			      			<td>
 			      			<select name="ctrSeq" id="travelCtr">
@@ -148,6 +146,17 @@ $(function()	{
 									</c:forEach>
 							</select>
 			      			</td>
+			      		</tr>
+			      		<tr>
+			      			<td class="t">추천 여부</td>
+			      			<td>
+			      			<input type="checkbox" id="Recommand_blog" name="recmdBlog" value="1"> 
+			      			<label for="Recommand_blog">블로그 추천</label>&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" id="Recommand_emo" name="recmdEmoj" value="1"> 
+			      			<label for="Recommand_emo">감정 추천</label>&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" id="Recommand_tripad" name="recmdTripAd" value="1"> 
+			      			<label for="Recommand_tripad">트립 추천</label>&nbsp;&nbsp;&nbsp;
+							</td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>

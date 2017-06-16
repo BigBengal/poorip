@@ -26,8 +26,15 @@ public class ReviewVo {
 	private String dateFrom;
 	private String dateTo;
 	private String trvName;
+	private String usrNick;
 	
 	
+	public String getUsrNick() {
+		return usrNick;
+	}
+	public void setUsrNick(String usrNick) {
+		this.usrNick = usrNick;
+	}
 	public String getTrvName() {
 		return trvName;
 	}
@@ -187,7 +194,7 @@ public class ReviewVo {
 				+ ", location=" + location + ", picture=" + picture + ", ctySeq=" + ctySeq + ", ctyName=" + ctyName
 				+ ", catSeq=" + catSeq + ", mapURL=" + mapURL + ", contact=" + contact + ", reviewNum=" + reviewNum
 				+ ", hidden=" + hidden + ", likeCount=" + likeCount + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo
-				+ ", trvName=" + trvName + "]";
+				+ ", trvName=" + trvName + ", usrNick=" + usrNick + "]";
 	}
 	
 }

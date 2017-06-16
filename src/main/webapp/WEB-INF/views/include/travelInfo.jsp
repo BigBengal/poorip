@@ -22,7 +22,7 @@
 	style="text-align: center">
 	<input type="text"
 		style="margin-bottom: 20px; display: inline-block; width: 75%"
-		placeholder="Search any countries or cities" class="form-control" id="city-kwd"
+		placeholder="도시나 나라를 검색해주세요" class="form-control" id="city-kwd"
 		name="ctySeq" value="${cityName.ctyName}">
 	<a id="searchshowall" class="ui-button ui-widget ui-corner-right ui-button-icon-only" 
 		style="height: 34px; left: -6px; position: relative; top: -1px;">
@@ -186,19 +186,30 @@
 											<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFood.trvSeq}" style="min-height:400px; padding: 0px;">
 												<img src="/poorip/${travelInfoFood.picture}" alt="" />
 											</div>
-											<div class="col-sm-12 col-md-6 detail">
-												<h3 class="trvinfo">영업시간</h3>
-												<p>${travelInfoFood.hours}</p>
+											<div class="col-sm-12 col-md-6">
+												<div class="col-sm-12 col-md-6 detail">
+													<h3 class="trvinfo">영업시간</h3>
+													<p>${travelInfoFood.hours}</p>
+												</div>
+												<div class="col-sm-12 col-md-6 detail">
+													<h3 class="trvinfo">가격</h3>
+													<p>${travelInfoFood.price}</p>
+												</div>
+												<div class="col-sm-12 col-md-6 detail">
+													<h3 class="trvinfo">연락 정보</h3>
+													<p>${travelInfoFood.contact}</p>
+												</div>
+												<div class="col-sm-12 col-md-6 detail">
+													<h3 class="trvinfo">주소</h3>
+													<p>${travelInfoFood.location}</p>
+												</div>
 											</div>
-											<div class="col-sm-12 col-md-6 detail">
-												<h3 class="trvinfo">가격</h3>
-												<p>${travelInfoFood.price}</p>
+											<div class="col-sm-12 col-md-6" style="vertical-align: top;">
+												<c:if test="${! empty travelInfoFood.wordCloud}">
+													<h3 class="trvinfo">WordCloud</h3>
+													<img src="/poorip/upload/wc/${travelInfoFood.wordCloud}">
+												</c:if>
 											</div>
-											<div class="col-sm-12 col-md-6 detail">
-												<h3 class="trvinfo">연락 정보</h3>
-												<p>${travelInfoFood.contact}</p>
-											</div>
-											
 									
 										<div class="row">
 											<div class="col-md-12">
@@ -305,17 +316,30 @@
 										<div class="col-sm-12 col-md-7" id="travelPic-${travelInfoFoodMain.trvSeq}" style="min-height:400px; padding: 0px;">
 											<img src="/poorip/${travelInfoFoodMain.picture}" alt="">
 										</div>
-										<div class="col-sm-12 col-md-6 detail">
-											<h3 class="trvinfo">영업시간</h3>
-											<p>${travelInfoFoodMain.hours}</p>
+										<div class="col-sm-12 col-md-6">
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">영업시간</h3>
+												<p>${travelInfoFoodMain.hours}</p>
+											</div>
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">가격</h3>
+												<p>${travelInfoFoodMain.price}</p>
+											</div>
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">연락 정보</h3>
+												<p>${travelInfoFoodMain.contact}</p>
+											</div>
+											
+											<div class="col-sm-12 col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoFoodMain.location}</p>
+											</div>
 										</div>
-										<div class="col-sm-12 col-md-6 detail">
-											<h3 class="trvinfo">가격</h3>
-											<p>${travelInfoFoodMain.price}</p>
-										</div>
-										<div class="col-sm-12 col-md-6 detail">
-											<h3 class="trvinfo">연락 정보</h3>
-											<p>${travelInfoFoodMain.contact}</p>
+										<div class="col-sm-12 col-md-6" style="vertical-align: top;">
+											<c:if test="${! empty travelInfoFoodMain.wordCloud}">
+												<h3 class="trvinfo">WordCloud</h3>
+												<img src="/poorip/upload/wc/${travelInfoFoodMain.wordCloud}">
+											</c:if>
 										</div>
 										
 										<div class="row">
@@ -439,6 +463,10 @@
 												<p>${travelInfoAttraction.contact}</p>
 											</div>
 											
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoAttraction.location}</p>
+											</div>
 											<div class="row">
 												<div class="col-md-12">
 													<h5 class="trvinfo modalmap">위치 확인</h5>
@@ -558,7 +586,10 @@
 												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoAttractionMain.contact}</p>
 											</div>
-											
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoAttractionMain.location}</p>
+											</div>
 
 											<div class="row">
 												<div class="col-md-12">
@@ -681,6 +712,10 @@
 												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoActivity.contact}</p>
 											</div>
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoActivity.location}</p>
+											</div>
 											
 
 											<div class="row">
@@ -801,6 +836,10 @@
 											<div class="col-md-6 detail">
 												<h3 class="trvinfo">연락 정보</h3>
 												<p>${travelInfoActivityMain.contact}</p>
+											</div>
+											<div class="col-md-6 detail">
+												<h3 class="trvinfo">주소</h3>
+												<p>${travelInfoActivityMain.location}</p>
 											</div>
 											
 
