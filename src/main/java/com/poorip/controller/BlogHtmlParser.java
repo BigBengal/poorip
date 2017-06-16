@@ -30,9 +30,11 @@ public class BlogHtmlParser {
 	@RequestMapping("/insertCrawlData")
 	public String insertCrawlData() throws IOException, ParseException, InterruptedException {
 
-		for (int i = 283; i < 750; i++) {
+		for (int i = 631; i < 750; i++) {
+
 			TimeUnit.SECONDS.sleep(1);
-			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/Italy/Rome-activity/Rome-activity-" + i + ".html"), "UTF-8");
+
+			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/Austria/Vienna-restaurant/Vienna-restaurant-" + i + ".html"), "UTF-8");
 			
 			System.out.println(i);
 			Elements elements = doc.select(".se_editView.se_title");
@@ -62,10 +64,7 @@ public class BlogHtmlParser {
 			
 			String key = "AIzaSyBt-xzhDPM3uWf7-Lgh3Ob5vN570QYKH4s";
 	
-			/*
-			Translate translate = TranslateOptions.newBuilder().setApiKey(key).build().getService();
-		System.out.println(TranslateOptions.newBuilder().setApiKey(key).build().getApiKey());
-		System.out.println(TranslateOptions.newBuilder().setApiKey(key).build().getProjectId());
+		
 			
 		Translate translate = TranslateOptions.getDefaultInstance().getService();
 			System.out.println(TranslateOptions.getDefaultInstance().getProjectId());
@@ -75,13 +74,13 @@ public class BlogHtmlParser {
 			            content.replaceAll("ㅋ",""),
 			            TranslateOption.sourceLanguage("ko"),
 			            TranslateOption.targetLanguage("en"));
-			content = translation.getTranslatedText().replaceAll("[^\\w\\s-']"," ");*/
+			content = translation.getTranslatedText().replaceAll("[^\\w\\s-']"," ");
 			
 			
 			crawlDataVo.setTitle(title);
-			crawlDataVo.setCtrSeq(8);
-			crawlDataVo.setCtySeq(11);
-			crawlDataVo.setCatSeq(4);
+			crawlDataVo.setCtrSeq(5);
+			crawlDataVo.setCtySeq(47);
+			crawlDataVo.setCatSeq(2);
 			crawlDataVo.setContent(content.replaceAll("39", "'"));
 			crawlDataVo.setPubDate(pubDate2);
 			
