@@ -628,7 +628,7 @@ function showList(){
 // console.log($pic.attr('src'));
 					var heightV = $pic.height();
 // console.log("postPic["+i+"]:"+postPic[i]+", heightV:"+heightV);
-					if ( heightV == 0){
+					if ( heightV == 0 || heightV <= 200){
 						heightV = 350;
 					}
 					Galleria.run('#postPic-'+postPic[i] , { debug: false, lightbox: true , height: heightV});

@@ -55,8 +55,6 @@ public class MainController {
 		List<TravelInfoVo> citylistMain = new ArrayList<TravelInfoVo>();
 		List<TravelInfoVo> travelInfoVo = mainService.selectTravelInfo();
 		
-		System.out.println(travelInfoVo.get(0));
-		
 		for (int i = 0; i < travelInfoVo.size(); i++) {
 			if (foodlistMainCnt+attractionlistMainCnt+activitylistMainCnt+citylistMainCnt >= MAX_COUNT*4){
 				break;
@@ -177,7 +175,7 @@ public class MainController {
 		}
 
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
-		System.out.println(reviews);
+//		System.out.println(reviews);
 
 		return JSONResult.success(reviews);
 	}
