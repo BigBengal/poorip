@@ -36,13 +36,8 @@ public class MatchingController {
 		// 클릭수가 없고 설문지를 안 했을 떄
 		if (myInfo == null){
 			model.addAttribute("scrapfail","nohit");
-			return "/PooripMain";	
+			return "/PooripMain";
 		}
-		
-		//where에서 걸러짐(안 탐)
-//		if( myInfo.getUsrPref1() == null || myInfo.getUsrPref2() == null || myInfo.getUsrPref3() == null || myInfo.getUsrPref4() == null || myInfo.getUsrPref5() == null ) {
-//			return "redirect:/matching/survey";
-//		}
 		
 		// 내 스크립 시티 정보
 		List<ScrapCityVo> myCityList = matchingService.getMyCityList( usrSeq );
