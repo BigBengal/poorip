@@ -79,7 +79,8 @@ public class MatchingService {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		int overlapDaysScore = 0;
 		int myusrSeq = myInfo.getUsrSeq();
-		
+		// dateScore max값 구하기 위한 변수
+		int maxDateScore = 0;
 		System.out.println(myCityList);
 		// 내 스크랩 도시 정보
 		for (int x = 0; x < myCityList.size(); x++) {
@@ -156,6 +157,10 @@ public class MatchingService {
 							dateScore.setDateScore(overlapDaysScore);
 							samePlanMember.add(dateScore);
 						}
+						for(int i=0; i<samePlanMember.size(); i++) {
+							if(maxDateScore < samePlanMember.get(i).getDateScore())
+								maxDateScore = samePlanMember.get(i).getDateScore();
+						}
 					} // NULL 경우가 있음
 
 				}
@@ -164,15 +169,10 @@ public class MatchingService {
 
 		} // for(int x=1; x < myCityList.size(); x++)
 		float memberCompareToDate = 0;
-		int AllmemberSumDate = 0;
-		for(int i=0; i<samePlanMember.size(); i++) {
-			int dateSocre = samePlanMember.get(i).getDateScore();
-			AllmemberSumDate += dateSocre;
-		}
-		
+		// 최고 score를 가지고 있는 사람은 120 그를 기준으로 사람들의 일정 점수 매김
 		for(int j=0; j<samePlanMember.size(); j++) {
 			int dateScore = samePlanMember.get(j).getDateScore();
-			memberCompareToDate = (float)((float)dateScore/(float)AllmemberSumDate);
+			memberCompareToDate = (float)((float)dateScore/(float)maxDateScore);
 			int dateSocre = (int)(memberCompareToDate * 120);
 			samePlanMember.get(j).setDateScore(dateSocre);
 			samePlanMember.get(j).setOriginDateScore(dateScore);
