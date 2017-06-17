@@ -209,7 +209,7 @@
 	
 	<div class="container" style="position: relative">
 		<!-- 풀파티 설정 -->
-		<div id="dialog-form" title="풀파티 설정 변경">
+		<div id="pool-dialog-form" title="풀파티 설정 변경">
 			<form class="form-horizontal" id="poolsetting" action="saveSetting"
 				method="post" enctype="multipart/form-data">
 				<fieldset>

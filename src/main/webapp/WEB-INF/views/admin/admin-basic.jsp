@@ -16,7 +16,7 @@ table {
 </style>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script>
+<script type="text/javascript">
 
 function travelDelete(trvSeq){
 	$.ajax( {
@@ -125,53 +125,67 @@ function cityDelete(ctySeq){
 </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/admin/addInfo" id="travelList">
-	<table>
-		<tr>
-			<th><h1>여행정보LIST</h1></th>
-			<th><input type="submit" value="추가하기"></th>
-		<tr>
-		<tr>
-			<th>seq</th>
-			<th>이름</th>
-			<th>여행지 사진</th>
-			<th>여행지 내용</th>
-			<th>영업/개장시간</th>
-			<th>가격</th>
-			<th>여행지 테마</th>
-			<th>여행지 위치(도시)</th>
-			<th>나머지 주소</th>
-			<th>mapURL</th>
-			<th>연락처 정보</th>
-			<th>삭제</th>
-		</tr>
-		<c:forEach items="${travelinfoVo }" var="travelinfoVo" varStatus="status">
-			<tr id="deleteInfo-${travelinfoVo.trvSeq}">
-				<td>${travelinfoVo.trvSeq }</td>
-				<td>${travelinfoVo.name }</td>
-				<td>${travelinfoVo.picture }</td>
-				<td>${travelinfoVo.contents }</td>
-				<td>${travelinfoVo.hours }</td>
-				<td>${travelinfoVo.price }</td>
-				<td>${travelinfoVo.catSeq }</td>
-				<td>${travelinfoVo.ctySeq }</td>
-				<td>${travelinfoVo.location }</td>
-				<td>${travelinfoVo.mapURL }</td>
-				<td>${travelinfoVo.contact }</td>
-				<td>
+<div style="position:fixed;top: 5px; left:10px">
+<button onclick="location.href='${pageContext.request.contextPath}/admin/addInfo'">추가하기</button>
+<button onclick="location.href='${pageContext.request.contextPath}/admin/basic#posi1'">여행정보로</button>
+<button onclick="location.href='${pageContext.request.contextPath}/admin/basic#posi2'">후기로</button>
+<button onclick="location.href='${pageContext.request.contextPath}/admin/basic#posi3'">후기사진</button>
+<button onclick="location.href='${pageContext.request.contextPath}/admin/basic#posi4'">나라</button>
+</div>
+<table id="posi1">
+	<tr>
+		<th colspan="3"><h1>여행정보LIST</h1></th>
+		<th>
+		<button onclick="location.href='${pageContext.request.contextPath}/admin/addInfo'">추가하기</button> 
+		</th>
+		
+	<tr>
+	<tr>
+		<th>seq</th>
+		<th>이름</th>
+		<th>여행지 사진</th>
+		<th>여행지 내용</th>
+		<th>시간</th>
+		<th>가격</th>
+		<th>catSeq</th>
+		<th>도시</th>
+		<th>나머지 주소</th>
+		<th>mapURL</th>
+		<th>연락처 정보</th>
+		<th>삭제</th>
+	</tr>
+	<c:forEach items="${travelinfoVo }" var="travelinfoVo" varStatus="status">
+		<tr id="deleteInfo-${travelinfoVo.trvSeq}">
+			<form action="${pageContext.request.contextPath}/admin/modify/travelMainPic" id="travel-${travelinfoVo.trvSeq}" method="post" enctype="multipart/form-data">
+			<td>${travelinfoVo.trvSeq }</td>
+			<td><input type="text" name="name" value="${travelinfoVo.name}"></td>
+			<td>${travelinfoVo.picture } <br/>
+					<input type="hidden" name="trvSeq" value="${travelinfoVo.trvSeq}"> 
+					<input type="file" name="file">
+					<input type="submit" value="수정">
+			</td>
+			<td><textarea cols="45" rows="5" name="contents">${travelinfoVo.contents}</textarea></td>
+			<td><textarea cols="25" rows="5" name="hours">${travelinfoVo.hours}</textarea></td>
+			<td><textarea cols="18" rows="5" name="price">${travelinfoVo.price}</textarea></td>
+			<td><input type="text" name="catSeq" size="1"  value="${travelinfoVo.catSeq }"></td>
+			<td><input type="text" name="ctySeq" size="1"  value="${travelinfoVo.ctySeq }"></td>
+			<td><input type="text" name="location"         value="${travelinfoVo.location }"></td>
+			<td><input type="text" name="mapURL" size="15" value="${travelinfoVo.mapURL }"></td>
+			<td><input type="text" name="contact"          value="${travelinfoVo.contact }"></td>
+			<td>
 				<input type="button" value="delete" 
 						onclick="travelDelete(${travelinfoVo.trvSeq})"/>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-</form>
+			</td>
+			</form>
+		</tr>
+	</c:forEach>
+</table>
 
-<form action="${pageContext.request.contextPath}/admin/addInfo" id="travelList">
-	<table>
+
+	<table id="posi2">
 		<tr>
 			<th><h1>후기 LIST</h1></th>
-			<th><input type="submit" value="추가하기"></th>
+			<th><button onclick="location.href='${pageContext.request.contextPath}/admin/addInfo'">추가하기</button> </th>
 		<tr>
 		<tr>
 			<th>seq</th>
@@ -197,10 +211,9 @@ function cityDelete(ctySeq){
 			</tr>
 		</c:forEach>
 	</table>
-</form>
 
-<form action="" id="postPicList">
-	<table>
+
+	<table id="posi3">
 		<tr>
 			<th><h1>후기 사진 LIST</h1></th>
 		<tr>
@@ -225,10 +238,8 @@ function cityDelete(ctySeq){
 			</tr>
 		</c:forEach>
 	</table>
-</form>
 
-<form action="${pageContext.request.contextPath}/admin/addCountry" id="countryList">
-	<table>
+	<table id="posi4">
 		<tr>
 			<th><h1>나라 LIST</h1></th>
 		<tr>
@@ -247,13 +258,12 @@ function cityDelete(ctySeq){
 			</tr>
 		</c:forEach>
 	</table>
-</form>
 
-<form action="${pageContext.request.contextPath}/admin/addInfo" id="cityList">
+
 	<table>
 		<tr>
 			<th><h1>도시 LIST</h1></th>
-			<th><input type="submit" value="추가하기"></th>
+			<th><button onclick="location.href='${pageContext.request.contextPath}/admin/addInfo'">추가하기</button> </th>
 		<tr>
 		<tr>
 			<th>seq</th>
@@ -272,7 +282,6 @@ function cityDelete(ctySeq){
 			</tr>
 		</c:forEach>
 	</table>
-</form>
 
 </body>
 </html>

@@ -36,18 +36,18 @@ public class AdminService {
 	public void addtarvelInfo(TravelInfoVo travelInfoVo, MultipartFile multipartFile, int ctrSeq) {
 		CityVo cityVo = new CityVo();
 		try {
-			if (multipartFile.isEmpty() == true) {
-				throw new GalleryUploadException( "MultipartFile is Empty" );
-			}
+			if (multipartFile.isEmpty() != true) {
+//				throw new GalleryUploadException( "MultipartFile is Empty" );
+			
 			
 				// 폴더가 없으면 폴더 생성
 				String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoVo.getTrvSeq();
-				System.out.println(travelInfoVo.getTrvSeq());
+//				System.out.println(travelInfoVo.getTrvSeq());
 				String saveFile = WebUtil.saveFile(multipartFile, pathName);
 				
 				// DB에 저장
 				travelInfoVo.setPicture(pathName+"/"+saveFile);
-			
+			}
 		} catch (IOException ex) {
 			//1.log 남기기
 			//2.runtime exception 전환 
@@ -58,6 +58,28 @@ public class AdminService {
 		
 		adminDao.addInfo(travelInfoVo);
 	}
+	public void modifytarvelInfoPic(TravelInfoVo travelInfoVo, MultipartFile multipartFile) {
+		try {
+			if (multipartFile.isEmpty() != true) {
+//				throw new GalleryUploadException( "MultipartFile is Empty" );
+			
+			
+				// 폴더가 없으면 폴더 생성
+				String pathName = TRAVEL_SAVE_PATH + "/" + travelInfoVo.getTrvSeq();
+				String saveFile = WebUtil.saveFile(multipartFile, pathName);
+				
+				// DB에 저장
+				travelInfoVo.setPicture(pathName+"/"+saveFile);
+			}
+		} catch (IOException ex) {
+			//1.log 남기기
+			//2.runtime exception 전환 
+			throw new GalleryUploadException( "save file uploded" );
+		}
+		
+		adminDao.modifyInfoPic(travelInfoVo);
+	}
+	
 
 	public boolean addTravelPic(TravelInfoPicVo travelInfoPicVo, List<MultipartFile> travelfiles) throws IOException {
 		

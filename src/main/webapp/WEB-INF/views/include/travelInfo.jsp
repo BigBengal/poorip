@@ -13,7 +13,7 @@
 </c:choose>
 
 <div class="separator"></div>
-<p class="lead text-center">
+<p class="lead text-center" style="font-family: 'Nanum Pen Script', serif; font-size:1.8em;">
 	유익한 여행정보를 한 공간에 모아놨습니다.<br> 당신의 여행에 도움이 되길 바랍니다.
 </p>
 <br>

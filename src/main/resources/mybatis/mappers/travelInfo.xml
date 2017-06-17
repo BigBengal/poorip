@@ -45,7 +45,8 @@
          		picture,
          		price,
          		map_url as mapURL,
-         		contact
+         		contact,
+         		cty_seq as ctySeq
 		 from travel_info
       ]]>
 	</select>
@@ -196,6 +197,34 @@
 			       #{wordCloud } )
       ]]>
     </insert>
+    
+   	<!-- 여행지 정보 수정  -->
+
+   	<update id="updatepic" parameterType="integer">
+   		<![CDATA[
+			update travel_info 
+			   set name=#{name },
+			       contents=#{contents },
+			   	   hours=#{hours },
+			   	   price=#{price },
+			   	   cat_Seq=#{catSeq },
+			   	   cty_Seq=#{ctySeq },
+			   	   location=#{location },
+			   	   map_URL=#{mapURL },
+			   	   contact=#{contact}
+			   	   ]]>
+			   	   <if test="picture != null">
+			   	   <![CDATA[
+			   	   		,picture=#{picture }
+			   	   ]]>
+			   	   </if>
+			   	   <![CDATA[
+			 where trv_seq= #{trvSeq}
+		]]>
+	</update>
+	
+
+    
     
 	<!-- 사용자가 스크랩한 정보 클릭시 보여주는 화면 출력 -->
 	<select id="getScrapInfo" parameterType="string" resultType="scrapvo">
