@@ -1263,9 +1263,9 @@ display: inline-block;
 }
 
 .text-center h2 span {
-	border: solid 3px #9bd4d1;
+	
 	padding: 10px 30px 10px 30px;
-	border-radius: 8px;
+	
 }
 
 .poolmember a {
@@ -1295,8 +1295,11 @@ display: inline-block;
 .matching-trv-date {
 	font-family: 'Nanum Pen Script', serif !important;
 	font-size:1.5em !important;
+	border: solid 3px #9bd4d1;
+	padding: 10px 30px 10px 30px;
+	border-radius: 8px;
 }
 
 .matching-trv-date:hover {
-	background:#e6f9f7;
+	background:#e6f9f7;	
 }
