@@ -57,6 +57,11 @@ public class AdminDao {
 		int count = sqlSession.insert( "travelInfo.insert", travelInfoVo );
 		return( count == 1 );
 	}
+	
+	public boolean modifyInfoPic(TravelInfoVo travelInfoVo) {
+		int count = sqlSession.update( "travelInfo.updatepic", travelInfoVo );
+		return( count == 1 );
+	}
 
 	public TravelInfoVo get(int trvSeq) {
 		return sqlSession.selectOne( "travelInfo.getByNo", trvSeq );

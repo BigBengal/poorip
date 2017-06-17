@@ -21,7 +21,7 @@ import com.poorip.repository.CrawlDataDao;
 import com.poorip.vo.CrawlDataVo;
 
 @Controller
-public class BlogHtmlParser {
+public class BlogHtmlParsers {
 	
 	@Autowired
 	private CrawlDataDao crawlDataDao;
@@ -34,7 +34,7 @@ public class BlogHtmlParser {
 
 			TimeUnit.SECONDS.sleep(1);
 
-			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/Austria/Vienna-restaurant/Vienna-restaurant-" + i + ".html"), "UTF-8");
+			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/Austria1/Vienna-restaurant/Vienna-restaurant-" + i + ".html"), "UTF-8");
 			
 			System.out.println(i);
 			Elements elements = doc.select(".se_editView.se_title");
@@ -67,7 +67,6 @@ public class BlogHtmlParser {
 		
 			
 		Translate translate = TranslateOptions.getDefaultInstance().getService();
-			System.out.println(TranslateOptions.getDefaultInstance().getProjectId());
 			
 			Translation translation =
 			        translate.translate(

@@ -80,6 +80,15 @@ public class AdminController {
 		return "redirect:/admin/basic";
 	}
 	
+	@RequestMapping("/modify/travelMainPic")
+	public String modiftTravelInfo( @ModelAttribute TravelInfoVo travelInfoVo,
+								 @RequestParam("file") MultipartFile multipartFile) {
+		adminService.modifytarvelInfoPic( travelInfoVo, multipartFile );
+		
+		return "redirect:/admin/basic";
+	}
+	
+	
 	@RequestMapping("/upload/travelPic")
 	public String addTravelPic( @ModelAttribute TravelInfoPicVo travelInfoPicVo,
 								@RequestParam ("trvSeq1") int trvSeq,
