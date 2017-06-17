@@ -4,10 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<h1 style="text-align: center; margin-bottom: 50px;" >도시별 스크랩 정보입니다</h1>
+<h1 style="text-align: center; margin-bottom: 50px; font-family: 'Nanum Pen Script', serif; font-size:3.5em;" >도시별 스크랩 정보입니다</h1>
 <c:if test="${travelDuration ne null }">
 <div style="margin-bottom:30px">
-<h3 id="travel-date-info" style="text-align:center">${travelDuration.dateFrom } ~ ${travelDuration.dateTo } 총 여행일 수는 ${travelDuration.dateDiff }일 입니다</h3>
+<h3 id="travel-date-info" style="text-align:center; font-family: 'Nanum Pen Script', serif; font-size:1.8em;">${travelDuration.dateFrom } ~ ${travelDuration.dateTo } 총 여행일 수는 <span style="font-weight:bold;"> ${travelDuration.dateDiff }</span>일 입니다</h3>
 </div>
 </c:if>
 <div style="margin-bottom:30px">

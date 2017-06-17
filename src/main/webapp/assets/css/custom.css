@@ -1263,8 +1263,9 @@ display: inline-block;
 }
 
 .text-center h2 span {
-	border-bottom: solid 3px #9bd4d1;
+	
 	padding: 10px 30px 10px 30px;
+	
 }
 
 .poolmember a {
@@ -1276,3 +1277,29 @@ display: inline-block;
 	font-family:'Nanum Pen Script', serif;
 	font-size:2em;
 	}
+	
+	#pool-dialog-form {
+	    padding: 5% 5% 3% 5%;
+	
+	}
+#portfolio {
+	font-family: 'Nanum Pen Script', serif;
+	font-size:3em;
+}
+
+.matching-font-style {
+	font-family: 'Nanum Pen Script', serif;
+	font-size:1.5em;
+}
+
+.matching-trv-date {
+	font-family: 'Nanum Pen Script', serif !important;
+	font-size:1.5em !important;
+	border: solid 3px #9bd4d1;
+	padding: 10px 30px 10px 30px;
+	border-radius: 8px;
+}
+
+.matching-trv-date:hover {
+	background:#e6f9f7;	
+}

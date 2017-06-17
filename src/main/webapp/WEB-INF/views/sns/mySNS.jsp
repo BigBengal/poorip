@@ -19,7 +19,7 @@
 	<div id="sns-pool-list-anchor" style="position: relative;"></div>
 	<div id="sns-pool-list" class="sns-pool-lists">
 		<div class="sns-poollist-title" style="margin: 0; padding: 10px;">
-			<span style="font-size: 1em;">나의 풀 파티 목록 </span>
+			<span style="font-size: 1em; font-family: 'Nanum Pen Script', serif; font-size:1.5em;">나의 풀 파티 목록 </span>
 		</div>
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 	</div>

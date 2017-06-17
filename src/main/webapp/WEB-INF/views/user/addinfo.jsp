@@ -156,7 +156,7 @@ $(document).ready(function(){
 		<div class="banner-caption">
 			<div class="container">
 				<div class="row">
-					<h1 class="text-center" style="color:grey">
+					<h1 class="text-center" style="color:#5a5858; font-family: 'Nanum Pen Script', serif; font-size: 4.5em;">
 							회원 정보 수정
 						</h1>
 					

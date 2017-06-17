@@ -304,7 +304,8 @@ function searchPool(){
 	<div class="pool-party-content" style="background-color:#ececec;" id="poolsearchtop">
 	<div class="container" >
 		<div style="font-family: 'Nanum Pen Script', serif;  text-align: center">
-			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 48%;" src="/poorip/assets/images/firework.png" style="width:50px; height:50px;"/>Member 모집 중인 Pool 파티</h2>
+			<h2 style="margin: 50px 0;"><img style="width: 60px; height: 60px; margin-left: 48%;" src="/poorip/assets/images/firework.png" style="width:50px; height:50px;"/>
+			<strong>Member 모집 중인 Pool 파티</strong></h2>
 		</div>
 		<div class="row col-lg-12 col-md-12 col-sm-12" id="searchArea"
 			style="margin-top: 10px;margin: auto;">
