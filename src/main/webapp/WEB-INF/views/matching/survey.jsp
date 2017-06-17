@@ -177,14 +177,17 @@
 						<div class="form-group">
 							<p class="col-md-4">
 								<a href="${pageContext.request.contextPath }/">
-									<button class="nextButton glyphicon-repeat menu_links" style="width: 80px; display: inline-block; float: left;"></button>
+									<button class="nextButton glyphicon-repeat menu_links" style="width: 80px; display: inline-block; float: left; margin-top: 10px;"></button>
 								</a>
 							</p>
 							<p class="col-md-4"></p>
-							<p class="col-md-4">
-								<a href="${pageContext.request.contextPath }/matching/surveyQ">
-									<button class="nextButton glyphicon-menu-right menu_links" style="width: 80px; display: inline-block; float: right;"></button>
-								</a>
+							
+							<form action="${pageContext.request.contextPath }/matching/surveyQ" method="post">
+							<input type="submit" style="display:none;" id="go-to-survey" >
+							<label for="go-to-survey" style="width: 80px; display: inline-block; float: right;"><button class="nextButton glyphicon-menu-right menu_links" style="width: 80px; display: inline-block; float: right; color: #55acee;"></button></label>
+							
+								
+								</form>
 							</p>
 						</div>
 					</div>

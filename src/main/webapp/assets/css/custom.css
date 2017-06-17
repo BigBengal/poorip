@@ -1280,6 +1280,7 @@ display: inline-block;
 	
 	#pool-dialog-form {
 	    padding: 5% 5% 3% 5%;
+	    display:none;
 	
 	}
 #portfolio {
@@ -1302,4 +1303,13 @@ display: inline-block;
 
 .matching-trv-date:hover {
 	background:#e6f9f7;	
+}
+
+.pool-image-change:hover {
+	background:#e6f9f7;	
+}
+
+#ui-id-1.ui-dialog-title {
+	font-family: 'Nanum Pen Script', serif;
+	font-size:1.5em;
 }

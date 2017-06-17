@@ -238,7 +238,7 @@
 					<!-- 					<hr> -->
 					<div class="col-md-12 text-center"
 						onclick="showDateList(${matchingScore.usrSeq });"
-						style="height: 20px; margin-bottom: 10%;">
+						style="height: 20px; margin-bottom: 10%; ">
 						<h2>
 							<span class="menu_links span-font-family matching-trv-date">${matchingScore.usrNick}님의
 								여행 일정 보기</span>
@@ -247,7 +247,7 @@
 					</div>
 					<div class="col-md-12 date-list span-font-family"
 						id="dateList-${matchingScore.usrSeq }"
-						style="margin-bottom: 15px; text-align: center; border:dashed rgb(155, 212, 209);">
+						style="margin-bottom: 15px; text-align: center; border:dotted rgb(155, 212, 209);">
 						<c:set var="dateListYN" value="N" />
 						<c:forEach var="matchingDateList" items="${matchingDateList }">
 							<c:if test="${matchingScore.usrSeq == matchingDateList.usrSeq }">
@@ -274,7 +274,8 @@
 							<div class="col-md-12 matching-footer">
 								<button class="btn made-a-pool-${matchingScore.usrSeq }"
 									onclick="madePool(${matchingScore.usrSeq })"
-									style="border-radius: 3px;">Already made a pool</button>
+									style="border-radius: 3px; font-family: 'Nanum Pen Script', serif;  font-size: 1.2em;
+										">이미 풀이 존재함</button>
 							</div>
 							<c:set var="isPoolMemberYN" value="Y" />
 						</c:if>
@@ -366,7 +367,7 @@
 						</div>
 						<div class="col-md-12 text-center"
 							onclick="showSameDateList(${samePlanMemeber.usrSeq });"
-							style="margin-bottom: 10px;">
+							style="margin-bottom: 10px; padding: 10px 30px 10px 30px;">
 							<h2>
 								<span
 									class="menu_links span-font-family text-center matching-trv-date">${samePlanMemeber.usrNick}님의
@@ -375,7 +376,7 @@
 						</div>
 						<div class="col-md-12 block-date-list"
 							id="showDateList-${samePlanMemeber.usrSeq }"
-							style="margin-bottom: 10px;">
+							style="margin-bottom: 10px; text-align:center; overflow:auto;">
 							<c:forEach var="samePlanDateList" items="${samePlanDateList }">
 								<c:if
 									test="${samePlanMemeber.usrSeq == samePlanDateList.usrSeq }">
@@ -386,7 +387,8 @@
 							</c:forEach>
 							<br>
 						</div>
-						<div class="col-md-12 span-font-family text-center">
+						<div class="col-md-12 span-font-family text-center" style="position: absolute;
+    bottom: 10%;">
 							${samePlanMemeber.usrNick}님과 ${userVo.usrNick }의 일정은 <br /> <label
 								style="color: #339BEB;">${samePlanMemeber.overlapDays }일</label>
 							동안 같습니다.
@@ -396,8 +398,9 @@
 							<c:if test="${isPoolMember.usrSeq == samePlanMemeber.usrSeq}">
 								<div class="col-md-12" id="same-plan-footer">
 									<button class="btn made-a-pool-${samePlanMemeber.usrSeq }"
-										onclick="madePool(${samePlanMemeber.usrSeq })">
-										Already made a pool</button>
+										onclick="madePool(${samePlanMemeber.usrSeq })" style="font-family: 'Nanum Pen Script', serif;  font-size: 1.2em;
+										">
+										이미 풀이 존재함</button>
 								</div>
 								<c:set var="isPoolMemberYN" value="Y" />
 							</c:if>
