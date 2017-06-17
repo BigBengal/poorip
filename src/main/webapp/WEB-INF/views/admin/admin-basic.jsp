@@ -30,6 +30,7 @@ function travelUpdate(trvSeq){
 	});
 	// 여기까지는 ajax와 같다. 하지만 아래의 submit명령을 추가하지 않으면 백날 실행해봤자 액션이 실행되지 않는다.
 	$("#travel-"+trvSeq).submit();
+	$("#travelbtn-"+trvSeq).hide()
 		
 }
 function travelPicInsert(trvSeq){
@@ -42,7 +43,7 @@ function travelPicInsert(trvSeq){
 	});
 	// 여기까지는 ajax와 같다. 하지만 아래의 submit명령을 추가하지 않으면 백날 실행해봤자 액션이 실행되지 않는다.
 	$("#travelpic-"+trvSeq).submit();
-		
+	$("#travelpicbtn-"+trvSeq).hide()
 }
 
 function travelDelete(trvSeq){
@@ -188,7 +189,7 @@ function cityDelete(ctySeq){
 			<form action="${pageContext.request.contextPath}/admin/upload/travelPicAjax" id="travelpic-${travelinfoVo.trvSeq}" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="trvSeq1" value="${travelinfoVo.trvSeq}">
 				<input type="file" name="travelfile" multiple="multiple">
-				<input type="button" value="사진추가" onclick="travelPicInsert(${travelinfoVo.trvSeq})">
+				<input type="button" id="travelpicbtn-${travelinfoVo.trvSeq}" value="사진추가" onclick="travelPicInsert(${travelinfoVo.trvSeq})">
 			</form>
 			</td>
 			<form action="${pageContext.request.contextPath}/admin/modify/travelMainPic" id="travel-${travelinfoVo.trvSeq}" method="post" enctype="multipart/form-data">
@@ -196,7 +197,7 @@ function cityDelete(ctySeq){
 			<td>${travelinfoVo.picture } <br/>
 					<input type="hidden" name="trvSeq" value="${travelinfoVo.trvSeq}"> 
 					<input type="file" name="file">
-					<input type="button" value="수정" onclick="travelUpdate(${travelinfoVo.trvSeq})">
+					<input type="button" id="travelbtn-${travelinfoVo.trvSeq}" value="수정" onclick="travelUpdate(${travelinfoVo.trvSeq})">
 			</td>
 			<td><textarea cols="45" rows="5" name="contents">${travelinfoVo.contents}</textarea></td>
 			<td><textarea cols="25" rows="5" name="hours">${travelinfoVo.hours}</textarea></td>
