@@ -23,6 +23,20 @@ $(document).ready(function(){
 		 
 		});
 	
+	$('.form-group #pool-pic').change(function() {
+		 $("#pool-main-img").html('');
+		  var i = $(this).prev('label').clone();
+		  var file = this.files;
+		  
+		  for (var i = 0; i < file.length; i++) {
+		        $("#pool-main-img").append(file.length + "개의 사진이 업로드 되었습니다. ");
+		        return;
+		    }
+		 
+		});
+	
+	
+	
 	$(document).on("change","#modifyeachform .pool-post-contents .img-edit-pool",function() {
 		 $("#modifyeachform .pool-editimgnames").html('');
 		  var i = $(this).prev('label').clone();
@@ -38,7 +52,7 @@ $(document).ready(function(){
 	// 풀파티 설정 다이얼로그
 	dialog = $( "#dialog-form" ).dialog({
 	    	autoOpen: false,
-	        height: 480,
+	        height: 720,
 	        width: 600,
 	        modal: true,
 	        buttons: {

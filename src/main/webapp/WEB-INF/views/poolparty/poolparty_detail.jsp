@@ -209,32 +209,35 @@
 	
 	<div class="container" style="position: relative">
 		<!-- 풀파티 설정 -->
-		<div id="pool-dialog-form" title="풀파티 설정 변경">
+		<div id="dialog-form" title="풀파티 설정 변경" style="padding: 5% 5% 0% 5%; ">
 			<form class="form-horizontal" id="poolsetting" action="saveSetting"
-				method="post" enctype="multipart/form-data">
+				method="post" enctype="multipart/form-data" style="text-align:center;  padding: 5% 2%; border-radius: 8px; background: #efefef;
+				">
 				<fieldset>
 					<input type="hidden" id="poolSeq" name="poolSeq"
 						value="${pool.poolSeq}">
 					<div class="form-group">
-						<label class="control-label" for="name">풀파티 제목</label> <input
-							type="text" name="poolName" id="name" value="${pool.poolName}"
-							class="text ui-widget-content ui-corner-all">
+						<input
+							type="text" name="poolName" id="pool-name" value="${pool.poolName}"
+							class="text ui-widget-content ui-corner-all" placeholder="풀 제목.." style="padding:10px;">
 					</div>
 					<div class="form-group">
-						<label class="control-label" for="comment">풀파티 코멘트</label> <input
+						 <input
 							type="text" name="poolComment" id="comment"
 							value="${pool.poolComment}" maxlength="150"
-							class="text ui-widget-content ui-corner-all">
+							class="text ui-widget-content ui-corner-all" placeholder="풀 코멘트.." style="padding:10px;">
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="pic">풀파티 이미지</label> <input
-							type="file" name="poolPicture" id="pic"
-							class="text ui-widget-content ui-corner-all">
+					<div class="form-group pool-image-change" style="display:inline-block; width:40%; border: dashed #80ceca;; border-radius:5px;">
+						<label class="control-label" for="pool-pic" style="padding:10px;cursor:pointer; width:100%; text-align:center;">풀파티 이미지</label> <input
+							type="file" name="poolPicture" id="pool-pic"
+							class="text ui-widget-content ui-corner-all" style="display:none; ">
+						
 					</div>
-
+					<div id="pool-main-img" style="margin-bottom:30px;"></div>	
+					<label for="control-label" for="city" style="margin-bottom:5px;">대표 도시</label>
 					<div class="form-group">
-						<label for="control-label" for="city">대표 도시</label> <select
-							id="city" name="ctySeq">
+						 <select
+							id="city" name="ctySeq" style="padding: 5px 10%; margin-bottom:30px;">
 							<option value="0"></option>
 							<c:forEach items="${cityList }" var="cityList" varStatus="status">
 								<c:choose>
@@ -249,8 +252,9 @@
 							</c:forEach>
 						</select>
 					</div>
-					<div class="form-group">
-						<label for="control-label" for="public">공개 여부</label>
+					<label for="control-label" for="public" style="margin-bottom:5px;">공개 여부</label>
+					<div class="form-group" style="margin-bottom:30px;">
+						
 						<c:choose>
 							<c:when test="${pool.poolPublicYn =='Y'}">
 								<input type="checkbox" name="poolPublicYn" value="Y" checked
@@ -263,8 +267,9 @@
 						</c:choose>
 
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="fromdate"> 여행기간</label> <input
+					<label class="control-label" for="fromdate" style="margin-bottom:5px;"> 여행기간</label>
+					<div class="form-group" style="margin-bottom:10px;">
+						 <input
 							type="text" name="fromDate" id="fromdate"
 							value="${pool.fromDate}"
 							class="datepicker text ui-widget-content ui-corner-all">

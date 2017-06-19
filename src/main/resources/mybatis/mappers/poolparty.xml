@@ -90,8 +90,7 @@
 			       PP.HIT,
 				   CT.cty_name as ctyName
 			  FROM POOL_PARTY as PP Left Join CITY as CT
-			 ON POOL_PUBLIC_YN = 'Y'
-			 AND PP.cty_Seq = CT.cty_seq
+			 ON  PP.cty_Seq = CT.cty_seq where pp.pool_public_yn = 'Y'
 			 ORDER BY HIT desc
 			 LIMIT 0,12;
 			 ]]> 

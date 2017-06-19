@@ -80,20 +80,33 @@ public class AdminController {
 		return "redirect:/admin/basic";
 	}
 	
+	@ResponseBody
 	@RequestMapping("/modify/travelMainPic")
 	public String modiftTravelInfo( @ModelAttribute TravelInfoVo travelInfoVo,
-								 @RequestParam("file") MultipartFile multipartFile) {
+								 MultipartHttpServletRequest req) {
+		
+		MultipartFile multipartFile = req.getFile("file");
 		adminService.modifytarvelInfoPic( travelInfoVo, multipartFile );
 		
-		return "redirect:/admin/basic";
+		return "OK";
 	}
 	
+	@ResponseBody
+	@RequestMapping("/upload/travelPicAjax")
+	public String addTravelPicAjax( @ModelAttribute TravelInfoPicVo travelInfoPicVo,
+								@RequestParam ("trvSeq1") int trvSeq,
+								MultipartHttpServletRequest request) throws IOException {
+		travelInfoPicVo.setTrvSeq( trvSeq );
+		List< MultipartFile > Travelfiles = request.getFiles( "travelfile" );
+		adminService.addTravelPic( travelInfoPicVo, Travelfiles );
+		
+		return "ok";
+	}
 	
 	@RequestMapping("/upload/travelPic")
 	public String addTravelPic( @ModelAttribute TravelInfoPicVo travelInfoPicVo,
 								@RequestParam ("trvSeq1") int trvSeq,
-								MultipartHttpServletRequest request,
-								Model model) throws IOException {
+								MultipartHttpServletRequest request) throws IOException {
 		travelInfoPicVo.setTrvSeq( trvSeq );
 		List< MultipartFile > Travelfiles = request.getFiles( "travelfile" );
 		adminService.addTravelPic( travelInfoPicVo, Travelfiles );

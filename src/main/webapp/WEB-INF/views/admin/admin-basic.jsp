@@ -16,7 +16,35 @@ table {
 </style>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/poorip/assets/plugins/jquery.form.js"></script>
+
 <script type="text/javascript">
+
+function travelUpdate(trvSeq){
+	$("#travel-"+trvSeq).ajaxForm({
+		url: "/poorip/admin/modify/travelMainPic",
+		enctype: "multipart/form-data", // 여기에 url과 enctype은 꼭 지정해주어야 하는 부분이며 multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
+		success: function(result){
+			console.log(result);
+		}
+	});
+	// 여기까지는 ajax와 같다. 하지만 아래의 submit명령을 추가하지 않으면 백날 실행해봤자 액션이 실행되지 않는다.
+	$("#travel-"+trvSeq).submit();
+	$("#travelbtn-"+trvSeq).hide()
+		
+}
+function travelPicInsert(trvSeq){
+	$("#travelpic-"+trvSeq).ajaxForm({
+		url: "/poorip/admin/upload/travelPicAjax",
+		enctype: "multipart/form-data", // 여기에 url과 enctype은 꼭 지정해주어야 하는 부분이며 multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
+		success: function(result){
+			console.log(result);
+		}
+	});
+	// 여기까지는 ajax와 같다. 하지만 아래의 submit명령을 추가하지 않으면 백날 실행해봤자 액션이 실행되지 않는다.
+	$("#travelpic-"+trvSeq).submit();
+	$("#travelpicbtn-"+trvSeq).hide()
+}
 
 function travelDelete(trvSeq){
 	$.ajax( {
@@ -156,13 +184,20 @@ function cityDelete(ctySeq){
 	</tr>
 	<c:forEach items="${travelinfoVo }" var="travelinfoVo" varStatus="status">
 		<tr id="deleteInfo-${travelinfoVo.trvSeq}">
+			
+			<td>${travelinfoVo.trvSeq }
+			<form action="${pageContext.request.contextPath}/admin/upload/travelPicAjax" id="travelpic-${travelinfoVo.trvSeq}" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="trvSeq1" value="${travelinfoVo.trvSeq}">
+				<input type="file" name="travelfile" multiple="multiple">
+				<input type="button" id="travelpicbtn-${travelinfoVo.trvSeq}" value="사진추가" onclick="travelPicInsert(${travelinfoVo.trvSeq})">
+			</form>
+			</td>
 			<form action="${pageContext.request.contextPath}/admin/modify/travelMainPic" id="travel-${travelinfoVo.trvSeq}" method="post" enctype="multipart/form-data">
-			<td>${travelinfoVo.trvSeq }</td>
 			<td><input type="text" name="name" value="${travelinfoVo.name}"></td>
 			<td>${travelinfoVo.picture } <br/>
 					<input type="hidden" name="trvSeq" value="${travelinfoVo.trvSeq}"> 
 					<input type="file" name="file">
-					<input type="submit" value="수정">
+					<input type="button" id="travelbtn-${travelinfoVo.trvSeq}" value="수정" onclick="travelUpdate(${travelinfoVo.trvSeq})">
 			</td>
 			<td><textarea cols="45" rows="5" name="contents">${travelinfoVo.contents}</textarea></td>
 			<td><textarea cols="25" rows="5" name="hours">${travelinfoVo.hours}</textarea></td>

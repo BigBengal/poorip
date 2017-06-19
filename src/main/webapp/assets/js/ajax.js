@@ -189,10 +189,15 @@ function send(trvSeq, reviewNum){
 			        data: "",
 			        dataType: "json",
 			        success : function(result) {
+			        	console.log(result.data);
+			        		if( result.data == null ) {
+  							
+        		    		return;
+        		    		} 	
 			        	$( result.data ).each( function(index, vo){
 			        		
 			        		var likePostIcon = document.getElementById("like-button-img-"+vo.postSeq);
-// 			        		console.log(likePostIcon);
+ 			        		console.log(likePostIcon);
 			        		likePostIcon.src = "/poorip/assets/images/like_on2.png";
 			        	});
 			         

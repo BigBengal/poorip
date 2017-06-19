@@ -282,7 +282,7 @@
 		<![CDATA[
 	select a.post_seq as postSeq 
 	from post a, post_like b 
-	where a.POST_SEQ = b.post_seq and trv_seq=#{trvSeq} and b.usr_seq=#{usrSeq}
+	where a.POST_SEQ = b.post_seq and trv_seq=#{trvSeq} and b.usr_seq=#{usrSeq} and a.REVIEW_PUB_YN='Y'
 	]]>
 	</select>
 

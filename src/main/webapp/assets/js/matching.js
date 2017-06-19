@@ -5,7 +5,7 @@ $(document).ready(function() {
 		var target = $("#contents");
 		$('html,body').animate({
 			scrollTop: target.offset().top-90
-		}, 2000);
+		}, 1300);
 });
 
 $(window).load(function() {
