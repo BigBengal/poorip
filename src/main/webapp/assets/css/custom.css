@@ -933,6 +933,10 @@ button:focus {
 	min-height: 30px;
 }
 
+.pool-partydetail-header img {
+	    max-height: 300px;
+}
+
 .poolindivcomment {
 	word-break: keep-all;
 	border-left: solid 5px #6f96a2;;

@@ -70,7 +70,7 @@
 						  		</li>
 						  		<li><a><img id="loginpic" src="${authUser.usrProfile}" width="50" height="50"></a></li>
 						  		<c:if test="${!empty authUser}">
-						  			<a href="http://localhost:9090/poorip/poolparty/mypool#notify"><span class="my-badge">${notify}</span></a>
+						  			<a href="/poorip/poolparty/mypool#notify"><span class="my-badge">${notify}</span></a>
 						  		</c:if>
 <%-- 								<li><a href=#><img onclick="openOptions()" id="loginpic" src="${authUser.usrProfile}"></a></li> --%>
 							</ul>
