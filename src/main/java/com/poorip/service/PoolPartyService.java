@@ -27,7 +27,7 @@ public class PoolPartyService {
 	private static final Logger logger = LoggerFactory.getLogger(PoolPartyService.class);
 	
 	private static final String defaultPoolpartName = "님의 PoolParty";
-	private static final String defaultPublicYn = "Y";
+	private static final String defaultPublicYn = "N";
 	private static final String defaultPoolpartImage = "/assets/images/pool-party-default.jpg";
 	private static final String POOLPARTY_SAVE_PATH = "/pool/";
 	

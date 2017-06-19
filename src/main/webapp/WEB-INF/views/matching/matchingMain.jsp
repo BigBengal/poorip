@@ -236,9 +236,9 @@
 						</c:choose>
 					</div>
 					<!-- 					<hr> -->
-					<div class="col-md-12 text-center"
+					<div class="col-md-12 text-center samedatelist"
 						onclick="showDateList(${matchingScore.usrSeq });"
-						style="height: 20px; margin-bottom: 10%;">
+						style="height: 20px; margin-bottom: 5%; ">
 						<h2>
 							<span class="menu_links span-font-family matching-trv-date">${matchingScore.usrNick}님의
 								여행 일정 보기</span>
@@ -247,7 +247,7 @@
 					</div>
 					<div class="col-md-12 date-list span-font-family"
 						id="dateList-${matchingScore.usrSeq }"
-						style="margin-bottom: 15px; text-align: center; border: dotted rgb(155, 212, 209);">
+						style="margin-bottom: 15px; text-align: center; border:dotted rgb(155, 212, 209);">
 						<c:set var="dateListYN" value="N" />
 						<c:forEach var="matchingDateList" items="${matchingDateList }">
 							<c:if test="${matchingScore.usrSeq == matchingDateList.usrSeq }">
@@ -259,8 +259,7 @@
 							</c:if>
 						</c:forEach>
 						<c:if test="${dateListYN == 'N'}">
-							<label class="span-font-family" style="padding: 10px;">여행
-								계획이 없는 사용자입니다.</label>
+							<label class="span-font-family" style="padding:10px;">여행 계획이 없는 사용자입니다.</label>
 							<c:set var="dateListYN" value="Y" />
 						</c:if>
 					</div>
@@ -275,8 +274,8 @@
 							<div class="col-md-12 matching-footer">
 								<button class="btn made-a-pool-${matchingScore.usrSeq }"
 									onclick="madePool(${matchingScore.usrSeq })"
-									style="border-radius: 3px; font-family: 'Nanum Pen Script', serif; font-size: 1.2em;">이미
-									풀이 존재함</button>
+									style="border-radius: 3px; font-family: 'Nanum Pen Script', serif;  font-size: 1.2em;
+										">이미 풀이 존재함</button>
 							</div>
 							<c:set var="isPoolMemberYN" value="Y" />
 						</c:if>
@@ -366,7 +365,7 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<div class="col-md-12 text-center"
+						<div class="col-md-12 text-center samedatelist"
 							onclick="showSameDateList(${samePlanMemeber.usrSeq });"
 							style="margin-bottom: 10px; padding: 10px 30px 10px 30px;">
 							<h2>
@@ -377,7 +376,7 @@
 						</div>
 						<div class="col-md-12 block-date-list"
 							id="showDateList-${samePlanMemeber.usrSeq }"
-							style="margin-bottom: 10px; text-align: center; overflow: auto;">
+							style="margin-bottom: 10px; text-align:center; overflow:auto;">
 							<c:forEach var="samePlanDateList" items="${samePlanDateList }">
 								<c:if
 									test="${samePlanMemeber.usrSeq == samePlanDateList.usrSeq }">
@@ -388,8 +387,8 @@
 							</c:forEach>
 							<br>
 						</div>
-						<div class="col-md-12 span-font-family text-center"
-							style="position: absolute; bottom: 10%;">
+						<div class="col-md-12 span-font-family text-center" style="position: absolute;
+    bottom: 10%;">
 							${samePlanMemeber.usrNick}님과 ${userVo.usrNick }의 일정은 <br /> <label
 								style="color: #339BEB;">${samePlanMemeber.overlapDays }일</label>
 							동안 같습니다.
@@ -399,8 +398,8 @@
 							<c:if test="${isPoolMember.usrSeq == samePlanMemeber.usrSeq}">
 								<div class="col-md-12" id="same-plan-footer">
 									<button class="btn made-a-pool-${samePlanMemeber.usrSeq }"
-										onclick="madePool(${samePlanMemeber.usrSeq })"
-										style="font-family: 'Nanum Pen Script', serif; font-size: 1.2em;">
+										onclick="madePool(${samePlanMemeber.usrSeq })" style="font-family: 'Nanum Pen Script', serif;  font-size: 1.2em;
+										">
 										이미 풀이 존재함</button>
 								</div>
 								<c:set var="isPoolMemberYN" value="Y" />
@@ -411,8 +410,7 @@
 								<button
 									class="btn btn-primary make-a-pool-${samePlanMemeber.usrSeq }"
 									onclick="makingPool(${samePlanMemeber.usrSeq })"
-									data-usrseq="${samePlanMemeber.usrSeq }"
-									style="border-radius: 3px; font-family: 'Nanum Pen Script', serif; font-size: 1.2em;">
+									data-usrseq="${samePlanMemeber.usrSeq }" style="font-family: 'Nanum Pen Script', serif; font-size: 1.2em;">
 									풀 파티 요청<span class="glyphicon glyphicon-chevron-right"></span>
 								</button>
 							</div>
@@ -445,13 +443,13 @@
 			</div>
 		</form>
 	</c:forEach>
-	
+
 	<!-- 존재 하는 풀 다이얼로그 -->
 	<c:forEach var="matchingScore" items="${matchingScore }"
 		varStatus="status">
 		<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
-		<div id="made-pool-${matchingScore.usrSeq }" title="이미 같은 풀"
-			style="display: none">
+		<div id="made-pool-${matchingScore.usrSeq }"
+			title="이미 같은 풀" style="display: none">
 			<p>
 				<span class="ui-icon ui-icon-alert"
 					style="float: left; margin: 12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의
