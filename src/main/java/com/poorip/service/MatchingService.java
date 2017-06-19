@@ -80,7 +80,7 @@ public class MatchingService {
 		int overlapDaysScore = 0;
 		int myusrSeq = myInfo.getUsrSeq();
 		// dateScore max값 구하기 위한 변수
-		int maxDateScore = 0;
+		float maxDateScore = 0;
 		// 내 스크랩 도시 정보
 		for (int x = 0; x < myCityList.size(); x++) {
 			String targetDateFrom = myCityList.get(x).getDateFrom();
@@ -95,6 +95,8 @@ public class MatchingService {
 			
 			// 내가 스크랩한 도시를 같이 스크랩 한 사용자 스크랩 정보
 			for (int y = 0; y < scrapCityVo.size(); y++) {
+				int usr111111 = scrapCityVo.get(y).getUsrSeq();
+				System.out.println(usr111111);
 				if (scrapCityVo.get(y) != null) { // NULL 경우가 있음
 					UserVo dateScore = new UserVo(); // 유저 정보 저장용
 					int matchingUsrSeq = scrapCityVo.get(y).getUsrSeq();
@@ -132,7 +134,7 @@ public class MatchingService {
 						long diff = Math.abs(minTo.getTime() - maxFrom.getTime());
 						int overlapDays = (int)(diff / (24 * 60 * 60 * 1000));
 						overlapDaysScore = (int) Math.pow(overlapDays, 2);
-
+						System.out.println(usr111111 + "     " + overlapDaysScore);
 						boolean isExistUsr = false;
 						int listSize = samePlanMember.size();
 						
@@ -149,8 +151,6 @@ public class MatchingService {
 								samePlanMember.get(z).setMatchingScore(originMatchingScore + newDateSocre);
 								isExistUsr = true;
 							}
-							if(maxDateScore < samePlanMember.get(z).getDateScore())
-								maxDateScore = samePlanMember.get(z).getDateScore();
 						}
 						// 리스트에 없으면 리스트에 추가
 						if (!isExistUsr) {
@@ -158,6 +158,11 @@ public class MatchingService {
 							dateScore.setOverlapDays(overlapDays);
 							dateScore.setDateScore(overlapDaysScore);
 							samePlanMember.add(dateScore);
+						}
+						
+						for (int j=0; j<samePlanMember.size(); j++) {
+							if(maxDateScore <= samePlanMember.get(j).getDateScore())
+								maxDateScore = samePlanMember.get(j).getDateScore();
 						}
 					} // NULL 경우가 있음
 
@@ -167,11 +172,11 @@ public class MatchingService {
 
 		} // for(int x=1; x < myCityList.size(); x++)
 		
-		double memberCompareToDate = 0;
+		float memberCompareToDate = 0;
 		// 최고 score를 가지고 있는 사람은 120 그를 기준으로 사람들의 일정 점수 매김
 		for(int j=0; j<samePlanMember.size(); j++) {
 			int dateScore = samePlanMember.get(j).getDateScore();
-			memberCompareToDate = (double)((double)dateScore/(double)maxDateScore);
+			memberCompareToDate = ((float)dateScore/maxDateScore);
 			int dateSocre = (int) (memberCompareToDate * 120);
 			samePlanMember.get(j).setDateScore(dateSocre);
 			samePlanMember.get(j).setOriginDateScore(dateScore);
