@@ -236,9 +236,9 @@
 						</c:choose>
 					</div>
 					<!-- 					<hr> -->
-					<div class="col-md-12 text-center"
+					<div class="col-md-12 text-center samedatelist"
 						onclick="showDateList(${matchingScore.usrSeq });"
-						style="height: 20px; margin-bottom: 10%; ">
+						style="height: 20px; margin-bottom: 5%; ">
 						<h2>
 							<span class="menu_links span-font-family matching-trv-date">${matchingScore.usrNick}님의
 								여행 일정 보기</span>
@@ -365,7 +365,7 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<div class="col-md-12 text-center"
+						<div class="col-md-12 text-center samedatelist"
 							onclick="showSameDateList(${samePlanMemeber.usrSeq });"
 							style="margin-bottom: 10px; padding: 10px 30px 10px 30px;">
 							<h2>

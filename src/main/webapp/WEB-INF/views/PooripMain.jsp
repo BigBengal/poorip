@@ -278,7 +278,7 @@
 				swal({
 					  title: '',
 					  type: 'info',
-					  html: '<p>스크랩을 하고 여행 일정이 있어야 <br>여행 동행을 찾을 수 있습니다.</p><p>Travel Info에서 스크랩하고 일정을 저장해 주세요.<p>',
+					  html: '<strong><p>스크랩을 하고 여행 일정이 있어야 <br>여행 동행을 찾을 수 있습니다.</p><p>Travel Info에서 스크랩하고 일정을 저장해 주세요.<p></strong>',
 					  width: 500,
 					  background: '#fff'
 				}).then(function () {
@@ -288,7 +288,7 @@
 				swal({
 					  title: '',
 					  type: 'info',
-					  html: '여행 정보를 하나도 보지 않았네요.<p>동행 추천은 사용자 성향 데이터 기반으로 추천됩니다.</p><p>Travel Info 메뉴에서 관심있는 여행정보를 클릭해보세요.<p>',
+					  html: '<strong>여행 정보를 하나도 보지 않으셨네요.<p>동행 추천은 사용자 성향 데이터 기반으로 추천됩니다.</p><p>Travel Info 메뉴에서 관심있는 여행정보를 클릭해보세요.<p></strong>',
 					  width: 500,
 					  background: '#fff'
 				}).then(function () {
