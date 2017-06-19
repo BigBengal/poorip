@@ -286,8 +286,8 @@
 								class="btn btn-primary make-a-pool-${matchingScore.usrSeq }"
 								onclick="makingPool(${matchingScore.usrSeq })"
 								data-usrseq="${matchingScore.usrSeq }"
-								style="border-radius: 3px;">
-								make a pool <span class="glyphicon glyphicon-chevron-right"></span>
+								style="border-radius: 3px; font-family: 'Nanum Pen Script', serif; font-size: 1.2em;">
+								풀 파티 요청 <span class="glyphicon glyphicon-chevron-right"></span>
 							</button>
 						</div>
 					</c:if>
@@ -410,8 +410,8 @@
 								<button
 									class="btn btn-primary make-a-pool-${samePlanMemeber.usrSeq }"
 									onclick="makingPool(${samePlanMemeber.usrSeq })"
-									data-usrseq="${samePlanMemeber.usrSeq }">
-									make a pool <span class="glyphicon glyphicon-chevron-right"></span>
+									data-usrseq="${samePlanMemeber.usrSeq }" style="font-family: 'Nanum Pen Script', serif; font-size: 1.2em;">
+									풀 파티 요청<span class="glyphicon glyphicon-chevron-right"></span>
 								</button>
 							</div>
 						</c:if>
@@ -434,11 +434,11 @@
 			action="${pageContext.request.contextPath}/poolparty/make"
 			data-usrseq="${matchingScore.usrSeq }" method="post">
 			<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
-			<div id="making-pool-${matchingScore.usrSeq }" title="MAKE A POOL"
+			<div id="making-pool-${matchingScore.usrSeq }" title="풀 파티 요청"
 				style="display: none">
 				<p>
 					<span style="float: left; margin: 12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의
-					풀을 생성하시겠습니까?
+					풀 생성을 요청 하시겠습니까?
 				</p>
 			</div>
 		</form>
@@ -449,7 +449,7 @@
 		varStatus="status">
 		<input type="hidden" value="${matchingScore.usrSeq }" name="usrSeq">
 		<div id="made-pool-${matchingScore.usrSeq }"
-			title="SAME POOL, ALREADY" style="display: none">
+			title="이미 같은 풀" style="display: none">
 			<p>
 				<span class="ui-icon ui-icon-alert"
 					style="float: left; margin: 12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의
