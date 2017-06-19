@@ -443,6 +443,22 @@
 			</div>
 		</form>
 	</c:forEach>
+	
+	<c:forEach var="samePlanMemeber" items="${samePlanMemeber }"
+		varStatus="status">
+		<form id="making-pool-form-${samePlanMemeber.usrSeq }"
+			action="${pageContext.request.contextPath}/poolparty/make"
+			data-usrseq="${samePlanMemeber.usrSeq }" method="post">
+			<input type="hidden" value="${samePlanMemeber.usrSeq }" name="usrSeq">
+			<div id="making-pool-${samePlanMemeber.usrSeq }" title="풀 파티 요청"
+				style="display: none">
+				<p>
+					<span style="float: left; margin: 12px 12px 20px 0;"></span>${samePlanMemeber.usrNick }님과의
+					풀 생성을 요청 하시겠습니까?
+				</p>
+			</div>
+		</form>
+	</c:forEach>
 
 	<!-- 존재 하는 풀 다이얼로그 -->
 	<c:forEach var="matchingScore" items="${matchingScore }"
@@ -453,6 +469,19 @@
 			<p>
 				<span class="ui-icon ui-icon-alert"
 					style="float: left; margin: 12px 12px 20px 0;"></span>${matchingScore.usrNick }님과의
+				풀이 이미 생성되어 있습니다.
+			</p>
+		</div>
+	</c:forEach>
+	
+	<c:forEach var="samePlanMemeber" items="${samePlanMemeber }"
+		varStatus="status">
+		<input type="hidden" value="${samePlanMemeber.usrSeq }" name="usrSeq">
+		<div id="made-pool-${samePlanMemeber.usrSeq }"
+			title="이미 같은 풀" style="display: none">
+			<p>
+				<span class="ui-icon ui-icon-alert"
+					style="float: left; margin: 12px 12px 20px 0;"></span>${samePlanMemeber.usrNick }님과의
 				풀이 이미 생성되어 있습니다.
 			</p>
 		</div>
