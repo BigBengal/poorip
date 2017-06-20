@@ -156,9 +156,9 @@
 	<!-- banner end -->
 
 	<div class="banner-caption">
-		<div class="container">
+		<div class="container" style="font-family: 'Noto Sans KR', sans-serif;">
 			<div class="row">
-				<p class="lead text-center" style="color: white;">함께 동행할 SoulMate를 찾기 위한 절차입니다.</p>
+				<p class="lead text-center" style="color: white;">함께 동행할 멤버를 찾기 위한 절차입니다.</p>
 			</div>
 			<div class="row">
 				<div class="form-group">
@@ -166,7 +166,7 @@
 						data-animation-effect="fadeIn">
 						<h1 class="text-center" style="font-size: 50px">
 							<span style="font-size: 75px; color: teal;">${authUser.usrNick}님</span>의
-							<br>성향 조사를 시작하시겠습니까?
+							<br>성향 조사를 시작하시겠습니까? <br>(총 5문제)
 						</h1>
 						<p class="lead text-center" style="color: white; font-size: 16px">※스크랩한 여행지가 없을시 계획이 비슷한 여행자와 매칭됩니다.</p>
 					</div>

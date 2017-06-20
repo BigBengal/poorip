@@ -720,7 +720,7 @@ body .sns-pool-list.icon {
 	left: 0;
 	right: 0;
 	overflow: hidden;
-	height: 20%;
+	height: 30%;
 	background: rgb(204, 204, 204);
 	/* Fallback for older browsers without RGBA-support */
 	background: rgba(204, 204, 204, 0.8);
@@ -1240,6 +1240,7 @@ button:focus {
 	border-radius: 7px;
 	padding: 0;
 	margin-bottom: 2%;
+	    color: black;
 }
 
 #reviewtitle {
@@ -1334,4 +1335,8 @@ button:focus {
 
 .samedatelist:hover {
 	background-color:#cbe4e2;
+}
+
+.sns-post-group {
+	
 }
