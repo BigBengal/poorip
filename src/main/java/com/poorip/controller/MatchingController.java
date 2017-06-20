@@ -78,7 +78,6 @@ public class MatchingController {
 			if(samePlanMemeber.get(i).getUsrHashtag() != null)
 				samePlanMemeber.get(i).setUsrHashtag(samePlanMemeber.get(i).getUsrHashtag().replace("<", "&lt;"));
 		}
-		System.out.println(matchingScore);
 		model.addAttribute( "isPoolMember", isPoolMember );
 		model.addAttribute( "matchingDateList", matchingDateList);
 		model.addAttribute( "samePlanDateList", samePlanDateList);
@@ -98,7 +97,6 @@ public class MatchingController {
 		// 1. 사용자가 설문을 했는지 먼저 확인한다.
 		String surveyYN = matchingService.getusrPrefValue( usrSeq );
 		// 2. 설문조사를 한 회원은 결과창으로 넘겨준다.
-		System.out.println("YO??" + surveyYN);
 		if( surveyYN != null){
 			return "redirect:/matching/";
 		}

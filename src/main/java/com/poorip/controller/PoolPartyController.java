@@ -197,14 +197,10 @@ public class PoolPartyController {
 			@RequestParam("managerSeq") int managerSeq,
 			MultipartHttpServletRequest request) {
 		if(managerSeq==userVo.getUsrSeq()) {
-			System.out.println("yay?");
 		MultipartFile poolMainPic = request.getFile("file");
 		String picPath = poolPartyService.changeMainPic(userVo.getUsrSeq(), poolMainPic, poolSeq);
-		System.out.println("succeeded");
 		return JSONResult.success(picPath);
 		}
-		System.out.println("why??");
-		System.out.println(poolSeq + "   " + managerSeq +  "  " + request);
 		return JSONResult.fail("FAILED");
 	}
 	
@@ -218,7 +214,6 @@ public class PoolPartyController {
 		if (userVo.getUsrSeq() != reviewVo.getUsrSeq())
 			return "redirect:/poolparty/"+poolSeq;
 		List<MultipartFile> postUploadFiles = request.getFiles( "file" );
-		System.out.println(postUploadFiles);
 		SNSService.updatePost( reviewVo, postUploadFiles);
 		
 		return "redirect:/poolparty/"+poolSeq;
@@ -280,7 +275,6 @@ public class PoolPartyController {
 	public JSONResult searchPool(@ModelAttribute PoolPartyVo poolPartyVo) {
 	
 		List<PoolPartyVo> poolList = poolPartyService.getPoolList(poolPartyVo);
-		System.out.println(poolList);
 		return JSONResult.success(poolList);
 	}
 		
@@ -406,13 +400,10 @@ public class PoolPartyController {
 	@ResponseBody
 	@RequestMapping("/share/{postSeq}")
 	public JSONResult sharePostToMySNS (@PathVariable("postSeq") int postSeq,
-										
 										@AuthUser UserVo userVo) {
-		System.out.println("SNS로 가져와라~");
 		PostVo postVo = new PostVo();
 		postVo.setPostSeq(postSeq);
 		postVo.setUsrSeq(userVo.getUsrSeq());
-		System.out.println(postVo);
 
 		poolPartyService.sharePostToMySNS(postVo);
 		
@@ -448,7 +439,6 @@ public class PoolPartyController {
 	public JSONResult getCountOfNotify(@AuthUser UserVo authUser){
 		int countOfNotify = poolPartyService.getRequestList(authUser.getUsrSeq()).size();
 		if (countOfNotify > 0){
-			System.out.println(authUser);
 			return JSONResult.success(countOfNotify);
 		} else
 			return JSONResult.fail("알림이 없거나 로그인되지 않았습니다.");

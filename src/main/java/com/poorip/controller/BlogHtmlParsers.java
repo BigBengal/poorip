@@ -36,7 +36,6 @@ public class BlogHtmlParsers {
 
 			Document doc = Jsoup.parse(new File("C:/phantomjs-javascript/Austria1/Vienna-restaurant/Vienna-restaurant-" + i + ".html"), "UTF-8");
 			
-			System.out.println(i);
 			Elements elements = doc.select(".se_editView.se_title");
 			Elements elements01 = doc.select(".tit_h3");
 			Elements elements2 = doc.select(".se_paragraph.default");
@@ -83,8 +82,6 @@ public class BlogHtmlParsers {
 			crawlDataVo.setContent(content.replaceAll("39", "'"));
 			crawlDataVo.setPubDate(pubDate2);
 			
-			
-			System.out.println(content.replaceAll("39", "'"));
 			crawlDataDao.insert(crawlDataVo);
 		
 			

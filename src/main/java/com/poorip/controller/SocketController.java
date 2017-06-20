@@ -28,9 +28,6 @@ public class SocketController {
 	            TranslateOption.sourceLanguage("en"),
 	            TranslateOption.targetLanguage("ko"));
 
-
-	    System.out.printf("Text: %s%n", text);
-	    System.out.printf("Translation: %s%n", translation.getTranslatedText());  
 	  }
 	
 }

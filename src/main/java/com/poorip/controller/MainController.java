@@ -175,7 +175,6 @@ public class MainController {
 		}
 
 		List<ReviewVo> reviews = mainService.selectReviewList(trvSeq1);
-//		System.out.println(reviews);
 
 		return JSONResult.success(reviews);
 	}
@@ -212,14 +211,12 @@ public class MainController {
 	@RequestMapping("/reviewLikeValidate/{trvSeq}")
 	public JSONResult validateReviewLike(@PathVariable("trvSeq") String trvSeq, @AuthUser UserVo userVo) {
 		int trvSeq1 = Integer.parseInt(trvSeq);
-		System.out.println(trvSeq1);
-		System.out.println(userVo.getUsrSeq());
+		
 		if(userVo==null) {
 			userVo = new UserVo();
 			userVo.setUsrSeq(0);
 		}
 		List<PostVo> postLikeList =  snsService.showPostLike(trvSeq1, userVo.getUsrSeq());
-		System.out.println(postLikeList);
 		return JSONResult.success(postLikeList);
 	}
 	
