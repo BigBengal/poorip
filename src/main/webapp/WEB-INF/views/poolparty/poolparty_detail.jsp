@@ -476,7 +476,7 @@
 					</c:if>
 
 						<div class="col-md-6 img_inline">
-							<img src="${post.picture}"
+							<img src="${post.picture}" width="50px"
 								style="float: left; margin-left: 5px; margin-bottom: 5px;">
 							<h6>${post.name}</h6>
 							<c:if test="${post.trvName ne '관련 여행정보 없음' }">

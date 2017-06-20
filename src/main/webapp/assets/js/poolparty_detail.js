@@ -559,7 +559,7 @@ function showList(){
 				}
 				
 				html = html + "<div class='col-md-6 img_inline'>"+
-				"	<img src='"+vo.picture+"'> <h6>"+vo.name+"</h6>";
+				"	<img src='"+vo.picture+"' width='50px;'> <h6>"+vo.name+"</h6>";
 				if(vo.trvName!='관련 여행정보 없음'){
 				html = html + "<h6> in <span style='color:rgba(22, 39, 125, 0.55);'> " + vo.trvName + "</span></h6>"; 
 				}
