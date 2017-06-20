@@ -1,7 +1,6 @@
 package com.poorip.repository;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +71,7 @@ public class PoolPartyDao {
 	
 	public boolean sharePost(PostVo postVo) {
 		sqlSession.insert("post.sharepost", postVo);
-		System.out.println(postVo);
-		sqlSession.insert("post.sharepostpic", postVo);
-		return 1 == 1;
+		return 1 == sqlSession.insert("post.sharepostpic", postVo);
 	}
 
 }
