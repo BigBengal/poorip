@@ -92,12 +92,12 @@ var last_render = function(vo, picExist, postPicSeqArray) {
 					   "<button class='sns-post-footer gray_button' style='width:70px; float:left;' ";	
 	if(picExist == 'Y') {
 	  last_html = last_html +
-				  "	onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")'>수정</button>" +
+				  "	onclick='showPostEdit(\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")'>수정</button>" +
 				  "</div>" ;
 //	  $("#middle-html-"+postPicSeq).after(last_html);
 	} else {
 		last_html = last_html +
-				 " onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'>수정</button>" +
+				 " onclick='showPostEdit(\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\")'>수정</button>" +
 				 "</div>" ;
 //		$("#first-html-"+vo.postSeq).after(last_html);
 	};
@@ -405,8 +405,10 @@ function showShare() {
 }
 
 
-function showPostEdit(contents, title, trvSeq, postSeq, postPicSeqArray) {
+function showPostEdit(title, trvSeq, postSeq, postPicSeqArray) {
 	writeVisible = true;
+	$contents = $("#sns-post-"+postSeq +" div p")
+	contents = $contents.eq(1).text();	 
 	$(".form-group #edit-title").val(title);
 	$(".form-group #edit-contents").val(contents);
 	$("#sns-trv-seq").val(trvSeq).change();
