@@ -1240,6 +1240,7 @@ button:focus {
 	border-radius: 7px;
 	padding: 0;
 	margin-bottom: 2%;
+	    color: black;
 }
 
 #reviewtitle {
@@ -1334,4 +1335,8 @@ button:focus {
 
 .samedatelist:hover {
 	background-color:#cbe4e2;
+}
+
+.sns-post-group {
+	
 }

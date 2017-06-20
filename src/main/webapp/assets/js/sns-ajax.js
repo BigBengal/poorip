@@ -21,7 +21,7 @@ var post_render = function(vo) {
 		ctyName = vo.ctyName
 	}
 	var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color:white ;' >" + 
-				   		"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" + "margin-left: 0px;'>" + 
+				   		"<div class='form-group'   style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" + "margin-left: 0px; display: inline-block; width: 100%;'>" + 
 					   		"<img class='sns-profile-pic' src='"+auth+"'>" +
 					   		"<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong>" +
 					   			"<h6 style='display:inline-block;'>&nbsp&nbspat " + trvInfoName + "&nbsp[&nbsp" + ctyName + "&nbsp]</h6></div>" +
@@ -33,7 +33,7 @@ var post_render = function(vo) {
 						   		"<div class='col-md-offset-4' style='margin:auto;'>" +
 //						   			"<p class='col-md-12'>" + 
 						   				"<div class='form-group sns-post-content' style='width:100%;'>" +
-						   					"<p class='col-md-12 text-center' style='font-size: 15px'>" + vo.contents + "</p>" +
+						   					"<p class='col-md-12 text-center' style='font-size: 15px; word-break: break-all;'>" + vo.contents + "</p>" +
 						   				"</div>";
 	return post_html;
 //						   				"<div class='cycle-slideshow'" +
@@ -47,7 +47,7 @@ var post_render = function(vo) {
 var edit_post_render = function( vo ) {
 	   var post_html = "<div id='sns-post-" + vo.postSeq + "' class='sns-post-group' style='background-color: white;'>" + 
 	   					"<div class='form-group'  style='padding-top: 10px; background-color:#e6e6e6; margin-right: 0px;" +
-                        "margin-left: 0px;'>" + 
+                        "margin-left: 0px; '>" + 
                         "<img class='sns-profile-pic' src=''>" +
 	                     "<div class='text-center' style='font-size: 20px; padding-bottom: 10px; display:inline-block; margin-left:10px;'><strong>" + vo.title + "</strong></div>" +
 	                  "</div>" +
@@ -92,7 +92,7 @@ var last_render = function(vo, picExist, postPicSeqArray) {
 					   "<button class='sns-post-footer gray_button' style='width:70px; float:left;' ";	
 	if(picExist == 'Y') {
 	  last_html = last_html +
-				  "	onclick='showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")'>수정</button>" +
+				  "	onclick='javascript : showPostEdit(\"" + vo.contents + "\",\"" + vo.title + "\",\""+vo.trvSeq +"\",\""+vo.postSeq+"\",\""+postPicSeqArray+"\")'>수정</button>" +
 				  "</div>" ;
 //	  $("#middle-html-"+postPicSeq).after(last_html);
 	} else {
@@ -406,6 +406,7 @@ function showShare() {
 
 
 function showPostEdit(contents, title, trvSeq, postSeq, postPicSeqArray) {
+	console.log("들어왓ㄴ");
 	writeVisible = true;
 	$(".form-group #edit-title").val(title);
 	$(".form-group #edit-contents").val(contents);
