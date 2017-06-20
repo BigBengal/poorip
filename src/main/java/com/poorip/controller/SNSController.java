@@ -1,7 +1,5 @@
 package com.poorip.controller;
 
-import static org.mockito.Matchers.booleanThat;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
