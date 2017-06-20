@@ -720,7 +720,7 @@ body .sns-pool-list.icon {
 	left: 0;
 	right: 0;
 	overflow: hidden;
-	height: 20%;
+	height: 30%;
 	background: rgb(204, 204, 204);
 	/* Fallback for older browsers without RGBA-support */
 	background: rgba(204, 204, 204, 0.8);
