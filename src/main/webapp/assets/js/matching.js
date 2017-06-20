@@ -70,7 +70,9 @@ function showChart() {
 }
 
 function makingPool(usrSeq){
+	console.log(usrSeq);
 	dialog = $("#making-pool-"+usrSeq).dialog({
+		
 		resizable: false,
 	      height: "auto",
 	      width: 400,

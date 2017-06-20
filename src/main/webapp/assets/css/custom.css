@@ -931,6 +931,7 @@ button:focus {
 	border-left: solid 5px #6f96a2;;
 	padding-left: 10px;
 	min-height: 30px;
+	    margin-top: 5%;
 }
 
 .pool-partydetail-header img {
@@ -942,6 +943,7 @@ button:focus {
 	border-left: solid 5px #6f96a2;;
 	padding-left: 10px;
 	min-height: 30px;
+	    margin-top: 5%;
 }
 
 @media ( max-width : 480px) and (min-width: 350px) {
@@ -1157,6 +1159,7 @@ button:focus {
 .trvinfocontent {
 	margin-top: 15px;
 	margin-bottom: 15px;
+	word-break:keep-all;
 }
 
 .modal-body .row {
