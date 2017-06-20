@@ -22,10 +22,10 @@ public class MatchingService {
 
 	@Autowired
 	private MatchingDao matchingDao;
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	// 내가 스크랩한 시티 리스트 가져오기
 	@Autowired
 	private ScrapCityDao scrapCityDao;
@@ -92,11 +92,9 @@ public class MatchingService {
 			int ctySeq = myCityList.get(x).getCtySeq();
 
 			List<ScrapCityVo> scrapCityVo = getUsersScrapInfoByCtySeq(ctySeq, myusrSeq);
-			
+
 			// 내가 스크랩한 도시를 같이 스크랩 한 사용자 스크랩 정보
 			for (int y = 0; y < scrapCityVo.size(); y++) {
-				int usr111111 = scrapCityVo.get(y).getUsrSeq();
-				System.out.println(usr111111);
 				if (scrapCityVo.get(y) != null) { // NULL 경우가 있음
 					UserVo dateScore = new UserVo(); // 유저 정보 저장용
 					int matchingUsrSeq = scrapCityVo.get(y).getUsrSeq();
@@ -134,44 +132,44 @@ public class MatchingService {
 						long diff = Math.abs(minTo.getTime() - maxFrom.getTime());
 						int overlapDays = (int)(diff / (24 * 60 * 60 * 1000));
 						overlapDaysScore = (int) Math.pow(overlapDays, 2);
-						System.out.println(usr111111 + "     " + overlapDaysScore);
 						boolean isExistUsr = false;
-						int listSize = samePlanMember.size();
-						
-						// 유저가 이미 리스트에 추가되어 있으면 값을 더해주고
-						for (int z = 0; z < listSize; z++) {
-							if (matchingUsrSeq == samePlanMember.get(z).getUsrSeq()) {
-								int originalScore = samePlanMember.get(z).getDateScore();
-								int originalOverlapDays = samePlanMember.get(z).getOverlapDays();
-								samePlanMember.get(z).setOverlapDays(originalOverlapDays + overlapDays);
-								samePlanMember.get(z).setDateScore(originalScore + overlapDaysScore );	// + overlapDaysScore    --> 왜 제곱을 했던건지 모르겠음
-								
-								int originMatchingScore = samePlanMember.get(z).getMatchingScore();
-								int newDateSocre = samePlanMember.get(z).getDateScore();
-								samePlanMember.get(z).setMatchingScore(originMatchingScore + newDateSocre);
-								isExistUsr = true;
-							}
-						}
-						// 리스트에 없으면 리스트에 추가
-						if (!isExistUsr) {
-							dateScore.setUsrSeq(matchingUsrSeq);
-							dateScore.setOverlapDays(overlapDays);
-							dateScore.setDateScore(overlapDaysScore);
-							samePlanMember.add(dateScore);
-						}
-						
-						for (int j=0; j<samePlanMember.size(); j++) {
-							if(maxDateScore <= samePlanMember.get(j).getDateScore())
-								maxDateScore = samePlanMember.get(j).getDateScore();
-						}
-					} // NULL 경우가 있음
 
+						if( overlapDays != 0 ) {
+							// 유저가 이미 리스트에 추가되어 있으면 값을 더해주고
+							for (int z = 0; z < samePlanMember.size(); z++) {
+								if (matchingUsrSeq == samePlanMember.get(z).getUsrSeq()) {
+									int originalScore = samePlanMember.get(z).getDateScore();
+									int originalOverlapDays = samePlanMember.get(z).getOverlapDays();
+									samePlanMember.get(z).setOverlapDays(originalOverlapDays + overlapDays);
+									samePlanMember.get(z).setDateScore(originalScore + overlapDaysScore );	// + overlapDaysScore    --> 왜 제곱을 했던건지 모르겠음
+
+									int originMatchingScore = samePlanMember.get(z).getMatchingScore();
+									int newDateSocre = samePlanMember.get(z).getDateScore();
+									samePlanMember.get(z).setMatchingScore(originMatchingScore + newDateSocre);
+									isExistUsr = true;
+								}
+							}
+							// 리스트에 없으면 리스트에 추가
+							if (!isExistUsr) {
+								dateScore.setUsrSeq(matchingUsrSeq);
+								dateScore.setOverlapDays(overlapDays);
+								dateScore.setDateScore(overlapDaysScore);
+								samePlanMember.add(dateScore);
+							}
+
+							for (int j=0; j<samePlanMember.size(); j++) {
+								if(maxDateScore <= samePlanMember.get(j).getDateScore())
+									maxDateScore = samePlanMember.get(j).getDateScore();
+							}
+						} // NULL 경우가 있음
+
+					}
 				}
 
 			} // for(int y=0; y < scrapCityVo.size(); y++){
 
 		} // for(int x=1; x < myCityList.size(); x++)
-		
+
 		float memberCompareToDate = 0;
 		// 최고 score를 가지고 있는 사람은 120 그를 기준으로 사람들의 일정 점수 매김
 		for(int j=0; j<samePlanMember.size(); j++) {
@@ -301,14 +299,14 @@ public class MatchingService {
 
 					// 기존 합계 점수에 일정 매칭 점수 추가
 					int originMatchingScore = matchingScoreList.get(i).getMatchingScore();
-					
+
 					// 점수 계산용 dateScore
 					int pureDateScore = samePlanMemeber.get(j).getDateScore();
 					matchingScoreList.get(i).setMatchingScore( originMatchingScore + pureDateScore );
 				}
 			}
 		}
-		
+
 		return getTopMatchingMember( matchingScoreList );
 	}
 
@@ -359,7 +357,6 @@ public class MatchingService {
 	}
 
 	public List<PoolMemberVo> getMyPoolListMember(int usrSeq) {
-		System.out.println(usrSeq);
 		return matchingDao.getMyPoolListMember( usrSeq );
 	}
 
