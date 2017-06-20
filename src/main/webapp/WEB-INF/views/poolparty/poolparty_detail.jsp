@@ -523,7 +523,8 @@
 						<c:if test="${post.postSeq == postComment.postSeq}">
 							<div class="margin_up_down" style="text-align: left;" id="commentdelete-${postComment.postCmtSeq}">
 								<img src="${postComment.usrImg}" width="30px" style="border-radius:15px;display: inline;">
-								<div style="margin: 0px 5px;display: inline;">${postComment.contents}</div>
+								<div style="margin: 0px 5px;display: inline;word-wrap: break-word;">${postComment.contents}</div>
+								<div style="margin: 0px 5px;display: inline; font-size: 4px;">${postComment.crtDate}</div>
 								<c:if test="${authUser.usrSeq == postComment.usrSeq}">
 <%-- 									<div class="modifycommentbtn comment-contents menu_links" title="수정" data-postcmtseq="${postComment.postCmtSeq}">M</div> --%>
 									<div class="deletecommentbtn comment-contents menu_links" title="삭제" data-postcmtseq="${postComment.postCmtSeq}">X</div>

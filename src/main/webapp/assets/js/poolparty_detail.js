@@ -443,7 +443,8 @@ $(document).ready(function(){
 		    	// 통신 성공 (response.result == "success" )
 		    	html = "<div class='margin_up_down' style='text-align: left;' id='commentdelete-"+response.data.postCmtSeq+"'>"+
 					"<img src='"+response.data.usrImg+"' width='30px' style='border-radius:15px;display: inline;'>"+
-					"<div style='margin: 0px 5px ;display: inline;'>"+response.data.contents+"</div>"+
+					"<div style='margin: 0px 5px ;display: inline; word-wrap: break-word;'>"+response.data.contents+"</div>"+
+					"<div style='margin: 0px 5px;display: inline; font-size: 4px;'>"+response.data.crtDate+"</div>"+
 					"<div class='deletecommentbtn comment-contents menu_links' title='삭제' data-postcmtseq='"+response.data.postCmtSeq+"'>X</div>"+
 					"</div>";
 		    	$("#comment-"+postSeq).append(html);
@@ -684,7 +685,8 @@ function showList(){
 						if(vo.postSeq == commentvo.postSeq){
 							 html = html + "<div class='margin_up_down' style='text-align: left;' id='commentdelete-"+commentvo.postCmtSeq+"'>"+
 								"<img src='"+commentvo.usrImg+"' width='30px' style='border-radius:15px;display: inline;'>"+
-								"<div style='margin: 0px 5px ;display: inline;'>"+commentvo.contents+"</div>";
+								"<div style='margin: 0px 5px ;display: inline; word-wrap: break-word;'>"+commentvo.contents+"</div>"+
+								"<div style='margin: 0px 5px;display: inline; font-size: 4px;'>"+commentvo.crtDate+"</div>";
 							
 							 if(commentvo.usrSeq == authUsrSeq){
 								 html = html +"<div class='deletecommentbtn comment-contents menu_links' title='삭제' data-postcmtseq='"+commentvo.postCmtSeq+"'>X</div>";

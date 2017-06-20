@@ -38,7 +38,7 @@
 			       pc.USR_SEQ as usrSeq,
 			       us.USR_NICK as usrName,
 			       us.USR_PROFILE as usrImg,
-				   DATE_FORMAT(pc.CRT_DATE,'%y.%m.%d %h:%i') as crtDate
+				   DATE_FORMAT(pc.CRT_DATE,'%m.%d %H:%i') as crtDate
 			FROM POST_COMMENT PC, USERS US
 			WHERE PC.USR_SEQ = us.USR_SEQ
 			AND pc.POST_SEQ = #{postSeq }
@@ -54,7 +54,7 @@
 			       pc.USR_SEQ as usrSeq,
 			       us.USR_NICK as usrName,
 			       us.USR_PROFILE as usrImg,
-				   DATE_FORMAT(pc.CRT_DATE,'%y.%m.%d %h:%i') as crtDate
+				   DATE_FORMAT(pc.CRT_DATE,	'%m.%d %H:%i') as crtDate
 			FROM POST_COMMENT PC, USERS US
 			WHERE PC.USR_SEQ = us.USR_SEQ
 			AND pc.POST_CMT_SEQ = #{postCmtSeq }

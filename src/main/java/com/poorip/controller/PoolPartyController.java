@@ -1,5 +1,7 @@
 package com.poorip.controller;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -123,7 +125,7 @@ public class PoolPartyController {
 
 		
 		// 로그인 사용자 전용
-		if (authUser != null) {
+		if (authUser != null && authUser instanceof UserVo) {
 			// 풀 좋아요 정보 가져오기 (true/false)			
 			model.addAttribute("like", poolPartyService.isLikePoolparty(poolSeq, authUser));
 			
