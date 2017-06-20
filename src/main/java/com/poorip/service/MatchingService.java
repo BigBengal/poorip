@@ -249,8 +249,8 @@ public class MatchingService {
 				int activityScore = 0;
 				int luxuryScore = 0;
 
-				if(foodHit != 0 && sightHit != 0 && activityHit != 0 && luxuryHit != 0 && sumHit != 0 
-						&& myFoodHit != 0 && mySightHit != 0 && myActivityHit != 0  && myLuxuryHit != 0 && mySumHit != 0){
+				if(foodHit+sightHit+activityHit+luxuryHit+sumHit != 0 
+						&& myFoodHit+mySightHit+myActivityHit+myLuxuryHit+mySumHit != 0){
 
 					//---------------------------------음식점 점수 계산-----------------------------------------------------			
 					float sumFood = (1-Math.abs(((float)foodHit/(float)sumHit)-((float)myFoodHit/(float)mySumHit)));
