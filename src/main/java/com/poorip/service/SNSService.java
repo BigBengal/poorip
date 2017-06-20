@@ -12,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.poorip.repository.PoolLikeDao;
 import com.poorip.repository.PoolPostDao;
+import com.poorip.repository.PostCommentDao;
 import com.poorip.repository.PostPicDao;
 import com.poorip.repository.SNSDao;
 import com.poorip.vo.PoolPartyVo;
 import com.poorip.vo.PoolPostVo;
+import com.poorip.vo.PostCommentVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
@@ -38,9 +39,7 @@ public class SNSService {
 	private PostPicDao postPicDao;
 	
 	@Autowired
-	private PoolLikeDao poolLikeDao;
-	
-
+	private PostCommentDao postCommentDao;
 	
 	public List<TravelInfoVo> getTravelInfo() {
 		return snsDao.getTravelInfo();
@@ -250,6 +249,27 @@ public class SNSService {
 	public List<PoolPartyVo> getPoolListByUsrSeq(int usrSeq) {
 		return snsDao.getPoolListByUsrSeq(usrSeq);
 	}
-	
 
+	// 코멘트 입력
+	public PostCommentVo writeComment(PostCommentVo postCommentVo){
+		postCommentDao.write(postCommentVo);
+		return postCommentDao.getCommentbyPostCommentSeq(postCommentVo.getPostCmtSeq());
+	}
+
+	// 코멘트 삭제
+	public boolean deleteComment(PostCommentVo postCommentVo){
+		return postCommentDao.delete(postCommentVo);
+	}
+
+	// 코멘트 수정
+	public boolean updateComment(PostCommentVo postCommentVo){
+		return postCommentDao.update(postCommentVo);
+	}
+	
+	// 코멘트 보기
+	public List<PostCommentVo> getComment(int seq){
+		return postCommentDao.getCommentListbyPostSeq(seq);
+	}
+
+	
 }

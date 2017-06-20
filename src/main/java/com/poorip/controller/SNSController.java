@@ -1,5 +1,7 @@
 package com.poorip.controller;
 
+import static org.mockito.Matchers.booleanThat;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import com.poorip.service.PoolPartyService;
 import com.poorip.service.SNSService;
 import com.poorip.service.ScrapService;
 import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.PostCommentVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
 import com.poorip.vo.UserVo;
@@ -181,9 +184,55 @@ public class SNSController {
 		map.put("postPic", snsService.getpostPicList(postSeq));
 		
 		return JSONResult.success(map);
-		}
-	
 	}
+
+	@Auth
+	@ResponseBody
+	@RequestMapping("/insertcomment")
+	public JSONResult insertCommnet( @ModelAttribute PostCommentVo postCommentVo,
+									@AuthUser UserVo authUser) {
+		postCommentVo.setUsrSeq(authUser.getUsrSeq());
+		PostCommentVo returnPostCommentVo = snsService.writeComment(postCommentVo);
+		if( returnPostCommentVo != null ){
+			return JSONResult.success( returnPostCommentVo );
+		}else{
+			return JSONResult.fail( "DB error" );
+			
+		}
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/updatecomment")
+	public JSONResult updateCommnet( @ModelAttribute PostCommentVo postCommentVo,
+									@AuthUser UserVo authUser) {
+		postCommentVo.setUsrSeq(authUser.getUsrSeq());
+		boolean returnValue = snsService.updateComment(postCommentVo);
+		if( returnValue ){
+			return JSONResult.success( "Update Ok" );
+		}else{
+			return JSONResult.fail( "DB error" );
+			
+		}
+	}
+	
+	@Auth
+	@ResponseBody
+	@RequestMapping("/deletecomment")
+	public JSONResult deleteCommnet(@ModelAttribute PostCommentVo postCommentVo,
+									@AuthUser UserVo authUser) {
+		postCommentVo.setUsrSeq(authUser.getUsrSeq());
+
+		boolean returnValue = snsService.deleteComment(postCommentVo);
+		if( returnValue ){
+			return JSONResult.success( "Delete Ok" );
+		}else{
+			return JSONResult.fail( "DB error" );
+			
+		}
+	}
+	
+}
 	
 
 		

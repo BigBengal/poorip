@@ -32,6 +32,7 @@ import com.poorip.service.UserService;
 import com.poorip.vo.CityVo;
 import com.poorip.vo.PoolMemberVo;
 import com.poorip.vo.PoolPartyVo;
+import com.poorip.vo.PostCommentVo;
 import com.poorip.vo.PostPicVo;
 import com.poorip.vo.PostVo;
 import com.poorip.vo.ReviewVo;
@@ -95,16 +96,23 @@ public class PoolPartyController {
 		// 풀 포스트
 		List<ReviewVo> postList = SNSService.getPostListbyPoolSeq(poolSeq, 0);
 		List<PostPicVo> postPicList = new ArrayList<>();
+		List<PostCommentVo> postCommentList = new ArrayList<>();
 		for(int i=0; i < postList.size();i++){
 			int postSeq = postList.get(i).getPostSeq();
+			//사진 가져오기
 			List<PostPicVo> postPic = SNSService.getpostPicList(postSeq);
 			postPicList.addAll(postPic);
+			//코멘트 가져오기
+			List<PostCommentVo> postComment = SNSService.getComment(postSeq);
+			postCommentList.addAll(postComment);
+			
 		}
 		
-		// 풀파티 포스트 (글 + 사진)
+		// 풀파티 포스트 (글 + 사진 + 코멘트)
 		model.addAttribute("post", postList);
 		model.addAttribute("postPic", postPicList);
-		
+		model.addAttribute("postComment", postCommentList);
+
 		// 풀파티 정보
 		PoolPartyVo poolPartyVo = poolPartyService.getPoolInfo(poolSeq);
 		model.addAttribute("pool", poolPartyVo);
@@ -362,24 +370,55 @@ public class PoolPartyController {
 	@ResponseBody
 	@RequestMapping("{poolSeq}/view/{page}")
 	public JSONResult getListbyPage(@PathVariable("page") int page,
-									@PathVariable("poolSeq") int poolSeq){
+									@PathVariable("poolSeq") int poolSeq,
+									@AuthUser UserVo authUser){
 		int startSeq = page * 5;
+		// 풀파티의 맴버인지 (초기값 NO)
+		String memberYn = "NO";
+		
 		// 풀 포스트
 		List<ReviewVo> postList = SNSService.getPostListbyPoolSeq(poolSeq, startSeq);
 		List<PostPicVo> postPicList = new ArrayList<>();
+		List<PostCommentVo> postCommentList = new ArrayList<>();
+		
 		for(int i=0; i < postList.size();i++){
 			int postSeq = postList.get(i).getPostSeq();
+			// 사진
 			List<PostPicVo> postPic = SNSService.getpostPicList(postSeq);
 			postPicList.addAll(postPic);
+			//코멘트 가져오기
+			List<PostCommentVo> postComment = SNSService.getComment(postSeq);
+			postCommentList.addAll(postComment);
 		}
 		
 		// 풀파티 포스트 (글 + 사진)
 		Map<String , Object> map = new HashMap<>();
 		map.put("post", postList);
 		map.put("postPic", postPicList);
+		map.put("postComment", postCommentList);
 		
 		//풀멤버 정보
 		List<PoolMemberVo> poolmemList = poolPartyService.getPoolMembers(poolSeq);
+		
+		// 로그인 사용자 전용
+		if (authUser != null) {
+			// 해당 풀파티의 맴버인지
+			for( PoolMemberVo member : poolmemList ){
+				if (member.getUsrSeq() == authUser.getUsrSeq() ) {
+					if ("Y".equals(member.getApprove()) ){
+						// 가입완료
+						memberYn = "YES";
+					} else {
+						// 가입 요청 중
+						memberYn = "ING";
+					}
+					break;
+				}
+			}
+//					logger.info("맴버입니다:" + memberYn);
+			map.put( "memberYn", memberYn );
+		}
+				
 		
 		map.put("poolmemList", poolmemList);
 		
@@ -390,7 +429,7 @@ public class PoolPartyController {
 	@Auth
 	@ResponseBody
 	@RequestMapping("/delete/{postSeq}")
-	public JSONResult getListbyPage(@PathVariable("postSeq") int postSeq,
+	public JSONResult deletPoolPost(@PathVariable("postSeq") int postSeq,
 									@RequestParam("usrSeq") int usrSeq,
 									@AuthUser UserVo userVo){
 		PostVo postVo = new PostVo();

@@ -417,7 +417,74 @@ $(document).ready(function(){
 		  });
 	});
 	
+	// 코멘트 버튼
+	$(document).on("click",".insertcommentbtn", function() {
+		var postSeq = $(this).data("postseq");
+		var comment = $("#commentcontents-"+postSeq).val();
+		if (comment == ""){
+			swal("댓글 내용이  없습니다.")
+			return;
+		}
+		$.ajax( {
+		    url : "/poorip/sns/insertcomment",
+		    type: "post",
+		    dataType: "json",
+		    data: { postSeq : postSeq,
+		    		contents :comment },
+		// contentType: "application/json",
+		    success: function( response ){
+		    	
+//		    	console.log ( response );
+		    	if( response.result == "fail") {
+		    		console.log( response.message );
+		    		return;
+		    	}
+		    	
+		    	// 통신 성공 (response.result == "success" )
+		    	html = "<div class='margin_up_down' style='text-align: left;' id='commentdelete-"+response.data.postCmtSeq+"'>"+
+					"<img src='"+response.data.usrImg+"' width='30px' style='border-radius:15px;display: inline;'>"+
+					"<div style='margin: 0px 5px ;display: inline;'>"+response.data.contents+"</div>"+
+					"<div class='deletecommentbtn comment-contents menu_links' title='삭제' data-postcmtseq='"+response.data.postCmtSeq+"'>X</div>"+
+					"</div>";
+		    	$("#comment-"+postSeq).append(html);
+		    	$("#commentcontents-"+postSeq).val("");
+		    	
+		    },
+		    error: function( XHR, status, error ){
+		       console.log("ERROR");
+		    }
 
+		   });
+	});
+	// 코멘트 삭제
+	$(document).on("click",".deletecommentbtn", function() {
+		var postcmtseq = $(this).data("postcmtseq");
+//		console.log(postcmtseq+"코멘트 입력");
+		$.ajax( {
+		    url : "/poorip/sns/deletecomment",
+		    type: "post",
+		    dataType: "json",
+		    data: { postCmtSeq : postcmtseq },
+		// contentType: "application/json",
+		    success: function( response ){
+		    	
+//		    	console.log ( response );
+		    	if( response.result == "fail") {
+		    		console.log( response.message );
+		    		return;
+		    	}
+		    	
+		    	// 통신 성공 (response.result == "success" )
+		    	$("#commentdelete-"+postcmtseq).remove();
+		    	
+		    },
+		    error: function( XHR, status, error ){
+		       console.log("ERROR");
+		    }
+
+		   });
+	});
+	
 	// 스크롤 Live mapping
 	$( window ).on( 'scroll', function( ) {
 		if ( isEnd == false ){
@@ -502,7 +569,8 @@ $(document).ready(function(){
 function showList(){
 	
 	var poolseq = $("#poolSeq").val();
-	var authUsrSeq = $("#authuser-pool").val();
+	var authUsrSeq = $("#authuser-pool").text();
+	
 	var html = "";
 	if ( isEnd == true ){
 		$("#loading").removeClass("loading")
@@ -598,6 +666,36 @@ function showList(){
 						 i++;
 					 }
 				 }
+				 
+				 
+				 
+				// 댓글 시작
+			 	html = html + "<div class='comment col-md-12 col-sm-12 margin_up_down underline' id='comment-"+vo.postSeq+"'>";
+			
+				// 댓글 쓰기 버튼
+				if(response.data.memberYn == 'YES'){
+					html = html + "<input type='text' class='col-md-9 col-sm-9' id='commentcontents-"+vo.postSeq+"'>"+
+							"<button class='gray_button insertcommentbtn' style='height: 30px;' data-postseq='"+vo.postSeq+"'> 댓글  </button>";
+				}
+				
+				// 댓글 읽기
+				if(response.data.postComment.length > 0){
+					$( response.data.postComment).each( function( index3, commentvo) {
+						if(vo.postSeq == commentvo.postSeq){
+							 html = html + "<div class='margin_up_down' style='text-align: left;' id='commentdelete-"+commentvo.postCmtSeq+"'>"+
+								"<img src='"+commentvo.usrImg+"' width='30px' style='border-radius:15px;display: inline;'>"+
+								"<div style='margin: 0px 5px ;display: inline;'>"+commentvo.contents+"</div>";
+							
+							 if(commentvo.usrSeq == authUsrSeq){
+								 html = html +"<div class='deletecommentbtn comment-contents menu_links' title='삭제' data-postcmtseq='"+commentvo.postCmtSeq+"'>X</div>";
+
+							 }
+							 html = html + "</div>";
+						 }
+					});
+				}
+					 
+				 html = html + "</div>";
 				 	
 				 html = html + "<div class='row margin_up_down underline' style='margin:auto; display:inline-block; width:100%;'>" +
 				 				"<div class='col-md-3 sns-button-left' >";

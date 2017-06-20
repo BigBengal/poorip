@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="postcomment">
+
+	<insert id="insert" parameterType="postcommentvo">
+	    <selectKey keyProperty="postCmtSeq" resultType="integer" order="BEFORE">
+			<![CDATA[
+			select auto_increment
+			  from information_schema.tables
+			 where table_schema='bengal'
+			   and table_name='post_comment'
+			]]>
+		</selectKey>
+		<![CDATA[
+			INSERT 
+			  INTO POST_COMMENT (POST_CMT_SEQ, POST_SEQ, CONTENTS, USR_SEQ)
+			values ( #{postCmtSeq }, #{postSeq }, #{contents }, #{usrSeq })
+		]]>
+	</insert>
+
+	<update id="update" parameterType="postcommentvo">
+		
+		<![CDATA[
+			UPDATE POST_COMMENT 
+				SET CONTENTS =#{contents }
+			WHERE POST_CMT_SEQ = #{postCmtSeq } 
+			  AND USR_SEQ= #{usrSeq }
+		]]>
+	</update>
+
+	<select id="getcommentlist" resultType="postcommentvo" parameterType="integer">
+	    <![CDATA[
+			SELECT 
+				   pc.POST_CMT_SEQ as postCmtSeq,
+				   pc.contents as contents,
+				   pc.POST_SEQ as postSeq,
+			       pc.USR_SEQ as usrSeq,
+			       us.USR_NICK as usrName,
+			       us.USR_PROFILE as usrImg,
+				   DATE_FORMAT(pc.CRT_DATE,'%y.%m.%d %h:%i') as crtDate
+			FROM POST_COMMENT PC, USERS US
+			WHERE PC.USR_SEQ = us.USR_SEQ
+			AND pc.POST_SEQ = #{postSeq }
+			  
+		]]>
+	</select>
+	
+	<select id="getcomment" resultType="postcommentvo" parameterType="integer">
+	    <![CDATA[
+			SELECT pc.POST_CMT_SEQ as postCmtSeq,
+			       pc.contents,
+				   pc.POST_SEQ as postSeq,
+			       pc.USR_SEQ as usrSeq,
+			       us.USR_NICK as usrName,
+			       us.USR_PROFILE as usrImg,
+				   DATE_FORMAT(pc.CRT_DATE,'%y.%m.%d %h:%i') as crtDate
+			FROM POST_COMMENT PC, USERS US
+			WHERE PC.USR_SEQ = us.USR_SEQ
+			AND pc.POST_CMT_SEQ = #{postCmtSeq }
+			  
+		]]>
+	</select>
+	
+
+	<delete id="delete" parameterType="postcommentvo">
+		<![CDATA[
+			DELETE 
+			  FROM POST_COMMENT 
+			 WHERE USR_SEQ=#{usrSeq }
+			   AND POST_CMT_SEQ=#{postCmtSeq }
+		]]>
+	</delete>
+
+
+</mapper>

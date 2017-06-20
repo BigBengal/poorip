@@ -138,6 +138,7 @@
 		</div>
 	</header>
 	<!-- header end -->
+	<div id="authuser-pool" style="display: none">${authUser.usrSeq}</div>
 	<div style="height: 200px;"></div>
 	
 		<div class="pool-detail-backgroundimg">
@@ -165,9 +166,8 @@
 								<form class="form-horizontal" id="pool-image-form" method="post"
 									enctype="multipart/form-data">
 									<input type="hidden" name="poolSeq" value="${pool.poolSeq}">
-									<input type="hidden" name="usrSeq" value="${authUser.usrSeq}"
-										id="authuser-pool"> <input type="hidden"
-										name="managerSeq" value="${pool.managerUsrSeq}">
+									<input type="hidden" name="usrSeq" value="${authUser.usrSeq}"> 
+									<input type="hidden" name="managerSeq" value="${pool.managerUsrSeq}">
 									<div class="sns-modal-title">
 										<h3>이미지 변경</h3>
 									</div>
@@ -513,6 +513,27 @@
 							</div>
 				</c:if>
 				
+				<!--코멘트 자리 -->
+				<div class="comment col-md-12 col-sm-12 margin_up_down underline" id="comment-${post.postSeq}">
+					<c:if test="${authUser != null and memberYn == 'YES'}">
+						<input type="text" class="col-md-9 col-sm-9" id="commentcontents-${post.postSeq}">
+						<button class="gray_button insertcommentbtn" style="height: 30px;" data-postseq="${post.postSeq}"> 댓글  </button>
+					</c:if>
+					<c:forEach var="postComment" items="${postComment}" varStatus="picStatus">
+						<c:if test="${post.postSeq == postComment.postSeq}">
+							<div class="margin_up_down" style="text-align: left;" id="commentdelete-${postComment.postCmtSeq}">
+								<img src="${postComment.usrImg}" width="30px" style="border-radius:15px;display: inline;">
+								<div style="margin: 0px 5px;display: inline;">${postComment.contents}</div>
+								<c:if test="${authUser.usrSeq == postComment.usrSeq}">
+<%-- 									<div class="modifycommentbtn comment-contents menu_links" title="수정" data-postcmtseq="${postComment.postCmtSeq}">M</div> --%>
+									<div class="deletecommentbtn comment-contents menu_links" title="삭제" data-postcmtseq="${postComment.postCmtSeq}">X</div>
+								</c:if>
+								
+							</div>
+							
+						</c:if>
+					</c:forEach>
+				</div>
 
 				<div class="row margin_up_down underline" style="margin:auto; width:100%; display:inline-block;">
 					<div class="col-md-3 sns-button-left">
