@@ -334,7 +334,7 @@
 						style="min-height: 560px; margin-right: 20px; margin-bottom: 30px">
 						<img class="img-circle img-responsive img-center"
 							style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px; padding-top: 10px;"
-							src="${samePlanMemeber.usrProfile }"
+							src="${samePlanMemeber.usrProfile }" width="50px" 
 							alt="${samePlanMemeber.usrNick}">
 						<div class="col-md-12 text-center" style="margin: 5px">
 							<h3 style="font-style: oblique;">
